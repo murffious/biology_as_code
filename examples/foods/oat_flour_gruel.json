@@ -1,0 +1,21 @@
+{
+  "id": "ex.oat.flour.gruel",
+  "status": "stub",
+  "identity": {
+    "common_name": "oat flour gruel",
+    "form": "flour",
+    "family_hint": "Poaceae"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: finer form, faster hit rate",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

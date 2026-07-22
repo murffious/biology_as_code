@@ -1,0 +1,22 @@
+{
+  "id": "ex.potato.chips.upf",
+  "status": "stub",
+  "identity": {
+    "common_name": "potato chips",
+    "form": "ultra_processed",
+    "family_hint": "Solanaceae"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "destroyed",
+    "notes": "stub: UPF class prior"
+  },
+  "teaching": {
+    "point": "stub: UPF + matrix destroyed",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "ex.potato.boiled",
+  "status": "stub",
+  "identity": {
+    "common_name": "boiled potato",
+    "form": "cooked",
+    "family_hint": "Solanaceae"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: starch form / RS later",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

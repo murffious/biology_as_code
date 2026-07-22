@@ -1,0 +1,22 @@
+{
+  "id": "ex.soda.cola",
+  "status": "stub",
+  "identity": {
+    "common_name": "cola soda",
+    "form": "ultra_processed",
+    "family_hint": "beverage"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "destroyed",
+    "notes": "stub: UPF class prior"
+  },
+  "teaching": {
+    "point": "stub: liquid sugar matrix / no lag",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

@@ -68,16 +68,19 @@ See [docs/constitution.md](docs/constitution.md).
 
 ## Example food objects
 
+**Filled (teaching):**
+
 | File | Teaching point |
 |------|----------------|
-| [`examples/foods/spinach_salad_zero_fat.json`](examples/foods/spinach_salad_zero_fat.json) | Fat-vehicle gate **closed** (carotenoids / fat-solubles) |
-| [`examples/foods/spinach_salad_with_oil.json`](examples/foods/spinach_salad_with_oil.json) | Same cargo, lipid partner present |
-| [`examples/foods/lentils_with_tea.json`](examples/foods/lentils_with_tea.json) | Iron bound **narrowed** by tannin |
-| [`examples/foods/lentils_with_ascorbate.json`](examples/foods/lentils_with_ascorbate.json) | Iron bound **expanded** by same-meal ascorbate |
-| [`examples/foods/almond_whole.json`](examples/foods/almond_whole.json) | Matrix encapsulation prior |
-| [`examples/foods/almond_flour.json`](examples/foods/almond_flour.json) | Same identity, destroyed matrix |
+| [`spinach_salad_zero_fat.json`](examples/foods/spinach_salad_zero_fat.json) | Fat-vehicle gate **closed** |
+| [`spinach_salad_with_oil.json`](examples/foods/spinach_salad_with_oil.json) | Same cargo + lipid partner |
+| [`lentils_with_tea.json`](examples/foods/lentils_with_tea.json) | Iron bound narrowed (tannin) |
+| [`lentils_with_ascorbate.json`](examples/foods/lentils_with_ascorbate.json) | Iron bound expanded (ascorbate) |
+| [`almond_whole.json`](examples/foods/almond_whole.json) / [`almond_flour.json`](examples/foods/almond_flour.json) | Matrix intact vs destroyed |
 
-Add more under `examples/foods/` — keep the schema; leave unknowns `"open"` or omit.
+**Stubs (`status: stub`)** — placeholders for real cargo/partners later: oats, breads, rice, orange/juice, salmon, olive oil, tea/lemon/coffee, dairy, meats, tofu, produce, UPF snacks/soda, supplements, IV clinical, etc. See full list under [`examples/foods/`](examples/foods/).
+
+Copy [`_template.json`](examples/foods/_template.json) for new ones. Keep schema; leave `"open"` until you have real fields.
 
 ---
 

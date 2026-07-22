@@ -1,0 +1,21 @@
+{
+  "id": "ex.yogurt.plain",
+  "status": "stub",
+  "identity": {
+    "common_name": "plain yogurt",
+    "form": "unknown",
+    "family_hint": "dairy"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: dairy matrix open",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "ex.salmon.fillet",
+  "status": "stub",
+  "identity": {
+    "common_name": "salmon fillet",
+    "form": "cooked",
+    "family_hint": "Actinopterygii"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: EPA/DHA cargo open; fat vehicle native",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

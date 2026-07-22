@@ -1,0 +1,21 @@
+{
+  "id": "ex.avocado",
+  "status": "stub",
+  "identity": {
+    "common_name": "avocado",
+    "form": "raw_whole",
+    "family_hint": "Lauraceae"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: native fat vehicle",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

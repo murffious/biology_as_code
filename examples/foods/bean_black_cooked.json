@@ -1,0 +1,21 @@
+{
+  "id": "ex.bean.black.cooked",
+  "status": "stub",
+  "identity": {
+    "common_name": "cooked black beans",
+    "form": "cooked",
+    "family_hint": "Fabaceae"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: fibre + phytate open",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

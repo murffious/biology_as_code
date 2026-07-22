@@ -1,0 +1,21 @@
+{
+  "id": "ex.spinach.raw",
+  "status": "stub",
+  "identity": {
+    "common_name": "raw spinach",
+    "form": "raw_whole",
+    "family_hint": "Amaranthaceae"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: base leafy cargo; pair with fat/iron examples",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

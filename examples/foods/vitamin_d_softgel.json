@@ -1,0 +1,21 @@
+{
+  "id": "ex.vitamin.d.softgel",
+  "status": "stub",
+  "identity": {
+    "common_name": "vitamin D softgel",
+    "form": "oil",
+    "family_hint": "supplement"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone2_cargo",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: zone2 + oil vehicle open",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

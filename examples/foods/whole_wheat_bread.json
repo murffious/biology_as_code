@@ -1,0 +1,21 @@
+{
+  "id": "ex.whole.wheat.bread",
+  "status": "stub",
+  "identity": {
+    "common_name": "whole wheat bread",
+    "form": "cooked",
+    "family_hint": "Poaceae"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: coarser matrix prior vs white",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "ex.lemon.wedge",
+  "status": "stub",
+  "identity": {
+    "common_name": "lemon wedge",
+    "form": "raw_whole",
+    "family_hint": "Rutaceae"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: ascorbate partner field",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "ex.strawberry",
+  "status": "stub",
+  "identity": {
+    "common_name": "strawberry",
+    "form": "raw_whole",
+    "family_hint": "Rosaceae"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: ascorbate co-cargo open",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

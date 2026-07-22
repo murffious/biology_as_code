@@ -1,0 +1,21 @@
+{
+  "id": "ex.canola.oil.dressing",
+  "status": "stub",
+  "identity": {
+    "common_name": "canola oil salad dressing",
+    "form": "oil",
+    "family_hint": "mixed"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: fat vehicle grams open",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

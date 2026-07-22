@@ -1,0 +1,21 @@
+{
+  "id": "ex.milk.cow",
+  "status": "stub",
+  "identity": {
+    "common_name": "cow milk",
+    "form": "unknown",
+    "family_hint": "dairy"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: calcium / casein partners open",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

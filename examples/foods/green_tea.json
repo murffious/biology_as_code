@@ -1,0 +1,21 @@
+{
+  "id": "ex.green.tea",
+  "status": "stub",
+  "identity": {
+    "common_name": "green tea",
+    "form": "unknown",
+    "family_hint": "Theaceae"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: tannin partner open",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

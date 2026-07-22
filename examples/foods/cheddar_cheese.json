@@ -1,0 +1,21 @@
+{
+  "id": "ex.cheddar.cheese",
+  "status": "stub",
+  "identity": {
+    "common_name": "cheddar cheese",
+    "form": "unknown",
+    "family_hint": "dairy"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: fat vehicle + calcium competition open",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

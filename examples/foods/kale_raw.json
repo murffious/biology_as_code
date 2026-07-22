@@ -1,0 +1,21 @@
+{
+  "id": "ex.kale.raw",
+  "status": "stub",
+  "identity": {
+    "common_name": "raw kale",
+    "form": "raw_whole",
+    "family_hint": "Brassicaceae"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: brassica cargo open",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

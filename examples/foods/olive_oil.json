@@ -1,0 +1,21 @@
+{
+  "id": "ex.olive.oil",
+  "status": "stub",
+  "identity": {
+    "common_name": "extra-virgin olive oil",
+    "form": "oil",
+    "family_hint": "Oleaceae"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: lipid vehicle partner; phenolics open",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

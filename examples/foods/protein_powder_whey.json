@@ -1,0 +1,21 @@
+{
+  "id": "ex.protein.powder.whey",
+  "status": "stub",
+  "identity": {
+    "common_name": "whey protein powder",
+    "form": "flour",
+    "family_hint": "supplement"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone2_cargo",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: zone2 isolate",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

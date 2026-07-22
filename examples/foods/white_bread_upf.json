@@ -1,0 +1,22 @@
+{
+  "id": "ex.white.bread.upf",
+  "status": "stub",
+  "identity": {
+    "common_name": "commercial white bread",
+    "form": "ultra_processed",
+    "family_hint": "Poaceae"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "destroyed",
+    "notes": "stub: UPF class prior"
+  },
+  "teaching": {
+    "point": "stub: UPF matrix / refined flour class",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "ex.egg.whole",
+  "status": "stub",
+  "identity": {
+    "common_name": "whole egg",
+    "form": "cooked",
+    "family_hint": "Galliformes"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: matrix + lipid + protein open",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

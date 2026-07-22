@@ -1,0 +1,21 @@
+{
+  "id": "ex.banana",
+  "status": "stub",
+  "identity": {
+    "common_name": "banana",
+    "form": "raw_whole",
+    "family_hint": "Musaceae"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: simple packet identity",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

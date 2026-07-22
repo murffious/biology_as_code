@@ -1,0 +1,21 @@
+{
+  "id": "ex.oats.porridge.plain",
+  "status": "stub",
+  "identity": {
+    "common_name": "plain oats porridge",
+    "form": "cooked",
+    "family_hint": "Poaceae"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: matrix rate / intact grain vs flour later",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

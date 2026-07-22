@@ -1,0 +1,21 @@
+{
+  "id": "ex.coffee.black",
+  "status": "stub",
+  "identity": {
+    "common_name": "black coffee",
+    "form": "unknown",
+    "family_hint": "Rubiaceae"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: polyphenol/tannin-class partner open",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

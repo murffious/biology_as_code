@@ -1,0 +1,21 @@
+{
+  "id": "ex.quinoa.cooked",
+  "status": "stub",
+  "identity": {
+    "common_name": "cooked quinoa",
+    "form": "cooked",
+    "family_hint": "Amaranthaceae"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: grain-like form open",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

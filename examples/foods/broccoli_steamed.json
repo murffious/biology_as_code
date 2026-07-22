@@ -1,0 +1,21 @@
+{
+  "id": "ex.broccoli.steamed",
+  "status": "stub",
+  "identity": {
+    "common_name": "steamed broccoli",
+    "form": "cooked",
+    "family_hint": "Brassicaceae"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: process field open",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

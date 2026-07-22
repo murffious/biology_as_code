@@ -1,0 +1,21 @@
+{
+  "id": "ex.iv.ascorbate.clinical",
+  "status": "stub",
+  "identity": {
+    "common_name": "IV ascorbate (clinical)",
+    "form": "unknown",
+    "family_hint": "clinical"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "zone3_actuator",
+  "matrix": {
+    "integrity": "unknown"
+  },
+  "teaching": {
+    "point": "stub: zone3/route bypass; not food",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}
