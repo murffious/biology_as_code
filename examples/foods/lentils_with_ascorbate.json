@@ -1,0 +1,23 @@
+{
+  "id": "ex.lentils.with_ascorbate",
+  "status": "filled",
+  "identity": {
+    "common_name": "lentils with lemon / ascorbate partner",
+    "form": "cooked",
+    "family_hint": "Fabaceae"
+  },
+  "cargo": [
+    { "nutrient": "nonhaem_iron", "label_amount": "open" }
+  ],
+  "partners": [
+    { "field": "ascorbate_same_meal", "value": true, "concurrency": "same_meal" },
+    { "field": "tea_tannins", "value": false, "concurrency": "same_meal" }
+  ],
+  "injection_zone": "zone1_matrix",
+  "teaching": {
+    "point": "Meal A vs Meal B shape: ascorbate EXPANDS_BOUND free ferrous pool when co-present.",
+    "gate": "enhancer condition in scope when ascorbate shares the meal",
+    "bound": "magnitude several-fold class in literature — soft without locking a single coefficient",
+    "book_ref": "Part 1.6 Table Meal A vs B; LAW-004 shape"
+  }
+}

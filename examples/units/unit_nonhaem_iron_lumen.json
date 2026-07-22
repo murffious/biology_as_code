@@ -1,0 +1,17 @@
+{
+  "id": "unit.nonhaem_iron.lumen_speciation",
+  "name": "Non-haem iron lumen speciation",
+  "system": "Assimilation",
+  "site": "duodenal-jejunal lumen",
+  "tier": "UNITS",
+  "gate_or_condition": "partner co-occupation for enhancer/inhibitor edges (same meal)",
+  "bound": "free Fe2+ pool magnitude moves with ascorbate (expand) and tannin/phytate (narrow)",
+  "seats": {
+    "host": "stores / hepcidin change inter-person variance",
+    "partner": "ascorbate, tea, phytate, meat factor",
+    "stage": "lumen pool before apical uptake",
+    "clock": "concurrency same meal"
+  },
+  "teaching": "Same 10 mg label iron is not the same delivered dose.",
+  "book_ref": "Part 1.6"
+}

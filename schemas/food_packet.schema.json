@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/murffious/biology_as_code/schemas/food_packet.schema.json",
+  "title": "FoodPacket",
+  "description": "Typed food packet for Biology as Code companion examples. Teaching shape — not a full product ontology.",
+  "type": "object",
+  "required": ["id", "identity"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^ex\\.[a-z0-9_.-]+$" },
+    "identity": {
+      "type": "object",
+      "required": ["common_name"],
+      "properties": {
+        "common_name": { "type": "string" },
+        "form": {
+          "type": "string",
+          "enum": [
+            "raw_whole", "cut", "pureed", "juiced", "flour", "oil",
+            "cooked", "canned", "frozen", "ultra_processed", "unknown"
+          ]
+        },
+        "family_hint": { "type": "string" },
+        "commercial_class": { "type": "string" }
+      }
+    },
+    "cargo": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["nutrient"],
+        "properties": {
+          "nutrient": { "type": "string" },
+          "label_amount": {
+            "oneOf": [
+              { "type": "string", "const": "open" },
+              { "type": "object", "properties": {
+                  "value": { "type": "number" },
+                  "unit": { "type": "string" }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "partners": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["field"],
+        "properties": {
+          "field": { "type": "string" },
+          "value": {},
+          "concurrency": {
+            "type": "string",
+            "enum": ["same_meal", "same_day", "unknown"],
+            "default": "same_meal"
+          }
+        }
+      }
+    },
+    "injection_zone": {
+      "type": "string",
+      "enum": ["zone1_matrix", "zone2_cargo", "zone3_actuator", "unknown"]
+    },
+    "matrix": {
+      "type": "object",
+      "properties": {
+        "integrity": {
+          "type": "string",
+          "enum": ["intact", "partial", "destroyed", "unknown"]
+        },
+        "notes": { "type": "string" }
+      }
+    },
+    "teaching": {
+      "type": "object",
+      "properties": {
+        "point": { "type": "string" },
+        "gate": { "type": "string" },
+        "bound": { "type": "string" },
+        "book_ref": { "type": "string" }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["stub", "filled", "open"],
+      "default": "stub"
+    }
+  },
+  "additionalProperties": true
+}

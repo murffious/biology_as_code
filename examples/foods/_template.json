@@ -1,0 +1,18 @@
+{
+  "id": "ex.your_food.stub",
+  "status": "stub",
+  "identity": {
+    "common_name": "REPLACE",
+    "form": "unknown"
+  },
+  "cargo": [],
+  "partners": [],
+  "injection_zone": "unknown",
+  "matrix": { "integrity": "unknown" },
+  "teaching": {
+    "point": "What should a systems reader learn from this packet?",
+    "gate": "open",
+    "bound": "open",
+    "book_ref": "open"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "ex.almond.whole",
+  "status": "filled",
+  "identity": {
+    "common_name": "whole almonds",
+    "form": "raw_whole",
+    "family_hint": "Rosaceae"
+  },
+  "cargo": [
+    { "nutrient": "lipid", "label_amount": "open" }
+  ],
+  "matrix": {
+    "integrity": "intact",
+    "notes": "cell walls encapsulate intracellular lipid"
+  },
+  "injection_zone": "zone1_matrix",
+  "teaching": {
+    "point": "Panel fat % is not delivery; encapsulation delays/reduces bioaccessibility.",
+    "gate": "structure prior on accessibility",
+    "bound": "surface fracture releases only outer cell layers (Ellis-class shape)",
+    "book_ref": "Part 3.12 matrix; EL04"
+  }
+}

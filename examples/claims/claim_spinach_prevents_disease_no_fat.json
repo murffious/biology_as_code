@@ -1,0 +1,27 @@
+{
+  "id": "claim.spinach_vitA_no_fat",
+  "surface_claim": "Eat fat-free spinach salad for vitamin A / carotenoids to prevent deficiency disease",
+  "atomized": [
+    "spinach delivers carotenoids without fat",
+    "panel vitamin A implies absorption",
+    "absorption implies disease prevention"
+  ],
+  "kingdom": "lumen",
+  "gate_check": "fail",
+  "gate_note": "dietary lipid co-present required for micellar presentation of hydrophobic cargo",
+  "l1_to_l5": {
+    "L1": "salad + zero-fat dressing",
+    "L2": "beta-carotene present in matrix",
+    "L3": "micelle path GATE CLOSED",
+    "L4": "not reached",
+    "L5": "not executable from this meal path",
+    "closed_through": "L3"
+  },
+  "verdict": "Busted",
+  "integrity": "unknown",
+  "rosetta": {
+    "surface_verb": "prevents",
+    "class": "disease_claim",
+    "relation_enum": "MALFORMED_MECHANISM"
+  }
+}

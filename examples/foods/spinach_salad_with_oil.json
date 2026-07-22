@@ -1,0 +1,24 @@
+{
+  "id": "ex.spinach_salad.with_oil",
+  "status": "filled",
+  "identity": {
+    "common_name": "spinach salad with oil dressing",
+    "form": "raw_whole",
+    "family_hint": "Amaranthaceae"
+  },
+  "cargo": [
+    { "nutrient": "beta_carotene", "label_amount": "open" },
+    { "nutrient": "phylloquinone", "label_amount": "open" }
+  ],
+  "partners": [
+    { "field": "dietary_lipid_g", "value": 6, "concurrency": "same_meal", "notes": "example low-oil meal; magnitude is bound not law" }
+  ],
+  "injection_zone": "zone1_matrix",
+  "matrix": { "integrity": "intact" },
+  "teaching": {
+    "point": "Same cargo as zero-fat salad; co-present lipid opens micellar presentation path.",
+    "gate": "gate-dietary-lipid OPEN (fat_g > 0 in meal compartment)",
+    "bound": "higher oil can raise absorption further — empirical bound",
+    "book_ref": "L-FAT-1; BR04 / WH17 class"
+  }
+}

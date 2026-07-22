@@ -1,0 +1,13 @@
+{
+  "id": "unit.l_fat_1.micellar_transport",
+  "name": "Lipid-mediated micellar transport (L-FAT-1 shape)",
+  "system": "Assimilation",
+  "relation": "OPENS_GATE",
+  "gate": "dietary lipid co-present in meal compartment with hydrophobic cargo",
+  "closure": "no lipid → absorption of fat-soluble cargo ABSENT (not slower)",
+  "bound": "oil dose moves magnitude when gate open; zero oil is violation walk-in",
+  "endpoint_stop": "absorption (e.g. chylomicron appearance) — not disease without new claim",
+  "holds": ["vitamins A D E K", "carotenoids", "other micelle-dependent lipophiles"],
+  "does_not_hold": ["water-soluble cargo", "panel listing as substitute for lumen lipid"],
+  "book_ref": "L-FAT-1; HB64 / BR04 / WH17 class"
+}

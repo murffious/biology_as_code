@@ -1,0 +1,22 @@
+{
+  "id": "ex.almond.flour",
+  "status": "filled",
+  "identity": {
+    "common_name": "almond flour",
+    "form": "flour",
+    "family_hint": "Rosaceae"
+  },
+  "cargo": [
+    { "nutrient": "lipid", "label_amount": "open" }
+  ],
+  "matrix": {
+    "integrity": "destroyed",
+    "notes": "mechanical disruption; surface area and free lipid rise vs whole"
+  },
+  "injection_zone": "zone1_matrix",
+  "teaching": {
+    "point": "Same identity string as whole almond; different execution program.",
+    "gate": "matrix destruction is process field, not a new nutrient",
+    "book_ref": "Part 3.11–3.12"
+  }
+}

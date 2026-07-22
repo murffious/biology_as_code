@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/murffious/biology_as_code/schemas/claim_audit.schema.json",
+  "title": "ClaimAudit",
+  "description": "Minimal Court / claim-audit fixture for companion examples.",
+  "type": "object",
+  "required": ["id", "surface_claim", "verdict"],
+  "properties": {
+    "id": { "type": "string" },
+    "surface_claim": { "type": "string" },
+    "atomized": { "type": "array", "items": { "type": "string" } },
+    "kingdom": {
+      "type": "string",
+      "enum": ["payload", "lumen", "colon", "organism", "mixed", "unknown"]
+    },
+    "gate_check": {
+      "type": "string",
+      "enum": ["pass", "fail", "unevaluable"]
+    },
+    "gate_note": { "type": "string" },
+    "l1_to_l5": {
+      "type": "object",
+      "properties": {
+        "L1": { "type": "string" },
+        "L2": { "type": "string" },
+        "L3": { "type": "string" },
+        "L4": { "type": "string" },
+        "L5": { "type": "string" },
+        "closed_through": {
+          "type": "string",
+          "enum": ["L1", "L2", "L3", "L4", "L5", "none"]
+        }
+      }
+    },
+    "verdict": {
+      "type": "string",
+      "enum": ["Busted", "Plausible", "Confirmed", "UNEVALUABLE", "REFUSE"]
+    },
+    "integrity": {
+      "type": "string",
+      "enum": ["Clean", "Contaminated", "Laundered", "unknown"]
+    },
+    "rosetta": {
+      "type": "object",
+      "properties": {
+        "surface_verb": { "type": "string" },
+        "class": { "type": "string" },
+        "relation_enum": { "type": "string" }
+      }
+    }
+  }
+}

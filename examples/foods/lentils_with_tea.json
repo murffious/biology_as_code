@@ -1,0 +1,23 @@
+{
+  "id": "ex.lentils.with_tea",
+  "status": "filled",
+  "identity": {
+    "common_name": "lentils with black tea, no ascorbate partner",
+    "form": "cooked",
+    "family_hint": "Fabaceae"
+  },
+  "cargo": [
+    { "nutrient": "nonhaem_iron", "label_amount": "open" }
+  ],
+  "partners": [
+    { "field": "tea_tannins", "value": true, "concurrency": "same_meal" },
+    { "field": "ascorbate_same_meal", "value": false, "concurrency": "same_meal" }
+  ],
+  "injection_zone": "zone1_matrix",
+  "teaching": {
+    "point": "Same iron label milligrams as the ascorbate meal; partner seat changes the free Fe2+ bound.",
+    "gate": "iron absorption path still possible — this is primarily a BOUND story, not a hard zero gate",
+    "bound": "tannins NARROWS_BOUND non-haem iron absorption",
+    "book_ref": "Part 1.6 iron UNIT; H89-class"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "claim.iron_supports_energy",
+  "surface_claim": "Iron supports energy and boosts vitality",
+  "atomized": ["supports energy", "boosts vitality"],
+  "kingdom": "mixed",
+  "gate_check": "unevaluable",
+  "gate_note": "soft / marketing verbs; no typed mechanism or endpoint",
+  "verdict": "REFUSE",
+  "integrity": "unknown",
+  "rosetta": {
+    "surface_verb": "supports / boosts",
+    "class": "soft / marketing",
+    "relation_enum": "MALFORMED_MECHANISM"
+  }
+}

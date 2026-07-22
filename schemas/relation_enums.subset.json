@@ -1,0 +1,31 @@
+{
+  "description": "Subset of Biology as Code RelationType ENUMs for public companion use. Full list in book / claim-language.",
+  "RelationType": [
+    "OPENS_GATE",
+    "CLOSES_GATE",
+    "EXPANDS_BOUND",
+    "NARROWS_BOUND",
+    "COMPETES_WITH",
+    "PART_OF",
+    "NEEDS_RESOLUTION",
+    "MALFORMED_MECHANISM"
+  ],
+  "claim_verb_classes": [
+    "gate",
+    "bound_increase",
+    "bound_decrease",
+    "soft",
+    "marketing",
+    "disease_claim",
+    "hedge"
+  ],
+  "badges": [
+    "LAW",
+    "EVIDENCE",
+    "UNITS",
+    "FLOW",
+    "CONTESTED",
+    "OPEN",
+    "REFUSE"
+  ]
+}
