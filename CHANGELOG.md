@@ -2,7 +2,7 @@
 
 All notable changes to the **biology-as-code** Python package are documented here.
 
-## [0.1.0] — 2026-07-23
+## [0.1.0] — 2026-07-24
 
 ### Added
 

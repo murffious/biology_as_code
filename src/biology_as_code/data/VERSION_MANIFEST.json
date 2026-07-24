@@ -8,7 +8,7 @@
     "patch": 0,
     "pre": null
   },
-  "released": "2026-07-23",
+  "released": "2026-07-24",
   "git": {
     "note": "PyPI package biology-as-code; engine lineage from kibo_simulator_latest FLOW stack",
     "repo_root_hint": "biology_as_code/"
