@@ -15,6 +15,9 @@ __version__ = package_version()
 # Dig helpers
 from biology_as_code.dig import Bolus, DigestiveFlowSimulator, build_absorption_plan
 
+# Evidence / provenance (offline, no fabricated citations)
+from biology_as_code.evidence import all_sources, law_evidence, pubmed_url
+
 # LAW-SPEC law cards (inspect the constitution as data)
 from biology_as_code.laws import get_law, law_card, list_laws
 
@@ -52,6 +55,7 @@ __all__ = [
     "LifestyleFactors",
     "MealRunResult",
     "__version__",
+    "all_sources",
     "build_absorption_plan",
     "exercise",
     "fed",
@@ -59,6 +63,7 @@ __all__ = [
     "get_machine",
     "get_pathway",
     "law_card",
+    "law_evidence",
     "list_laws",
     "list_machines",
     "list_pathways",
@@ -66,6 +71,7 @@ __all__ = [
     "pathway_activities",
     "product_score_available",
     "prolonged_fast",
+    "pubmed_url",
     "run_digestion",
     "run_product_score_analysis",
     "simulate_meal",

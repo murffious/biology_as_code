@@ -1,0 +1,32 @@
+flowchart TD
+  %% Auto-generated from registry pathway: mtorc1_network
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  %% Source: New developments in AMPK and mTORC1 cross-talk — Essays in Biochemistry 2024: PMC12055038 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12055038/)
+  %% Source: AMPK-ULK1-mTORC1 regulatory triangle / autophagy oscillation: PMC7576158 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7576158/)
+  %% Source: mTORC1, the maestro of cell metabolism and growth — Genes & Development 2025: https://genesdev.cshlp.org/content/39/1-2/109.full
+  amino_acids["Amino acids (leucine)"]
+  rag_gtpases["Rag GTPases (lysosome)"]
+  insulin_igf["Insulin / IGF-1"]
+  pi3k_akt["PI3K → Akt"]
+  tsc2["TSC2"]
+  rheb["Rheb-GTP"]
+  mtorc1["mTORC1"]
+  s6k1["S6K1"]
+  fourebp1["4E-BP1"]
+  protein_synthesis["Protein synthesis"]
+  srebp["SREBP-1c/2"]
+  ulk1["ULK1 (autophagy)"]
+  ampk["AMPK"]
+  amino_acids -->|"activates: leucine sensing (Sestrin2/GATOR)"| rag_gtpases
+  rag_gtpases -->|"activates: recruits mTORC1 to the lysosome"| mtorc1
+  insulin_igf -->|"activates: receptor → PI3K → Akt"| pi3k_akt
+  pi3k_akt -->|"inhibits: Akt phosphorylation releases the brake"| tsc2
+  tsc2 -->|"inhibits: Rheb-GAP keeps Rheb inactive"| rheb
+  rheb -->|"activates: Rheb-GTP is the direct activator"| mtorc1
+  mtorc1 -->|"activates: phosphorylation"| s6k1
+  s6k1 -->|"activates: ribosome biogenesis / translation"| protein_synthesis
+  mtorc1 -->|"inhibits: phospho-4E-BP1 releases eIF4E"| fourebp1
+  fourebp1 -->|"inhibits: sequesters eIF4E when active"| protein_synthesis
+  mtorc1 -->|"activates: drives lipogenic / sterol transcripti"| srebp
+  mtorc1 -->|"inhibits: Ser757 phosphorylation blocks autophag"| ulk1
+  ampk -->|"inhibits: cross-talk brake (Raptor + TSC2)"| mtorc1

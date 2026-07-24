@@ -36,6 +36,12 @@ def _node_label(node: Any) -> str:
 
 def _edge_label(edge: Any) -> str:
     parts = []
+    # Regulatory (signed) edges: show the effect + mechanism.
+    eff = getattr(edge, "effect", "") or ""
+    if eff:
+        mech = getattr(edge, "mechanism", "") or ""
+        parts.append(f"{eff}: {mech}"[:48] if mech else eff)
+        return "<br/>".join(parts)
     mid = getattr(edge, "mechanism_id", "") or ""
     enz = getattr(edge, "enzyme", "") or getattr(edge, "process", "") or ""
     if mid:
@@ -192,6 +198,7 @@ def collect_pathways() -> List[Tuple[str, str, Any]]:
     from biology_as_code.pathways.ketogenesis import get_ketogenesis_registry
     from biology_as_code.pathways.ketolysis import get_ketolysis_registry
     from biology_as_code.pathways.metabolic_pathways import get_metabolic_pathways_registry
+    from biology_as_code.pathways.nutrient_sensing import get_nutrient_sensing_registry
     from biology_as_code.pathways.pentose_phosphate import get_pentose_phosphate_registry
     from biology_as_code.pathways.supporting_pathways import get_supporting_pathways_registry
     from biology_as_code.pathways.tca_cycle import get_tca_cycle_registry
@@ -210,6 +217,7 @@ def collect_pathways() -> List[Tuple[str, str, Any]]:
         ("biology_as_code.pathways.fatty_acid_synthesis", get_fatty_acid_synthesis_registry),
         ("biology_as_code.pathways.ketogenesis", get_ketogenesis_registry),
         ("biology_as_code.pathways.ketolysis", get_ketolysis_registry),
+        ("biology_as_code.pathways.nutrient_sensing", get_nutrient_sensing_registry),
         ("biology_as_code.pathways.digestion_absorption_pathways", get_digestion_absorption_registry),
         ("biology_as_code.pathways.supporting_pathways", get_supporting_pathways_registry),
     ]

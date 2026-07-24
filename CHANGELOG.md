@@ -20,6 +20,18 @@ All notable changes to the **biology-as-code** Python package are documented her
 - **Ketolysis** teaching pathway (`get_pathway("ketolysis")`) — ketone-body oxidation
   (BDH1 -> SCOT/OXCT1 -> ACAT1 -> 2 acetyl-CoA), including the liver's lack of SCOT.
   Closes TODO 6b; complements the existing ketogenesis graph.
+- Multi-node **nutrient-sensing** regulatory graphs (`ampk_network`, `mtorc1_network`,
+  `srebp_network`) with signed activates/inhibits edges and explicit AMPK/mTORC1/SREBP
+  cross-talk — deepens the scalar proxies in `pathway_regulation`. Sources in the packs.
+- `β-hydroxybutyrate` signaling pathway (HCAR2/GPR109A, class-I HDAC inhibition, NLRP3,
+  GPR41) in the signaling registry — ketones as signals, not just fuel.
+- Public LAW-SPEC **law cards** (`get_law`, `list_laws`, `law_card`) over the 47-law
+  kibo_core register (System / Organ / Gate / Bound / Conditions / relation).
+- Open **evidence/provenance** surface (`all_sources`, `pubmed_url`, `law_evidence`):
+  aggregates declared sources, loads bundled LAW-026 PubMed candidates, and offers a
+  **fail-closed** (offline, no fabricated citations) PubMed lookup.
+- Pack exporter renders a pathway's `references` as `%% Source:` lines + a `## Sources`
+  section, so citations survive regeneration.
 - Optional product-score **hook only** (engine not shipped; patent pending).
 - Quiet default logging (`BIOLOGY_AS_CODE_LOG=DEBUG` for dig traces).
 - CI workflow + **Trusted Publisher** OIDC publish workflow.

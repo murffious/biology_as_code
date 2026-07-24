@@ -1,0 +1,28 @@
+flowchart TD
+  %% Auto-generated from registry pathway: ampk_network
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  %% Source: New developments in AMPK and mTORC1 cross-talk — Essays in Biochemistry 2024: PMC12055038 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12055038/)
+  %% Source: AMPK-ULK1-mTORC1 regulatory triangle / autophagy oscillation: PMC7576158 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7576158/)
+  %% Source: mTORC1, the maestro of cell metabolism and growth — Genes & Development 2025: https://genesdev.cshlp.org/content/39/1-2/109.full
+  amp_adp_atp["AMP/ADP : ATP ratio"]
+  lkb1["LKB1"]
+  camkk2["CaMKK2 (Ca²⁺)"]
+  ampk["AMPK"]
+  acc["Acetyl-CoA carboxylase (ACC)"]
+  fatty_acid_oxidation["Fatty-acid oxidation"]
+  tsc2["TSC2"]
+  mtorc1["mTORC1"]
+  ulk1["ULK1 (autophagy initiator)"]
+  srebp1c["SREBP-1c"]
+  pgc1a["PGC-1α (mito biogenesis)"]
+  amp_adp_atp -->|"activates: allosteric AMP binding + protects Thr"| ampk
+  lkb1 -->|"activates: Thr172 phosphorylation"| ampk
+  camkk2 -->|"activates: Ca²⁺-dependent Thr172 phosphorylation"| ampk
+  ampk -->|"inhibits: phosphorylation → ↓malonyl-CoA"| acc
+  acc -->|"inhibits: malonyl-CoA blocks CPT-1"| fatty_acid_oxidation
+  ampk -->|"activates: phosphorylation activates the mTORC1 "| tsc2
+  tsc2 -->|"inhibits: Rheb-GAP"| mtorc1
+  ampk -->|"inhibits: Raptor phosphorylation (+ via TSC2)"| mtorc1
+  ampk -->|"activates: Ser317/Ser777 phosphorylation → autop"| ulk1
+  ampk -->|"inhibits: Ser372 phosphorylation → ↓lipogenesis"| srebp1c
+  ampk -->|"activates: mitochondrial biogenesis program"| pgc1a

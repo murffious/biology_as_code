@@ -6,6 +6,7 @@ Gold hand pack: [`../glycolysis/`](../glycolysis/) (exists=True)
 
 | Pack | Module | Nodes | Edges |
 |------|--------|------:|------:|
+| [`ampk_network`](./ampk_network/) | `biology_as_code.pathways.nutrient_sensing` | 11 | 11 |
 | [`beta_oxidation`](./beta_oxidation/) | `biology_as_code.pathways.beta_oxidation` | 9 | 8 |
 | [`bile_acid_synthesis`](./bile_acid_synthesis/) | `biology_as_code.pathways.digestion_absorption_pathways` | 4 | 3 |
 | [`brush_border_final_digestion`](./brush_border_final_digestion/) | `biology_as_code.pathways.digestion_absorption_pathways` | 4 | 2 |
@@ -24,12 +25,14 @@ Gold hand pack: [`../glycolysis/`](../glycolysis/) (exists=True)
 | [`ketolysis`](./ketolysis/) | `biology_as_code.pathways.ketolysis` | 4 | 3 |
 | [`lipid_digestion_absorption`](./lipid_digestion_absorption/) | `biology_as_code.pathways.digestion_absorption_pathways` | 6 | 5 |
 | [`lipoprotein_transport`](./lipoprotein_transport/) | `biology_as_code.pathways.cholesterol_pathway` | 7 | 6 |
+| [`mtorc1_network`](./mtorc1_network/) | `biology_as_code.pathways.nutrient_sensing` | 13 | 13 |
 | [`pentose_phosphate`](./pentose_phosphate/) | `biology_as_code.pathways.pentose_phosphate` | 10 | 9 |
 | [`prebiotic_probiotic`](./prebiotic_probiotic/) | `biology_as_code.pathways.supporting_pathways` | 5 | 4 |
 | [`protein_digestion_absorption`](./protein_digestion_absorption/) | `biology_as_code.pathways.digestion_absorption_pathways` | 5 | 4 |
 | [`redox_shuttles`](./redox_shuttles/) | `biology_as_code.pathways.supporting_pathways` | 7 | 6 |
 | [`secondary_bile_acids`](./secondary_bile_acids/) | `biology_as_code.pathways.supporting_pathways` | 4 | 3 |
+| [`srebp_network`](./srebp_network/) | `biology_as_code.pathways.nutrient_sensing` | 10 | 8 |
 | [`tca_cycle`](./tca_cycle/) | `biology_as_code.pathways.tca_cycle` | 9 | 8 |
 | [`urea_cycle`](./urea_cycle/) | `biology_as_code.pathways.urea_cycle` | 10 | 6 |
 
-**Total:** 25 graphs
+**Total:** 28 graphs

@@ -1,0 +1,24 @@
+flowchart TD
+  %% Auto-generated from registry pathway: srebp_network
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  %% Source: New developments in AMPK and mTORC1 cross-talk — Essays in Biochemistry 2024: PMC12055038 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12055038/)
+  %% Source: AMPK-ULK1-mTORC1 regulatory triangle / autophagy oscillation: PMC7576158 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7576158/)
+  %% Source: mTORC1, the maestro of cell metabolism and growth — Genes & Development 2025: https://genesdev.cshlp.org/content/39/1-2/109.full
+  insulin["Insulin"]
+  mtorc1["mTORC1"]
+  ampk["AMPK"]
+  sterols["ER cholesterol"]
+  scap_insig["SCAP / INSIG"]
+  srebp1c["SREBP-1c"]
+  srebp2["SREBP-2"]
+  acc_fasn["ACC + FASN"]
+  hmgcr["HMG-CoA reductase"]
+  ldlr["LDL receptor"]
+  insulin -->|"activates: transcription + proteolytic maturatio"| srebp1c
+  mtorc1 -->|"activates: nuclear SREBP accumulation"| srebp1c
+  ampk -->|"inhibits: phosphorylation blocks cleavage/activi"| srebp1c
+  sterols -->|"activates: sterols lock SCAP to INSIG in the ER"| scap_insig
+  scap_insig -->|"inhibits: retention blocks Golgi processing when"| srebp2
+  srebp1c -->|"activates: lipogenic gene transcription"| acc_fasn
+  srebp2 -->|"activates: cholesterol-synthesis gene transcript"| hmgcr
+  srebp2 -->|"activates: LDL-cholesterol uptake"| ldlr
