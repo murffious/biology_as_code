@@ -18,7 +18,8 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 PATHWAYS = ROOT / "pathways"
-GLYCOLYSIS_GOLD = ROOT / "glycolysis"
+# Hand-authored gold glycolysis variants (archived under the auto pack).
+GLYCOLYSIS_GOLD = ROOT / "pathways" / "glycolysis" / "glycolysis_extra"
 
 
 def _collect() -> List[Tuple[str, str, Any]]:

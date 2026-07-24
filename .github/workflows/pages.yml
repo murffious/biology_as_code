@@ -1,9 +1,18 @@
+# OPTIONAL — GitHub Pages for docs/ only.
+# Not required for PyPI, CI tests, or the dig package.
+#
+# Default: does NOT run on push (avoids red X when Pages is not enabled).
+# To deploy later:
+#   1. Repo Settings → Pages → Source: GitHub Actions
+#   2. Actions → Deploy GitHub Pages → Run workflow
+#
+# Node deprecation warnings on Actions are from GitHub's runner defaults;
+# they are unrelated to this package's Python version.
+
 name: Deploy GitHub Pages
 
 on:
-  push:
-    branches: ["main"]
-  workflow_dispatch:
+  workflow_dispatch:  # manual only — no automatic push deploy
 
 permissions:
   contents: read
@@ -24,10 +33,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
-        with:
-          # Auto-create the Pages site on first run so the deploy doesn't 404
-          # with "Get Pages site failed" before Pages is enabled in settings.
-          enablement: true
+        # Do not auto-create site (needs admin token); enable Pages in Settings first.
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

@@ -22,7 +22,7 @@ if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
 OUT = ROOT / "pathways"
-GOLD = ROOT / "glycolysis"
+GOLD = ROOT / "pathways" / "glycolysis" / "glycolysis_extra"
 
 
 def _safe_id(name: str) -> str:
@@ -55,7 +55,7 @@ def pathway_to_mermaid(pathway: Any) -> str:
     lines = [
         "flowchart TD",
         f"  %% Auto-generated from registry pathway: {getattr(pathway, 'name', '?')}",
-        f"  %% Do not hand-edit; re-run scripts/export_pathway_packs.py",
+        "  %% Do not hand-edit; re-run scripts/export_pathway_packs.py",
     ]
     for ref in getattr(pathway, "references", None) or []:
         lines.append(f"  %% Source: {ref}")
@@ -168,9 +168,9 @@ def write_readme(pathway: Any, module: str, pack_id: str) -> str:
             desc,
             "",
             f"- **Python module:** `{module}`",
-            f"- **Graph:** `pathway.mermaid` (auto)",
-            f"- **Tests:** `tests.md` + `tests/test_pathway_packs.py`",
-            f"- **Gold template:** repo root `glycolysis/`",
+            "- **Graph:** `pathway.mermaid` (auto)",
+            "- **Tests:** `tests.md` + `tests/test_pathway_packs.py`",
+            "- **Gold template:** repo root `glycolysis/`",
             "",
             "Tier: FLOW teaching. Not product meal score / Kibo-vars product scorer.",
             "",
@@ -180,22 +180,22 @@ def write_readme(pathway: Any, module: str, pack_id: str) -> str:
 
 def collect_pathways() -> List[Tuple[str, str, Any]]:
     """Return list of (pack_id, module_path, pathway_obj)."""
-    from biology_as_code.pathways.metabolic_pathways import get_metabolic_pathways_registry
-    from biology_as_code.pathways.tca_cycle import get_tca_cycle_registry
-    from biology_as_code.pathways.etc_oxphos import get_etc_oxphos_registry
     from biology_as_code.pathways.beta_oxidation import get_beta_oxidation_registry
-    from biology_as_code.pathways.gluconeogenesis import get_gluconeogenesis_registry
-    from biology_as_code.pathways.urea_cycle import get_urea_cycle_registry
-    from biology_as_code.pathways.pentose_phosphate import get_pentose_phosphate_registry
-    from biology_as_code.pathways.glycogen_metabolism import get_glycogen_metabolism_registry
     from biology_as_code.pathways.cholesterol_pathway import get_cholesterol_pathway_registry
-    from biology_as_code.pathways.fatty_acid_synthesis import get_fatty_acid_synthesis_registry
-    from biology_as_code.pathways.ketogenesis import get_ketogenesis_registry
-    from biology_as_code.pathways.ketolysis import get_ketolysis_registry
     from biology_as_code.pathways.digestion_absorption_pathways import (
         get_digestion_absorption_registry,
     )
+    from biology_as_code.pathways.etc_oxphos import get_etc_oxphos_registry
+    from biology_as_code.pathways.fatty_acid_synthesis import get_fatty_acid_synthesis_registry
+    from biology_as_code.pathways.gluconeogenesis import get_gluconeogenesis_registry
+    from biology_as_code.pathways.glycogen_metabolism import get_glycogen_metabolism_registry
+    from biology_as_code.pathways.ketogenesis import get_ketogenesis_registry
+    from biology_as_code.pathways.ketolysis import get_ketolysis_registry
+    from biology_as_code.pathways.metabolic_pathways import get_metabolic_pathways_registry
+    from biology_as_code.pathways.pentose_phosphate import get_pentose_phosphate_registry
     from biology_as_code.pathways.supporting_pathways import get_supporting_pathways_registry
+    from biology_as_code.pathways.tca_cycle import get_tca_cycle_registry
+    from biology_as_code.pathways.urea_cycle import get_urea_cycle_registry
 
     loaders: List[Tuple[str, Callable]] = [
         ("biology_as_code.pathways.metabolic_pathways", get_metabolic_pathways_registry),

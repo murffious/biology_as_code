@@ -62,7 +62,7 @@ Setup checklist: [`docs/python/PUBLISHING.md`](docs/python/PUBLISHING.md).
 Architecture notes: [`docs/python/PACKAGE_ARCHITECTURE.md`](docs/python/PACKAGE_ARCHITECTURE.md)  
 License: [MIT](./LICENSE) for code · [LICENSE-SAMPLES.md](./LICENSE-SAMPLES.md) for example JSON · book remains all rights reserved.
 
-Docs site (GitHub Pages): deployed by the `pages.yml` workflow — set **Settings → Pages → Source: GitHub Actions**.
+Docs live under `docs/` in the repo (no Pages required for PyPI). Optional GitHub Pages is **manual only** (Actions → Deploy GitHub Pages) after Settings → Pages → Source: GitHub Actions.
 
 ---
 
