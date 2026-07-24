@@ -19,6 +19,27 @@ on its own today; you do not need the book to use it.
 
 ---
 
+## What's inside
+
+Install it and `import biology_as_code` — a small, **zero-dependency** toolkit (pure Python 3.11+):
+
+- **Metabolic pathway graphs** (glycolysis, TCA, β-oxidation, ketogenesis/ketolysis,
+  AMPK·mTORC1·SREBP nutrient sensing) — `get_pathway(...)`, rendered via
+  `visualization.pathway_to_mermaid`.
+- **Declarative digestion machines** — the GI tract (oral → colon) as versioned,
+  inspectable state graphs: `list_machines()`, `trace()`, `run_digestion(...)`.
+- **LAW-SPEC law cards** — the constitution as queryable data:
+  `law_card("LAW-004")` → System / Organ / Gate / Bound / Conditions / relation.
+- **Meal simulation** — `simulate_meal(carbs_g=…, protein_g=…, fats_g=…, fiber_g=…)`
+  and fed / fasted / exercise scenarios.
+- **Bundled data** — meal fixtures, a vitamins registry, personas, and iron/colon/law data.
+- **Provenance** — `all_sources()` / `pubmed_url()` surface every citation; no fabricated
+  data and no network calls by default.
+
+Not included: the patent-pending product/meal score (open hook only) and the book itself.
+
+---
+
 ## Install
 
 **From PyPI** — *once the first release is published* (not on PyPI yet):
