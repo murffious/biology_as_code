@@ -181,3 +181,5 @@ Early companion scaffold (alpha). The Python package works today and installs fr
 </p>
 
 <p align="center"><em>Biology as Code: Standardizing Nutrition Science for Preventive Medicine</em> — Paul Murff</p>
+
+<p align="center"><sub><em>Note: cover art is a draft (not final), and the glucose chemistry shown on it is not yet corrected.</em></sub></p>
