@@ -26,8 +26,6 @@ Build against the constitution:
 - never promote soft verbs (`supports`, `boosts`, `detox`) to law without a typed relation  
 - never L1→L5 tunnel (food → disease slogan without mechanism)
 
-## Full book
+## Book
 
-Commercial manuscript. This site is samples + architecture face only.
-
-*Buy / preorder link: add when live.*
+The full book is **in progress and not yet released** — there's nothing to buy or preorder yet. This site is the open samples + architecture companion; the manuscript will be published separately when it's done.
