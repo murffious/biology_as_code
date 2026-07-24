@@ -161,3 +161,11 @@ Copy [`_template.json`](examples/foods/_template.json) for new ones. Keep schema
 ## Status
 
 Early companion scaffold (alpha). The Python package works today and installs from source; food objects and schemas will keep growing. The **book itself is still in progress and has not been released** — this repo does not depend on it.
+
+---
+
+<p align="center">
+  <img src="docs/assets/biology-as-code-cover.jpg" alt="Biology as Code — Standardizing Nutrition Science for Preventive Medicine — Paul Murff" width="420" />
+</p>
+
+<p align="center"><em>Biology as Code: Standardizing Nutrition Science for Preventive Medicine</em> — Paul Murff</p>
