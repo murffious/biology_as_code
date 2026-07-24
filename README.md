@@ -2,6 +2,8 @@
 
 **Standardizing Nutrition Science for Preventive Medicine**
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21536449.svg)](https://doi.org/10.5281/zenodo.21536449)
+
 `biology-as-code` is an open Python package that models what happens to a meal —
 digestion, absorption, and the metabolic pathways it drives — as inspectable
 "biology as code." It is the **free companion** to the *Biology as Code* book,
@@ -155,6 +157,16 @@ Copy [`_template.json`](examples/foods/_template.json) for new ones. Keep schema
 
 - **Schemas & examples:** see [LICENSE-SAMPLES.md](LICENSE-SAMPLES.md) (permissive for reuse with attribution).  
 - **Book text, figures, and brand:** © author — all rights reserved unless a separate license is published.
+
+---
+
+## Citation
+
+If you use `biology-as-code` in your work, please cite it via its archived release:
+
+> Murff, P. (2026). *Biology as Code: an open, provenance-tracked toolkit for meal digestion and metabolic-pathway modeling* (v0.1.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.21536449
+
+A [`CITATION.cff`](CITATION.cff) is included, so GitHub's **"Cite this repository"** button works too.
 
 ---
 

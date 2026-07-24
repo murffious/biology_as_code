@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using these metadata."
+title: "Biology as Code: an open, provenance-tracked toolkit for meal digestion and metabolic-pathway modeling"
+abstract: >-
+  biology-as-code is an open-source Python package that models what happens to a meal —
+  digestion, absorption, and the metabolic pathways it drives — as inspectable code:
+  a meal-simulation pipeline, a declarative model of the GI tract as versioned state
+  machines, teaching metabolic-pathway graphs, LAW-SPEC law cards as queryable data, and
+  an evidence/provenance layer. Built to be fail-closed with no fabricated data. FLOW
+  teaching / research software; not medical advice.
+type: software
+authors:
+  - family-names: Murff
+    given-names: Paul
+    affiliation: "Morf Engineering"
+version: "0.1.0"
+date-released: "2026-07-24"
+license: MIT
+doi: "10.5281/zenodo.21536449"
+repository-code: "https://github.com/murffious/biology_as_code"
+url: "https://pypi.org/project/biology-as-code/"
+keywords:
+  - nutrition
+  - digestion
+  - metabolism
+  - metabolic pathways
+  - systems biology
+  - bioinformatics
+  - provenance
+  - reproducibility
+  - Python
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.21536449"
+    description: "Archived release on Zenodo"

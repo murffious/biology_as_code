@@ -64,4 +64,6 @@ pip install biology-as-code
 ## Suggested citation
 
 > Murff, P. (2026). *Biology as Code: an open, provenance-tracked toolkit for meal digestion and
-> metabolic-pathway modeling* (v0.1.0) [Software]. Zenodo. https://doi.org/&lt;DOI once minted&gt;
+> metabolic-pathway modeling* (v0.1.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.21536449
+
+**DOI:** [10.5281/zenodo.21536449](https://doi.org/10.5281/zenodo.21536449)
