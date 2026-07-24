@@ -1,0 +1,16 @@
+flowchart TD
+  %% Auto-generated from registry pathway: redox_shuttles
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  nadh_cyto["NADH (cytosol)"]
+  malate["Malate"]
+  oaa_mito["OAA (mito)"]
+  nadh_mito["NADH (mito)"]
+  g3p["Glycerol-3-phosphate"]
+  dhap["DHAP"]
+  fadh2_eq["FADH₂-equivalent (G3P DH)"]
+  nadh_cyto -->|"MDH cytosolic"| malate
+  malate -->|"Malate/αKG antiport + MDH mito"| oaa_mito
+  oaa_mito -->|"MDH mito regenerates NADH"| nadh_mito
+  nadh_cyto -->|"cG3PDH"| g3p
+  g3p -->|"mG3PDH"| dhap
+  dhap -->|"cG3PDH reverse pool"| g3p

@@ -1,0 +1,257 @@
+[
+  {
+    "id": "c",
+    "name": "Vitamin C (Ascorbic acid)",
+    "solubility": "water",
+    "absorption": {
+      "primary_site": "ileum",
+      "transporters": [
+        "SVCT1",
+        "SVCT2"
+      ],
+      "mechanism": "active sodium-dependent + passive at high doses",
+      "dose_dependent_saturation": true,
+      "max_efficiency_dose_mg": 200,
+      "bioavailability_range": [
+        0.7,
+        0.9
+      ]
+    },
+    "interactions": {
+      "enhances": [
+        "non_heme_iron"
+      ],
+      "inhibited_by": [
+        "high_dose_zinc",
+        "pectin"
+      ],
+      "synergizes_with": [
+        "vitamin_e"
+      ]
+    },
+    "coenzyme_forms": [
+      "ascorbate",
+      "dehydroascorbate"
+    ],
+    "deficiency": {
+      "disease": "Scurvy",
+      "symptoms": [
+        "bleeding gums",
+        "poor wound healing",
+        "fatigue",
+        "bruising"
+      ],
+      "affected_systems": [
+        "connective tissue",
+        "immune",
+        "vascular"
+      ]
+    },
+    "metabolic_roles": [
+      "collagen synthesis",
+      "antioxidant",
+      "carnitine synthesis",
+      "iron absorption"
+    ]
+  },
+  {
+    "id": "b1",
+    "name": "Thiamin (Vitamin B1)",
+    "solubility": "water",
+    "absorption": {
+      "primary_site": "jejunum",
+      "transporters": [
+        "THTR1",
+        "THTR2"
+      ],
+      "mechanism": "active + passive",
+      "dose_dependent_saturation": true,
+      "bioavailability_range": [
+        0.8,
+        0.95
+      ]
+    },
+    "interactions": {
+      "antagonized_by": [
+        "alcohol",
+        "raw_fish_thiaminase"
+      ],
+      "required_for": [
+        "pyruvate_dehydrogenase",
+        "alpha_ketoglutarate_dehydrogenase"
+      ]
+    },
+    "coenzyme_forms": [
+      "TPP",
+      "TDP"
+    ],
+    "deficiency": {
+      "disease": "Beriberi",
+      "symptoms": [
+        "neuropathy",
+        "muscle weakness",
+        "heart failure",
+        "confusion"
+      ],
+      "affected_systems": [
+        "nervous",
+        "cardiovascular"
+      ]
+    },
+    "metabolic_roles": [
+      "TCA cycle",
+      "pentose phosphate pathway",
+      "energy metabolism"
+    ]
+  },
+  {
+    "id": "b9",
+    "name": "Folate (Vitamin B9)",
+    "solubility": "water",
+    "absorption": {
+      "primary_site": "jejunum",
+      "transporters": [
+        "PCFT",
+        "RFC"
+      ],
+      "mechanism": "proton-coupled + reduced folate carrier",
+      "dose_dependent_saturation": true,
+      "bioavailability_range": [
+        0.5,
+        0.8
+      ]
+    },
+    "interactions": {
+      "enhanced_by": [
+        "vitamin_c"
+      ],
+      "antagonized_by": [
+        "alcohol",
+        "methotrexate",
+        "phenytoin"
+      ]
+    },
+    "coenzyme_forms": [
+      "THF",
+      "5-methyl-THF"
+    ],
+    "deficiency": {
+      "disease": "Megaloblastic anemia / Neural tube defects",
+      "symptoms": [
+        "fatigue",
+        "megaloblastic anemia",
+        "neural tube defects in pregnancy"
+      ],
+      "affected_systems": [
+        "blood",
+        "neural development"
+      ]
+    },
+    "metabolic_roles": [
+      "one-carbon metabolism",
+      "DNA synthesis",
+      "methylation"
+    ]
+  },
+  {
+    "id": "d",
+    "name": "Vitamin D",
+    "solubility": "fat",
+    "absorption": {
+      "primary_site": "jejunum + ileum",
+      "mechanism": "micelle-dependent passive diffusion + some active",
+      "requires": [
+        "bile_salts",
+        "dietary_fat"
+      ],
+      "bioavailability_range": [
+        0.5,
+        0.8
+      ]
+    },
+    "interactions": {
+      "requires": [
+        "magnesium",
+        "healthy_fat_intake"
+      ],
+      "enhances": [
+        "calcium",
+        "phosphorus"
+      ]
+    },
+    "coenzyme_forms": [
+      "25(OH)D",
+      "1,25(OH)2D"
+    ],
+    "deficiency": {
+      "disease": "Rickets / Osteomalacia",
+      "symptoms": [
+        "bone pain",
+        "muscle weakness",
+        "fractures"
+      ],
+      "affected_systems": [
+        "skeletal",
+        "immune",
+        "muscle"
+      ]
+    },
+    "metabolic_roles": [
+      "calcium homeostasis",
+      "immune modulation",
+      "gene expression"
+    ]
+  },
+  {
+    "id": "b12",
+    "name": "Vitamin B12 (Cobalamin)",
+    "solubility": "water",
+    "absorption": {
+      "primary_site": "ileum",
+      "requires": [
+        "intrinsic_factor",
+        "haptocorrin",
+        "transcobalamin"
+      ],
+      "mechanism": "receptor-mediated endocytosis (Cubam complex)",
+      "bioavailability_range": [
+        0.4,
+        0.6
+      ]
+    },
+    "interactions": {
+      "requires": [
+        "intrinsic_factor",
+        "healthy_ileum",
+        "stomach_acid"
+      ],
+      "antagonized_by": [
+        "metformin",
+        "PPIs",
+        "nitrous_oxide"
+      ]
+    },
+    "coenzyme_forms": [
+      "methylcobalamin",
+      "adenosylcobalamin"
+    ],
+    "deficiency": {
+      "disease": "Pernicious anemia / Megaloblastic anemia",
+      "symptoms": [
+        "fatigue",
+        "neurological damage",
+        "megaloblastic anemia"
+      ],
+      "affected_systems": [
+        "blood",
+        "nervous system"
+      ]
+    },
+    "metabolic_roles": [
+      "methionine synthase",
+      "methylmalonyl-CoA mutase",
+      "DNA synthesis",
+      "myelin"
+    ]
+  }
+]

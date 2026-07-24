@@ -1,0 +1,27 @@
+flowchart TD
+  %% Auto-generated from registry pathway: glycolysis
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  glucose["Glucose"]
+  g6p["Glucose-6-phosphate"]
+  f6p["Fructose-6-phosphate"]
+  f16bp["Fructose-1,6-bisphosphate"]
+  dhap["Dihydroxyacetone phosphate"]
+  gap["Glyceraldehyde-3-phosphate"]
+  13bpg["1,3-Bisphosphoglycerate"]
+  3pg["3-Phosphoglycerate"]
+  2pg["2-Phosphoglycerate"]
+  pep["Phosphoenolpyruvate"]
+  pyruvate["Pyruvate"]
+  lactate["Lactate"]
+  glucose -->|"hexokinase<br/>ATP-1"| g6p
+  g6p -->|"Phosphoglucose isomerase (PGI)"| f6p
+  f6p -->|"pfk1<br/>ATP-1"| f16bp
+  f16bp -->|"Aldolase"| dhap
+  f16bp -->|"Aldolase"| gap
+  dhap -->|"Triose phosphate isomerase (TPI)"| gap
+  gap -->|"Glyceraldehyde-3-phosphate dehydrogenase<br/>NADH-1"| 13bpg
+  13bpg -->|"Phosphoglycerate kinase (PGK)<br/>ATP+1"| 3pg
+  3pg -->|"Phosphoglycerate mutase"| 2pg
+  2pg -->|"Enolase"| pep
+  pep -->|"pyruvate_kinase<br/>ATP+1"| pyruvate
+  pyruvate -->|"lactate_dehydrogenase<br/>NADH+1"| lactate

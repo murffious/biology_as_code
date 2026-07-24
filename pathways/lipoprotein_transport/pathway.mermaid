@@ -1,0 +1,16 @@
+flowchart TD
+  %% Auto-generated from registry pathway: lipoprotein_transport
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  chylomicron["Chylomicron"]
+  vldl["VLDL (Very Low Density Lipoprotein)"]
+  idl["IDL (Intermediate Density Lipoprotein)"]
+  ldl["LDL (Low Density Lipoprotein)"]
+  hdl["HDL (High Density Lipoprotein)"]
+  peripheral_cell["Peripheral Cell"]
+  liver["Liver"]
+  liver -->|"step"| vldl
+  vldl -->|"step"| idl
+  idl -->|"step"| ldl
+  ldl -->|"step"| peripheral_cell
+  peripheral_cell -->|"step"| hdl
+  hdl -->|"step"| liver

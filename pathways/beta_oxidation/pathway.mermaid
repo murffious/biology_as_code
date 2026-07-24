@@ -1,0 +1,20 @@
+flowchart TD
+  %% Auto-generated from registry pathway: beta_oxidation
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  fatty_acid["Fatty Acid (cytosol)"]
+  acyl_coa_cyto["Fatty Acyl-CoA (cytosol)"]
+  acyl_carnitine["Acyl-Carnitine"]
+  acyl_coa_mito["Fatty Acyl-CoA (mitochondrial matrix)"]
+  enoyl_coa["trans-Δ²-Enoyl-CoA"]
+  hydroxyacyl_coa["L-3-Hydroxyacyl-CoA"]
+  ketoacyl_coa["3-Ketoacyl-CoA"]
+  acetyl_coa["Acetyl-CoA"]
+  shorter_acyl_coa["Shortened Acyl-CoA (n-2)"]
+  fatty_acid -->|"Acyl-CoA synthetase (thiokinase)"| acyl_coa_cyto
+  acyl_coa_cyto -->|"CPT-I (Carnitine palmitoyltransferase I)"| acyl_carnitine
+  acyl_carnitine -->|"CACT + CPT-II"| acyl_coa_mito
+  acyl_coa_mito -->|"Acyl-CoA dehydrogenase (ACAD)"| enoyl_coa
+  enoyl_coa -->|"Enoyl-CoA hydratase"| hydroxyacyl_coa
+  hydroxyacyl_coa -->|"3-Hydroxyacyl-CoA dehydrogenase<br/>NADH-1"| ketoacyl_coa
+  ketoacyl_coa -->|"Thiolase (3-ketoacyl-CoA thiolase)"| acetyl_coa
+  ketoacyl_coa -->|"Thiolase"| shorter_acyl_coa

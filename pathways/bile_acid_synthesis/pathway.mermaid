@@ -1,0 +1,10 @@
+flowchart TD
+  %% Auto-generated from registry pathway: bile_acid_synthesis
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  cholesterol["Cholesterol"]
+  7a_hydroxycholesterol["7α-Hydroxycholesterol"]
+  primary_bile_acids["Primary bile acids (CA, CDCA)"]
+  conjugated_bile_acids["Glycine/taurine conjugates"]
+  cholesterol -->|"CYP7A1 (cholesterol 7α-hydroxylase)"| 7a_hydroxycholesterol
+  7a_hydroxycholesterol -->|"Multiple sterol modifications"| primary_bile_acids
+  primary_bile_acids -->|"BAAT conjugation"| conjugated_bile_acids

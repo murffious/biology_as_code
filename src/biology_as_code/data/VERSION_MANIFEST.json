@@ -1,0 +1,142 @@
+{
+  "schema": "kibo.version_manifest/v1",
+  "package": "biology-as-code",
+  "package_version": "0.1.0",
+  "semver": {
+    "major": 0,
+    "minor": 1,
+    "patch": 0,
+    "pre": null
+  },
+  "released": "2026-07-23",
+  "git": {
+    "note": "PyPI package biology-as-code; engine lineage from kibo_simulator_latest FLOW stack",
+    "repo_root_hint": "biology_as_code/"
+  },
+  "components": {
+    "engine": {
+      "id": "kibo_engine",
+      "version": "0.1.0",
+      "api": "0.1",
+      "module": "simulation/kibo_engine.py",
+      "tier": "FLOW",
+      "notes": "Meal pipeline: colonic medium, SCFA FLOW, energy routing, claim_tiers, colon UNITS walk"
+    },
+    "kibo_core": {
+      "id": "kibo_core",
+      "version": "0.1.0",
+      "module": "kibo_core/",
+      "tier": "UNITS",
+      "notes": "Laws walk, iron pathway, colon_scfa skeleton"
+    },
+    "fiber_rs": {
+      "id": "fiber_rs_model",
+      "version": "1.1.0",
+      "module": "fiber_rs_model.py",
+      "tier": "FLOW",
+      "notes": "ColonicMedium + simulate_fermentation"
+    },
+    "energy_routing": {
+      "id": "energy_routing",
+      "version": "1.0.0",
+      "module": "energy_routing.py",
+      "tier": "FLOW"
+    },
+    "pathway_graphs": {
+      "id": "pathway_graphs",
+      "version": "1.1.0",
+      "modules": [
+        "metabolic_pathways.py",
+        "tca_cycle.py",
+        "etc_oxphos.py",
+        "supporting_pathways.py",
+        "digestion_absorption_pathways.py"
+      ],
+      "tier": "FLOW",
+      "notes": "Teaching graphs; mechanism_id links where present"
+    },
+    "pathway_regulation": {
+      "id": "pathway_regulation",
+      "version": "1.1.0",
+      "module": "pathway_regulation.py",
+      "tier": "FLOW",
+      "notes": "AMPK/mTOR/SREBP proxies"
+    },
+    "evidence_pubmed": {
+      "id": "evidence_pubmed",
+      "version": "1.0.0",
+      "module": "evidence_pubmed.py",
+      "tier": "EVIDENCE",
+      "notes": "Local Docker PubMed first; online optional"
+    }
+  },
+  "data_artifacts": {
+    "base_unit_colon_fermentation": {
+      "path": "kibo_core/data/base_unit_colon_fermentation.skeleton.json",
+      "version": "0.2.0",
+      "tier": "UNITS_skeleton",
+      "magnitude_locked": false,
+      "energy_kcal_per_g_fermentable": { "low": 1.5, "mid": 2.0, "high": 2.5, "locked": false }
+    },
+    "path_colon_scfa_atomic": {
+      "path": "kibo_core/data/path_colon_scfa.atomic.json",
+      "version": "0.1.0",
+      "tier": "UNITS_skeleton"
+    },
+    "evidence_candidates_LAW026": {
+      "path": "kibo_core/data/evidence_candidates_LAW026.json",
+      "version": "0.2.0",
+      "tier": "EVIDENCE",
+      "magnitude_locked": false
+    },
+    "law026_promotion_decision": {
+      "path": "kibo_core/data/LAW026_PROMOTION_DECISION.md",
+      "version": "0.1.0",
+      "tier": "POLICY"
+    },
+    "base_unit_lumen_iron": {
+      "path": "kibo_core/data/base_unit_lumen_iron.filled.json",
+      "version": "1.0.0",
+      "tier": "UNITS"
+    }
+  },
+  "compatibility": {
+    "python": ">=3.10",
+    "meal_report_keys": [
+      "colonic_medium",
+      "scfa",
+      "energy_routing",
+      "colon_scfa_units",
+      "claim_tiers",
+      "additive_effects"
+    ],
+    "claim_tiers": {
+      "scfa": "flow",
+      "colonic_medium": "flow",
+      "energy_routing": "flow",
+      "colon_scfa_units": "units_provisional"
+    }
+  },
+  "history": [
+    {
+      "version": "1.5.0",
+      "date": "2026-07-21",
+      "summary": "Energy routing, colon SCFA units walk, claim_tiers, LAW-026 prior band, evidence_pubmed, VERSION_MANIFEST"
+    },
+    {
+      "version": "1.4.0",
+      "date": "2026-07-20",
+      "summary": "Engine unify causal+depth (labeled 1.4-unified); colonic medium"
+    },
+    {
+      "version": "1.3.0",
+      "date": "2026-07-20",
+      "summary": "Supporting pathways, mechanism_id links, dig/bile graphs"
+    }
+  ],
+  "archive": {
+    "versions_dir": "_versions/",
+    "policy": "MERGE_POLICY.md",
+    "note": "Historical forks only; not live runtime"
+  }
+}

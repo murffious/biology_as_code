@@ -1,0 +1,19 @@
+flowchart TD
+  %% Auto-generated from registry pathway: urea_cycle
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  nh4["Ammonia (NH₄⁺)"]
+  co2["CO₂ / HCO₃⁻"]
+  carbamoyl_phosphate["Carbamoyl Phosphate"]
+  ornithine["Ornithine"]
+  citrulline["Citrulline"]
+  aspartate["Aspartate"]
+  argininosuccinate["Argininosuccinate"]
+  arginine["Arginine"]
+  fumarate["Fumarate"]
+  urea["Urea"]
+  nh4 -->|"Carbamoyl phosphate synthetase I (CPS1)<br/>ATP-2"| carbamoyl_phosphate
+  carbamoyl_phosphate -->|"Ornithine transcarbamoylase (OTC)"| citrulline
+  citrulline -->|"Argininosuccinate synthetase<br/>ATP-1"| argininosuccinate
+  argininosuccinate -->|"Argininosuccinate lyase"| arginine
+  arginine -->|"Arginase"| urea
+  arginine -->|"Arginase"| ornithine

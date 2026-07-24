@@ -1,0 +1,16 @@
+flowchart TD
+  %% Auto-generated from registry pathway: glycogen_metabolism
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  glucose["Glucose"]
+  g6p["Glucose-6-phosphate"]
+  g1p["Glucose-1-phosphate"]
+  udp_glucose["UDP-Glucose"]
+  glycogen["Glycogen"]
+  limit_dextrin["Limit Dextrin"]
+  glucose -->|"Hexokinase / Glucokinase"| g6p
+  g6p -->|"Phosphoglucomutase"| g1p
+  g1p -->|"UDP-glucose pyrophosphorylase"| udp_glucose
+  udp_glucose -->|"Glycogen synthase + Branching enzyme"| glycogen
+  glycogen -->|"Glycogen phosphorylase + Debranching enz"| g1p
+  g1p -->|"Phosphoglucomutase"| g6p
+  g6p -->|"Glucose-6-phosphatase"| glucose

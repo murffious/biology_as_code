@@ -1,0 +1,13 @@
+flowchart LR
+    Glucose -->|"hexokinase<br/>–1 ATP"| G6P
+    G6P --> F6P
+    F6P -->|"pfk1 ★<br/>–1 ATP"| F16BP
+    F16BP --> GAP
+    GAP -->|"gapdh<br/>+NADH"| BPG
+    BPG -->|"phosphoglycerate_kinase<br/>+1 ATP"| PG3
+    PG3 --> PEP
+    PEP -->|"pyruvate_kinase<br/>+1 ATP"| Pyruvate
+    Pyruvate -->|"lactate_dehydrogenase"| Lactate
+
+    style F6P fill:#fff9c4,stroke:#f9a825,stroke-width:2px
+    style PEP fill:#fff9c4,stroke:#f9a825,stroke-width:2px

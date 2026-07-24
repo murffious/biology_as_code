@@ -1,0 +1,10 @@
+flowchart TD
+  %% Auto-generated from registry pathway: secondary_bile_acids
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  primary_ba["Primary bile acids (CA, CDCA)"]
+  deconj["Deconjugated bile acids"]
+  secondary_ba["Secondary bile acids (DCA, LCA)"]
+  fxr_tgr5["FXR / TGR5 signaling"]
+  primary_ba -->|"Bile salt hydrolases"| deconj
+  deconj -->|"7α-dehydroxylation"| secondary_ba
+  secondary_ba -->|"Host nuclear / GPCR sensing"| fxr_tgr5

@@ -1,0 +1,1962 @@
+{
+  "id": "raw_03_spinach_feta_scramble",
+  "name": "Spinach & Feta Egg Scramble with Avocado",
+  "description": "Three-egg scramble with wilted spinach, crumbled feta, tomato, and sliced avocado.",
+  "meal_type": "breakfast",
+  "cuisine": "mediterranean",
+  "category": "raw_whole_foods",
+  "tags": [
+    "high_protein",
+    "low_carb",
+    "vegetarian",
+    "with_hydration"
+  ],
+  "difficulty": "easy",
+  "prep_time_minutes": 5,
+  "cook_time_minutes": 8,
+  "servings": 1,
+  "total_weight_g": 643.0,
+  "ingredients": [
+    {
+      "name": "Egg, whole, large",
+      "quantity": 3,
+      "unit": "large eggs",
+      "grams": 150,
+      "source": {
+        "type": "curated_food",
+        "table": "mealcoach-foods-dev",
+        "pk": "FOOD#food_egg_whole_large",
+        "nutrition_source": "usda_fdc"
+      },
+      "is_fluid": false,
+      "nutrition": {
+        "sodium_mg": 213.0,
+        "calcium_mg": 0.0,
+        "omega3_g": 0.15,
+        "vitamin_d_mcg": 3.0,
+        "cholesterol_mg": 558.0,
+        "omega6_g": 0.0,
+        "fat_g": 14.25,
+        "carbs_g": 1.05,
+        "magnesium_mg": 0.0,
+        "thiamin_mg": 0.0,
+        "protein_g": 18.9,
+        "phosphorus_mg": 297.0,
+        "pufa_g": 2.85,
+        "folate_mcg": 70.5,
+        "niacin_mg": 0.0,
+        "potassium_mg": 207.0,
+        "water_g": 114.0,
+        "vitamin_a_mcg": 240.0,
+        "vitamin_b12_mcg": 1.33,
+        "riboflavin_mg": 0.69,
+        "vitamin_b6_mg": 0.0,
+        "fiber_g": 0.0,
+        "calories": 214.5,
+        "mufa_g": 5.55,
+        "trans_fat_g": 0.0,
+        "vitamin_c_mg": 0.0,
+        "vitamin_e_mg": 1.58,
+        "zinc_mg": 1.94,
+        "selenium_mcg": 45.0,
+        "iron_mg": 2.62,
+        "choline_mg": 441.0,
+        "satfat_g": 4.65,
+        "vitamin_k_mcg": 0.45
+      },
+      "per_100g": {
+        "sodium_mg": 142.0,
+        "calcium_mg": 0.0,
+        "omega3_g": 0.1,
+        "vitamin_d_mcg": 2.0,
+        "cholesterol_mg": 372.0,
+        "omega6_g": 0.0,
+        "fat_g": 9.5,
+        "carbs_g": 0.7,
+        "magnesium_mg": 0.0,
+        "thiamin_mg": 0.0,
+        "protein_g": 12.6,
+        "phosphorus_mg": 198.0,
+        "pufa_g": 1.9,
+        "folate_mcg": 47.0,
+        "niacin_mg": 0.0,
+        "potassium_mg": 138.0,
+        "water_g": 76.0,
+        "vitamin_a_mcg": 160.0,
+        "vitamin_b12_mcg": 0.89,
+        "riboflavin_mg": 0.46,
+        "vitamin_b6_mg": 0.0,
+        "fiber_g": 0.0,
+        "calories": 143.0,
+        "mufa_g": 3.7,
+        "trans_fat_g": 0.0,
+        "vitamin_c_mg": 0.0,
+        "vitamin_e_mg": 1.05,
+        "zinc_mg": 1.29,
+        "selenium_mcg": 30.0,
+        "iron_mg": 1.75,
+        "choline_mg": 294.0,
+        "satfat_g": 3.1,
+        "vitamin_k_mcg": 0.3
+      },
+      "nova_class": 1,
+      "nova_source": "curated_map",
+      "nova_confidence": "high",
+      "nova_method": "curated_whole_food",
+      "nutrition_truth": {
+        "completeness": {
+          "macros": "full",
+          "micros": "analytical_full"
+        },
+        "crosscheck": null,
+        "macro_agreement": null,
+        "declared": {
+          "calories": {
+            "value": 143.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "protein_g": {
+            "value": 12.6,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "carbs_g": {
+            "value": 0.7,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "fat_g": {
+            "value": 9.5,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "fiber_g": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "satfat_g": {
+            "value": 3.1,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "sodium_mg": {
+            "value": 142.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "iron_mg": {
+            "value": 1.75,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "calcium_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "magnesium_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "potassium_mg": {
+            "value": 138.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "zinc_mg": {
+            "value": 1.29,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_c_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_d_mcg": {
+            "value": 2.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_a_mcg": {
+            "value": 160.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_e_mg": {
+            "value": 1.05,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_k_mcg": {
+            "value": 0.3,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_b6_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_b12_mcg": {
+            "value": 0.89,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "folate_mcg": {
+            "value": 47.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "thiamin_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "riboflavin_mg": {
+            "value": 0.46,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "niacin_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "choline_mg": {
+            "value": 294.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "phosphorus_mg": {
+            "value": 198.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "selenium_mcg": {
+            "value": 30.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          }
+        },
+        "estimates": null,
+        "food_class": "animal_protein",
+        "enriched_at": "2026-07-23T23:52:22.019906+00:00"
+      }
+    },
+    {
+      "name": "Spinach, raw",
+      "quantity": 2,
+      "unit": "cups",
+      "grams": 60,
+      "source": {
+        "type": "curated_food",
+        "table": "mealcoach-foods-dev",
+        "pk": "FOOD#food_spinach_raw",
+        "nutrition_source": "usda_fdc"
+      },
+      "is_fluid": false,
+      "nutrition": {
+        "sodium_mg": 47.4,
+        "calcium_mg": 59.4,
+        "omega3_g": 0.0,
+        "vitamin_d_mcg": 0.0,
+        "cholesterol_mg": 0.0,
+        "omega6_g": 0.0,
+        "fat_g": 0.23,
+        "carbs_g": 2.18,
+        "magnesium_mg": 47.4,
+        "thiamin_mg": 0.0,
+        "protein_g": 1.72,
+        "phosphorus_mg": 0.0,
+        "pufa_g": 0.0,
+        "folate_mcg": 116.4,
+        "niacin_mg": 0.0,
+        "potassium_mg": 334.8,
+        "water_g": 54.84,
+        "vitamin_a_mcg": 281.4,
+        "vitamin_b12_mcg": 0.0,
+        "riboflavin_mg": 0.0,
+        "vitamin_b6_mg": 0.0,
+        "fiber_g": 1.32,
+        "calories": 13.8,
+        "mufa_g": 0.0,
+        "trans_fat_g": 0.0,
+        "vitamin_c_mg": 16.86,
+        "vitamin_e_mg": 1.22,
+        "zinc_mg": 0.0,
+        "selenium_mcg": 0.0,
+        "iron_mg": 1.63,
+        "choline_mg": 0.0,
+        "satfat_g": 0.0,
+        "vitamin_k_mcg": 289.74
+      },
+      "per_100g": {
+        "sodium_mg": 79.0,
+        "calcium_mg": 99.0,
+        "omega3_g": 0.0,
+        "vitamin_d_mcg": 0.0,
+        "cholesterol_mg": 0.0,
+        "omega6_g": 0.0,
+        "fat_g": 0.39,
+        "carbs_g": 3.63,
+        "magnesium_mg": 79.0,
+        "thiamin_mg": 0.0,
+        "protein_g": 2.86,
+        "phosphorus_mg": 0.0,
+        "pufa_g": 0.0,
+        "folate_mcg": 194.0,
+        "niacin_mg": 0.0,
+        "potassium_mg": 558.0,
+        "water_g": 91.4,
+        "vitamin_a_mcg": 469.0,
+        "vitamin_b12_mcg": 0.0,
+        "riboflavin_mg": 0.0,
+        "vitamin_b6_mg": 0.0,
+        "fiber_g": 2.2,
+        "calories": 23.0,
+        "mufa_g": 0.0,
+        "trans_fat_g": 0.0,
+        "vitamin_c_mg": 28.1,
+        "vitamin_e_mg": 2.03,
+        "zinc_mg": 0.0,
+        "selenium_mcg": 0.0,
+        "iron_mg": 2.71,
+        "choline_mg": 0.0,
+        "satfat_g": 0.0,
+        "vitamin_k_mcg": 482.9
+      },
+      "nova_class": 1,
+      "nova_source": "curated_map",
+      "nova_confidence": "high",
+      "nova_method": "curated_whole_food",
+      "nutrition_truth": {
+        "completeness": {
+          "macros": "full",
+          "micros": "analytical_full"
+        },
+        "crosscheck": null,
+        "macro_agreement": null,
+        "declared": {
+          "calories": {
+            "value": 23.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "protein_g": {
+            "value": 2.86,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "carbs_g": {
+            "value": 3.63,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "fat_g": {
+            "value": 0.39,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "fiber_g": {
+            "value": 2.2,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "satfat_g": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "sodium_mg": {
+            "value": 79.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "iron_mg": {
+            "value": 2.71,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "calcium_mg": {
+            "value": 99.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "magnesium_mg": {
+            "value": 79.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "potassium_mg": {
+            "value": 558.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "zinc_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_c_mg": {
+            "value": 28.1,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_d_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_a_mcg": {
+            "value": 469.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_e_mg": {
+            "value": 2.03,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_k_mcg": {
+            "value": 482.9,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_b6_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_b12_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "folate_mcg": {
+            "value": 194.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "thiamin_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "riboflavin_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "niacin_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "choline_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "phosphorus_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "selenium_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          }
+        },
+        "estimates": null,
+        "food_class": "vegetable",
+        "enriched_at": "2026-07-23T23:52:22.019960+00:00"
+      }
+    },
+    {
+      "name": "Feta cheese",
+      "quantity": 0.25,
+      "unit": "cup",
+      "grams": 28,
+      "source": {
+        "type": "curated_food",
+        "table": "mealcoach-foods-dev",
+        "pk": "FOOD#food_feta_cheese",
+        "nutrition_source": "usda_fdc"
+      },
+      "is_fluid": false,
+      "nutrition": {
+        "sodium_mg": 256.76,
+        "calcium_mg": 138.04,
+        "omega3_g": 0.0,
+        "vitamin_d_mcg": 0.0,
+        "cholesterol_mg": 24.92,
+        "omega6_g": 0.0,
+        "fat_g": 5.96,
+        "carbs_g": 1.15,
+        "magnesium_mg": 0.0,
+        "thiamin_mg": 0.0,
+        "protein_g": 3.98,
+        "phosphorus_mg": 94.36,
+        "pufa_g": 0.0,
+        "folate_mcg": 0.0,
+        "niacin_mg": 0.0,
+        "potassium_mg": 17.36,
+        "water_g": 0.0,
+        "vitamin_a_mcg": 35.0,
+        "vitamin_b12_mcg": 0.47,
+        "riboflavin_mg": 0.24,
+        "vitamin_b6_mg": 0.0,
+        "fiber_g": 0.0,
+        "calories": 73.92,
+        "mufa_g": 0.0,
+        "trans_fat_g": 0.0,
+        "vitamin_c_mg": 0.0,
+        "vitamin_e_mg": 0.0,
+        "zinc_mg": 0.0,
+        "selenium_mcg": 0.0,
+        "iron_mg": 0.0,
+        "choline_mg": 0.0,
+        "satfat_g": 4.19,
+        "vitamin_k_mcg": 0.0
+      },
+      "per_100g": {
+        "sodium_mg": 917.0,
+        "calcium_mg": 493.0,
+        "omega3_g": 0.0,
+        "vitamin_d_mcg": 0.0,
+        "cholesterol_mg": 89.0,
+        "omega6_g": 0.0,
+        "fat_g": 21.28,
+        "carbs_g": 4.09,
+        "magnesium_mg": 0.0,
+        "thiamin_mg": 0.0,
+        "protein_g": 14.21,
+        "phosphorus_mg": 337.0,
+        "pufa_g": 0.0,
+        "folate_mcg": 0.0,
+        "niacin_mg": 0.0,
+        "potassium_mg": 62.0,
+        "water_g": 0.0,
+        "vitamin_a_mcg": 125.0,
+        "vitamin_b12_mcg": 1.69,
+        "riboflavin_mg": 0.84,
+        "vitamin_b6_mg": 0.0,
+        "fiber_g": 0.0,
+        "calories": 264.0,
+        "mufa_g": 0.0,
+        "trans_fat_g": 0.0,
+        "vitamin_c_mg": 0.0,
+        "vitamin_e_mg": 0.0,
+        "zinc_mg": 0.0,
+        "selenium_mcg": 0.0,
+        "iron_mg": 0.0,
+        "choline_mg": 0.0,
+        "satfat_g": 14.95,
+        "vitamin_k_mcg": 0.0
+      },
+      "nova_class": 3,
+      "nova_source": "rule",
+      "nova_confidence": "low",
+      "nova_method": "rule_unknown_default",
+      "nutrition_truth": {
+        "completeness": {
+          "macros": "full",
+          "micros": "partial"
+        },
+        "crosscheck": null,
+        "macro_agreement": null,
+        "declared": {
+          "calories": {
+            "value": 264.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "protein_g": {
+            "value": 14.21,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "carbs_g": {
+            "value": 4.09,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "fat_g": {
+            "value": 21.28,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "fiber_g": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "satfat_g": {
+            "value": 14.95,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "sodium_mg": {
+            "value": 917.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "iron_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "calcium_mg": {
+            "value": 493.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "magnesium_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "potassium_mg": {
+            "value": 62.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "zinc_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_c_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_d_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_a_mcg": {
+            "value": 125.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_e_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_k_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_b6_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_b12_mcg": {
+            "value": 1.69,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "folate_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "thiamin_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "riboflavin_mg": {
+            "value": 0.84,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "niacin_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "choline_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "phosphorus_mg": {
+            "value": 337.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "selenium_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          }
+        },
+        "estimates": null,
+        "food_class": "dairy",
+        "enriched_at": "2026-07-23T23:52:22.021144+00:00"
+      }
+    },
+    {
+      "name": "Tomato, red, ripe, raw",
+      "quantity": 0.5,
+      "unit": "tomato",
+      "grams": 90,
+      "source": {
+        "type": "curated_food",
+        "table": "mealcoach-foods-dev",
+        "pk": "FOOD#food_tomato_raw",
+        "nutrition_source": "usda_fdc"
+      },
+      "is_fluid": false,
+      "nutrition": {
+        "sodium_mg": 4.5,
+        "calcium_mg": 0.0,
+        "omega3_g": 0.0,
+        "vitamin_d_mcg": 0.0,
+        "cholesterol_mg": 0.0,
+        "omega6_g": 0.0,
+        "fat_g": 0.18,
+        "carbs_g": 3.5,
+        "magnesium_mg": 0.0,
+        "thiamin_mg": 0.0,
+        "protein_g": 0.79,
+        "phosphorus_mg": 0.0,
+        "pufa_g": 0.0,
+        "folate_mcg": 13.5,
+        "niacin_mg": 0.0,
+        "potassium_mg": 213.3,
+        "water_g": 85.05,
+        "vitamin_a_mcg": 37.8,
+        "vitamin_b12_mcg": 0.0,
+        "riboflavin_mg": 0.0,
+        "vitamin_b6_mg": 0.0,
+        "fiber_g": 1.08,
+        "calories": 16.2,
+        "mufa_g": 0.0,
+        "trans_fat_g": 0.0,
+        "vitamin_c_mg": 12.33,
+        "vitamin_e_mg": 0.0,
+        "zinc_mg": 0.0,
+        "selenium_mcg": 0.0,
+        "iron_mg": 0.0,
+        "choline_mg": 0.0,
+        "satfat_g": 0.0,
+        "vitamin_k_mcg": 7.11
+      },
+      "per_100g": {
+        "sodium_mg": 5.0,
+        "calcium_mg": 0.0,
+        "omega3_g": 0.0,
+        "vitamin_d_mcg": 0.0,
+        "cholesterol_mg": 0.0,
+        "omega6_g": 0.0,
+        "fat_g": 0.2,
+        "carbs_g": 3.89,
+        "magnesium_mg": 0.0,
+        "thiamin_mg": 0.0,
+        "protein_g": 0.88,
+        "phosphorus_mg": 0.0,
+        "pufa_g": 0.0,
+        "folate_mcg": 15.0,
+        "niacin_mg": 0.0,
+        "potassium_mg": 237.0,
+        "water_g": 94.5,
+        "vitamin_a_mcg": 42.0,
+        "vitamin_b12_mcg": 0.0,
+        "riboflavin_mg": 0.0,
+        "vitamin_b6_mg": 0.0,
+        "fiber_g": 1.2,
+        "calories": 18.0,
+        "mufa_g": 0.0,
+        "trans_fat_g": 0.0,
+        "vitamin_c_mg": 13.7,
+        "vitamin_e_mg": 0.0,
+        "zinc_mg": 0.0,
+        "selenium_mcg": 0.0,
+        "iron_mg": 0.0,
+        "choline_mg": 0.0,
+        "satfat_g": 0.0,
+        "vitamin_k_mcg": 7.9
+      },
+      "nova_class": 1,
+      "nova_source": "curated_map",
+      "nova_confidence": "high",
+      "nova_method": "curated_whole_food",
+      "nutrition_truth": {
+        "completeness": {
+          "macros": "full",
+          "micros": "partial"
+        },
+        "crosscheck": null,
+        "macro_agreement": null,
+        "declared": {
+          "calories": {
+            "value": 18.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "protein_g": {
+            "value": 0.88,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "carbs_g": {
+            "value": 3.89,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "fat_g": {
+            "value": 0.2,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "fiber_g": {
+            "value": 1.2,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "satfat_g": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "sodium_mg": {
+            "value": 5.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "iron_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "calcium_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "magnesium_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "potassium_mg": {
+            "value": 237.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "zinc_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_c_mg": {
+            "value": 13.7,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_d_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_a_mcg": {
+            "value": 42.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_e_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_k_mcg": {
+            "value": 7.9,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_b6_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_b12_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "folate_mcg": {
+            "value": 15.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "thiamin_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "riboflavin_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "niacin_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "choline_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "phosphorus_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "selenium_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          }
+        },
+        "estimates": {
+          "iron_mg": {
+            "point": 2.71,
+            "low": 0.73,
+            "high": 2.71,
+            "n": 19,
+            "method": "peer_band:vegetable",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          },
+          "calcium_mg": {
+            "point": 99.0,
+            "low": 47.0,
+            "high": 152.313,
+            "n": 19,
+            "method": "peer_band:vegetable",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          },
+          "magnesium_mg": {
+            "point": 79.0,
+            "low": 21.0,
+            "high": 79.0,
+            "n": 18,
+            "method": "peer_band:vegetable",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          },
+          "vitamin_e_mg": {
+            "point": 2.03,
+            "low": 0.7,
+            "high": 2.03,
+            "n": 21,
+            "method": "peer_band:vegetable",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          },
+          "vitamin_b6_mg": {
+            "point": 0.29,
+            "low": 0.138,
+            "high": 0.29,
+            "n": 8,
+            "method": "peer_band:vegetable",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          }
+        },
+        "food_class": "vegetable",
+        "enriched_at": "2026-07-23T23:52:22.021216+00:00"
+      }
+    },
+    {
+      "name": "Avocado, raw",
+      "quantity": 0.5,
+      "unit": "avocado",
+      "grams": 68,
+      "source": {
+        "type": "curated_food",
+        "table": "mealcoach-foods-dev",
+        "pk": "FOOD#food_avocado_raw",
+        "nutrition_source": "usda_fdc"
+      },
+      "is_fluid": false,
+      "nutrition": {
+        "sodium_mg": 4.76,
+        "calcium_mg": 0.0,
+        "omega3_g": 0.0,
+        "vitamin_d_mcg": 0.0,
+        "cholesterol_mg": 0.0,
+        "omega6_g": 0.0,
+        "fat_g": 9.97,
+        "carbs_g": 5.8,
+        "magnesium_mg": 19.72,
+        "thiamin_mg": 0.0,
+        "protein_g": 1.36,
+        "phosphorus_mg": 0.0,
+        "pufa_g": 1.24,
+        "folate_mcg": 55.08,
+        "niacin_mg": 0.0,
+        "potassium_mg": 329.8,
+        "water_g": 49.78,
+        "vitamin_a_mcg": 0.0,
+        "vitamin_b12_mcg": 0.0,
+        "riboflavin_mg": 0.0,
+        "vitamin_b6_mg": 0.18,
+        "fiber_g": 4.56,
+        "calories": 108.8,
+        "mufa_g": 6.66,
+        "trans_fat_g": 0.0,
+        "vitamin_c_mg": 6.8,
+        "vitamin_e_mg": 1.41,
+        "zinc_mg": 0.0,
+        "selenium_mcg": 0.0,
+        "iron_mg": 0.0,
+        "choline_mg": 0.0,
+        "satfat_g": 1.45,
+        "vitamin_k_mcg": 14.28
+      },
+      "per_100g": {
+        "sodium_mg": 7.0,
+        "calcium_mg": 0.0,
+        "omega3_g": 0.0,
+        "vitamin_d_mcg": 0.0,
+        "cholesterol_mg": 0.0,
+        "omega6_g": 0.0,
+        "fat_g": 14.66,
+        "carbs_g": 8.53,
+        "magnesium_mg": 29.0,
+        "thiamin_mg": 0.0,
+        "protein_g": 2.0,
+        "phosphorus_mg": 0.0,
+        "pufa_g": 1.82,
+        "folate_mcg": 81.0,
+        "niacin_mg": 0.0,
+        "potassium_mg": 485.0,
+        "water_g": 73.2,
+        "vitamin_a_mcg": 0.0,
+        "vitamin_b12_mcg": 0.0,
+        "riboflavin_mg": 0.0,
+        "vitamin_b6_mg": 0.26,
+        "fiber_g": 6.7,
+        "calories": 160.0,
+        "mufa_g": 9.8,
+        "trans_fat_g": 0.0,
+        "vitamin_c_mg": 10.0,
+        "vitamin_e_mg": 2.07,
+        "zinc_mg": 0.0,
+        "selenium_mcg": 0.0,
+        "iron_mg": 0.0,
+        "choline_mg": 0.0,
+        "satfat_g": 2.13,
+        "vitamin_k_mcg": 21.0
+      },
+      "nova_class": 1,
+      "nova_source": "curated_map",
+      "nova_confidence": "high",
+      "nova_method": "curated_whole_food",
+      "nutrition_truth": {
+        "completeness": {
+          "macros": "full",
+          "micros": "partial"
+        },
+        "crosscheck": null,
+        "macro_agreement": null,
+        "declared": {
+          "calories": {
+            "value": 160.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "protein_g": {
+            "value": 2.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "carbs_g": {
+            "value": 8.53,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "fat_g": {
+            "value": 14.66,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "fiber_g": {
+            "value": 6.7,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "satfat_g": {
+            "value": 2.13,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "sodium_mg": {
+            "value": 7.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "iron_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "calcium_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "magnesium_mg": {
+            "value": 29.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "potassium_mg": {
+            "value": 485.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "zinc_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_c_mg": {
+            "value": 10.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_d_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_a_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_e_mg": {
+            "value": 2.07,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_k_mcg": {
+            "value": 21.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_b6_mg": {
+            "value": 0.26,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_b12_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "folate_mcg": {
+            "value": 81.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "thiamin_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "riboflavin_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "niacin_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "choline_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "phosphorus_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "selenium_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          }
+        },
+        "estimates": {
+          "vitamin_a_mcg": {
+            "point": 961.0,
+            "low": 51.0,
+            "high": 961.0,
+            "n": 6,
+            "method": "peer_band:other",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          },
+          "iron_mg": {
+            "point": 1.7,
+            "low": 0.4,
+            "high": 8.32,
+            "n": 21,
+            "method": "peer_band:other",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          },
+          "calcium_mg": {
+            "point": 181.0,
+            "low": 16.0,
+            "high": 1002.0,
+            "n": 18,
+            "method": "peer_band:other",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          },
+          "zinc_mg": {
+            "point": 0.14,
+            "low": 0.14,
+            "high": 0.14,
+            "n": 6,
+            "method": "peer_band:other",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          },
+          "thiamin_mg": {
+            "point": 0.024,
+            "low": 0.024,
+            "high": 1.0,
+            "n": 7,
+            "method": "peer_band:other",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          },
+          "riboflavin_mg": {
+            "point": 0.022,
+            "low": 0.022,
+            "high": 0.121,
+            "n": 7,
+            "method": "peer_band:other",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          },
+          "niacin_mg": {
+            "point": 0.386,
+            "low": 0.386,
+            "high": 0.386,
+            "n": 5,
+            "method": "peer_band:other",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          },
+          "choline_mg": {
+            "point": 5.7,
+            "low": 5.7,
+            "high": 5.7,
+            "n": 5,
+            "method": "peer_band:other",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          },
+          "phosphorus_mg": {
+            "point": 153.0,
+            "low": 24.0,
+            "high": 383.0,
+            "n": 12,
+            "method": "peer_band:other",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          },
+          "selenium_mcg": {
+            "point": 0.4,
+            "low": 0.4,
+            "high": 14.2,
+            "n": 9,
+            "method": "peer_band:other",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          }
+        },
+        "food_class": "other",
+        "enriched_at": "2026-07-23T23:52:22.021274+00:00"
+      }
+    },
+    {
+      "name": "Olive oil, extra virgin",
+      "quantity": 0.5,
+      "unit": "tbsp",
+      "grams": 7,
+      "source": {
+        "type": "curated_food",
+        "table": "mealcoach-foods-dev",
+        "pk": "FOOD#food_olive_oil_evoo",
+        "nutrition_source": "usda_fdc"
+      },
+      "is_fluid": false,
+      "nutrition": {
+        "sodium_mg": 0.0,
+        "calcium_mg": 0.0,
+        "omega3_g": 0.05,
+        "vitamin_d_mcg": 0.0,
+        "cholesterol_mg": 0.0,
+        "omega6_g": 0.68,
+        "fat_g": 7.0,
+        "carbs_g": 0.0,
+        "magnesium_mg": 0.0,
+        "thiamin_mg": 0.0,
+        "protein_g": 0.0,
+        "phosphorus_mg": 0.0,
+        "pufa_g": 0.74,
+        "folate_mcg": 0.0,
+        "niacin_mg": 0.0,
+        "potassium_mg": 0.0,
+        "water_g": 0.0,
+        "vitamin_a_mcg": 0.0,
+        "vitamin_b12_mcg": 0.0,
+        "riboflavin_mg": 0.0,
+        "vitamin_b6_mg": 0.0,
+        "fiber_g": 0.0,
+        "calories": 61.88,
+        "mufa_g": 5.11,
+        "trans_fat_g": 0.0,
+        "vitamin_c_mg": 0.0,
+        "vitamin_e_mg": 1.0,
+        "zinc_mg": 0.0,
+        "selenium_mcg": 0.0,
+        "iron_mg": 0.0,
+        "choline_mg": 0.0,
+        "satfat_g": 0.97,
+        "vitamin_k_mcg": 4.21
+      },
+      "per_100g": {
+        "sodium_mg": 0.0,
+        "calcium_mg": 0.0,
+        "omega3_g": 0.76,
+        "vitamin_d_mcg": 0.0,
+        "cholesterol_mg": 0.0,
+        "omega6_g": 9.76,
+        "fat_g": 100.0,
+        "carbs_g": 0.0,
+        "magnesium_mg": 0.0,
+        "thiamin_mg": 0.0,
+        "protein_g": 0.0,
+        "phosphorus_mg": 0.0,
+        "pufa_g": 10.52,
+        "folate_mcg": 0.0,
+        "niacin_mg": 0.0,
+        "potassium_mg": 0.0,
+        "water_g": 0.0,
+        "vitamin_a_mcg": 0.0,
+        "vitamin_b12_mcg": 0.0,
+        "riboflavin_mg": 0.0,
+        "vitamin_b6_mg": 0.0,
+        "fiber_g": 0.0,
+        "calories": 884.0,
+        "mufa_g": 72.96,
+        "trans_fat_g": 0.0,
+        "vitamin_c_mg": 0.0,
+        "vitamin_e_mg": 14.35,
+        "zinc_mg": 0.0,
+        "selenium_mcg": 0.0,
+        "iron_mg": 0.0,
+        "choline_mg": 0.0,
+        "satfat_g": 13.81,
+        "vitamin_k_mcg": 60.2
+      },
+      "nova_class": 2,
+      "nova_source": "curated_map",
+      "nova_confidence": "high",
+      "nova_method": "curated_culinary_ingredient",
+      "nutrition_truth": {
+        "completeness": {
+          "macros": "full",
+          "micros": "label_sparse"
+        },
+        "crosscheck": null,
+        "macro_agreement": null,
+        "declared": {
+          "calories": {
+            "value": 884.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "protein_g": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "carbs_g": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "fat_g": {
+            "value": 100.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "fiber_g": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "satfat_g": {
+            "value": 13.81,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "sodium_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "iron_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "calcium_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "magnesium_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "potassium_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "zinc_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_c_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_d_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_a_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_e_mg": {
+            "value": 14.35,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_k_mcg": {
+            "value": 60.2,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_b6_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_b12_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "folate_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "thiamin_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "riboflavin_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "niacin_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "choline_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "phosphorus_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "selenium_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          }
+        },
+        "estimates": {
+          "magnesium_mg": {
+            "point": 29.0,
+            "low": 29.0,
+            "high": 279.0,
+            "n": 7,
+            "method": "peer_band:fat",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          },
+          "potassium_mg": {
+            "point": 485.0,
+            "low": 485.0,
+            "high": 748.0,
+            "n": 9,
+            "method": "peer_band:fat",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          },
+          "vitamin_c_mg": {
+            "point": 10.0,
+            "low": 10.0,
+            "high": 10.0,
+            "n": 5,
+            "method": "peer_band:fat",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          },
+          "vitamin_b6_mg": {
+            "point": 0.26,
+            "low": 0.26,
+            "high": 0.26,
+            "n": 5,
+            "method": "peer_band:fat",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          },
+          "folate_mcg": {
+            "point": 81.0,
+            "low": 81.0,
+            "high": 81.0,
+            "n": 5,
+            "method": "peer_band:fat",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          },
+          "iron_mg": {
+            "point": 3.49,
+            "low": 3.03,
+            "high": 3.49,
+            "n": 4,
+            "method": "peer_band:fat",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          },
+          "calcium_mg": {
+            "point": 347.0,
+            "low": 55.0,
+            "high": 347.0,
+            "n": 4,
+            "method": "peer_band:fat",
+            "honesty": "OPEN",
+            "note": "Within-range prediction from analytical peers — not a lab value for this SKU"
+          }
+        },
+        "food_class": "fat",
+        "enriched_at": "2026-07-23T23:52:22.021321+00:00"
+      }
+    },
+    {
+      "name": "Milk, whole, 3.25% milkfat",
+      "quantity": 1,
+      "unit": "cup",
+      "grams": 240,
+      "source": {
+        "type": "fdc_food",
+        "table": "mealcoach-foods-dev",
+        "pk": "FOOD#171265",
+        "nutrition_source": "usda_fdc_sr_legacy",
+        "fdcId": 171265
+      },
+      "is_fluid": true,
+      "nutrition": {
+        "calories": 146.4,
+        "protein_g": 7.68,
+        "carbs_g": 11.52,
+        "fat_g": 7.92,
+        "fiber_g": 0.0,
+        "sugars_g": 12.24,
+        "added_sugar_g": 0.0,
+        "satfat_g": 4.56,
+        "mufa_g": 1.9488,
+        "pufa_g": 0.468,
+        "trans_fat_g": 0.0,
+        "cholesterol_mg": 24.0,
+        "omega3_g": 0.0,
+        "omega6_g": 0.0,
+        "sodium_mg": 103.2,
+        "potassium_mg": 316.8,
+        "calcium_mg": 271.2,
+        "iron_mg": 0.0,
+        "magnesium_mg": 24.0,
+        "phosphorus_mg": 201.6,
+        "zinc_mg": 0.888,
+        "vitamin_c_mg": 0.0,
+        "vitamin_d_mcg": 3.12,
+        "vitamin_e_mg": 0.24,
+        "vitamin_k_mcg": 0.72,
+        "vitamin_a_mcg": 110.4,
+        "thiamin_mg": 0.1104,
+        "riboflavin_mg": 0.4056,
+        "niacin_mg": 0.2136,
+        "vitamin_b6_mg": 0.0864,
+        "folate_mcg": 12.0,
+        "vitamin_b12_mcg": 1.2,
+        "choline_mg": 34.32,
+        "water_g": 211.2,
+        "copper_mg": 0.06,
+        "manganese_mg": 0.0096,
+        "selenium_mcg": 8.88,
+        "pantothenic_acid_mg": 0.8952
+      },
+      "per_100g": {
+        "calories": 61.0,
+        "protein_g": 3.2,
+        "carbs_g": 4.8,
+        "fat_g": 3.3,
+        "fiber_g": 0.0,
+        "sugars_g": 5.1,
+        "added_sugar_g": 0.0,
+        "satfat_g": 1.9,
+        "mufa_g": 0.812,
+        "pufa_g": 0.195,
+        "trans_fat_g": 0.0,
+        "cholesterol_mg": 10.0,
+        "omega3_g": 0.0,
+        "omega6_g": 0.0,
+        "sodium_mg": 43.0,
+        "potassium_mg": 132.0,
+        "calcium_mg": 113.0,
+        "iron_mg": 0.0,
+        "magnesium_mg": 10.0,
+        "phosphorus_mg": 84.0,
+        "zinc_mg": 0.37,
+        "vitamin_c_mg": 0.0,
+        "vitamin_d_mcg": 1.3,
+        "vitamin_e_mg": 0.1,
+        "vitamin_k_mcg": 0.3,
+        "vitamin_a_mcg": 46.0,
+        "thiamin_mg": 0.046,
+        "riboflavin_mg": 0.169,
+        "niacin_mg": 0.089,
+        "vitamin_b6_mg": 0.036,
+        "folate_mcg": 5.0,
+        "vitamin_b12_mcg": 0.5,
+        "choline_mg": 14.3,
+        "water_g": 88.0,
+        "copper_mg": 0.025,
+        "manganese_mg": 0.004,
+        "selenium_mcg": 3.7,
+        "pantothenic_acid_mg": 0.373
+      },
+      "notes": "whole milk",
+      "beverage": {
+        "class": "milk",
+        "ph_band": "slightly_acidic",
+        "ph_approx": 6.7,
+        "electrolyte_level": "low",
+        "carbonation": "still"
+      },
+      "nova_class": 1,
+      "nova_source": "curated_map",
+      "nova_confidence": "medium",
+      "nova_method": "curated_fluid_minimally_processed",
+      "nutrition_truth": {
+        "completeness": {
+          "macros": "full",
+          "micros": "analytical_full"
+        },
+        "crosscheck": null,
+        "macro_agreement": null,
+        "declared": {
+          "calories": {
+            "value": 61.0,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "protein_g": {
+            "value": 3.2,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "carbs_g": {
+            "value": 4.8,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "fat_g": {
+            "value": 3.3,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "fiber_g": {
+            "value": 0.0,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "sugars_g": {
+            "value": 5.1,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "satfat_g": {
+            "value": 1.9,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "sodium_mg": {
+            "value": 43.0,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "iron_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "calcium_mg": {
+            "value": 113.0,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "magnesium_mg": {
+            "value": 10.0,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "potassium_mg": {
+            "value": 132.0,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "zinc_mg": {
+            "value": 0.37,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "vitamin_c_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "vitamin_d_mcg": {
+            "value": 1.3,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "vitamin_a_mcg": {
+            "value": 46.0,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "vitamin_e_mg": {
+            "value": 0.1,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "vitamin_k_mcg": {
+            "value": 0.3,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "vitamin_b6_mg": {
+            "value": 0.036,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "vitamin_b12_mcg": {
+            "value": 0.5,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "folate_mcg": {
+            "value": 5.0,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "thiamin_mg": {
+            "value": 0.046,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "riboflavin_mg": {
+            "value": 0.169,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "niacin_mg": {
+            "value": 0.089,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "choline_mg": {
+            "value": 14.3,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "phosphorus_mg": {
+            "value": 84.0,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          },
+          "selenium_mcg": {
+            "value": 3.7,
+            "origin": "usda_fdc_sr_legacy",
+            "honesty": "OPEN"
+          }
+        },
+        "estimates": null,
+        "food_class": "fluid",
+        "enriched_at": "2026-07-23T23:52:22.021358+00:00"
+      }
+    }
+  ],
+  "instructions": [
+    "Warm olive oil in a nonstick skillet over medium heat and wilt the spinach, 1-2 minutes.",
+    "Add whisked eggs and scramble gently until just set.",
+    "Fold in crumbled feta and diced tomato off the heat.",
+    "Serve with sliced avocado.",
+    "Serve with Milk, whole, 3.25% milkfat (240 g)."
+  ],
+  "nutrition_per_serving": {
+    "calories": 635.5,
+    "protein_g": 34.43,
+    "carbs_g": 25.2,
+    "fat_g": 45.51,
+    "fiber_g": 6.96,
+    "sugars_g": 12.24,
+    "satfat_g": 15.82,
+    "sodium_mg": 629.62,
+    "micronutrients": {
+      "added_sugar_g": 0.0,
+      "calcium_mg": 468.64,
+      "cholesterol_mg": 606.92,
+      "choline_mg": 475.32,
+      "copper_mg": 0.06,
+      "folate_mcg": 267.48,
+      "iron_mg": 4.25,
+      "magnesium_mg": 91.12,
+      "manganese_mg": 0.01,
+      "mufa_g": 19.269,
+      "niacin_mg": 0.214,
+      "omega3_g": 0.2,
+      "omega6_g": 0.68,
+      "pantothenic_acid_mg": 0.895,
+      "phosphorus_mg": 592.96,
+      "potassium_mg": 1419.06,
+      "pufa_g": 5.298,
+      "riboflavin_mg": 1.336,
+      "selenium_mcg": 53.88,
+      "thiamin_mg": 0.11,
+      "trans_fat_g": 0.0,
+      "vitamin_a_mcg": 704.6,
+      "vitamin_b12_mcg": 3.0,
+      "vitamin_b6_mg": 0.266,
+      "vitamin_c_mg": 35.99,
+      "vitamin_d_mcg": 6.12,
+      "vitamin_e_mg": 5.45,
+      "vitamin_k_mcg": 316.51,
+      "water_g": 514.87,
+      "zinc_mg": 2.828
+    }
+  },
+  "has_branded_items": false,
+  "barcode_item_ids": [],
+  "avoid_flags": [],
+  "hydration": {
+    "has_hydration": true,
+    "fluid_g": 240.0
+  },
+  "nutrition_provenance": {
+    "method": "computed_from_per_100g",
+    "sources": [
+      "OpenFoodFacts (fallback macros)",
+      "USDA FDC gold (branded/SR Legacy/Foundation)",
+      "hydration enrich 2026-07-23 (corpus + OFF + USDA class)",
+      "mealcoach-foods-dev (DynamoDB)"
+    ],
+    "macros_coverage": "all_ingredients",
+    "full_panel_coverage_pct": 100.0,
+    "note": "Vitamins/minerals summed from ingredients with USDA full panels (all raw foods + FDC-matched barcode products). Branded label panels include only nutrients declared on the label.",
+    "generated_at": "2026-07-23T23:13:37+00:00",
+    "hydration_enriched_at": "2026-07-23T23:34:58.835414+00:00",
+    "truth_enrichment": {
+      "at": "2026-07-23T23:52:22.021404+00:00",
+      "methods": [
+        "online_fdc_off_when_available",
+        "nova_off_curated_rules",
+        "micro_label_sparse_null_semantics",
+        "peer_band_estimates_p10_p90"
+      ],
+      "peer_band_classes": [
+        "animal_protein",
+        "grain",
+        "vegetable",
+        "fat",
+        "fruit",
+        "other",
+        "dairy",
+        "fluid",
+        "nut_seed",
+        "legume"
+      ]
+    }
+  },
+  "version": 1,
+  "hydration_beverage_id": "milk_whole",
+  "derived": {
+    "nova_max": 3,
+    "nova_modal": 1,
+    "nova_sources": [
+      "curated_map",
+      "rule"
+    ],
+    "full_panel_coverage_pct": 70.0,
+    "ingredient_count": 7,
+    "truth_enriched_at": "2026-07-23T23:52:22.021399+00:00",
+    "honesty": "OPEN",
+    "note": "nova_max ignores nothing critical; plain water may still be NOVA 1 in list"
+  }
+}

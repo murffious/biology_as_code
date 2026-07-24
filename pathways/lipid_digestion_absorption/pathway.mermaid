@@ -1,0 +1,14 @@
+flowchart TD
+  %% Auto-generated from registry pathway: lipid_digestion_absorption
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  dietary_tg["Dietary Triglycerides"]
+  emulsion["Emulsified Fat Droplets"]
+  micelles["Mixed Micelles"]
+  ffas_mg["FFAs + 2-Monoacylglycerol"]
+  tg_enterocyte["Re-esterified TG (enterocyte)"]
+  chylomicron["Chylomicron"]
+  dietary_tg -->|"Mechanical emulsification + Bile salts"| emulsion
+  emulsion -->|"Bile salt micelle formation"| micelles
+  micelles -->|"pancreatic_lipase"| ffas_mg
+  ffas_mg -->|"Passive diffusion + re-esterification (M"| tg_enterocyte
+  tg_enterocyte -->|"Chylomicron assembly (ApoB-48, MTP)"| chylomicron

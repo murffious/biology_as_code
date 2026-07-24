@@ -1,0 +1,10 @@
+# tca_cycle
+
+TCA / Citric Acid Cycle (Krebs Cycle). Central amphibolic pathway that oxidizes acetyl-CoA to CO₂ while generating reducing equivalents (NADH, FADH₂) and one GTP. Edges are formally linked to MetabolicMechanism objects.
+
+- **Python module:** `biology_as_code.pathways.tca_cycle`
+- **Graph:** `pathway.mermaid` (auto)
+- **Tests:** `tests.md` + `tests/test_pathway_packs.py`
+- **Gold template:** repo root `glycolysis/`
+
+Tier: FLOW teaching. Not product meal score / Kibo-vars product scorer.

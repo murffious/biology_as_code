@@ -1,0 +1,24 @@
+flowchart TD
+  %% Auto-generated from registry pathway: cholesterol_biosynthesis
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  acetyl_coa["Acetyl-CoA"]
+  acetoacetyl_coa["Acetoacetyl-CoA"]
+  hmg_coa["HMG-CoA (3-Hydroxy-3-methylglutaryl-CoA)"]
+  mevalonate["Mevalonate"]
+  ipp["Isopentenyl pyrophosphate (IPP)"]
+  dmap["Dimethylallyl pyrophosphate (DMAPP)"]
+  geranyl_pp["Geranyl pyrophosphate (C10)"]
+  farnesyl_pp["Farnesyl pyrophosphate (C15)"]
+  squalene["Squalene"]
+  lanosterol["Lanosterol"]
+  cholesterol["Cholesterol"]
+  acetyl_coa -->|"step"| acetoacetyl_coa
+  acetoacetyl_coa -->|"step"| hmg_coa
+  hmg_coa -->|"hmg_coa_reductase"| mevalonate
+  mevalonate -->|"ATP-3"| ipp
+  ipp -->|"step"| dmap
+  dmap -->|"step"| geranyl_pp
+  geranyl_pp -->|"step"| farnesyl_pp
+  farnesyl_pp -->|"step"| squalene
+  squalene -->|"step"| lanosterol
+  lanosterol -->|"step"| cholesterol

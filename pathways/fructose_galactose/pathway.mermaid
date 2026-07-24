@@ -1,0 +1,18 @@
+flowchart TD
+  %% Auto-generated from registry pathway: fructose_galactose
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  fructose["Fructose"]
+  f1p["Fructose-1-P"]
+  dhap_gap["DHAP + Glyceraldehyde → GAP"]
+  galactose["Galactose"]
+  gal1p["Galactose-1-P"]
+  udp_gal["UDP-galactose"]
+  g1p["Glucose-1-P / G6P pool"]
+  glycolysis["Glycolytic intermediates"]
+  fructose -->|"Ketohexokinase (KHK)"| f1p
+  f1p -->|"Aldolase B"| dhap_gap
+  dhap_gap -->|"Triose kinase / TPI"| glycolysis
+  galactose -->|"Galactokinase"| gal1p
+  gal1p -->|"GALT"| udp_gal
+  udp_gal -->|"GALE + UDP-glucose cycle"| g1p
+  g1p -->|"PGM / G6Pase context"| glycolysis

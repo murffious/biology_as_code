@@ -1,6 +1,82 @@
+# OS / env
 .DS_Store
-node_modules/
-.venv/
-__pycache__/
-*.pyc
 .env
+.env.*
+*.pem
+secrets/
+.venv/
+.venv-release-check/
+venv/
+dist/
+build/
+*.egg-info/
+src/*.egg-info/
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+node_modules/
+
+# ---------------------------------------------------------------------------
+# PATENT-PENDING / PROPRIETARY PRODUCT IP — never commit
+# Product MEAL score + Kibo-vars product scorer (optional private plugins)
+# Open dig FLOW evals and claim evaluation are fine to ship.
+# See PROPRIETARY_IP.md
+# ---------------------------------------------------------------------------
+
+# Private product-score engines (any tree layout)
+**/product_score/proprietary/**
+!**/product_score/proprietary/.gitignore
+!**/product_score/proprietary/README.md
+!**/product_score/proprietary/__init__.py
+
+**/proprietary/productScoreEngine.*
+**/proprietary/**/productScore*
+**/machines/proprietary/**
+!**/machines/proprietary/.gitignore
+!**/machines/proprietary/README.md
+
+# Explicit engine drop-ins
+**/product_score/proprietary/engine.py
+**/product_score/proprietary/engine.*.py
+**/kibo_product_score/**
+**/private_score/**
+**/patent/**
+**/*_product_score_engine.py
+**/*product*meal*score*.py
+**/kiboScoreModel.private.*
+**/score_weights.private.*
+**/score-axes.weights.private.json
+
+# Product formula dumps / score system PDFs
+**/Kibo_Score_System_Book.pdf
+**/*Meal*Score*Formula*
+**/*product*score*formula*
+
+# Local private wheels / installs
+*.whl
+!# keep none of private wheels
+vendor/private/
+.private/
+
+# Bulk export snapshots (never re-add to packaged fixtures)
+**/fixtures/meals/off_products_snapshot.json
+**/fixtures/meals/packets-for-sim.json
+**/fixtures/meals/payloads-for-sim.json
+**/fixtures/meals/FOOD_SUBSET_CLASSIFICATION.json
+**/fixtures/meals/beverage_library.json
+
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*~

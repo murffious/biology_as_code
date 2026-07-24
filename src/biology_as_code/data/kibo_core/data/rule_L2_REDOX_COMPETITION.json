@@ -1,0 +1,82 @@
+{
+  "rule_id": "L2_REDOX_COMPETITION",
+  "name": "Cationic competition and iron redox activation",
+  "priority": "HIGH",
+  "logic_type": "DETERMINISTIC_PROTOTYPE",
+  "honesty": {
+    "claim_tier": "open",
+    "note": "Prototype teaching rule for FLOW. Magnitudes (3:1, 0.4, 0.1) are NOT locked LAW-SPEC bounds. Prefer law ids for gate/bound honesty.",
+    "refuse": [
+      "call_0.1_ascorbate_absence_a_gate",
+      "call_3to1_ratio_universal_law",
+      "ship_as_clinical_dose_engine"
+    ]
+  },
+  "law_links": {
+    "competition": ["LAW-042", "LAW-003"],
+    "iron_redox_gate": ["LAW-041"],
+    "ascorbate_enhancer": ["LAW-004"],
+    "tannin_narrow": ["LAW-006"],
+    "phytate_chelation": ["LAW-002"]
+  },
+  "rule_definition": {
+    "competition": {
+      "elements": ["iron", "zinc", "calcium"],
+      "mechanism": "shared_divalent_uptake_competition",
+      "target_transporter": "tx.dmt1",
+      "edge": "COMPETES_FOR",
+      "prototype_penalty": {
+        "if_molar_or_mass_ratio_A_to_B_gt": 3.0,
+        "then_absorption_factor_B_multiply": 0.4,
+        "prior": 0.45,
+        "note": "Provisional fold — LAW-042 network; not a fixed 3:1 cliff in all meals"
+      }
+    },
+    "redox_iron": {
+      "element": "iron",
+      "preferred_state": "Fe2+",
+      "catalyst": "ascorbate",
+      "law_semantics": {
+        "ascorbate_present_same_meal": {
+          "relation": "EXPANDS_BOUND",
+          "law_id": "LAW-004",
+          "prototype_factor": 2.0,
+          "prior": 0.85
+        },
+        "ascorbate_absent": {
+          "relation": "none",
+          "law_id": "LAW-004",
+          "gate": false,
+          "prototype_factor": 1.0,
+          "note": "NOT ×0.1 gate. LAW-004: Fe absorbs without C; C expands when present. Optional soft prior may slightly lower free Fe2+ pool (LAW-041) but must not close path."
+        },
+        "fe2_unavailable": {
+          "relation": "CLOSES_or_NARROWS",
+          "law_id": "LAW-041",
+          "note": "True redox/speciation issue — DMT1 wants Fe2+; chelators/oxidizers narrow free Fe2+"
+        }
+      },
+      "reject_rule": {
+        "fail_state_fallback": "IF catalyst_absent THEN bioavailability *= 0.1",
+        "reason": "Conflicts with LAW-004 gate=none; overstates C as obligatory"
+      }
+    }
+  },
+  "graph": {
+    "nodes": ["nut.iron", "nut.zinc", "nut.calcium", "nut.ascorbate", "tx.dmt1"],
+    "edges": [
+      {
+        "source": "nut.iron",
+        "target": "tx.dmt1",
+        "type": "COMPETES_FOR",
+        "with": ["nut.zinc", "nut.calcium"]
+      },
+      {
+        "source": "nut.ascorbate",
+        "target": "nut.iron",
+        "type": "EXPANDS_BOUND",
+        "law_id": "LAW-004"
+      }
+    ]
+  }
+}

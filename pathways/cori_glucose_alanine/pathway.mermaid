@@ -1,0 +1,16 @@
+flowchart TD
+  %% Auto-generated from registry pathway: cori_glucose_alanine
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  muscle_glycogen["Muscle glycogen / glucose"]
+  pyruvate_muscle["Pyruvate (muscle)"]
+  lactate["Lactate"]
+  alanine["Alanine"]
+  liver_pyruvate["Pyruvate (liver)"]
+  liver_glucose["Glucose (liver → blood)"]
+  muscle_glycogen -->|"Glycolysis"| pyruvate_muscle
+  pyruvate_muscle -->|"LDH"| lactate
+  pyruvate_muscle -->|"ALT transamination"| alanine
+  lactate -->|"LDH"| liver_pyruvate
+  alanine -->|"ALT"| liver_pyruvate
+  liver_pyruvate -->|"Gluconeogenesis"| liver_glucose
+  liver_glucose -->|"Blood glucose → muscle uptake"| muscle_glycogen

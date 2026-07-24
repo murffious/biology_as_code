@@ -1,0 +1,894 @@
+{
+  "schema_version": "1.0.0",
+  "pathway_id": "path.nonhaem_iron_delivery",
+  "title": "Non-haem iron delivery — atomic units with nutrient bindings",
+  "description": "Each stage is an atomic JSON unit: system seat, cargo nutrients (ontology-bound), mechanisms, transporters, laws, inhibitors/enhancers, priors, and next_pathways. Walk top→bottom = cargo moving down the system.",
+  "ontology_chain": {
+    "ref": "book/nutrient-taxonomy/chain_layers.json",
+    "join_doc": "book/gleaned/CHAIN_JOIN.md",
+    "layers": {
+      "1_food": "FOODON / food-taxonomy + quality claims L2",
+      "2_nutrient": "ChEBI via cargo.primary.nutrient_ref + nutrient_catalog",
+      "3_mechanism": "GO/Rhea/Reactome + digestive tx.* / mech.*",
+      "4_physiology": "GO BP + 7-system organ/subsystem",
+      "5_outcome": "Only when force reaches MONDO/HPO — iron anemia pole is whole-chain, not C alone"
+    },
+    "ascorbate_note": "Collagen/scurvy GATE is a different chain (mech.ascorbate_cofactor_hydroxylase). This path is LAW-004 EXPANDS_BOUND only. See data/ascorbate_dual_chain.json"
+  },
+  "primary_system_spine": [
+    "Assimilation",
+    "Assimilation",
+    "Assimilation",
+    "Assimilation",
+    "Assimilation",
+    "Transport"
+  ],
+  "start": "fe.meal_payload",
+  "terminus": "fe.blood_transferrin",
+  "nutrient_catalog": {
+    "nut.iron": {
+      "node_id": "nut.iron",
+      "label": "Iron",
+      "forms": {
+        "nonhaem_Fe": {
+          "label": "Non-haem iron (food/fortificant)",
+          "chebi": "CHEBI:18248",
+          "note": "Matrix-sensitive"
+        },
+        "Fe2+": {
+          "label": "Ferrous iron",
+          "chebi": "CHEBI:29033",
+          "note": "DMT1 cargo"
+        },
+        "Fe3+": {
+          "label": "Ferric iron",
+          "chebi": "CHEBI:29034",
+          "note": "Must reduce for DMT1 path"
+        },
+        "TF-Fe": {
+          "label": "Transferrin-bound iron",
+          "note": "Plasma transport form"
+        }
+      },
+      "ontology": {
+        "chebi": "CHEBI:18248",
+        "app_id": "trace-iron"
+      },
+      "layer_hooks": {
+        "digestive_nodes": [
+          "tx.dmt1",
+          "tx.ferroportin",
+          "comp.duodenum"
+        ]
+      },
+      "laws": [
+        "LAW-002",
+        "LAW-004",
+        "LAW-005",
+        "LAW-006",
+        "LAW-011",
+        "LAW-012",
+        "LAW-014",
+        "LAW-041",
+        "LAW-042"
+      ]
+    },
+    "nut.ascorbate": {
+      "node_id": "nut.ascorbate",
+      "label": "Ascorbate (vitamin C)",
+      "ontology": {
+        "chebi": "CHEBI:29073"
+      },
+      "roles_on_this_pathway": [
+        "EXPANDS_BOUND nonhaem Fe absorption (same meal)",
+        "reductant Fe3+→Fe2+",
+        "context-flip pro-oxidant in tissue Fenton LAW-012"
+      ],
+      "laws": [
+        "LAW-004",
+        "LAW-012",
+        "LAW-041"
+      ]
+    },
+    "nut.copper": {
+      "node_id": "nut.copper",
+      "label": "Copper",
+      "ontology": {
+        "chebi": "CHEBI:28694",
+        "app_id": "trace-copper"
+      },
+      "roles_on_this_pathway": [
+        "cuprous helps keep Fe2+ (LAW-041)"
+      ],
+      "laws": [
+        "LAW-041",
+        "LAW-042"
+      ]
+    },
+    "nut.zinc": {
+      "node_id": "nut.zinc",
+      "label": "Zinc",
+      "ontology": {
+        "chebi": "CHEBI:29105"
+      },
+      "roles_on_this_pathway": [
+        "competitive antagonist at shared metal paths (LAW-042)"
+      ],
+      "laws": [
+        "LAW-003",
+        "LAW-042"
+      ]
+    },
+    "mat.phytate": {
+      "node_id": "mat.phytate",
+      "label": "Phytate (myo-inositol hexaphosphate)",
+      "ontology": {
+        "chebi": "CHEBI:17401",
+        "note": "illustrative — confirm accession"
+      },
+      "roles_on_this_pathway": [
+        "chelates divalent metals",
+        "NARROWS free Fe"
+      ],
+      "laws": [
+        "LAW-002",
+        "LAW-003"
+      ]
+    },
+    "mat.tannin": {
+      "node_id": "mat.tannin",
+      "label": "Dietary tannins / polyphenols (tea, coffee)",
+      "ontology": {
+        "note": "class of polyphenols — not single CHEBI"
+      },
+      "roles_on_this_pathway": [
+        "bind Fe",
+        "NARROWS nonhaem absorption; ascorbate can override"
+      ],
+      "laws": [
+        "LAW-006",
+        "LAW-004"
+      ]
+    },
+    "fac.meat_fish": {
+      "node_id": "fac.meat_fish",
+      "label": "Meat/fish factor (animal tissue co-ingestion)",
+      "ontology": {
+        "note": "factor not a single nutrient — peptide/AA matrix"
+      },
+      "roles_on_this_pathway": [
+        "EXPANDS nonhaem Fe (and Zn) absorption"
+      ],
+      "laws": [
+        "LAW-005"
+      ]
+    },
+    "pep.hepcidin": {
+      "node_id": "pep.hepcidin",
+      "label": "Hepcidin",
+      "ontology": {
+        "uniprot": "P81172",
+        "note": "HAMP gene product"
+      },
+      "roles_on_this_pathway": [
+        "degrades ferroportin",
+        "throttles basolateral export"
+      ],
+      "laws": [
+        "LAW-014"
+      ]
+    },
+    "pep.transferrin": {
+      "node_id": "pep.transferrin",
+      "label": "Transferrin",
+      "ontology": {
+        "uniprot": "P02787"
+      },
+      "roles_on_this_pathway": [
+        "plasma Fe carrier"
+      ],
+      "laws": [
+        "LAW-011"
+      ]
+    }
+  },
+  "stages": [
+    {
+      "order": 0,
+      "id": "fe.meal_payload",
+      "label": "Payload on the plate",
+      "system": "Assimilation",
+      "organ": "oral / meal compartment (pre-lumen)",
+      "subsystem": "Payload.NonHaemIron",
+      "depth": "payload",
+      "science": {
+        "summary": "Label iron is the declared mass — not delivered mass. Non-haem iron is matrix-sensitive; haem is a different path.",
+        "what_moves": "Abstract non-haem Fe amount (mg or arbitrary unit)",
+        "what_does_not_happen_yet": "No absorption; no redox gate yet"
+      },
+      "cargo": {
+        "primary": {
+          "nutrient_ref": "nut.iron",
+          "form": "nonhaem_Fe",
+          "state": "declared_in_food",
+          "ontology": {
+            "chebi": "CHEBI:18248"
+          }
+        },
+        "species_present": [
+          "nonhaem_Fe"
+        ]
+      },
+      "mechanisms": [
+        {
+          "id": "mech.label_input",
+          "label": "Food composition declaration",
+          "kind": "input",
+          "notes": "Starting value for yield_factor multiplication"
+        }
+      ],
+      "transporters": [],
+      "compartments": [
+        {
+          "id": "comp.meal",
+          "label": "Meal payload"
+        }
+      ],
+      "laws": [
+        {
+          "id": "LAW-020",
+          "role": "family",
+          "relation": "label_not_dose",
+          "statement_hook": "Bioefficacy pipeline — amount in food ≠ amount delivered"
+        }
+      ],
+      "enhancers": [],
+      "inhibitors": [],
+      "gates": [],
+      "priors": {
+        "human_evidence": 0.95,
+        "magnitude_locked": 0.9,
+        "ontology_bound": 0.95
+      },
+      "next_pathways": [
+        "fe.lumen_speciation"
+      ],
+      "context_keys_out": [
+        "payload_nonhaem_fe_mg"
+      ]
+    },
+    {
+      "order": 1,
+      "id": "fe.lumen_speciation",
+      "label": "Lumen speciation — free Fe²⁺ pool",
+      "system": "Assimilation",
+      "organ": "duodenal–jejunal lumen",
+      "subsystem": "MineralSpeciation.IronRedox",
+      "depth": "lumen",
+      "science": {
+        "summary": "Ferric/ferrous equilibrium + chelation set free Fe²⁺ available for DMT1. Ascorbate reduces/keeps Fe²⁺; phytate/tannin bind or favor unavailable forms.",
+        "reactions": [
+          "Fe³⁺ + reductant (ascorbate) → Fe²⁺",
+          "Fe + phytate → insoluble complex",
+          "Fe + tannin polyphenol → bound complex"
+        ],
+        "same_meal_rule": "Enhancers/inhibitors must co-occupy the lumen with Fe (L3 ingestion event)"
+      },
+      "cargo": {
+        "primary": {
+          "nutrient_ref": "nut.iron",
+          "form": "Fe2+",
+          "state": "free_or_complexed_pool",
+          "ontology": {
+            "chebi_fe2": "CHEBI:29033",
+            "chebi_fe3": "CHEBI:29034"
+          }
+        },
+        "species_present": [
+          "Fe2+",
+          "Fe3+",
+          "Fe-phytate",
+          "Fe-tannin"
+        ],
+        "co_nutrients": [
+          {
+            "nutrient_ref": "nut.ascorbate",
+            "role": "enhancer_reductant",
+            "required_context": "ascorbate_same_meal"
+          },
+          {
+            "nutrient_ref": "nut.copper",
+            "role": "enhancer_keep_ferrous",
+            "required_context": "copper_redox"
+          },
+          {
+            "nutrient_ref": "mat.phytate",
+            "role": "inhibitor_chelator",
+            "required_context": "phytate"
+          },
+          {
+            "nutrient_ref": "mat.tannin",
+            "role": "inhibitor_binder",
+            "required_context": "tannin"
+          },
+          {
+            "nutrient_ref": "fac.meat_fish",
+            "role": "enhancer_meat_factor",
+            "required_context": "meat_fish_factor"
+          }
+        ]
+      },
+      "mechanisms": [
+        {
+          "id": "mech.ascorbate_reduces_ferric_iron",
+          "label": "Ascorbate-mediated reduction of Fe³⁺ → Fe²⁺ (lumen)",
+          "kind": "redox",
+          "nutrients": [
+            "nut.ascorbate",
+            "nut.iron"
+          ],
+          "law_ids": [
+            "LAW-004",
+            "LAW-041"
+          ],
+          "notes": "Distinct from collagen ascorbate cofactor (mech.ascorbate_cofactor_hydroxylase)"
+        },
+        {
+          "id": "mech.phytate_chelation",
+          "label": "Phytate chelation of divalent metals",
+          "kind": "chelation",
+          "nutrients": [
+            "mat.phytate",
+            "nut.iron"
+          ],
+          "law_ids": [
+            "LAW-002"
+          ]
+        },
+        {
+          "id": "mech.tannin_iron_binding",
+          "label": "Polyphenol/tannin binding of iron",
+          "kind": "chelation",
+          "nutrients": [
+            "mat.tannin",
+            "nut.iron"
+          ],
+          "law_ids": [
+            "LAW-006"
+          ]
+        }
+      ],
+      "transporters": [],
+      "compartments": [
+        {
+          "id": "comp.duodenum_lumen",
+          "label": "Duodenal lumen aqueous phase",
+          "uberon_hint": "UBERON:0002114"
+        }
+      ],
+      "laws": [
+        {
+          "id": "LAW-004",
+          "role": "primary_enhancer",
+          "relation": "EXPANDS_BOUND",
+          "magnitude_fold_default": 2.0,
+          "magnitude_fold_upper": 10.0,
+          "evidence": "Derman 1977; Rossander 1979"
+        },
+        {
+          "id": "LAW-006",
+          "role": "primary_inhibitor",
+          "relation": "NARROWS_BOUND",
+          "magnitude_fold_default": 0.55,
+          "evidence": "Derman tea arm 3.8%→2.1%"
+        },
+        {
+          "id": "LAW-002",
+          "role": "inhibitor",
+          "relation": "NARROWS_BOUND",
+          "magnitude_fold_default": 0.6,
+          "evidence": "provisional fold"
+        },
+        {
+          "id": "LAW-005",
+          "role": "enhancer",
+          "relation": "EXPANDS_BOUND",
+          "magnitude_fold_default": 2.0,
+          "evidence": "Layrisse et al."
+        },
+        {
+          "id": "LAW-041",
+          "role": "redox_gate_family",
+          "relation": "EXPANDS_BOUND",
+          "magnitude_fold_default": 1.15,
+          "evidence": "directional Cu help"
+        }
+      ],
+      "enhancers": [
+        {
+          "id": "mod.ascorbate",
+          "nutrient_ref": "nut.ascorbate",
+          "relation": "EXPANDS_BOUND",
+          "law_id": "LAW-004",
+          "magnitude": 2.0,
+          "prior": 0.9,
+          "requires_context": "ascorbate_same_meal",
+          "conditions": [
+            "same_meal",
+            "nonhaem_only"
+          ]
+        },
+        {
+          "id": "mod.ascorbate_strong",
+          "nutrient_ref": "nut.ascorbate",
+          "relation": "EXPANDS_BOUND",
+          "law_id": "LAW-004",
+          "magnitude": 5.0,
+          "prior": 0.75,
+          "requires_context": "ascorbate_strong"
+        },
+        {
+          "id": "mod.meat_factor",
+          "nutrient_ref": "fac.meat_fish",
+          "relation": "EXPANDS_BOUND",
+          "law_id": "LAW-005",
+          "magnitude": 2.0,
+          "prior": 0.85,
+          "requires_context": "meat_fish_factor"
+        },
+        {
+          "id": "mod.copper",
+          "nutrient_ref": "nut.copper",
+          "relation": "EXPANDS_BOUND",
+          "law_id": "LAW-041",
+          "magnitude": 1.15,
+          "prior": 0.7,
+          "requires_context": "copper_redox"
+        }
+      ],
+      "inhibitors": [
+        {
+          "id": "mod.tannin",
+          "nutrient_ref": "mat.tannin",
+          "relation": "NARROWS_BOUND",
+          "law_id": "LAW-006",
+          "magnitude": 0.55,
+          "prior": 0.85,
+          "requires_context": "tannin"
+        },
+        {
+          "id": "mod.phytate",
+          "nutrient_ref": "mat.phytate",
+          "relation": "NARROWS_BOUND",
+          "law_id": "LAW-002",
+          "magnitude": 0.6,
+          "prior": 0.8,
+          "requires_context": "phytate"
+        }
+      ],
+      "gates": [],
+      "priors": {
+        "human_evidence": 0.9,
+        "magnitude_locked": 0.65,
+        "ontology_bound": 0.85
+      },
+      "next_pathways": [
+        "fe.dmt1_apical"
+      ],
+      "context_keys_in": [
+        "ascorbate_same_meal",
+        "ascorbate_strong",
+        "tannin",
+        "phytate",
+        "meat_fish_factor",
+        "copper_redox"
+      ],
+      "context_keys_out": [
+        "fe2_pool_relative"
+      ]
+    },
+    {
+      "order": 2,
+      "id": "fe.dmt1_apical",
+      "label": "DMT1 apical uptake",
+      "system": "Assimilation",
+      "organ": "duodenum enterocyte apical membrane",
+      "subsystem": "NonHaemFeUptake.DMT1",
+      "depth": "apical_membrane",
+      "science": {
+        "summary": "DMT1 (SLC11A2) imports divalent metal ions; primary path for non-haem Fe²⁺. Ferric poorly transported without reduction.",
+        "gene": "SLC11A2",
+        "substrate_preference": "Fe²⁺ ≫ Fe³⁺"
+      },
+      "cargo": {
+        "primary": {
+          "nutrient_ref": "nut.iron",
+          "form": "Fe2+",
+          "state": "transiting_apical",
+          "ontology": {
+            "chebi": "CHEBI:29033"
+          }
+        },
+        "species_present": [
+          "Fe2+"
+        ],
+        "co_nutrients": [
+          {
+            "nutrient_ref": "nut.zinc",
+            "role": "competitor",
+            "required_context": "high_competing_minerals"
+          }
+        ]
+      },
+      "mechanisms": [
+        {
+          "id": "mech.dmt1_iron",
+          "label": "Divalent metal ion transport (DMT1)",
+          "kind": "transport",
+          "go": "GO:0006826",
+          "catalog_ref": "nutrient-taxonomy/layer3_mechanism_catalog.json#mech.dmt1_iron",
+          "law_ids": [
+            "LAW-041"
+          ]
+        }
+      ],
+      "transporters": [
+        {
+          "id": "tx.dmt1",
+          "label": "DMT1",
+          "hgnc": "SLC11A2",
+          "hgnc_id": "HGNC:10908",
+          "site": "apical",
+          "cargo": [
+            "Fe2+"
+          ],
+          "within": [
+            "comp.duodenum"
+          ],
+          "catalog_ref": "digestive-taxonomy/transporter_catalog.json#tx.dmt1"
+        }
+      ],
+      "compartments": [
+        {
+          "id": "comp.duodenum",
+          "label": "Duodenum",
+          "uberon_hint": "UBERON:0002114"
+        }
+      ],
+      "laws": [
+        {
+          "id": "LAW-041",
+          "role": "redox_gate",
+          "relation": "Fe2_preferred",
+          "statement_hook": "Ferrous absorbed far better than ferric"
+        },
+        {
+          "id": "LAW-004",
+          "role": "upstream_feeder",
+          "relation": "EXPANDS_BOUND",
+          "statement_hook": "Ascorbate increases Fe2+ supply to this transporter"
+        },
+        {
+          "id": "LAW-042",
+          "role": "competition",
+          "relation": "NARROWS_BOUND",
+          "statement_hook": "Other divalent metals compete"
+        }
+      ],
+      "enhancers": [],
+      "inhibitors": [
+        {
+          "id": "mod.mineral_competition",
+          "nutrient_ref": "nut.zinc",
+          "relation": "NARROWS_BOUND",
+          "law_id": "LAW-042",
+          "magnitude": 0.85,
+          "prior": 0.65,
+          "requires_context": "high_competing_minerals"
+        }
+      ],
+      "gates": [
+        {
+          "id": "gate.fe2_available",
+          "context_key": "fe2_available",
+          "default_open": true,
+          "closed_when": false,
+          "law_ids": [
+            "LAW-041"
+          ],
+          "note": "If fe2_available=False, block (severe ferric lock / no reductant path)"
+        }
+      ],
+      "priors": {
+        "human_evidence": 0.92,
+        "magnitude_locked": 0.7,
+        "ontology_bound": 0.95
+      },
+      "next_pathways": [
+        "fe.enterocyte"
+      ],
+      "context_keys_in": [
+        "fe2_available",
+        "high_competing_minerals"
+      ]
+    },
+    {
+      "order": 3,
+      "id": "fe.enterocyte",
+      "label": "Enterocyte handling",
+      "system": "Assimilation",
+      "organ": "duodenal enterocyte cytosol",
+      "subsystem": "Enterocyte.IronHandling",
+      "depth": "intracellular",
+      "science": {
+        "summary": "Cytosolic iron pool; ferritin storage possible; under-specified in current extraction corpus — growth point.",
+        "gap": "No dedicated LAW-xxx yet for labile iron pool / ferritin kinetics in gleaned register"
+      },
+      "cargo": {
+        "primary": {
+          "nutrient_ref": "nut.iron",
+          "form": "Fe2+",
+          "state": "cytosolic_labile_or_stored",
+          "ontology": {
+            "chebi": "CHEBI:29033"
+          }
+        },
+        "species_present": [
+          "Fe2+",
+          "ferritin-Fe"
+        ]
+      },
+      "mechanisms": [
+        {
+          "id": "mech.enterocyte_iron_pool",
+          "label": "Enterocyte labile iron pool / ferritin store",
+          "kind": "storage",
+          "law_ids": [],
+          "notes": "ROOM TO GROW — bind when mined"
+        }
+      ],
+      "transporters": [],
+      "compartments": [
+        {
+          "id": "comp.enterocyte",
+          "label": "Enterocyte cytosol"
+        }
+      ],
+      "laws": [],
+      "enhancers": [],
+      "inhibitors": [],
+      "gates": [],
+      "priors": {
+        "human_evidence": 0.8,
+        "magnitude_locked": 0.35,
+        "ontology_bound": 0.7
+      },
+      "next_pathways": [
+        "fe.ferroportin_export"
+      ],
+      "growth": [
+        "Mine ferritin / labile pool bounds",
+        "Attach LAW when available"
+      ]
+    },
+    {
+      "order": 4,
+      "id": "fe.ferroportin_export",
+      "label": "Ferroportin basolateral export",
+      "system": "Assimilation",
+      "organ": "duodenum basolateral membrane",
+      "subsystem": "IronExport.Ferroportin",
+      "depth": "basolateral_membrane",
+      "science": {
+        "summary": "Ferroportin (SLC40A1) exports Fe²⁺ to plasma side; hepcidin binds and degrades ferroportin — host iron / inflammation brake.",
+        "gene": "SLC40A1"
+      },
+      "cargo": {
+        "primary": {
+          "nutrient_ref": "nut.iron",
+          "form": "Fe2+",
+          "state": "exporting",
+          "ontology": {
+            "chebi": "CHEBI:29033"
+          }
+        },
+        "co_nutrients": [
+          {
+            "nutrient_ref": "pep.hepcidin",
+            "role": "export_throttle",
+            "required_context": "hepcidin_block"
+          }
+        ]
+      },
+      "mechanisms": [
+        {
+          "id": "mech.ferroportin_export",
+          "label": "Ferroportin-mediated Fe export",
+          "kind": "transport",
+          "law_ids": [
+            "LAW-014"
+          ]
+        }
+      ],
+      "transporters": [
+        {
+          "id": "tx.ferroportin",
+          "label": "Ferroportin",
+          "hgnc": "SLC40A1",
+          "hgnc_id": "HGNC:10909",
+          "site": "basolateral",
+          "cargo": [
+            "Fe2+"
+          ],
+          "notes": "Hepcidin degrades ferroportin",
+          "catalog_ref": "digestive-taxonomy/transporter_catalog.json#tx.ferroportin"
+        }
+      ],
+      "compartments": [
+        {
+          "id": "comp.duodenum_basolateral",
+          "label": "Basolateral duodenum"
+        }
+      ],
+      "laws": [
+        {
+          "id": "LAW-014",
+          "role": "host_state",
+          "relation": "NARROWS_BOUND",
+          "statement_hook": "In inflammation/repletion hepcidin high — iron export liability context"
+        }
+      ],
+      "enhancers": [],
+      "inhibitors": [
+        {
+          "id": "mod.hepcidin",
+          "nutrient_ref": "pep.hepcidin",
+          "relation": "NARROWS_BOUND",
+          "law_id": "LAW-014",
+          "magnitude": 0.2,
+          "prior": 0.85,
+          "requires_context": "hepcidin_block"
+        }
+      ],
+      "gates": [],
+      "priors": {
+        "human_evidence": 0.9,
+        "magnitude_locked": 0.6,
+        "ontology_bound": 0.9
+      },
+      "next_pathways": [
+        "fe.blood_transferrin"
+      ],
+      "context_keys_in": [
+        "hepcidin_block"
+      ]
+    },
+    {
+      "order": 5,
+      "id": "fe.blood_transferrin",
+      "label": "Plasma transferrin-bound iron",
+      "system": "Transport",
+      "organ": "blood plasma",
+      "subsystem": "IronTransport.Transferrin",
+      "depth": "systemic_transport",
+      "science": {
+        "summary": "Absorbed iron binds transferrin for safe plasma transport. Terminus of Volume-I delivery path; tissue use is Defense/Energy/Structure.",
+        "system_transition": "Assimilation → Transport"
+      },
+      "cargo": {
+        "primary": {
+          "nutrient_ref": "nut.iron",
+          "form": "TF-Fe",
+          "state": "plasma_bound",
+          "carrier_ref": "pep.transferrin"
+        },
+        "species_present": [
+          "TF-Fe"
+        ],
+        "co_nutrients": [
+          {
+            "nutrient_ref": "pep.transferrin",
+            "role": "carrier"
+          }
+        ]
+      },
+      "mechanisms": [
+        {
+          "id": "mech.transferrin_binding",
+          "label": "Transferrin binding of plasma iron",
+          "kind": "transport",
+          "law_ids": [
+            "LAW-011"
+          ]
+        }
+      ],
+      "transporters": [],
+      "compartments": [
+        {
+          "id": "comp.plasma",
+          "label": "Blood plasma"
+        }
+      ],
+      "laws": [
+        {
+          "id": "LAW-011",
+          "role": "downstream_window",
+          "relation": "U_shaped_systemic",
+          "statement_hook": "Systemic Fe still biphasic essential/toxic after delivery"
+        },
+        {
+          "id": "LAW-012",
+          "role": "downstream_risk",
+          "relation": "free_Fe_Fenton",
+          "statement_hook": "If free Fe escapes binding — radical path (not this node if TF-bound)"
+        }
+      ],
+      "enhancers": [],
+      "inhibitors": [],
+      "gates": [],
+      "priors": {
+        "human_evidence": 0.95,
+        "magnitude_locked": 0.7,
+        "ontology_bound": 0.9
+      },
+      "next_pathways": [],
+      "terminus": true,
+      "next_systems_out": [
+        "Defense",
+        "Energy",
+        "Structure"
+      ]
+    }
+  ],
+  "spine": [
+    "fe.meal_payload",
+    "fe.lumen_speciation",
+    "fe.dmt1_apical",
+    "fe.enterocyte",
+    "fe.ferroportin_export",
+    "fe.blood_transferrin"
+  ],
+  "edges": [
+    {
+      "from": "fe.meal_payload",
+      "to": "fe.lumen_speciation",
+      "kind": "next_pathway"
+    },
+    {
+      "from": "fe.lumen_speciation",
+      "to": "fe.dmt1_apical",
+      "kind": "next_pathway"
+    },
+    {
+      "from": "fe.dmt1_apical",
+      "to": "fe.enterocyte",
+      "kind": "next_pathway"
+    },
+    {
+      "from": "fe.enterocyte",
+      "to": "fe.ferroportin_export",
+      "kind": "next_pathway"
+    },
+    {
+      "from": "fe.ferroportin_export",
+      "to": "fe.blood_transferrin",
+      "kind": "next_pathway"
+    }
+  ],
+  "qa": {
+    "n_stages": 6,
+    "n_nutrients_bound": 9,
+    "stages_with_empty_laws": [
+      "fe.enterocyte"
+    ],
+    "min_binding_fields_per_stage": 6,
+    "binding_scores": {
+      "fe.meal_payload": 6,
+      "fe.lumen_speciation": 6,
+      "fe.dmt1_apical": 6,
+      "fe.enterocyte": 6,
+      "fe.ferroportin_export": 6,
+      "fe.blood_transferrin": 6
+    }
+  }
+}

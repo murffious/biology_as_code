@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+      - name: Ruff (lint)
+        run: ruff check src tests --exclude tests/_legacy_test_pathways_source.py
+      - name: Pytest
+        run: |
+          pytest tests/test_public_api.py tests/test_quiet.py tests/test_fixtures_packaged.py -q
+          PYTHONPATH=src python tests/test_pathway_packs.py
+      - name: Build wheel
+        run: python -m build
+      - name: Twine check
+        run: twine check dist/*
+      - name: Wheel size guard
+        run: |
+          WHL=$(ls dist/*.whl)
+          BYTES=$(wc -c < "$WHL")
+          echo "wheel bytes=$BYTES"
+          # fail if wheel > 2.5 MiB (bulk snapshots should stay out)
+          test "$BYTES" -lt 2621440
+      - name: Wheel import smoke
+        run: |
+          pip install dist/*.whl --force-reinstall
+          python -c "from biology_as_code import simulate_meal, __version__; from biology_as_code.data.fixtures import list_meal_ids; r=simulate_meal(carbs_g=30,protein_g=15,fats_g=10,fiber_g=8); assert __version__=='0.1.0'; assert r.absorbed_macros_g; assert list_meal_ids()"

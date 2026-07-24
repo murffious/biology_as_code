@@ -1,0 +1,632 @@
+{
+  "id": "bc_39_premier_shake_almonds",
+  "name": "Premier Protein Shake & Almonds",
+  "description": "Ready-to-drink chocolate protein shake with a small handful of raw almonds.",
+  "meal_type": "snack",
+  "cuisine": "american",
+  "category": "barcode_products",
+  "tags": [
+    "post_workout",
+    "on_the_go",
+    "branded"
+  ],
+  "difficulty": "easy",
+  "prep_time_minutes": 1,
+  "cook_time_minutes": 0,
+  "servings": 1,
+  "total_weight_g": 361.0,
+  "ingredients": [
+    {
+      "name": "Chocolate Protein Shake",
+      "quantity": 1,
+      "unit": "bottle",
+      "grams": 340,
+      "source": {
+        "type": "barcode_food",
+        "table": "mealcoach-foods-dev",
+        "pk": "BARCODE#00643843715344",
+        "barcode_gtin14": "00643843715344",
+        "serving_size_g": 325,
+        "nutrition_source": "usda_fdc_branded_rescaled_to_label_energy",
+        "nutriscore": "A",
+        "fdcId": 2608019,
+        "ingredients_text": "WATER, MILK PROTEIN CONCENTRATE+, CALCIUM CASEINATE+, COCOA POWDER (PROCESSED WITH ALKALI), CONTAINS LESS THAN 1% OF HIGH OLEIC SUNFLOWER OIL, NATURAL AND ARTIFICIAL FLAVORS, INULIN, CELLULOSE GEL AND CELLULOSE GUM, SALT, SUCRALOSE, ACESULFAME POTASSIUM, CARRAGEENAN, TRIPOTASSIUM PHOSPHATE, DIPOTASSIUM PHOSPHATE, SODIUM HEXAMETAPHOSPHATE, VITAMIN AND MINERAL BLEND (DL-ALPHA-TOCOPHERYL ACETATE [VITAMIN E], ZINC GLYCINATE CHELATE, FERRIC ORTHOPHOSPHATE, VITAMIN A PALMITATE, NIACINAMIDE, PHYTONADIONE [VITAMIN K1], POTASSIUM IODIDE, CHOLECALCIFEROL [VITAMIN D3], COPPER GLUCONATE, CALCIUM D-PANTOTHENATE, MANGANESE SULFATE, SODIUM SELENITE, BIOTIN, SODIUM MOLYBDATE, FOLIC ACID, THIAMINE MONONITRATE [VITAMIN B1], CYANOCOBALAMIN [VITAMIN B12], PYRIDOXINE HYDROCHLORIDE [VITAMIN B6], RIBOFLAVIN [VITAMIN B2], CHROMIUM POLYNICOTINATE), MAGNESIUM PHOSPHATE, SODIUM ASCORBATE, CHOLINE CHLORIDE.",
+        "ingredients_list": [
+          "Water",
+          "Milk Protein Concentrate+",
+          "Calcium Caseinate+",
+          "Cocoa Powder (Processed With Alkali)",
+          "Contains Less Than 1% Of High Oleic Sunflower Oil",
+          "Natural And Artificial Flavors",
+          "Inulin",
+          "Cellulose Gel And Cellulose Gum",
+          "Salt",
+          "Sucralose",
+          "Acesulfame Potassium",
+          "Carrageenan",
+          "Tripotassium Phosphate",
+          "Dipotassium Phosphate",
+          "Sodium Hexametaphosphate",
+          "Vitamin And Mineral Blend (Dl-Alpha-Tocopheryl Acetate [Vitamin E], Zinc Glycinate Chelate, Ferric Orthophosphate, Vitamin A Palmitate, Niacinamide, Phytonadione [Vitamin K1], Potassium Iodide, Cholecalciferol [Vitamin D3], Copper Gluconate, Calcium D-Pantothenate, Manganese Sulfate, Sodium Selenite, Biotin, Sodium Molybdate, Folic Acid, Thiamine Mononitrate [Vitamin B1], Cyanocobalamin [Vitamin B12], Pyridoxine Hydrochloride [Vitamin B6], Riboflavin [Vitamin B2], Chromium Polynicotinate)",
+          "Magnesium Phosphate",
+          "Sodium Ascorbate",
+          "Choline Chloride"
+        ],
+        "avoid_flags": [
+          {
+            "flag": "artificial_flavor",
+            "severity": "caution",
+            "matched_terms": [
+              "artificial flavor"
+            ]
+          },
+          {
+            "flag": "artificial_sweetener",
+            "severity": "avoid",
+            "matched_terms": [
+              "sucralose",
+              "acesulfame"
+            ]
+          }
+        ]
+      },
+      "is_fluid": true,
+      "nutrition": {
+        "calories": 167.28,
+        "protein_g": 31.68,
+        "carbs_g": 5.3,
+        "fat_g": 3.17,
+        "fiber_g": 3.14,
+        "sugars_g": 1.05,
+        "added_sugar_g": 0.0,
+        "satfat_g": 0.52,
+        "mufa_g": 0.0,
+        "pufa_g": 0.0,
+        "trans_fat_g": 0.0,
+        "cholesterol_mg": 20.91,
+        "omega3_g": 0.0,
+        "sodium_mg": 191.67,
+        "potassium_mg": 338.04,
+        "calcium_mg": 686.55,
+        "iron_mg": 2.65,
+        "magnesium_mg": 94.09,
+        "phosphorus_mg": 582.0,
+        "zinc_mg": 2.96,
+        "vitamin_c_mg": 48.44,
+        "vitamin_d_mcg": 6.97,
+        "vitamin_e_mg": 0.0,
+        "vitamin_k_mcg": 31.72,
+        "thiamin_mg": 0.0,
+        "riboflavin_mg": 0.69,
+        "niacin_mg": 5.07,
+        "pantothenic_acid_mg": 1.58,
+        "vitamin_b6_mg": 0.9,
+        "folate_mcg": 125.46,
+        "vitamin_b12_mcg": 1.25,
+        "choline_mg": 59.24
+      },
+      "per_100g": {
+        "calories": 49.2,
+        "protein_g": 9.317,
+        "carbs_g": 1.558,
+        "fat_g": 0.933,
+        "fiber_g": 0.923,
+        "sugars_g": 0.308,
+        "added_sugar_g": 0.0,
+        "satfat_g": 0.154,
+        "mufa_g": 0.0,
+        "pufa_g": 0.0,
+        "trans_fat_g": 0.0,
+        "cholesterol_mg": 6.15,
+        "omega3_g": 0.0,
+        "sodium_mg": 56.375,
+        "potassium_mg": 99.425,
+        "calcium_mg": 201.925,
+        "iron_mg": 0.779,
+        "magnesium_mg": 27.675,
+        "phosphorus_mg": 171.175,
+        "zinc_mg": 0.871,
+        "vitamin_c_mg": 14.248,
+        "vitamin_d_mcg": 2.05,
+        "vitamin_e_mg": 0.0,
+        "vitamin_k_mcg": 9.328,
+        "thiamin_mg": 0.0,
+        "riboflavin_mg": 0.202,
+        "niacin_mg": 1.491,
+        "pantothenic_acid_mg": 0.466,
+        "vitamin_b6_mg": 0.264,
+        "folate_mcg": 36.9,
+        "vitamin_b12_mcg": 0.369,
+        "choline_mg": 17.425
+      },
+      "brand": "Premier Protein",
+      "nova_class": 4,
+      "nova_source": "curated_map",
+      "nova_confidence": "high",
+      "nova_method": "curated_fluid_upf",
+      "nutrition_truth": {
+        "completeness": {
+          "macros": "full",
+          "micros": "analytical_full"
+        },
+        "crosscheck": null,
+        "macro_agreement": null,
+        "declared": {
+          "calories": {
+            "value": 49.2,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "protein_g": {
+            "value": 9.317,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "carbs_g": {
+            "value": 1.558,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "fat_g": {
+            "value": 0.933,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "fiber_g": {
+            "value": 0.923,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "sugars_g": {
+            "value": 0.308,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "satfat_g": {
+            "value": 0.154,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "sodium_mg": {
+            "value": 56.375,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "iron_mg": {
+            "value": 0.779,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "calcium_mg": {
+            "value": 201.925,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "magnesium_mg": {
+            "value": 27.675,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "potassium_mg": {
+            "value": 99.425,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "zinc_mg": {
+            "value": 0.871,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "vitamin_c_mg": {
+            "value": 14.248,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "vitamin_d_mcg": {
+            "value": 2.05,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "vitamin_e_mg": {
+            "value": null,
+            "origin": "label_undeclared",
+            "honesty": "OPEN",
+            "note": "Zero on branded/OFF panel treated as undeclared, not proven zero"
+          },
+          "vitamin_k_mcg": {
+            "value": 9.328,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "vitamin_b6_mg": {
+            "value": 0.264,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "vitamin_b12_mcg": {
+            "value": 0.369,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "folate_mcg": {
+            "value": 36.9,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "thiamin_mg": {
+            "value": null,
+            "origin": "label_undeclared",
+            "honesty": "OPEN",
+            "note": "Zero on branded/OFF panel treated as undeclared, not proven zero"
+          },
+          "riboflavin_mg": {
+            "value": 0.202,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "niacin_mg": {
+            "value": 1.491,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "choline_mg": {
+            "value": 17.425,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          },
+          "phosphorus_mg": {
+            "value": 171.175,
+            "origin": "usda_fdc_branded_rescaled_to_label_energy",
+            "honesty": "OPEN"
+          }
+        },
+        "estimates": null,
+        "food_class": "fluid",
+        "enriched_at": "2026-07-23T23:52:22.068004+00:00"
+      }
+    },
+    {
+      "name": "Almonds, raw",
+      "quantity": 3,
+      "unit": "tbsp",
+      "grams": 21,
+      "source": {
+        "type": "curated_food",
+        "table": "mealcoach-foods-dev",
+        "pk": "FOOD#food_almonds_raw",
+        "nutrition_source": "usda_fdc"
+      },
+      "is_fluid": false,
+      "nutrition": {
+        "sodium_mg": 0.21,
+        "calcium_mg": 56.49,
+        "omega3_g": 0.0,
+        "vitamin_d_mcg": 0.0,
+        "cholesterol_mg": 0.0,
+        "omega6_g": 0.0,
+        "fat_g": 10.49,
+        "carbs_g": 4.53,
+        "magnesium_mg": 56.7,
+        "thiamin_mg": 0.0,
+        "protein_g": 4.44,
+        "phosphorus_mg": 101.01,
+        "pufa_g": 2.59,
+        "folate_mcg": 0.0,
+        "niacin_mg": 0.0,
+        "potassium_mg": 153.93,
+        "water_g": 0.0,
+        "vitamin_a_mcg": 0.0,
+        "vitamin_b12_mcg": 0.0,
+        "riboflavin_mg": 0.24,
+        "vitamin_b6_mg": 0.0,
+        "fiber_g": 2.62,
+        "calories": 121.59,
+        "mufa_g": 6.63,
+        "trans_fat_g": 0.0,
+        "vitamin_c_mg": 0.0,
+        "vitamin_e_mg": 5.38,
+        "zinc_mg": 0.66,
+        "selenium_mcg": 0.0,
+        "iron_mg": 0.78,
+        "choline_mg": 0.0,
+        "satfat_g": 0.8,
+        "vitamin_k_mcg": 0.0
+      },
+      "per_100g": {
+        "sodium_mg": 1.0,
+        "calcium_mg": 269.0,
+        "omega3_g": 0.0,
+        "vitamin_d_mcg": 0.0,
+        "cholesterol_mg": 0.0,
+        "omega6_g": 0.0,
+        "fat_g": 49.93,
+        "carbs_g": 21.55,
+        "magnesium_mg": 270.0,
+        "thiamin_mg": 0.0,
+        "protein_g": 21.15,
+        "phosphorus_mg": 481.0,
+        "pufa_g": 12.33,
+        "folate_mcg": 0.0,
+        "niacin_mg": 0.0,
+        "potassium_mg": 733.0,
+        "water_g": 0.0,
+        "vitamin_a_mcg": 0.0,
+        "vitamin_b12_mcg": 0.0,
+        "riboflavin_mg": 1.14,
+        "vitamin_b6_mg": 0.0,
+        "fiber_g": 12.5,
+        "calories": 579.0,
+        "mufa_g": 31.55,
+        "trans_fat_g": 0.0,
+        "vitamin_c_mg": 0.0,
+        "vitamin_e_mg": 25.63,
+        "zinc_mg": 3.12,
+        "selenium_mcg": 0.0,
+        "iron_mg": 3.71,
+        "choline_mg": 0.0,
+        "satfat_g": 3.8,
+        "vitamin_k_mcg": 0.0
+      },
+      "nova_class": 1,
+      "nova_source": "curated_map",
+      "nova_confidence": "high",
+      "nova_method": "curated_whole_food",
+      "nutrition_truth": {
+        "completeness": {
+          "macros": "full",
+          "micros": "analytical_full"
+        },
+        "crosscheck": null,
+        "macro_agreement": null,
+        "declared": {
+          "calories": {
+            "value": 579.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "protein_g": {
+            "value": 21.15,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "carbs_g": {
+            "value": 21.55,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "fat_g": {
+            "value": 49.93,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "fiber_g": {
+            "value": 12.5,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "satfat_g": {
+            "value": 3.8,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "sodium_mg": {
+            "value": 1.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "iron_mg": {
+            "value": 3.71,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "calcium_mg": {
+            "value": 269.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "magnesium_mg": {
+            "value": 270.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "potassium_mg": {
+            "value": 733.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "zinc_mg": {
+            "value": 3.12,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_c_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_d_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_a_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_e_mg": {
+            "value": 25.63,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_k_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_b6_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "vitamin_b12_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "folate_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "thiamin_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "riboflavin_mg": {
+            "value": 1.14,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "niacin_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "choline_mg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "phosphorus_mg": {
+            "value": 481.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          },
+          "selenium_mcg": {
+            "value": 0.0,
+            "origin": "usda_fdc",
+            "honesty": "OPEN"
+          }
+        },
+        "estimates": null,
+        "food_class": "nut_seed",
+        "enriched_at": "2026-07-23T23:52:22.068031+00:00"
+      }
+    }
+  ],
+  "instructions": [
+    "Shake well and enjoy chilled with the almonds."
+  ],
+  "nutrition_per_serving": {
+    "calories": 288.87,
+    "protein_g": 36.12,
+    "carbs_g": 9.83,
+    "fat_g": 13.66,
+    "fiber_g": 5.76,
+    "sugars_g": 1.05,
+    "satfat_g": 1.32,
+    "sodium_mg": 191.88,
+    "micronutrients": {
+      "added_sugar_g": 0.0,
+      "calcium_mg": 743.04,
+      "cholesterol_mg": 20.91,
+      "choline_mg": 59.24,
+      "folate_mcg": 125.46,
+      "iron_mg": 3.43,
+      "magnesium_mg": 150.79,
+      "mufa_g": 6.63,
+      "niacin_mg": 5.07,
+      "omega3_g": 0.0,
+      "omega6_g": 0.0,
+      "pantothenic_acid_mg": 1.58,
+      "phosphorus_mg": 683.01,
+      "potassium_mg": 491.97,
+      "pufa_g": 2.59,
+      "riboflavin_mg": 0.93,
+      "selenium_mcg": 0.0,
+      "thiamin_mg": 0.0,
+      "trans_fat_g": 0.0,
+      "vitamin_a_mcg": 0.0,
+      "vitamin_b12_mcg": 1.25,
+      "vitamin_b6_mg": 0.9,
+      "vitamin_c_mg": 48.44,
+      "vitamin_d_mcg": 6.97,
+      "vitamin_e_mg": 5.38,
+      "vitamin_k_mcg": 31.72,
+      "water_g": 0.0,
+      "zinc_mg": 3.62
+    }
+  },
+  "has_branded_items": true,
+  "barcode_item_ids": [
+    "00643843715344"
+  ],
+  "avoid_flags": [
+    {
+      "flag": "artificial_flavor",
+      "severity": "caution",
+      "ingredients": [
+        "Premier Protein Chocolate Protein Shake"
+      ]
+    },
+    {
+      "flag": "artificial_sweetener",
+      "severity": "avoid",
+      "ingredients": [
+        "Premier Protein Chocolate Protein Shake"
+      ]
+    }
+  ],
+  "hydration": {
+    "has_hydration": true,
+    "fluid_g": 340.0
+  },
+  "nutrition_provenance": {
+    "method": "computed_from_per_100g",
+    "sources": [
+      "mealcoach-foods-dev (DynamoDB)",
+      "USDA FDC gold (branded/SR Legacy/Foundation)",
+      "OpenFoodFacts (fallback macros)"
+    ],
+    "macros_coverage": "all_ingredients",
+    "full_panel_coverage_pct": 100.0,
+    "note": "Vitamins/minerals summed from ingredients with USDA full panels (all raw foods + FDC-matched barcode products). Branded label panels include only nutrients declared on the label.",
+    "generated_at": "2026-07-23T23:13:37+00:00",
+    "truth_enrichment": {
+      "at": "2026-07-23T23:52:22.068044+00:00",
+      "methods": [
+        "online_fdc_off_when_available",
+        "nova_off_curated_rules",
+        "micro_label_sparse_null_semantics",
+        "peer_band_estimates_p10_p90"
+      ],
+      "peer_band_classes": [
+        "animal_protein",
+        "grain",
+        "vegetable",
+        "fat",
+        "fruit",
+        "other",
+        "dairy",
+        "fluid",
+        "nut_seed",
+        "legume"
+      ]
+    }
+  },
+  "version": 1,
+  "derived": {
+    "nova_max": 4,
+    "nova_modal": 4,
+    "nova_sources": [
+      "curated_map"
+    ],
+    "full_panel_coverage_pct": 100.0,
+    "ingredient_count": 2,
+    "truth_enriched_at": "2026-07-23T23:52:22.068042+00:00",
+    "honesty": "OPEN",
+    "note": "nova_max ignores nothing critical; plain water may still be NOVA 1 in list"
+  }
+}

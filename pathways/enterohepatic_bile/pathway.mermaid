@@ -1,0 +1,13 @@
+flowchart TD
+  %% Auto-generated from registry pathway: enterohepatic_bile
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  hepatic_bile_acids["Hepatic bile acids"]
+  gallbladder_bile["Stored / secreted bile"]
+  ileal_lumen["Bile acids in ileal lumen"]
+  portal_bile_acids["Portal bile acids"]
+  fecal_loss["Fecal bile acid loss (~5%)"]
+  hepatic_bile_acids -->|"Biliary secretion + gallbladder storage"| gallbladder_bile
+  gallbladder_bile -->|"Micelle transit through SI"| ileal_lumen
+  ileal_lumen -->|"ASBT / IBAT reuptake"| portal_bile_acids
+  portal_bile_acids -->|"Hepatic extraction"| hepatic_bile_acids
+  ileal_lumen -->|"Incomplete reabsorption"| fecal_loss

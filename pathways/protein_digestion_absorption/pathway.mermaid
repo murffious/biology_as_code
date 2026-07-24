@@ -1,0 +1,12 @@
+flowchart TD
+  %% Auto-generated from registry pathway: protein_digestion_absorption
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  dietary_protein["Dietary Protein"]
+  peptides_stomach["Large Peptides (stomach)"]
+  oligopeptides["Oligopeptides + Amino Acids"]
+  amino_acids_enterocyte["Amino Acids / Di-Tri Peptides (enterocyte)"]
+  amino_acids_blood["Amino Acids (portal blood)"]
+  dietary_protein -->|"pepsin"| peptides_stomach
+  peptides_stomach -->|"Pancreatic proteases (trypsin, chymotryp"| oligopeptides
+  oligopeptides -->|"Brush-border peptidases + PEPT1 + amino "| amino_acids_enterocyte
+  amino_acids_enterocyte -->|"Basolateral amino acid transporters"| amino_acids_blood

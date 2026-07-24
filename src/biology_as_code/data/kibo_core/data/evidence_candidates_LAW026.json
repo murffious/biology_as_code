@@ -1,0 +1,246 @@
+{
+  "law_id": "LAW-026",
+  "queries": [
+    "short-chain fatty acids colonic fermentation",
+    "butyrate fiber fermentation",
+    "resistant starch butyrate",
+    "dietary fiber energy harvest SCFA"
+  ],
+  "backends": [
+    "local",
+    "local",
+    "local",
+    "local"
+  ],
+  "n_unique_pmids": 20,
+  "candidates": [
+    {
+      "pmid": "42357471",
+      "title": "Metabolite-Centered Evaluation of Plant-Based Substrates: Integrated Profiling of Short-Chain Fatty Acids (SCFAs) and Neuroactive Compounds with Potential Relev",
+      "year": 2026,
+      "journal": "Molecules (Basel, Switzerland)",
+      "abstract_excerpt": "",
+      "source": "local_docker",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42357471/",
+      "matched_query": "short-chain fatty acids colonic fermentation"
+    },
+    {
+      "pmid": "42366393",
+      "title": "The gastrointestinal microbiome and constituent short-chain fatty acids: a narrative review of an underexplored axis in acute lymphoblastic leukemia.",
+      "year": 2026,
+      "journal": "Gut pathogens",
+      "abstract_excerpt": "",
+      "source": "local_docker",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42366393/",
+      "matched_query": "short-chain fatty acids colonic fermentation"
+    },
+    {
+      "pmid": "42280405",
+      "title": "Effects of Polyphenol Supplementation on Gut Microbiota Composition and Fecal Short-Chain Fatty Acids: A Systematic Review and Meta-Analysis of Randomized Contr",
+      "year": 2026,
+      "journal": "Nutrients",
+      "abstract_excerpt": "",
+      "source": "local_docker",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42280405/",
+      "matched_query": "short-chain fatty acids colonic fermentation"
+    },
+    {
+      "pmid": "42065568",
+      "title": "Pine pollen fiber alleviates constipation induced by loperamide in mice: focus on gastrointestinal motility-related hormones, short-chain fatty acids, and gut m",
+      "year": 2026,
+      "journal": "Food & function",
+      "abstract_excerpt": "",
+      "source": "local_docker",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42065568/",
+      "matched_query": "short-chain fatty acids colonic fermentation"
+    },
+    {
+      "pmid": "41946979",
+      "title": "Dietary Saccharomyces cerevisiae enhanced growth performance, short-chain fatty acids, and reduced the susceptibility of African catfish, Clarias gariepinus to",
+      "year": 2026,
+      "journal": "Tropical animal health and production",
+      "abstract_excerpt": "",
+      "source": "local_docker",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41946979/",
+      "matched_query": "short-chain fatty acids colonic fermentation"
+    },
+    {
+      "pmid": "42041444",
+      "title": "Rapid Electrochemical Profiling of Fecal Short-Chain Fatty Acids Using Esterification/Dissociation Fingerprints and Artificial Neural Networks.",
+      "year": 2026,
+      "journal": "Biosensors",
+      "abstract_excerpt": "",
+      "source": "local_docker",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42041444/",
+      "matched_query": "short-chain fatty acids colonic fermentation"
+    },
+    {
+      "pmid": "38441170",
+      "title": "Protein combined with certain dietary fibers increases butyrate production in gut microbiota fermentation.",
+      "year": 2024,
+      "journal": "Food & function",
+      "abstract_excerpt": "",
+      "source": "local_docker",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/38441170/",
+      "matched_query": "butyrate fiber fermentation"
+    },
+    {
+      "pmid": "10702589",
+      "title": "In vitro fermentation of swine ileal digesta containing oat bran dietary fiber by rat cecal inocula adapted to the test fiber increases propionate production bu",
+      "year": 2000,
+      "journal": "The Journal of nutrition",
+      "abstract_excerpt": "",
+      "source": "local_docker",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10702589/",
+      "matched_query": "butyrate fiber fermentation"
+    },
+    {
+      "pmid": "42104939",
+      "title": "Ameliorative Effects of Butyrylated Starch on Cognitive Dysfunction in d-Galactose-Induced Aging Mice: A Comparative Analysis with Exogenous Butyrate and Resist",
+      "year": 2026,
+      "journal": "Journal of agricultural and food chemistry",
+      "abstract_excerpt": "",
+      "source": "local_docker",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42104939/",
+      "matched_query": "resistant starch butyrate"
+    },
+    {
+      "pmid": "39909254",
+      "title": "Chickpea-resistant starch exhibits bioactive function for alleviating atopic dermatitis via regulating butyrate production.",
+      "year": 2025,
+      "journal": "International journal of biological macromolecules",
+      "abstract_excerpt": "",
+      "source": "local_docker",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39909254/",
+      "matched_query": "resistant starch butyrate"
+    },
+    {
+      "pmid": "40484608",
+      "title": "The regulatory effects of butyrylated starch on gut microbiota and metabolites during in vitro fermentation: advantages over exogenous butyrate and resistant st",
+      "year": 2025,
+      "journal": "Carbohydrate polymers",
+      "abstract_excerpt": "",
+      "source": "local_docker",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40484608/",
+      "matched_query": "resistant starch butyrate"
+    },
+    {
+      "pmid": "40817467",
+      "title": "Modulation of butyrate-induced stress responses in Bacteroides by lotus seed resistant starch and its sugar degradation products.",
+      "year": 2025,
+      "journal": "Carbohydrate polymers",
+      "abstract_excerpt": "",
+      "source": "local_docker",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40817467/",
+      "matched_query": "resistant starch butyrate"
+    },
+    {
+      "pmid": "36638279",
+      "title": "Soluble corn fiber, resistant corn starch, and protected butyrate effects on performance, gastrointestinal volatile fatty acids, and apparent total-tract digest",
+      "year": 2023,
+      "journal": "Journal of animal science",
+      "abstract_excerpt": "",
+      "source": "local_docker",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36638279/",
+      "matched_query": "resistant starch butyrate"
+    },
+    {
+      "pmid": "33995299",
+      "title": "In vitro Fermentation Reveals Changes in Butyrate Production Dependent on Resistant Starch Source and Microbiome Composition.",
+      "year": 2021,
+      "journal": "Frontiers in microbiology",
+      "abstract_excerpt": "",
+      "source": "local_docker",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33995299/",
+      "matched_query": "resistant starch butyrate"
+    },
+    {
+      "pmid": "42163967",
+      "title": "The higher dietary energy-to-fiber ratio is associated with an increased risk of poor blood pressure control among patients with essential hypertension: a cross",
+      "year": 2026,
+      "journal": "Frontiers in nutrition",
+      "abstract_excerpt": "",
+      "source": "local_docker",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42163967/",
+      "matched_query": "dietary fiber energy harvest SCFA"
+    },
+    {
+      "pmid": "42008882",
+      "title": "Effect of dietary resveratrol on slow oxidative muscle fiber expression and energy metabolism in beef muscle via AMPK/SIRT1/PGC-1\u03b1 signaling pathway.",
+      "year": 2026,
+      "journal": "Meat science",
+      "abstract_excerpt": "",
+      "source": "local_docker",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42008882/",
+      "matched_query": "dietary fiber energy harvest SCFA"
+    },
+    {
+      "pmid": "41439104",
+      "title": "Seasonal and Community Size-Related Patterns of Population Dietary Energy, Macronutrients, and Fiber Purchased in Grocery Stores across Nunavut, Canada.",
+      "year": 2025,
+      "journal": "Current developments in nutrition",
+      "abstract_excerpt": "",
+      "source": "local_docker",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41439104/",
+      "matched_query": "dietary fiber energy harvest SCFA"
+    },
+    {
+      "pmid": "41293580",
+      "title": "Energy intake and dietary fiber as principal determinants of obesity in Eastern Europe, 2010-2022: an ecological panel study.",
+      "year": 2025,
+      "journal": "Frontiers in public health",
+      "abstract_excerpt": "",
+      "source": "local_docker",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41293580/",
+      "matched_query": "dietary fiber energy harvest SCFA"
+    },
+    {
+      "pmid": "41006931",
+      "title": "Energy metabolism in different skeletal muscles and muscle fibers: implications for injury and dietary supplementation.",
+      "year": 2025,
+      "journal": "Pflugers Archiv : European journal of physiology",
+      "abstract_excerpt": "",
+      "source": "local_docker",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/41006931/",
+      "matched_query": "dietary fiber energy harvest SCFA"
+    },
+    {
+      "pmid": "39748438",
+      "title": "Relationship between dietary fiber physicochemical properties and feedstuff fermentation characteristics and their effects on nutrient utilization, energy metab",
+      "year": 2025,
+      "journal": "Journal of animal science and biotechnology",
+      "abstract_excerpt": "",
+      "source": "local_docker",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/39748438/",
+      "matched_query": "dietary fiber energy harvest SCFA"
+    }
+  ],
+  "magnitude_locked": false,
+  "promotion_status": "filtered_2026-07-21",
+  "filter_doc": "LAW026_PMID_FILTER.md",
+  "keep_pmids": ["38441170", "10702589", "33995299", "40484608", "36638279", "39748438", "42357471"],
+  "drop_pmids": ["42366393", "42280405", "42065568", "41946979", "42041444", "42104939", "39909254", "40817467", "42163967", "42008882", "41439104", "41293580", "41006931"],
+  "draft_ev_ids": {
+    "38441170": "EV-039",
+    "10702589": "EV-040",
+    "33995299": "EV-041",
+    "40484608": "EV-042",
+    "36638279": "EV-043",
+    "39748438": "EV-044",
+    "42357471": "EV-045"
+  },
+  "next_steps": [
+    "DONE 2026-07-21: abstract review EV-039–041 + energy harvest → see LAW026_PROMOTION_DECISION.md",
+    "Policy: shape solid; magnitude provisional band 1.5–2.5 kcal/g fermented (FAO ~2); magnitude_locked false",
+    "Full-text 40403748 / 27786539 / 35688319 as EV-046–048 candidates",
+    "Merge EV-039–041 (+ energy EVs) into gleaned/registers when ready",
+    "Attach prior band on colon.fermentation base unit; never promote FLOW single coeff to law"
+  ],
+  "decision": {
+    "shape_lock": "recommended_solid",
+    "magnitude_lock": false,
+    "magnitude_band_kcal_per_g_fermentable": [1.5, 2.5],
+    "flow_demo_midpoint_kcal_per_g": 2.0,
+    "doc": "LAW026_PROMOTION_DECISION.md"
+  }
+}

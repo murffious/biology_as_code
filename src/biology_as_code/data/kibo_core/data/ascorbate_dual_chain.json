@@ -1,0 +1,156 @@
+{
+  "schema_version": "1.0.0",
+  "title": "Ascorbate dual chain — taxonomy layers × gleaned laws",
+  "source": {
+    "chain_layers": "nutrient-taxonomy/chain_layers.json",
+    "chain_edges": "nutrient-taxonomy/chain_edges.json",
+    "vitamin_laws_method": "nutrient-taxonomy/VITAMIN-LAWS.md",
+    "gleaned_laws": [
+      "LAW-004",
+      "LAW-012"
+    ],
+    "atomic_path": "gleaned/laws_engine/data/path_nonhaem_iron.atomic.json"
+  },
+  "rule": "One nutrient, multiple chains. Gate and bound sit on different links.",
+  "chains": {
+    "A_collagen_scurvy": {
+      "kibo_systems": [
+        "Assimilation",
+        "Structure",
+        "Defense"
+      ],
+      "links": [
+        {
+          "layer": 2,
+          "id": "nut.ascorbate",
+          "chebi": "CHEBI:29073",
+          "role": "payload"
+        },
+        {
+          "layer": 3,
+          "id": "mech.ascorbate_cofactor_hydroxylase",
+          "kind": "GATE",
+          "note": "No ascorbate → hydroxylase does not run"
+        },
+        {
+          "layer": 4,
+          "id": "phys.collagen_integrity",
+          "kind": "consequence",
+          "note": "hook — confirm id in layer4"
+        },
+        {
+          "layer": 5,
+          "id": "out.scurvy",
+          "pole": "disease",
+          "kind": "OUTCOME"
+        }
+      ],
+      "law_spec": {
+        "gate": "ascorbate required cofactor for prolyl/lysyl hydroxylase",
+        "bound": "none at this gate — categorical",
+        "not_the_same_as": "LAW-004 iron absorption enhancer"
+      }
+    },
+    "B_nonhaem_iron_absorption": {
+      "kibo_systems": [
+        "Assimilation",
+        "Transport"
+      ],
+      "links": [
+        {
+          "layer": 2,
+          "id": "nut.ascorbate",
+          "role": "same_meal_enhancer"
+        },
+        {
+          "layer": 2,
+          "id": "nut.iron",
+          "form": "nonhaem",
+          "chebi": "CHEBI:18248",
+          "role": "cargo"
+        },
+        {
+          "layer": 3,
+          "id": "mech.dmt1_iron",
+          "tx": "tx.dmt1",
+          "kind": "BOUND_path",
+          "note": "Fe2+ uptake; C expands Fe2+ supply"
+        },
+        {
+          "layer": 4,
+          "physiology": "nonhaem_iron_absorption",
+          "kind": "BOUND"
+        },
+        {
+          "layer": 5,
+          "id": "out.iron_deficiency_anemia",
+          "pole": "disease",
+          "kind": "OUTCOME_only_if_whole_chain_fails",
+          "note": "Do not claim C alone prevents anemia"
+        }
+      ],
+      "law_spec": {
+        "relation": "EXPANDS_BOUND",
+        "gleaned_law": "LAW-004",
+        "gate": "none for enhancer; Fe2+ preference is LAW-041 family",
+        "bound": "up to ~10x absorption; ~2x juice; tea rescue",
+        "conditions": "same meal; nonhaem only",
+        "context_flip": "LAW-012 Fenton — same ascorbate as reductant in tissue free-Fe context"
+      },
+      "atomic_stages": [
+        "fe.meal_payload",
+        "fe.lumen_speciation",
+        "fe.dmt1_apical",
+        "fe.enterocyte",
+        "fe.ferroportin_export",
+        "fe.blood_transferrin"
+      ]
+    }
+  },
+  "edges_from_catalog": [
+    {
+      "from": "nut.ascorbate",
+      "to": "mech.ascorbate_cofactor_hydroxylase",
+      "link_strength": "law",
+      "why": "Required cofactor; zero intake forces enzyme failure"
+    },
+    {
+      "from": "mech.ascorbate_cofactor_hydroxylase",
+      "to": "phys.collagen_fibril",
+      "link_strength": "law",
+      "why": "Hydroxyproline/hydroxylysine required for stable collagen"
+    },
+    {
+      "from": "phys.collagen_fibril",
+      "to": "out.scurvy",
+      "link_strength": "law",
+      "why": "Connective tissue failure phenotype of zero ascorbate"
+    },
+    {
+      "from": "nut.iron",
+      "to": "mech.dmt1_iron",
+      "link_strength": "law",
+      "why": "Non-heme Fe2+ apical uptake"
+    },
+    {
+      "from": "nut.ascorbate",
+      "to": "mech.dmt1_iron",
+      "link_strength": "evidence",
+      "why": "Reduces Fe3+→Fe2+ / chelation — EXPANDS_BOUND not OPENS_GATE"
+    },
+    {
+      "from": "mech.dmt1_iron",
+      "to": "mech.hepcidin_ferroportin",
+      "link_strength": "law",
+      "why": "Export gated by hepcidin–ferroportin"
+    },
+    {
+      "from": "phys.erythropoiesis",
+      "to": "out.iron_deficiency_anemia",
+      "link_strength": "law_truncated",
+      "why": "Clinical syndrome"
+    }
+  ],
+  "benefits_json_note": "benefits.json is product/clinical topic lists — not layer 5 outcomes and not laws",
+  "gemini_pillars_note": "Optimise/Regulate/Defend/Restore/Nourish are UI pillars — map to 7 systems later"
+}

@@ -1,0 +1,13 @@
+flowchart TD
+  %% Auto-generated from registry pathway: fuel_selection_hierarchy
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  fed_insulin["Fed / high insulin"]
+  glucose_use["Glucose oxidation + storage"]
+  fasted_glucagon["Fasted / low insulin"]
+  fat_use["Fatty acid oxidation"]
+  prolonged_fast["Prolonged fast / low carb"]
+  ketone_use["Ketone production / use"]
+  fed_insulin -->|"Insulin-dominant state"| glucose_use
+  fasted_glucagon -->|"Mobilization-dominant state"| fat_use
+  prolonged_fast -->|"Hepatic ketogenesis + peripheral use"| ketone_use
+  fed_insulin -->|"Conflict if concurrent high fat+carb"| fat_use

@@ -1,0 +1,12 @@
+flowchart TD
+  %% Auto-generated from registry pathway: carb_digestion_absorption
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  starch["Starch / Glycogen"]
+  maltose_limit["Maltose + Limit Dextrins"]
+  glucose_lumen["Glucose (lumen)"]
+  glucose_enterocyte["Glucose (enterocyte)"]
+  glucose_blood["Glucose (portal blood)"]
+  starch -->|"salivary_amylase"| maltose_limit
+  maltose_limit -->|"Brush-border disaccharidases (maltase, i"| glucose_lumen
+  glucose_lumen -->|"sglt1"| glucose_enterocyte
+  glucose_enterocyte -->|"GLUT2"| glucose_blood

@@ -1,0 +1,48 @@
+flowchart TD
+    %% ===== Investment Phase =====
+    Glucose["Glucose"]
+    G6P["Glucose-6-P"]
+    F6P["Fructose-6-P"]
+    F16BP["Fructose-1,6-BP"]
+
+    Glucose -->|"Hexokinase / Glucokinase<br/>(–1 ATP)"| G6P
+    G6P -->|"Phosphoglucose isomerase"| F6P
+    F6P -->|"PFK-1<br/>(–1 ATP)<br/>★ Major control point"| F16BP
+
+    %% ===== Split =====
+    DHAP["DHAP"]
+    GAP["Glyceraldehyde-3-P"]
+
+    F16BP -->|"Aldolase"| DHAP
+    F16BP -->|"Aldolase"| GAP
+    DHAP -->|"Triose phosphate<br/>isomerase"| GAP
+
+    %% ===== Payoff Phase (occurs twice) =====
+    BPG["1,3-Bisphosphoglycerate"]
+    PG3["3-Phosphoglycerate"]
+    PG2["2-Phosphoglycerate"]
+    PEP["Phosphoenolpyruvate"]
+    Pyruvate["Pyruvate"]
+
+    GAP -->|"GAPDH<br/>(+ NADH)"| BPG
+    BPG -->|"Phosphoglycerate kinase<br/>(+1 ATP)"| PG3
+    PG3 -->|"Phosphoglycerate mutase"| PG2
+    PG2 -->|"Enolase"| PEP
+    PEP -->|"Pyruvate kinase<br/>(+1 ATP)"| Pyruvate
+
+    %% ===== Anaerobic branch =====
+    Lactate["Lactate"]
+    Pyruvate -->|"Lactate dehydrogenase<br/>(regenerates NAD⁺)"| Lactate
+
+    %% ===== Styling =====
+    classDef investment fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    classDef split fill:#fff3e0,stroke:#ef6c00,stroke-width:2px
+    classDef payoff fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    classDef product fill:#fce4ec,stroke:#c2185b,stroke-width:2px
+    classDef regulated fill:#fff9c4,stroke:#f9a825,stroke-width:3px
+
+    class Glucose,G6P,F6P investment
+    class F16BP,DHAP,GAP split
+    class BPG,PG3,PG2,PEP payoff
+    class Pyruvate,Lactate product
+    class F6P,PEP regulated

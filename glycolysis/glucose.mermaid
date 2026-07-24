@@ -1,0 +1,145 @@
+flowchart TB
+    subgraph Glycolysis ["Glycolysis (Glucose → Pyruvate)"]
+        direction TB
+        G1[Glucose] -->|Hexokinase| G2[G6P]
+        G2 --> G3[F6P]
+        G3 -->|PFK-1 ★| G4[F1,6BP]
+        G4 --> G5[GAP]
+        G5 --> G6[Pyruvate]
+    end
+
+    subgraph Gluconeogenesis ["Gluconeogenesis (Pyruvate → Glucose)"]
+        direction BT
+        N6[Pyruvate] -->|Pyruvate carboxylase + PEPCK ★| N5[PEP]
+        N5 --> N4[GAP]
+        N4 --> N3[F1,6BP]
+        N3 -->|Fructose-1,6-bisphosphatase ★| N2[F6P]
+        N2 --> N1[G6P]
+        N1 -->|Glucose-6-phosphatase ★| N0[Glucose]
+    end
+
+    G6 -.->|shared reversible enzymes| N5
+    G4 -.->|shared| N3
+    G2 -.->|shared| N1
+
+    style G3 fill:#fff9c4,stroke:#f9a825
+    style G6 fill:#fce4ec,stroke:#c2185b
+    style N6 fill:#fce4ec,stroke:#c2185b
+    style N0 fill:#e8f5e9,stroke:#2e7d32
+
+
+
+    **Glycolysis vs Gluconeogenesis – Clear Comparison**
+
+These two pathways are **reciprocal**. One breaks glucose down; the other builds it back up. They share many enzymes but use different enzymes at the irreversible steps so the cell can control which direction runs.
+
+---
+
+### 1. High-Level Comparison
+
+| Feature | Glycolysis | Gluconeogenesis |
+|---------|------------|-----------------|
+| **Direction** | Glucose → Pyruvate | Pyruvate (or other precursors) → Glucose |
+| **Main purpose** | Produce ATP and pyruvate/NADH | Maintain blood glucose during fasting |
+| **Net energy** | **+2 ATP** and **+2 NADH** per glucose | **–6 ATP equivalents** per glucose |
+| **Main tissues** | All tissues (especially muscle, brain, RBCs) | Mainly **liver** and kidney cortex |
+| **When active** | Fed state, high glucose, high insulin | Fasting, low glucose, high glucagon |
+| **Key regulation** | Activated by insulin / high AMP | Activated by glucagon / high ATP / acetyl-CoA |
+
+---
+
+### 2. Shared vs Unique Steps
+
+Glycolysis has **3 irreversible steps**. Gluconeogenesis must bypass them with different enzymes.
+
+| Step | Glycolysis Enzyme | Gluconeogenesis Bypass |
+|------|-------------------|------------------------|
+| Glucose ↔ G6P | Hexokinase / Glucokinase | **Glucose-6-phosphatase** |
+| F6P ↔ F1,6BP | **PFK-1** | **Fructose-1,6-bisphosphatase** |
+| PEP ↔ Pyruvate | **Pyruvate kinase** | **Pyruvate carboxylase + PEPCK** |
+
+All the other steps (the reversible ones) are catalyzed by the **same enzymes** operating in the opposite direction.
+
+---
+
+### 3. Energy Accounting
+
+**Glycolysis (per glucose)**
+- Investment: –2 ATP
+- Payoff: +4 ATP
+- **Net = +2 ATP**
+- Also produces 2 NADH
+
+**Gluconeogenesis (per glucose)**
+- Pyruvate → OAA → PEP costs 2 ATP + 2 GTP (for two molecules)
+- 3-PG → 1,3-BPG costs 2 ATP
+- **Total cost = 6 ATP equivalents**
+
+This is why the liver only runs gluconeogenesis when energy is available and glucose is needed by other tissues.
+
+---
+
+### 4. Reciprocal Regulation (Very Important)
+
+The cell prevents both pathways from running at the same time (futile cycling).
+
+| Regulator | Effect on Glycolysis | Effect on Gluconeogenesis |
+|-----------|----------------------|---------------------------|
+| **Insulin** | Activates | Inhibits |
+| **Glucagon / Epinephrine** | Inhibits | Activates |
+| **Fructose-2,6-bisphosphate** | Strongly activates PFK-1 | Inhibits Fructose-1,6-bisphosphatase |
+| **AMP** | Activates PFK-1 | Inhibits Fructose-1,6-bisphosphatase |
+| **Acetyl-CoA** | — | Activates Pyruvate carboxylase |
+| **Citrate** | Inhibits PFK-1 | — |
+
+---
+
+### 5. Visual Comparison (Mermaid)
+
+```mermaid
+flowchart TB
+    subgraph Glycolysis ["Glycolysis (Glucose → Pyruvate)"]
+        direction TB
+        G1[Glucose] -->|Hexokinase| G2[G6P]
+        G2 --> G3[F6P]
+        G3 -->|PFK-1 ★| G4[F1,6BP]
+        G4 --> G5[GAP]
+        G5 --> G6[Pyruvate]
+    end
+
+    subgraph Gluconeogenesis ["Gluconeogenesis (Pyruvate → Glucose)"]
+        direction BT
+        N6[Pyruvate] -->|Pyruvate carboxylase + PEPCK ★| N5[PEP]
+        N5 --> N4[GAP]
+        N4 --> N3[F1,6BP]
+        N3 -->|Fructose-1,6-bisphosphatase ★| N2[F6P]
+        N2 --> N1[G6P]
+        N1 -->|Glucose-6-phosphatase ★| N0[Glucose]
+    end
+
+    G6 -.->|shared reversible enzymes| N5
+    G4 -.->|shared| N3
+    G2 -.->|shared| N1
+
+    style G3 fill:#fff9c4,stroke:#f9a825
+    style G6 fill:#fce4ec,stroke:#c2185b
+    style N6 fill:#fce4ec,stroke:#c2185b
+    style N0 fill:#e8f5e9,stroke:#2e7d32
+```
+
+★ = Unique / bypass enzymes
+
+---
+
+### 6. Physiological Meaning
+
+- **After a meal** → high insulin → glycolysis active in many tissues, gluconeogenesis suppressed in liver.
+- **During fasting** → high glucagon → liver switches to gluconeogenesis to keep blood glucose stable for the brain and red blood cells.
+- Muscle **cannot** release free glucose into the blood because it lacks glucose-6-phosphatase. Only liver (and kidney) can.
+
+---
+
+**Summary in one sentence**  
+Glycolysis is the universal “glucose → energy” pathway; gluconeogenesis is the liver’s “make new glucose from non-carbohydrate precursors” pathway. They share most enzymes but use different ones at the three irreversible steps so the body can turn one on and the other off as needed.
+
+Would you like a similar side-by-side comparison for another pair (e.g. β-oxidation vs fatty acid synthesis, or glycogenesis vs glycogenolysis)?

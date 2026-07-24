@@ -1,0 +1,1553 @@
+{
+  "schema": "kibo.UserPersonaSeed/v1",
+  "version": "1.0.0",
+  "honesty": "OPEN",
+  "title": "Named user personas — shared seed for playground + kibo_simulator",
+  "description": "Hand-crafted profiles using HostState + HostClinicalProfile + UserGoals. Not real people. Not clinical decision support. Switch via slug: alex, jordan, sam, taylor, morgan, casey, riley, avery.",
+  "as_of": "2026-07-23",
+  "personas": [
+    {
+      "schema": "kibo.UserPersona/v1",
+      "id": "persona.alex_rivera",
+      "slug": "alex",
+      "display_name": "Alex Rivera",
+      "email": "alex.rivera.mock@nutricollective.local",
+      "why_useful": "Core happy path — fat loss + metabolic health, active, good adherence. Includes mock GLP-1 RA for C-8 / meds system demos.",
+      "honesty": "OPEN",
+      "host": {
+        "schema": "kibo.HostState/v1",
+        "ready": 1,
+        "lifecycle": "adult",
+        "sex": "male",
+        "age_years": 38,
+        "sleep_hours_last_night": 7.2,
+        "sleep_quality": 0.72,
+        "hrv_rmssd": 42,
+        "resting_hr": 68,
+        "stress_level": 0.35,
+        "perceived_stress": 0.32,
+        "steps_today": 9200,
+        "active_minutes_today": 48,
+        "recent_exercise_intensity": 0.45,
+        "hydration_status": 0.78,
+        "body_fat_percent": 28,
+        "muscle_mass_kg": 36,
+        "acid_capacity": 0.8,
+        "bile_capacity": 0.82,
+        "insulin_resistance": 0.45,
+        "post_surgical": false,
+        "alcohol_with_meal": 0.1,
+        "leucine_adequacy": 0.7,
+        "honesty": "FLOW"
+      },
+      "clinical": {
+        "schema": "kibo.HostClinicalProfile/v1",
+        "honesty": "OPEN",
+        "source": "mock",
+        "as_of": "2026-07-10",
+        "genetics": {
+          "mthfr_mutation": false,
+          "apoe_status": "E3",
+          "lactase_persistence": true,
+          "honesty": "OPEN"
+        },
+        "biomarkers": {
+          "fasting_glucose": {
+            "band": "NORMAL",
+            "value": 98,
+            "unit": "mg/dL",
+            "honesty": "OPEN"
+          },
+          "hba1c": {
+            "band": "NORMAL",
+            "value": 5.5,
+            "unit": "%",
+            "honesty": "OPEN"
+          },
+          "fasting_insulin": {
+            "band": "NORMAL",
+            "honesty": "OPEN"
+          },
+          "crp_hs": {
+            "band": "NORMAL",
+            "honesty": "OPEN"
+          },
+          "lipid_ldl": {
+            "band": "NORMAL",
+            "honesty": "OPEN"
+          },
+          "triglycerides": {
+            "band": "NORMAL",
+            "honesty": "OPEN"
+          },
+          "vitamin_d": {
+            "band": "NORMAL",
+            "honesty": "OPEN"
+          },
+          "honesty": "OPEN"
+        },
+        "hormonal_profile": {
+          "insulin_resistance": "NORMAL",
+          "cortisol": "NORMAL",
+          "thyroid": "NORMAL",
+          "sex_hormone_tone": "NORMAL",
+          "honesty": "OPEN"
+        },
+        "dynamic_state": {
+          "inflammation_status": "NORMAL",
+          "recovery_status": "NORMAL",
+          "gut_symptom_load": "LOW",
+          "sleep_debt": "LOW",
+          "honesty": "OPEN"
+        }
+      },
+      "goals": {
+        "schema": "kibo.UserGoals/v1",
+        "honesty": "OPEN",
+        "primary": "weight_loss",
+        "secondary": [
+          "metabolic_health",
+          "fat_loss",
+          "energy"
+        ],
+        "body": {
+          "height_cm": 178,
+          "weight_kg": 92,
+          "target_weight_kg": 82,
+          "bmi": 29.0,
+          "bmi_band": "OVERWEIGHT",
+          "body_fat_percent": 28,
+          "waist_cm": 98
+        },
+        "pace": "moderate",
+        "energy_bias": "deficit",
+        "horizon_weeks": 20,
+        "notes": "Mock — sustainable deficit, Mediterranean-leaning plate."
+      },
+      "preferences": {
+        "diet_style": "mediterranean",
+        "allergies": [],
+        "dislikes": [
+          "liver",
+          "blue_cheese"
+        ],
+        "meal_frequency": 3,
+        "cooking_skill": "intermediate",
+        "lifestyle_tags": [],
+        "activity_level": "moderate"
+      },
+      "medications": [
+        "semaglutide"
+      ],
+      "supplements": [
+        "vitamin_d3",
+        "omega3_fish_oil"
+      ],
+      "app": {
+        "state": "active",
+        "has_completed_onboarding": true,
+        "days_tracked": 47,
+        "adherence_last_7d": 0.86,
+        "streak_days": 12,
+        "last_meal_logged_days_ago": 0,
+        "missed_days_this_week": 1
+      },
+      "recent_meals": [
+        {
+          "label": "Greek yogurt, berries, walnuts",
+          "day_offset": 0,
+          "meal_slot": "breakfast",
+          "nova_class": 1,
+          "protein_g": 28,
+          "carb_g": 32,
+          "fat_g": 14,
+          "fiber_g": 6,
+          "notes": "Solid protein + matrix"
+        },
+        {
+          "label": "Salmon, quinoa, roasted vegetables",
+          "day_offset": 0,
+          "meal_slot": "dinner",
+          "nova_class": 1,
+          "protein_g": 42,
+          "carb_g": 48,
+          "fat_g": 22,
+          "fiber_g": 9
+        },
+        {
+          "label": "Office sandwich + chips (slip day)",
+          "day_offset": -2,
+          "meal_slot": "lunch",
+          "nova_class": 4,
+          "protein_g": 18,
+          "carb_g": 68,
+          "fat_g": 28,
+          "fiber_g": 3,
+          "notes": "Coach can talk about matrix vs energy"
+        }
+      ],
+      "created_at": "2026-06-01T12:00:00Z",
+      "last_active": "2026-07-23T14:30:00Z",
+      "medications_structured": {
+        "schema": "kibo.MedicationProfile/v1",
+        "honesty": "OPEN",
+        "source": "mock",
+        "as_of": "2026-07-23",
+        "items": [
+          {
+            "id": "med.alex.glp1",
+            "class_id": "glp1_ra",
+            "onboard": true,
+            "label": "Wegovy-class (semaglutide mock)",
+            "ingredient_hint": "semaglutide",
+            "route": "subcutaneous",
+            "notes": "Mock weight-management GLP-1 RA for C-8 demos — not a real prescription",
+            "honesty": "OPEN",
+            "delivery": "subcutaneous",
+            "frequency_text": "weekly (mock)"
+          }
+        ]
+      }
+    },
+    {
+      "schema": "kibo.UserPersona/v1",
+      "id": "persona.jordan_lee",
+      "slug": "jordan",
+      "display_name": "Jordan Lee",
+      "email": "jordan.lee.mock@nutricollective.local",
+      "why_useful": "Power user — muscle gain / recomp, high protein, training days.",
+      "honesty": "OPEN",
+      "host": {
+        "schema": "kibo.HostState/v1",
+        "ready": 1,
+        "lifecycle": "adult",
+        "sex": "female",
+        "age_years": 29,
+        "sleep_hours_last_night": 7.8,
+        "sleep_quality": 0.85,
+        "hrv_rmssd": 58,
+        "resting_hr": 54,
+        "stress_level": 0.28,
+        "perceived_stress": 0.25,
+        "steps_today": 11000,
+        "active_minutes_today": 75,
+        "recent_exercise_intensity": 0.82,
+        "hydration_status": 0.88,
+        "body_fat_percent": 22,
+        "muscle_mass_kg": 28,
+        "acid_capacity": 0.85,
+        "bile_capacity": 0.85,
+        "insulin_resistance": 0.15,
+        "post_surgical": false,
+        "alcohol_with_meal": 0,
+        "leucine_adequacy": 0.92,
+        "honesty": "FLOW"
+      },
+      "clinical": {
+        "schema": "kibo.HostClinicalProfile/v1",
+        "honesty": "OPEN",
+        "source": "mock",
+        "as_of": "2026-07-01",
+        "genetics": {
+          "mthfr_mutation": false,
+          "apoe_status": "E3",
+          "lactase_persistence": true,
+          "honesty": "OPEN"
+        },
+        "biomarkers": {
+          "fasting_glucose": {
+            "band": "NORMAL",
+            "value": 86,
+            "unit": "mg/dL",
+            "honesty": "OPEN"
+          },
+          "hba1c": {
+            "band": "NORMAL",
+            "value": 5.1,
+            "unit": "%",
+            "honesty": "OPEN"
+          },
+          "ferritin": {
+            "band": "NORMAL",
+            "honesty": "OPEN"
+          },
+          "vitamin_d": {
+            "band": "NORMAL",
+            "honesty": "OPEN"
+          },
+          "honesty": "OPEN"
+        },
+        "hormonal_profile": {
+          "insulin_resistance": "LOW",
+          "cortisol": "NORMAL",
+          "thyroid": "NORMAL",
+          "sex_hormone_tone": "NORMAL",
+          "honesty": "OPEN"
+        },
+        "dynamic_state": {
+          "inflammation_status": "LOW",
+          "recovery_status": "NORMAL",
+          "gut_symptom_load": "LOW",
+          "sleep_debt": "LOW",
+          "notes": "Leg day yesterday — recovery teaching flag mild",
+          "honesty": "OPEN"
+        }
+      },
+      "goals": {
+        "schema": "kibo.UserGoals/v1",
+        "honesty": "OPEN",
+        "primary": "recomp",
+        "secondary": [
+          "muscle_gain",
+          "performance",
+          "energy"
+        ],
+        "body": {
+          "height_cm": 165,
+          "weight_kg": 58,
+          "target_weight_kg": 62,
+          "bmi": 21.3,
+          "bmi_band": "NORMAL",
+          "body_fat_percent": 22,
+          "waist_cm": 68
+        },
+        "pace": "moderate",
+        "energy_bias": "surplus",
+        "horizon_weeks": 16,
+        "notes": "Mock — lean bulk, track protein density not just kcal."
+      },
+      "preferences": {
+        "diet_style": "omnivore",
+        "allergies": [],
+        "dislikes": [
+          "organ_meats"
+        ],
+        "meal_frequency": 5,
+        "cooking_skill": "advanced",
+        "lifestyle_tags": [
+          "athlete_high_training"
+        ],
+        "activity_level": "very_active"
+      },
+      "medications": [],
+      "supplements": [
+        "creatine_monohydrate",
+        "whey_protein",
+        "vitamin_d3",
+        "magnesium"
+      ],
+      "app": {
+        "state": "power_user",
+        "has_completed_onboarding": true,
+        "days_tracked": 210,
+        "adherence_last_7d": 0.95,
+        "streak_days": 34,
+        "last_meal_logged_days_ago": 0,
+        "missed_days_this_week": 0
+      },
+      "recent_meals": [
+        {
+          "label": "Egg white omelette + oats + banana (pre-lift)",
+          "day_offset": 0,
+          "meal_slot": "breakfast",
+          "nova_class": 1,
+          "protein_g": 38,
+          "carb_g": 72,
+          "fat_g": 10,
+          "fiber_g": 8
+        },
+        {
+          "label": "Chicken rice bowl + greens (post-lift)",
+          "day_offset": 0,
+          "meal_slot": "lunch",
+          "nova_class": 1,
+          "protein_g": 48,
+          "carb_g": 85,
+          "fat_g": 12,
+          "fiber_g": 7
+        },
+        {
+          "label": "Greek yogurt + whey + berries",
+          "day_offset": -1,
+          "meal_slot": "snack",
+          "nova_class": 2,
+          "protein_g": 40,
+          "carb_g": 28,
+          "fat_g": 4,
+          "fiber_g": 3
+        }
+      ],
+      "created_at": "2025-12-15T09:00:00Z",
+      "last_active": "2026-07-23T18:10:00Z",
+      "supplements_structured": {
+        "schema": "kibo.HostExogenousProfile/v1",
+        "honesty": "OPEN",
+        "source": "mock",
+        "as_of": "2026-07-23",
+        "items": [
+          {
+            "id": "sup.jordan.creatine",
+            "domain": "supplement",
+            "class_id": "creatine",
+            "onboard": true,
+            "label": "creatine monohydrate",
+            "delivery": "oral"
+          },
+          {
+            "id": "sup.jordan.whey",
+            "domain": "supplement",
+            "class_id": "protein_powder",
+            "onboard": true,
+            "label": "whey protein",
+            "delivery": "oral"
+          },
+          {
+            "id": "sup.jordan.d3",
+            "domain": "supplement",
+            "class_id": "vitamin_d",
+            "onboard": true,
+            "label": "vitamin D3",
+            "delivery": "oral"
+          },
+          {
+            "id": "sup.jordan.mag",
+            "domain": "supplement",
+            "class_id": "magnesium",
+            "onboard": true,
+            "label": "magnesium",
+            "delivery": "oral"
+          }
+        ]
+      }
+    },
+    {
+      "schema": "kibo.UserPersona/v1",
+      "id": "persona.sam_patel",
+      "slug": "sam",
+      "display_name": "Sam Patel",
+      "email": "sam.patel.mock@nutricollective.local",
+      "why_useful": "Older adult longevity / anti-inflammatory focus — plateau state.",
+      "honesty": "OPEN",
+      "host": {
+        "schema": "kibo.HostState/v1",
+        "ready": 1,
+        "lifecycle": "older_adult",
+        "sex": "male",
+        "age_years": 64,
+        "sleep_hours_last_night": 6.4,
+        "sleep_quality": 0.55,
+        "hrv_rmssd": 28,
+        "resting_hr": 72,
+        "stress_level": 0.42,
+        "perceived_stress": 0.4,
+        "steps_today": 5400,
+        "active_minutes_today": 22,
+        "recent_exercise_intensity": 0.25,
+        "hydration_status": 0.7,
+        "body_fat_percent": 27,
+        "muscle_mass_kg": 32,
+        "acid_capacity": 0.55,
+        "bile_capacity": 0.7,
+        "insulin_resistance": 0.5,
+        "post_surgical": false,
+        "alcohol_with_meal": 0.2,
+        "leucine_adequacy": 0.55,
+        "honesty": "FLOW"
+      },
+      "clinical": {
+        "schema": "kibo.HostClinicalProfile/v1",
+        "honesty": "OPEN",
+        "source": "mock",
+        "as_of": "2026-06-20",
+        "genetics": {
+          "mthfr_mutation": false,
+          "apoe_status": "E3",
+          "lactase_persistence": false,
+          "honesty": "OPEN"
+        },
+        "biomarkers": {
+          "fasting_glucose": {
+            "band": "NORMAL",
+            "value": 102,
+            "unit": "mg/dL",
+            "honesty": "OPEN"
+          },
+          "hba1c": {
+            "band": "NORMAL",
+            "value": 5.7,
+            "unit": "%",
+            "honesty": "OPEN"
+          },
+          "crp_hs": {
+            "band": "HIGH",
+            "value": 3.2,
+            "unit": "mg/L",
+            "honesty": "OPEN"
+          },
+          "lipid_ldl": {
+            "band": "HIGH",
+            "honesty": "OPEN"
+          },
+          "lipid_hdl": {
+            "band": "NORMAL",
+            "honesty": "OPEN"
+          },
+          "triglycerides": {
+            "band": "NORMAL",
+            "honesty": "OPEN"
+          },
+          "vitamin_d": {
+            "band": "LOW",
+            "honesty": "OPEN"
+          },
+          "b12": {
+            "band": "NORMAL",
+            "honesty": "OPEN"
+          },
+          "honesty": "OPEN"
+        },
+        "hormonal_profile": {
+          "insulin_resistance": "NORMAL",
+          "cortisol": "NORMAL",
+          "thyroid": "NORMAL",
+          "sex_hormone_tone": "LOW",
+          "notes": "Age-related tone teaching only",
+          "honesty": "OPEN"
+        },
+        "dynamic_state": {
+          "inflammation_status": "HIGH",
+          "recovery_status": "NORMAL",
+          "gut_symptom_load": "NORMAL",
+          "sleep_debt": "NORMAL",
+          "honesty": "OPEN"
+        }
+      },
+      "goals": {
+        "schema": "kibo.UserGoals/v1",
+        "honesty": "OPEN",
+        "primary": "general_health",
+        "secondary": [
+          "anti_inflammatory",
+          "metabolic_health",
+          "energy"
+        ],
+        "body": {
+          "height_cm": 172,
+          "weight_kg": 78,
+          "target_weight_kg": 75,
+          "bmi": 26.4,
+          "bmi_band": "OVERWEIGHT",
+          "body_fat_percent": 27,
+          "waist_cm": 94
+        },
+        "pace": "slow",
+        "energy_bias": "maintenance",
+        "horizon_weeks": 52,
+        "notes": "Mock longevity frame — anti-inflammatory density over aggressive cut."
+      },
+      "preferences": {
+        "diet_style": "mediterranean",
+        "allergies": [
+          "shellfish"
+        ],
+        "dislikes": [
+          "very_spicy"
+        ],
+        "meal_frequency": 3,
+        "cooking_skill": "intermediate",
+        "lifestyle_tags": [
+          "low_sun"
+        ],
+        "activity_level": "light"
+      },
+      "medications": [
+        "atorvastatin"
+      ],
+      "supplements": [
+        "vitamin_d3",
+        "omega3_fish_oil",
+        "calcium_citrate"
+      ],
+      "app": {
+        "state": "plateau",
+        "has_completed_onboarding": true,
+        "days_tracked": 120,
+        "adherence_last_7d": 0.57,
+        "streak_days": 2,
+        "last_meal_logged_days_ago": 1,
+        "missed_days_this_week": 3
+      },
+      "recent_meals": [
+        {
+          "label": "Dal, brown rice, cucumber raita (lactose-light)",
+          "day_offset": -1,
+          "meal_slot": "dinner",
+          "nova_class": 1,
+          "protein_g": 22,
+          "carb_g": 58,
+          "fat_g": 12,
+          "fiber_g": 11
+        },
+        {
+          "label": "Fried takeout + sweet lassi",
+          "day_offset": -3,
+          "meal_slot": "dinner",
+          "nova_class": 4,
+          "protein_g": 20,
+          "carb_g": 90,
+          "fat_g": 38,
+          "fiber_g": 4,
+          "notes": "Inflammation + oxidative burden teaching"
+        }
+      ],
+      "created_at": "2026-03-01T10:00:00Z",
+      "last_active": "2026-07-22T20:00:00Z",
+      "medications_structured": {
+        "schema": "kibo.MedicationProfile/v1",
+        "honesty": "OPEN",
+        "source": "mock",
+        "as_of": "2026-07-23",
+        "items": [
+          {
+            "id": "med.sam.statin",
+            "class_id": "statin",
+            "onboard": true,
+            "label": "atorvastatin",
+            "route": "oral",
+            "honesty": "OPEN"
+          }
+        ]
+      },
+      "supplements_structured": {
+        "schema": "kibo.HostExogenousProfile/v1",
+        "honesty": "OPEN",
+        "items": [
+          {
+            "id": "sup.sam.d3",
+            "domain": "supplement",
+            "class_id": "vitamin_d",
+            "onboard": true,
+            "label": "vitamin D3",
+            "delivery": "oral"
+          },
+          {
+            "id": "sup.sam.omega",
+            "domain": "supplement",
+            "class_id": "omega3",
+            "onboard": true,
+            "label": "fish oil",
+            "delivery": "oral"
+          }
+        ]
+      }
+    },
+    {
+      "schema": "kibo.UserPersona/v1",
+      "id": "persona.taylor_kim",
+      "slug": "taylor",
+      "display_name": "Taylor Kim",
+      "email": "taylor.kim.mock@nutricollective.local",
+      "why_useful": "At-risk glycemic path — IR high, low adherence, blood sugar goal.",
+      "honesty": "OPEN",
+      "host": {
+        "schema": "kibo.HostState/v1",
+        "ready": 1,
+        "lifecycle": "adult",
+        "sex": "female",
+        "age_years": 45,
+        "sleep_hours_last_night": 5.5,
+        "sleep_quality": 0.4,
+        "hrv_rmssd": 22,
+        "resting_hr": 78,
+        "stress_level": 0.72,
+        "perceived_stress": 0.75,
+        "steps_today": 3100,
+        "active_minutes_today": 8,
+        "recent_exercise_intensity": 0.1,
+        "hydration_status": 0.55,
+        "body_fat_percent": 38,
+        "muscle_mass_kg": 24,
+        "acid_capacity": 0.7,
+        "bile_capacity": 0.75,
+        "insulin_resistance": 0.88,
+        "post_surgical": false,
+        "alcohol_with_meal": 0.15,
+        "leucine_adequacy": 0.4,
+        "honesty": "FLOW"
+      },
+      "clinical": {
+        "schema": "kibo.HostClinicalProfile/v1",
+        "honesty": "OPEN",
+        "source": "mock",
+        "as_of": "2026-07-05",
+        "genetics": {
+          "mthfr_mutation": true,
+          "mthfr_variant": "C677T",
+          "apoe_status": "E3",
+          "lactase_persistence": true,
+          "honesty": "OPEN"
+        },
+        "biomarkers": {
+          "fasting_glucose": {
+            "band": "HIGH",
+            "value": 118,
+            "unit": "mg/dL",
+            "honesty": "OPEN"
+          },
+          "hba1c": {
+            "band": "HIGH",
+            "value": 6.2,
+            "unit": "%",
+            "honesty": "OPEN"
+          },
+          "fasting_insulin": {
+            "band": "HIGH",
+            "honesty": "OPEN"
+          },
+          "crp_hs": {
+            "band": "HIGH",
+            "honesty": "OPEN"
+          },
+          "homocysteine": {
+            "band": "HIGH",
+            "honesty": "OPEN"
+          },
+          "triglycerides": {
+            "band": "HIGH",
+            "honesty": "OPEN"
+          },
+          "lipid_hdl": {
+            "band": "LOW",
+            "honesty": "OPEN"
+          },
+          "honesty": "OPEN"
+        },
+        "hormonal_profile": {
+          "insulin_resistance": "HIGH",
+          "cortisol": "HIGH",
+          "thyroid": "NORMAL",
+          "sex_hormone_tone": "NORMAL",
+          "honesty": "OPEN"
+        },
+        "dynamic_state": {
+          "inflammation_status": "HIGH",
+          "recovery_status": "LOW",
+          "gut_symptom_load": "NORMAL",
+          "sleep_debt": "HIGH",
+          "honesty": "OPEN"
+        }
+      },
+      "goals": {
+        "schema": "kibo.UserGoals/v1",
+        "honesty": "OPEN",
+        "primary": "metabolic_health",
+        "secondary": [
+          "glycemic_control",
+          "weight_loss",
+          "anti_inflammatory"
+        ],
+        "body": {
+          "height_cm": 160,
+          "weight_kg": 86,
+          "target_weight_kg": 72,
+          "bmi": 33.6,
+          "bmi_band": "OBESITY_I",
+          "body_fat_percent": 38,
+          "waist_cm": 102
+        },
+        "pace": "slow",
+        "energy_bias": "deficit",
+        "horizon_weeks": 36,
+        "notes": "Mock — prioritize glycemic_velocity teaching; not a diabetes Rx."
+      },
+      "preferences": {
+        "diet_style": "low_carb",
+        "allergies": [
+          "peanuts"
+        ],
+        "dislikes": [
+          "bitter_greens"
+        ],
+        "meal_frequency": 3,
+        "cooking_skill": "beginner",
+        "lifestyle_tags": [],
+        "activity_level": "sedentary"
+      },
+      "medications": [
+        "metformin"
+      ],
+      "supplements": [
+        "methylfolate",
+        "magnesium"
+      ],
+      "app": {
+        "state": "at_risk",
+        "has_completed_onboarding": true,
+        "days_tracked": 28,
+        "adherence_last_7d": 0.29,
+        "streak_days": 0,
+        "last_meal_logged_days_ago": 3,
+        "missed_days_this_week": 5
+      },
+      "recent_meals": [
+        {
+          "label": "Large sweet coffee drink + pastry",
+          "day_offset": -3,
+          "meal_slot": "breakfast",
+          "nova_class": 4,
+          "protein_g": 6,
+          "carb_g": 78,
+          "fat_g": 22,
+          "fiber_g": 1,
+          "notes": "High glycemic velocity teaching case"
+        },
+        {
+          "label": "Frozen pizza + soda",
+          "day_offset": -4,
+          "meal_slot": "dinner",
+          "nova_class": 4,
+          "protein_g": 22,
+          "carb_g": 95,
+          "fat_g": 32,
+          "fiber_g": 3
+        },
+        {
+          "label": "Egg scramble + avocado (good day)",
+          "day_offset": -6,
+          "meal_slot": "breakfast",
+          "nova_class": 1,
+          "protein_g": 24,
+          "carb_g": 8,
+          "fat_g": 28,
+          "fiber_g": 7
+        }
+      ],
+      "created_at": "2026-06-20T08:00:00Z",
+      "last_active": "2026-07-20T11:00:00Z",
+      "medications_structured": {
+        "schema": "kibo.MedicationProfile/v1",
+        "honesty": "OPEN",
+        "source": "mock",
+        "as_of": "2026-07-23",
+        "items": [
+          {
+            "id": "med.taylor.metformin",
+            "class_id": "metformin",
+            "onboard": true,
+            "label": "metformin",
+            "route": "oral",
+            "honesty": "OPEN"
+          }
+        ]
+      },
+      "supplements_structured": {
+        "schema": "kibo.HostExogenousProfile/v1",
+        "honesty": "OPEN",
+        "items": [
+          {
+            "id": "sup.taylor.b12im",
+            "domain": "supplement",
+            "class_id": "vitamin_b12",
+            "onboard": true,
+            "label": "B12 injection (clinic mock)",
+            "delivery": "intramuscular",
+            "frequency_text": "monthly (mock)"
+          },
+          {
+            "id": "sup.taylor.mag",
+            "domain": "supplement",
+            "class_id": "magnesium",
+            "onboard": true,
+            "label": "magnesium",
+            "delivery": "oral"
+          }
+        ]
+      }
+    },
+    {
+      "schema": "kibo.UserPersona/v1",
+      "id": "persona.morgan_ellis",
+      "slug": "morgan",
+      "display_name": "Morgan Ellis",
+      "email": "morgan.ellis.mock@nutricollective.local",
+      "why_useful": "New user / onboarding — incomplete profile (host.ready=0) for gate testing.",
+      "honesty": "OPEN",
+      "host": {
+        "schema": "kibo.HostState/v1",
+        "ready": 0,
+        "lifecycle": "adult",
+        "sex": "other",
+        "age_years": 27,
+        "sleep_hours_last_night": 7,
+        "sleep_quality": 0.6,
+        "hrv_rmssd": null,
+        "resting_hr": null,
+        "stress_level": 0.4,
+        "perceived_stress": 0.4,
+        "steps_today": 0,
+        "active_minutes_today": 0,
+        "recent_exercise_intensity": 0,
+        "hydration_status": 0.7,
+        "body_fat_percent": null,
+        "muscle_mass_kg": null,
+        "acid_capacity": 0.75,
+        "bile_capacity": 0.75,
+        "insulin_resistance": 0.3,
+        "post_surgical": false,
+        "alcohol_with_meal": 0,
+        "leucine_adequacy": 0.5,
+        "honesty": "FLOW"
+      },
+      "clinical": {
+        "schema": "kibo.HostClinicalProfile/v1",
+        "honesty": "OPEN",
+        "source": "mock",
+        "as_of": "2026-07-23",
+        "genetics": {
+          "mthfr_mutation": false,
+          "apoe_status": "UNKNOWN",
+          "honesty": "OPEN"
+        },
+        "biomarkers": {
+          "honesty": "OPEN"
+        },
+        "hormonal_profile": {
+          "insulin_resistance": "UNKNOWN",
+          "cortisol": "UNKNOWN",
+          "thyroid": "UNKNOWN",
+          "sex_hormone_tone": "UNKNOWN",
+          "honesty": "OPEN"
+        },
+        "dynamic_state": {
+          "inflammation_status": "UNKNOWN",
+          "recovery_status": "UNKNOWN",
+          "honesty": "OPEN"
+        }
+      },
+      "goals": {
+        "schema": "kibo.UserGoals/v1",
+        "honesty": "OPEN",
+        "primary": "weight_management",
+        "secondary": [],
+        "body": {
+          "height_cm": 170,
+          "weight_kg": 70,
+          "bmi": 24.2,
+          "bmi_band": "NORMAL"
+        },
+        "pace": "unspecified",
+        "energy_bias": "unspecified",
+        "notes": "Onboarding incomplete — targets not set."
+      },
+      "preferences": {
+        "diet_style": "unspecified",
+        "allergies": [],
+        "dislikes": [],
+        "meal_frequency": 3,
+        "cooking_skill": "unspecified",
+        "lifestyle_tags": [],
+        "activity_level": "unspecified"
+      },
+      "medications": [],
+      "supplements": [],
+      "app": {
+        "state": "onboarding",
+        "has_completed_onboarding": false,
+        "days_tracked": 0,
+        "adherence_last_7d": 0,
+        "streak_days": 0,
+        "last_meal_logged_days_ago": 999,
+        "missed_days_this_week": 0
+      },
+      "recent_meals": [],
+      "created_at": "2026-07-23T09:00:00Z",
+      "last_active": "2026-07-23T09:15:00Z"
+    },
+    {
+      "schema": "kibo.UserPersona/v1",
+      "id": "persona.casey_brooks",
+      "slug": "casey",
+      "display_name": "Casey Brooks",
+      "email": "casey.brooks.mock@nutricollective.local",
+      "why_useful": "Busy professional — time-poor, UPF-heavy pattern, inconsistent logging.",
+      "honesty": "OPEN",
+      "host": {
+        "schema": "kibo.HostState/v1",
+        "ready": 1,
+        "lifecycle": "adult",
+        "sex": "female",
+        "age_years": 41,
+        "sleep_hours_last_night": 5.8,
+        "sleep_quality": 0.48,
+        "hrv_rmssd": 30,
+        "resting_hr": 70,
+        "stress_level": 0.68,
+        "perceived_stress": 0.7,
+        "steps_today": 4200,
+        "active_minutes_today": 12,
+        "recent_exercise_intensity": 0.15,
+        "hydration_status": 0.5,
+        "body_fat_percent": 32,
+        "muscle_mass_kg": 26,
+        "acid_capacity": 0.72,
+        "bile_capacity": 0.78,
+        "insulin_resistance": 0.55,
+        "post_surgical": false,
+        "alcohol_with_meal": 0.35,
+        "leucine_adequacy": 0.45,
+        "honesty": "FLOW"
+      },
+      "clinical": {
+        "schema": "kibo.HostClinicalProfile/v1",
+        "honesty": "OPEN",
+        "source": "mock",
+        "as_of": "2026-07-12",
+        "genetics": {
+          "mthfr_mutation": false,
+          "apoe_status": "E3",
+          "lactase_persistence": true,
+          "honesty": "OPEN"
+        },
+        "biomarkers": {
+          "fasting_glucose": {
+            "band": "NORMAL",
+            "value": 104,
+            "unit": "mg/dL",
+            "honesty": "OPEN"
+          },
+          "hba1c": {
+            "band": "NORMAL",
+            "value": 5.6,
+            "unit": "%",
+            "honesty": "OPEN"
+          },
+          "crp_hs": {
+            "band": "NORMAL",
+            "honesty": "OPEN"
+          },
+          "triglycerides": {
+            "band": "HIGH",
+            "honesty": "OPEN"
+          },
+          "honesty": "OPEN"
+        },
+        "hormonal_profile": {
+          "insulin_resistance": "NORMAL",
+          "cortisol": "HIGH",
+          "thyroid": "NORMAL",
+          "sex_hormone_tone": "NORMAL",
+          "honesty": "OPEN"
+        },
+        "dynamic_state": {
+          "inflammation_status": "NORMAL",
+          "recovery_status": "LOW",
+          "gut_symptom_load": "NORMAL",
+          "sleep_debt": "HIGH",
+          "notes": "Travel + late dinners",
+          "honesty": "OPEN"
+        }
+      },
+      "goals": {
+        "schema": "kibo.UserGoals/v1",
+        "honesty": "OPEN",
+        "primary": "weight_management",
+        "secondary": [
+          "energy",
+          "metabolic_health"
+        ],
+        "body": {
+          "height_cm": 168,
+          "weight_kg": 74,
+          "target_weight_kg": 68,
+          "bmi": 26.2,
+          "bmi_band": "OVERWEIGHT",
+          "body_fat_percent": 32,
+          "waist_cm": 86
+        },
+        "pace": "slow",
+        "energy_bias": "deficit",
+        "horizon_weeks": 24,
+        "notes": "Mock — convenience meals dominate; coach for matrix upgrades."
+      },
+      "preferences": {
+        "diet_style": "omnivore",
+        "allergies": [],
+        "dislikes": [
+          "meal_prep_heavy"
+        ],
+        "meal_frequency": 2,
+        "cooking_skill": "beginner",
+        "lifestyle_tags": [
+          "high_alcohol"
+        ],
+        "activity_level": "sedentary"
+      },
+      "medications": [],
+      "supplements": [
+        "multivitamin"
+      ],
+      "app": {
+        "state": "active",
+        "has_completed_onboarding": true,
+        "days_tracked": 60,
+        "adherence_last_7d": 0.43,
+        "streak_days": 1,
+        "last_meal_logged_days_ago": 2,
+        "missed_days_this_week": 4
+      },
+      "recent_meals": [
+        {
+          "label": "Airport wrap + chips + wine",
+          "day_offset": -1,
+          "meal_slot": "dinner",
+          "nova_class": 4,
+          "protein_g": 24,
+          "carb_g": 70,
+          "fat_g": 30,
+          "fiber_g": 4,
+          "notes": "alcohol_with_meal teaching"
+        },
+        {
+          "label": "Desk salad kit (decent)",
+          "day_offset": -2,
+          "meal_slot": "lunch",
+          "nova_class": 3,
+          "protein_g": 18,
+          "carb_g": 22,
+          "fat_g": 16,
+          "fiber_g": 5
+        },
+        {
+          "label": "Delivery burrito bowl",
+          "day_offset": -4,
+          "meal_slot": "dinner",
+          "nova_class": 3,
+          "protein_g": 32,
+          "carb_g": 88,
+          "fat_g": 24,
+          "fiber_g": 10
+        }
+      ],
+      "created_at": "2026-05-10T12:00:00Z",
+      "last_active": "2026-07-21T22:40:00Z"
+    },
+    {
+      "schema": "kibo.UserPersona/v1",
+      "id": "persona.riley_chen",
+      "slug": "riley",
+      "display_name": "Riley Chen",
+      "email": "riley.chen.mock@nutricollective.local",
+      "why_useful": "Plant-based / vegan — high Kibo score, nutrient-density + restriction edge cases (B12).",
+      "honesty": "OPEN",
+      "host": {
+        "schema": "kibo.HostState/v1",
+        "ready": 1,
+        "lifecycle": "adult",
+        "sex": "female",
+        "age_years": 34,
+        "sleep_hours_last_night": 7.5,
+        "sleep_quality": 0.8,
+        "hrv_rmssd": 50,
+        "resting_hr": 60,
+        "stress_level": 0.3,
+        "perceived_stress": 0.28,
+        "steps_today": 9800,
+        "active_minutes_today": 40,
+        "recent_exercise_intensity": 0.4,
+        "hydration_status": 0.85,
+        "body_fat_percent": 24,
+        "muscle_mass_kg": 25,
+        "acid_capacity": 0.8,
+        "bile_capacity": 0.8,
+        "insulin_resistance": 0.2,
+        "post_surgical": false,
+        "alcohol_with_meal": 0,
+        "leucine_adequacy": 0.65,
+        "honesty": "FLOW"
+      },
+      "clinical": {
+        "schema": "kibo.HostClinicalProfile/v1",
+        "honesty": "OPEN",
+        "source": "mock",
+        "as_of": "2026-07-08",
+        "genetics": {
+          "mthfr_mutation": false,
+          "apoe_status": "E2",
+          "lactase_persistence": false,
+          "honesty": "OPEN"
+        },
+        "biomarkers": {
+          "fasting_glucose": {
+            "band": "NORMAL",
+            "value": 88,
+            "unit": "mg/dL",
+            "honesty": "OPEN"
+          },
+          "hba1c": {
+            "band": "NORMAL",
+            "value": 5.0,
+            "unit": "%",
+            "honesty": "OPEN"
+          },
+          "b12": {
+            "band": "NORMAL",
+            "value": 420,
+            "unit": "pg/mL",
+            "honesty": "OPEN"
+          },
+          "ferritin": {
+            "band": "LOW",
+            "honesty": "OPEN"
+          },
+          "vitamin_d": {
+            "band": "NORMAL",
+            "honesty": "OPEN"
+          },
+          "folate": {
+            "band": "NORMAL",
+            "honesty": "OPEN"
+          },
+          "crp_hs": {
+            "band": "LOW",
+            "honesty": "OPEN"
+          },
+          "honesty": "OPEN"
+        },
+        "hormonal_profile": {
+          "insulin_resistance": "LOW",
+          "cortisol": "NORMAL",
+          "thyroid": "NORMAL",
+          "sex_hormone_tone": "NORMAL",
+          "honesty": "OPEN"
+        },
+        "dynamic_state": {
+          "inflammation_status": "LOW",
+          "recovery_status": "NORMAL",
+          "gut_symptom_load": "LOW",
+          "sleep_debt": "LOW",
+          "honesty": "OPEN"
+        }
+      },
+      "goals": {
+        "schema": "kibo.UserGoals/v1",
+        "honesty": "OPEN",
+        "primary": "general_health",
+        "secondary": [
+          "anti_inflammatory",
+          "metabolic_health"
+        ],
+        "body": {
+          "height_cm": 163,
+          "weight_kg": 59,
+          "target_weight_kg": 59,
+          "bmi": 22.2,
+          "bmi_band": "NORMAL",
+          "body_fat_percent": 24,
+          "waist_cm": 70
+        },
+        "pace": "slow",
+        "energy_bias": "maintenance",
+        "horizon_weeks": 52,
+        "notes": "Mock vegan — density + B12/iron awareness without fearmongering."
+      },
+      "preferences": {
+        "diet_style": "vegan",
+        "allergies": [],
+        "dislikes": [
+          "mock_meats_heavy"
+        ],
+        "meal_frequency": 4,
+        "cooking_skill": "advanced",
+        "lifestyle_tags": [
+          "vegan_pattern"
+        ],
+        "activity_level": "moderate"
+      },
+      "medications": [],
+      "supplements": [
+        "cyanocobalamin_b12",
+        "vitamin_d3",
+        "algae_dha",
+        "iron_bisglycinate"
+      ],
+      "app": {
+        "state": "power_user",
+        "has_completed_onboarding": true,
+        "days_tracked": 300,
+        "adherence_last_7d": 0.93,
+        "streak_days": 41,
+        "last_meal_logged_days_ago": 0,
+        "missed_days_this_week": 0
+      },
+      "recent_meals": [
+        {
+          "label": "Tofu scramble, greens, sourdough + olive oil",
+          "day_offset": 0,
+          "meal_slot": "breakfast",
+          "nova_class": 1,
+          "protein_g": 26,
+          "carb_g": 40,
+          "fat_g": 18,
+          "fiber_g": 9
+        },
+        {
+          "label": "Lentil walnut bolognese + whole wheat pasta",
+          "day_offset": 0,
+          "meal_slot": "dinner",
+          "nova_class": 1,
+          "protein_g": 28,
+          "carb_g": 70,
+          "fat_g": 16,
+          "fiber_g": 14
+        },
+        {
+          "label": "Chickpea salad + tahini",
+          "day_offset": -1,
+          "meal_slot": "lunch",
+          "nova_class": 1,
+          "protein_g": 20,
+          "carb_g": 45,
+          "fat_g": 22,
+          "fiber_g": 12
+        }
+      ],
+      "created_at": "2025-09-01T12:00:00Z",
+      "last_active": "2026-07-23T16:00:00Z",
+      "supplements_structured": {
+        "schema": "kibo.HostExogenousProfile/v1",
+        "honesty": "OPEN",
+        "source": "mock",
+        "items": [
+          {
+            "id": "sup.riley.b12",
+            "domain": "supplement",
+            "class_id": "vitamin_b12",
+            "onboard": true,
+            "label": "B12",
+            "delivery": "sublingual",
+            "notes": "vegan B12 — oral/sublingual common"
+          },
+          {
+            "id": "sup.riley.d3",
+            "domain": "supplement",
+            "class_id": "vitamin_d",
+            "onboard": true,
+            "label": "vitamin D3",
+            "delivery": "oral"
+          },
+          {
+            "id": "sup.riley.algae",
+            "domain": "supplement",
+            "class_id": "omega3",
+            "onboard": true,
+            "label": "algae DHA",
+            "delivery": "oral"
+          }
+        ]
+      }
+    },
+    {
+      "schema": "kibo.UserPersona/v1",
+      "id": "persona.avery_torres",
+      "slug": "avery",
+      "display_name": "Avery Torres",
+      "email": "avery.torres.mock@nutricollective.local",
+      "why_useful": "Athlete — very high activity, high energy needs, recovery context.",
+      "honesty": "OPEN",
+      "host": {
+        "schema": "kibo.HostState/v1",
+        "ready": 1,
+        "lifecycle": "adult",
+        "sex": "male",
+        "age_years": 26,
+        "sleep_hours_last_night": 8.2,
+        "sleep_quality": 0.88,
+        "hrv_rmssd": 72,
+        "resting_hr": 48,
+        "stress_level": 0.22,
+        "perceived_stress": 0.2,
+        "steps_today": 15000,
+        "active_minutes_today": 120,
+        "recent_exercise_intensity": 0.95,
+        "hydration_status": 0.9,
+        "body_fat_percent": 12,
+        "muscle_mass_kg": 42,
+        "acid_capacity": 0.9,
+        "bile_capacity": 0.88,
+        "insulin_resistance": 0.1,
+        "post_surgical": false,
+        "alcohol_with_meal": 0,
+        "leucine_adequacy": 0.95,
+        "honesty": "FLOW"
+      },
+      "clinical": {
+        "schema": "kibo.HostClinicalProfile/v1",
+        "honesty": "OPEN",
+        "source": "mock",
+        "as_of": "2026-07-15",
+        "genetics": {
+          "mthfr_mutation": false,
+          "apoe_status": "E3",
+          "lactase_persistence": true,
+          "honesty": "OPEN"
+        },
+        "biomarkers": {
+          "fasting_glucose": {
+            "band": "NORMAL",
+            "value": 84,
+            "unit": "mg/dL",
+            "honesty": "OPEN"
+          },
+          "hba1c": {
+            "band": "NORMAL",
+            "value": 4.9,
+            "unit": "%",
+            "honesty": "OPEN"
+          },
+          "ferritin": {
+            "band": "NORMAL",
+            "honesty": "OPEN"
+          },
+          "vitamin_d": {
+            "band": "NORMAL",
+            "honesty": "OPEN"
+          },
+          "crp_hs": {
+            "band": "LOW",
+            "honesty": "OPEN"
+          },
+          "honesty": "OPEN"
+        },
+        "hormonal_profile": {
+          "insulin_resistance": "LOW",
+          "cortisol": "NORMAL",
+          "thyroid": "NORMAL",
+          "sex_hormone_tone": "NORMAL",
+          "honesty": "OPEN"
+        },
+        "dynamic_state": {
+          "inflammation_status": "LOW",
+          "recovery_status": "HIGH",
+          "gut_symptom_load": "LOW",
+          "sleep_debt": "LOW",
+          "notes": "Hard intervals AM — glycogen repletion teaching",
+          "honesty": "OPEN"
+        }
+      },
+      "goals": {
+        "schema": "kibo.UserGoals/v1",
+        "honesty": "OPEN",
+        "primary": "performance",
+        "secondary": [
+          "muscle_gain",
+          "energy",
+          "recomp"
+        ],
+        "body": {
+          "height_cm": 183,
+          "weight_kg": 78,
+          "target_weight_kg": 80,
+          "bmi": 23.3,
+          "bmi_band": "NORMAL",
+          "body_fat_percent": 12,
+          "waist_cm": 78
+        },
+        "pace": "moderate",
+        "energy_bias": "surplus",
+        "horizon_weeks": 12,
+        "notes": "Mock endurance + strength hybrid — high carb around sessions."
+      },
+      "preferences": {
+        "diet_style": "omnivore",
+        "allergies": [],
+        "dislikes": [],
+        "meal_frequency": 5,
+        "cooking_skill": "intermediate",
+        "lifestyle_tags": [
+          "athlete_high_training"
+        ],
+        "activity_level": "athlete"
+      },
+      "medications": [],
+      "supplements": [
+        "creatine_monohydrate",
+        "electrolytes",
+        "vitamin_d3",
+        "omega3_fish_oil"
+      ],
+      "app": {
+        "state": "power_user",
+        "has_completed_onboarding": true,
+        "days_tracked": 180,
+        "adherence_last_7d": 0.9,
+        "streak_days": 21,
+        "last_meal_logged_days_ago": 0,
+        "missed_days_this_week": 1
+      },
+      "recent_meals": [
+        {
+          "label": "Oats, banana, honey, whey (pre-session)",
+          "day_offset": 0,
+          "meal_slot": "breakfast",
+          "nova_class": 2,
+          "protein_g": 35,
+          "carb_g": 95,
+          "fat_g": 8,
+          "fiber_g": 8
+        },
+        {
+          "label": "Rice, beef, veg, olive oil (recovery)",
+          "day_offset": 0,
+          "meal_slot": "lunch",
+          "nova_class": 1,
+          "protein_g": 50,
+          "carb_g": 110,
+          "fat_g": 22,
+          "fiber_g": 8
+        },
+        {
+          "label": "Pasta + chicken + fruit",
+          "day_offset": -1,
+          "meal_slot": "dinner",
+          "nova_class": 1,
+          "protein_g": 45,
+          "carb_g": 120,
+          "fat_g": 18,
+          "fiber_g": 7
+        }
+      ],
+      "created_at": "2026-01-10T08:00:00Z",
+      "last_active": "2026-07-23T19:00:00Z",
+      "supplements_structured": {
+        "schema": "kibo.HostExogenousProfile/v1",
+        "honesty": "OPEN",
+        "items": [
+          {
+            "id": "sup.avery.creatine",
+            "domain": "supplement",
+            "class_id": "creatine",
+            "onboard": true,
+            "label": "creatine",
+            "delivery": "oral"
+          },
+          {
+            "id": "sup.avery.d3",
+            "domain": "supplement",
+            "class_id": "vitamin_d",
+            "onboard": true,
+            "label": "vitamin D3",
+            "delivery": "oral"
+          },
+          {
+            "id": "sup.avery.omega",
+            "domain": "supplement",
+            "class_id": "omega3",
+            "onboard": true,
+            "label": "fish oil",
+            "delivery": "oral"
+          }
+        ]
+      }
+    }
+  ]
+}

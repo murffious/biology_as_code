@@ -1,0 +1,22 @@
+flowchart TD
+  %% Auto-generated from registry pathway: pentose_phosphate
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  g6p["Glucose-6-phosphate"]
+  6pgl["6-Phosphogluconolactone"]
+  6pg["6-Phosphogluconate"]
+  ru5p["Ribulose-5-phosphate"]
+  r5p["Ribose-5-phosphate"]
+  xu5p["Xylulose-5-phosphate"]
+  s7p["Sedoheptulose-7-phosphate"]
+  gap["Glyceraldehyde-3-phosphate"]
+  f6p["Fructose-6-phosphate"]
+  e4p["Erythrose-4-phosphate"]
+  g6p -->|"Glucose-6-phosphate dehydrogenase (G6PD)"| 6pgl
+  6pgl -->|"Lactonase"| 6pg
+  6pg -->|"6-Phosphogluconate dehydrogenase"| ru5p
+  ru5p -->|"Ribulose-5-phosphate isomerase"| r5p
+  ru5p -->|"Ribulose-5-phosphate epimerase"| xu5p
+  xu5p -->|"Transketolase"| gap
+  r5p -->|"Transketolase"| s7p
+  s7p -->|"Transaldolase"| f6p
+  xu5p -->|"Transketolase"| f6p

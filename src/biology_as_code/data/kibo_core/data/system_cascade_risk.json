@@ -1,0 +1,128 @@
+{
+  "schema_version": "1.0.0",
+  "title": "System cascade risk priors (was C-7 style table)",
+  "note": "Soft multi-hop risk priors across 7 systems. NOT disease predictions. No C-5/C-7/C-4/C-2 ids.",
+  "refuse": [
+    "C-5",
+    "C-7",
+    "C-4",
+    "C-2",
+    "D-TIS",
+    "diagnose_chronic_inflammation",
+    "diagnose_insulin_resistance",
+    "call_this_L3_ingestion"
+  ],
+  "claim_tier_default": "open",
+  "variety_principle": {
+    "id": "principle.variety_over_single_point_failure",
+    "statement": "Covering multiple nutrients/systems reduces amplification of a single shortfall cascade prior",
+    "relation": "NARROWS_BOUND cascade_amplification_prior",
+    "ssi": "heuristic"
+  },
+  "cascades": [
+    {
+      "id": "cascade.vit_a_defense_inflammation",
+      "label": "Vitamin A shortfall → immune → barrier → inflammation priors",
+      "screenshot_map": "Vitamin A ↓ → RiskImmune → RiskGut → RiskInflammation",
+      "trigger": {
+        "type": "nutrient_status_low",
+        "nutrient_ref": "nut.retinol",
+        "also_accept": ["nut.vit_a_group", "nut.beta_carotene"]
+      },
+      "hops": [
+        {
+          "order": 0,
+          "node": "status.retinol_low",
+          "system": "Assimilation",
+          "risk_key": "status.vit_a_shortfall",
+          "delta": 0.25,
+          "law_nearby": ["LAW-020"],
+          "note": "Delivery of A is matrix/fat gated — shortfall may be absorption not intake"
+        },
+        {
+          "order": 1,
+          "node": "defense.immune_competence_risk",
+          "system": "Defense",
+          "risk_key": "defense.immune_risk_prior",
+          "delta": 0.2,
+          "law_nearby": ["LAW-013"],
+          "note": "Vit A appears in antioxidant/defense narratives — prior only"
+        },
+        {
+          "order": 2,
+          "node": "defense.barrier_gut_risk",
+          "system": "Defense",
+          "risk_key": "defense.barrier_gut_risk_prior",
+          "delta": 0.15,
+          "law_nearby": [],
+          "note": "Leaky gut wording is claim-heavy — soft prior, Assay if stated as disease"
+        },
+        {
+          "order": 3,
+          "node": "defense.inflammatory_load",
+          "system": "Defense",
+          "risk_key": "defense.inflammatory_prior",
+          "delta": 0.15,
+          "law_nearby": [],
+          "note": "Screenshot C-7 prediction text is NOT a locked law"
+        }
+      ],
+      "narrative_template": "Vit A pathway pressure can raise multi-step Defense priors (immune → barrier → inflammation) — teaching cascade, not diagnosis.",
+      "ssi": "provisional"
+    },
+    {
+      "id": "cascade.magnesium_stress_insulin_storage",
+      "label": "Magnesium shortfall → stress/sleep → insulin → fat storage priors",
+      "screenshot_map": "Magnesium ↓ → RiskStress/Sleep → RiskInsulin → RiskFatStorage",
+      "trigger": {
+        "type": "nutrient_status_low",
+        "nutrient_ref": "nut.magnesium",
+        "also_accept": []
+      },
+      "hops": [
+        {
+          "order": 0,
+          "node": "status.magnesium_low",
+          "system": "Energy",
+          "risk_key": "status.magnesium_shortfall",
+          "delta": 0.25,
+          "law_nearby": ["LAW-013"],
+          "note": "Mg cofactor network member"
+        },
+        {
+          "order": 1,
+          "node": "communication.stress_sleep_risk",
+          "system": "Communication",
+          "risk_key": "communication.stress_sleep_risk_prior",
+          "delta": 0.2,
+          "law_nearby": [],
+          "note": "Maps screenshot stress/sleep — L1 host confounds large"
+        },
+        {
+          "order": 2,
+          "node": "energy.insulin_handling_risk",
+          "system": "Energy",
+          "risk_key": "energy.insulin_risk_prior",
+          "delta": 0.15,
+          "law_nearby": ["LAW-032"],
+          "note": "Not C-4; insulin as Energy/Communication physiology"
+        },
+        {
+          "order": 3,
+          "node": "energy.fat_storage_risk",
+          "system": "Energy",
+          "risk_key": "energy.fat_storage_prior",
+          "delta": 0.15,
+          "law_nearby": ["LAW-030", "LAW-032"],
+          "note": "Storage antagonism family — prior only"
+        }
+      ],
+      "narrative_template": "Mg shortfall can raise a multi-step Energy/Communication prior chain (stress/sleep → insulin handling → storage) — not a diagnosis of IR.",
+      "ssi": "provisional"
+    }
+  ],
+  "quality_claim_bridge": {
+    "module": "food_quality_claims.json",
+    "note": "Quality claims adjust defense.xenobiotic_prior / inflammatory_fa_prior; cascades propagate other shortfalls"
+  }
+}

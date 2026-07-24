@@ -1,0 +1,26 @@
+flowchart TD
+  %% Auto-generated from registry pathway: gluconeogenesis
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  pyruvate["Pyruvate"]
+  oaa["Oxaloacetate"]
+  pep["Phosphoenolpyruvate"]
+  2pg["2-Phosphoglycerate"]
+  3pg["3-Phosphoglycerate"]
+  13bpg["1,3-Bisphosphoglycerate"]
+  gap["Glyceraldehyde-3-phosphate"]
+  dhap["Dihydroxyacetone phosphate"]
+  f16bp["Fructose-1,6-bisphosphate"]
+  f6p["Fructose-6-phosphate"]
+  g6p["Glucose-6-phosphate"]
+  glucose["Glucose"]
+  pyruvate -->|"Pyruvate carboxylase<br/>ATP-1"| oaa
+  oaa -->|"PEP carboxykinase (PEPCK)"| pep
+  pep -->|"Enolase (reverse)"| 2pg
+  2pg -->|"Phosphoglycerate mutase (reverse)"| 3pg
+  3pg -->|"Phosphoglycerate kinase (reverse)<br/>ATP-1"| 13bpg
+  13bpg -->|"GAPDH (reverse)"| gap
+  gap -->|"Triose phosphate isomerase"| dhap
+  gap -->|"Aldolase (reverse)"| f16bp
+  f16bp -->|"Fructose-1,6-bisphosphatase"| f6p
+  f6p -->|"Phosphoglucose isomerase (reverse)"| g6p
+  g6p -->|"Glucose-6-phosphatase"| glucose

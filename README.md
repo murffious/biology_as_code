@@ -2,41 +2,61 @@
 
 **Standardizing Nutrition Science for Preventive Medicine**
 
-Public **companion** to the book — not the full manuscript.
+Public **companion** + installable Python package (`biology-as-code` on PyPI when published).
 
 | | |
 |--|--|
-| **Book** | Paid product (link below when live) |
-| **This repo** | Free schemas, example packets, short constitution notes |
-| **Primary reader** | Engineers / systems builders |
+| **Book** | Paid product (not in this package) |
+| **This repo / PyPI** | Schemas, food examples, **open dig + teaching pathways** |
+| **Not included** | Product **meal score** / Kibo-vars product scorer (patent pending) |
 | **Ethos** | Fail-closed · gate ≠ bound · empty beats fake |
 
----
-
-## What this is
-
-A systems constitution for nutrition: food is a **typed packet**, digestion is **execution under law**, and claims must survive a **gate-first audit** (no L1→L5 tunnels).
-
-This repository is the O’Reilly-style **companion**:
-
-- example **food objects** you can extend
-- **JSON schemas** for packets and claim audits
-- short **docs** for the free public face of the framework
-
-It is **not** a free ebook dump of the full draft.
+**Not medical advice.** FLOW teaching / research software only — not a clinical decision-support system.
 
 ---
 
-## Quick start
+## Install (PyPI)
+
+```bash
+pip install biology-as-code
+```
+
+From source:
 
 ```bash
 git clone https://github.com/murffious/biology_as_code.git
 cd biology_as_code
-# browse examples/foods/*.json and schemas/
+pip install -e ".[dev]"
 ```
 
-Docs site (GitHub Pages): enable **Settings → Pages → Deploy from branch `main` / folder `/docs`**  
-(or use the Actions workflow once enabled).
+### Minimal usage
+
+```python
+from biology_as_code import simulate_meal, list_pathways, get_pathway, fed, pathway_activities
+
+r = simulate_meal(carbs_g=55, protein_g=35, fats_g=18, fiber_g=20)
+print(r.absorbed_macros_g)       # dig residual path (open FLOW)
+print(list_pathways()[:5])       # teaching pathway graphs
+print(pathway_activities(fed())) # regulation snapshot
+# Product meal score is NOT computed here (enable_product_score defaults False)
+```
+
+```bash
+python examples/python/run_meal.py
+python examples/python/fed_vs_fasted.py
+bash scripts/release_check.sh   # pre-upload tests + wheel smoke (does not publish)
+```
+
+Logging is **quiet by default**. For dig traces: `export BIOLOGY_AS_CODE_LOG=DEBUG`.
+
+**Publishing:** not automatic. Push to `main` = CI only. Upload to PyPI only when you  
+**Actions → Publish** with `confirm=PUBLISH`, or publish a **GitHub Release** on a `v*` tag.  
+Setup checklist: [`docs/python/PUBLISHING.md`](docs/python/PUBLISHING.md).
+
+Architecture notes: [`docs/python/PACKAGE_ARCHITECTURE.md`](docs/python/PACKAGE_ARCHITECTURE.md)  
+License: [MIT](./LICENSE) for code · [LICENSE-SAMPLES.md](./LICENSE-SAMPLES.md) for example JSON · book remains all rights reserved.
+
+Docs site (GitHub Pages): deployed by the `pages.yml` workflow — set **Settings → Pages → Source: GitHub Actions**.
 
 ---
 
@@ -46,11 +66,20 @@ Docs site (GitHub Pages): enable **Settings → Pages → Deploy from branch `ma
 docs/                 # public site / short free content
 schemas/              # packet + claim + relation subset
 examples/
-  foods/              # example food packets (stubs + filled)
-  claims/             # Court-style claim fixtures
-  units/              # teaching UNIT fixtures (iron, fat vehicle)
-LICENSE-SAMPLES.md    # license for schemas & examples
+  foods/              # small teaching food packets (gates / claims)
+  meals/README.md     # pointer only — full meals live in package fixtures
+  claims/             # claim audit fixtures
+  units/              # teaching UNIT fixtures
+src/biology_as_code/
+  data/fixtures/meals/  # SSOT full meal JSON (ships in wheel; no kibo_score)
+  data/fixtures/        # vitamins, personas
+  pathways/ dig/ simulation/ ...
+pathways/             # mermaid + tests.md packs
+glycolysis/           # gold hand-authored mermaid
 ```
+
+**Meals:** one copy only → `src/biology_as_code/data/fixtures/meals/`  
+**Foods:** separate teaching packets → `examples/foods/` (not the same as meals)
 
 ---
 

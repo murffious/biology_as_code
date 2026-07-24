@@ -1,0 +1,132 @@
+{
+  "schema_version": "1.0.0",
+  "title": "Food quality claims — substrate + Defense priors (no C-numbering)",
+  "note": "Inspired by Food Quality Encoding table; mapped to L2 substrate + 7 systems. Magnitudes are prototype priors (SSI provisional) unless locked.",
+  "layers": {
+    "substrate": "absorption-factor L2 — properties of the food",
+    "defense_load": "soft priors on xenobiotic / inflammatory FA profile — scored under Defense (not L3 ingestion)"
+  },
+  "seven_system_seats": {
+    "substrate_nutrient_folds": ["Assimilation", "Transport"],
+    "defense_priors": ["Defense", "Energy"]
+  },
+  "claims": [
+    {
+      "id": "claim.organic_produce",
+      "label": "Organic (produce)",
+      "food_class": "produce",
+      "layer": "L2_substrate",
+      "substrate_modifiers": [
+        {
+          "target": "substrate.nutrient_vector",
+          "relation": "IDENTITY",
+          "fold": 1.0,
+          "note": "Do not invent higher micronutrients from organic label alone"
+        }
+      ],
+      "defense_modifiers": [
+        {
+          "target": "defense.xenobiotic_prior",
+          "relation": "NARROWS_BOUND",
+          "delta": -0.2,
+          "unit": "prior_score_0_1_scale",
+          "prior": 0.55,
+          "note": "Soft pesticide/residue prior ↓ — prefer measured residue data",
+          "law_nearby": []
+        }
+      ],
+      "conditions": ["claim_organic", "food_class_produce"],
+      "ssi": "provisional"
+    },
+    {
+      "id": "claim.grass_fed_finished_beef",
+      "label": "Grass-fed/finished (beef)",
+      "food_class": "beef",
+      "layer": "L2_substrate",
+      "substrate_modifiers": [
+        {
+          "target": "nut.omega3",
+          "nutrient_ref": "nut.omega3",
+          "relation": "EXPANDS_BOUND",
+          "fold": 2.0,
+          "prior": 0.6,
+          "note": "Prototype fold vs conventional beef baseline; replace with FA panel when available",
+          "law_nearby": ["LAW-022"]
+        },
+        {
+          "target": "nut.alpha_tocopherol",
+          "nutrient_ref": "nut.alpha_tocopherol",
+          "relation": "EXPANDS_BOUND",
+          "fold": 1.5,
+          "prior": 0.55,
+          "note": "Vitamin E often higher in grass-fed narratives; lock with composition table",
+          "law_nearby": ["LAW-035"]
+        }
+      ],
+      "defense_modifiers": [
+        {
+          "target": "defense.inflammatory_fa_prior",
+          "relation": "NARROWS_BOUND",
+          "delta": -0.2,
+          "unit": "prior_score_0_1_scale",
+          "prior": 0.55,
+          "note": "Ω-6 share ↓ narrative — soft; prefer measured n6/n3 ratio",
+          "law_nearby": ["LAW-022"]
+        }
+      ],
+      "conditions": ["claim_grass_fed_finished", "food_class_beef"],
+      "ssi": "provisional"
+    },
+    {
+      "id": "claim.conventional_beef",
+      "label": "Conventional (beef)",
+      "food_class": "beef",
+      "layer": "L2_substrate",
+      "substrate_modifiers": [
+        {
+          "target": "nut.omega3",
+          "nutrient_ref": "nut.omega3",
+          "relation": "NARROWS_BOUND",
+          "fold": 0.5,
+          "prior": 0.55,
+          "note": "Relative to grass-fed baseline class in this encoding",
+          "law_nearby": ["LAW-022"]
+        },
+        {
+          "target": "nut.alpha_tocopherol",
+          "nutrient_ref": "nut.alpha_tocopherol",
+          "relation": "IDENTITY",
+          "fold": 1.0,
+          "prior": 0.5,
+          "law_nearby": ["LAW-035"]
+        }
+      ],
+      "defense_modifiers": [
+        {
+          "target": "defense.inflammatory_fa_prior",
+          "relation": "EXPANDS_BOUND",
+          "delta": 0.2,
+          "unit": "prior_score_0_1_scale",
+          "prior": 0.55,
+          "note": "Ω-6 ↑ narrative — soft prior only",
+          "law_nearby": ["LAW-022"]
+        }
+      ],
+      "conditions": ["claim_conventional", "food_class_beef"],
+      "ssi": "provisional"
+    }
+  ],
+  "pipeline": [
+    "resolve_composition",
+    "apply_quality_claim_substrate_folds",
+    "run_assimilation_pathway_walks",
+    "accumulate_defense_priors",
+    "apply_host_L1_gates"
+  ],
+  "refuse": [
+    "C-5_C-7_D-TIS_ids",
+    "quality_claim_as_L3_ingestion",
+    "invent_nutrients_without_composition",
+    "defense_prior_as_disease_certainty"
+  ]
+}

@@ -1,0 +1,34 @@
+# Changelog
+
+All notable changes to the **biology-as-code** Python package are documented here.
+
+## [0.1.0] — 2026-07-23
+
+### Added
+
+- First public PyPI-oriented release of the open dig + teaching pathway package.
+- `simulate_meal()` high-level API wrapping the meal compile pipeline.
+- Pathway graph discovery (`list_pathways`, `get_pathway`) over existing modules.
+- Physiological scenarios: fed / overnight fast / prolonged fast / exercise.
+- Meal fixtures (no product meal score / kibo_score fields), vitamins registry, personas.
+- Law / iron / colon data via `data.kibo_core`.
+- Optional product-score **hook only** (engine not shipped; patent pending).
+- Quiet default logging (`BIOLOGY_AS_CODE_LOG=DEBUG` for dig traces).
+- CI workflow + **Trusted Publisher** OIDC publish workflow.
+- MIT `LICENSE` for the installable package.
+
+### Changed
+
+- Removed bulk snapshot fixtures from the wheel (`off_products_snapshot`, `packets-for-sim`,
+  `payloads-for-sim`, `FOOD_SUBSET_CLASSIFICATION`, `beverage_library`) to keep the package lean.
+- Ruff lint gate focused on real issues (`F` / imports) for legacy teaching modules.
+- **M4:** topics ontology build scripts moved to `tools/topics_build/` (not in wheel).
+- **L3:** register `EXTRA_MOLECULAR` dig structures; drop dead bare `Structure(...)` block.
+- **L4:** single `get_digestive_mechanism_registry()` factory (no triple rebind).
+- **L5:** vitamin adequacy keeps `coenzyme_factor` in sync so meal modifiers affect energy/path signals.
+
+### Notes
+
+- FLOW teaching software — not clinical decision support.
+- Product meal score and Kibo-vars product scorer are **not** included.
+- Book manuscript remains separately licensed (not this package).

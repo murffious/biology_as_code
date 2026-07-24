@@ -1,0 +1,325 @@
+{
+  "id": "fe.lumen_speciation",
+  "order": 1,
+  "label": "Lumen speciation — free Fe²⁺ pool",
+  "name": "Non-haem iron lumen redox and chelation unit",
+  "description": "Base unit: meal-lumen step where ascorbate, phytate, tannin, copper, and meat factor set free Fe²⁺ available for DMT1. GROK-shaped bounds_and_conditions + our 7-system seat + nutrient FKs.",
+  "system": "Assimilation",
+  "governing_systems": ["Assimilation"],
+  "organ": "duodenal–jejunal lumen",
+  "key_organs": ["duodenum", "jejunum", "small-intestinal lumen"],
+  "subsystem": "MineralSpeciation.IronRedox",
+  "depth": "lumen",
+  "ontology_layer_span": [2, 3, 4],
+  "science": {
+    "summary": "Ferric/ferrous equilibrium and chelation set free Fe²⁺ for apical uptake. Ascorbate reduces/keeps Fe²⁺; phytate and tannins bind or favor unavailable forms. Same-meal co-occupation required (L3 event flags on meal context).",
+    "reactions": [
+      "Fe³⁺ + ascorbate (reductant) → Fe²⁺",
+      "Fe + phytate → insoluble complex",
+      "Fe + tannin polyphenol → bound complex"
+    ],
+    "same_meal_rule": "Enhancers/inhibitors must co-occupy the lumen with Fe",
+    "gene": null,
+    "gap": null
+  },
+  "cargo": {
+    "primary": {
+      "nutrient_ref": "nut.iron",
+      "form": "Fe2+",
+      "state": "free_or_complexed_pool",
+      "ontology": {
+        "chebi": "CHEBI:18248",
+        "chebi_fe2": "CHEBI:29033",
+        "chebi_fe3": "CHEBI:29034"
+      }
+    },
+    "species_present": ["Fe2+", "Fe3+", "Fe-phytate", "Fe-tannin"],
+    "co_nutrients": [
+      {
+        "nutrient_ref": "nut.ascorbate",
+        "chebi": "CHEBI:29073",
+        "role": "enhancer_reductant",
+        "required_context": "ascorbate_same_meal"
+      },
+      {
+        "nutrient_ref": "nut.copper",
+        "chebi": "CHEBI:28694",
+        "role": "enhancer_keep_ferrous",
+        "required_context": "copper_redox"
+      },
+      {
+        "nutrient_ref": "mat.phytate",
+        "role": "inhibitor_chelator",
+        "required_context": "phytate"
+      },
+      {
+        "nutrient_ref": "mat.tannin",
+        "role": "inhibitor_binder",
+        "required_context": "tannin"
+      },
+      {
+        "nutrient_ref": "fac.meat_fish",
+        "role": "enhancer_meat_factor",
+        "required_context": "meat_fish_factor"
+      }
+    ]
+  },
+  "mechanisms": [
+    {
+      "id": "mech.ascorbate_reduces_ferric_iron",
+      "label": "Ascorbate-mediated reduction of Fe³⁺ → Fe²⁺ (lumen)",
+      "kind": "redox",
+      "ontology": { "go_hint": null, "note": "lumen chemistry; not collagen hydroxylase" },
+      "nutrients": ["nut.ascorbate", "nut.iron"],
+      "law_ids": ["LAW-004", "LAW-041"],
+      "notes": "Distinct from mech.ascorbate_cofactor_hydroxylase (scurvy GATE chain)"
+    },
+    {
+      "id": "mech.phytate_chelation",
+      "label": "Phytate chelation of divalent metals",
+      "kind": "chelation",
+      "nutrients": ["mat.phytate", "nut.iron"],
+      "law_ids": ["LAW-002"]
+    },
+    {
+      "id": "mech.tannin_iron_binding",
+      "label": "Polyphenol/tannin binding of iron",
+      "kind": "chelation",
+      "nutrients": ["mat.tannin", "nut.iron"],
+      "law_ids": ["LAW-006"]
+    }
+  ],
+  "transporters": [],
+  "compartments": [
+    {
+      "id": "comp.duodenum_lumen",
+      "label": "Duodenal lumen aqueous phase",
+      "uberon_hint": "UBERON:0002114",
+      "digestive_catalog": "book/digestive-taxonomy/compartment_catalog.json"
+    }
+  ],
+  "pathway_details": {
+    "key_enzymes": [],
+    "transport_forms": ["free Fe2+", "chelated Fe"],
+    "upstream": "fe.meal_payload",
+    "downstream": "fe.dmt1_apical",
+    "key_transporters_next": ["tx.dmt1"]
+  },
+  "laws": [
+    {
+      "id": "LAW-004",
+      "role": "primary_enhancer",
+      "relation": "EXPANDS_BOUND",
+      "magnitude_fold_default": 2.0,
+      "magnitude_fold_upper": 10.0,
+      "evidence": "Derman 1977; Rossander 1979",
+      "ssi": "solid"
+    },
+    {
+      "id": "LAW-006",
+      "role": "primary_inhibitor",
+      "relation": "NARROWS_BOUND",
+      "magnitude_fold_default": 0.55,
+      "evidence": "Derman tea arm 3.8%→2.1%",
+      "ssi": "solid"
+    },
+    {
+      "id": "LAW-002",
+      "role": "inhibitor",
+      "relation": "NARROWS_BOUND",
+      "magnitude_fold_default": 0.6,
+      "evidence": "provisional fold — phytate chelation solid, fold soft",
+      "ssi": "provisional_magnitude"
+    },
+    {
+      "id": "LAW-005",
+      "role": "enhancer",
+      "relation": "EXPANDS_BOUND",
+      "magnitude_fold_default": 2.0,
+      "evidence": "Layrisse et al. meat/fish factor",
+      "ssi": "solid"
+    },
+    {
+      "id": "LAW-041",
+      "role": "redox_family",
+      "relation": "EXPANDS_BOUND",
+      "magnitude_fold_default": 1.15,
+      "evidence": "directional Cu help — soft",
+      "ssi": "provisional_magnitude"
+    }
+  ],
+  "enhancers": [
+    {
+      "id": "mod.ascorbate",
+      "nutrient_ref": "nut.ascorbate",
+      "nutrient": "ascorbate",
+      "relation": "EXPANDS_BOUND",
+      "law_id": "LAW-004",
+      "magnitude": 2.0,
+      "prior": 0.9,
+      "requires_context": "ascorbate_same_meal",
+      "conditions": ["same_meal", "nonhaem_only"]
+    },
+    {
+      "id": "mod.ascorbate_strong",
+      "nutrient_ref": "nut.ascorbate",
+      "nutrient": "ascorbate_high",
+      "relation": "EXPANDS_BOUND",
+      "law_id": "LAW-004",
+      "magnitude": 5.0,
+      "prior": 0.75,
+      "requires_context": "ascorbate_strong",
+      "conditions": ["same_meal", "high_C_or_tea_rescue"]
+    },
+    {
+      "id": "mod.meat_factor",
+      "nutrient_ref": "fac.meat_fish",
+      "nutrient": "meat_fish_factor",
+      "relation": "EXPANDS_BOUND",
+      "law_id": "LAW-005",
+      "magnitude": 2.0,
+      "prior": 0.85,
+      "requires_context": "meat_fish_factor",
+      "conditions": ["same_meal_animal_tissue"]
+    },
+    {
+      "id": "mod.copper",
+      "nutrient_ref": "nut.copper",
+      "nutrient": "copper_cuprous",
+      "relation": "EXPANDS_BOUND",
+      "law_id": "LAW-041",
+      "magnitude": 1.15,
+      "prior": 0.7,
+      "requires_context": "copper_redox",
+      "conditions": ["copper_status_adequate"]
+    }
+  ],
+  "inhibitors": [
+    {
+      "id": "mod.tannin",
+      "nutrient_ref": "mat.tannin",
+      "nutrient": "tannin_polyphenol",
+      "relation": "NARROWS_BOUND",
+      "law_id": "LAW-006",
+      "magnitude": 0.55,
+      "prior": 0.85,
+      "requires_context": "tannin",
+      "conditions": ["same_meal_beverage"]
+    },
+    {
+      "id": "mod.phytate",
+      "nutrient_ref": "mat.phytate",
+      "nutrient": "phytate",
+      "relation": "NARROWS_BOUND",
+      "law_id": "LAW-002",
+      "magnitude": 0.6,
+      "prior": 0.8,
+      "requires_context": "phytate",
+      "conditions": ["whole_grain_legume_matrix"]
+    }
+  ],
+  "gates": [
+    {
+      "id": "gate.none_at_this_unit",
+      "present": false,
+      "text": "none — enhancers expand bound; absorption still possible without C",
+      "note": "Fe2+ hard preference is enforced at next unit fe.dmt1_apical"
+    }
+  ],
+  "bounds_and_conditions": {
+    "lower_bound": 0.0,
+    "upper_bound": null,
+    "units": "relative_yield_factor (dimensionless fold on free Fe2+ supply)",
+    "modifying_factors": [
+      "ascorbate_same_meal",
+      "ascorbate_strong",
+      "tannin",
+      "phytate",
+      "meat_fish_factor",
+      "copper_redox",
+      "nonhaem_only"
+    ],
+    "risks_of_deviation": "Ignoring matrix overstates delivered iron; claiming C alone prevents anemia is layer-5 smuggle",
+    "gate_text": "none",
+    "conditions_text": "Same meal lumen co-occupation; non-haem cargo only; host export still later (hepcidin)"
+  },
+  "priors": {
+    "human_evidence": 0.9,
+    "magnitude_locked": 0.65,
+    "ontology_bound": 0.85
+  },
+  "next_pathways": ["fe.dmt1_apical"],
+  "sources": [
+    {
+      "type": "gleaned_law",
+      "id": "LAW-004",
+      "path": "book/gleaned/registers/laws.md"
+    },
+    {
+      "type": "gleaned_law",
+      "id": "LAW-006",
+      "path": "book/gleaned/registers/laws.md"
+    },
+    {
+      "type": "primary_cited",
+      "citation": "Derman et al. 1977 (tea + vitamin C iron absorption)",
+      "status": "pull_pdf"
+    },
+    {
+      "type": "primary_cited",
+      "citation": "Rossander et al. 1979 (orange juice ~2×)",
+      "status": "pull_pdf"
+    },
+    {
+      "type": "taxonomy",
+      "path": "book/nutrient-taxonomy/mineral_catalog.json#nut.iron"
+    },
+    {
+      "type": "chain_edge",
+      "path": "book/nutrient-taxonomy/chain_edges.json",
+      "note": "nut.ascorbate → mech.dmt1_iron (evidence strength)"
+    }
+  ],
+  "app_applications": [
+    "Meal matrix scoring: same-meal vitamin C multiplies non-haem Fe yield",
+    "Coach warning: tea with iron meal without C/fruit",
+    "Assay claims: 'vitamin C detoxes iron' vs honest EXPANDS_BOUND absorption",
+    "Kibo payload: do not treat label Fe mg as delivered fraction"
+  ],
+  "examples": [
+    {
+      "scenario": "spinach + black tea, no C",
+      "context": { "tannin": true, "phytate": true, "ascorbate_same_meal": false },
+      "prototype_yield_factor_at_unit": 0.33,
+      "note": "0.55 * 0.6 if both inhibitors fire"
+    },
+    {
+      "scenario": "spinach + tea + orange (same meal)",
+      "context": { "tannin": true, "phytate": true, "ascorbate_same_meal": true },
+      "prototype_yield_factor_at_unit": 0.66,
+      "note": "0.55 * 0.6 * 2.0 — C partially rescues"
+    },
+    {
+      "scenario": "orange juice only with nonhaem Fe",
+      "context": { "ascorbate_same_meal": true },
+      "prototype_yield_factor_at_unit": 2.0,
+      "note": "Rossander-scale default fold"
+    }
+  ],
+  "context_keys_in": [
+    "ascorbate_same_meal",
+    "ascorbate_strong",
+    "tannin",
+    "phytate",
+    "meat_fish_factor",
+    "copper_redox"
+  ],
+  "context_keys_out": ["fe2_pool_relative"],
+  "ssi": "solid_mechanism_mixed_magnitude",
+  "terminus": false,
+  "schema_refs": {
+    "atomic_stage": "book/gleaned/laws_engine/data/atomic_stage.schema.json",
+    "full_stack": "book/gleaned/schemas/kibo_full_stack.schema.json",
+    "kibo_law": "book/gleaned/registers/reformulations/kibo_law.schema.json"
+  }
+}

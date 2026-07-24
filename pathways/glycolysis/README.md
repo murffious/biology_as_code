@@ -1,0 +1,10 @@
+# glycolysis
+
+Glycolysis – the central pathway that converts glucose into pyruvate (or lactate under anaerobic conditions). Modeled from the book pathway chart.
+
+- **Python module:** `biology_as_code.pathways.metabolic_pathways`
+- **Graph:** `pathway.mermaid` (auto)
+- **Tests:** `tests.md` + `tests/test_pathway_packs.py`
+- **Gold template:** repo root `glycolysis/`
+
+Tier: FLOW teaching. Not product meal score / Kibo-vars product scorer.

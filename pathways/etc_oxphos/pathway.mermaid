@@ -1,0 +1,26 @@
+flowchart TD
+  %% Auto-generated from registry pathway: etc_oxphos
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  nadh["NADH"]
+  fadh2["FADH₂"]
+  complex_i["Complex I (NADH Dehydrogenase)"]
+  complex_ii["Complex II (Succinate Dehydrogenase)"]
+  coq["Coenzyme Q (Ubiquinone)"]
+  complex_iii["Complex III (Cytochrome bc₁)"]
+  cyt_c["Cytochrome c"]
+  complex_iv["Complex IV (Cytochrome c Oxidase)"]
+  o2["O₂"]
+  h2o["H₂O"]
+  proton_gradient["Proton Gradient (Δp)"]
+  atp_synthase["ATP Synthase (Complex V)"]
+  atp["ATP"]
+  nadh -->|"step"| complex_i
+  complex_i -->|"step"| coq
+  fadh2 -->|"step"| complex_ii
+  complex_ii -->|"step"| coq
+  coq -->|"step"| complex_iii
+  complex_iii -->|"step"| cyt_c
+  cyt_c -->|"step"| complex_iv
+  complex_iv -->|"step"| h2o
+  proton_gradient -->|"step"| atp_synthase
+  atp_synthase -->|"step"| atp

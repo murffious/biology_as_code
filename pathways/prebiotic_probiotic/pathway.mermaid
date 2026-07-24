@@ -1,0 +1,12 @@
+flowchart TD
+  %% Auto-generated from registry pathway: prebiotic_probiotic
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  prebiotic_fiber["Prebiotic fiber / oligos"]
+  selective_taxa["Selective taxa expansion"]
+  scfa_signals["SCFA + microbial signals"]
+  probiotic_input["Probiotic organisms (input)"]
+  host_effects["Host barrier / immune effects"]
+  prebiotic_fiber -->|"Selective fermentation"| selective_taxa
+  selective_taxa -->|"Fermentation / exchange"| scfa_signals
+  probiotic_input -->|"Transient colonization"| selective_taxa
+  scfa_signals -->|"Host sensing"| host_effects

@@ -1,0 +1,143 @@
+# PyPI Trusted Publisher (OIDC) — intent-gated only.
+#
+# Does NOT run on normal push/PR.
+# Publishes only when YOU deliberately trigger one of:
+#   A) Actions → Publish → Run workflow
+#        target=testpypi|pypi  AND  confirm=PUBLISH
+#   B) GitHub Release published from a tag v* (after you create the release on purpose)
+#
+# One-time setup (you do this in the browser — not automatic):
+#   see docs/python/PUBLISHING.md
+
+name: Publish
+
+on:
+  # Intentional: only when you create a GitHub Release (not on every push)
+  release:
+    types: [published]
+  # Intentional: manual run with confirm phrase
+  workflow_dispatch:
+    inputs:
+      target:
+        description: "Where to upload"
+        required: true
+        default: testpypi
+        type: choice
+        options:
+          - testpypi
+          - pypi
+      confirm:
+        description: 'Type exactly PUBLISH to proceed (anything else aborts)'
+        required: true
+        default: ""
+        type: string
+
+# Least privilege by default; jobs elevate only for OIDC publish
+permissions:
+  contents: read
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # Always build + test. Never upload from this job.
+  # ---------------------------------------------------------------------------
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install build twine pytest
+          pip install -e ".[dev]"
+
+      - name: Gate — require confirm=PUBLISH on workflow_dispatch
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          if [ "${{ inputs.confirm }}" != "PUBLISH" ]; then
+            echo "Aborted: set confirm=PUBLISH to publish. (Got: '${{ inputs.confirm }}')"
+            exit 1
+          fi
+          echo "Intent confirmed: PUBLISH → ${{ inputs.target }}"
+
+      - name: Gate — release tags must look like v0.1.0
+        if: github.event_name == 'release'
+        run: |
+          TAG="${{ github.event.release.tag_name }}"
+          echo "Release tag: $TAG"
+          case "$TAG" in
+            v[0-9]*) echo "Tag OK" ;;
+            *) echo "Aborted: release tag must start with v (e.g. v0.1.0)"; exit 1 ;;
+          esac
+
+      - name: Test
+        run: pytest tests/test_public_api.py tests/test_quiet.py tests/test_fixtures_packaged.py -q
+
+      - name: Ruff
+        run: ruff check src tests --exclude tests/_legacy_test_pathways_source.py
+
+      - name: Build
+        run: python -m build
+
+      - name: Twine check
+        run: twine check dist/*
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+
+  # ---------------------------------------------------------------------------
+  # Production PyPI — only release event OR dispatch target=pypi + PUBLISH
+  # Requires GitHub Environment "pypi" + PyPI Trusted Publisher pending entry
+  # ---------------------------------------------------------------------------
+  publish-pypi:
+    name: Upload to PyPI
+    needs: build
+    if: >-
+      github.event_name == 'release' ||
+      (github.event_name == 'workflow_dispatch' && inputs.target == 'pypi' && inputs.confirm == 'PUBLISH')
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/biology-as-code
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+      - name: Publish to PyPI (OIDC)
+        uses: pypa/gh-action-pypi-publish@release/v1
+
+  # ---------------------------------------------------------------------------
+  # TestPyPI — only dispatch target=testpypi + PUBLISH
+  # Requires GitHub Environment "testpypi" + TestPyPI Trusted Publisher
+  # ---------------------------------------------------------------------------
+  publish-testpypi:
+    name: Upload to TestPyPI
+    needs: build
+    if: >-
+      github.event_name == 'workflow_dispatch' &&
+      inputs.target == 'testpypi' &&
+      inputs.confirm == 'PUBLISH'
+    runs-on: ubuntu-latest
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/biology-as-code
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: python-package-distributions
+          path: dist/
+      - name: Publish to TestPyPI (OIDC)
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/

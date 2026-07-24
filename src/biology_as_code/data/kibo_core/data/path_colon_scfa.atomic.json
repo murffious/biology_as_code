@@ -1,0 +1,267 @@
+{
+  "schema_version": "1.0.0",
+  "pathway_id": "path.colon_scfa_recovery",
+  "title": "Colon fermentation → SCFA → host energy (skeleton)",
+  "status": "skeleton_provisional",
+  "description": "Formal units for large-intestine phase. GROK fiber_scfa_phase coefficients are NOT locked here — see prototype_coefficients + priors.",
+  "ref_flow_sim": "book/files (8)/GROK_laws.md fiber_scfa_phase / largeIntestinePhase",
+  "gleaned_laws": ["LAW-025", "LAW-026", "LAW-017", "LAW-023"],
+  "ontology_chain": {
+    "layers": {
+      "2_nutrient": "fermentable fiber / RS / SCFA metabolites",
+      "3_mechanism": "microbial fermentation (hooks only)",
+      "4_physiology": "colonocyte fuel, portal SCFA delivery",
+      "5_outcome": "do not auto-claim disease prevention from SCFA bonus"
+    }
+  },
+  "prototype_coefficients_from_flow": {
+    "note": "Copied from GROK sim for comparison only — magnitude_locked low",
+    "fermentable_fraction_of_fiber": 0.6,
+    "butyrate_fraction_of_scfa": 0.6,
+    "acetate_propionate_fraction_of_scfa": 0.4,
+    "atp_bonus_per_butyrate_unit": 3.5,
+    "authorized_for_scoring": false
+  },
+  "spine": [
+    "colon.residue_arrival",
+    "colon.fermentation",
+    "colon.scfa_absorption",
+    "colon.host_energy_recovery"
+  ],
+  "stages": [
+    {
+      "order": 0,
+      "id": "colon.residue_arrival",
+      "label": "Ileal residue enters colon",
+      "system": "Assimilation",
+      "organ": "ileocecal → proximal colon",
+      "subsystem": "Colon.ResidueArrival",
+      "depth": "lumen",
+      "science": {
+        "summary": "Undigested fiber, RS, bile acids, sloughed cells arrive. Not all fiber arrives equally fermentable (LAW-025 prep, LAW-017 type)."
+      },
+      "cargo": {
+        "primary": {
+          "nutrient_ref": "nut.fiber_fermentable",
+          "form": "fermentable_polysaccharide",
+          "state": "escaped_si",
+          "ontology": { "note": "expand catalog — not all fiber is one nut.*" }
+        },
+        "species_present": ["cellulose", "pectin", "resistant_starch", "other_nsp"]
+      },
+      "mechanisms": [],
+      "transporters": [],
+      "compartments": [{ "id": "comp.colon", "label": "Large intestine lumen" }],
+      "laws": [
+        { "id": "LAW-025", "role": "upstream", "relation": "RS_prep_sets_escape" },
+        { "id": "LAW-023", "role": "upstream", "relation": "milling_sets_nsp" }
+      ],
+      "enhancers": [],
+      "inhibitors": [],
+      "gates": [],
+      "priors": {
+        "human_evidence": 0.85,
+        "magnitude_locked": 0.4,
+        "ontology_bound": 0.4
+      },
+      "next_pathways": ["colon.fermentation"],
+      "growth": ["Split fermentable vs non-fermentable fiber on payload"]
+    },
+    {
+      "order": 1,
+      "id": "colon.fermentation",
+      "label": "Microbiome fermentation → SCFA pool",
+      "system": "Biotransformation",
+      "organ": "colon lumen (microbiota)",
+      "subsystem": "Colon.MicrobiomeFermentation",
+      "depth": "lumen",
+      "science": {
+        "summary": "Bacteria ferment accessible carbs to acetate, propionate, butyrate. Fraction fermentable and SCFA mix are host- and substrate-dependent.",
+        "gap": "No locked stoichiometric table in gleaned laws yet"
+      },
+      "cargo": {
+        "primary": {
+          "nutrient_ref": "met.scfa_pool",
+          "form": "scfa_mix",
+          "state": "produced",
+          "ontology": { "note": "butyrate/acetate/propionate as metabolites" }
+        },
+        "species_present": ["butyrate", "acetate", "propionate"]
+      },
+      "mechanisms": [
+        {
+          "id": "mech.microbiome_scfa_production",
+          "label": "Microbial fermentation to SCFA",
+          "kind": "fermentation",
+          "law_ids": ["LAW-026"]
+        }
+      ],
+      "transporters": [],
+      "compartments": [{ "id": "comp.colon", "label": "Colon lumen" }],
+      "laws": [
+        {
+          "id": "LAW-026",
+          "role": "primary",
+          "relation": "EXPANDS_BOUND",
+          "note": "energy recovery exists; folds provisional"
+        },
+        {
+          "id": "LAW-017",
+          "role": "substrate_type",
+          "relation": "fiber_components_differ"
+        }
+      ],
+      "enhancers": [],
+      "inhibitors": [
+        {
+          "id": "mod.dysbiosis_or_low_fermentable",
+          "nutrient_ref": "mat.low_fermentable_diet",
+          "relation": "NARROWS_BOUND",
+          "law_id": "LAW-026",
+          "magnitude": 0.5,
+          "prior": 0.5,
+          "requires_context": "low_fermentable_intake",
+          "note": "prototype — not locked"
+        }
+      ],
+      "gates": [
+        {
+          "id": "gate.microbiome_competent",
+          "present": true,
+          "context_key": "microbiome_competent",
+          "default_open": true,
+          "text": "Requires competent fermenting microbiota (soft gate)"
+        }
+      ],
+      "bounds_and_conditions": {
+        "lower_bound": null,
+        "upper_bound": null,
+        "units": "relative SCFA yield (not mmol locked)",
+        "modifying_factors": [
+          "fermentable_fraction",
+          "fiber_type",
+          "RS_prep",
+          "microbiome_competence",
+          "transit_time"
+        ],
+        "risks_of_deviation": "Using fiber_g*0.6 as truth overstates certainty; FLOW sim is prototype",
+        "gate_text": "microbiome competence (soft)",
+        "conditions_text": "Fermentable substrate reaches colon; not all fibre equally fermentable (LAW-026)"
+      },
+      "priors": {
+        "human_evidence": 0.85,
+        "magnitude_locked": 0.25,
+        "ontology_bound": 0.45,
+        "flow_coefficient_alignment": 0.2
+      },
+      "next_pathways": ["colon.scfa_absorption"],
+      "prototype_flow_map": {
+        "scfa_total": "fiber_g * fermentable_fraction (GROK used 0.6)",
+        "butyrate": "scfa_total * ~0.6 (GROK)",
+        "authorized": false
+      },
+      "app_applications": [
+        "fiber_scoring",
+        "microbiome_health",
+        "scfa_atp_bonus_prototype_only"
+      ],
+      "growth": [
+        "Lock fermentable fraction by fiber type from primary tables",
+        "Do not promote anti_inflammatory / insulin_sensitivity to law without endpoints"
+      ]
+    },
+    {
+      "order": 2,
+      "id": "colon.scfa_absorption",
+      "label": "SCFA uptake (colonocyte + portal)",
+      "system": "Assimilation",
+      "organ": "colon epithelium + portal vein",
+      "subsystem": "Colon.SCFAAbsorption",
+      "depth": "apical_membrane",
+      "science": {
+        "summary": "Butyrate heavily used by colonocytes; acetate/propionate more systemic via portal vein."
+      },
+      "cargo": {
+        "primary": {
+          "nutrient_ref": "met.scfa_pool",
+          "form": "absorbed_scfa",
+          "state": "epithelial_or_portal"
+        },
+        "species_present": ["butyrate", "acetate", "propionate"]
+      },
+      "mechanisms": [],
+      "transporters": [],
+      "compartments": [
+        { "id": "comp.colonocyte", "label": "Colonocyte" },
+        { "id": "comp.portal_vein", "label": "Portal vein" }
+      ],
+      "laws": [{ "id": "LAW-026", "role": "energy_recovery_path" }],
+      "enhancers": [],
+      "inhibitors": [],
+      "gates": [],
+      "priors": {
+        "human_evidence": 0.8,
+        "magnitude_locked": 0.3,
+        "ontology_bound": 0.4
+      },
+      "next_pathways": ["colon.host_energy_recovery"]
+    },
+    {
+      "order": 3,
+      "id": "colon.host_energy_recovery",
+      "label": "Host energy recovery from SCFA",
+      "system": "Energy",
+      "organ": "colonocyte + liver",
+      "subsystem": "SCFAEnergyRecovery.FermentableCarb",
+      "depth": "systemic",
+      "science": {
+        "summary": "SCFA contribute to host energy; not calorie-free residue. Magnitude of ATP bonus is not locked in gleaned laws.",
+        "gap": "GROK systemic_atp_bonus = butyrate * 3.5 is prototype only"
+      },
+      "cargo": {
+        "primary": {
+          "nutrient_ref": "met.scfa_energy",
+          "form": "atp_or_kcal_recovery",
+          "state": "host_utilized"
+        }
+      },
+      "mechanisms": [],
+      "transporters": [],
+      "compartments": [],
+      "laws": [
+        {
+          "id": "LAW-026",
+          "role": "primary",
+          "relation": "EXPANDS_BOUND",
+          "statement": "Fermentable carb to colon EXPANDS host energy recovery via SCFA"
+        }
+      ],
+      "enhancers": [],
+      "inhibitors": [],
+      "gates": [],
+      "bounds_and_conditions": {
+        "lower_bound": null,
+        "upper_bound": null,
+        "units": "relative energy recovery (not kcal locked)",
+        "modifying_factors": ["scfa_yield", "host_utilization", "microbiome"],
+        "risks_of_deviation": "Presenting ATP bonus as measured kcal without primary is dishonest",
+        "gate_text": "none",
+        "conditions_text": "LAW-026 conditions"
+      },
+      "priors": {
+        "human_evidence": 0.8,
+        "magnitude_locked": 0.2,
+        "ontology_bound": 0.4,
+        "flow_coefficient_alignment": 0.15
+      },
+      "next_pathways": [],
+      "terminus": true,
+      "next_systems_out": ["Defense", "Communication"],
+      "refuse": [
+        "auto_claim_anti_inflammatory_as_law",
+        "auto_claim_insulin_sensitivity_cure",
+        "use_3.5_atp_factor_as_locked_bound"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+flowchart TD
+  %% Auto-generated from registry pathway: fatty_acid_synthesis
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  acetyl_coa_mito["Acetyl-CoA (mitochondria)"]
+  citrate["Citrate"]
+  acetyl_coa_cyto["Acetyl-CoA (cytosol)"]
+  malonyl_coa["Malonyl-CoA"]
+  acyl_acp["Growing Acyl-ACP chain"]
+  palmitate["Palmitate (C16:0)"]
+  acetyl_coa_mito -->|"Citrate synthase"| citrate
+  citrate -->|"ATP-citrate lyase<br/>ATP-1"| acetyl_coa_cyto
+  acetyl_coa_cyto -->|"Acetyl-CoA carboxylase (ACC)<br/>ATP-1"| malonyl_coa
+  malonyl_coa -->|"Fatty Acid Synthase (FAS) complex"| acyl_acp
+  acyl_acp -->|"Thioesterase (part of FAS)"| palmitate
