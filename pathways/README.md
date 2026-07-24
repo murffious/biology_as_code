@@ -25,13 +25,3 @@ PYTHONPATH=src python3 tests/test_pathway_packs.py
 ```
 
 See [INDEX.md](./INDEX.md).
-
-## Pointers (not “textbook modules”)
-
-| Want | Point here |
-|------|------------|
-| Pathway diagrams | `pathways/*/pathway.mermaid` + gold `glycolysis/*.mermaid` |
-| Python graphs | `src/biology_as_code/pathways/` |
-| Dig / meal engine | `src/biology_as_code/dig/`, `simulation/kibo_engine.py` |
-
-Prefer these paths over calling dig/pathway code “textbook modules.”

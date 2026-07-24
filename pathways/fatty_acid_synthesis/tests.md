@@ -29,7 +29,7 @@ _No mechanism_id links (topology-only teaching graph)._
 
 ## Biochemical invariants (document here)
 
-Hand-fill like root `glycolysis/tests.md` when auditing against textbook:
+Hand-fill like root `glycolysis/tests.md` when auditing against pathway mermaid packs:
 
 | Invariant | Expected | Status |
 |-----------|----------|--------|

@@ -21,6 +21,7 @@ Gold hand pack: [`../glycolysis/`](../glycolysis/) (exists=True)
 | [`glycogen_metabolism`](./glycogen_metabolism/) | `biology_as_code.pathways.glycogen_metabolism` | 6 | 7 |
 | [`glycolysis`](./glycolysis/) | `biology_as_code.pathways.metabolic_pathways` | 12 | 12 |
 | [`ketogenesis`](./ketogenesis/) | `biology_as_code.pathways.ketogenesis` | 6 | 5 |
+| [`ketolysis`](./ketolysis/) | `biology_as_code.pathways.ketolysis` | 4 | 3 |
 | [`lipid_digestion_absorption`](./lipid_digestion_absorption/) | `biology_as_code.pathways.digestion_absorption_pathways` | 6 | 5 |
 | [`lipoprotein_transport`](./lipoprotein_transport/) | `biology_as_code.pathways.cholesterol_pathway` | 7 | 6 |
 | [`pentose_phosphate`](./pentose_phosphate/) | `biology_as_code.pathways.pentose_phosphate` | 10 | 9 |
@@ -31,4 +32,4 @@ Gold hand pack: [`../glycolysis/`](../glycolysis/) (exists=True)
 | [`tca_cycle`](./tca_cycle/) | `biology_as_code.pathways.tca_cycle` | 9 | 8 |
 | [`urea_cycle`](./urea_cycle/) | `biology_as_code.pathways.urea_cycle` | 10 | 6 |
 
-**Total:** 24 graphs
+**Total:** 25 graphs

@@ -17,6 +17,9 @@ All notable changes to the **biology-as-code** Python package are documented her
 - Physiological scenarios: fed / overnight fast / prolonged fast / exercise.
 - Meal fixtures (no product meal score / kibo_score fields), vitamins registry, personas.
 - Law / iron / colon data via `data.kibo_core`.
+- **Ketolysis** teaching pathway (`get_pathway("ketolysis")`) — ketone-body oxidation
+  (BDH1 -> SCOT/OXCT1 -> ACAT1 -> 2 acetyl-CoA), including the liver's lack of SCOT.
+  Closes TODO 6b; complements the existing ketogenesis graph.
 - Optional product-score **hook only** (engine not shipped; patent pending).
 - Quiet default logging (`BIOLOGY_AS_CODE_LOG=DEBUG` for dig traces).
 - CI workflow + **Trusted Publisher** OIDC publish workflow.

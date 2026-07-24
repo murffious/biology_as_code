@@ -15,6 +15,9 @@ __version__ = package_version()
 # Dig helpers
 from biology_as_code.dig import Bolus, DigestiveFlowSimulator, build_absorption_plan
 
+# LAW-SPEC law cards (inspect the constitution as data)
+from biology_as_code.laws import get_law, law_card, list_laws
+
 # Open declarative digestion machines (teaching layer)
 from biology_as_code.machines import get_machine, list_machines, run_digestion, trace
 
@@ -52,8 +55,11 @@ __all__ = [
     "build_absorption_plan",
     "exercise",
     "fed",
+    "get_law",
     "get_machine",
     "get_pathway",
+    "law_card",
+    "list_laws",
     "list_machines",
     "list_pathways",
     "overnight_fast",

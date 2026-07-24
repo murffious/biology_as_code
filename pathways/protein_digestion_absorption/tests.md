@@ -28,7 +28,7 @@ Edges with `mechanism_id`: **1** / 4
 
 ## Biochemical invariants (document here)
 
-Hand-fill like root `glycolysis/tests.md` when auditing against textbook:
+Hand-fill like root `glycolysis/tests.md` when auditing against pathway mermaid packs:
 
 | Invariant | Expected | Status |
 |-----------|----------|--------|

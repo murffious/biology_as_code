@@ -57,6 +57,8 @@ def pathway_to_mermaid(pathway: Any) -> str:
         f"  %% Auto-generated from registry pathway: {getattr(pathway, 'name', '?')}",
         f"  %% Do not hand-edit; re-run scripts/export_pathway_packs.py",
     ]
+    for ref in getattr(pathway, "references", None) or []:
+        lines.append(f"  %% Source: {ref}")
     nodes = getattr(pathway, "nodes", {}) or {}
     edges = getattr(pathway, "edges", []) or []
 
@@ -127,6 +129,11 @@ def write_tests_md(pathway: Any, module: str, pack_id: str) -> str:
         lines.append("```")
     else:
         lines.append("_No mechanism_id links (topology-only teaching graph)._")
+    refs = getattr(pathway, "references", None) or []
+    if refs:
+        lines += ["", "## Sources", ""]
+        for r in refs:
+            lines.append(f"- {r}")
     lines += [
         "",
         "## Biochemical invariants (document here)",
@@ -184,6 +191,7 @@ def collect_pathways() -> List[Tuple[str, str, Any]]:
     from biology_as_code.pathways.cholesterol_pathway import get_cholesterol_pathway_registry
     from biology_as_code.pathways.fatty_acid_synthesis import get_fatty_acid_synthesis_registry
     from biology_as_code.pathways.ketogenesis import get_ketogenesis_registry
+    from biology_as_code.pathways.ketolysis import get_ketolysis_registry
     from biology_as_code.pathways.digestion_absorption_pathways import (
         get_digestion_absorption_registry,
     )
@@ -201,6 +209,7 @@ def collect_pathways() -> List[Tuple[str, str, Any]]:
         ("biology_as_code.pathways.cholesterol_pathway", get_cholesterol_pathway_registry),
         ("biology_as_code.pathways.fatty_acid_synthesis", get_fatty_acid_synthesis_registry),
         ("biology_as_code.pathways.ketogenesis", get_ketogenesis_registry),
+        ("biology_as_code.pathways.ketolysis", get_ketolysis_registry),
         ("biology_as_code.pathways.digestion_absorption_pathways", get_digestion_absorption_registry),
         ("biology_as_code.pathways.supporting_pathways", get_supporting_pathways_registry),
     ]

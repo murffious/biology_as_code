@@ -1,0 +1,13 @@
+flowchart TD
+  %% Auto-generated from registry pathway: ketolysis
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  %% Source: Ketone Bodies — Biology LibreTexts 17.3 (BDH1 / SCOT / thiolase steps): https://bio.libretexts.org/Bookshelves/Biochemistry
+  %% Source: OXCT1/SCOT as the rate-limiting ketolytic enzyme, absent in liver: PMC12838892 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12838892/)
+  %% Source: Metabolic and Signaling Roles of Ketone Bodies: PMC8922216 (https://pmc.ncbi.nlm.nih.gov/articles/PMC8922216/)
+  beta_hydroxybutyrate["β-Hydroxybutyrate"]
+  acetoacetate["Acetoacetate"]
+  acetoacetyl_coa["Acetoacetyl-CoA"]
+  acetyl_coa["Acetyl-CoA"]
+  beta_hydroxybutyrate -->|"β-Hydroxybutyrate dehydrogenase (BDH1)"| acetoacetate
+  acetoacetate -->|"Succinyl-CoA:3-oxoacid CoA transferase ("| acetoacetyl_coa
+  acetoacetyl_coa -->|"Acetoacetyl-CoA thiolase (ACAT1)"| acetyl_coa

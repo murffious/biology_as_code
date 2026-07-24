@@ -332,6 +332,36 @@ class SignalingPathwayRegistry:
             functional_systems=["SYS-06"]
         ))
 
+        self.register(SignalingPathway(
+            id="bhb_signaling",
+            name="β-Hydroxybutyrate Signaling Pathway",
+            category=PathwayCategory.METABOLIC,
+            direction=Directionality.BIDIRECTIONAL,
+            description=(
+                "Beyond fuel (see the ketolysis pathway), β-hydroxybutyrate is a signaling "
+                "molecule: it activates the GPR109A/HCAR2 receptor, inhibits class I HDACs, "
+                "and directly blocks the NLRP3 inflammasome. Acetoacetate does not share most "
+                "of these actions."
+            ),
+            sensors=["gpr109a_hcar2", "gpr41_ffar3", "class_I_hdac", "nlrp3_inflammasome"],
+            transmitters=["beta_hydroxybutyrate"],
+            targets=["adipocytes", "macrophages", "neurons", "sympathetic_ganglia", "heart"],
+            effects=[
+                "gpr109a_agonism_antilipolytic",
+                "class_I_hdac_inhibition_raises_histone_acetylation",  # FOXO3 / oxidative-stress genes
+                "nlrp3_inhibition_lowers_IL1b_IL18_caspase1",          # anti-inflammatory, GPR109A-independent
+                "gpr41_antagonism_suppresses_sympathetic_tone",
+            ],
+            related_mechanisms=["ketone_body_oxidation"],
+            functional_systems=["SYS-03", "SYS-04"],
+            notes=(
+                "FLOW teaching signaling (not fuel arithmetic; ketolysis handles ATP yield). "
+                "BHB-specific vs acetoacetate. Sources: Metabolic and Signaling Roles of Ketone "
+                "Bodies, PMC8922216 (https://pmc.ncbi.nlm.nih.gov/articles/PMC8922216/); "
+                "Youm et al. 2015 NLRP3 inhibition, PMID 25686106."
+            ),
+        ))
+
         # ==================================================================
         # IMMUNE / BARRIER
         # ==================================================================
