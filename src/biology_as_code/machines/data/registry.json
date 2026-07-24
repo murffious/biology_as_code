@@ -1,0 +1,88 @@
+{
+  "generated": "2026-07-23",
+  "schema": "_schema/machine.schema.json",
+  "note": "Single index of the open digestion machines. Read machines through here; never hard-code stage data. `revision` is the version cursor; `hash` catches silent edits (see validate.validate_all).",
+  "machines": [
+    {
+      "id": "stage.oral",
+      "kind": "stage",
+      "path": "stage/oral.json",
+      "version": "1.0.0",
+      "revision": 1,
+      "status": "published",
+      "hash": "sha256:4b8c33d50cfd5e38"
+    },
+    {
+      "id": "stage.stomach",
+      "kind": "stage",
+      "path": "stage/stomach.json",
+      "version": "1.0.0",
+      "revision": 1,
+      "status": "published",
+      "hash": "sha256:341fb68e992f315b"
+    },
+    {
+      "id": "stage.duodenum",
+      "kind": "stage",
+      "path": "stage/duodenum.json",
+      "version": "1.0.0",
+      "revision": 1,
+      "status": "published",
+      "hash": "sha256:3abb574894c5d8e9"
+    },
+    {
+      "id": "stage.jejunum",
+      "kind": "stage",
+      "path": "stage/jejunum.json",
+      "version": "1.0.0",
+      "revision": 1,
+      "status": "published",
+      "hash": "sha256:424943754e5a1bab"
+    },
+    {
+      "id": "stage.portal",
+      "kind": "stage",
+      "path": "stage/portal.json",
+      "version": "1.0.0",
+      "revision": 1,
+      "status": "published",
+      "hash": "sha256:d2a8ccf2c7d62ef2"
+    },
+    {
+      "id": "stage.systemic",
+      "kind": "stage",
+      "path": "stage/systemic.json",
+      "version": "1.0.0",
+      "revision": 1,
+      "status": "published",
+      "hash": "sha256:9b6cf69e0c624395"
+    },
+    {
+      "id": "stage.cell",
+      "kind": "stage",
+      "path": "stage/cell.json",
+      "version": "1.0.0",
+      "revision": 1,
+      "status": "published",
+      "hash": "sha256:e4aa1c4b0399022e"
+    },
+    {
+      "id": "stage.colon",
+      "kind": "stage",
+      "path": "stage/colon.json",
+      "version": "1.0.0",
+      "revision": 1,
+      "status": "published",
+      "hash": "sha256:263b6bd88c1d52c2"
+    },
+    {
+      "id": "process.full-digest",
+      "kind": "process",
+      "path": "process/full-digest.json",
+      "version": "1.0.0",
+      "revision": 1,
+      "status": "published",
+      "hash": "sha256:3311440b5a911f77"
+    }
+  ]
+}

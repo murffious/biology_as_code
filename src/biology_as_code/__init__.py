@@ -15,6 +15,9 @@ __version__ = package_version()
 # Dig helpers
 from biology_as_code.dig import Bolus, DigestiveFlowSimulator, build_absorption_plan
 
+# Open declarative digestion machines (teaching layer)
+from biology_as_code.machines import get_machine, list_machines, run_digestion, trace
+
 # Pathways discovery (original module names preserved under .pathways)
 from biology_as_code.pathways.registry import get_pathway, list_pathways
 
@@ -49,12 +52,16 @@ __all__ = [
     "build_absorption_plan",
     "exercise",
     "fed",
+    "get_machine",
     "get_pathway",
+    "list_machines",
     "list_pathways",
     "overnight_fast",
     "pathway_activities",
     "product_score_available",
     "prolonged_fast",
+    "run_digestion",
     "run_product_score_analysis",
     "simulate_meal",
+    "trace",
 ]

@@ -1,0 +1,83 @@
+{
+  "$schema": "../_schema/machine.schema.json",
+  "kind": "stage",
+  "id": "stage.jejunum",
+  "version": "1.0.0",
+  "revision": 1,
+  "title": "Jejunum / ileum — the main absorption window",
+  "status": "published",
+  "updated": "2026-07-23",
+  "order": 4,
+  "provenance": {
+    "basedOn": [
+      "Standard GI physiology: brush-border final digestion, active transport of amino acids and glucose into portal blood, chylomicron packaging of fat into the lymph, and downstream routing of the absorbed amino-acid pool. Teaching averages."
+    ],
+    "sources": [],
+    "authors": ["biology-as-code"]
+  },
+  "inputs": [
+    { "field": "meal.proteinG", "unit": "g" },
+    { "field": "meal.glucoseG", "unit": "g" },
+    { "field": "meal.fiberG", "unit": "g" },
+    { "field": "host.lactaseLow", "description": "Adult lactase non-persistence context flag" },
+    { "field": "host.villousAtrophy", "description": "Blunted-villi context flag (e.g. untreated celiac)" }
+  ],
+  "startAt": "villusAbsorption",
+  "states": {
+    "villusAbsorption": {
+      "type": "task",
+      "label": "Villus / brush-border absorption",
+      "detail": "Brush-border enzymes finish the job; amino acids and glucose cross into portal blood, fat repackages into chylomicrons for the lymph. This is where most extraction actually happens.",
+      "windowH": [6, 4],
+      "requires": [ { "field": "meal.proteinG", "op": "exists" } ],
+      "emits": ["portal-AA", "portal-glucose", "lymph-fat"],
+      "edgeCases": [
+        {
+          "id": "lactase-deficiency",
+          "when": { "field": "host.lactaseLow", "op": "==", "value": true },
+          "effect": "Undigested lactose passes to the colon -> osmotic + fermentative symptoms.",
+          "note": "Common adult phenotype. Teaching flag only."
+        },
+        {
+          "id": "villous-atrophy",
+          "when": { "field": "host.villousAtrophy", "op": "==", "value": true },
+          "effect": "Blunted villi (e.g. untreated celiac) -> broad malabsorption of iron, folate, and fat-soluble vitamins.",
+          "note": "Clinical context flag only - not a diagnosis."
+        }
+      ],
+      "next": "routeSplit"
+    },
+    "routeSplit": {
+      "type": "choice",
+      "label": "Anabolic vs basal routing",
+      "detail": "Crossing the protein / leucine threshold flips the anabolic switch; below it, absorbed amino acids feed turnover and gluconeogenesis instead.",
+      "choices": [
+        {
+          "when": { "field": "meal.proteinG", "op": ">=", "value": 30 },
+          "next": "anabolicRoute",
+          "note": "Protein at/above the teaching threshold -> anabolic edge available."
+        }
+      ],
+      "default": "basalRoute"
+    },
+    "anabolicRoute": {
+      "type": "task",
+      "label": "Anabolic edge available",
+      "detail": "A leucine-sufficient amino-acid pool can signal muscle protein synthesis rather than being routed straight to turnover.",
+      "emits": ["mps-signal"],
+      "next": "handoff"
+    },
+    "basalRoute": {
+      "type": "task",
+      "label": "Basal turnover routing",
+      "detail": "Absorbed amino acids feed protein turnover and gluconeogenesis; the anabolic edge stays sub-threshold.",
+      "next": "handoff"
+    },
+    "handoff": {
+      "type": "succeed",
+      "label": "AA/glucose -> portal; fat -> lymph",
+      "detail": "Water-soluble nutrients drain to the portal vein and liver; chylomicron fat enters the lymph, bypassing first-pass on its way to the circulation. Fiber + resistant starch continue to the colon.",
+      "emits": ["portal->liver", "lymph->systemic", "residue->colon"]
+    }
+  }
+}

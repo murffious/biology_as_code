@@ -67,6 +67,8 @@ biology_as_code = [
   "data/fixtures/**/*.json",
   "data/kibo_core/data/**/*",
   "product_score/**/*.md",
+  "machines/data/**/*.json",
+  "machines/**/*.md",
 ]
 
 [tool.pytest.ini_options]

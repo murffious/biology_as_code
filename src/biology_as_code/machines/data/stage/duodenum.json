@@ -1,0 +1,68 @@
+{
+  "$schema": "../_schema/machine.schema.json",
+  "kind": "stage",
+  "id": "stage.duodenum",
+  "version": "1.0.0",
+  "revision": 1,
+  "title": "Duodenum — neutralize, emulsify, enzyme attack",
+  "status": "published",
+  "updated": "2026-07-23",
+  "order": 3,
+  "provenance": {
+    "basedOn": [
+      "Standard GI physiology: pancreatic bicarbonate neutralization (~pH 6-7), bile-salt emulsification into micelles as the fat-soluble (A/D/E/K) vehicle, and pancreatic amylase/protease/lipase activity (teaching averages)."
+    ],
+    "sources": [],
+    "authors": ["biology-as-code"]
+  },
+  "inputs": [
+    { "field": "meal.fatG", "unit": "g", "description": "Fat available to form micelles / carry the fat-soluble path" },
+    { "field": "host.bileCapacity", "unit": "0-1", "description": "Teaching proxy for bile availability" }
+  ],
+  "startAt": "neutralize",
+  "states": {
+    "neutralize": {
+      "type": "task",
+      "label": "Bicarbonate neutralization",
+      "detail": "Pancreatic bicarbonate raises luminal pH from stomach acid to ~6-7 so pancreatic enzymes can work - the wrong pH stalls everything downstream.",
+      "requires": [ { "field": "meal.fatG", "op": "exists" } ],
+      "emits": ["neutral-chyme"],
+      "next": "emulsify"
+    },
+    "emulsify": {
+      "type": "task",
+      "label": "Bile emulsification -> micelles",
+      "detail": "Bile salts break fat into micelles, exposing surface area for lipase and creating the vehicle for fat-soluble vitamins (A, D, E, K).",
+      "windowH": [3.5, 1.5],
+      "emits": ["micelles", "fat-soluble-vehicle"],
+      "edgeCases": [
+        {
+          "id": "low-fat-vehicle",
+          "when": { "field": "meal.fatG", "op": "<", "value": 10 },
+          "effect": "Little dietary fat -> few micelles -> the fat-soluble (A/D/E/K) absorption path may under-fire (fat-vehicle gate, L-FAT-1 concept).",
+          "note": "Teaching flag only, not a score."
+        },
+        {
+          "id": "low-bile",
+          "when": { "field": "host.bileCapacity", "op": "<", "value": 0.4 },
+          "effect": "Reduced bile -> poor emulsification -> fat + fat-soluble vitamin malabsorption; steatorrhea teaching pattern.",
+          "note": "Cholestasis / cholecystectomy context. Teaching flag only."
+        }
+      ],
+      "next": "enzymeAttack"
+    },
+    "enzymeAttack": {
+      "type": "task",
+      "label": "Pancreatic enzyme attack",
+      "detail": "Amylase, proteases (trypsin/chymotrypsin) and lipase resume the assault, cleaving polymers toward absorbable monomers.",
+      "emits": ["monomers-primed"],
+      "next": "handoff"
+    },
+    "handoff": {
+      "type": "succeed",
+      "label": "Chyme -> jejunum",
+      "detail": "Neutralized, emulsified, enzyme-primed chyme reaches the main absorption window.",
+      "emits": ["chyme->jejunum"]
+    }
+  }
+}

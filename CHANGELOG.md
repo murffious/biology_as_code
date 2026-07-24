@@ -7,6 +7,11 @@ All notable changes to the **biology-as-code** Python package are documented her
 ### Added
 
 - First public PyPI-oriented release of the open dig + teaching pathway package.
+- Open declarative **digestion machines** (`biology_as_code.machines`): versioned,
+  inspectable JSON state graphs for the GI arc (oral -> stomach -> duodenum ->
+  jejunum -> colon) plus a `full-digest` process, with `list_machines`/`get_machine`
+  on the top-level API and a zero-dependency loader + validator (`validate_all`).
+  Open FLOW tier only - the validator fails if any product-score/penalty hook leaks in.
 - `simulate_meal()` high-level API wrapping the meal compile pipeline.
 - Pathway graph discovery (`list_pathways`, `get_pathway`) over existing modules.
 - Physiological scenarios: fed / overnight fast / prolonged fast / exercise.

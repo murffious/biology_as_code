@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/murffious/biology_as_code/machines/machine.schema.json",
+  "title": "Biology as Code — Digestion Machine (open teaching layer)",
+  "description": "A versioned, Step-Functions-style declarative graph for ONE digestion stage. One file = one machine. Values are educational teaching averages (not medical/lab data). Open FLOW tier only: this schema deliberately has NO scoring 'penalties' / product-score gates — those live in the private product, not here.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["kind", "id", "version", "revision", "title", "status", "updated", "startAt", "states"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "kind": { "enum": ["stage", "lens", "process"] },
+    "id": {
+      "description": "Stable machine id, namespaced by kind. e.g. stage.stomach",
+      "type": "string",
+      "pattern": "^(stage|lens|process)\\.[a-z0-9][a-z0-9-]*$"
+    },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "revision": { "type": "integer", "minimum": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["draft", "review", "published", "deprecated"] },
+    "updated": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+    "order": { "description": "Optional teaching sequence position along the GI tract.", "type": "integer" },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "basedOn": { "type": "array", "items": { "type": "string" } },
+        "sources": { "description": "Verified external references (PMIDs, guidelines). Never fabricated.", "type": "array", "items": { "type": "string" } },
+        "authors": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "inputs": {
+      "description": "Context fields this machine's predicates may read (the input contract).",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["field"],
+        "properties": {
+          "field": { "type": "string", "pattern": "^[a-z][a-zA-Z0-9]*(\\.[a-z][a-zA-Z0-9]*)+$" },
+          "unit": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "startAt": { "type": "string" },
+    "states": { "type": "object", "minProperties": 1, "additionalProperties": { "$ref": "#/$defs/state" } }
+  },
+  "$defs": {
+    "predicate": {
+      "description": "Declarative, INSPECTABLE condition — never executable code.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "field": { "type": "string" },
+        "op": { "enum": ["<", "<=", "==", "!=", ">=", ">", "in", "between", "exists"] },
+        "value": {},
+        "all": { "type": "array", "items": { "$ref": "#/$defs/predicate" } },
+        "any": { "type": "array", "items": { "$ref": "#/$defs/predicate" } },
+        "not": { "$ref": "#/$defs/predicate" }
+      }
+    },
+    "edgeCase": {
+      "description": "A named exception to the happy path (physiological or contextual). Teaching only.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "when", "effect"],
+      "properties": {
+        "id": { "type": "string" },
+        "when": { "$ref": "#/$defs/predicate" },
+        "effect": { "type": "string" },
+        "note": { "type": "string" },
+        "next": { "type": "string" }
+      }
+    },
+    "choiceRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["when", "next"],
+      "properties": {
+        "when": { "$ref": "#/$defs/predicate" },
+        "next": { "type": "string" },
+        "note": { "type": "string" }
+      }
+    },
+    "state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "label"],
+      "properties": {
+        "type": { "enum": ["task", "choice", "gate", "succeed"] },
+        "label": { "type": "string" },
+        "detail": { "type": "string" },
+        "windowH": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 },
+        "requires": { "type": "array", "items": { "$ref": "#/$defs/predicate" } },
+        "emits": { "type": "array", "items": { "type": "string" } },
+        "edgeCases": { "type": "array", "items": { "$ref": "#/$defs/edgeCase" } },
+        "next": { "type": "string" },
+        "end": { "type": "boolean" },
+        "choices": { "type": "array", "items": { "$ref": "#/$defs/choiceRule" } },
+        "default": { "type": "string" },
+        "require": { "$ref": "#/$defs/predicate" },
+        "onFail": { "$ref": "#/$defs/edgeCase" }
+      },
+      "allOf": [
+        { "if": { "properties": { "type": { "const": "choice" } } }, "then": { "required": ["choices"] } },
+        { "if": { "properties": { "type": { "const": "gate" } } }, "then": { "required": ["require"] } }
+      ]
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "../_schema/machine.schema.json",
+  "kind": "stage",
+  "id": "stage.cell",
+  "version": "1.0.0",
+  "revision": 1,
+  "title": "Cell & mitochondria — post-absorptive use (thin)",
+  "status": "published",
+  "updated": "2026-07-23",
+  "order": 7,
+  "provenance": {
+    "basedOn": [
+      "Standard physiology: tissue-specific cellular uptake of absorbed monomers and their oxidation / storage / structural use. A thin teaching stage, not a personal metabolic readout."
+    ],
+    "sources": [],
+    "authors": ["biology-as-code"]
+  },
+  "inputs": [
+    { "field": "meal.glucoseG", "unit": "g" },
+    { "field": "meal.proteinG", "unit": "g" },
+    { "field": "meal.fatG", "unit": "g" }
+  ],
+  "startAt": "uptake",
+  "states": {
+    "uptake": {
+      "type": "task",
+      "label": "Cellular uptake",
+      "detail": "Monomers already past the villi and liver enter cells via tissue-specific transporters. Thin teaching stage - not a personal metabolic lab.",
+      "emits": ["cell-uptake"],
+      "next": "oxidizeOrStore"
+    },
+    "oxidizeOrStore": {
+      "type": "task",
+      "label": "Oxidize / store / build",
+      "detail": "Fuel to mitochondria (ATP), storage (glycogen/lipid), or structural use (amino acids). Framing only - no fabricated efficiency percentages.",
+      "emits": ["bioenergetic-partition"],
+      "next": "handoff"
+    },
+    "handoff": {
+      "type": "succeed",
+      "label": "Cellular use closed",
+      "detail": "Cellular use is off-lumen. Unabsorbed residue continues as stage.colon in the process sequence.",
+      "emits": ["cell-complete"]
+    }
+  }
+}

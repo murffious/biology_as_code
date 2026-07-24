@@ -1,0 +1,74 @@
+{
+  "$schema": "../_schema/machine.schema.json",
+  "kind": "stage",
+  "id": "stage.colon",
+  "version": "1.0.0",
+  "revision": 1,
+  "title": "Colon & rectum — fermentation & reclamation",
+  "status": "published",
+  "updated": "2026-07-23",
+  "order": 8,
+  "provenance": {
+    "basedOn": [
+      "Standard GI physiology: microbial fermentation of fiber and resistant starch into short-chain fatty acids (butyrate, propionate, acetate), colonocyte fuelling, and water/electrolyte reclamation over ~12-40 h. Teaching averages."
+    ],
+    "sources": [],
+    "authors": ["biology-as-code"]
+  },
+  "inputs": [
+    { "field": "meal.fiberG", "unit": "g", "description": "Fiber + resistant starch = microbiome substrate" }
+  ],
+  "startAt": "substrateArrival",
+  "states": {
+    "substrateArrival": {
+      "type": "task",
+      "label": "Substrate arrival",
+      "detail": "Fiber and resistant starch that survived the small intestine arrive as microbiome fuel - not 'wasted calories' but the substrate for fermentation.",
+      "windowH": [24, 16],
+      "requires": [ { "field": "meal.fiberG", "op": "exists" } ],
+      "emits": ["microbiome-substrate"],
+      "edgeCases": [
+        {
+          "id": "substrate-starved",
+          "when": { "field": "meal.fiberG", "op": "<", "value": 5 },
+          "effect": "Little fermentable substrate -> thin SCFA yield; the microbiome is under-fed this meal.",
+          "note": "Teaching pattern across a low-fiber dietary pattern, not one meal."
+        }
+      ],
+      "next": "fermentation"
+    },
+    "fermentation": {
+      "type": "choice",
+      "label": "Microbial fermentation",
+      "detail": "Given enough substrate, gut bacteria ferment fiber into short-chain fatty acids (butyrate, propionate, acetate) that feed the colonocytes and signal systemically.",
+      "choices": [
+        {
+          "when": { "field": "meal.fiberG", "op": ">=", "value": 12 },
+          "next": "scfaRich",
+          "note": "Ample fiber -> SCFA-rich fermentation."
+        }
+      ],
+      "default": "scfaLean"
+    },
+    "scfaRich": {
+      "type": "task",
+      "label": "SCFA-rich fermentation",
+      "detail": "Butyrate fuels colonocytes; propionate/acetate reach the liver and periphery - gut-barrier and immune teaching narrative.",
+      "emits": ["scfa", "butyrate"],
+      "next": "reclaim"
+    },
+    "scfaLean": {
+      "type": "task",
+      "label": "SCFA-lean fermentation",
+      "detail": "Low substrate means little fermentation and a thinner SCFA yield - the cost of a low-fiber pattern, framed honestly, not as calorie waste.",
+      "next": "reclaim"
+    },
+    "reclaim": {
+      "type": "task",
+      "label": "Water & electrolyte reclamation",
+      "detail": "The colon reclaims water and electrolytes and compacts the residue - the journey's final metering step (~12-40 h total).",
+      "emits": ["reclaimed-water"],
+      "end": true
+    }
+  }
+}
