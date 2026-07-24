@@ -2,11 +2,15 @@
 
 **Standardizing Nutrition Science for Preventive Medicine**
 
-Public **companion** + installable Python package (`biology-as-code` on PyPI when published).
+`biology-as-code` is an open Python package that models what happens to a meal —
+digestion, absorption, and the metabolic pathways it drives — as inspectable
+"biology as code." It is the **free companion** to the *Biology as Code* book,
+which is **still being written and has not been released yet**. The package works
+on its own today; you do not need the book to use it.
 
 | | |
 |--|--|
-| **Book** | Paid product (not in this package) |
+| **Book** | 📖 *In progress — not yet released.* This repo is its open companion. |
 | **This repo / PyPI** | Schemas, food examples, **open dig + teaching pathways** |
 | **Not included** | Product **meal score** / Kibo-vars product scorer (patent pending) |
 | **Ethos** | Fail-closed · gate ≠ bound · empty beats fake |
@@ -15,13 +19,15 @@ Public **companion** + installable Python package (`biology-as-code` on PyPI whe
 
 ---
 
-## Install (PyPI)
+## Install
+
+**From PyPI** — *once the first release is published* (not on PyPI yet):
 
 ```bash
 pip install biology-as-code
 ```
 
-From source:
+**From source** — works today:
 
 ```bash
 git clone https://github.com/murffious/biology_as_code.git
@@ -115,12 +121,12 @@ Copy [`_template.json`](examples/foods/_template.json) for new ones. Keep schema
 
 ## Book
 
-**Biology as Code**  
-*Standardizing Nutrition Science for Preventive Medicine*
+**Biology as Code** — *Standardizing Nutrition Science for Preventive Medicine*
 
-- Full prose: **not in this repo** (commercial manuscript)  
-- Purchase / preorder: *[add store URL]*  
-- Issues welcome for **schemas and examples only**
+- **Status: in progress.** The manuscript is still being written and is **not yet published** — there is nothing to buy or preorder yet.
+- The full prose is **not in this repo** and will be released separately as a commercial book when it's done.
+- This repository is the **open companion** (schemas, examples, and the Python package) and is fully usable on its own today.
+- Issues welcome for **schemas and examples only** — not the book text.
 
 ---
 
@@ -133,4 +139,4 @@ Copy [`_template.json`](examples/foods/_template.json) for new ones. Keep schema
 
 ## Status
 
-Companion scaffold. Food objects and schemas will grow. Full book remains a paid product.
+Early companion scaffold (alpha). The Python package works today and installs from source; food objects and schemas will keep growing. The **book itself is still in progress and has not been released** — this repo does not depend on it.

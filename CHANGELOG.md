@@ -31,4 +31,4 @@ All notable changes to the **biology-as-code** Python package are documented her
 
 - FLOW teaching software — not clinical decision support.
 - Product meal score and Kibo-vars product scorer are **not** included.
-- Book manuscript remains separately licensed (not this package).
+- Book manuscript is **in progress / not yet released**, and is separately licensed (not part of this package).
