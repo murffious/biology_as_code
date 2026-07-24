@@ -549,6 +549,11 @@ class KIBOEngine:
         path_acts = pathway_activity_snapshot(phys)
         report["physiological_state"] = phys.summary()
         report["pathway_regulation"] = path_acts
+        try:
+            from biology_as_code.pathways.pathway_regulation import nutrient_sensing_snapshot
+            report["nutrient_sensing"] = nutrient_sensing_snapshot(phys)
+        except Exception as exc:
+            log.debug("nutrient_sensing snapshot skipped: %s", exc)
         log.debug(
             f"  Pathway regulation: glycolysis={path_acts.get('glycolysis')} "
             f"β-ox={path_acts.get('beta_oxidation')} "

@@ -22,7 +22,10 @@ All notable changes to the **biology-as-code** Python package are documented her
   Closes TODO 6b; complements the existing ketogenesis graph.
 - Multi-node **nutrient-sensing** regulatory graphs (`ampk_network`, `mtorc1_network`,
   `srebp_network`) with signed activates/inhibits edges and explicit AMPK/mTORC1/SREBP
-  cross-talk — deepens the scalar proxies in `pathway_regulation`. Sources in the packs.
+  cross-talk. Now **executable from state**: `evaluate_network` propagates a signed graph,
+  and `nutrient_sensing_snapshot(state)` chains AMPK→mTORC1→SREBP — surfaced under
+  `report["nutrient_sensing"]` (the flat `pathway_regulation` floats are unchanged).
+  Sources are rendered into the mermaid packs.
 - `β-hydroxybutyrate` signaling pathway (HCAR2/GPR109A, class-I HDAC inhibition, NLRP3,
   GPR41) in the signaling registry — ketones as signals, not just fuel.
 - Public LAW-SPEC **law cards** (`get_law`, `list_laws`, `law_card`) over the 47-law

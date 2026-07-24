@@ -211,6 +211,61 @@ class NutrientSensingRegistry:
         self.register(p)
 
 
+def evaluate_network(
+    pathway: RegulatoryPathway,
+    inputs: dict[str, float],
+    *,
+    default_source: float = 0.5,
+) -> dict[str, float]:
+    """Propagate input activations through a signed graph → per-node activation [0,1].
+
+    Each of these networks is a DAG, so a single topological pass is exact. A node's
+    activation is the mean over its incoming edges of ``up`` (activates) or ``1 - up``
+    (inhibits). Source nodes take their value from ``inputs`` (or ``default_source``).
+    """
+
+    def _clamp(v: float) -> float:
+        return 0.0 if v < 0.0 else 1.0 if v > 1.0 else v
+
+    nodes = pathway.nodes
+    incoming: dict[str, list[RegulatoryEdge]] = {nid: [] for nid in nodes}
+    for e in pathway.edges:
+        if e.to_node in incoming:
+            incoming[e.to_node].append(e)
+
+    # Kahn topological order (fall back to declaration order for any stray cycle).
+    indeg = {nid: len(incoming[nid]) for nid in nodes}
+    queue = [nid for nid in nodes if indeg[nid] == 0]
+    order: list[str] = []
+    while queue:
+        n = queue.pop(0)
+        order.append(n)
+        for e in pathway.edges:
+            if e.from_node == n and e.to_node in indeg:
+                indeg[e.to_node] -= 1
+                if indeg[e.to_node] == 0:
+                    queue.append(e.to_node)
+    for nid in nodes:
+        if nid not in order:
+            order.append(nid)
+
+    act: dict[str, float] = {}
+    for nid in order:
+        if nid in inputs:
+            act[nid] = _clamp(float(inputs[nid]))
+        elif not incoming[nid]:
+            act[nid] = _clamp(float(inputs.get(nid, default_source)))
+        else:
+            contribs = [
+                act.get(e.from_node, default_source)
+                if e.effect == "activates"
+                else 1.0 - act.get(e.from_node, default_source)
+                for e in incoming[nid]
+            ]
+            act[nid] = _clamp(sum(contribs) / len(contribs))
+    return act
+
+
 def get_nutrient_sensing_registry() -> NutrientSensingRegistry:
     return NutrientSensingRegistry()
 

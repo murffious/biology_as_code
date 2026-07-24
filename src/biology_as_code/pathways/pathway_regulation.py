@@ -166,6 +166,58 @@ def srebp_lipogenic_activity(state: PhysiologicalState) -> float:
 
 
 # ----------------------------------------------------------------------
+# Multi-node nutrient-sensing graphs, executed from state
+# ----------------------------------------------------------------------
+
+def nutrient_sensing_snapshot(state: PhysiologicalState) -> dict:
+    """Run the AMPK / mTORC1 / SREBP graphs on the current state.
+
+    Turns the declarative networks in ``pathways.nutrient_sensing`` into a
+    state-responsive computation: AMPK feeds mTORC1 and SREBP, mTORC1 feeds SREBP
+    (so the AMPK ⊣ mTORC1 ⊣ SREBP cross-talk is explicit). Returns per-node
+    activations plus the three headline regulator levels.
+    """
+    from biology_as_code.pathways.nutrient_sensing import (
+        evaluate_network,
+        get_nutrient_sensing_registry,
+    )
+
+    reg = get_nutrient_sensing_registry()
+    insulin = insulin_signal(state)
+    amino_acids = clamp(state.substrates.blood_amino_acids / 2.0)
+    # Seed the AMPK sensor node from the validated scalar proxy, then let the graph
+    # propagate the downstream consequences (ACC, mTORC1, ULK1, SREBP, PGC-1α).
+    ampk = ampk_activity(state)
+
+    ampk_net = evaluate_network(reg.get("ampk_network"), {"ampk": ampk})
+
+    mtorc1_net = evaluate_network(
+        reg.get("mtorc1_network"),
+        {"amino_acids": amino_acids, "insulin_igf": insulin, "ampk": ampk},
+    )
+    mtorc1 = mtorc1_net["mtorc1"]
+
+    srebp_net = evaluate_network(
+        reg.get("srebp_network"),
+        {"insulin": insulin, "mtorc1": mtorc1, "ampk": ampk, "sterols": 0.5},
+    )
+
+    def _round(d: dict) -> dict:
+        return {k: round(v, 3) for k, v in d.items()}
+
+    return {
+        "regulators": {
+            "ampk": round(ampk, 3),
+            "mtorc1": round(mtorc1, 3),
+            "srebp1c": round(srebp_net["srebp1c"], 3),
+        },
+        "ampk_network": _round(ampk_net),
+        "mtorc1_network": _round(mtorc1_net),
+        "srebp_network": _round(srebp_net),
+    }
+
+
+# ----------------------------------------------------------------------
 # Convenience: get a full activity snapshot
 # ----------------------------------------------------------------------
 
