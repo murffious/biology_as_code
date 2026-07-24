@@ -91,7 +91,7 @@
         "type": { "enum": ["task", "choice", "gate", "succeed"] },
         "label": { "type": "string" },
         "detail": { "type": "string" },
-        "windowH": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 },
+        "windowH": { "description": "Teaching time window [centerHours, durationHours] (both >= 0).", "type": "array", "items": { "type": "number", "minimum": 0 }, "minItems": 2, "maxItems": 2 },
         "requires": { "type": "array", "items": { "$ref": "#/$defs/predicate" } },
         "emits": { "type": "array", "items": { "type": "string" } },
         "edgeCases": { "type": "array", "items": { "$ref": "#/$defs/edgeCase" } },

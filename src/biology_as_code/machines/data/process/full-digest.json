@@ -9,7 +9,7 @@
   "updated": "2026-07-23",
   "provenance": {
     "basedOn": [
-      "Top-level sequence over the open GI stages (oral -> stomach -> duodenum -> jejunum -> colon). Micro-steps live in each stage file, not here. Teaching model - no product score implied."
+      "Top-level sequence over all eight stages: oral -> stomach -> duodenum -> jejunum -> portal -> systemic -> cell -> colon (the last four are post-absorptive / off-lumen). Micro-steps live in each stage file, not here. Teaching model - no product score implied."
     ],
     "sources": [],
     "authors": ["biology-as-code"]

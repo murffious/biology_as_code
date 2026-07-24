@@ -115,6 +115,27 @@ def _process_stage_refs(machine: dict[str, Any]) -> list[str]:
     return refs
 
 
+def _process_chain_order(machine: dict[str, Any]) -> list[str]:
+    """Stage ids in the order the process actually walks its main line."""
+    states = machine.get("states") or {}
+    order: list[str] = []
+    cur = machine.get("startAt")
+    seen: set[str] = set()
+    while cur and cur in states and cur not in seen:
+        seen.add(cur)
+        state = states[cur]
+        for emit in state.get("emits") or []:
+            if isinstance(emit, str) and emit.startswith("stage:"):
+                order.append(emit.split(":", 1)[1])
+        if state.get("type") == "succeed" or state.get("end"):
+            break
+        nxt = state.get("next") or state.get("default")
+        if nxt is None and state.get("choices"):
+            nxt = state["choices"][0].get("next")
+        cur = nxt
+    return order
+
+
 def validate_all() -> dict[str, Any]:
     """Validate every registered machine + registry consistency.
 
@@ -143,4 +164,23 @@ def validate_all() -> dict[str, Any]:
             for ref in _process_stage_refs(machine):
                 if ref not in known_ids:
                     errors.append(f"{mid}: references unknown stage '{ref}'")
+
+    # SSOT integrity: the three places that imply a stage order must agree —
+    # registry row order, each stage's `order` field, and the process chain.
+    stage_rows = [r for r in rows if r.get("kind") == "stage"]
+    registry_stage_ids = [r.get("id") for r in stage_rows]
+    order_fields = [(get_machine(r.get("id")) or {}).get("order") for r in stage_rows]
+    if all(o is not None for o in order_fields) and order_fields != sorted(order_fields):
+        errors.append(
+            f"registry stage rows are not in ascending `order` field order: {order_fields}"
+        )
+    for row in rows:
+        if row.get("kind") != "process":
+            continue
+        chain = _process_chain_order(get_machine(row.get("id")) or {})
+        if chain and chain != registry_stage_ids:
+            errors.append(
+                f"{row.get('id')}: chain order {chain} != registry stage order {registry_stage_ids}"
+            )
+
     return {"ok": not errors, "n": len(rows), "errors": errors}

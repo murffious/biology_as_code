@@ -95,7 +95,9 @@ def trace(machine: str | dict[str, Any], context: dict[str, Any] | None = None) 
     """Run ``context`` through ``machine`` (id or dict); return the path taken.
 
     Returns ``{machine, status, path, visited, emits, firedEdgeCases, final}``.
-    ``status`` is 'ok', 'truncated' (step cap / cycle), or 'error' (bad graph).
+    ``status`` is 'ok' (reached a terminal state), 'incomplete' (dead-ended on a
+    non-terminal state — e.g. a choice with no matching rule and no default),
+    'truncated' (step cap / cycle), or 'error' (missing/unknown machine or state).
     """
     context = dict(context or {})
     m = get_machine(machine) if isinstance(machine, str) else machine
@@ -114,8 +116,6 @@ def trace(machine: str | dict[str, Any], context: dict[str, Any] | None = None) 
 
     seen: set[str] = set()
     for _ in range(_MAX_STEPS):
-        if cur is None:
-            break
         state = states.get(cur)
         if state is None:
             status = "error"
@@ -134,23 +134,30 @@ def trace(machine: str | dict[str, Any], context: dict[str, Any] | None = None) 
             fired.append({"state": cur, "id": ec.get("id"),
                           "effect": ec.get("effect"), "note": ec.get("note")})
 
+        is_terminal = state.get("type") == "succeed" or bool(state.get("end"))
         nxt, note = _next_state(state, context)
-        # A fired edge case may re-route (schema allows edgeCase.next).
-        for ec in ecs:
-            if ec.get("next"):
-                nxt, note = ec["next"], f"edgeCase:{ec.get('id')}"
-                break
+        # A fired edge case may re-route — but never out of a terminal state.
+        if not is_terminal:
+            for ec in ecs:
+                if ec.get("next"):
+                    nxt, note = ec["next"], f"edgeCase:{ec.get('id')}"
+                    break
 
         path.append({
             "state": cur,
             "type": state.get("type"),
             "label": state.get("label"),
-            "next": nxt,
-            "note": note,
+            "next": None if is_terminal else nxt,
+            "note": None if is_terminal else note,
             "edgeCases": [ec.get("id") for ec in ecs],
             "emits": state_emits,
         })
-        if state.get("type") == "succeed" or state.get("end"):
+        if is_terminal:
+            break
+        if nxt is None:
+            # non-terminal dead end: no matching branch / no `next` — the graph
+            # did not actually reach a terminal state.
+            status = "incomplete"
             break
         cur = nxt
     else:

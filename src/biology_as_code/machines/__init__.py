@@ -7,7 +7,8 @@ code." Open FLOW tier only: these carry **no** product-score / Kibo-vars hooks.
 
     from biology_as_code.machines import list_machines, get_machine, validate_all
 
-    list_machines()                 # oral, stomach, duodenum, jejunum, colon (+ process.full-digest)
+    list_machines()                 # 8 stages: oral, stomach, duodenum, jejunum,
+                                    # portal, systemic, cell, colon (+ process.full-digest)
     m = get_machine('stage.stomach')
     m['states']['emptyingControl']  # inspect the branch logic
     validate_all()['ok']            # True

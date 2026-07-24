@@ -20,6 +20,7 @@ the **process** `full-digest` that chains them (with a host/intake gate).
 State types: `task` (a step), `choice` (branch, first match wins), `gate`
 (precondition), `succeed` (terminal). Conditions are declarative and
 inspectable — `{field, op, value}` or `{all/any/not: [...]}` — never executable code.
+Time windows are `windowH: [centerHours, durationHours]` (both ≥ 0), not start/end.
 
 ## Open tier only
 

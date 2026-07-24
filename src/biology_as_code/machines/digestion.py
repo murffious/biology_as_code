@@ -59,7 +59,17 @@ def meal_to_context(
             x = float(x)
         except (TypeError, ValueError):
             return 0.0
-        return x if x > 0.0 else 0.0
+        return x if x > 0.0 else 0.0  # also maps NaN -> 0.0
+
+    def _unit(x: float, default: float) -> float:
+        """Coerce to a 0-1 fraction; bad/NaN input falls back to ``default``."""
+        try:
+            x = float(x)
+        except (TypeError, ValueError):
+            return default
+        if x != x:  # NaN
+            return default
+        return 0.0 if x < 0.0 else 1.0 if x > 1.0 else x
 
     ctx: dict[str, Any] = {
         # teaching proxy: treat available carbohydrate as glucose-equivalent
@@ -68,8 +78,8 @@ def meal_to_context(
         "meal.fatG": _pos(fats_g),
         "meal.fiberG": _pos(fiber_g),
         "meal.fructoseG": _pos(fructose_g),
-        "meal.matrixIntegrity": float(matrix_integrity),
-        "meal.foodQuality": float(food_quality),
+        "meal.matrixIntegrity": _unit(matrix_integrity, 0.8),
+        "meal.foodQuality": _unit(food_quality, 0.7),
     }
     ctx.update(_DEFAULT_HOST)
     ctx.update(_DEFAULT_INTAKE)

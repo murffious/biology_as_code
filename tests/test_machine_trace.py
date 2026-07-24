@@ -121,3 +121,56 @@ def test_run_digestion_negative_macros_clamped():
     ctx = meal_to_context(carbs_g=-10, protein_g=-5, fats_g=-3, fiber_g=-2)
     assert ctx["meal.glucoseG"] == 0.0
     assert ctx["meal.proteinG"] == 0.0
+
+
+# --- regressions from the adversarial review ------------------------------
+
+def test_trace_non_terminal_dead_end_is_incomplete():
+    """A choice with no matching rule and no default must report 'incomplete', not 'ok'."""
+    from biology_as_code import trace
+
+    m = {"id": "m", "startAt": "A", "states": {
+        "A": {"type": "choice", "label": "A",
+              "choices": [{"when": {"field": "k", "op": "==", "value": 9}, "next": "B"}]},
+        "B": {"type": "succeed", "label": "B"},
+    }}
+    r = trace(m, {"k": 1})
+    assert r["status"] == "incomplete"
+    assert r["final"] == "A"
+
+
+def test_trace_terminal_edgecase_no_phantom_next():
+    """An edgeCase.next on a terminal state must not fabricate a transition."""
+    from biology_as_code import trace
+
+    m = {"id": "m", "startAt": "A", "states": {
+        "A": {"type": "task", "label": "A", "next": "B"},
+        "B": {"type": "succeed", "label": "B",
+              "edgeCases": [{"id": "rr", "when": {"field": "f", "op": "==", "value": 1},
+                             "effect": "x", "next": "C"}]},
+        "C": {"type": "succeed", "label": "C"},
+    }}
+    r = trace(m, {"f": 1})
+    assert r["status"] == "ok"
+    assert r["visited"] == ["A", "B"]
+    assert r["path"][-1]["next"] is None  # no phantom "C"
+
+
+def test_meal_to_context_bad_and_nan_fraction_falls_back():
+    from biology_as_code.machines import meal_to_context
+
+    assert meal_to_context(matrix_integrity="bad")["meal.matrixIntegrity"] == 0.8
+    assert meal_to_context(food_quality="bad")["meal.foodQuality"] == 0.7
+    assert meal_to_context(matrix_integrity=float("nan"))["meal.matrixIntegrity"] == 0.8
+    assert meal_to_context(matrix_integrity=5)["meal.matrixIntegrity"] == 1.0  # clamped to 0-1
+
+
+def test_ssot_order_agrees_across_registry_and_execution():
+    """The confirmed-fix guarantee: registry order == executed process order."""
+    from biology_as_code import run_digestion
+    from biology_as_code.dig import digestion_stage_ids
+    from biology_as_code.machines import validate_all
+
+    assert validate_all()["ok"]  # includes the new order cross-check
+    executed = list(run_digestion(carbs_g=40, protein_g=20, fats_g=10, fiber_g=8)["final_states"])
+    assert executed == digestion_stage_ids()
