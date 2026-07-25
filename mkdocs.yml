@@ -62,6 +62,7 @@ nav:
   - Note on the title: naming.md
   - Claim auditor: claim-auditor.md
   - Digestion engine: digestion.md
+  - Events & feedback: events.md
   - Claims agent:
       - Overview: claims-agent.md
       - Claim schema: claim-schema.md
