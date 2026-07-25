@@ -136,6 +136,33 @@ def test_mermaid_nonempty_when_exported():
     print(f"✓ Mermaid non-empty for {len(packs)} packs")
 
 
+def test_packs_not_stale():
+    """Committed mermaid + tests.md must match a fresh export (catch hand-edit drift).
+
+    If this fails, someone changed a pathway module without re-exporting. Fix with:
+        PYTHONPATH=src python3 scripts/export_pathway_packs.py
+    """
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from export_pathway_packs import pathway_to_mermaid, write_tests_md  # type: ignore
+
+    paths = _collect()
+    stale: List[str] = []
+    for pack_id, module, pathway in paths:
+        d = PATHWAYS / pack_id
+        mf = d / "pathway.mermaid"
+        tf = d / "tests.md"
+        if mf.is_file() and mf.read_text(encoding="utf-8") != pathway_to_mermaid(pathway):
+            stale.append(f"{pack_id}/pathway.mermaid")
+        if tf.is_file() and tf.read_text(encoding="utf-8") != write_tests_md(
+            pathway, module, pack_id
+        ):
+            stale.append(f"{pack_id}/tests.md")
+    assert not stale, (
+        "stale packs — re-run scripts/export_pathway_packs.py: " + ", ".join(stale)
+    )
+    print(f"✓ Packs in sync with generator ({len(paths)} graphs)")
+
+
 def run_all() -> bool:
     tests = [
         test_glycolysis_gold_folder,
@@ -145,6 +172,7 @@ def run_all() -> bool:
         test_etc_p_ratios,
         test_mechanism_ids_resolve_when_set,
         test_mermaid_nonempty_when_exported,
+        test_packs_not_stale,
     ]
     failed = 0
     print("=" * 60)

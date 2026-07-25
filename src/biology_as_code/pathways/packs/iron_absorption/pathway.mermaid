@@ -1,0 +1,21 @@
+flowchart TD
+  %% Auto-generated from registry pathway: iron_absorption
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  %% Source: Iron homeostasis / ferroportin regulation (lactoferrin model): PMID 39005063 (https://pubmed.ncbi.nlm.nih.gov/39005063/).
+  %% Source: DMT1 apical Fe²⁺ uptake — NCBI Gene SLC11A2: https://www.ncbi.nlm.nih.gov/gene/?term=SLC11A2
+  %% Source: Ferroportin basolateral iron export — NCBI Gene SLC40A1: https://www.ncbi.nlm.nih.gov/gene/?term=SLC40A1
+  %% Source: Hepcidin (HAMP) ⊣ ferroportin control point — NCBI Gene HAMP: https://www.ncbi.nlm.nih.gov/gene/?term=HAMP
+  %% Source: Magnitude bounds live in iron UNIT / laws (Biology as Code).
+  dietary_nonheme_fe3["Dietary non-haem Fe³⁺"]
+  dietary_heme["Dietary haem iron"]
+  fe2_lumen["Fe²⁺ (lumen pool)"]
+  fe2_enterocyte["Fe²⁺ (enterocyte)"]
+  plasma_transferrin_fe["Transferrin-bound Fe (plasma)"]
+  hepcidin["Hepcidin"]
+  ascorbate_meal["Meal ascorbate (enhancer)"]
+  dietary_nonheme_fe3 -->|"duodenal_cytochrome_b"| fe2_lumen
+  ascorbate_meal -->|"Reductant co-occupation"| fe2_lumen
+  fe2_lumen -->|"dmt1"| fe2_enterocyte
+  fe2_enterocyte -->|"ferroportin"| plasma_transferrin_fe
+  hepcidin -->|"⊣: hepcidin_ferroportin"| plasma_transferrin_fe
+  dietary_heme -->|"Haem uptake / HO-1 release (compressed)"| fe2_enterocyte

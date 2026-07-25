@@ -1,0 +1,17 @@
+flowchart TD
+  %% Auto-generated from registry pathway: glucose_epithelial_transport
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  %% Source: SGLT1 Na⁺-glucose apical cotransport — NCBI Gene SLC5A1: https://www.ncbi.nlm.nih.gov/gene/?term=SLC5A1
+  %% Source: GLUT2 basolateral hexose exit — NCBI Gene SLC2A2: https://www.ncbi.nlm.nih.gov/gene/?term=SLC2A2
+  %% Source: GLUT5 apical fructose transport — NCBI Gene SLC2A5: https://www.ncbi.nlm.nih.gov/gene/?term=SLC2A5
+  glucose_lumen["Glucose (lumen)"]
+  galactose_lumen["Galactose (lumen)"]
+  glucose_enterocyte["Glucose (enterocyte)"]
+  glucose_portal["Glucose (portal blood)"]
+  fructose_lumen["Fructose (lumen)"]
+  fructose_enterocyte["Fructose (enterocyte)"]
+  glucose_lumen -->|"sglt1"| glucose_enterocyte
+  galactose_lumen -->|"sglt1"| glucose_enterocyte
+  glucose_enterocyte -->|"glut2"| glucose_portal
+  fructose_lumen -->|"glut5"| fructose_enterocyte
+  fructose_enterocyte -->|"glut2"| glucose_portal

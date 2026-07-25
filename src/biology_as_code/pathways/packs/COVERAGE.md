@@ -41,8 +41,12 @@ Not every **`.py` file** is a graph (some are mechanisms, regulation, loaders).
 | phenylalanine_tyrosine_catabolism | `packs/phenylalanine_tyrosine_catabolism/` | `amino_acid_catabolism.py` |
 | methionine_one_carbon | `packs/methionine_one_carbon/` | `amino_acid_catabolism.py` |
 | glucogenic_ketogenic_aa | `packs/glucogenic_ketogenic_aa/` | `amino_acid_catabolism.py` |
+| iron_absorption | `packs/iron_absorption/` | `meal_critical_pathways.py` |
+| cobalamin_absorption | `packs/cobalamin_absorption/` | `meal_critical_pathways.py` |
+| glucose_epithelial_transport | `packs/glucose_epithelial_transport/` | `meal_critical_pathways.py` |
+| scfa_colonic_production | `packs/scfa_colonic_production/` | `meal_critical_pathways.py` |
 
-**Count:** 33 registry graphs · 33 mermaid packs · **0 missing · 0 orphan packs** (when export is up to date).
+**Count:** 37 registry graphs · 37 mermaid packs · **0 missing · 0 orphan packs** (when export is up to date).
 
 Auto mermaid is generated **from live code graphs**, so topology matches the Python model for that export. Hand gold diagrams in `glycolysis_extra/` may be richer (styling, phases) than auto `pathway.mermaid`.
 
@@ -73,6 +77,10 @@ Classic textbook *chapters* often include more named processes than we model as 
 | Phe / Tyr catabolism (PKU) | **Yes** (`phenylalanine_tyrosine_catabolism`) |
 | Met / SAM / one-carbon + Cys | **Yes** (`methionine_one_carbon`) |
 | Glucogenic vs ketogenic AA map | **Yes** (classification graph, not a cascade) |
+| Non-haem iron absorption (DMT1 / ferroportin / hepcidin) | **Yes** (`iron_absorption`) |
+| B12 + intrinsic factor | **Yes** (`cobalamin_absorption`) |
+| SGLT1 / GLUT2 epithelial glucose | **Yes** (`glucose_epithelial_transport`) |
+| Colonic SCFA (acetate / propionate / butyrate) | **Yes** (`scfa_colonic_production`) |
 | Remaining single-AA cascades (His, Trp full, Lys, Pro, Arg, Thr, …) | **Partial** — covered via classification map + nitrogen hub; expand only when clinically needed |
 | Photosynthesis / non-human pathways | **Out of scope** |
 | Product meal score / Kibo-vars scorer | **Excluded** (patent pending) |

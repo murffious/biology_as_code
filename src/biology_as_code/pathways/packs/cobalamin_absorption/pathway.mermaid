@@ -1,0 +1,18 @@
+flowchart TD
+  %% Auto-generated from registry pathway: cobalamin_absorption
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  %% Source: Intrinsic factor required for B12 absorption in pernicious anemia: PMID 18112756 (https://pubmed.ncbi.nlm.nih.gov/18112756/).
+  %% Source: Intrinsic factor localization (gastric / duodenal extracts): PMID 15405205 (https://pubmed.ncbi.nlm.nih.gov/15405205/).
+  %% Source: Pernicious anemia = IF failure pole (B12 replacement): PMID 14935513 (https://pubmed.ncbi.nlm.nih.gov/14935513/).
+  %% Source: Ileal cubam receptor — NCBI Gene CUBN (cubilin) + AMN (amnionless): https://www.ncbi.nlm.nih.gov/gene/?term=CUBN
+  dietary_b12["Dietary cobalamin (B12)"]
+  free_b12["Free B12 (gastric/duodenal)"]
+  intrinsic_factor["Intrinsic factor (IF)"]
+  if_b12_complex["IF–B12 complex"]
+  ileal_uptake["Ileal enterocyte uptake"]
+  plasma_b12["Transcobalamin-bound B12 (plasma)"]
+  dietary_b12 -->|"Gastric release (acid / pepsin context)"| free_b12
+  free_b12 -->|"intrinsic_factor"| if_b12_complex
+  intrinsic_factor -->|"intrinsic_factor"| if_b12_complex
+  if_b12_complex -->|"Cubam receptor-mediated endocytosis"| ileal_uptake
+  ileal_uptake -->|"Export + transcobalamin binding"| plasma_b12

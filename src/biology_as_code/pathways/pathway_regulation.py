@@ -221,6 +221,34 @@ def nutrient_sensing_snapshot(state: PhysiologicalState) -> dict:
 # Convenience: get a full activity snapshot
 # ----------------------------------------------------------------------
 
+def iron_absorption_activity(state: PhysiologicalState) -> float:
+    """
+    Non-haem iron absorption proxy: higher when not inflamed (low hepcidin drive).
+    Inflammation raises hepcidin → ferroportin block → lower absorption activity.
+    """
+    inflam = clamp(getattr(state, "inflammation", 0.2))
+    # mild fed boost (duodenal exposure / meal context teaching)
+    fed = 1.0 if state.is_fed() else 0.55
+    activity = (0.75 * (1.0 - inflam)) + (0.25 * fed)
+    return clamp(activity)
+
+
+def glucose_epithelial_transport_activity(state: PhysiologicalState) -> float:
+    """Apical SGLT1 path more relevant post-meal (fed / high insulin proxy)."""
+    insulin = insulin_signal(state)
+    fed = 1.0 if state.is_fed() else 0.35
+    return clamp(0.55 * fed + 0.45 * insulin)
+
+
+def scfa_colonic_production_activity(state: PhysiologicalState) -> float:
+    """
+    Colonic fermentation is relatively constitutive; slightly higher in fasting
+    teaching states when upper-GI carbohydrate load is low (more substrate reaches colon).
+    """
+    fasting = 1.0 if state.is_fasting() else 0.6
+    return clamp(0.5 + 0.3 * fasting)
+
+
 def pathway_activity_snapshot(state: PhysiologicalState) -> dict[str, float]:
     """Return current activity levels for the major regulated pathways."""
     return {
@@ -234,6 +262,10 @@ def pathway_activity_snapshot(state: PhysiologicalState) -> dict[str, float]:
         "ampk": round(ampk_activity(state), 3),
         "mtor": round(mtor_activity(state), 3),
         "srebp_lipogenic": round(srebp_lipogenic_activity(state), 3),
+        # Meal-critical queue (tier B)
+        "iron_absorption": round(iron_absorption_activity(state), 3),
+        "glucose_epithelial_transport": round(glucose_epithelial_transport_activity(state), 3),
+        "scfa_colonic_production": round(scfa_colonic_production_activity(state), 3),
     }
 
 

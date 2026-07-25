@@ -25,6 +25,9 @@ def pathway_loaders() -> list[tuple[str, Callable[[], Any]]]:
     from biology_as_code.pathways.glycogen_metabolism import get_glycogen_metabolism_registry
     from biology_as_code.pathways.ketogenesis import get_ketogenesis_registry
     from biology_as_code.pathways.ketolysis import get_ketolysis_registry
+    from biology_as_code.pathways.meal_critical_pathways import (
+        get_meal_critical_pathways_registry,
+    )
     from biology_as_code.pathways.metabolic_pathways import get_metabolic_pathways_registry
     from biology_as_code.pathways.nutrient_sensing import get_nutrient_sensing_registry
     from biology_as_code.pathways.pentose_phosphate import get_pentose_phosphate_registry
@@ -49,6 +52,7 @@ def pathway_loaders() -> list[tuple[str, Callable[[], Any]]]:
         ("digestion_absorption_pathways", get_digestion_absorption_registry),
         ("supporting_pathways", get_supporting_pathways_registry),
         ("amino_acid_catabolism", get_amino_acid_catabolism_registry),
+        ("meal_critical_pathways", get_meal_critical_pathways_registry),
     ]
 
 

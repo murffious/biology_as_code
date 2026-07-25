@@ -39,7 +39,7 @@ def _edge_label(edge: Any) -> str:
     # Regulatory (signed) edges: show the effect + mechanism.
     eff = getattr(edge, "effect", "") or ""
     if eff:
-        mech = getattr(edge, "mechanism", "") or ""
+        mech = getattr(edge, "mechanism", "") or getattr(edge, "mechanism_id", "") or ""
         parts.append(f"{eff}: {mech}"[:48] if mech else eff)
         return "<br/>".join(parts)
     mid = getattr(edge, "mechanism_id", "") or ""

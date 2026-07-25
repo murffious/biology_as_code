@@ -1,0 +1,20 @@
+flowchart TD
+  %% Auto-generated from registry pathway: scfa_colonic_production
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  %% Source: Short-chain fatty acids — physiology and effects review: PMID 39845918 (https://pubmed.ncbi.nlm.nih.gov/39845918/).
+  %% Source: SCFA and intestinal mucosal immunity review: PMID 39286812 (https://pubmed.ncbi.nlm.nih.gov/39286812/).
+  %% Source: Colonic SCFA production (acetate / propionate / butyrate) — FLOW teaching; yields are taxa- and substrate-dependent.
+  fermentable_fiber["Fermentable fiber / RS"]
+  microbiota["Colonic microbiota"]
+  acetate["Acetate (C2)"]
+  propionate["Propionate (C3)"]
+  butyrate["Butyrate (C4)"]
+  colonocyte_use["Colonocyte oxidation"]
+  portal_scfa["Portal SCFA delivery"]
+  fermentable_fiber -->|"Substrate delivery to colon"| microbiota
+  microbiota -->|"colonic_fermentation"| acetate
+  microbiota -->|"colonic_fermentation"| propionate
+  microbiota -->|"colonic_fermentation"| butyrate
+  butyrate -->|"Colonocyte β-oxidation / fuel use"| colonocyte_use
+  acetate -->|"Absorption → portal vein"| portal_scfa
+  propionate -->|"Absorption → portal vein"| portal_scfa

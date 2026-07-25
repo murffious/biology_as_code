@@ -472,6 +472,146 @@ class MetabolicMechanismRegistry:
             related_pathways=["methionine_one_carbon"],
         ))
 
+        # ------------------------------------------------------------------
+        # MEAL-CRITICAL ABSORPTION / COLON (queue tier B)
+        # ------------------------------------------------------------------
+        self.register(MetabolicMechanism(
+            id="duodenal_cytochrome_b",
+            name="Duodenal Cytochrome B (DcytB) / Brush-Border Fe³⁺ Reduction",
+            category=MechanismCategory.ENZYMATIC,
+            description=(
+                "Reduces dietary Fe³⁺ to Fe²⁺ at the duodenal brush border, expanding "
+                "the ferrous pool available for DMT1 uptake. Ascorbate and other "
+                "reductants support this step."
+            ),
+            location="Duodenal brush border",
+            inputs=["Fe3+", "reductants (e.g. ascorbate)"],
+            outputs=["Fe2+"],
+            notes="Teaching surface reductase; not the sole reduction route.",
+            related_pathways=["iron_absorption"],
+        ))
+
+        self.register(MetabolicMechanism(
+            id="dmt1",
+            name="DMT1 (SLC11A2) Ferrous Iron Uptake",
+            category=MechanismCategory.TRANSPORT,
+            description=(
+                "Proton-coupled transporter that takes up Fe²⁺ (and other divalent metals) "
+                "across the apical membrane of duodenal enterocytes."
+            ),
+            location="Apical membrane (duodenum)",
+            inputs=["Fe2+", "H+"],
+            outputs=["Fe2+ (enterocyte)"],
+            regulation=["Expression increases in iron deficiency"],
+            notes="Primary non-haem iron apical uptake path in teaching models.",
+            related_pathways=["iron_absorption"],
+        ))
+
+        self.register(MetabolicMechanism(
+            id="ferroportin",
+            name="Ferroportin (SLC40A1) Iron Export",
+            category=MechanismCategory.TRANSPORT,
+            description=(
+                "Basolateral iron exporter from enterocytes (and macrophages). "
+                "Exported Fe²⁺ is oxidized and loaded onto transferrin."
+            ),
+            location="Basolateral membrane (enterocyte)",
+            inputs=["Fe2+ (enterocyte)"],
+            outputs=["Plasma iron (transferrin-bound after oxidation)"],
+            regulation=["Internalized/blocked by hepcidin"],
+            notes="Systemic control point for dietary iron absorption.",
+            related_pathways=["iron_absorption"],
+        ))
+
+        self.register(MetabolicMechanism(
+            id="hepcidin_ferroportin",
+            name="Hepcidin ⊣ Ferroportin",
+            category=MechanismCategory.REGULATORY,
+            description=(
+                "Hepcidin binds ferroportin, causing internalization and degradation, "
+                "which lowers iron export into plasma. Induced by iron repletion and "
+                "inflammation (IL-6 teaching path)."
+            ),
+            location="Enterocyte basolateral membrane / reticuloendothelial system",
+            inputs=["Hepcidin", "Ferroportin"],
+            outputs=["Reduced iron export"],
+            regulation=["High hepcidin when inflamed or iron-replete"],
+            notes="Explains anemia of inflammation teaching pole.",
+            related_pathways=["iron_absorption"],
+        ))
+
+        self.register(MetabolicMechanism(
+            id="intrinsic_factor",
+            name="Intrinsic Factor–Cobalamin Binding",
+            category=MechanismCategory.TRANSPORT,
+            description=(
+                "Gastric parietal-cell intrinsic factor binds free cobalamin (B12), "
+                "forming a complex required for receptor-mediated uptake in the "
+                "terminal ileum."
+            ),
+            location="Stomach / small intestine lumen",
+            inputs=["Cobalamin (B12)", "Intrinsic factor"],
+            outputs=["IF–B12 complex"],
+            notes="IF deficiency → pernicious anemia (failure pole).",
+            related_pathways=["cobalamin_absorption"],
+        ))
+
+        self.register(MetabolicMechanism(
+            id="glut2",
+            name="GLUT2 (SLC2A2) Facilitated Hexose Transport",
+            category=MechanismCategory.TRANSPORT,
+            description=(
+                "Facilitated glucose/fructose/galactose transporter; basolateral exit "
+                "from enterocytes toward portal blood (also liver/beta-cell roles)."
+            ),
+            location="Basolateral enterocyte membrane (and other tissues)",
+            inputs=["Glucose (enterocyte)"],
+            outputs=["Glucose (interstitium / portal)"],
+            notes="Complements apical SGLT1 on the absorption path.",
+            related_pathways=["glucose_epithelial_transport", "carb_digestion_absorption"],
+        ))
+
+        self.register(MetabolicMechanism(
+            id="glut5",
+            name="GLUT5 (SLC2A5) Fructose Transport",
+            category=MechanismCategory.TRANSPORT,
+            description="Apical facilitated fructose transporter in small-intestine enterocytes.",
+            location="Apical enterocyte membrane",
+            inputs=["Fructose (lumen)"],
+            outputs=["Fructose (enterocyte)"],
+            related_pathways=["glucose_epithelial_transport", "fructose_galactose"],
+        ))
+
+        self.register(MetabolicMechanism(
+            id="pept1",
+            name="PepT1 (SLC15A1) Proton-Coupled Oligopeptide Transport",
+            category=MechanismCategory.TRANSPORT,
+            description=(
+                "Apical uptake of di- and tripeptides into enterocytes, driven by the "
+                "proton gradient. Major route for protein nitrogen absorption."
+            ),
+            location="Apical membrane (small intestine)",
+            inputs=["Di/tripeptides", "H+"],
+            outputs=["Peptides (enterocyte)"],
+            notes="Complements free amino-acid transporters.",
+            related_pathways=["protein_digestion_absorption"],
+        ))
+
+        self.register(MetabolicMechanism(
+            id="colonic_fermentation",
+            name="Colonic Microbial Fermentation → SCFA",
+            category=MechanismCategory.MICROBIAL,
+            description=(
+                "Microbiota ferment fiber and resistant starch to short-chain fatty acids "
+                "(acetate, propionate, butyrate) in the colon."
+            ),
+            location="Colon lumen",
+            inputs=["Fermentable fiber", "Resistant starch"],
+            outputs=["Acetate", "Propionate", "Butyrate", "gases"],
+            notes="Taxa- and substrate-dependent yields; FLOW teaching only.",
+            related_pathways=["scfa_colonic_production", "prebiotic_probiotic"],
+        ))
+
 
 def get_metabolic_mechanism_registry() -> MetabolicMechanismRegistry:
     """Factory function."""
