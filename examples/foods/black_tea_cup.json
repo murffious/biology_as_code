@@ -1,13 +1,21 @@
 {
   "id": "ex.black.tea.cup",
-  "status": "stub",
+  "status": "filled",
   "identity": {
     "common_name": "black tea",
     "form": "unknown",
     "family_hint": "Theaceae"
   },
   "cargo": [],
-  "partners": [],
+  "partners": [
+    {
+      "field": "tea_tannins",
+      "value": true,
+      "concurrency": "same_meal",
+      "derivation": "structural",
+      "rationale": "tea polyphenols present by identity"
+    }
+  ],
   "injection_zone": "zone1_matrix",
   "matrix": {
     "integrity": "unknown"

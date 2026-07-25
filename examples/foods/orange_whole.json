@@ -1,6 +1,6 @@
 {
   "id": "ex.orange.whole",
-  "status": "stub",
+  "status": "filled",
   "identity": {
     "common_name": "whole orange",
     "form": "raw_whole",
@@ -10,7 +10,9 @@
   "partners": [],
   "injection_zone": "zone1_matrix",
   "matrix": {
-    "integrity": "unknown"
+    "integrity": "intact",
+    "derivation": "structural",
+    "rationale": "segment and cell-wall structure present"
   },
   "teaching": {
     "point": "stub: intact matrix vs juice",

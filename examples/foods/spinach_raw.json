@@ -1,13 +1,28 @@
 {
   "id": "ex.spinach.raw",
-  "status": "stub",
+  "status": "filled",
   "identity": {
     "common_name": "raw spinach",
     "form": "raw_whole",
     "family_hint": "Amaranthaceae"
   },
-  "cargo": [],
-  "partners": [],
+  "cargo": [
+    {
+      "nutrient": "beta_carotene",
+      "label_amount": "open",
+      "derivation": "structural",
+      "rationale": "carotenoid occurrence in spinach is undisputed"
+    }
+  ],
+  "partners": [
+    {
+      "field": "lipid_phase_present",
+      "value": false,
+      "concurrency": "same_meal",
+      "derivation": "structural",
+      "rationale": "leafy green eaten alone; no lipid phase in the meal"
+    }
+  ],
   "injection_zone": "zone1_matrix",
   "matrix": {
     "integrity": "unknown"

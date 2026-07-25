@@ -1,13 +1,21 @@
 {
   "id": "ex.soda.cola",
-  "status": "stub",
+  "status": "filled",
   "identity": {
     "common_name": "cola soda",
     "form": "ultra_processed",
     "family_hint": "beverage"
   },
   "cargo": [],
-  "partners": [],
+  "partners": [
+    {
+      "field": "lipid_phase_present",
+      "value": false,
+      "concurrency": "same_meal",
+      "derivation": "structural",
+      "rationale": "sugar-water formulation; contains no lipid"
+    }
+  ],
   "injection_zone": "zone1_matrix",
   "matrix": {
     "integrity": "destroyed",

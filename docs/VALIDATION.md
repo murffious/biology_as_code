@@ -118,9 +118,14 @@ sourced fact.
 
 In rough order of value per unit of work:
 
-1. **Fill the packet backlog.** 40 stubs. Each needs declared partner fields and
-   matrix integrity — structural facts, not magnitudes — which moves audits out of
-   `UNEVALUABLE` without asserting any number.
+1. ~~**Fill the packet backlog.**~~ Largely done. `scripts/fill_packets.py` declared
+   structural facts for 26 packets, taking filled packets from 6 to 32. Every
+   carotenoid-, lipid- and iron-bearing packet now resolves. 12 packets are
+   deliberately left as stubs because their relevant property is genuinely ambiguous
+   (whole vs skim milk, cooked-starch matrix state, supplement dose forms); the
+   reasons are listed in the script's `SKIPPED` table. Raw coverage across all 46
+   packets is still mostly `UNEVALUABLE`, which is correct — a carotenoid claim
+   against a chicken breast is permanently undecidable, not pending.
 2. **Diff the pathway graphs against a reference database.** A test comparing
    stoichiometry to KEGG or Rhea would move `pathway_graphs` from teaching to
    verified for the subset it covers.

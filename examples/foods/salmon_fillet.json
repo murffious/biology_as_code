@@ -1,13 +1,21 @@
 {
   "id": "ex.salmon.fillet",
-  "status": "stub",
+  "status": "filled",
   "identity": {
     "common_name": "salmon fillet",
     "form": "cooked",
     "family_hint": "Actinopterygii"
   },
   "cargo": [],
-  "partners": [],
+  "partners": [
+    {
+      "field": "lipid_phase_present",
+      "value": true,
+      "concurrency": "same_meal",
+      "derivation": "structural",
+      "rationale": "oily fish; intrinsic lipid present in all forms of the fillet"
+    }
+  ],
   "injection_zone": "zone1_matrix",
   "matrix": {
     "integrity": "unknown"

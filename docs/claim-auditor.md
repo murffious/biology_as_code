@@ -102,9 +102,46 @@ audit_packet_coverage(list(iter_packets()), "beta_carotene")
 # {'Busted': 1, 'Plausible': 1, 'UNEVALUABLE': 44}
 ```
 
-40 of the 46 packets in `examples/foods/` are stubs. The auditor reports that
-rather than filling the gap, which makes the number a usable backlog signal:
-every `UNEVALUABLE` is a packet waiting for a sourced fact.
+Most packets return `UNEVALUABLE` for any given nutrient, and that is mostly
+correct rather than incomplete — a carotenoid claim against a chicken breast is
+permanently undecidable, not pending. The useful metric is the decidable share
+among packets that actually declare the cargo:
+
+| Nutrient | Decidable |
+| --- | --- |
+| `beta_carotene` | 5 / 5 |
+| `lipid` | 6 / 7 |
+| `nonhaem_iron` | 2 / 4 |
+
+12 packets are deliberately left as stubs because the relevant property is
+ambiguous — whole versus skim milk, the matrix state of cooked starch, supplement
+dose forms. `scripts/fill_packets.py` lists each with its reason. A wrong
+structural declaration is worse than a stub, because it produces a confident
+verdict.
+
+
+## Opening a gate without inventing a number
+
+`dietary_lipid_g` needs a value. A packet author who has no sourced number should
+not have to invent one to record that olive oil contains a lipid phase, so gate
+rules accept alternatives:
+
+```python
+from biology_as_code.audit import gates_for
+gates_for("beta_carotene")[0].requires
+# (('dietary_lipid_g', 'positive'), ('lipid_phase_present', 'true'))
+```
+
+Any one declared alternative satisfying the rule opens the gate. None declared is
+still `UNEVALUABLE`. `lipid_phase_present` is a boolean about meal composition, so
+it carries the gate while leaving the magnitude unlocked — the same discipline the
+LAW-026 energy band follows.
+
+Structural declarations are marked. Every one carries `derivation: "structural"`
+and a `rationale`, so an inference from a food's identity stays distinguishable from
+measured data, and `tests/test_packet_fills.py` asserts no structural fill ever
+writes a magnitude or closes `label_amount`.
+
 
 ## Two vocabularies, and a gap between them
 

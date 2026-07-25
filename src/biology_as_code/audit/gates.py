@@ -44,17 +44,39 @@ def _satisfied(predicate: Predicate, value: Any) -> bool:
 
 @dataclass(frozen=True)
 class GateRule:
-    """A categorical requirement. Fails closed when the required field is absent."""
+    """A categorical requirement. Fails closed when no required field is declared.
+
+    ``requires`` holds one or more ``(field, predicate)`` alternatives. The gate is
+    satisfied if **any** declared alternative passes, unknown if **none** are
+    declared, and failed if at least one is declared and every declared one fails.
+
+    Alternatives exist so a gate can be opened by a structural fact rather than a
+    magnitude. ``dietary_lipid_g`` needs a number, and a packet author who does not
+    have a sourced number should not have to invent one to record that a meal
+    obviously contains a lipid phase — olive oil does, by construction. Declaring
+    ``lipid_phase_present: true`` opens the gate while leaving the magnitude
+    unlocked, which is the same discipline the LAW-026 energy band follows.
+    """
 
     nutrient: str
-    requires: str
-    predicate: Predicate
+    requires: tuple[tuple[str, Predicate], ...]
     kingdom: str
     gate_note: str
     law_refs: tuple[str, ...] = ()
 
-    def satisfied_by(self, value: Any) -> bool:
-        return _satisfied(self.predicate, value)
+    @property
+    def fields(self) -> tuple[str, ...]:
+        return tuple(field for field, _ in self.requires)
+
+    def predicate_for(self, field: str) -> Predicate | None:
+        for name, predicate in self.requires:
+            if name == field:
+                return predicate
+        return None
+
+    def satisfied_by(self, field: str, value: Any) -> bool:
+        predicate = self.predicate_for(field)
+        return False if predicate is None else _satisfied(predicate, value)
 
 
 @dataclass(frozen=True)
@@ -97,11 +119,17 @@ _FAT_VEHICLE_CARGO = (
 
 _IF_NOTE = "gastric intrinsic factor plus an intact ileal receptor path required"
 
+# Either a declared lipid magnitude or a declared lipid phase opens the gate.
+# The structural boolean lets a packet be filled in without inventing grams.
+_FAT_VEHICLE_REQUIRES: tuple[tuple[str, Predicate], ...] = (
+    ("dietary_lipid_g", "positive"),
+    ("lipid_phase_present", "true"),
+)
+
 GATE_RULES: tuple[GateRule, ...] = tuple(
     GateRule(
         nutrient=nutrient,
-        requires="dietary_lipid_g",
-        predicate="positive",
+        requires=_FAT_VEHICLE_REQUIRES,
         kingdom="lumen",
         gate_note=_FAT_VEHICLE_NOTE,
         law_refs=("LAW-020", "LAW-045"),
@@ -110,16 +138,14 @@ GATE_RULES: tuple[GateRule, ...] = tuple(
 ) + (
     GateRule(
         nutrient="cobalamin",
-        requires="intrinsic_factor",
-        predicate="true",
+        requires=(("intrinsic_factor", "true"),),
         kingdom="lumen",
         gate_note=_IF_NOTE,
         law_refs=("LAW-043",),
     ),
     GateRule(
         nutrient="vitamin_b12",
-        requires="intrinsic_factor",
-        predicate="true",
+        requires=(("intrinsic_factor", "true"),),
         kingdom="lumen",
         gate_note=_IF_NOTE,
         law_refs=("LAW-043",),

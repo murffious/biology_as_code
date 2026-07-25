@@ -18,7 +18,10 @@ from biology_as_code.packets import (
     validate_packet,
 )
 
-FILLED_IDS = {
+# The six packets filled in by hand before scripts/fill_packets.py existed. These
+# carry no `derivation` marker, which is how a hand-authored packet is told apart
+# from a structural inference.
+HAND_FILLED_IDS = {
     "ex.almond.flour",
     "ex.almond.whole",
     "ex.lentils.with_ascorbate",
@@ -57,9 +60,29 @@ def test_ids_are_unique():
     assert len(ids) == len(set(ids))
 
 
-def test_filled_packets_are_exactly_the_known_six():
-    filled = {p.id for p in iter_packets() if p.is_filled}
-    assert filled == FILLED_IDS
+def test_hand_filled_packets_carry_no_structural_derivation_marker():
+    """The original six are authored, not inferred, and must stay distinguishable."""
+    for packet in iter_packets():
+        if packet.id not in HAND_FILLED_IDS:
+            continue
+        markers = [
+            entry
+            for entry in (*packet.cargo, *packet.partners)
+            if entry.get("derivation") == "structural"
+        ]
+        assert not markers, f"{packet.id} gained a structural inference: {markers}"
+        assert packet.matrix.get("derivation") != "structural"
+
+
+def test_every_filled_packet_is_either_authored_or_marked_structural():
+    for packet in iter_packets():
+        if not packet.is_filled or packet.id in HAND_FILLED_IDS:
+            continue
+        marked = any(
+            entry.get("derivation") == "structural"
+            for entry in (*packet.cargo, *packet.partners)
+        ) or packet.matrix.get("derivation") == "structural"
+        assert marked, f"{packet.id} is filled but records no provenance for how"
 
 
 def test_template_is_skipped():

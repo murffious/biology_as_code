@@ -1,6 +1,6 @@
 {
   "id": "ex.banana",
-  "status": "stub",
+  "status": "filled",
   "identity": {
     "common_name": "banana",
     "form": "raw_whole",
@@ -10,7 +10,9 @@
   "partners": [],
   "injection_zone": "zone1_matrix",
   "matrix": {
-    "integrity": "unknown"
+    "integrity": "intact",
+    "derivation": "structural",
+    "rationale": "whole fruit; parenchyma intact"
   },
   "teaching": {
     "point": "stub: simple packet identity",

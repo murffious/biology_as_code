@@ -1,13 +1,28 @@
 {
   "id": "ex.butter",
-  "status": "stub",
+  "status": "filled",
   "identity": {
     "common_name": "butter",
     "form": "unknown",
     "family_hint": "dairy"
   },
-  "cargo": [],
-  "partners": [],
+  "cargo": [
+    {
+      "nutrient": "lipid",
+      "label_amount": "open",
+      "derivation": "structural",
+      "rationale": "the product is majority lipid"
+    }
+  ],
+  "partners": [
+    {
+      "field": "lipid_phase_present",
+      "value": true,
+      "concurrency": "same_meal",
+      "derivation": "structural",
+      "rationale": "butterfat is the majority component by definition of the product"
+    }
+  ],
   "injection_zone": "zone1_matrix",
   "matrix": {
     "integrity": "unknown"

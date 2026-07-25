@@ -1,16 +1,33 @@
 {
   "id": "ex.olive.oil",
-  "status": "stub",
+  "status": "filled",
   "identity": {
     "common_name": "extra-virgin olive oil",
     "form": "oil",
     "family_hint": "Oleaceae"
   },
-  "cargo": [],
-  "partners": [],
+  "cargo": [
+    {
+      "nutrient": "lipid",
+      "label_amount": "open",
+      "derivation": "structural",
+      "rationale": "the product is lipid"
+    }
+  ],
+  "partners": [
+    {
+      "field": "lipid_phase_present",
+      "value": true,
+      "concurrency": "same_meal",
+      "derivation": "structural",
+      "rationale": "an extracted oil is a lipid phase by construction"
+    }
+  ],
   "injection_zone": "zone1_matrix",
   "matrix": {
-    "integrity": "unknown"
+    "integrity": "destroyed",
+    "derivation": "structural",
+    "rationale": "lipid extracted out of the fruit matrix"
   },
   "teaching": {
     "point": "stub: lipid vehicle partner; phenolics open",

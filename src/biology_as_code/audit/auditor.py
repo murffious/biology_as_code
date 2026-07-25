@@ -286,13 +286,16 @@ def audit_claim(claim: Claim, packet: FoodPacket | None = None) -> ClaimAudit:
 
     for rule in gates:
         law_refs.extend(rule.law_refs)
-        if not packet.declares(rule.requires):
+        declared = [field for field in rule.fields if packet.declares(field)]
+        if not declared:
             # Silence is not a zero. Fail closed.
             gate_check = "unevaluable"
             gate_note = rule.gate_note
-            missing.append(f"packet {packet.id} does not declare {rule.requires!r}")
+            alternatives = " or ".join(repr(field) for field in rule.fields)
+            missing.append(f"packet {packet.id} declares none of {alternatives}")
             continue
-        if not rule.satisfied_by(packet.partner(rule.requires)):
+        # Any one declared alternative satisfying the rule opens the gate.
+        if not any(rule.satisfied_by(field, packet.partner(field)) for field in declared):
             gate_check = "fail"
             gate_note = rule.gate_note
             break

@@ -1,6 +1,6 @@
 {
   "id": "ex.oats.porridge.plain",
-  "status": "stub",
+  "status": "filled",
   "identity": {
     "common_name": "plain oats porridge",
     "form": "cooked",
@@ -10,7 +10,9 @@
   "partners": [],
   "injection_zone": "zone1_matrix",
   "matrix": {
-    "integrity": "unknown"
+    "integrity": "partial",
+    "derivation": "structural",
+    "rationale": "rolled and hydrated; some cell structure survives"
   },
   "teaching": {
     "point": "stub: matrix rate / intact grain vs flour later",

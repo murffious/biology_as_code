@@ -68,6 +68,25 @@ All notable changes to the **biology-as-code** Python package are documented her
   prior art and state the methodological claim, and the package-facing copy must not
   import the book's disciplinary thesis — the package is a 0.1.0 alpha and asserting
   what a whole field *should* do overclaims from a README.
+- **Gate rules accept alternative satisfying fields.** `GateRule.requires` is now a
+  tuple of `(field, predicate)` alternatives: the gate opens if any declared
+  alternative passes, stays unknown if none are declared, and fails if every declared
+  one fails. This lets `lipid_phase_present: true` open the fat-vehicle gate without
+  writing a `dietary_lipid_g` value, so a packet can be filled in without inventing a
+  magnitude.
+- **`scripts/fill_packets.py`**: declarative, idempotent structural fill. Declares
+  only facts that follow from a food's identity — lipid phase, matrix integrity,
+  tannins, undisputed cargo presence — each carrying `derivation: "structural"` and a
+  `rationale`. Took filled packets from 6 to 32; every carotenoid-, lipid- and
+  iron-bearing packet now resolves. 12 packets are deliberately skipped with recorded
+  reasons.
+- **`tests/test_packet_fills.py`**: no structural declaration may carry a magnitude,
+  structural cargo must keep `label_amount: "open"`, every declaration needs a
+  rationale, the fill must be idempotent, and skipped packets must stay stubs.
+- **`tests/test_law026_policy.py`**: makes `LAW026_PROMOTION_DECISION.md` executable.
+  Locking the colonic fermentation energy band, collapsing it toward a point,
+  hardening `bound_kind`, dropping the anti-overlock evidence (EV-041 / PMID
+  33995299) or un-marking PMID 40403748 as pending all fail CI.
 - `ClaimAudit.constitution_state`, mapping schema verdicts onto the four states in
   `docs/constitution.md`. Read-only view; absent from `to_dict()`, so schema
   conformance is unchanged.
@@ -91,6 +110,14 @@ All notable changes to the **biology-as-code** Python package are documented her
   *name* as an unsupported keyword.
 - `docs/index.md` linked `../schemas/` and `../examples/foods/`, which resolved only
   because Jekyll served `docs/` as raw files. Now absolute repository URLs.
+- `docs/VALIDATION.md` recommended promoting the colonic fermentation energy band
+  from `UNITS_skeleton` to `UNITS`. That contradicted `LAW026_PROMOTION_DECISION.md`,
+  which had already decided the band must stay unlocked until primary human
+  metabolizable-energy evidence exists. Recommendation retracted; the real open item
+  is a full-text read of PMID 40403748.
+- `LAW026_PROMOTION_DECISION.md`'s implementation checklist listed three items as
+  outstanding that were already satisfied in the skeleton artifact, which made the
+  work look undone. Reconciled.
 - `VERSION_MANIFEST.json` advertised `compatibility.python: ">=3.10"` while
   `pyproject.toml` required `>=3.11`, so the manifest claimed support for a Python
   the package rejects at install.

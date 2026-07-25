@@ -1,6 +1,6 @@
 {
   "id": "ex.oat.flour.gruel",
-  "status": "stub",
+  "status": "filled",
   "identity": {
     "common_name": "oat flour gruel",
     "form": "flour",
@@ -10,7 +10,9 @@
   "partners": [],
   "injection_zone": "zone1_matrix",
   "matrix": {
-    "integrity": "unknown"
+    "integrity": "destroyed",
+    "derivation": "structural",
+    "rationale": "milled to flour then hydrated; no intact cell walls"
   },
   "teaching": {
     "point": "stub: finer form, faster hit rate",
