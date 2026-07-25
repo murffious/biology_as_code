@@ -103,20 +103,16 @@ class ClaimAudit:
     kingdom: str = "unknown"
     atomized: tuple[str, ...] = ()
     l1_to_l5: dict[str, str] = field(default_factory=dict)
+    # Provenance/citation integrity (Clean | Contaminated | Laundered | unknown),
+    # not matrix integrity. A mechanism walk never establishes it, so — like
+    # ``Confirmed`` — the auditor always leaves it "unknown" for a later evidence
+    # step to set. Serialised regardless so the field is present in every payload.
     integrity: str = "unknown"
     rosetta: dict[str, str] = field(default_factory=dict)
     bound_findings: tuple[BoundFinding, ...] = ()
     law_refs: tuple[str, ...] = ()
     packet_id: str | None = None
     unevaluable_because: tuple[str, ...] = ()
-
-    @property
-    def is_refusal(self) -> bool:
-        return self.verdict == "REFUSE"
-
-    @property
-    def is_unevaluable(self) -> bool:
-        return self.verdict == "UNEVALUABLE"
 
     @property
     def constitution_state(self) -> str:
@@ -188,18 +184,19 @@ def _relation_enum(
     gate_check: GateCheck,
     findings: tuple[BoundFinding, ...],
 ) -> str:
-    """Type the claim's relation using the subset enum vocabulary."""
-    if claim.is_endpoint_claim or not claim.is_auditable:
-        # A single meal path cannot carry a disease endpoint, and soft verbs
-        # never had a mechanism to begin with.
+    """Type a mechanism claim's relation for the rosetta block.
+
+    Only called from the two ladder rungs where a relation is defined: a closed
+    gate (``gate_check == "fail"``) and an open gate that produced at least one
+    bound finding. The claim is always auditable here — Step 1 refuses the rest
+    before the walk begins — so the only fork left is disease endpoint vs. gate.
+    """
+    if claim.is_endpoint_claim:
+        # A single meal path cannot carry a disease endpoint.
         return "MALFORMED_MECHANISM"
     if gate_check == "fail":
         return "CLOSES_GATE"
-    if gate_check == "unevaluable":
-        return "NEEDS_RESOLUTION"
-    if findings:
-        return findings[0].direction
-    return "NEEDS_RESOLUTION"
+    return findings[0].direction
 
 
 def audit_claim(claim: Claim, packet: FoodPacket | None = None) -> ClaimAudit:

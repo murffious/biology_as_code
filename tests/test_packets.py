@@ -8,6 +8,7 @@ from biology_as_code.packets import (
     FoodPacket,
     PacketNotFound,
     PacketsUnavailable,
+    clear_packet_cache,
     get_packet,
     iter_packets,
     list_packets,
@@ -123,6 +124,21 @@ def test_missing_directory_raises_rather_than_returning_empty():
     """Fail closed: an unreachable directory must not look like 'no packets'."""
     with pytest.raises(PacketsUnavailable):
         list_packets(directory="/nonexistent/path/for/test")
+
+
+def test_repeated_reads_are_cached_and_clearable():
+    """iter_packets caches per directory; clear_packet_cache forces a fresh read."""
+    clear_packet_cache()
+    first = get_packet("ex.banana")
+    second = get_packet("ex.banana")
+    # Same instance -> served from the directory cache, not re-parsed each call.
+    assert first is second
+
+    clear_packet_cache()
+    third = get_packet("ex.banana")
+    # A fresh parse after invalidation -> a distinct object, equal in content.
+    assert third is not first
+    assert third.id == first.id == "ex.banana"
 
 
 def test_from_dict_requires_id_and_identity():

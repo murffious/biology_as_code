@@ -163,12 +163,32 @@ def load_packet(path: str | Path) -> FoodPacket:
     return FoodPacket.from_dict(data, source_path=file_path)
 
 
-def iter_packets(directory: str | Path | None = None) -> Iterator[FoodPacket]:
-    """Yield every packet in the directory, sorted by filename. Skips ``_template``."""
-    for file_path in sorted(packets_dir(directory).glob("*.json")):
+@lru_cache(maxsize=8)
+def _load_dir(resolved: Path) -> tuple[FoodPacket, ...]:
+    """Parse every packet under an already-resolved directory, once per directory.
+
+    Cached because ``get_packet``/``list_packets`` would otherwise re-glob and
+    re-parse all of ``examples/foods/`` on every call. Packets are read-only, so
+    sharing instances across callers is safe; a process that rewrites packet files
+    on disk (e.g. ``scripts/fill_packets.py``) should call
+    :func:`clear_packet_cache` afterwards.
+    """
+    packets: list[FoodPacket] = []
+    for file_path in sorted(resolved.glob("*.json")):
         if file_path.stem.startswith("_"):
             continue
-        yield load_packet(file_path)
+        packets.append(load_packet(file_path))
+    return tuple(packets)
+
+
+def iter_packets(directory: str | Path | None = None) -> Iterator[FoodPacket]:
+    """Yield every packet in the directory, sorted by filename. Skips ``_template``."""
+    yield from _load_dir(packets_dir(directory).resolve())
+
+
+def clear_packet_cache() -> None:
+    """Drop cached packet loads. Call after packet files change on disk."""
+    _load_dir.cache_clear()
 
 
 def list_packets(directory: str | Path | None = None) -> list[str]:

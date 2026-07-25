@@ -18,7 +18,7 @@ from biology_as_code.audit import (
     audit_packet_coverage,
     known_nutrients,
 )
-from biology_as_code.packets import get_packet, iter_packets, validate_against
+from biology_as_code.packets import FoodPacket, get_packet, iter_packets, validate_against
 from biology_as_code.packets.loader import schemas_dir
 
 
@@ -208,6 +208,62 @@ def test_stub_packets_are_unevaluable_not_passing():
     result = audit_claim(SPINACH_CLAIM, get_packet("ex.banana"))
     assert result.verdict == "UNEVALUABLE"
     assert result.unevaluable_because
+
+
+# A carotenoid source that declares the cargo but is silent on the fat vehicle.
+# No packet in examples/foods/ is shaped like this — every filled fat-vehicle
+# packet declares a lipid field, and stubs omit the cargo — so the L3 "silent
+# gate" branch is only reachable from a hand-built packet. It is the exact case
+# the auditor docstring calls load-bearing ("silent about dietary lipid is not a
+# packet that declares zero"), so it gets a dedicated fixture.
+SILENT_GATE_PACKET = FoodPacket.from_dict(
+    {
+        "id": "ex.synthetic.silent_gate",
+        "identity": {"common_name": "carotenoid source, fat unstated"},
+        "status": "filled",
+        "cargo": [{"nutrient": "beta_carotene", "label_amount": "open"}],
+        "partners": [],  # neither dietary_lipid_g nor lipid_phase_present declared
+    }
+)
+
+
+def test_declared_cargo_but_silent_cofactor_is_unevaluable_at_the_gate():
+    """Cargo present, fat vehicle unstated: the gate is UNKNOWN, not open or shut.
+
+    This is a different code path from the stub case above. ``ex.banana`` never
+    declares the cargo, so it fails closed at L2 (cargo absent); here the cargo is
+    declared and the walk reaches L3, where silence about the required co-factor
+    must yield UNEVALUABLE rather than a satisfied gate. Both are UNEVALUABLE, but
+    conflating the two would let a regression in the L3 gate logic hide behind the
+    L2 test.
+    """
+    result = audit_claim(SPINACH_CLAIM, SILENT_GATE_PACKET)
+
+    assert result.verdict == "UNEVALUABLE"
+    assert result.gate_check == "unevaluable"
+    # Reached the gate (L3), not stopped at the cargo check (L2).
+    assert result.l1_to_l5["L2"] == "beta_carotene present in matrix"
+    assert result.l1_to_l5["closed_through"] == "L3"
+    assert "gate state UNKNOWN" in result.l1_to_l5["L3"]
+    assert any("declares none of" in reason for reason in result.unevaluable_because)
+    # Gate state itself is unknown -> the constitution's UNEVALUABLE, not OPEN.
+    assert result.constitution_state == "UNEVALUABLE"
+
+
+def test_silent_gate_and_absent_cargo_are_distinct_unevaluable_paths():
+    """Both fail closed, but through different ladder rungs — keep them separable."""
+    silent_gate = audit_claim(SPINACH_CLAIM, SILENT_GATE_PACKET)
+    absent_cargo = audit_claim(SPINACH_CLAIM, get_packet("ex.banana"))
+
+    assert silent_gate.verdict == absent_cargo.verdict == "UNEVALUABLE"
+    assert silent_gate.l1_to_l5["closed_through"] == "L3"
+    assert absent_cargo.l1_to_l5["closed_through"] == "L2"
+
+
+def test_silent_gate_audit_conforms_to_schema():
+    """A verdict from the L3 gate branch still serialises to the audit schema."""
+    payload = audit_claim(SPINACH_CLAIM, SILENT_GATE_PACKET).to_dict()
+    assert validate_against(payload, claim_audit_schema()).valid
 
 
 def test_unknown_nutrient_is_unevaluable():
