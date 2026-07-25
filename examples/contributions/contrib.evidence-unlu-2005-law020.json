@@ -1,0 +1,18 @@
+{
+  "id": "contrib.evidence-unlu-2005-law020",
+  "type": "evidence",
+  "target": { "kind": "law", "ref": "LAW-020" },
+  "payload": {
+    "law": "LAW-020",
+    "relation": "dietary_lipid OPENS_GATE micellar_bioavailability (carotenoids)",
+    "finding": "intrinsic food lipid (avocado) significantly raises carotenoid absorption — the same gate added lipid opens"
+  },
+  "source": {
+    "kind": "pubmed",
+    "pmid": "15735074",
+    "citation": "Unlu NZ et al. Carotenoid absorption from salad and salsa with avocado or avocado oil. J Nutr. 2005;135(3):431-436."
+  },
+  "contributor": "example",
+  "submitted": "2026-07-25",
+  "notes": "ACCEPTED — resolves to LAW-020 and carries a primary human PMID."
+}
