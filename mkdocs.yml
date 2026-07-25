@@ -63,6 +63,7 @@ nav:
   - Claim auditor: claim-auditor.md
   - Validation report: VALIDATION.md
   - Validation ledger: VALIDATION_LEDGER.md
+  - Contributing data: contributing-data.md
   - Standardization roadmap: standardization-roadmap.md
   - Cookbook:
       - Overview: cookbook/index.md

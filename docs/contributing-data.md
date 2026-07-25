@@ -7,7 +7,7 @@ crowd can only ever *strengthen* the register — never weaken its epistemics.
 
 A contribution is a small JSON file. You add one, open a PR, and CI validates it
 with `biology_as_code.contrib.validate_contribution`
-(see [`tests/test_contribution.py`](../tests/test_contribution.py)). The verdict is
+(see [`tests/test_contribution.py`](https://github.com/murffious/biology_as_code/blob/main/tests/test_contribution.py)). The verdict is
 one of three:
 
 | Verdict | Meaning |
@@ -52,7 +52,7 @@ tier of rules the whole engine already uses.
   one; magnitudes always do.
 - **`strength`** is assigned by review on the ledger's 0–5 scale — leave it out.
 
-Three worked examples live in [`examples/contributions/`](../examples/contributions):
+Three worked examples live in [`examples/contributions/`](https://github.com/murffious/biology_as_code/tree/main/examples/contributions):
 one `ACCEPTED`, one `NEEDS_SOURCE`, one `REFUSE`.
 
 ## How to submit
