@@ -20,7 +20,7 @@
       "value": false,
       "concurrency": "same_meal",
       "derivation": "structural",
-      "rationale": "steamed brassica alone; no fat added and none intrinsic"
+      "rationale": "steamed brassica alone; negligible intrinsic lipid, below the micellar-formation threshold (Brown 2004, AJCN 80:396)"
     }
   ],
   "injection_zone": "zone1_matrix",

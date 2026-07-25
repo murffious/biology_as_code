@@ -52,14 +52,30 @@ LIPID_PHASE: dict[str, tuple[bool, str]] = {
     "walnut_oil": (True, "an extracted oil is a lipid phase by construction"),
     "canola_oil_dressing": (True, "oil-based dressing; lipid phase is the vehicle"),
     "butter": (True, "butterfat is the majority component by definition of the product"),
-    "avocado": (True, "intrinsic lipid is the defining macronutrient of the fruit"),
+    "avocado": (
+        True,
+        "intrinsic lipid is the defining macronutrient; avocado lipid raises "
+        "carotenoid absorption in humans (Unlu 2005, J Nutr 135:431)",
+    ),
     "salmon_fillet": (True, "oily fish; intrinsic lipid present in all forms of the fillet"),
     "egg_whole": (True, "yolk lipid is present in any whole egg"),
     "cheddar_cheese": (True, "a full-fat hard cheese by product definition"),
     "walnut_whole": (True, "intrinsic nut lipid"),
-    "spinach_raw": (False, "leafy green eaten alone; no lipid phase in the meal"),
-    "kale_raw": (False, "leafy green eaten alone; no lipid phase in the meal"),
-    "broccoli_steamed": (False, "steamed brassica alone; no fat added and none intrinsic"),
+    "spinach_raw": (
+        False,
+        "leafy green eaten alone; trace intrinsic lipid is below the fat threshold "
+        "for micellar carotenoid uptake (Brown 2004, AJCN 80:396)",
+    ),
+    "kale_raw": (
+        False,
+        "leafy green eaten alone; trace intrinsic lipid is below the micellar fat "
+        "threshold (Brown 2004, AJCN 80:396)",
+    ),
+    "broccoli_steamed": (
+        False,
+        "steamed brassica alone; negligible intrinsic lipid, below the "
+        "micellar-formation threshold (Brown 2004, AJCN 80:396)",
+    ),
     "soda_cola": (False, "sugar-water formulation; contains no lipid"),
     "orange_juice": (False, "expressed juice; lipid absent"),
 }

@@ -15,16 +15,17 @@ Draft only. Do not submit until the items below are resolved.
 
 ## Claims in the paper that need a citation before submission
 
-Two quantitative claims currently appear **without** a reference, because the source
+One quantitative claim remains **without** a reference, because the source
 was not verified to this repository's standard. Either verify and cite, or soften the
 sentence. Do not paper over it with an approximate citation.
 
-1. **"discordant classifications for between 5% and 37% of the same 15,342 foods,
-   and ... most published models had never been validated."** This is the load-bearing
-   number in the Statement of Need. The source is a nutrient-profiling model validation
-   study in the *British Journal of Nutrition* (PubMed 30015603) comparing FSANZ,
-   Nutri-Score, HCST, EURO and PAHO against the Ofcom reference. **Author list, year,
-   volume and DOI are unverified here.** Resolve via PubMed 30015603.
+1. ~~**"discordant classifications for between 5% and 37% of the same 15,342 foods,
+   and ... most published models had never been validated."**~~ **RESOLVED
+   (2026-07):** verified against the primary record and cited as `poon2018` in
+   `paper.bib` / `paper.md`. Poon T, Labonté M-È, Mulligan C, Ahmed M, Dickinson KM,
+   L'Abbé MR. *Br J Nutr.* 2018;120(5):567–582. PMID 30015603, DOI
+   10.1017/S0007114518001575. The paper's numbers match the source
+   (5.3/8.3/22.0/33.4/37.0%).
 
 2. Any statement about ultra-processed food intake or Hall's controlled-feeding trial
    was deliberately left out of this draft rather than cited from memory. If you want

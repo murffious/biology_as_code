@@ -20,7 +20,7 @@
       "value": true,
       "concurrency": "same_meal",
       "derivation": "structural",
-      "rationale": "intrinsic lipid is the defining macronutrient of the fruit"
+      "rationale": "intrinsic lipid is the defining macronutrient; avocado lipid raises carotenoid absorption in humans (Unlu 2005, J Nutr 135:431)"
     }
   ],
   "injection_zone": "zone1_matrix",

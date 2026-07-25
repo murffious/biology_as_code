@@ -20,7 +20,7 @@
       "value": false,
       "concurrency": "same_meal",
       "derivation": "structural",
-      "rationale": "leafy green eaten alone; no lipid phase in the meal"
+      "rationale": "leafy green eaten alone; trace intrinsic lipid is below the micellar fat threshold (Brown 2004, AJCN 80:396)"
     }
   ],
   "injection_zone": "zone1_matrix",

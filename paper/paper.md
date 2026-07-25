@@ -43,7 +43,7 @@ Software that scores food is abundant; software that can be interrogated about
 regulation and consumer applications, yet a validation study of five regional models
 against a reference model found discordant classifications for between 5% and 37% of
 the same 15,342 foods, and reported that most published models had never been
-validated at all. Divergence of that magnitude on identical inputs indicates absent
+validated at all [@poon2018]. Divergence of that magnitude on identical inputs indicates absent
 specification rather than genuine scientific disagreement, and it is not diagnosable
 from the outputs alone.
 

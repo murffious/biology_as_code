@@ -99,6 +99,14 @@ class BoundRule:
 # Hydrophobic cargo needs a lipid phase for micellar presentation (LAW-020), and
 # absorbed cargo leaves the enterocyte by chylomicron/lymph (LAW-045). With no
 # lipid phase declared in the meal, the path is shut rather than narrowed.
+#
+# Human evidence for the categorical (not merely magnitude) reading: with a
+# fat-free salad, carotenoid appearance in chylomicrons is negligible; optimal
+# absorption needs >6 g fat (Brown et al. 2004, Am J Clin Nutr 80:396-403).
+# Intrinsic food lipid opens the same gate as added lipid — avocado's own lipid
+# significantly raises carotenoid absorption (Unlu et al. 2005, J Nutr 135:431-436,
+# PMID 15735074). LAW-020 is the load-bearing citation here; LAW-045 is the
+# downstream chylomicron-export step that dietary lipid feeds as TAG substrate.
 
 _FAT_VEHICLE_NOTE = (
     "dietary lipid co-present required for micellar presentation of hydrophobic cargo"
@@ -179,7 +187,11 @@ BOUND_RULES: tuple[BoundRule, ...] = (
         triggered_by="calcium_same_meal",
         predicate="true",
         direction="NARROWS_BOUND",
-        note="competitive luminal interaction; magnitude effect, not a categorical gate",
+        note=(
+            "competitive luminal interaction; magnitude effect, not a categorical gate. "
+            "Meal-level only: single-dose inhibition appears at >=800 mg but attenuates "
+            "to nil over a whole diet (Gaitan et al. 2011, J Nutr 141:1652-1656)"
+        ),
         law_refs=("LAW-047",),
     ),
     BoundRule(
