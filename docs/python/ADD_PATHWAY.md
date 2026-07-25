@@ -10,9 +10,9 @@ Reference implementations:
 
 | Example | Why it is a good model |
 |---------|------------------------|
-| [`ketolysis.py`](../../src/biology_as_code/pathways/ketolysis.py) + [`tests/test_ketolysis.py`](../../tests/test_ketolysis.py) | Single pathway, references, clinical teaching point |
-| [`amino_acid_catabolism.py`](../../src/biology_as_code/pathways/amino_acid_catabolism.py) | Multi-graph module, `mechanism_id` links, `extra_summary` |
-| [`packs/COVERAGE.md`](../../src/biology_as_code/pathways/packs/COVERAGE.md) | Honest map of graphs vs gaps |
+| [`ketolysis.py`](https://github.com/murffious/biology_as_code/blob/main/src/biology_as_code/pathways/ketolysis.py) + [`tests/test_ketolysis.py`](https://github.com/murffious/biology_as_code/blob/main/tests/test_ketolysis.py) | Single pathway, references, clinical teaching point |
+| [`amino_acid_catabolism.py`](https://github.com/murffious/biology_as_code/blob/main/src/biology_as_code/pathways/amino_acid_catabolism.py) | Multi-graph module, `mechanism_id` links, `extra_summary` |
+| [`packs/COVERAGE.md`](https://github.com/murffious/biology_as_code/blob/main/src/biology_as_code/pathways/packs/COVERAGE.md) | Honest map of graphs vs gaps |
 
 Copy-paste assets:
 
@@ -217,7 +217,7 @@ Is this a node/edge teaching process?
 
 ## Related
 
-- [CONTRIBUTING.md](../../CONTRIBUTING.md) — data vs code, brand invariants  
+- [CONTRIBUTING.md](https://github.com/murffious/biology_as_code/blob/main/CONTRIBUTING.md) — data vs code, brand invariants  
 - [PACKAGE_ARCHITECTURE.md](PACKAGE_ARCHITECTURE.md) — layout judgment  
 - [docs/contributing-data.md](../contributing-data.md) — evidence / claims  
 - Packs: `src/biology_as_code/pathways/packs/`
