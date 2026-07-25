@@ -240,7 +240,7 @@ def test_confirmed_is_never_emitted_by_a_mechanism_walk():
 
 
 def test_coverage_is_honestly_mostly_unevaluable():
-    """41 of 47 packets are stubs; the auditor must say so rather than guess."""
+    """40 of 46 packets are stubs; the auditor must say so rather than guess."""
     packets = list(iter_packets())
     coverage = audit_packet_coverage(packets, "beta_carotene")
     assert coverage["UNEVALUABLE"] > coverage.get("Plausible", 0)
