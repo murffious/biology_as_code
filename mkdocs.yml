@@ -1,0 +1,79 @@
+site_name: Biology as Code
+site_description: Standardizing Nutrition Science for Preventive Medicine — companion site
+site_url: https://murffious.github.io/biology_as_code/
+repo_url: https://github.com/murffious/biology_as_code
+repo_name: murffious/biology_as_code
+edit_uri: edit/main/docs/
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - content.action.edit
+    - search.highlight
+  icon:
+    repo: fontawesome/brands/github
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        # Renders the pathway .mermaid graphs inline rather than as code blocks.
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+  - Home: index.md
+  - Constitution: constitution.md
+  - Claim auditor: claim-auditor.md
+  - Cookbook:
+      - Overview: cookbook/index.md
+      - 1. Gate vs Bound (iron): cookbook/01-gate-vs-bound.md
+      - 2. The fat-vehicle gate: cookbook/02-fat-vehicle-gate.md
+      - 3. Matrix effect (almond): cookbook/03-matrix-effect.md
+      - 4. Auditing a real claim: cookbook/04-claim-audit.md
+  - Architecture:
+      - Package: python/PACKAGE_ARCHITECTURE.md
+      - Publishing: python/PUBLISHING.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/murffious/biology_as_code
+  generator: false
+
+copyright: MIT licensed. FLOW teaching / research software — not medical advice.

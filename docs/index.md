@@ -4,7 +4,7 @@
 
 Public companion site — **not the full book**.
 
-[Constitution (short)](constitution.md) · [Claim auditor](claim-auditor.md) · [Schemas](../schemas/) · [Example foods](../examples/foods/) · [GitHub](https://github.com/murffious/biology_as_code)
+[Constitution (short)](constitution.md) · [Claim auditor](claim-auditor.md) · [Cookbook](cookbook/index.md) · [Schemas](https://github.com/murffious/biology_as_code/tree/main/schemas) · [Example foods](https://github.com/murffious/biology_as_code/tree/main/examples/foods) · [GitHub](https://github.com/murffious/biology_as_code)
 
 ---
 

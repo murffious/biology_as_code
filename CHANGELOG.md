@@ -31,6 +31,20 @@ All notable changes to the **biology-as-code** Python package are documented her
   and coverage of all three teaching pairs (iron/ascorbate vs tannin, fat-vehicle
   gate, almond matrix).
 - Docs: `docs/claim-auditor.md`.
+- **MkDocs Material documentation site** (`mkdocs.yml`) with a four-lab **cookbook**
+  under `docs/cookbook/`: Gate vs Bound (iron/ascorbate vs tannin), the fat-vehicle
+  gate (carotenoids), the matrix effect (whole almond vs flour), and auditing a real
+  marketing claim. Each lab runs against shipped packets and laws.
+- `scripts/build_notebooks.py` generates Colab-ready `notebooks/*.ipynb` from the
+  cookbook markdown, so the site and the classroom cannot disagree. `--check` mode
+  fails CI when a notebook is stale.
+- `tests/test_cookbook.py` executes every `python` block in the cookbook (one shared
+  namespace per page), so a public-API rename breaks the build instead of silently
+  leaving a broken lab published.
+- `.github/workflows/docs.yml` builds the site with `mkdocs build --strict` on pushes
+  and PRs, and deploys only from `main`.
+- `docs` optional-dependency extra (`pip install -e ".[docs]"`). Runtime stays
+  zero-dependency.
 
 ### Changed
 
@@ -39,6 +53,9 @@ All notable changes to the **biology-as-code** Python package are documented her
   land unnoticed.
 - CI gained a coverage job with a 90% floor on `audit` and `packets` (currently 92%),
   so an unexercised branch in the fail-closed core cannot silently become a pass.
+- Documentation moved from Jekyll (`remote_theme: pages-themes/minimal`) to MkDocs
+  Material. `docs/_config.yml` and the hand-written `docs/index.html` landing page
+  are removed, and `.github/workflows/pages.yml` is replaced by `docs.yml`.
 
 ### Fixed
 
@@ -46,6 +63,8 @@ All notable changes to the **biology-as-code** Python package are documented her
   `bool` subclasses `int`. JSON separates the two; `True` is no longer a valid number.
 - Keyword-coverage walker descended into `properties` and reported every property
   *name* as an unsupported keyword.
+- `docs/index.md` linked `../schemas/` and `../examples/foods/`, which resolved only
+  because Jekyll served `docs/` as raw files. Now absolute repository URLs.
 
 ## [0.1.0] — 2026-07-24
 
