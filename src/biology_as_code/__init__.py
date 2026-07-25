@@ -21,6 +21,10 @@ from biology_as_code.audit import Claim, ClaimAudit, audit_claim
 # Dig helpers
 from biology_as_code.dig import Bolus, DigestiveFlowSimulator, build_absorption_plan
 
+# Digestion engine — how the body handles a standardized food under conditions
+# (the auditor's sibling: (packet, conditions) -> trace, same gate/bound physiology)
+from biology_as_code.digestion import Conditions, DigestionTrace, digest
+
 # Evidence / provenance (offline, no fabricated citations)
 from biology_as_code.evidence import all_sources, law_evidence, pubmed_url
 
@@ -59,6 +63,8 @@ __all__ = [
     "Bolus",
     "Claim",
     "ClaimAudit",
+    "Conditions",
+    "DigestionTrace",
     "DigestiveFlowSimulator",
     "FoodPayload",
     "KIBOEngine",
@@ -69,6 +75,7 @@ __all__ = [
     "all_sources",
     "audit_claim",
     "build_absorption_plan",
+    "digest",
     "exercise",
     "FoodPacket",
     "fed",
