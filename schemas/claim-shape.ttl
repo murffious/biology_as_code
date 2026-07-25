@@ -1,0 +1,120 @@
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+@prefix aca:  <https://w3id.org/assay/aca/> .
+@prefix pav:  <http://purl.org/pav/> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+# =====================================================================
+# SHACL shapes for the Assay claim-object (SCHEMA.md).
+# Run in the pipeline BEFORE publish (TASKS.md P0.2). Fail = do not publish.
+# Property paths assume the RDF projection of the JSON-LD in SCHEMA.md;
+# align path names to your actual predicates. Stub — extend as the model grows.
+# =====================================================================
+
+# Prefix declarations for the SPARQL constraints below.
+aca:_prefixes
+    sh:declare [ sh:prefix "aca" ; sh:namespace "https://w3id.org/assay/aca/"^^xsd:anyURI ] ;
+    sh:declare [ sh:prefix "pav" ; sh:namespace "http://purl.org/pav/"^^xsd:anyURI ] .
+
+# ------------------------- Claim -------------------------
+aca:ClaimShape a sh:NodeShape ;
+    sh:targetClass aca:Claim ;
+
+    sh:property [
+        sh:path aca:claimId ;
+        sh:datatype xsd:string ;
+        sh:pattern "^assay:claim/[0-9a-f]{16,}$" ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "claim_id must be a content hash (assay:claim/<16+ hex>)." ] ;
+
+    sh:property [
+        sh:path aca:hasVerdict ;
+        sh:in ( aca:Busted aca:Plausible aca:Confirmed ) ;
+        sh:minCount 1 ; sh:maxCount 1 ;
+        sh:message "verdict must be exactly one of Busted / Plausible / Confirmed." ] ;
+
+    sh:property [
+        sh:path aca:hasLifecycleState ;
+        sh:in ( aca:Draft aca:Grounded aca:Assessed aca:Published
+                aca:Contested aca:Regraded aca:Superseded aca:Withdrawn ) ;
+        sh:minCount 1 ;
+        sh:message "lifecycle state must be a known ACA state." ] ;
+
+    sh:property [
+        sh:path aca:rubricVersion ;
+        sh:datatype xsd:string ;
+        sh:pattern "^[0-9]+\\.[0-9]+\\.[0-9]+$" ;
+        sh:message "rubricVersion must be semver." ] ;
+
+    sh:property [
+        sh:path pav:version ;
+        sh:datatype xsd:integer ;
+        sh:minCount 1 ;
+        sh:message "every claim carries an integer version." ] ;
+
+    sh:property [
+        sh:path aca:hasAtomicClaim ;
+        sh:minCount 1 ;
+        sh:message "a claim must decompose into at least one atomic claim." ] ;
+
+    # ---- cross-field invariants ----
+    sh:sparql [
+        sh:message "A Confirmed claim may not depend on retracted evidence." ;
+        sh:prefixes aca:_prefixes ;
+        sh:select """
+            SELECT $this WHERE {
+              $this aca:hasVerdict aca:Confirmed .
+              $this aca:dependsOnEvidence ?e .
+              ?e aca:hasEvidenceStatus aca:Retracted .
+            }""" ] ;
+
+    sh:sparql [
+        sh:message "A Published claim must carry a verdict." ;
+        sh:prefixes aca:_prefixes ;
+        sh:select """
+            SELECT $this WHERE {
+              $this aca:hasLifecycleState aca:Published .
+              FILTER NOT EXISTS { $this aca:hasVerdict ?v }
+            }""" ] ;
+
+    sh:sparql [
+        sh:message "A superseding claim must have a higher version than the claim it supersedes." ;
+        sh:prefixes aca:_prefixes ;
+        sh:select """
+            SELECT $this WHERE {
+              $this aca:supersedes ?old .
+              $this pav:version ?vn . ?old pav:version ?vo .
+              FILTER( ?vn <= ?vo )
+            }""" ] .
+
+# ------------------------- Atomic claim -------------------------
+aca:AtomicClaimShape a sh:NodeShape ;
+    sh:targetClass aca:AtomicClaim ;
+    sh:property [ sh:path aca:subjectFood ; sh:pattern "^FOODON:" ;
+        sh:message "subject food must be a FoodOn IRI." ] ;
+    sh:property [ sh:path aca:predicate ; sh:pattern "^biolink:" ;
+        sh:message "predicate must be a Biolink predicate." ] ;
+    sh:property [ sh:path aca:outcome ; sh:pattern "^(MONDO|HP|EFO|PATO|OBA):" ;
+        sh:message "outcome must resolve to an outcome ontology (MONDO/HP/EFO/PATO/OBA)." ] .
+
+# ------------------------- Evidence item -------------------------
+aca:EvidenceItemShape a sh:NodeShape ;
+    sh:targetClass aca:EvidenceItem ;
+
+    sh:property [ sh:path aca:ecoType ; sh:pattern "^ECO:" ; sh:minCount 1 ;
+        sh:message "evidence must be typed by ECO." ] ;
+    sh:property [ sh:path aca:obiDesign ; sh:pattern "^OBI:" ; sh:minCount 1 ;
+        sh:message "study design must be an OBI term." ] ;
+    sh:property [ sh:path aca:penaltyWeight ; sh:datatype xsd:decimal ;
+        sh:minInclusive 0.0 ; sh:maxInclusive 1.0 ;
+        sh:message "penaltyWeight must be in [0,1]." ] ;
+
+    sh:sparql [
+        sh:message "Penalised or flagged evidence must carry an explicit penaltyWeight." ;
+        sh:prefixes aca:_prefixes ;
+        sh:select """
+            SELECT $this WHERE {
+              $this aca:hasEvidenceStatus ?s .
+              FILTER( ?s IN ( aca:Retracted, aca:PartiallyRetracted,
+                              aca:ExpressionOfConcern, aca:FailedReplication ) ) .
+              FILTER NOT EXISTS { $this aca:penaltyWeight ?w }
+            }""" ] .

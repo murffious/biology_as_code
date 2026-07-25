@@ -1,0 +1,106 @@
+@prefix aca:     <https://w3id.org/assay/aca/> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+
+# =====================================================================
+# Assay Claim Assessment (ACA) — the ONLY vocabulary Assay authors.
+# Verdicts, stress-test attacks, claim lifecycle, evidence penalty.
+# Everything else is imported (FoodOn, ChEBI, MONDO, ECO, OBI, Biolink…).
+# Orthogonal to ECO/SEPIO/PROV-O by design (OBO discipline: never duplicate).
+# Publishable stub — refine axioms before an OBO Foundry submission.
+# =====================================================================
+
+<https://w3id.org/assay/aca> a owl:Ontology ;
+    dcterms:title "Assay Claim Assessment (ACA)" ;
+    dcterms:description "Verdicts, stress-test attacks, claim lifecycle, and evidence penalty status for catalogued nutrition claims." ;
+    owl:versionInfo "0.1.0" ;
+    dcterms:license <https://creativecommons.org/publicdomain/zero/1.0/> .
+
+# ---------------------- Core objects ----------------------
+aca:Claim a owl:Class ; rdfs:label "claim" ;
+    rdfs:comment "A nutrition claim collected from the wild and catalogued." ;
+    rdfs:seeAlso <https://schema.org/Claim> .
+
+aca:AtomicClaim a owl:Class ; rdfs:label "atomic claim" ;
+    rdfs:comment "One indivisible assertion (AIDA-style) within a claim." .
+
+aca:EvidenceItem a owl:Class ; rdfs:label "evidence item" ;
+    rdfs:comment "A single study/finding for or against an atomic claim; typed by ECO + OBI." ;
+    rdfs:seeAlso <http://purl.obolibrary.org/obo/eco.owl> .
+
+# ---------------------- Verdicts ----------------------
+aca:Verdict a owl:Class ; rdfs:label "verdict" .
+aca:Busted    a owl:NamedIndividual, aca:Verdict ; rdfs:label "Busted" .
+aca:Plausible a owl:NamedIndividual, aca:Verdict ; rdfs:label "Plausible" .
+aca:Confirmed a owl:NamedIndividual, aca:Verdict ; rdfs:label "Confirmed" .
+
+# ---------------------- Stress-test attacks ----------------------
+aca:Attack a owl:Class ; rdfs:label "stress-test attack" ;
+    rdfs:comment "One adversarial test in the gauntlet; interrogates a specific ECO evidence type." .
+aca:AtomizationAttack        rdfs:subClassOf aca:Attack ; rdfs:label "atomization attack" .
+aca:HumanEvidenceAttack      rdfs:subClassOf aca:Attack ; rdfs:label "human-evidence attack" .
+aca:DoseFormAttack           rdfs:subClassOf aca:Attack ; rdfs:label "dose & form attack" .
+aca:MechanismVsOutcomeAttack rdfs:subClassOf aca:Attack ; rdfs:label "mechanism-vs-outcome attack" .
+aca:EffectSizeAttack         rdfs:subClassOf aca:Attack ; rdfs:label "effect-size attack" .
+aca:ConfoundingAttack        rdfs:subClassOf aca:Attack ; rdfs:label "confounding & funding attack" .
+aca:SuperlativeAttack        rdfs:subClassOf aca:Attack ; rdfs:label "superlative attack" .
+aca:ReplicationAttack        rdfs:subClassOf aca:Attack ; rdfs:label "replication attack" .
+
+# ---------------------- Claim lifecycle ----------------------
+aca:LifecycleState a owl:Class ; rdfs:label "claim lifecycle state" .
+aca:Draft      a owl:NamedIndividual, aca:LifecycleState ; rdfs:label "draft" .
+aca:Grounded   a owl:NamedIndividual, aca:LifecycleState ; rdfs:label "grounded" .
+aca:Assessed   a owl:NamedIndividual, aca:LifecycleState ; rdfs:label "assessed" .
+aca:Published  a owl:NamedIndividual, aca:LifecycleState ; rdfs:label "published" .
+aca:Contested  a owl:NamedIndividual, aca:LifecycleState ; rdfs:label "contested" ;
+    rdfs:comment "New counter-evidence, or a penalty on cited evidence, has arrived." .
+aca:Regraded   a owl:NamedIndividual, aca:LifecycleState ; rdfs:label "regraded" ;
+    rdfs:comment "Re-scored after its evidence base changed; yields a new version." .
+aca:Superseded a owl:NamedIndividual, aca:LifecycleState ; rdfs:label "superseded" .
+aca:Withdrawn  a owl:NamedIndividual, aca:LifecycleState ; rdfs:label "withdrawn" .
+
+# ---------------------- Evidence penalty status ----------------------
+# Populated from the open Crossref / Retraction Watch retraction data;
+# encoded per NISO CREC (RP-45-2024); reasons per COPE.
+aca:EvidenceStatus a owl:Class ; rdfs:label "evidence status" ;
+    rdfs:seeAlso <https://www.niso.org/publications/rp-45-2024-crec> ;
+    skos:note "Values align to NISO CREC and are set from Crossref/Retraction Watch open data." .
+aca:Sound               a owl:NamedIndividual, aca:EvidenceStatus ; rdfs:label "sound" ; aca:defaultPenalty 0.0 .
+aca:Corrected           a owl:NamedIndividual, aca:EvidenceStatus ; rdfs:label "corrected" ; aca:defaultPenalty 0.1 .
+aca:ExpressionOfConcern a owl:NamedIndividual, aca:EvidenceStatus ; rdfs:label "expression of concern" ;
+    rdfs:comment "Provisional; down-weight pending resolution." ; aca:defaultPenalty 0.5 ;
+    rdfs:seeAlso <https://publicationethics.org/> .
+aca:FailedReplication   a owl:NamedIndividual, aca:EvidenceStatus ; rdfs:label "failed replication" ;
+    rdfs:comment "Original may stand; penalty scaled to replication power/quality." ; aca:defaultPenalty 0.4 .
+aca:PartiallyRetracted  a owl:NamedIndividual, aca:EvidenceStatus ; rdfs:label "partially retracted" ; aca:defaultPenalty 0.6 .
+aca:EvidenceSuperseded  a owl:NamedIndividual, aca:EvidenceStatus ; rdfs:label "superseded (evidence)" ;
+    rdfs:comment "Not false — down-weighted in favour of stronger/newer evidence." ; aca:defaultPenalty 0.3 .
+aca:Retracted           a owl:NamedIndividual, aca:EvidenceStatus ; rdfs:label "retracted" ; aca:defaultPenalty 1.0 .
+aca:Reinstated          a owl:NamedIndividual, aca:EvidenceStatus ; rdfs:label "reinstated" ; aca:defaultPenalty 0.0 .
+
+# A penalty is itself an auditable event (who/what/when).
+aca:PenaltyEvent a owl:Class ; rdfs:subClassOf prov:Activity ; rdfs:label "penalty event" ;
+    rdfs:comment "Records the source and time that set an evidence status; keeps every down-weight non-arbitrary." .
+
+# ---------------------- Properties ----------------------
+aca:hasVerdict        a owl:ObjectProperty ; rdfs:domain aca:Claim ; rdfs:range aca:Verdict .
+aca:survivedAttack    a owl:ObjectProperty ; rdfs:domain aca:Claim ; rdfs:range aca:Attack .
+aca:failedAttack      a owl:ObjectProperty ; rdfs:domain aca:Claim ; rdfs:range aca:Attack .
+aca:hasLifecycleState a owl:ObjectProperty ; rdfs:domain aca:Claim ; rdfs:range aca:LifecycleState .
+aca:supersedes        a owl:ObjectProperty ; rdfs:domain aca:Claim ; rdfs:range aca:Claim .
+aca:dependsOnEvidence a owl:ObjectProperty ; rdfs:domain aca:Claim ; rdfs:range aca:EvidenceItem ;
+    rdfs:comment "Load-bearing edge: a penalty on the target triggers re-grade of the source claim." .
+aca:hasEvidenceStatus a owl:ObjectProperty ; rdfs:domain aca:EvidenceItem ; rdfs:range aca:EvidenceStatus .
+aca:hasPenaltyEvent   a owl:ObjectProperty ; rdfs:domain aca:EvidenceItem ; rdfs:range aca:PenaltyEvent .
+
+aca:defaultPenalty  a owl:DatatypeProperty ; rdfs:range xsd:decimal ;
+    rdfs:comment "Prior penalty weight [0,1] for a status; the engine may refine per case." .
+aca:penaltyWeight   a owl:DatatypeProperty ; rdfs:domain aca:EvidenceItem ; rdfs:range xsd:decimal ;
+    rdfs:comment "Applied weight [0,1]; evidence contribution is multiplied by (1 - penaltyWeight). Monotone: raising it can only lower a claim's confidence." .
+aca:rubricVersion   a owl:DatatypeProperty ; rdfs:range xsd:string .
+aca:gradeConfidence a owl:DatatypeProperty ; rdfs:range xsd:decimal .
