@@ -60,6 +60,7 @@ nav:
   - Home: index.md
   - Constitution: constitution.md
   - Claim auditor: claim-auditor.md
+  - Validation report: VALIDATION.md
   - Cookbook:
       - Overview: cookbook/index.md
       - 1. Gate vs Bound (iron): cookbook/01-gate-vs-bound.md

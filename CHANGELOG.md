@@ -45,6 +45,24 @@ All notable changes to the **biology-as-code** Python package are documented her
   and PRs, and deploys only from `main`.
 - `docs` optional-dependency extra (`pip install -e ".[docs]"`). Runtime stays
   zero-dependency.
+- **JOSS paper draft** under `paper/` (`paper.md`, `paper.bib`) plus
+  `paper/SUBMISSION.md`, which lists the blocking items — ORCID, two unverified
+  bibliographic records, and one load-bearing statistic deliberately left uncited
+  rather than sourced from memory.
+- **`docs/VALIDATION.md`**: a tiered validation report separating what is
+  structurally tested from what is `FLOW` teaching scaffolding, with an explicit
+  "not verified" table and a ranked list of what would raise each tier.
+- **`tests/test_version_manifest.py`**: integrity harness over
+  `VERSION_MANIFEST.json` — version agreement across pyproject / manifest /
+  `CITATION.cff` / runtime, every component module and data artifact path resolving,
+  tier values drawn from a known vocabulary, and skeleton artifacts required to
+  declare `magnitude_locked`.
+- `.zenodo.json` for machine-readable deposit metadata on tagged releases.
+- CI, docs, Python and license badges in the README, plus links to the site,
+  cookbook and validation report.
+- `ClaimAudit.constitution_state`, mapping schema verdicts onto the four states in
+  `docs/constitution.md`. Read-only view; absent from `to_dict()`, so schema
+  conformance is unchanged.
 
 ### Changed
 
@@ -65,6 +83,14 @@ All notable changes to the **biology-as-code** Python package are documented her
   *name* as an unsupported keyword.
 - `docs/index.md` linked `../schemas/` and `../examples/foods/`, which resolved only
   because Jekyll served `docs/` as raw files. Now absolute repository URLs.
+- `VERSION_MANIFEST.json` advertised `compatibility.python: ">=3.10"` while
+  `pyproject.toml` required `>=3.11`, so the manifest claimed support for a Python
+  the package rejects at install.
+- The `evidence_pubmed` manifest component pointed at `evidence_pubmed.py`, which no
+  longer exists; the module is `evidence.py`.
+- The `path_colon_scfa_atomic` artifact is tier `UNITS_skeleton` and carries 24
+  numeric coefficients but did not declare `magnitude_locked`. Now declared `false`,
+  matching the other skeleton artifacts.
 
 ## [0.1.0] — 2026-07-24
 

@@ -65,7 +65,7 @@
     "evidence_pubmed": {
       "id": "evidence_pubmed",
       "version": "1.0.0",
-      "module": "evidence_pubmed.py",
+      "module": "evidence.py",
       "tier": "EVIDENCE",
       "notes": "Local Docker PubMed first; online optional"
     }
@@ -76,12 +76,18 @@
       "version": "0.2.0",
       "tier": "UNITS_skeleton",
       "magnitude_locked": false,
-      "energy_kcal_per_g_fermentable": { "low": 1.5, "mid": 2.0, "high": 2.5, "locked": false }
+      "energy_kcal_per_g_fermentable": {
+        "low": 1.5,
+        "mid": 2.0,
+        "high": 2.5,
+        "locked": false
+      }
     },
     "path_colon_scfa_atomic": {
       "path": "kibo_core/data/path_colon_scfa.atomic.json",
       "version": "0.1.0",
-      "tier": "UNITS_skeleton"
+      "tier": "UNITS_skeleton",
+      "magnitude_locked": false
     },
     "evidence_candidates_LAW026": {
       "path": "kibo_core/data/evidence_candidates_LAW026.json",
@@ -101,7 +107,7 @@
     }
   },
   "compatibility": {
-    "python": ">=3.10",
+    "python": ">=3.11",
     "meal_report_keys": [
       "colonic_medium",
       "scfa",

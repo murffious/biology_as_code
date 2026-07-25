@@ -2,7 +2,13 @@
 
 **Standardizing Nutrition Science for Preventive Medicine**
 
+[![CI](https://github.com/murffious/biology_as_code/actions/workflows/ci.yml/badge.svg)](https://github.com/murffious/biology_as_code/actions/workflows/ci.yml)
+[![Docs](https://github.com/murffious/biology_as_code/actions/workflows/docs.yml/badge.svg)](https://github.com/murffious/biology_as_code/actions/workflows/docs.yml)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21536449.svg)](https://doi.org/10.5281/zenodo.21536449)
+[![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-blue)](https://pypi.org/project/biology-as-code/)
+[![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/murffious/biology_as_code/blob/main/LICENSE)
+
+**[Documentation](https://murffious.github.io/biology_as_code/)** · [Cookbook](https://murffious.github.io/biology_as_code/cookbook/) · [Validation report](https://murffious.github.io/biology_as_code/VALIDATION/)
 
 `biology-as-code` is an open Python package that models what happens to a meal —
 digestion, absorption, and the metabolic pathways it drives — as inspectable
