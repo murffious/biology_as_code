@@ -101,5 +101,6 @@ number into a backlog: every `UNEVALUABLE` is a packet waiting for a sourced fac
    packet is a stub. What single field would decide it?
 2. `Confirmed` is in the schema but the auditor never emits it. Write the argument
    for what evidence would have to exist before a verdict could be promoted.
-3. The constitution lists four states (HOLDS, UNEVALUABLE, REFUSE, OPEN) and the
-   schema lists five verdicts. Map them. Which state has no schema home?
+3. The constitution lists five states (HOLDS, UNEVALUABLE, REFUSE, OPEN, REFUTED)
+   and the schema lists five verdicts. Map them. Which state has no schema home,
+   and which verdict has no state of its own?

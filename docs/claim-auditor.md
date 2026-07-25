@@ -145,7 +145,7 @@ writes a magnitude or closes `label_amount`.
 
 ## Two vocabularies, and a gap between them
 
-`docs/constitution.md` defines four states. `schemas/claim_audit.schema.json`
+`docs/constitution.md` defines five states. `schemas/claim_audit.schema.json`
 defines five verdicts. They overlap on two names and are not the same axis: the
 constitution's states answer *can this be evaluated*, the schema's verdicts answer
 *what is the result*.
@@ -159,7 +159,7 @@ constitution's states answer *can this be evaluated*, the schema's verdicts answ
 | `Confirmed` | `HOLDS` | never emitted by a mechanism walk |
 | `UNEVALUABLE` (gate passed) | `OPEN` | path ran, magnitude or endpoint unlocked |
 | `UNEVALUABLE` (gate unknown) | `UNEVALUABLE` | a required field is missing |
-| `Busted` | `REFUTED` | **not one of the four states** |
+| `Busted` | `REFUTED` | the fifth state — evaluated, and false |
 
 Two things fall out of writing this down.
 
@@ -169,11 +169,13 @@ schema has no `OPEN`, so both collapsed into one verdict. `constitution_state`
 splits them again on whether the gate resolved — the spinach-with-oil case is
 `OPEN`, a stub packet is `UNEVALUABLE`.
 
-**`Busted` has nowhere to live.** None of the four states means "evaluated, and
-false." Forcing it into `REFUSE` would conflate declining to evaluate with
-returning a negative result, which is the exact collapse this package exists to
-prevent, so the property reports `REFUTED` instead.
+**`Busted` needed its own state.** None of the original four states meant
+"evaluated, and false." Forcing it into `REFUSE` would conflate declining to
+evaluate with returning a negative result, which is the exact collapse this package
+exists to prevent, so the property reports `REFUTED`.
 
-Resolving that means either adding a fifth state to the constitution or accepting
-that the two vocabularies answer different questions. Both are authorial calls, so
-the code surfaces the gap rather than picking for you.
+That gap is now resolved in the constitution rather than left to the reader:
+`REFUTED` is the fifth state — *mechanism walk completed and contradicted the
+claim*. It stays distinct from `REFUSE` (declined to evaluate) and from
+`UNEVALUABLE` (a required field is missing). A refutation is a determinate result,
+not an absence, so it earns a name of its own.

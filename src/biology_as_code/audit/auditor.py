@@ -120,13 +120,13 @@ class ClaimAudit:
 
     @property
     def constitution_state(self) -> str:
-        """The audit expressed in ``docs/constitution.md``'s four-state vocabulary.
+        """The audit expressed in ``docs/constitution.md``'s five-state vocabulary.
 
         The constitution and ``claim_audit.schema.json`` speak different languages.
         The constitution's states answer *can this be evaluated* — HOLDS,
-        UNEVALUABLE, REFUSE, OPEN. The schema's verdicts answer *what is the
-        result* — Busted, Plausible, Confirmed, plus UNEVALUABLE and REFUSE, which
-        appear in both. They are related but not the same axis.
+        UNEVALUABLE, REFUSE, OPEN, REFUTED. The schema's verdicts answer *what is
+        the result* — Busted, Plausible, Confirmed, plus UNEVALUABLE and REFUSE,
+        which appear in both. They are related but not the same axis.
 
         The mapping is deliberately lossy in one direction and that loss is
         informative:
@@ -140,20 +140,18 @@ class ClaimAudit:
         ``UNEVALUABLE``     ``OPEN``    when ``gate_check == "pass"`` — the path
                                         ran but magnitude or endpoint is unlocked
         ``UNEVALUABLE``     ``UNEVALUABLE`` when the gate state itself is unknown
-        ``Busted``          ``REFUTED`` — **not one of the four states**
+        ``Busted``          ``REFUTED`` — the fifth constitution state
         ==================  ==================================================
 
-        ``Busted`` has no home in the constitution. The four states describe
-        degrees of evaluability and none of them means "evaluated, and false." A
-        closed micelle gate is a determinate negative result, not a missing field
-        and not a category error. This property reports ``REFUTED`` for that case
-        rather than forcing it into ``REFUSE``, which would conflate "we declined
-        to evaluate" with "we evaluated and the answer is no" — the exact
-        collapse the fail-closed design exists to prevent.
-
-        Resolving it means either adding a fifth state to the constitution or
-        accepting that the two vocabularies cover different questions. That is an
-        authorial decision, so this property surfaces the gap instead of hiding it.
+        ``REFUTED`` is the constitution's fifth state: *mechanism walk completed
+        and contradicted the claim*. The other four describe degrees of
+        evaluability and none of them means "evaluated, and false." A closed
+        micelle gate is a determinate negative result, not a missing field and not
+        a category error, so it reports ``REFUTED`` rather than being forced into
+        ``REFUSE`` — which would conflate "we declined to evaluate" with "we
+        evaluated and the answer is no", the exact collapse the fail-closed design
+        exists to prevent. ``REFUTED`` stays distinct from ``UNEVALUABLE`` (a
+        required field is missing) for the same reason.
         """
         if self.verdict == "REFUSE":
             return "REFUSE"
