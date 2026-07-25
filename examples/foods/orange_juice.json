@@ -1,16 +1,26 @@
 {
   "id": "ex.orange.juice",
-  "status": "stub",
+  "status": "filled",
   "identity": {
     "common_name": "orange juice",
     "form": "juiced",
     "family_hint": "Rutaceae"
   },
   "cargo": [],
-  "partners": [],
+  "partners": [
+    {
+      "field": "lipid_phase_present",
+      "value": false,
+      "concurrency": "same_meal",
+      "derivation": "structural",
+      "rationale": "expressed juice; lipid absent"
+    }
+  ],
   "injection_zone": "zone1_matrix",
   "matrix": {
-    "integrity": "unknown"
+    "integrity": "destroyed",
+    "derivation": "structural",
+    "rationale": "expressed juice; cell structure removed with the pulp"
   },
   "teaching": {
     "point": "stub: form destroys structure; ascorbate cargo open",

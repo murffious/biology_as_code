@@ -10,8 +10,11 @@ Short free face of *Biology as Code*. Full argument lives in the book.
 | **UNEVALUABLE** | Required field missing — show grey, not fake zero |
 | **REFUSE** | Soft verb, tunnel, or category error |
 | **OPEN** | Magnitude or primary not locked |
+| **REFUTED** | Mechanism walk completed and contradicted the claim — evaluated, and false |
 
-**Empty beats fake.**
+**Empty beats fake.** A refutation is not empty: `REFUTED` is a determinate negative
+result, kept distinct from `REFUSE` (declined to evaluate) so the two are never
+collapsed.
 
 ## Gate ≠ bound
 

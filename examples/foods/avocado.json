@@ -1,16 +1,33 @@
 {
   "id": "ex.avocado",
-  "status": "stub",
+  "status": "filled",
   "identity": {
     "common_name": "avocado",
     "form": "raw_whole",
     "family_hint": "Lauraceae"
   },
-  "cargo": [],
-  "partners": [],
+  "cargo": [
+    {
+      "nutrient": "lipid",
+      "label_amount": "open",
+      "derivation": "structural",
+      "rationale": "intrinsic lipid is the defining macronutrient"
+    }
+  ],
+  "partners": [
+    {
+      "field": "lipid_phase_present",
+      "value": true,
+      "concurrency": "same_meal",
+      "derivation": "structural",
+      "rationale": "intrinsic lipid is the defining macronutrient; avocado lipid raises carotenoid absorption in humans (Unlu 2005, J Nutr 135:431)"
+    }
+  ],
   "injection_zone": "zone1_matrix",
   "matrix": {
-    "integrity": "unknown"
+    "integrity": "intact",
+    "derivation": "structural",
+    "rationale": "whole fruit flesh; lipid still cell-bound"
   },
   "teaching": {
     "point": "stub: native fat vehicle",

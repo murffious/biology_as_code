@@ -4,7 +4,7 @@
 
 Public companion site — **not the full book**.
 
-[Constitution (short)](constitution.md) · [Schemas](../schemas/) · [Example foods](../examples/foods/) · [GitHub](https://github.com/murffious/biology_as_code)
+[Constitution (short)](constitution.md) · [Claim auditor](claim-auditor.md) · [Cookbook](cookbook/index.md) · [Schemas](https://github.com/murffious/biology_as_code/tree/main/schemas) · [Example foods](https://github.com/murffious/biology_as_code/tree/main/examples/foods) · [GitHub](https://github.com/murffious/biology_as_code)
 
 ---
 
@@ -17,6 +17,8 @@ This project standardizes the **interfaces**:
 - typed food packets  
 - gate vs bound  
 - claim audit that stops when a gate is closed  
+
+All three are executable: see the [claim auditor](claim-auditor.md).
 
 ## For engineers
 

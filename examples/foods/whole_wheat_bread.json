@@ -1,6 +1,6 @@
 {
   "id": "ex.whole.wheat.bread",
-  "status": "stub",
+  "status": "filled",
   "identity": {
     "common_name": "whole wheat bread",
     "form": "cooked",
@@ -10,7 +10,9 @@
   "partners": [],
   "injection_zone": "zone1_matrix",
   "matrix": {
-    "integrity": "unknown"
+    "integrity": "partial",
+    "derivation": "structural",
+    "rationale": "milled, but bran and germ fractions retained"
   },
   "teaching": {
     "point": "stub: coarser matrix prior vs white",

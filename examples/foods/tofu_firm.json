@@ -1,12 +1,19 @@
 {
   "id": "ex.tofu.firm",
-  "status": "stub",
+  "status": "filled",
   "identity": {
     "common_name": "firm tofu",
     "form": "cooked",
     "family_hint": "Fabaceae"
   },
-  "cargo": [],
+  "cargo": [
+    {
+      "nutrient": "nonhaem_iron",
+      "label_amount": "open",
+      "derivation": "structural",
+      "rationale": "non-haem iron occurrence in soy curd is undisputed"
+    }
+  ],
   "partners": [],
   "injection_zone": "zone1_matrix",
   "matrix": {
