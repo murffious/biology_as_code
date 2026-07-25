@@ -105,3 +105,38 @@ audit_packet_coverage(list(iter_packets()), "beta_carotene")
 40 of the 46 packets in `examples/foods/` are stubs. The auditor reports that
 rather than filling the gap, which makes the number a usable backlog signal:
 every `UNEVALUABLE` is a packet waiting for a sourced fact.
+
+## Two vocabularies, and a gap between them
+
+`docs/constitution.md` defines four states. `schemas/claim_audit.schema.json`
+defines five verdicts. They overlap on two names and are not the same axis: the
+constitution's states answer *can this be evaluated*, the schema's verdicts answer
+*what is the result*.
+
+`ClaimAudit.constitution_state` maps between them:
+
+| `verdict` | `constitution_state` | |
+| --- | --- | --- |
+| `REFUSE` | `REFUSE` | declined before reading the packet |
+| `Plausible` | `HOLDS` | gate open, bound evaluable |
+| `Confirmed` | `HOLDS` | never emitted by a mechanism walk |
+| `UNEVALUABLE` (gate passed) | `OPEN` | path ran, magnitude or endpoint unlocked |
+| `UNEVALUABLE` (gate unknown) | `UNEVALUABLE` | a required field is missing |
+| `Busted` | `REFUTED` | **not one of the four states** |
+
+Two things fall out of writing this down.
+
+**`UNEVALUABLE` was doing two jobs.** The constitution already separates "magnitude
+or primary not locked" (`OPEN`) from "required field missing" (`UNEVALUABLE`). The
+schema has no `OPEN`, so both collapsed into one verdict. `constitution_state`
+splits them again on whether the gate resolved — the spinach-with-oil case is
+`OPEN`, a stub packet is `UNEVALUABLE`.
+
+**`Busted` has nowhere to live.** None of the four states means "evaluated, and
+false." Forcing it into `REFUSE` would conflate declining to evaluate with
+returning a negative result, which is the exact collapse this package exists to
+prevent, so the property reports `REFUTED` instead.
+
+Resolving that means either adding a fifth state to the constitution or accepting
+that the two vocabularies answer different questions. Both are authorial calls, so
+the code surfaces the gap rather than picking for you.

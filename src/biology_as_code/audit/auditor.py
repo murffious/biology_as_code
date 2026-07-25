@@ -118,6 +118,52 @@ class ClaimAudit:
     def is_unevaluable(self) -> bool:
         return self.verdict == "UNEVALUABLE"
 
+    @property
+    def constitution_state(self) -> str:
+        """The audit expressed in ``docs/constitution.md``'s four-state vocabulary.
+
+        The constitution and ``claim_audit.schema.json`` speak different languages.
+        The constitution's states answer *can this be evaluated* — HOLDS,
+        UNEVALUABLE, REFUSE, OPEN. The schema's verdicts answer *what is the
+        result* — Busted, Plausible, Confirmed, plus UNEVALUABLE and REFUSE, which
+        appear in both. They are related but not the same axis.
+
+        The mapping is deliberately lossy in one direction and that loss is
+        informative:
+
+        ==================  ==================================================
+        ``verdict``         ``constitution_state``
+        ==================  ==================================================
+        ``REFUSE``          ``REFUSE``
+        ``Plausible``       ``HOLDS``   (gate open, bound evaluable)
+        ``Confirmed``       ``HOLDS``   (never emitted by a mechanism walk)
+        ``UNEVALUABLE``     ``OPEN``    when ``gate_check == "pass"`` — the path
+                                        ran but magnitude or endpoint is unlocked
+        ``UNEVALUABLE``     ``UNEVALUABLE`` when the gate state itself is unknown
+        ``Busted``          ``REFUTED`` — **not one of the four states**
+        ==================  ==================================================
+
+        ``Busted`` has no home in the constitution. The four states describe
+        degrees of evaluability and none of them means "evaluated, and false." A
+        closed micelle gate is a determinate negative result, not a missing field
+        and not a category error. This property reports ``REFUTED`` for that case
+        rather than forcing it into ``REFUSE``, which would conflate "we declined
+        to evaluate" with "we evaluated and the answer is no" — the exact
+        collapse the fail-closed design exists to prevent.
+
+        Resolving it means either adding a fifth state to the constitution or
+        accepting that the two vocabularies cover different questions. That is an
+        authorial decision, so this property surfaces the gap instead of hiding it.
+        """
+        if self.verdict == "REFUSE":
+            return "REFUSE"
+        if self.verdict in {"Plausible", "Confirmed"}:
+            return "HOLDS"
+        if self.verdict == "Busted":
+            return "REFUTED"
+        # UNEVALUABLE splits on whether the gate itself resolved.
+        return "OPEN" if self.gate_check == "pass" else "UNEVALUABLE"
+
     def to_dict(self) -> dict[str, Any]:
         """Schema-conformant dict. Empty optional blocks are omitted, not faked."""
         out: dict[str, Any] = {

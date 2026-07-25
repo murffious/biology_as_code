@@ -251,3 +251,61 @@ def test_audit_never_raises_on_any_packet():
     for packet in iter_packets():
         audit_claim(SPINACH_CLAIM, packet)
         audit_claim(IRON_BOUND_CLAIM, packet)
+
+
+# --- Constitution vocabulary ---------------------------------------------------
+
+CONSTITUTION_STATES = {"HOLDS", "UNEVALUABLE", "REFUSE", "OPEN", "REFUTED"}
+
+
+def test_constitution_state_is_always_one_of_the_documented_values():
+    for packet in iter_packets():
+        for claim in (SPINACH_CLAIM, SOFT_IRON_CLAIM, IRON_BOUND_CLAIM, MATRIX_CLAIM):
+            state = audit_claim(claim, packet).constitution_state
+            assert state in CONSTITUTION_STATES, state
+
+
+@pytest.mark.parametrize(
+    ("claim", "packet_id", "verdict", "state"),
+    [
+        # Gate closed on a declared fact: determinate negative, not a missing field.
+        (SPINACH_CLAIM, "ex.spinach_salad.zero_fat", "Busted", "REFUTED"),
+        # Gate open, endpoint unreachable from one meal: magnitude/endpoint unlocked.
+        (SPINACH_CLAIM, "ex.spinach_salad.with_oil", "UNEVALUABLE", "OPEN"),
+        # Gate state unknown because the packet is silent.
+        (SPINACH_CLAIM, "ex.banana", "UNEVALUABLE", "UNEVALUABLE"),
+        # Soft verb: declined before reading the packet.
+        (SOFT_IRON_CLAIM, "ex.lentils.with_ascorbate", "REFUSE", "REFUSE"),
+        # Bound evaluable with declared fields.
+        (IRON_BOUND_CLAIM, "ex.lentils.with_ascorbate", "Plausible", "HOLDS"),
+    ],
+)
+def test_constitution_state_mapping(claim, packet_id, verdict, state):
+    result = audit_claim(claim, get_packet(packet_id))
+    assert result.verdict == verdict
+    assert result.constitution_state == state
+
+
+def test_open_and_unevaluable_are_distinguished_by_gate_resolution():
+    """The constitution separates 'magnitude not locked' from 'field missing'."""
+    gate_passed = audit_claim(SPINACH_CLAIM, get_packet("ex.spinach_salad.with_oil"))
+    gate_unknown = audit_claim(SPINACH_CLAIM, get_packet("ex.banana"))
+
+    assert gate_passed.verdict == gate_unknown.verdict == "UNEVALUABLE"
+    assert gate_passed.constitution_state == "OPEN"
+    assert gate_unknown.constitution_state == "UNEVALUABLE"
+
+
+def test_refuted_is_not_collapsed_into_refuse():
+    """'We evaluated and the answer is no' must not read as 'we declined'."""
+    busted = audit_claim(SPINACH_CLAIM, get_packet("ex.spinach_salad.zero_fat"))
+    refused = audit_claim(SOFT_IRON_CLAIM, get_packet("ex.banana"))
+    assert busted.constitution_state != refused.constitution_state
+
+
+def test_constitution_state_does_not_leak_into_the_schema_payload():
+    """Schema conformance is unaffected: constitution_state is a view, not a field."""
+    result = audit_claim(SPINACH_CLAIM, get_packet("ex.spinach_salad.zero_fat"))
+    payload = result.to_dict()
+    assert "constitution_state" not in payload
+    assert validate_against(payload, claim_audit_schema()).valid
