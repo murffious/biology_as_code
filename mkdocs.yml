@@ -61,6 +61,10 @@ nav:
   - Constitution: constitution.md
   - Note on the title: naming.md
   - Claim auditor: claim-auditor.md
+  - Claims agent:
+      - Overview: claims-agent.md
+      - Claim schema: claim-schema.md
+      - Source registry: claim-sources.md
   - Validation report: VALIDATION.md
   - Validation ledger: VALIDATION_LEDGER.md
   - Contributing data: contributing-data.md
