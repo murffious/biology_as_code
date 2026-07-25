@@ -1,0 +1,14 @@
+{
+  "id": "contrib.badmagnitude-iron-law004",
+  "type": "gate_bound",
+  "target": { "kind": "law", "ref": "LAW-004" },
+  "payload": {
+    "nutrient": "nonhaem_iron",
+    "triggered_by": "ascorbate_same_meal",
+    "claimed": "ascorbate raises non-haem iron absorption by exactly 3x"
+  },
+  "asserts_magnitude": true,
+  "contributor": "example",
+  "submitted": "2026-07-25",
+  "notes": "REFUSE — asserts a 3x magnitude with no primary evidence attached. The direction is real (LAW-004, EXPANDS_BOUND); the number is not sourced, so it must not be promoted."
+}

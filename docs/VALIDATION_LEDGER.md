@@ -185,3 +185,31 @@ Ordered by risk. "Now" = current strength; "Target" = what closes the gap.
 them. **The one genuinely blocked item is 7**, and it is blocked correctly: it needs
 a journal read, and the policy tests exist precisely to stop anyone "finishing" it
 without one.
+
+---
+
+## Crowd-sourced contributions
+
+This ledger is now fed by the crowd, not only the maintainers. A contribution is a
+small JSON file under `examples/contributions/`, gated by
+`biology_as_code.contrib.validate_contribution` and enforced in CI by
+`tests/test_contribution.py`. The gate is fail-closed and maps onto the
+source-strength scale above:
+
+| Verdict | Ledger effect | Strength |
+| --- | --- | :-: |
+| `ACCEPTED` | a primary source resolves → the target's row can rise | provisional **3**; review raises it as corroboration accrues |
+| `NEEDS_SOURCE` | recorded, but bears no weight | **0** — Unsourced |
+| `REFUSE` | rejected: malformed, missing target, or a magnitude with no evidence | — |
+
+The rule of the ledger is the rule of the gate: **empty beats fake**. An unsourced
+contribution is recorded `OPEN` and promotes nothing; a magnitude asserted without a
+primary citation is refused outright.
+
+This is also how the open items above get closed. The shipped example
+`contrib.evidence-unlu-2005-law020.json` is exactly the citation **item 3** is waiting
+on; `contrib.evidence-scfa-energy-law026.json` is **item 7** done honestly — proposed,
+but `NEEDS_SOURCE` until the human ME study (PMID 40403748) is actually read, never
+promoted early.
+
+See [contributing-data.md](contributing-data.md) for the submission flow.

@@ -1,0 +1,73 @@
+name: Evidence contribution
+description: Propose a primary source that strengthens a law, packet, nutrient, or claim.
+title: "[evidence] "
+labels: ["contribution", "evidence"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for strengthening the register. This form maps one-to-one onto a JSON
+        contribution — a maintainer turns it into a file under `examples/contributions/`,
+        and CI runs the fail-closed gate. **Empty beats fake:** a magnitude with no
+        primary source will be refused.
+  - type: dropdown
+    id: target_kind
+    attributes:
+      label: Target kind
+      description: What does the evidence strengthen?
+      options:
+        - law
+        - packet
+        - nutrient
+        - claim
+    validations:
+      required: true
+  - type: input
+    id: target_ref
+    attributes:
+      label: Target id
+      description: The law / packet / nutrient / claim id. `law` and `packet` ids must already exist.
+      placeholder: LAW-020
+    validations:
+      required: true
+  - type: textarea
+    id: finding
+    attributes:
+      label: What does the source show?
+      description: One or two sentences. State a direction (opens/expands/narrows), not an invented number.
+      placeholder: Intrinsic food lipid significantly raises carotenoid absorption — the fat-vehicle gate.
+    validations:
+      required: true
+  - type: dropdown
+    id: source_kind
+    attributes:
+      label: Source type
+      options:
+        - pubmed
+        - doi
+        - guideline
+        - textbook
+    validations:
+      required: true
+  - type: input
+    id: pmid_or_doi
+    attributes:
+      label: PMID or DOI
+      placeholder: "15735074"
+  - type: input
+    id: citation
+    attributes:
+      label: Full citation
+      placeholder: Unlu NZ et al. J Nutr. 2005;135(3):431-436.
+    validations:
+      required: true
+  - type: checkboxes
+    id: magnitude
+    attributes:
+      label: Magnitude
+      options:
+        - label: This asserts a specific magnitude/number (only accepted with a primary source).
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes (optional)

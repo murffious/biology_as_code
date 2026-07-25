@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/murffious/biology_as_code/schemas/contribution.schema.json",
+  "title": "Contribution",
+  "description": "A crowd-sourced proposal to strengthen the register: evidence, a packet fill, a claim for the corpus, or a gate/bound rule. This schema declares the STRUCTURAL shape only. The fail-closed policy — a magnitude needs primary evidence, a target must resolve, unsourced stays OPEN — is enforced by biology_as_code.contrib.validate_contribution, not here, because the repo's zero-dependency validator intentionally does not implement conditional schema keywords.",
+  "type": "object",
+  "required": ["id", "type", "target", "payload"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^contrib\\.[a-z0-9][a-z0-9_.-]*$" },
+    "type": {
+      "type": "string",
+      "enum": ["evidence", "packet_fill", "claim", "gate_bound"]
+    },
+    "target": {
+      "type": "object",
+      "required": ["kind", "ref"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "type": "string", "enum": ["law", "packet", "nutrient", "claim"] },
+        "ref": { "type": "string" }
+      }
+    },
+    "payload": { "type": "object" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "type": "string", "enum": ["pubmed", "doi", "guideline", "textbook"] },
+        "pmid": { "type": "string" },
+        "doi": { "type": "string" },
+        "citation": { "type": "string" },
+        "url": { "type": "string" }
+      }
+    },
+    "asserts_magnitude": { "type": "boolean" },
+    "contributor": { "type": "string" },
+    "submitted": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+    "strength": {
+      "description": "Source-strength on the validation-ledger 0-5 scale. Assigned by review, not by the submitter; ignored on input.",
+      "type": "integer",
+      "enum": [0, 1, 2, 3, 4, 5]
+    },
+    "notes": { "type": "string" }
+  }
+}

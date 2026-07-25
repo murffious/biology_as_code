@@ -1,0 +1,13 @@
+{
+  "id": "contrib.evidence-scfa-energy-law026",
+  "type": "evidence",
+  "target": { "kind": "law", "ref": "LAW-026" },
+  "payload": {
+    "law": "LAW-026",
+    "proposes": "a locked SCFA colonic energy contribution",
+    "attaches": "no primary human metabolizable-energy study"
+  },
+  "contributor": "example",
+  "submitted": "2026-07-25",
+  "notes": "NEEDS_SOURCE — well-formed and on-target, but unsourced. Mirrors the real LAW-026 pending state: no locked magnitude without a human ME study. Recorded OPEN, not promoted."
+}
