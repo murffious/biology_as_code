@@ -8,6 +8,11 @@ cards, an evidence/provenance layer, 67 meal fixtures + 8 personas. Clean IP bou
 fail-closed code* — the opposite of black-box AI nutrition apps. "Empty beats fake." That contrast
 is the newsworthy hook; everything below exists to make it credible enough to stand behind.
 
+> **Strategy vs. engineering.** This file is the *engineering* roadmap — how to ship the package.
+> For the *product* direction — why the wedge is food **judgment**, how the claim auditor becomes a
+> dietary-health-claims adjudication authority, and how the PySpark/AWS/React Native build-out and the
+> LLM claims agent stack on top of it — see [docs/standardization-roadmap.md](docs/standardization-roadmap.md).
+
 ---
 
 ## What "big time" packages actually have

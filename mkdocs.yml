@@ -62,6 +62,8 @@ nav:
   - Note on the title: naming.md
   - Claim auditor: claim-auditor.md
   - Validation report: VALIDATION.md
+  - Validation ledger: VALIDATION_LEDGER.md
+  - Standardization roadmap: standardization-roadmap.md
   - Cookbook:
       - Overview: cookbook/index.md
       - 1. Gate vs Bound (iron): cookbook/01-gate-vs-bound.md
