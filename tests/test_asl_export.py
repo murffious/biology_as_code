@@ -33,7 +33,10 @@ def test_predicate_exists_and_all():
 
 def test_full_digest_compiles_to_asl():
     asl = machine_to_asl(get_machine("process.full-digest"))
-    assert asl["StartAt"] == "intakeGate"
+    # A-Z now starts at S-0 intake-setup (a stage-running task -> nested execution)
+    assert asl["StartAt"] == "intakeSetup"
+    assert asl["States"]["intakeSetup"]["Type"] == "Task"
+    assert "startExecution" in asl["States"]["intakeSetup"]["Resource"]
     assert asl["States"]["intakeGate"]["Type"] == "Choice"
     assert "Default" in asl["States"]["intakeGate"]
     # a stage-running task becomes a nested Step Functions execution

@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nutricollective.local/machines/schemas/IngestionEvent.schema.json",
+  "title": "IngestionEvent",
+  "description": "L3 how food enters the mouth — chew time, order/sequence, pace. Extends Python IngestionContext with explicit sequence[]. Not host; not static plate composition (PacketLoad).",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "kibo.IngestionEvent/v1" },
+    "id": { "type": "string" },
+    "packet_id": {
+      "type": "string",
+      "description": "Optional link to PacketLoad.id"
+    },
+    "started_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO-8601 meal start if known"
+    },
+    "meal_duration_minutes": { "type": "number", "minimum": 0 },
+    "eating_speed": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "0=very slow, 1=very fast (fallback when sequence lacks timings)."
+    },
+    "meal_timing_circadian": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "0=badly timed, 1=well timed teaching."
+    },
+    "hydrated_with_meal": {
+      "type": "boolean",
+      "description": "Co-fluid; maps intake.hydration when true."
+    },
+    "chew_time_s_total": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total chew seconds for the meal if measured."
+    },
+    "chew_time_s_mean_per_bite": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Mean chew seconds per bite if measured."
+    },
+    "mastication_quality": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Fallback 0–1 when chew_time_* unknown. Maps oral shear teaching."
+    },
+    "food_order_score": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Fallback when sequence[] absent: 1≈veg/protein before refined CHO teaching."
+    },
+    "sequence": {
+      "type": "array",
+      "description": "Ordered bites/courses entering the mouth. Preferred over food_order_score alone. Multi-item process loop is v2.",
+      "items": { "$ref": "#/$defs/SequenceStep" }
+    },
+    "derived": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mastication_quality": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "From chew_time if present, else explicit mastication_quality."
+        },
+        "food_order_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "From sequence ranking heuristic if present, else explicit score."
+        },
+        "matrix_integrity_boost": {
+          "type": "number",
+          "minimum": -0.5,
+          "maximum": 0.5,
+          "description": "FLOW delta applied to packet matrix_integrity from chew (high chew ↑)."
+        },
+        "honesty": {
+          "type": "string",
+          "enum": ["FLOW", "OPEN"],
+          "default": "FLOW"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "SequenceStep": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["rank", "item_ref"],
+      "properties": {
+        "rank": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "1 = first into the mouth."
+        },
+        "item_ref": {
+          "type": "string",
+          "description": "PacketLoad.items[].id"
+        },
+        "portion_g": { "type": "number", "minimum": 0 },
+        "t_rel_s": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Seconds from meal start when this bite begins (optional)."
+        },
+        "chew_time_s": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Chew seconds for this bite/course."
+        },
+        "swallows": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Swallow count if known."
+        }
+      }
+    }
+  }
+}

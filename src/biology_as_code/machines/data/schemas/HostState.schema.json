@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nutricollective.local/machines/schemas/HostState.schema.json",
+  "title": "HostState",
+  "description": "L1 host machine state — who is running. Frozen from book/kibo_simulator_latest physiological_state.HostState + process boot gates. Not the plate; not chew/order.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "kibo.HostState/v1" },
+    "ready": {
+      "type": "integer",
+      "enum": [0, 1],
+      "description": "Boot gate: 1 = host profile present enough to receive a packet (Part 0)."
+    },
+    "lifecycle": {
+      "type": "string",
+      "description": "e.g. adult, pregnancy, older_adult — free string until enum locked"
+    },
+    "sex": { "type": "string", "enum": ["female", "male", "other", "unspecified"] },
+    "age_years": { "type": "number", "minimum": 0, "maximum": 120 },
+    "sleep_hours_last_night": { "type": "number", "minimum": 0, "maximum": 24 },
+    "sleep_quality": { "type": "number", "minimum": 0, "maximum": 1 },
+    "hrv_rmssd": { "type": ["number", "null"], "minimum": 0 },
+    "resting_hr": { "type": ["number", "null"], "minimum": 0 },
+    "stress_level": { "type": "number", "minimum": 0, "maximum": 1 },
+    "perceived_stress": { "type": "number", "minimum": 0, "maximum": 1 },
+    "steps_today": { "type": "integer", "minimum": 0 },
+    "active_minutes_today": { "type": "integer", "minimum": 0 },
+    "recent_exercise_intensity": { "type": "number", "minimum": 0, "maximum": 1 },
+    "hydration_status": { "type": "number", "minimum": 0, "maximum": 1 },
+    "body_fat_percent": { "type": ["number", "null"], "minimum": 0, "maximum": 80 },
+    "muscle_mass_kg": { "type": ["number", "null"], "minimum": 0 },
+    "acid_capacity": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Teaching proxy gastric acid (PPI/age lower it). Maps host.acidCapacity."
+    },
+    "bile_capacity": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Teaching bile emulsification capacity. Maps host.bileCapacity."
+    },
+    "insulin_resistance": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "0 = sensitive teaching, 1 = IR teaching flag intensity."
+    },
+    "post_surgical": {
+      "type": "boolean",
+      "description": "Bariatric/gastrectomy context for dumping narrative."
+    },
+    "alcohol_with_meal": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Relative alcohol co-load this event (portal tax teaching)."
+    },
+    "leucine_adequacy": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Optional C-3 context flag."
+    },
+    "honesty": {
+      "type": "string",
+      "enum": ["FLOW", "UNITS", "OPEN"],
+      "default": "FLOW",
+      "description": "Most host scalars are teaching FLOW unless promoted."
+    }
+  },
+  "required": ["ready"]
+}

@@ -1,0 +1,1149 @@
+{
+  "name": "mealcoach-50-seed-meals",
+  "description": "Seed meals with hydration enrichment. Nutrition from mealcoach-foods-dev / USDA / OFF; beverages include corpus fluids + OFF Gatorade/smartwater + USDA juice/diet cola + specialty water classes.",
+  "counts": {
+    "total": 67,
+    "raw_whole_foods": 10,
+    "barcode_products": 40,
+    "supplement_boosted": 7,
+    "ultra_processed_examples": 10,
+    "with_hydration": 62
+  },
+  "generated_at": "2026-07-23T23:38:14.769520+00:00",
+  "hydration_enrichment": {
+    "target": 40,
+    "note": "Specialty waters (alkaline/sparkling) carry pH teaching flags OPEN; macros are water-class."
+  },
+  "meals": [
+    {
+      "file": "01_raw_01_chicken_quinoa_broccoli_bowl.json",
+      "id": "raw_01_chicken_quinoa_broccoli_bowl",
+      "name": "Grilled Chicken, Quinoa & Broccoli Bowl",
+      "meal_type": "dinner",
+      "category": "raw_whole_foods",
+      "calories": 641.81,
+      "protein_g": 52.27,
+      "barcode_item_ids": [
+        "0052000328660"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "gatorade_thirst_quencher",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "02_raw_02_salmon_sweet_potato_asparagus.json",
+      "id": "raw_02_salmon_sweet_potato_asparagus",
+      "name": "Baked Salmon with Sweet Potato & Asparagus",
+      "meal_type": "dinner",
+      "category": "raw_whole_foods",
+      "calories": 530.03,
+      "protein_g": 38.48,
+      "barcode_item_ids": [
+        "0021136010541"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "sparkling_mineral_topo_class",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "03_raw_03_spinach_feta_scramble.json",
+      "id": "raw_03_spinach_feta_scramble",
+      "name": "Spinach & Feta Egg Scramble with Avocado",
+      "meal_type": "breakfast",
+      "category": "raw_whole_foods",
+      "calories": 635.5,
+      "protein_g": 34.43,
+      "barcode_item_ids": [],
+      "has_hydration": true,
+      "hydration_beverage_id": "milk_whole",
+      "fluid_g": 240.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "04_raw_04_overnight_oats_berries_chia.json",
+      "id": "raw_04_overnight_oats_berries_chia",
+      "name": "Overnight Oats with Berries, Chia & Almond Butter",
+      "meal_type": "breakfast",
+      "category": "raw_whole_foods",
+      "calories": 469.49,
+      "protein_g": 16.54,
+      "barcode_item_ids": [],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 240,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "05_raw_05_greek_yogurt_berry_bowl.json",
+      "id": "raw_05_greek_yogurt_berry_bowl",
+      "name": "Greek Yogurt Berry Bowl with Walnuts & Flax",
+      "meal_type": "breakfast",
+      "category": "raw_whole_foods",
+      "calories": 353.92,
+      "protein_g": 26.3,
+      "barcode_item_ids": [],
+      "has_hydration": true,
+      "hydration_beverage_id": "almond_milk",
+      "fluid_g": 240.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "06_raw_06_lentil_kale_power_salad.json",
+      "id": "raw_06_lentil_kale_power_salad",
+      "name": "Lentil & Kale Power Salad",
+      "meal_type": "lunch",
+      "category": "raw_whole_foods",
+      "calories": 431.63,
+      "protein_g": 20.39,
+      "barcode_item_ids": [
+        "00851373005082"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "electrolyte_lyte",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "07_raw_07_black_bean_rice_bowl.json",
+      "id": "raw_07_black_bean_rice_bowl",
+      "name": "Black Bean & Brown Rice Bowl with Avocado",
+      "meal_type": "lunch",
+      "category": "raw_whole_foods",
+      "calories": 568.2,
+      "protein_g": 18.2,
+      "barcode_item_ids": [
+        "0052000328660"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "gatorade_thirst_quencher",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "08_raw_08_tofu_veggie_stirfry.json",
+      "id": "raw_08_tofu_veggie_stirfry",
+      "name": "Tofu Veggie Stir-Fry with Brown Rice",
+      "meal_type": "dinner",
+      "category": "raw_whole_foods",
+      "calories": 587.9,
+      "protein_g": 35.16,
+      "barcode_item_ids": [
+        "00851373005082"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "electrolyte_lyte",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "09_raw_09_shrimp_quinoa_med_bowl.json",
+      "id": "raw_09_shrimp_quinoa_med_bowl",
+      "name": "Shrimp & Quinoa Mediterranean Bowl",
+      "meal_type": "lunch",
+      "category": "raw_whole_foods",
+      "calories": 516.28,
+      "protein_g": 40.39,
+      "barcode_item_ids": [],
+      "has_hydration": true,
+      "hydration_beverage_id": "water_plain",
+      "fluid_g": 360.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "10_raw_10_turkey_sweet_potato_skillet.json",
+      "id": "raw_10_turkey_sweet_potato_skillet",
+      "name": "Ground Turkey & Sweet Potato Skillet",
+      "meal_type": "dinner",
+      "category": "raw_whole_foods",
+      "calories": 645.6,
+      "protein_g": 43.46,
+      "barcode_item_ids": [
+        "0052000328660"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "gatorade_thirst_quencher",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "11_bc_01_chobani_parfait.json",
+      "id": "bc_01_chobani_parfait",
+      "name": "Chobani Greek Yogurt Parfait with Granola & Blueberries",
+      "meal_type": "breakfast",
+      "category": "barcode_products",
+      "calories": 279.18,
+      "protein_g": 20.02,
+      "barcode_item_ids": [
+        "00894700010076",
+        "00855140002366"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "water_plain",
+      "fluid_g": 360.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "12_bc_02_quaker_pb_banana_oatmeal.json",
+      "id": "bc_02_quaker_pb_banana_oatmeal",
+      "name": "Quaker Oatmeal with Peanut Butter & Banana",
+      "meal_type": "breakfast",
+      "category": "barcode_products",
+      "calories": 444.95,
+      "protein_g": 13.37,
+      "barcode_item_ids": [
+        "00030000562314",
+        "00051500255247"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "coffee_black",
+      "fluid_g": 240.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "13_bc_03_ezekiel_avocado_egg_toast.json",
+      "id": "bc_03_ezekiel_avocado_egg_toast",
+      "name": "Ezekiel Toast with Avocado & Fried Egg",
+      "meal_type": "breakfast",
+      "category": "barcode_products",
+      "calories": 480.3,
+      "protein_g": 19.34,
+      "barcode_item_ids": [
+        "00073472001202",
+        "3502110009449"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "orange_juice",
+      "fluid_g": 240.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "14_bc_04_kodiak_strawberry_pancakes.json",
+      "id": "bc_04_kodiak_strawberry_pancakes",
+      "name": "Kodiak Power Cakes with Strawberries",
+      "meal_type": "breakfast",
+      "category": "barcode_products",
+      "calories": 533.11,
+      "protein_g": 30.64,
+      "barcode_item_ids": [
+        "00705599016219"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "milk_whole",
+      "fluid_g": 240.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "15_bc_05_fage_raspberry_bowl.json",
+      "id": "bc_05_fage_raspberry_bowl",
+      "name": "FAGE Total 0% Bowl with Raspberries & Walnuts",
+      "meal_type": "breakfast",
+      "category": "barcode_products",
+      "calories": 273.41,
+      "protein_g": 20.7,
+      "barcode_item_ids": [
+        "00689544083078"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "almond_milk",
+      "fluid_g": 240.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "16_bc_06_cheerios_banana_milk.json",
+      "id": "bc_06_cheerios_banana_milk",
+      "name": "Cheerios with Whole Milk & Banana",
+      "meal_type": "breakfast",
+      "category": "barcode_products",
+      "calories": 390.65,
+      "protein_g": 13.15,
+      "barcode_item_ids": [
+        "00016000476080"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 240,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "17_bc_07_silk_berry_protein_smoothie.json",
+      "id": "bc_07_silk_berry_protein_smoothie",
+      "name": "Almond Milk Berry Protein Smoothie",
+      "meal_type": "breakfast",
+      "category": "barcode_products",
+      "calories": 366.59,
+      "protein_g": 28.33,
+      "barcode_item_ids": [
+        "00025293002494",
+        "00851770007481",
+        "00021908477978"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 240,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "18_bc_08_good_culture_strawberry_bowl.json",
+      "id": "bc_08_good_culture_strawberry_bowl",
+      "name": "Good Culture Cottage Cheese Bowl with Strawberries",
+      "meal_type": "breakfast",
+      "category": "barcode_products",
+      "calories": 321.38,
+      "protein_g": 23.64,
+      "barcode_item_ids": [
+        "00859977005026"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "water_plain",
+      "fluid_g": 360.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "19_bc_09_rxbar_banana_almonds.json",
+      "id": "bc_09_rxbar_banana_almonds",
+      "name": "On-the-Go: RXBAR, Banana & Almonds",
+      "meal_type": "breakfast",
+      "category": "barcode_products",
+      "calories": 469.74,
+      "protein_g": 19.45,
+      "barcode_item_ids": [
+        "00859162007248"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "coffee_black",
+      "fluid_g": 240.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "20_bc_10_daves_ab_banana_toast.json",
+      "id": "bc_10_daves_ab_banana_toast",
+      "name": "Dave's Killer Bread with Almond Butter & Banana",
+      "meal_type": "breakfast",
+      "category": "barcode_products",
+      "calories": 599.27,
+      "protein_g": 18.55,
+      "barcode_item_ids": [
+        "00013764027053",
+        "00840379100235",
+        "3502110009449"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "orange_juice",
+      "fluid_g": 240.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "21_bc_11_starkist_tuna_sandwich.json",
+      "id": "bc_11_starkist_tuna_sandwich",
+      "name": "Tuna Salad Sandwich on Dave's Killer Bread",
+      "meal_type": "lunch",
+      "category": "barcode_products",
+      "calories": 351.06,
+      "protein_g": 30.79,
+      "barcode_item_ids": [
+        "00080000516848",
+        "00048001354722",
+        "00013764027053"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "lemon_water",
+      "fluid_g": 360.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "22_bc_12_goya_chickpea_greek_salad.json",
+      "id": "bc_12_goya_chickpea_greek_salad",
+      "name": "Chickpea Greek Salad",
+      "meal_type": "lunch",
+      "category": "barcode_products",
+      "calories": 334.41,
+      "protein_g": 11.53,
+      "barcode_item_ids": [
+        "00041331024198",
+        "00851373005082"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "electrolyte_lyte",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "23_bc_13_bushs_burrito_bowl.json",
+      "id": "bc_13_bushs_burrito_bowl",
+      "name": "Black Bean Burrito Bowl with Salsa & Avocado",
+      "meal_type": "lunch",
+      "category": "barcode_products",
+      "calories": 417.87,
+      "protein_g": 11.47,
+      "barcode_item_ids": [
+        "00039400108818",
+        "00054800031771",
+        "00041565341641",
+        "0052000328660"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "gatorade_thirst_quencher",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "24_bc_14_sabra_veggie_wrap.json",
+      "id": "bc_14_sabra_veggie_wrap",
+      "name": "Hummus Veggie Wrap",
+      "meal_type": "lunch",
+      "category": "barcode_products",
+      "calories": 343.05,
+      "protein_g": 10.38,
+      "barcode_item_ids": [
+        "00040822012461",
+        "00073731071175",
+        "0786162200433"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "smartwater",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "25_bc_15_applegate_turkey_avocado_sandwich.json",
+      "id": "bc_15_applegate_turkey_avocado_sandwich",
+      "name": "Turkey & Avocado Sandwich",
+      "meal_type": "lunch",
+      "category": "barcode_products",
+      "calories": 302.31,
+      "protein_g": 23.03,
+      "barcode_item_ids": [
+        "00025317586009",
+        "00073472001202",
+        "0657227105539"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "alkaline_water_essentia_class",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "26_bc_16_amys_lentil_soup_triscuits.json",
+      "id": "bc_16_amys_lentil_soup_triscuits",
+      "name": "Amy's Lentil Soup with Triscuits",
+      "meal_type": "lunch",
+      "category": "barcode_products",
+      "calories": 430.32,
+      "protein_g": 16.15,
+      "barcode_item_ids": [
+        "00042272005833",
+        "00044000027957",
+        "00049000028911"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "diet_cola",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "27_bc_17_banza_pesto_chicken_bowl.json",
+      "id": "bc_17_banza_pesto_chicken_bowl",
+      "name": "Banza Chickpea Pasta with Pesto & Chicken",
+      "meal_type": "lunch",
+      "category": "barcode_products",
+      "calories": 487.14,
+      "protein_g": 44.46,
+      "barcode_item_ids": [
+        "00857183005007",
+        "00000004112952",
+        "0021136010541"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "sparkling_mineral_topo_class",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "28_bc_18_bumblebee_salmon_quinoa_salad.json",
+      "id": "bc_18_bumblebee_salmon_quinoa_salad",
+      "name": "Pink Salmon & Quinoa Kale Salad",
+      "meal_type": "lunch",
+      "category": "barcode_products",
+      "calories": 417.92,
+      "protein_g": 27.88,
+      "barcode_item_ids": [
+        "00000008669932"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "lemon_water",
+      "fluid_g": 360.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "29_bc_19_peanut_noodles_broccoli.json",
+      "id": "bc_19_peanut_noodles_broccoli",
+      "name": "Peanut Noodles with Broccoli",
+      "meal_type": "lunch",
+      "category": "barcode_products",
+      "calories": 444.76,
+      "protein_g": 18.5,
+      "barcode_item_ids": [
+        "00076808001549",
+        "00051500255247",
+        "00851373005082"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "electrolyte_lyte",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "30_bc_20_edamame_rice_bowl.json",
+      "id": "bc_20_edamame_rice_bowl",
+      "name": "Edamame & Brown Rice Teriyaki Bowl",
+      "meal_type": "lunch",
+      "category": "barcode_products",
+      "calories": 397.15,
+      "protein_g": 18.34,
+      "barcode_item_ids": [
+        "00711575721589",
+        "00054800031771",
+        "00896859000939",
+        "0052000328660"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "gatorade_thirst_quencher",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 1
+    },
+    {
+      "file": "31_bc_21_banza_marinara_turkey.json",
+      "id": "bc_21_banza_marinara_turkey",
+      "name": "Chickpea Penne Marinara with Ground Turkey",
+      "meal_type": "dinner",
+      "category": "barcode_products",
+      "calories": 520.74,
+      "protein_g": 45.27,
+      "barcode_item_ids": [
+        "00857183005007",
+        "00747479000215",
+        "0657227105539"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "alkaline_water_essentia_class",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "32_bc_22_ww_spaghetti_marinara.json",
+      "id": "bc_22_ww_spaghetti_marinara",
+      "name": "Whole Grain Spaghetti Marinara with Parmesan-Style Feta",
+      "meal_type": "dinner",
+      "category": "barcode_products",
+      "calories": 474.83,
+      "protein_g": 14.36,
+      "barcode_item_ids": [
+        "00076808001549",
+        "00747479000215",
+        "0052000328660"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "gatorade_thirst_quencher",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "33_bc_23_salmon_seeds_of_change.json",
+      "id": "bc_23_salmon_seeds_of_change",
+      "name": "Baked Salmon with Quinoa & Brown Rice Pouch and Asparagus",
+      "meal_type": "dinner",
+      "category": "barcode_products",
+      "calories": 537.15,
+      "protein_g": 39.4,
+      "barcode_item_ids": [
+        "00748404420221",
+        "0021136010541"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "sparkling_mineral_topo_class",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "34_bc_24_mission_chicken_fajitas.json",
+      "id": "bc_24_mission_chicken_fajitas",
+      "name": "Chicken Fajitas on Whole Wheat Tortillas",
+      "meal_type": "dinner",
+      "category": "barcode_products",
+      "calories": 642.29,
+      "protein_g": 51.94,
+      "barcode_item_ids": [
+        "00073731071175",
+        "00041565341641",
+        "00616112541357",
+        "00851373005082"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "electrolyte_lyte",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "35_bc_25_nasoya_teriyaki_stirfry.json",
+      "id": "bc_25_nasoya_teriyaki_stirfry",
+      "name": "Tofu Teriyaki Stir-Fry with Birds Eye Vegetables",
+      "meal_type": "dinner",
+      "category": "barcode_products",
+      "calories": 509.86,
+      "protein_g": 23.38,
+      "barcode_item_ids": [
+        "00025484006959",
+        "00014500507037",
+        "00896859000939",
+        "00054800031771"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "lemon_water",
+      "fluid_g": 360.0,
+      "avoid_flag_count": 1
+    },
+    {
+      "file": "36_bc_26_turkey_bean_chili.json",
+      "id": "bc_26_turkey_bean_chili",
+      "name": "Turkey & Kidney Bean Chili",
+      "meal_type": "dinner",
+      "category": "barcode_products",
+      "calories": 459.67,
+      "protein_g": 38.15,
+      "barcode_item_ids": [
+        "00039400017455",
+        "00725342292110",
+        "00049000028911"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "diet_cola",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "37_bc_27_drpraeger_burger_plate.json",
+      "id": "bc_27_drpraeger_burger_plate",
+      "name": "Black Bean Burger with Guacamole & Side Salad",
+      "meal_type": "dinner",
+      "category": "barcode_products",
+      "calories": 411.4,
+      "protein_g": 13.51,
+      "barcode_item_ids": [
+        "00080868060194",
+        "00616112541357",
+        "00073472001202",
+        "0786162200433"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "smartwater",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "38_bc_28_alfresco_sausage_sheetpan.json",
+      "id": "bc_28_alfresco_sausage_sheetpan",
+      "name": "Chicken Sausage Sheet Pan with Brussels & Sweet Potato",
+      "meal_type": "dinner",
+      "category": "barcode_products",
+      "calories": 547.71,
+      "protein_g": 29.19,
+      "barcode_item_ids": [
+        "00030771080840"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "milk_whole",
+      "fluid_g": 240.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "39_bc_29_maya_tikka_chicken.json",
+      "id": "bc_29_maya_tikka_chicken",
+      "name": "Chicken Tikka Masala with Brown Rice",
+      "meal_type": "dinner",
+      "category": "barcode_products",
+      "calories": 456.3,
+      "protein_g": 48.66,
+      "barcode_item_ids": [
+        "00858034006181",
+        "00054800031771",
+        "0021136010541"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "sparkling_mineral_topo_class",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "40_bc_30_shrimp_pesto_pasta.json",
+      "id": "bc_30_shrimp_pesto_pasta",
+      "name": "Shrimp Pesto Whole Grain Spaghetti",
+      "meal_type": "dinner",
+      "category": "barcode_products",
+      "calories": 451.02,
+      "protein_g": 38.04,
+      "barcode_item_ids": [
+        "00076808001549",
+        "00000004112952",
+        "0021136010541"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "sparkling_mineral_topo_class",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "41_bc_31_tuna_pasta_salad_dinner.json",
+      "id": "bc_31_tuna_pasta_salad_dinner",
+      "name": "Mediterranean Tuna Pasta Salad",
+      "meal_type": "dinner",
+      "category": "barcode_products",
+      "calories": 502.15,
+      "protein_g": 27.85,
+      "barcode_item_ids": [
+        "00857183005007",
+        "00080000516848",
+        "00074390000308"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "electrolyte_sports_corpus",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "42_bc_32_edamame_veggie_fried_rice.json",
+      "id": "bc_32_edamame_veggie_fried_rice",
+      "name": "Veggie & Edamame 'Fried' Brown Rice",
+      "meal_type": "dinner",
+      "category": "barcode_products",
+      "calories": 396.12,
+      "protein_g": 22.03,
+      "barcode_item_ids": [
+        "00054800031771",
+        "00711575721589",
+        "00014500507037"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "lemon_water",
+      "fluid_g": 360.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "43_bc_33_kind_bar_apple.json",
+      "id": "bc_33_kind_bar_apple",
+      "name": "KIND Bar & Apple",
+      "meal_type": "snack",
+      "category": "barcode_products",
+      "calories": 274.64,
+      "protein_g": 6.55,
+      "barcode_item_ids": [
+        "00602652279461",
+        "0657227105539"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": "alkaline_water_essentia_class",
+      "fluid_g": 355.0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "44_bc_34_hummus_carrots_triscuits.json",
+      "id": "bc_34_hummus_carrots_triscuits",
+      "name": "Hummus Snack Plate",
+      "meal_type": "snack",
+      "category": "barcode_products",
+      "calories": 324.52,
+      "protein_g": 8.0,
+      "barcode_item_ids": [
+        "00040822012461",
+        "00044000027957"
+      ],
+      "has_hydration": false,
+      "hydration_beverage_id": null,
+      "fluid_g": 0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "45_bc_35_string_cheese_orange_almonds.json",
+      "id": "bc_35_string_cheese_orange_almonds",
+      "name": "String Cheese, Orange & Almonds",
+      "meal_type": "snack",
+      "category": "barcode_products",
+      "calories": 219.74,
+      "protein_g": 10.22,
+      "barcode_item_ids": [
+        "00046100007013"
+      ],
+      "has_hydration": false,
+      "hydration_beverage_id": null,
+      "fluid_g": 0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "46_bc_36_siggis_blueberry.json",
+      "id": "bc_36_siggis_blueberry",
+      "name": "siggi's Vanilla Skyr with Blueberries",
+      "meal_type": "snack",
+      "category": "barcode_products",
+      "calories": 192.18,
+      "protein_g": 16.64,
+      "barcode_item_ids": [
+        "00898248001534"
+      ],
+      "has_hydration": false,
+      "hydration_beverage_id": null,
+      "fluid_g": 0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "47_bc_37_skinnypop_dark_chocolate.json",
+      "id": "bc_37_skinnypop_dark_chocolate",
+      "name": "SkinnyPop & Dark Chocolate",
+      "meal_type": "snack",
+      "category": "barcode_products",
+      "calories": 269.08,
+      "protein_g": 5.78,
+      "barcode_item_ids": [
+        "00850251004155",
+        "00037466016450"
+      ],
+      "has_hydration": false,
+      "hydration_beverage_id": null,
+      "fluid_g": 0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "48_bc_38_lifeway_kefir_smoothie.json",
+      "id": "bc_38_lifeway_kefir_smoothie",
+      "name": "Kefir Strawberry-Flax Smoothie",
+      "meal_type": "snack",
+      "category": "barcode_products",
+      "calories": 209.38,
+      "protein_g": 13.03,
+      "barcode_item_ids": [
+        "00017077126328"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 240,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "49_bc_39_premier_shake_almonds.json",
+      "id": "bc_39_premier_shake_almonds",
+      "name": "Premier Protein Shake & Almonds",
+      "meal_type": "snack",
+      "category": "barcode_products",
+      "calories": 288.87,
+      "protein_g": 36.12,
+      "barcode_item_ids": [
+        "00643843715344"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 340,
+      "avoid_flag_count": 2
+    },
+    {
+      "file": "50_bc_40_cottage_cheese_pita.json",
+      "id": "bc_40_cottage_cheese_pita",
+      "name": "Cottage Cheese & Veggie Pita Pocket",
+      "meal_type": "snack",
+      "category": "barcode_products",
+      "calories": 265.82,
+      "protein_g": 19.91,
+      "barcode_item_ids": [
+        "00859977005026",
+        "00000000218009"
+      ],
+      "has_hydration": false,
+      "hydration_beverage_id": null,
+      "fluid_g": 0,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "51_sup_01_whey_postworkout_shake.json",
+      "id": "sup_01_whey_postworkout_shake",
+      "name": "Whey Protein Post-Workout Shake with Banana",
+      "meal_type": "snack",
+      "category": "supplement_boosted",
+      "calories": 235.04,
+      "protein_g": 25.3,
+      "barcode_item_ids": [
+        "00748927029192"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 400,
+      "avoid_flag_count": 2
+    },
+    {
+      "file": "52_sup_02_collagen_coffee_yogurt.json",
+      "id": "sup_02_collagen_coffee_yogurt",
+      "name": "Collagen Coffee with Greek Yogurt Berry Bowl",
+      "meal_type": "breakfast",
+      "category": "supplement_boosted",
+      "calories": 184.92,
+      "protein_g": 28.13,
+      "barcode_item_ids": [
+        "00856769006681"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 240,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "53_sup_03_protein_greens_smoothie.json",
+      "id": "sup_03_protein_greens_smoothie",
+      "name": "Plant Protein & Greens Smoothie",
+      "meal_type": "breakfast",
+      "category": "supplement_boosted",
+      "calories": 231.64,
+      "protein_g": 22.92,
+      "barcode_item_ids": [
+        "00851770006828",
+        "00025293002494"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 240,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "54_sup_04_electrolyte_recovery_snack.json",
+      "id": "sup_04_electrolyte_recovery_snack",
+      "name": "Electrolyte Drink with RXBAR & Almonds",
+      "meal_type": "snack",
+      "category": "supplement_boosted",
+      "calories": 291.91,
+      "protein_g": 14.96,
+      "barcode_item_ids": [
+        "00851373005082",
+        "00859162007248"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 355,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "55_sup_05_creatine_lemon_water.json",
+      "id": "sup_05_creatine_lemon_water",
+      "name": "Creatine Lemon Water Pre-Training Snack",
+      "meal_type": "snack",
+      "category": "supplement_boosted",
+      "calories": 190.88,
+      "protein_g": 4.25,
+      "barcode_item_ids": [
+        "00810117600730"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 480,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "56_sup_06_spirulina_berry_smoothie.json",
+      "id": "sup_06_spirulina_berry_smoothie",
+      "name": "Spirulina Berry Smoothie",
+      "meal_type": "snack",
+      "category": "supplement_boosted",
+      "calories": 198.66,
+      "protein_g": 5.69,
+      "barcode_item_ids": [
+        "00733739026903"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 240,
+      "avoid_flag_count": 0
+    },
+    {
+      "file": "57_sup_07_muscle_milk_apple.json",
+      "id": "sup_07_muscle_milk_apple",
+      "name": "Muscle Milk RTD Shake & Apple",
+      "meal_type": "snack",
+      "category": "supplement_boosted",
+      "calories": 264.79,
+      "protein_g": 24.45,
+      "barcode_item_ids": [
+        "00876063002011"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 414,
+      "avoid_flag_count": 2
+    },
+    {
+      "file": "58_upf_01_instant_ramen.json",
+      "id": "upf_01_instant_ramen",
+      "name": "Instant Ramen Lunch",
+      "meal_type": "lunch",
+      "category": "ultra_processed_examples",
+      "calories": 375.7,
+      "protein_g": 9.89,
+      "barcode_item_ids": [
+        "00041789002588"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 500,
+      "avoid_flag_count": 5
+    },
+    {
+      "file": "59_upf_02_frozen_pizza_cola.json",
+      "id": "upf_02_frozen_pizza_cola",
+      "name": "Frozen Pepperoni Pizza & Cola Night",
+      "meal_type": "dinner",
+      "category": "ultra_processed_examples",
+      "calories": 800.44,
+      "protein_g": 25.23,
+      "barcode_item_ids": [
+        "00072180638113",
+        "00000004978903"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 360,
+      "avoid_flag_count": 4
+    },
+    {
+      "file": "60_upf_03_mac_and_hot_dogs.json",
+      "id": "upf_03_mac_and_hot_dogs",
+      "name": "Boxed Mac & Cheese with Hot Dogs",
+      "meal_type": "dinner",
+      "category": "ultra_processed_examples",
+      "calories": 409.7,
+      "protein_g": 16.66,
+      "barcode_item_ids": [
+        "00021000028092",
+        "00029800430268"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 500,
+      "avoid_flag_count": 3
+    },
+    {
+      "file": "61_upf_04_nuggets_ketchup.json",
+      "id": "upf_04_nuggets_ketchup",
+      "name": "Chicken Nuggets with Ketchup",
+      "meal_type": "dinner",
+      "category": "ultra_processed_examples",
+      "calories": 500.24,
+      "protein_g": 23.99,
+      "barcode_item_ids": [
+        "00023700018632",
+        "00013000001243"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 500,
+      "avoid_flag_count": 2
+    },
+    {
+      "file": "62_upf_05_poptarts_choc_milk.json",
+      "id": "upf_05_poptarts_choc_milk",
+      "name": "Pop-Tarts & Chocolate Milk Breakfast",
+      "meal_type": "breakfast",
+      "category": "ultra_processed_examples",
+      "calories": 542.37,
+      "protein_g": 12.18,
+      "barcode_item_ids": [
+        "00038000924408",
+        "00028000616502"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 240,
+      "avoid_flag_count": 6
+    },
+    {
+      "file": "63_upf_06_froot_loops_breakfast.json",
+      "id": "upf_06_froot_loops_breakfast",
+      "name": "Froot Loops with Whole Milk",
+      "meal_type": "breakfast",
+      "category": "ultra_processed_examples",
+      "calories": 292.26,
+      "protein_g": 9.9,
+      "barcode_item_ids": [
+        "00038000144271"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 490,
+      "avoid_flag_count": 2
+    },
+    {
+      "file": "64_upf_07_bologna_sandwich_chips.json",
+      "id": "upf_07_bologna_sandwich_chips",
+      "name": "Bologna & Cheese Sandwich with Doritos",
+      "meal_type": "lunch",
+      "category": "ultra_processed_examples",
+      "calories": 485.68,
+      "protein_g": 14.49,
+      "barcode_item_ids": [
+        "00072250011501",
+        "00044700008607",
+        "00021000604715",
+        "00028400688772"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 500,
+      "avoid_flag_count": 7
+    },
+    {
+      "file": "65_upf_08_gas_station_refuel.json",
+      "id": "upf_08_gas_station_refuel",
+      "name": "Gas-Station Refuel: Candy Bar & Sports Drink",
+      "meal_type": "snack",
+      "category": "ultra_processed_examples",
+      "calories": 288.67,
+      "protein_g": 2.0,
+      "barcode_item_ids": [
+        "00040000503170",
+        "00074390000308"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 355,
+      "avoid_flag_count": 7
+    },
+    {
+      "file": "66_upf_09_zebra_cakes_snack.json",
+      "id": "upf_09_zebra_cakes_snack",
+      "name": "Zebra Cakes & Chocolate Milk",
+      "meal_type": "snack",
+      "category": "ultra_processed_examples",
+      "calories": 462.05,
+      "protein_g": 10.12,
+      "barcode_item_ids": [
+        "00024300041464",
+        "00028000616502"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 240,
+      "avoid_flag_count": 4
+    },
+    {
+      "file": "67_upf_10_twinkies_cola.json",
+      "id": "upf_10_twinkies_cola",
+      "name": "Twinkies & Cola",
+      "meal_type": "snack",
+      "category": "ultra_processed_examples",
+      "calories": 459.84,
+      "protein_g": 2.0,
+      "barcode_item_ids": [
+        "00888109111571",
+        "00000004978903"
+      ],
+      "has_hydration": true,
+      "hydration_beverage_id": null,
+      "fluid_g": 360,
+      "avoid_flag_count": 6
+    }
+  ]
+}

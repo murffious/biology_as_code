@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nutricollective.local/machines/schemas/DataSource.schema.json",
+  "title": "DataSource",
+  "description": "Provenance for one connected (or declared) input stream. Aligns with book Part 0.6 data-sourcing map: maturity MATURE|EMERGING|RESEARCH|MANUAL. Example providers are perishable — prefer category. Not clinical software.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "category", "maturity", "status"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Stable source instance id e.g. src.alex.oura_sleep"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "wearable_sleep",
+        "wearable_activity",
+        "wearable_hrv_autonomic",
+        "wearable_body_comp",
+        "cgm_metabolic",
+        "clinical_lab_blood",
+        "dtc_genetics",
+        "microbiome_stool",
+        "food_log",
+        "meds_pharmacy",
+        "supplements_self",
+        "self_report_lifestyle",
+        "ehr_clinical",
+        "smart_scale",
+        "transdermal_alcohol",
+        "other"
+      ]
+    },
+    "provider_class": {
+      "type": "string",
+      "description": "Durable class name e.g. ring_sleep_tracker — not a brand lock"
+    },
+    "provider_example": {
+      "type": "string",
+      "description": "Illustrative brand(s) for demos only e.g. Oura / Whoop / Apple Watch"
+    },
+    "maturity": {
+      "type": "string",
+      "enum": ["MATURE", "EMERGING", "RESEARCH", "MANUAL"],
+      "description": "Book Part 0.6 sensing maturity"
+    },
+    "telemetry_tier": {
+      "type": "string",
+      "enum": [
+        "realtime_metabolic",
+        "affective",
+        "deep_diagnostic",
+        "declared_input",
+        "rom_genetics"
+      ],
+      "description": "Book Part 0.3 IoB tiers (+ genetics ROM + declared food)"
+    },
+    "book_layer": {
+      "type": "string",
+      "enum": ["L0_profile", "L1_host", "L2_food", "L3_ingestion", "L4_clinical"],
+      "description": "Absorption-factor layer (Part 0.7) + L0 profile"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "connected",
+        "imported",
+        "self_report",
+        "missing",
+        "expired",
+        "declined",
+        "pending"
+      ]
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date",
+      "description": "Last successful sync / sample date"
+    },
+    "refresh": {
+      "type": "string",
+      "enum": [
+        "continuous",
+        "daily",
+        "weekly",
+        "monthly",
+        "quarterly",
+        "biannual",
+        "annual",
+        "once",
+        "on_demand",
+        "manual"
+      ]
+    },
+    "fields": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Dotted paths this source can populate e.g. host.sleep_quality, clinical.biomarkers.hba1c"
+    },
+    "lifestyle_pillars": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "sleep",
+          "activity",
+          "stress",
+          "social",
+          "substance_avoidance",
+          "nutrition_quality",
+          "kinetic_load"
+        ]
+      },
+      "description": "ACLM six + book 7th kinetic_load (Part 0.9 / appendix A.7)"
+    },
+    "honesty": {
+      "type": "string",
+      "enum": ["FLOW", "OPEN", "UNITS"],
+      "default": "OPEN"
+    },
+    "notes": { "type": "string" }
+  }
+}

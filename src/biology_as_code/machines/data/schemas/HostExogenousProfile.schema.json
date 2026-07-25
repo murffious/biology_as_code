@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nutricollective.local/machines/schemas/HostExogenousProfile.schema.json",
+  "title": "HostExogenousProfile",
+  "description": "Unified L4 list: medications, supplements, and exogenous hormones — each with class_id + delivery modality. One shape, three domains. NOT prescribing, NOT compounding, NOT PK simulation.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "kibo.HostExogenousProfile/v1" },
+    "honesty": {
+      "type": "string",
+      "enum": ["FLOW", "OPEN", "UNITS"],
+      "default": "OPEN"
+    },
+    "source": {
+      "type": "string",
+      "description": "mock | user_self_report | apple_health | pharmacy | ehr | clinic"
+    },
+    "as_of": { "type": "string", "format": "date" },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/ExogenousItem" }
+    }
+  },
+  "required": ["items"],
+  "$defs": {
+    "ExogenousItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["domain", "class_id", "onboard"],
+      "properties": {
+        "id": { "type": "string" },
+        "domain": {
+          "type": "string",
+          "enum": ["medication", "supplement", "hormone"],
+          "description": "Which catalog family class_id comes from"
+        },
+        "class_id": {
+          "type": "string",
+          "description": "e.g. glp1_ra | vitamin_d | estradiol | other"
+        },
+        "onboard": { "type": "boolean" },
+        "label": { "type": "string" },
+        "ingredient_hint": {
+          "type": "string",
+          "description": "Optional INN or common name — not verified"
+        },
+        "delivery": {
+          "type": "string",
+          "description": "From delivery-modality.catalog.json ids",
+          "enum": [
+            "oral",
+            "sublingual",
+            "subcutaneous",
+            "intramuscular",
+            "intravenous",
+            "patch_transdermal",
+            "topical",
+            "pellet_implant",
+            "nasal",
+            "inhaled",
+            "rectal",
+            "other",
+            "unknown"
+          ]
+        },
+        "route": {
+          "type": "string",
+          "description": "Deprecated alias of delivery — prefer delivery",
+          "enum": [
+            "oral",
+            "sublingual",
+            "subcutaneous",
+            "intramuscular",
+            "intravenous",
+            "patch_transdermal",
+            "topical",
+            "pellet_implant",
+            "nasal",
+            "inhaled",
+            "rectal",
+            "other",
+            "unknown"
+          ]
+        },
+        "frequency_text": {
+          "type": "string",
+          "description": "Free text e.g. weekly, daily — never parse to PK"
+        },
+        "dose_text": {
+          "type": "string",
+          "description": "Free text only — never a dosing engine"
+        },
+        "started_on": { "type": "string", "format": "date" },
+        "notes": { "type": "string" },
+        "honesty": {
+          "type": "string",
+          "enum": ["FLOW", "OPEN", "UNITS"],
+          "default": "OPEN"
+        }
+      }
+    }
+  }
+}

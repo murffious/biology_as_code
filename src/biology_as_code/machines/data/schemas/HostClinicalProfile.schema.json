@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nutricollective.local/machines/schemas/HostClinicalProfile.schema.json",
+  "title": "HostClinicalProfile",
+  "description": "Optional L1 extension: genetics, biomarkers/labs, hormonal profile, dynamic inflammatory state. SETUP ONLY for later mock/wiring — not clinical decision support. All magnitudes OPEN/FLOW until promoted. Never invent disease diagnoses from soft flags.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "kibo.HostClinicalProfile/v1" },
+    "honesty": {
+      "type": "string",
+      "enum": ["FLOW", "OPEN", "UNITS"],
+      "default": "OPEN",
+      "description": "Default OPEN: genetic/lab claims need sourced data."
+    },
+    "source": {
+      "type": "string",
+      "description": "e.g. mock | user_self_report | lab_import | wearables"
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date",
+      "description": "When this profile snapshot was taken (labs age)."
+    },
+    "genetics": { "$ref": "#/$defs/GeneticsProfile" },
+    "biomarkers": { "$ref": "#/$defs/BiomarkerPanel" },
+    "hormonal_profile": { "$ref": "#/$defs/HormonalProfile" },
+    "dynamic_state": { "$ref": "#/$defs/DynamicState" },
+    "microbiome": {
+      "$ref": "#/$defs/MicrobiomeSnapshot",
+      "description": "Optional deep-diagnostic stool / metagenomics import (Viome-class). OPEN teaching — not Court LAW."
+    },
+    "medications": {
+      "$ref": "MedicationProfile.schema.json",
+      "description": "Optional L4 meds on clinical profile. Prefer class ids (glp1_ra first). Not CDSS."
+    },
+    "constraints": {
+      "type": "array",
+      "description": "Derived soft process constraints for later mock (not enforced yet).",
+      "items": { "$ref": "#/$defs/ProcessConstraint" }
+    }
+  },
+  "$defs": {
+    "MicrobiomeSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Consumer stool metagenomics teaching bands. Book Part 0.3 deep diagnostic tier.",
+      "properties": {
+        "source": { "type": "string", "description": "e.g. mock_viome_class | user_import" },
+        "provider_example": { "type": "string" },
+        "as_of": { "type": "string", "format": "date" },
+        "diversity_band": { "$ref": "#/$defs/LevelBand" },
+        "butyrate_producers_band": { "$ref": "#/$defs/LevelBand" },
+        "dysbiosis_band": { "$ref": "#/$defs/LevelBand" },
+        "inflammation_proxy_band": { "$ref": "#/$defs/LevelBand" },
+        "notes": { "type": "string" },
+        "honesty": { "type": "string", "enum": ["FLOW", "OPEN", "UNITS"], "default": "OPEN" }
+      }
+    },
+    "LevelBand": {
+      "type": "string",
+      "enum": ["UNKNOWN", "LOW", "NORMAL", "HIGH", "CRITICAL"],
+      "description": "Ordinal band — not a lab unit. Prefer UNKNOWN when missing."
+    },
+    "GeneticsProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Sparse genotype flags. Prefer explicit booleans/enums over free text.",
+      "properties": {
+        "mthfr_mutation": {
+          "type": "boolean",
+          "description": "Teaching: impaired folic acid → methylfolate path preference. MOCK only."
+        },
+        "mthfr_variant": {
+          "type": "string",
+          "description": "Optional finer tag e.g. C677T, A1298C, compound — OPEN."
+        },
+        "apoe_status": {
+          "type": "string",
+          "enum": ["UNKNOWN", "E2", "E3", "E4", "E2E4", "OTHER"]
+        },
+        "lactase_persistence": {
+          "type": "boolean",
+          "description": "true = lactase persistent (dairy CHO ok teaching)"
+        },
+        "other_flags": {
+          "type": "object",
+          "additionalProperties": {
+            "type": ["boolean", "string", "number", "null"]
+          },
+          "description": "Escape hatch for future SNPs — do not score automatically."
+        },
+        "honesty": { "type": "string", "enum": ["FLOW", "OPEN", "UNITS"], "default": "OPEN" }
+      }
+    },
+    "BiomarkerPanel": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Blood work / labs as bands or optional raw values. Raw without units = OPEN.",
+      "properties": {
+        "fasting_glucose": { "$ref": "#/$defs/LabValue" },
+        "hba1c": { "$ref": "#/$defs/LabValue" },
+        "fasting_insulin": { "$ref": "#/$defs/LabValue" },
+        "crp_hs": { "$ref": "#/$defs/LabValue" },
+        "homocysteine": { "$ref": "#/$defs/LabValue" },
+        "ferritin": { "$ref": "#/$defs/LabValue" },
+        "vitamin_d": { "$ref": "#/$defs/LabValue" },
+        "b12": { "$ref": "#/$defs/LabValue" },
+        "folate": { "$ref": "#/$defs/LabValue" },
+        "tsh": { "$ref": "#/$defs/LabValue" },
+        "lipid_ldl": { "$ref": "#/$defs/LabValue" },
+        "lipid_hdl": { "$ref": "#/$defs/LabValue" },
+        "triglycerides": { "$ref": "#/$defs/LabValue" },
+        "other": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/LabValue" }
+        },
+        "honesty": { "type": "string", "enum": ["FLOW", "OPEN", "UNITS"], "default": "OPEN" }
+      }
+    },
+    "LabValue": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "band": { "$ref": "#/$defs/LevelBand" },
+        "value": { "type": "number" },
+        "unit": { "type": "string" },
+        "ref_low": { "type": "number" },
+        "ref_high": { "type": "number" },
+        "as_of": { "type": "string", "format": "date" },
+        "honesty": { "type": "string", "enum": ["FLOW", "OPEN", "UNITS"], "default": "OPEN" }
+      }
+    },
+    "HormonalProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Coarse hormonal / metabolic tone for process sensitivity — not a diagnosis.",
+      "properties": {
+        "insulin_resistance": {
+          "allOf": [{ "$ref": "#/$defs/LevelBand" }],
+          "description": "HIGH → process caution on glycemic_velocity / carb spikes (teaching)."
+        },
+        "cortisol": { "$ref": "#/$defs/LevelBand" },
+        "thyroid": { "$ref": "#/$defs/LevelBand" },
+        "sex_hormone_tone": {
+          "type": "string",
+          "enum": ["UNKNOWN", "LOW", "NORMAL", "HIGH"]
+        },
+        "notes": { "type": "string" },
+        "honesty": { "type": "string", "enum": ["FLOW", "OPEN", "UNITS"], "default": "OPEN" }
+      }
+    },
+    "DynamicState": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Near-term host state that can change day-to-day (inflammation, recovery).",
+      "properties": {
+        "inflammation_status": {
+          "allOf": [{ "$ref": "#/$defs/LevelBand" }],
+          "description": "HIGH → prefer lower oxidative_burden packets (teaching)."
+        },
+        "recovery_status": { "$ref": "#/$defs/LevelBand" },
+        "gut_symptom_load": { "$ref": "#/$defs/LevelBand" },
+        "sleep_debt": { "$ref": "#/$defs/LevelBand" },
+        "notes": { "type": "string" },
+        "honesty": { "type": "string", "enum": ["FLOW", "OPEN", "UNITS"], "default": "OPEN" }
+      }
+    },
+    "ProcessConstraint": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "severity", "message"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Stable constraint id e.g. no_folic_acid_synthetic, limit_glycemic_velocity"
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["info", "teaching", "soft", "hard"],
+          "description": "hard reserved; mock uses teaching/soft only."
+        },
+        "message": { "type": "string" },
+        "source": {
+          "type": "string",
+          "description": "genetics.mthfr_mutation | hormonal_profile.insulin_resistance | …"
+        },
+        "affects_axes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "density",
+              "glycemic_velocity",
+              "oxidative_burden",
+              "matrix_vitality"
+            ]
+          }
+        },
+        "affects_stages": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "stage.oral, stage.jejunum, …"
+        },
+        "cargo_rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "cargo": { "type": "string" },
+              "prefer": { "type": "string" },
+              "avoid": { "type": "string" }
+            }
+          },
+          "description": "e.g. avoid folic_acid synthetic, prefer methylfolate"
+        }
+      }
+    }
+  }
+}

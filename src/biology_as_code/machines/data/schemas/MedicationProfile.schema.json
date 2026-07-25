@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nutricollective.local/machines/schemas/MedicationProfile.schema.json",
+  "title": "MedicationProfile",
+  "description": "Host L4 medications — structured self-report / pharmacy import. Delivery/route uses delivery-modality.catalog.json (same as supplements/hormones). Prefer HostExogenousProfile for unified lists. NOT CDSS. GLP-1 RA first ready class.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "kibo.MedicationProfile/v1" },
+    "honesty": {
+      "type": "string",
+      "enum": ["FLOW", "OPEN", "UNITS"],
+      "default": "OPEN"
+    },
+    "source": {
+      "type": "string",
+      "description": "mock | user_self_report | apple_health | pharmacy | ehr"
+    },
+    "as_of": { "type": "string", "format": "date" },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/MedicationItem" }
+    }
+  },
+  "required": ["items"],
+  "$defs": {
+    "DeliveryModality": {
+      "type": "string",
+      "enum": [
+        "oral",
+        "sublingual",
+        "subcutaneous",
+        "intramuscular",
+        "intravenous",
+        "patch_transdermal",
+        "topical",
+        "pellet_implant",
+        "nasal",
+        "inhaled",
+        "rectal",
+        "other",
+        "unknown"
+      ],
+      "description": "See delivery-modality.catalog.json"
+    },
+    "MedicationItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["class_id", "onboard"],
+      "properties": {
+        "id": { "type": "string" },
+        "class_id": {
+          "type": "string",
+          "description": "Catalog class e.g. glp1_ra | metformin | statin | other"
+        },
+        "onboard": { "type": "boolean" },
+        "label": { "type": "string" },
+        "ingredient_hint": { "type": "string" },
+        "delivery": { "$ref": "#/$defs/DeliveryModality" },
+        "route": {
+          "allOf": [{ "$ref": "#/$defs/DeliveryModality" }],
+          "description": "Alias of delivery (compat). Prefer delivery."
+        },
+        "frequency_text": { "type": "string" },
+        "dose_text": {
+          "type": "string",
+          "description": "Free text only — never parse into clinical dose engine"
+        },
+        "started_on": { "type": "string", "format": "date" },
+        "notes": { "type": "string" },
+        "honesty": {
+          "type": "string",
+          "enum": ["FLOW", "OPEN", "UNITS"],
+          "default": "OPEN"
+        }
+      }
+    }
+  }
+}

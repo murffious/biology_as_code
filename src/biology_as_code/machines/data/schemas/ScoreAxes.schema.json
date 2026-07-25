@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nutricollective.local/machines/schemas/ScoreAxes.schema.json",
+  "title": "ScoreAxes",
+  "description": "Four process *measurements* (FLOW product axes) — not constitutional LAW ids. Assess packet quality along the digest process. Legacy keys: law_1_density … law_4_vitality (mealcoach law_calculator).",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "axes"],
+  "properties": {
+    "schema": { "const": "kibo.ScoreAxes/v1" },
+    "honesty": {
+      "type": "string",
+      "enum": ["FLOW", "OPEN"],
+      "default": "FLOW",
+      "description": "Composite scores are teaching FLOW unless magnitudes are locked UNITS."
+    },
+    "process_id": {
+      "type": "string",
+      "default": "process.full-digest",
+      "description": "Process these measurements annotate."
+    },
+    "digest_run_id": { "type": "string" },
+    "axes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "density",
+        "glycemic_velocity",
+        "oxidative_burden",
+        "matrix_vitality"
+      ],
+      "properties": {
+        "density": { "$ref": "#/$defs/AxisResult" },
+        "glycemic_velocity": { "$ref": "#/$defs/AxisResult" },
+        "oxidative_burden": { "$ref": "#/$defs/AxisResult" },
+        "matrix_vitality": { "$ref": "#/$defs/AxisResult" }
+      }
+    },
+    "composite": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Optional weighted blend — product only, never Court verdict.",
+      "properties": {
+        "score": { "type": "number", "minimum": 0, "maximum": 100 },
+        "tier": {
+          "type": "string",
+          "enum": ["S", "A", "B", "C", "D", "F"]
+        },
+        "tier_label": { "type": "string" },
+        "weights": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "density": { "type": "number", "minimum": 0, "maximum": 1 },
+            "glycemic_velocity": { "type": "number", "minimum": 0, "maximum": 1 },
+            "oxidative_burden": { "type": "number", "minimum": 0, "maximum": 1 },
+            "matrix_vitality": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        },
+        "honesty": { "type": "string", "enum": ["FLOW", "OPEN"], "default": "FLOW" }
+      }
+    }
+  },
+  "$defs": {
+    "AxisId": {
+      "type": "string",
+      "enum": [
+        "density",
+        "glycemic_velocity",
+        "oxidative_burden",
+        "matrix_vitality"
+      ]
+    },
+    "AxisResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "term", "normalized_score"],
+      "properties": {
+        "id": { "$ref": "#/$defs/AxisId" },
+        "term": {
+          "type": "string",
+          "description": "Generalized human term for this measurement."
+        },
+        "assesses": {
+          "type": "string",
+          "description": "What the process is measuring (snake_case concept)."
+        },
+        "legacy_key": {
+          "type": "string",
+          "description": "law_1_density | law_2_glycemic | law_3_inflammation | law_4_vitality"
+        },
+        "normalized_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "0–100 teaching score for this axis."
+        },
+        "raw_score": {
+          "type": "number",
+          "description": "Axis-native score before normalize (e.g. density ratio)."
+        },
+        "verdict": {
+          "type": "string",
+          "description": "Axis-specific enum string (DENSE, SPIKE_RISK, LIVING, …)."
+        },
+        "risk": { "type": "string" },
+        "note": { "type": "string" },
+        "process_hooks": {
+          "type": "array",
+          "description": "Where on the digest process this measurement is most relevant.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["stage_id"],
+            "properties": {
+              "stage_id": {
+                "type": "string",
+                "description": "e.g. stage.oral, stage.stomach, stage.jejunum"
+              },
+              "sStage": { "type": "string" },
+              "role": {
+                "type": "string",
+                "description": "How the axis reads that stage (buffer, burden, form, cargo)."
+              }
+            }
+          }
+        },
+        "digest_run_fields": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Dotted paths on DigestRun / MachineContext that feed this axis."
+        },
+        "penalty_refs": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional machine penalty refs that co-signal this axis (C-4, E-3, …)."
+        },
+        "honesty": {
+          "type": "string",
+          "enum": ["FLOW", "OPEN", "UNITS"],
+          "default": "FLOW"
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "Axis-specific diagnostics (ratios, keyword hits, micros)."
+        }
+      }
+    }
+  }
+}

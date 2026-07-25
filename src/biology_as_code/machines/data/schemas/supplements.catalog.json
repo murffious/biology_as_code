@@ -1,0 +1,77 @@
+{
+  "schema": "kibo.Supplements.catalog/v1",
+  "version": "1.0.0",
+  "honesty": "OPEN",
+  "title": "Supplement classes (starter — keep small)",
+  "principle": "Same HostExogenousItem shape as meds/hormones. Prefer class + delivery. No full Supplement Facts database.",
+  "default_delivery": "oral",
+  "classes": [
+    {
+      "id": "vitamin_d",
+      "label": "Vitamin D",
+      "aliases": ["vitamin d", "vitamin d3", "cholecalciferol", "d3"],
+      "default_delivery": "oral",
+      "status": "partial"
+    },
+    {
+      "id": "omega3",
+      "label": "Omega-3 (fish / algae oil)",
+      "aliases": ["omega3", "omega-3", "fish oil", "algae dha", "epa"],
+      "default_delivery": "oral",
+      "status": "partial"
+    },
+    {
+      "id": "vitamin_b12",
+      "label": "Vitamin B12",
+      "aliases": ["b12", "cobalamin", "methylcobalamin", "cyanocobalamin"],
+      "default_delivery": "oral",
+      "allowed_deliveries": ["oral", "sublingual", "subcutaneous", "intramuscular", "nasal"],
+      "status": "partial",
+      "note": "Injections common — delivery matters for coaching context, not auto-efficacy ranking"
+    },
+    {
+      "id": "magnesium",
+      "label": "Magnesium",
+      "aliases": ["magnesium", "mag glycinate", "mag citrate"],
+      "default_delivery": "oral",
+      "status": "stub"
+    },
+    {
+      "id": "protein_powder",
+      "label": "Protein powder / ready protein",
+      "aliases": ["whey", "casein", "protein powder", "plant protein"],
+      "default_delivery": "oral",
+      "status": "partial",
+      "packet_hint": "May also appear as food packet intake.supplement=1"
+    },
+    {
+      "id": "creatine",
+      "label": "Creatine",
+      "aliases": ["creatine", "creatine monohydrate"],
+      "default_delivery": "oral",
+      "status": "stub"
+    },
+    {
+      "id": "multivitamin",
+      "label": "Multivitamin / multi-mineral",
+      "aliases": ["multivitamin", "multi"],
+      "default_delivery": "oral",
+      "status": "stub"
+    },
+    {
+      "id": "iv_nutrient_drip",
+      "label": "IV nutrient drip (clinic)",
+      "aliases": ["iv vitamin", "myers cocktail", "iv drip", "infusion"],
+      "default_delivery": "intravenous",
+      "status": "partial",
+      "note": "Bypasses GI — refuse claims that IV is proven superior to food for general health without scoped evidence"
+    },
+    {
+      "id": "other",
+      "label": "Other supplement",
+      "aliases": [],
+      "default_delivery": "unknown",
+      "status": "escape_hatch"
+    }
+  ]
+}

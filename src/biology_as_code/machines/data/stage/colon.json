@@ -3,20 +3,30 @@
   "kind": "stage",
   "id": "stage.colon",
   "version": "1.0.0",
-  "revision": 1,
+  "revision": 2,
   "title": "Colon & rectum — fermentation & reclamation",
   "status": "published",
-  "updated": "2026-07-23",
+  "updated": "2026-07-25",
   "order": 8,
   "provenance": {
     "basedOn": [
       "Standard GI physiology: microbial fermentation of fiber and resistant starch into short-chain fatty acids (butyrate, propionate, acetate), colonocyte fuelling, and water/electrolyte reclamation over ~12-40 h. Teaching averages."
     ],
-    "sources": [],
-    "authors": ["biology-as-code"]
+    "sources": [
+      "NIDDK - Your Digestive System & How It Works: https://www.niddk.nih.gov/health-information/digestive-diseases/digestive-system-how-it-works",
+      "Hall & Hall, Guyton and Hall Textbook of Medical Physiology, 14th ed. - Unit XII, Gastrointestinal Physiology",
+      "Boron & Boulpaep, Medical Physiology, 3rd ed. - The Gastrointestinal System"
+    ],
+    "authors": [
+      "biology-as-code"
+    ]
   },
   "inputs": [
-    { "field": "meal.fiberG", "unit": "g", "description": "Fiber + resistant starch = microbiome substrate" }
+    {
+      "field": "meal.fiberG",
+      "unit": "g",
+      "description": "Fiber + resistant starch = microbiome substrate"
+    }
   ],
   "startAt": "substrateArrival",
   "states": {
@@ -24,13 +34,27 @@
       "type": "task",
       "label": "Substrate arrival",
       "detail": "Fiber and resistant starch that survived the small intestine arrive as microbiome fuel - not 'wasted calories' but the substrate for fermentation.",
-      "windowH": [24, 16],
-      "requires": [ { "field": "meal.fiberG", "op": "exists" } ],
-      "emits": ["microbiome-substrate"],
+      "windowH": [
+        24,
+        16
+      ],
+      "requires": [
+        {
+          "field": "meal.fiberG",
+          "op": "exists"
+        }
+      ],
+      "emits": [
+        "microbiome-substrate"
+      ],
       "edgeCases": [
         {
           "id": "substrate-starved",
-          "when": { "field": "meal.fiberG", "op": "<", "value": 5 },
+          "when": {
+            "field": "meal.fiberG",
+            "op": "<",
+            "value": 5
+          },
           "effect": "Little fermentable substrate -> thin SCFA yield; the microbiome is under-fed this meal.",
           "note": "Teaching pattern across a low-fiber dietary pattern, not one meal."
         }
@@ -43,7 +67,11 @@
       "detail": "Given enough substrate, gut bacteria ferment fiber into short-chain fatty acids (butyrate, propionate, acetate) that feed the colonocytes and signal systemically.",
       "choices": [
         {
-          "when": { "field": "meal.fiberG", "op": ">=", "value": 12 },
+          "when": {
+            "field": "meal.fiberG",
+            "op": ">=",
+            "value": 12
+          },
           "next": "scfaRich",
           "note": "Ample fiber -> SCFA-rich fermentation."
         }
@@ -54,7 +82,10 @@
       "type": "task",
       "label": "SCFA-rich fermentation",
       "detail": "Butyrate fuels colonocytes; propionate/acetate reach the liver and periphery - gut-barrier and immune teaching narrative.",
-      "emits": ["scfa", "butyrate"],
+      "emits": [
+        "scfa",
+        "butyrate"
+      ],
       "next": "reclaim"
     },
     "scfaLean": {
@@ -67,7 +98,9 @@
       "type": "task",
       "label": "Water & electrolyte reclamation",
       "detail": "The colon reclaims water and electrolytes and compacts the residue - the journey's final metering step (~12-40 h total).",
-      "emits": ["reclaimed-water"],
+      "emits": [
+        "reclaimed-water"
+      ],
       "end": true
     }
   }

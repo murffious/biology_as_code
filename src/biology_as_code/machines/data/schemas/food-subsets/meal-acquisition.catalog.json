@@ -1,0 +1,136 @@
+{
+  "schema": "kibo.MealAcquisition.catalog/v1",
+  "version": "1.0.0",
+  "honesty": "OPEN",
+  "title": "Meal acquisition / venue taxonomy",
+  "principle": "Acquisition is where/how the meal was obtained. It is NOT a quality or NOVA score. A quick-service salad can be high quality; a home UPF tray can be low quality.",
+  "anti_patterns": [
+    "Do not set nova_class from acquisition alone",
+    "Do not map quick_service → ultra_processed automatically",
+    "Do not use chain names as medical claims"
+  ],
+  "acquisition": [
+    {
+      "id": "home_prepared",
+      "label": "Home prepared",
+      "description": "Cooked or assembled at home from ingredients.",
+      "demo_use": "Alex happy-path cooking"
+    },
+    {
+      "id": "home_assembled_packaged",
+      "label": "Home assembled from packages",
+      "description": "Opened bags/boxes/jars at home (cereal, frozen pizza, meal kit).",
+      "demo_use": "UPF at home — shows venue ≠ quality"
+    },
+    {
+      "id": "grocery_deli",
+      "label": "Grocery / deli counter",
+      "description": "Prepared foods from supermarket deli or salad bar."
+    },
+    {
+      "id": "quick_service",
+      "label": "Quick service / fast food",
+      "description": "Counter or drive-thru QSR. Menu can include salads, grilled items, or classic combos.",
+      "note": "FAST FOOD lives here as context only.",
+      "details": [
+        {
+          "id": "drive_thru",
+          "label": "Drive-thru"
+        },
+        {
+          "id": "counter_service",
+          "label": "Counter / lobby"
+        },
+        {
+          "id": "app_delivery_qsr",
+          "label": "Delivery app (QSR kitchen)"
+        }
+      ]
+    },
+    {
+      "id": "fast_casual",
+      "label": "Fast casual",
+      "description": "Bowl/assembly lines, limited table service (e.g. Chipotle-class). Often higher whole-food option density than classic QSR, still out-of-home."
+    },
+    {
+      "id": "full_service_restaurant",
+      "label": "Full-service restaurant",
+      "description": "Table service restaurant."
+    },
+    {
+      "id": "convenience_retail",
+      "label": "Convenience / gas / vending",
+      "description": "Gas station, corner store, vending — often packaged, not always."
+    },
+    {
+      "id": "workplace_cafeteria",
+      "label": "Workplace / school cafeteria",
+      "description": "Institutional food service."
+    },
+    {
+      "id": "unknown",
+      "label": "Unknown",
+      "description": "Not declared."
+    }
+  ],
+  "qsr_path_tags": {
+    "description": "Optional path tags when acquisition is quick_service or fast_casual. Still not quality scores.",
+    "tags": [
+      {
+        "id": "qsr_salad_veg_forward",
+        "label": "Salad / veg-forward path",
+        "description": "User chose salad, bowl, grilled protein + veg — possible high-quality QSR meal.",
+        "packet_hints": ["high vegetable mass", "grilled not fried", "dressing oil on side optional"]
+      },
+      {
+        "id": "qsr_grilled_protein",
+        "label": "Grilled protein path",
+        "description": "Grilled chicken/fish sandwich or plate without deep-fry default."
+      },
+      {
+        "id": "qsr_classic_combo",
+        "label": "Classic combo path",
+        "description": "Burger/nuggets + fries + sugary drink pattern — often high NOVA/HP risk, still judge packet."
+      },
+      {
+        "id": "qsr_fried_default",
+        "label": "Fried-default path",
+        "description": "Nuggets, fries, fried sandwich as core."
+      },
+      {
+        "id": "qsr_sweet_drink",
+        "label": "Sweet drink add-on",
+        "description": "Soda/shake co-load; can raise HP-1/sugar without changing entrée quality."
+      },
+      {
+        "id": "qsr_unknown_path",
+        "label": "Path unknown",
+        "description": "Venue known, order path not classified."
+      }
+    ]
+  },
+  "chain_hint": {
+    "description": "Optional coarse chain class for demos — never a health ranking.",
+    "values": [
+      "none",
+      "generic_qsr",
+      "generic_fast_casual",
+      "generic_pizza",
+      "generic_coffee",
+      "named_demo_only"
+    ],
+    "note": "Prefer generic_* over real brand names in seed data unless barcode is real product."
+  },
+  "join_to_quality": {
+    "order": [
+      "1. Tag acquisition (context)",
+      "2. Score packet: NOVA, matrix, density, oils, sugars, HP-1/HP-2",
+      "3. Optional coach copy: 'Even at a drive-thru, this salad path looks different from the combo path'"
+    ],
+    "kibo_hooks": [
+      "F087 hyperpalatability (stub→partial when HP wired)",
+      "matrix_vitality ScoreAxis",
+      "persona Casey (time-poor) — acquisition friction, not moral failure"
+    ]
+  }
+}

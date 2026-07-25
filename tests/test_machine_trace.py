@@ -87,8 +87,8 @@ def test_stage_order_is_ssot_from_registry():
 
     ids = digestion_stage_ids()
     assert ids == [
-        "stage.oral", "stage.stomach", "stage.duodenum", "stage.jejunum",
-        "stage.portal", "stage.systemic", "stage.cell", "stage.colon",
+        "stage.intake-setup", "stage.oral", "stage.stomach", "stage.duodenum",
+        "stage.jejunum", "stage.portal", "stage.systemic", "stage.cell", "stage.colon",
     ]
 
 
@@ -96,10 +96,10 @@ def test_run_digestion_walks_all_stages():
     from biology_as_code import run_digestion
 
     r = run_digestion(carbs_g=45, protein_g=10, fats_g=5, fiber_g=3, matrix_integrity=0.1)
-    # the process chained every stage
+    # the process chained every stage, starting at S-0 intake-setup
     assert list(r["final_states"]) == [
-        "stage.oral", "stage.stomach", "stage.duodenum", "stage.jejunum",
-        "stage.portal", "stage.systemic", "stage.cell", "stage.colon",
+        "stage.intake-setup", "stage.oral", "stage.stomach", "stage.duodenum",
+        "stage.jejunum", "stage.portal", "stage.systemic", "stage.cell", "stage.colon",
     ]
     assert r["process"]["status"] == "ok"
     # a low-fiber refined meal trips teaching edge cases somewhere in the walk
@@ -112,7 +112,11 @@ def test_run_digestion_empty_intake_stops_early():
     r = run_digestion(context={"intake.food": 0, "intake.hydration": 0,
                                "intake.supplement": 0, "host.ready": 1})
     assert r["process"]["final"] == "stopEmpty"
-    assert r["stages"] == []  # no stage emitted -> nothing traced
+    # S-0 intake-setup runs first and itself fail-closes: it reaches the
+    # UNEVALUABLE empty-packet state before the process gate stops the tube.
+    assert [s["machine"] for s in r["stages"]] == ["stage.intake-setup"]
+    assert r["stages"][0]["final"] == "refuseEmpty"
+    assert "UNEVALUABLE" in r["stages"][0]["emits"]
 
 
 def test_run_digestion_negative_macros_clamped():

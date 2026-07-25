@@ -3,21 +3,35 @@
   "kind": "stage",
   "id": "stage.duodenum",
   "version": "1.0.0",
-  "revision": 1,
+  "revision": 2,
   "title": "Duodenum — neutralize, emulsify, enzyme attack",
   "status": "published",
-  "updated": "2026-07-23",
+  "updated": "2026-07-25",
   "order": 3,
   "provenance": {
     "basedOn": [
       "Standard GI physiology: pancreatic bicarbonate neutralization (~pH 6-7), bile-salt emulsification into micelles as the fat-soluble (A/D/E/K) vehicle, and pancreatic amylase/protease/lipase activity (teaching averages)."
     ],
-    "sources": [],
-    "authors": ["biology-as-code"]
+    "sources": [
+      "NIDDK - Your Digestive System & How It Works: https://www.niddk.nih.gov/health-information/digestive-diseases/digestive-system-how-it-works",
+      "Hall & Hall, Guyton and Hall Textbook of Medical Physiology, 14th ed. - Unit XII, Gastrointestinal Physiology",
+      "Boron & Boulpaep, Medical Physiology, 3rd ed. - The Gastrointestinal System"
+    ],
+    "authors": [
+      "biology-as-code"
+    ]
   },
   "inputs": [
-    { "field": "meal.fatG", "unit": "g", "description": "Fat available to form micelles / carry the fat-soluble path" },
-    { "field": "host.bileCapacity", "unit": "0-1", "description": "Teaching proxy for bile availability" }
+    {
+      "field": "meal.fatG",
+      "unit": "g",
+      "description": "Fat available to form micelles / carry the fat-soluble path"
+    },
+    {
+      "field": "host.bileCapacity",
+      "unit": "0-1",
+      "description": "Teaching proxy for bile availability"
+    }
   ],
   "startAt": "neutralize",
   "states": {
@@ -25,26 +39,46 @@
       "type": "task",
       "label": "Bicarbonate neutralization",
       "detail": "Pancreatic bicarbonate raises luminal pH from stomach acid to ~6-7 so pancreatic enzymes can work - the wrong pH stalls everything downstream.",
-      "requires": [ { "field": "meal.fatG", "op": "exists" } ],
-      "emits": ["neutral-chyme"],
+      "requires": [
+        {
+          "field": "meal.fatG",
+          "op": "exists"
+        }
+      ],
+      "emits": [
+        "neutral-chyme"
+      ],
       "next": "emulsify"
     },
     "emulsify": {
       "type": "task",
-      "label": "Bile emulsification -> micelles",
-      "detail": "Bile salts break fat into micelles, exposing surface area for lipase and creating the vehicle for fat-soluble vitamins (A, D, E, K).",
-      "windowH": [3.5, 1.5],
-      "emits": ["micelles", "fat-soluble-vehicle"],
+      "label": "Bile emulsification -> fat droplets",
+      "detail": "Bile salts (with lecithin) emulsify triglyceride into fine droplets - this is what exposes surface area for pancreatic lipase + colipase. Mixed micelles form later, from the products of lipolysis (see the enzyme step), not here.",
+      "windowH": [
+        3.5,
+        1.5
+      ],
+      "emits": [
+        "emulsified-droplets"
+      ],
       "edgeCases": [
         {
           "id": "low-fat-vehicle",
-          "when": { "field": "meal.fatG", "op": "<", "value": 10 },
-          "effect": "Little dietary fat -> few micelles -> the fat-soluble (A/D/E/K) absorption path may under-fire (fat-vehicle gate, L-FAT-1 concept).",
+          "when": {
+            "field": "meal.fatG",
+            "op": "<",
+            "value": 10
+          },
+          "effect": "Little dietary fat -> little emulsification and few mixed micelles downstream -> the fat-soluble (A/D/E/K) absorption path may under-fire (fat-vehicle gate, L-FAT-1 concept).",
           "note": "Teaching flag only, not a score."
         },
         {
           "id": "low-bile",
-          "when": { "field": "host.bileCapacity", "op": "<", "value": 0.4 },
+          "when": {
+            "field": "host.bileCapacity",
+            "op": "<",
+            "value": 0.4
+          },
           "effect": "Reduced bile -> poor emulsification -> fat + fat-soluble vitamin malabsorption; steatorrhea teaching pattern.",
           "note": "Cholestasis / cholecystectomy context. Teaching flag only."
         }
@@ -53,16 +87,21 @@
     },
     "enzymeAttack": {
       "type": "task",
-      "label": "Pancreatic enzyme attack",
-      "detail": "Amylase, proteases (trypsin/chymotrypsin) and lipase resume the assault, cleaving polymers toward absorbable monomers.",
-      "emits": ["monomers-primed"],
+      "label": "Pancreatic enzymes -> lipolysis -> mixed micelles",
+      "detail": "CCK (triggered by dietary fat/protein) drives pancreatic enzyme + gallbladder/bile release; secretin drives the bicarbonate. Brush-border enteropeptidase activates trypsinogen -> trypsin, which then activates the other proteases (chymotrypsin, elastase, carboxypeptidases). Pancreatic lipase, with colipase, hydrolyzes triglyceride to free fatty acids + 2-monoacylglycerol; those lipolytic products, with bile salts, assemble into mixed micelles (~4-7 nm) that ferry lipid and the fat-soluble vitamins (A/D/E/K) to the brush border. Amylase continues starch -> maltose.",
+      "emits": [
+        "monomers-primed",
+        "mixed-micelles"
+      ],
       "next": "handoff"
     },
     "handoff": {
       "type": "succeed",
       "label": "Chyme -> jejunum",
       "detail": "Neutralized, emulsified, enzyme-primed chyme reaches the main absorption window.",
-      "emits": ["chyme->jejunum"]
+      "emits": [
+        "chyme->jejunum"
+      ]
     }
   }
 }

@@ -3,26 +3,59 @@
   "kind": "stage",
   "id": "stage.stomach",
   "version": "1.0.0",
-  "revision": 1,
+  "revision": 2,
   "title": "Stomach — acid denaturation & gastric emptying",
   "status": "published",
-  "updated": "2026-07-23",
+  "updated": "2026-07-25",
   "order": 2,
   "provenance": {
     "basedOn": [
       "Standard GI physiology: gastric acidification (~pH 1.5-3.5), pepsinogen -> pepsin cleavage, intrinsic-factor secretion, and macronutrient/matrix-dependent gastric emptying (teaching averages)."
     ],
-    "sources": [],
-    "authors": ["biology-as-code"]
+    "sources": [
+      "NIDDK - Your Digestive System & How It Works: https://www.niddk.nih.gov/health-information/digestive-diseases/digestive-system-how-it-works",
+      "Hall & Hall, Guyton and Hall Textbook of Medical Physiology, 14th ed. - Unit XII, Gastrointestinal Physiology",
+      "Boron & Boulpaep, Medical Physiology, 3rd ed. - The Gastrointestinal System"
+    ],
+    "authors": [
+      "biology-as-code"
+    ]
   },
   "inputs": [
-    { "field": "meal.glucoseG", "unit": "g", "description": "Available carbohydrate in the meal window" },
-    { "field": "meal.proteinG", "unit": "g", "description": "Protein grams" },
-    { "field": "meal.fatG", "unit": "g", "description": "Fat grams (slows emptying)" },
-    { "field": "meal.fiberG", "unit": "g", "description": "Fiber grams (buffer)" },
-    { "field": "meal.matrixIntegrity", "unit": "0-1", "description": "0 = liquid/refined, 1 = intact chewed whole food" },
-    { "field": "host.acidCapacity", "unit": "0-1", "description": "Teaching proxy for gastric acid output (PPI/age lowers it)" },
-    { "field": "host.postSurgical", "description": "Bariatric/gastrectomy context flag" }
+    {
+      "field": "meal.glucoseG",
+      "unit": "g",
+      "description": "Available carbohydrate in the meal window"
+    },
+    {
+      "field": "meal.proteinG",
+      "unit": "g",
+      "description": "Protein grams"
+    },
+    {
+      "field": "meal.fatG",
+      "unit": "g",
+      "description": "Fat grams (slows emptying)"
+    },
+    {
+      "field": "meal.fiberG",
+      "unit": "g",
+      "description": "Fiber grams (buffer)"
+    },
+    {
+      "field": "meal.matrixIntegrity",
+      "unit": "0-1",
+      "description": "0 = liquid/refined, 1 = intact chewed whole food"
+    },
+    {
+      "field": "host.acidCapacity",
+      "unit": "0-1",
+      "description": "Teaching proxy for gastric acid output (PPI/age lowers it)"
+    },
+    {
+      "field": "host.postSurgical",
+      "description": "Bariatric/gastrectomy context flag"
+    }
   ],
   "startAt": "arrival",
   "states": {
@@ -30,21 +63,43 @@
       "type": "task",
       "label": "Bolus arrival via LES",
       "detail": "Chewed bolus passes the lower esophageal sphincter into the fundus; receptive relaxation lets the stomach hold volume without a pressure spike.",
-      "windowH": [1.2, 0.3],
-      "requires": [ { "field": "meal.matrixIntegrity", "op": "exists" } ],
-      "emits": ["gastric-volume"],
+      "windowH": [
+        0.02,
+        0.03
+      ],
+      "requires": [
+        {
+          "field": "meal.matrixIntegrity",
+          "op": "exists"
+        }
+      ],
+      "emits": [
+        "gastric-volume"
+      ],
       "next": "acidChemistry"
     },
     "acidChemistry": {
       "type": "task",
       "label": "Acid denaturation + peptic cleavage",
       "detail": "HCl drops luminal pH (~1.5-3.5), unfolding proteins; pepsinogen -> pepsin cleaves peptide bonds. Intrinsic factor is secreted here for downstream B12 capture.",
-      "windowH": [1.5, 3],
-      "emits": ["denatured-protein", "peptides", "intrinsic-factor", "acid-chyme"],
+      "windowH": [
+        1.5,
+        3
+      ],
+      "emits": [
+        "denatured-protein",
+        "peptides",
+        "intrinsic-factor",
+        "acid-chyme"
+      ],
       "edgeCases": [
         {
           "id": "hypochlorhydria",
-          "when": { "field": "host.acidCapacity", "op": "<", "value": 0.4 },
+          "when": {
+            "field": "host.acidCapacity",
+            "op": "<",
+            "value": 0.4
+          },
           "effect": "Weak acid -> incomplete protein denaturation and reduced non-heme iron / B12 liberation.",
           "note": "PPI use, atrophic gastritis, aging. Teaching flag only, not a diagnosis."
         }
@@ -57,18 +112,38 @@
       "detail": "Antral pump + pyloric gatekeeping meter chyme into the duodenum. Macronutrient mix and physical form set the rate - the single biggest lever on the downstream glycemic shape.",
       "choices": [
         {
-          "when": { "any": [
-            { "field": "meal.fatG", "op": ">=", "value": 15 },
-            { "field": "meal.proteinG", "op": ">=", "value": 25 }
-          ] },
+          "when": {
+            "any": [
+              {
+                "field": "meal.fatG",
+                "op": ">=",
+                "value": 15
+              },
+              {
+                "field": "meal.proteinG",
+                "op": ">=",
+                "value": 25
+              }
+            ]
+          },
           "next": "slowEmpty",
           "note": "Fat/protein trigger CCK & duodenal feedback -> slower, steadier release."
         },
         {
-          "when": { "all": [
-            { "field": "meal.matrixIntegrity", "op": "<", "value": 0.3 },
-            { "field": "meal.glucoseG", "op": ">=", "value": 30 }
-          ] },
+          "when": {
+            "all": [
+              {
+                "field": "meal.matrixIntegrity",
+                "op": "<",
+                "value": 0.3
+              },
+              {
+                "field": "meal.glucoseG",
+                "op": ">=",
+                "value": 30
+              }
+            ]
+          },
           "next": "fastEmpty",
           "note": "Liquid / refined carb empties fast -> sharp downstream appearance."
         }
@@ -79,29 +154,54 @@
       "type": "task",
       "label": "Slowed emptying (3-5 h)",
       "detail": "Higher satiety, flatter downstream glucose. Fat/protein-forward or intact-matrix meals sit longer; extraction is more complete.",
-      "windowH": [2.5, 3],
-      "emits": ["metered-chyme", "satiety-signal"],
+      "windowH": [
+        2.5,
+        3
+      ],
+      "emits": [
+        "metered-chyme",
+        "satiety-signal"
+      ],
       "next": "handoff"
     },
     "fastEmpty": {
       "type": "task",
       "label": "Rapid emptying (liquid / refined)",
       "detail": "Low-viscosity, low-fiber load clears quickly; glucose hits the jejunum in a bolus, setting up a steeper systemic rise.",
-      "windowH": [0.8, 1.2],
-      "emits": ["bolus-chyme"],
+      "windowH": [
+        0.8,
+        1.2
+      ],
+      "emits": [
+        "bolus-chyme"
+      ],
       "edgeCases": [
         {
           "id": "refined-carb-preload",
-          "when": { "all": [
-            { "field": "meal.fiberG", "op": "<", "value": 8 },
-            { "field": "meal.glucoseG", "op": ">=", "value": 30 }
-          ] },
+          "when": {
+            "all": [
+              {
+                "field": "meal.fiberG",
+                "op": "<",
+                "value": 8
+              },
+              {
+                "field": "meal.glucoseG",
+                "op": ">=",
+                "value": 30
+              }
+            ]
+          },
           "effect": "Fast-emptying refined carb with little fiber buffer delivers glucose to the jejunum in a sharp bolus -> steeper systemic rise.",
           "note": "Teaching pattern only, not a score."
         },
         {
           "id": "dumping-syndrome",
-          "when": { "field": "host.postSurgical", "op": "==", "value": true },
+          "when": {
+            "field": "host.postSurgical",
+            "op": "==",
+            "value": true
+          },
           "effect": "Post-gastrectomy loss of the pyloric brake -> osmotic dumping; early vasomotor + late reactive-hypoglycemia teaching pattern.",
           "note": "Context flag only."
         }
@@ -112,15 +212,22 @@
       "type": "task",
       "label": "Typical mixed-meal emptying",
       "detail": "Balanced macro mix empties over ~2-4 h; moderate downstream shape. The default path for whole, varied meals.",
-      "windowH": [2, 2.5],
-      "emits": ["metered-chyme"],
+      "windowH": [
+        2,
+        2.5
+      ],
+      "emits": [
+        "metered-chyme"
+      ],
       "next": "handoff"
     },
     "handoff": {
       "type": "succeed",
       "label": "Chyme -> duodenum",
       "detail": "Acidified, partly-digested chyme is released to the duodenum, where bicarbonate neutralization and bile/pancreatic enzymes take over.",
-      "emits": ["acid-chyme->duodenum"]
+      "emits": [
+        "acid-chyme->duodenum"
+      ]
     }
   }
 }

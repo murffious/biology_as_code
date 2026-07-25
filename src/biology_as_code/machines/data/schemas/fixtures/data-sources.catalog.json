@@ -1,0 +1,332 @@
+{
+  "schema": "kibo.DataSourceCatalog/v1",
+  "version": "1.0.0",
+  "title": "Real-world data source catalog for user profile mocks",
+  "description": "Maps book Part 0 (IoB telemetry, data-sourcing map, lifestyle modifiers, genetics ROM, deep diagnostics) to categories a user could actually connect. Brands are examples only — perishable. Prefer category + maturity.",
+  "book_refs": [
+    "final-draft/Part 0/03-the-internet-of-the-body-telemetry.md",
+    "final-draft/Part 0/06-the-data-sourcing-map.md",
+    "final-draft/Part 0/08-genetics-as-rom-your-report-cards.md",
+    "final-draft/Part 0/09-lifestyle-modifiers-and-state-hierarchy.md",
+    "final-draft/appendix/09-six-lifestyle-factors-evidence-pack.md"
+  ],
+  "lifestyle_pillars": {
+    "description": "ACLM six pillars + book seventh kinetic_load (structural). Loads are host config, not moral scores.",
+    "pillars": [
+      {
+        "id": "sleep",
+        "label": "Restorative sleep",
+        "book_modifier": 2,
+        "typical_sources": ["wearable_sleep"],
+        "maturity_best": "MATURE",
+        "acts_on": "insulin/cortisol receptor sensitivity teaching"
+      },
+      {
+        "id": "activity",
+        "label": "Physical activity (metabolic)",
+        "book_modifier": 1,
+        "typical_sources": ["wearable_activity"],
+        "maturity_best": "MATURE",
+        "acts_on": "mitochondrial / muscle transport capacity teaching"
+      },
+      {
+        "id": "stress",
+        "label": "Stress management",
+        "book_modifier": 3,
+        "typical_sources": ["wearable_hrv_autonomic", "self_report_lifestyle"],
+        "maturity_best": "EMERGING",
+        "acts_on": "HPA / cortisol load teaching"
+      },
+      {
+        "id": "social",
+        "label": "Positive social connection",
+        "book_modifier": 4,
+        "typical_sources": ["self_report_lifestyle"],
+        "maturity_best": "MANUAL",
+        "acts_on": "autonomic co-regulation teaching — almost never body-sensed"
+      },
+      {
+        "id": "substance_avoidance",
+        "label": "Avoidance of risky substances",
+        "book_modifier": 5,
+        "typical_sources": ["self_report_lifestyle", "transdermal_alcohol"],
+        "maturity_best": "MANUAL",
+        "acts_on": "hepatic/renal clearance capacity teaching"
+      },
+      {
+        "id": "nutrition_quality",
+        "label": "Nutrition quality / matrix",
+        "book_modifier": 6,
+        "typical_sources": ["food_log"],
+        "maturity_best": "EMERGING",
+        "acts_on": "lumen bioavailability / matrix teaching — food-shaped hole"
+      },
+      {
+        "id": "kinetic_load",
+        "label": "Kinetic / structural load",
+        "book_modifier": 7,
+        "typical_sources": ["wearable_activity", "self_report_lifestyle"],
+        "maturity_best": "EMERGING",
+        "acts_on": "bone/connective AA+mineral floor teaching"
+      }
+    ]
+  },
+  "source_classes": [
+    {
+      "category": "wearable_sleep",
+      "provider_class": "ring_or_watch_sleep",
+      "provider_examples": ["Oura", "Whoop", "Apple Watch", "Garmin", "Fitbit", "Eight Sleep"],
+      "maturity": "MATURE",
+      "telemetry_tier": "realtime_metabolic",
+      "book_layer": "L1_host",
+      "refresh": "continuous",
+      "fields": [
+        "host.sleep_hours_last_night",
+        "host.sleep_quality",
+        "clinical.dynamic_state.sleep_debt"
+      ],
+      "lifestyle_pillars": ["sleep"],
+      "notes": "Book: L1 sleep is MATURE. Snapshot of last night + multi-night debt."
+    },
+    {
+      "category": "wearable_activity",
+      "provider_class": "phone_or_watch_activity",
+      "provider_examples": ["Apple Health", "Google Fit", "Garmin", "Strava", "Whoop"],
+      "maturity": "MATURE",
+      "telemetry_tier": "realtime_metabolic",
+      "book_layer": "L1_host",
+      "refresh": "continuous",
+      "fields": [
+        "host.steps_today",
+        "host.active_minutes_today",
+        "host.recent_exercise_intensity",
+        "preferences.activity_level"
+      ],
+      "lifestyle_pillars": ["activity", "kinetic_load"]
+    },
+    {
+      "category": "wearable_hrv_autonomic",
+      "provider_class": "hrv_eda_proxy",
+      "provider_examples": ["Oura", "Whoop", "Apple Watch", "Garmin", "Elite HRV"],
+      "maturity": "EMERGING",
+      "telemetry_tier": "affective",
+      "book_layer": "L1_host",
+      "refresh": "continuous",
+      "fields": [
+        "host.hrv_rmssd",
+        "host.resting_hr",
+        "host.stress_level",
+        "clinical.hormonal_profile.cortisol"
+      ],
+      "lifestyle_pillars": ["stress"],
+      "notes": "HRV is proxy for stress/recovery — not a cortisol lab. Cortisol biosensors still lab-ish."
+    },
+    {
+      "category": "wearable_body_comp",
+      "provider_class": "smart_scale_or_dexa",
+      "provider_examples": ["Withings", "InBody", "DEXA clinic", "Tanita"],
+      "maturity": "EMERGING",
+      "telemetry_tier": "deep_diagnostic",
+      "book_layer": "L1_host",
+      "refresh": "weekly",
+      "fields": [
+        "host.body_fat_percent",
+        "host.muscle_mass_kg",
+        "goals.body.body_fat_percent",
+        "goals.body.weight_kg"
+      ],
+      "lifestyle_pillars": ["activity", "kinetic_load"]
+    },
+    {
+      "category": "smart_scale",
+      "provider_class": "bioimpedance_scale",
+      "provider_examples": ["Withings Body", "Renpho", "Fitbit Aria"],
+      "maturity": "EMERGING",
+      "telemetry_tier": "deep_diagnostic",
+      "book_layer": "L1_host",
+      "refresh": "daily",
+      "fields": ["goals.body.weight_kg", "host.hydration_status", "host.body_fat_percent"],
+      "lifestyle_pillars": []
+    },
+    {
+      "category": "cgm_metabolic",
+      "provider_class": "continuous_glucose",
+      "provider_examples": ["Dexcom", "Abbott Libre", "Stelo OTC", "Levels / Nutrisense (program)"],
+      "maturity": "MATURE",
+      "telemetry_tier": "realtime_metabolic",
+      "book_layer": "L1_host",
+      "refresh": "continuous",
+      "fields": [
+        "clinical.biomarkers.fasting_glucose",
+        "clinical.hormonal_profile.insulin_resistance",
+        "host.insulin_resistance"
+      ],
+      "lifestyle_pillars": ["nutrition_quality", "sleep", "stress"],
+      "notes": "Book: CGM is OUTPUT sensor — result of meal+host, not a single input factor. Use for calibration, not as food log replacement."
+    },
+    {
+      "category": "clinical_lab_blood",
+      "provider_class": "venous_or_fingerstick_panel",
+      "provider_examples": [
+        "Quest Diagnostics",
+        "Labcorp",
+        "Function Health",
+        "InsideTracker",
+        "Superpower",
+        "hospital EHR export"
+      ],
+      "maturity": "MATURE",
+      "telemetry_tier": "deep_diagnostic",
+      "book_layer": "L4_clinical",
+      "refresh": "quarterly",
+      "fields": [
+        "clinical.biomarkers.fasting_glucose",
+        "clinical.biomarkers.hba1c",
+        "clinical.biomarkers.fasting_insulin",
+        "clinical.biomarkers.crp_hs",
+        "clinical.biomarkers.homocysteine",
+        "clinical.biomarkers.ferritin",
+        "clinical.biomarkers.vitamin_d",
+        "clinical.biomarkers.b12",
+        "clinical.biomarkers.folate",
+        "clinical.biomarkers.tsh",
+        "clinical.biomarkers.lipid_ldl",
+        "clinical.biomarkers.lipid_hdl",
+        "clinical.biomarkers.triglycerides"
+      ],
+      "lifestyle_pillars": [],
+      "notes": "Deep diagnostic snapshot. Ages out — stale labs → OPEN honesty."
+    },
+    {
+      "category": "dtc_genetics",
+      "provider_class": "saliva_snp_panel",
+      "provider_examples": ["23andMe", "AncestryDNA", "SelfDecode", "Nebula", "clinic pharmacogenomics"],
+      "maturity": "MATURE",
+      "telemetry_tier": "rom_genetics",
+      "book_layer": "L0_profile",
+      "refresh": "once",
+      "fields": [
+        "clinical.genetics.mthfr_mutation",
+        "clinical.genetics.mthfr_variant",
+        "clinical.genetics.apoe_status",
+        "clinical.genetics.lactase_persistence"
+      ],
+      "lifestyle_pillars": [],
+      "notes": "Book: genetics is ROM report card — partial dump, prior not phenotype. Never meal destiny."
+    },
+    {
+      "category": "microbiome_stool",
+      "provider_class": "consumer_stool_metagenomics",
+      "provider_examples": ["Viome", "Thorne Gut Health", "Tiny Health", "Floré", "DayTwo (research lineage)"],
+      "maturity": "EMERGING",
+      "telemetry_tier": "deep_diagnostic",
+      "book_layer": "L1_host",
+      "refresh": "biannual",
+      "fields": [
+        "clinical.microbiome.diversity_band",
+        "clinical.microbiome.butyrate_producers_band",
+        "clinical.microbiome.dysbiosis_band",
+        "clinical.dynamic_state.gut_symptom_load"
+      ],
+      "lifestyle_pillars": ["nutrition_quality", "substance_avoidance"],
+      "notes": "Book deep diagnostic: resident bacterial software. Consumer claims vary; treat as OPEN teaching flags, not Court LAW."
+    },
+    {
+      "category": "food_log",
+      "provider_class": "meal_logging_app",
+      "provider_examples": ["MealCoach", "Cronometer", "MyFitnessPal", "Lose It!", "photo AI log"],
+      "maturity": "EMERGING",
+      "telemetry_tier": "declared_input",
+      "book_layer": "L2_food",
+      "refresh": "on_demand",
+      "fields": [
+        "preferences.diet_style",
+        "recent_meals",
+        "app.adherence_last_7d",
+        "app.last_meal_logged_days_ago"
+      ],
+      "lifestyle_pillars": ["nutrition_quality"],
+      "notes": "Food-shaped hole: highest leverage, weakest sensing. Declared not measured."
+    },
+    {
+      "category": "meds_pharmacy",
+      "provider_class": "ehr_or_pharmacy_or_healthkit",
+      "provider_examples": ["Apple Health medications", "pharmacy fill history", "EHR export", "manual Rx list"],
+      "maturity": "MANUAL",
+      "telemetry_tier": "declared_input",
+      "book_layer": "L4_clinical",
+      "refresh": "on_demand",
+      "fields": ["medications"],
+      "lifestyle_pillars": [],
+      "notes": "Book L4: EHR/pharmacy feed ideal; often still self-report."
+    },
+    {
+      "category": "supplements_self",
+      "provider_class": "manual_supplement_list",
+      "provider_examples": ["in-app checklist", "Fullscript export"],
+      "maturity": "MANUAL",
+      "telemetry_tier": "declared_input",
+      "book_layer": "L4_clinical",
+      "refresh": "manual",
+      "fields": ["supplements"],
+      "lifestyle_pillars": []
+    },
+    {
+      "category": "self_report_lifestyle",
+      "provider_class": "onboarding_questionnaire",
+      "provider_examples": ["MealCoach onboarding", "PHQ-style stress item", "social support scale"],
+      "maturity": "MANUAL",
+      "telemetry_tier": "declared_input",
+      "book_layer": "L1_host",
+      "refresh": "manual",
+      "fields": [
+        "host.perceived_stress",
+        "preferences.lifestyle_tags",
+        "preferences.allergies",
+        "host.alcohol_with_meal"
+      ],
+      "lifestyle_pillars": ["social", "substance_avoidance", "stress"],
+      "notes": "Social connection + chronic substance pattern: almost entirely MANUAL on the map."
+    },
+    {
+      "category": "ehr_clinical",
+      "provider_class": "clinical_record_export",
+      "provider_examples": ["Epic MyChart", "Cerner portal", "Blue Button FHIR"],
+      "maturity": "MATURE",
+      "telemetry_tier": "deep_diagnostic",
+      "book_layer": "L4_clinical",
+      "refresh": "on_demand",
+      "fields": ["medications", "clinical.biomarkers", "host.post_surgical", "host.lifecycle"],
+      "lifestyle_pillars": []
+    },
+    {
+      "category": "transdermal_alcohol",
+      "provider_class": "alcohol_sensor",
+      "provider_examples": ["BACtrack Skyn", "self-report only for most users"],
+      "maturity": "EMERGING",
+      "telemetry_tier": "realtime_metabolic",
+      "book_layer": "L4_clinical",
+      "refresh": "continuous",
+      "fields": ["host.alcohol_with_meal"],
+      "lifestyle_pillars": ["substance_avoidance"]
+    }
+  ],
+  "configure_calibrate": {
+    "description": "Part 0.1 boot sequence readiness for mocks",
+    "configure_requires": [
+      "goals.body.height_cm",
+      "goals.body.weight_kg OR host ready anthropometrics",
+      "host.sex",
+      "host.age_years OR host.lifecycle"
+    ],
+    "calibrate_boosters": [
+      "clinical_lab_blood",
+      "wearable_sleep",
+      "wearable_activity",
+      "cgm_metabolic",
+      "dtc_genetics",
+      "microbiome_stool"
+    ],
+    "rule": "host.ready=1 when configure fields present; calibrate_ready when ≥1 continuous wearable OR labs/genetics/microbiome imported and not expired"
+  }
+}

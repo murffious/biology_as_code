@@ -1,0 +1,57 @@
+{
+  "schema": "kibo.HostClinicalProfile/v1",
+  "honesty": "OPEN",
+  "source": "mock",
+  "as_of": "2026-07-23",
+  "genetics": {
+    "mthfr_mutation": true,
+    "mthfr_variant": "C677T",
+    "honesty": "OPEN"
+  },
+  "biomarkers": {
+    "fasting_glucose": { "band": "HIGH", "honesty": "OPEN" },
+    "hba1c": { "band": "NORMAL", "honesty": "OPEN" },
+    "crp_hs": { "band": "HIGH", "honesty": "OPEN" },
+    "homocysteine": { "band": "HIGH", "honesty": "OPEN" },
+    "honesty": "OPEN"
+  },
+  "hormonal_profile": {
+    "insulin_resistance": "HIGH",
+    "cortisol": "NORMAL",
+    "honesty": "OPEN"
+  },
+  "dynamic_state": {
+    "inflammation_status": "HIGH",
+    "recovery_status": "NORMAL",
+    "honesty": "OPEN"
+  },
+  "constraints": [
+    {
+      "id": "no_synthetic_folic_acid",
+      "severity": "teaching",
+      "message": "MTHFR flag — prefer methylfolate forms; synthetic folic acid poorly processed (teaching mock).",
+      "source": "genetics.mthfr_mutation",
+      "affects_axes": ["density"],
+      "affects_stages": ["stage.jejunum", "stage.cell"],
+      "cargo_rules": [
+        { "cargo": "folate", "prefer": "methylfolate", "avoid": "folic_acid_synthetic" }
+      ]
+    },
+    {
+      "id": "limit_glycemic_velocity",
+      "severity": "teaching",
+      "message": "Insulin resistance HIGH — limit carb-spike packets; favor matrix buffer + order (teaching mock).",
+      "source": "hormonal_profile.insulin_resistance",
+      "affects_axes": ["glycemic_velocity"],
+      "affects_stages": ["stage.oral", "stage.stomach", "stage.jejunum", "stage.systemic"]
+    },
+    {
+      "id": "prefer_anti_inflammatory",
+      "severity": "teaching",
+      "message": "Inflammation status HIGH — prefer lower oxidative_burden packets (teaching mock).",
+      "source": "dynamic_state.inflammation_status",
+      "affects_axes": ["oxidative_burden"],
+      "affects_stages": ["stage.intake-setup", "stage.portal", "stage.colon"]
+    }
+  ]
+}

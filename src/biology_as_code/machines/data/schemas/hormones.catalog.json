@@ -1,0 +1,62 @@
+{
+  "schema": "kibo.Hormones.catalog/v1",
+  "version": "1.0.0",
+  "honesty": "OPEN",
+  "title": "Exogenous hormone therapy classes (starter — keep small)",
+  "principle": "Self-report host context only. Delivery (patch, pellet, injection, oral) is first-class. No dosing, no gender medicine engine, no replacement for clinician.",
+  "anti_patterns": [
+    "Do not recommend starting/stopping HRT/TRT",
+    "Do not equate endogenous sex-hormone tone with exogenous therapy",
+    "Do not invent pellet release curves"
+  ],
+  "classes": [
+    {
+      "id": "estradiol",
+      "label": "Estradiol / estrogen therapy",
+      "aliases": ["estradiol", "estrogen", "hrt estrogen"],
+      "default_delivery": "patch_transdermal",
+      "allowed_deliveries": ["oral", "patch_transdermal", "topical", "pellet_implant", "other"],
+      "status": "stub"
+    },
+    {
+      "id": "progesterone",
+      "label": "Progesterone / progestin therapy",
+      "aliases": ["progesterone", "progestin"],
+      "default_delivery": "oral",
+      "allowed_deliveries": ["oral", "topical", "other"],
+      "status": "stub"
+    },
+    {
+      "id": "testosterone",
+      "label": "Testosterone therapy",
+      "aliases": ["testosterone", "trt", "test cyp", "test gel"],
+      "default_delivery": "intramuscular",
+      "allowed_deliveries": ["intramuscular", "subcutaneous", "topical", "patch_transdermal", "pellet_implant", "other"],
+      "status": "stub"
+    },
+    {
+      "id": "thyroid_hormone",
+      "label": "Thyroid hormone replacement",
+      "aliases": ["levothyroxine", "synthroid", "t4", "t3", "armour thyroid"],
+      "default_delivery": "oral",
+      "status": "stub",
+      "note": "Usually Rx — can live as medication class later; listed here for delivery completeness"
+    },
+    {
+      "id": "insulin",
+      "label": "Insulin (exogenous)",
+      "aliases": ["insulin"],
+      "default_delivery": "subcutaneous",
+      "allowed_deliveries": ["subcutaneous", "intravenous", "other"],
+      "status": "stub",
+      "note": "Critical med — app must never titrate; store onboard + delivery only"
+    },
+    {
+      "id": "other_hormone",
+      "label": "Other exogenous hormone",
+      "aliases": [],
+      "default_delivery": "unknown",
+      "status": "escape_hatch"
+    }
+  ]
+}

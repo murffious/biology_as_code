@@ -2,42 +2,88 @@
   "$schema": "../_schema/machine.schema.json",
   "kind": "process",
   "id": "process.full-digest",
-  "version": "1.0.0",
-  "revision": 1,
-  "title": "Full digest — intake gate through colon (stage sequence)",
+  "version": "1.1.0",
+  "revision": 3,
+  "title": "Full digest - intake setup (S-0) through colon (stage sequence)",
   "status": "published",
-  "updated": "2026-07-23",
+  "updated": "2026-07-25",
   "provenance": {
     "basedOn": [
-      "Top-level sequence over all eight stages: oral -> stomach -> duodenum -> jejunum -> portal -> systemic -> cell -> colon (the last four are post-absorptive / off-lumen). Micro-steps live in each stage file, not here. Teaching model - no product score implied."
+      "Start-to-finish A-Z sequence over all nine stages: intake-setup -> oral -> stomach -> duodenum -> jejunum -> portal -> systemic -> cell -> colon. S-0 intake-setup is pre-digestion (host ready + which payload channels are present); mastication and salivary enzymes begin at oral (S-1). The last four stages are post-absorptive / off-lumen. Micro-steps live in each stage file, not here. Teaching model - no product score implied."
     ],
-    "sources": [],
-    "authors": ["biology-as-code"]
+    "sources": [
+      "NIDDK - Your Digestive System & How It Works: https://www.niddk.nih.gov/health-information/digestive-diseases/digestive-system-how-it-works",
+      "Hall & Hall, Guyton and Hall Textbook of Medical Physiology, 14th ed. - Unit XII, Gastrointestinal Physiology",
+      "Boron & Boulpaep, Medical Physiology, 3rd ed. - The Gastrointestinal System"
+    ],
+    "authors": [
+      "biology-as-code"
+    ]
   },
   "inputs": [
-    { "field": "host.ready", "unit": "0|1", "description": "Host boot gate before intake" },
-    { "field": "intake.food", "unit": "0|1" },
-    { "field": "intake.hydration", "unit": "0|1" },
-    { "field": "intake.supplement", "unit": "0|1" }
+    {
+      "field": "host.ready",
+      "unit": "0|1",
+      "description": "Host boot gate before intake"
+    },
+    {
+      "field": "intake.food",
+      "unit": "0|1"
+    },
+    {
+      "field": "intake.hydration",
+      "unit": "0|1"
+    },
+    {
+      "field": "intake.supplement",
+      "unit": "0|1"
+    }
   ],
-  "startAt": "intakeGate",
+  "startAt": "intakeSetup",
   "states": {
+    "intakeSetup": {
+      "type": "task",
+      "label": "S-0 - Host intake setup",
+      "detail": "Run stage.intake-setup - host.ready + food|hydration|supplement as 0|1. This is where the journey starts: identify the host and read which payload channels are present, before anything enters the mouth. Micro-steps live in that stage file, not here.",
+      "emits": [
+        "stage:stage.intake-setup"
+      ],
+      "next": "intakeGate"
+    },
     "intakeGate": {
       "type": "choice",
       "label": "Intake gate",
       "detail": "If the host is explicitly not ready, or every intake channel is 0, stop before the mouth - don't invent a meal path. Legacy events with unset intake flags proceed.",
       "choices": [
         {
-          "when": { "field": "host.ready", "op": "==", "value": 0 },
+          "when": {
+            "field": "host.ready",
+            "op": "==",
+            "value": 0
+          },
           "next": "stopNoHost",
           "note": "Host not ready - process ends before the mouth."
         },
         {
-          "when": { "all": [
-            { "field": "intake.food", "op": "==", "value": 0 },
-            { "field": "intake.hydration", "op": "==", "value": 0 },
-            { "field": "intake.supplement", "op": "==", "value": 0 }
-          ] },
+          "when": {
+            "all": [
+              {
+                "field": "intake.food",
+                "op": "==",
+                "value": 0
+              },
+              {
+                "field": "intake.hydration",
+                "op": "==",
+                "value": 0
+              },
+              {
+                "field": "intake.supplement",
+                "op": "==",
+                "value": 0
+              }
+            ]
+          },
           "next": "stopEmpty",
           "note": "Empty packet - nothing to digest."
         }
@@ -48,75 +94,99 @@
       "type": "succeed",
       "label": "Stop - host not ready",
       "detail": "Process terminated before intake. Complete host setup; do not invent a meal path.",
-      "emits": ["process:stop", "reason:host"]
+      "emits": [
+        "process:stop",
+        "reason:host"
+      ]
     },
     "stopEmpty": {
       "type": "succeed",
       "label": "Stop - empty intake",
       "detail": "Process terminated before intake. Set at least one of intake.food | hydration | supplement = 1.",
-      "emits": ["process:stop", "reason:empty"]
+      "emits": [
+        "process:stop",
+        "reason:empty"
+      ]
     },
     "oral": {
       "type": "task",
       "label": "Mouth & esophagus",
       "detail": "Run stage.oral - cephalic cue through the LES handoff.",
-      "emits": ["stage:stage.oral"],
+      "emits": [
+        "stage:stage.oral"
+      ],
       "next": "stomach"
     },
     "stomach": {
       "type": "task",
       "label": "Stomach",
       "detail": "Run stage.stomach - acid, pepsin, gastric emptying control.",
-      "emits": ["stage:stage.stomach"],
+      "emits": [
+        "stage:stage.stomach"
+      ],
       "next": "duodenum"
     },
     "duodenum": {
       "type": "task",
       "label": "Duodenum",
       "detail": "Run stage.duodenum - bicarbonate neutralization, bile, pancreatic enzymes.",
-      "emits": ["stage:stage.duodenum"],
+      "emits": [
+        "stage:stage.duodenum"
+      ],
       "next": "jejunum"
     },
     "jejunum": {
       "type": "task",
       "label": "Jejunum / ileum",
       "detail": "Run stage.jejunum - villus absorption and anabolic/basal routing.",
-      "emits": ["stage:stage.jejunum"],
+      "emits": [
+        "stage:stage.jejunum"
+      ],
       "next": "portal"
     },
     "portal": {
       "type": "task",
       "label": "Portal & liver",
       "detail": "Run stage.portal - first-pass hepatic partitioning.",
-      "emits": ["stage:stage.portal"],
+      "emits": [
+        "stage:stage.portal"
+      ],
       "next": "systemic"
     },
     "systemic": {
       "type": "task",
       "label": "Systemic circulation",
       "detail": "Run stage.systemic - peripheral appearance and clearance shape.",
-      "emits": ["stage:stage.systemic"],
+      "emits": [
+        "stage:stage.systemic"
+      ],
       "next": "cell"
     },
     "cell": {
       "type": "task",
       "label": "Cell & mitochondria",
       "detail": "Run stage.cell - post-absorptive cellular use (off-lumen).",
-      "emits": ["stage:stage.cell"],
+      "emits": [
+        "stage:stage.cell"
+      ],
       "next": "colon"
     },
     "colon": {
       "type": "task",
       "label": "Colon & rectum",
       "detail": "Run stage.colon - fermentation, SCFA, water reclamation.",
-      "emits": ["stage:stage.colon"],
+      "emits": [
+        "stage:stage.colon"
+      ],
       "next": "complete"
     },
     "complete": {
       "type": "succeed",
       "label": "Process complete",
       "detail": "Full digest sequence finished. Drill into each stage:* emit for micro-steps. No product score implied.",
-      "emits": ["process:complete"]
+      "emits": [
+        "process:complete"
+      ]
     }
   }
 }

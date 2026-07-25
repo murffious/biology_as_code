@@ -1,0 +1,2861 @@
+{
+  "schema": "kibo.FoodSubsetClassificationReport/v1",
+  "honesty": "OPEN",
+  "principle": "acquisition_is_not_quality",
+  "meals_dir": "/Users/morf/Downloads/morf-engineering/mealcoachai/dev/NUTRI-COLLECTIVE_0/nutri-collective/machines/schemas/fixtures/meals",
+  "counts": {
+    "meals": 67,
+    "acquisition": {
+      "home_prepared": 17,
+      "home_assembled_packaged": 49,
+      "convenience_retail": 1
+    },
+    "oils": {
+      "evoo": 17,
+      "butter_ghee": 6,
+      "mayo_emulsion": 1
+    },
+    "hp1_fire": 13
+  },
+  "teaching_examples": [
+    {
+      "label": "QSR nice salad (hypothetical log)",
+      "meal_context": {
+        "acquisition": "quick_service",
+        "acquisition_detail": "drive_thru",
+        "qsr_path": "qsr_salad_veg_forward",
+        "chain_hint": "generic_qsr",
+        "confidence": "declared",
+        "note": "Fast food venue + salad path"
+      },
+      "quality_separate": {
+        "nova_max": 2,
+        "plate_quality": 0.85,
+        "category": "would_be_whole_food_like"
+      },
+      "lesson": "Venue is QSR; quality can still be high."
+    },
+    {
+      "label": "QSR classic combo (hypothetical)",
+      "meal_context": {
+        "acquisition": "quick_service",
+        "qsr_path": "qsr_classic_combo",
+        "chain_hint": "generic_qsr",
+        "confidence": "declared"
+      },
+      "quality_separate": {
+        "nova_max": 4,
+        "plate_quality": 0.2
+      },
+      "lesson": "Same venue, different path + packet \u2192 different quality."
+    },
+    {
+      "label": "Home Pop-Tarts (fixture-like)",
+      "meal_context": {
+        "acquisition": "home_assembled_packaged",
+        "confidence": "seed_default"
+      },
+      "quality_separate": {
+        "nova_max": 4,
+        "plate_quality": 0.25
+      },
+      "lesson": "Not 'fast food' venue; still UPF packet."
+    }
+  ],
+  "meals": [
+    {
+      "id": "raw_01_chicken_quinoa_broccoli_bowl",
+      "name": "Grilled Chicken, Quinoa & Broccoli Bowl",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_prepared",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Whole-food seed \u2014 home prepared default."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Olive oil, extra virgin",
+            "oil_class": "evoo",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 14.0,
+              "satfat_g": 1.93,
+              "mufa_g": 10.21,
+              "pufa_g": 1.47,
+              "omega3_g": 0.11,
+              "omega6_g": 1.37,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [
+            "unknown_sugar"
+          ],
+          "total_sugars_g": 20.41,
+          "added_sugars_g": 20.41,
+          "sugar_energy_share": 0.127,
+          "fat_energy_share": 0.31,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "low"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "raw_whole_foods"
+        }
+      }
+    },
+    {
+      "id": "raw_02_salmon_sweet_potato_asparagus",
+      "name": "Baked Salmon with Sweet Potato & Asparagus",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_prepared",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Whole-food seed \u2014 home prepared default."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Olive oil, extra virgin",
+            "oil_class": "evoo",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 7.0,
+              "satfat_g": 0.97,
+              "mufa_g": 5.11,
+              "pufa_g": 0.74,
+              "omega3_g": 0.05,
+              "omega6_g": 0.68,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [],
+          "total_sugars_g": 0.0,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.0,
+          "fat_energy_share": 0.443,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "low"
+        },
+        "quality_separate": {
+          "nova_max": 2,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "raw_whole_foods"
+        }
+      }
+    },
+    {
+      "id": "raw_03_spinach_feta_scramble",
+      "name": "Spinach & Feta Egg Scramble with Avocado",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_prepared",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Whole-food seed \u2014 home prepared default."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Olive oil, extra virgin",
+            "oil_class": "evoo",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 7.0,
+              "satfat_g": 0.97,
+              "mufa_g": 5.11,
+              "pufa_g": 0.74,
+              "omega3_g": 0.05,
+              "omega6_g": 0.68,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [
+            "lactose"
+          ],
+          "total_sugars_g": 12.24,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.077,
+          "fat_energy_share": 0.645,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "low"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "raw_whole_foods"
+        }
+      }
+    },
+    {
+      "id": "raw_04_overnight_oats_berries_chia",
+      "name": "Overnight Oats with Berries, Chia & Almond Butter",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_prepared",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Whole-food seed \u2014 home prepared default."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Almond butter, no salt added",
+            "oil_class": "butter_ghee",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 8.88,
+              "satfat_g": 0.67,
+              "mufa_g": 5.57,
+              "pufa_g": 2.2,
+              "omega3_g": 0.0,
+              "omega6_g": 0.0,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [
+            "lactose",
+            "intrinsic"
+          ],
+          "total_sugars_g": 0.0,
+          "added_sugars_g": null,
+          "sugar_energy_share": 0.0,
+          "fat_energy_share": 0.389,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "raw_whole_foods"
+        }
+      }
+    },
+    {
+      "id": "raw_05_greek_yogurt_berry_bowl",
+      "name": "Greek Yogurt Berry Bowl with Walnuts & Flax",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_prepared",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Whole-food seed \u2014 home prepared default."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "lactose",
+            "intrinsic"
+          ],
+          "total_sugars_g": 3.68,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.042,
+          "fat_energy_share": 0.431,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "raw_whole_foods"
+        }
+      }
+    },
+    {
+      "id": "raw_06_lentil_kale_power_salad",
+      "name": "Lentil & Kale Power Salad",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_prepared",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Whole-food seed \u2014 home prepared default."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Olive oil, extra virgin",
+            "oil_class": "evoo",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 14.0,
+              "satfat_g": 1.93,
+              "mufa_g": 10.21,
+              "pufa_g": 1.47,
+              "omega3_g": 0.11,
+              "omega6_g": 1.37,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [
+            "stevia_monk_class"
+          ],
+          "total_sugars_g": 1.77,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.016,
+          "fat_energy_share": 0.45,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "raw_whole_foods"
+        }
+      }
+    },
+    {
+      "id": "raw_07_black_bean_rice_bowl",
+      "name": "Black Bean & Brown Rice Bowl with Avocado",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_prepared",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Whole-food seed \u2014 home prepared default."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "unknown_sugar"
+          ],
+          "total_sugars_g": 20.41,
+          "added_sugars_g": 20.41,
+          "sugar_energy_share": 0.144,
+          "fat_energy_share": 0.195,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "low"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "raw_whole_foods"
+        }
+      }
+    },
+    {
+      "id": "raw_08_tofu_veggie_stirfry",
+      "name": "Tofu Veggie Stir-Fry with Brown Rice",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_prepared",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Whole-food seed \u2014 home prepared default."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Olive oil, extra virgin",
+            "oil_class": "evoo",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 14.0,
+              "satfat_g": 1.93,
+              "mufa_g": 10.21,
+              "pufa_g": 1.47,
+              "omega3_g": 0.11,
+              "omega6_g": 1.37,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [
+            "stevia_monk_class"
+          ],
+          "total_sugars_g": 1.77,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.012,
+          "fat_energy_share": 0.443,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 3,
+          "plate_quality": null,
+          "category": "raw_whole_foods"
+        }
+      }
+    },
+    {
+      "id": "raw_09_shrimp_quinoa_med_bowl",
+      "name": "Shrimp & Quinoa Mediterranean Bowl",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_prepared",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Whole-food seed \u2014 home prepared default."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Olive oil, extra virgin",
+            "oil_class": "evoo",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 14.0,
+              "satfat_g": 1.93,
+              "mufa_g": 10.21,
+              "pufa_g": 1.47,
+              "omega3_g": 0.11,
+              "omega6_g": 1.37,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [],
+          "total_sugars_g": 0.0,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.0,
+          "fat_energy_share": 0.406,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "low"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "raw_whole_foods"
+        }
+      }
+    },
+    {
+      "id": "raw_10_turkey_sweet_potato_skillet",
+      "name": "Ground Turkey & Sweet Potato Skillet",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_prepared",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Whole-food seed \u2014 home prepared default."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Olive oil, extra virgin",
+            "oil_class": "evoo",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 14.0,
+              "satfat_g": 1.93,
+              "mufa_g": 10.21,
+              "pufa_g": 1.47,
+              "omega3_g": 0.11,
+              "omega6_g": 1.37,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [
+            "unknown_sugar"
+          ],
+          "total_sugars_g": 20.41,
+          "added_sugars_g": 20.41,
+          "sugar_energy_share": 0.126,
+          "fat_energy_share": 0.391,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "low"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "raw_whole_foods"
+        }
+      }
+    },
+    {
+      "id": "bc_01_chobani_parfait",
+      "name": "Chobani Greek Yogurt Parfait with Granola & Blueberries",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "lactose",
+            "intrinsic"
+          ],
+          "total_sugars_g": 10.49,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.15,
+          "fat_energy_share": 0.201,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_02_quaker_pb_banana_oatmeal",
+      "name": "Quaker Oatmeal with Peanut Butter & Banana",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Natural Creamy Peanut Butter",
+            "oil_class": "butter_ghee",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 15.51,
+              "satfat_g": 3.4,
+              "mufa_g": 0.0,
+              "pufa_g": 0.0,
+              "omega3_g": 0.0,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [
+            "intrinsic"
+          ],
+          "total_sugars_g": 4.88,
+          "added_sugars_g": 1.95,
+          "sugar_energy_share": 0.044,
+          "fat_energy_share": 0.383,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_03_ezekiel_avocado_egg_toast",
+      "name": "Ezekiel Toast with Avocado & Fried Egg",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Olive oil, extra virgin",
+            "oil_class": "evoo",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 5.0,
+              "satfat_g": 0.69,
+              "mufa_g": 3.65,
+              "pufa_g": 0.53,
+              "omega3_g": 0.04,
+              "omega6_g": 0.49,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [
+            "fruit_juice_sugar"
+          ],
+          "total_sugars_g": 20.16,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.168,
+          "fat_energy_share": 0.388,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_04_kodiak_strawberry_pancakes",
+      "name": "Kodiak Power Cakes with Strawberries",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Almond butter, no salt added",
+            "oil_class": "butter_ghee",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 8.88,
+              "satfat_g": 0.67,
+              "mufa_g": 5.57,
+              "pufa_g": 2.2,
+              "omega3_g": 0.0,
+              "omega6_g": 0.0,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [
+            "lactose",
+            "intrinsic"
+          ],
+          "total_sugars_g": 20.51,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.154,
+          "fat_energy_share": 0.404,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_05_fage_raspberry_bowl",
+      "name": "FAGE Total 0% Bowl with Raspberries & Walnuts",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "lactose",
+            "intrinsic"
+          ],
+          "total_sugars_g": 6.25,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.091,
+          "fat_energy_share": 0.44,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_06_cheerios_banana_milk",
+      "name": "Cheerios with Whole Milk & Banana",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "lactose",
+            "intrinsic"
+          ],
+          "total_sugars_g": 13.63,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.14,
+          "fat_energy_share": 0.255,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_07_silk_berry_protein_smoothie",
+      "name": "Almond Milk Berry Protein Smoothie",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "lactose",
+            "intrinsic"
+          ],
+          "total_sugars_g": 23.27,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.254,
+          "fat_energy_share": 0.194,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_08_good_culture_strawberry_bowl",
+      "name": "Good Culture Cottage Cheese Bowl with Strawberries",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "fruit_juice_sugar",
+            "lactose",
+            "intrinsic"
+          ],
+          "total_sugars_g": 7.9,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.098,
+          "fat_energy_share": 0.476,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_09_rxbar_banana_almonds",
+      "name": "On-the-Go: RXBAR, Banana & Almonds",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "intrinsic"
+          ],
+          "total_sugars_g": 15.0,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.128,
+          "fat_energy_share": 0.409,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_10_daves_ab_banana_toast",
+      "name": "Dave's Killer Bread with Almond Butter & Banana",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Classic Almond Butter Jars",
+            "oil_class": "butter_ghee",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 18.0,
+              "satfat_g": 2.5,
+              "mufa_g": 0.0,
+              "pufa_g": 0.0,
+              "omega3_g": 0.0,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [
+            "intrinsic",
+            "fruit_juice_sugar"
+          ],
+          "total_sugars_g": 29.69,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.198,
+          "fat_energy_share": 0.328,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_11_starkist_tuna_sandwich",
+      "name": "Tuna Salad Sandwich on Dave's Killer Bread",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Light mayonnaise",
+            "oil_class": "mayo_emulsion",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 3.5,
+              "satfat_g": 0.5,
+              "mufa_g": 1.0,
+              "pufa_g": 2.0,
+              "omega3_g": 0.0,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [
+            "fruit_juice_sugar"
+          ],
+          "total_sugars_g": 9.25,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.105,
+          "fat_energy_share": 0.208,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_12_goya_chickpea_greek_salad",
+      "name": "Chickpea Greek Salad",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Olive oil, extra virgin",
+            "oil_class": "evoo",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 14.0,
+              "satfat_g": 1.93,
+              "mufa_g": 10.21,
+              "pufa_g": 1.47,
+              "omega3_g": 0.11,
+              "omega6_g": 1.37,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [
+            "stevia_monk_class"
+          ],
+          "total_sugars_g": 2.64,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.032,
+          "fat_energy_share": 0.596,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_13_bushs_burrito_bowl",
+      "name": "Black Bean Burrito Bowl with Salsa & Avocado",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "unknown_sugar"
+          ],
+          "total_sugars_g": 26.01,
+          "added_sugars_g": 20.41,
+          "sugar_energy_share": 0.249,
+          "fat_energy_share": 0.253,
+          "hp1_fat_sugar_fire": true,
+          "sweetener_flags": [],
+          "confidence": "low"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 3,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_14_sabra_veggie_wrap",
+      "name": "Hummus Veggie Wrap",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [],
+          "total_sugars_g": 2.0,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.023,
+          "fat_energy_share": 0.427,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "low"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_15_applegate_turkey_avocado_sandwich",
+      "name": "Turkey & Avocado Sandwich",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [],
+          "total_sugars_g": 0.0,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.0,
+          "fat_energy_share": 0.252,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "low"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_16_amys_lentil_soup_triscuits",
+      "name": "Amy's Lentil Soup with Triscuits",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "artificial_sweetener"
+          ],
+          "total_sugars_g": 8.4,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.078,
+          "fat_energy_share": 0.239,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_17_banza_pesto_chicken_bowl",
+      "name": "Banza Chickpea Pasta with Pesto & Chicken",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "lactose"
+          ],
+          "total_sugars_g": 5.18,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.043,
+          "fat_energy_share": 0.34,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "low"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_18_bumblebee_salmon_quinoa_salad",
+      "name": "Pink Salmon & Quinoa Kale Salad",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Olive oil, extra virgin",
+            "oil_class": "evoo",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 14.0,
+              "satfat_g": 1.93,
+              "mufa_g": 10.21,
+              "pufa_g": 1.47,
+              "omega3_g": 0.11,
+              "omega6_g": 1.37,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [],
+          "total_sugars_g": 0.72,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.007,
+          "fat_energy_share": 0.43,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "low"
+        },
+        "quality_separate": {
+          "nova_max": 2,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_19_peanut_noodles_broccoli",
+      "name": "Peanut Noodles with Broccoli",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Natural Creamy Peanut Butter",
+            "oil_class": "butter_ghee",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 15.51,
+              "satfat_g": 3.4,
+              "mufa_g": 0.0,
+              "pufa_g": 0.0,
+              "omega3_g": 0.0,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [
+            "stevia_monk_class"
+          ],
+          "total_sugars_g": 7.65,
+          "added_sugars_g": 1.95,
+          "sugar_energy_share": 0.069,
+          "fat_energy_share": 0.352,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 3,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_20_edamame_rice_bowl",
+      "name": "Edamame & Brown Rice Teriyaki Bowl",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "intrinsic"
+          ],
+          "total_sugars_g": 28.87,
+          "added_sugars_g": 20.41,
+          "sugar_energy_share": 0.291,
+          "fat_energy_share": 0.122,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [
+            "caramel_color"
+          ],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_21_banza_marinara_turkey",
+      "name": "Chickpea Penne Marinara with Ground Turkey",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "unknown_sugar"
+          ],
+          "total_sugars_g": 10.18,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.078,
+          "fat_energy_share": 0.372,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "low"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 3,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_22_ww_spaghetti_marinara",
+      "name": "Whole Grain Spaghetti Marinara with Parmesan-Style Feta",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "unknown_sugar"
+          ],
+          "total_sugars_g": 27.41,
+          "added_sugars_g": 20.41,
+          "sugar_energy_share": 0.231,
+          "fat_energy_share": 0.287,
+          "hp1_fat_sugar_fire": true,
+          "sweetener_flags": [],
+          "confidence": "low"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 3,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_23_salmon_seeds_of_change",
+      "name": "Baked Salmon with Quinoa & Brown Rice Pouch and Asparagus",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [],
+          "total_sugars_g": 0.78,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.006,
+          "fat_energy_share": 0.368,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "low"
+        },
+        "quality_separate": {
+          "nova_max": 1,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_24_mission_chicken_fajitas",
+      "name": "Chicken Fajitas on Whole Wheat Tortillas",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly. Burger/fajita-style plate can also be logged as fast_casual if user declares."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Olive oil, extra virgin",
+            "oil_class": "evoo",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 7.0,
+              "satfat_g": 0.97,
+              "mufa_g": 5.11,
+              "pufa_g": 0.74,
+              "omega3_g": 0.05,
+              "omega6_g": 0.68,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [
+            "stevia_monk_class"
+          ],
+          "total_sugars_g": 6.65,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.041,
+          "fat_energy_share": 0.359,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 4,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_25_nasoya_teriyaki_stirfry",
+      "name": "Tofu Teriyaki Stir-Fry with Birds Eye Vegetables",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Olive oil, extra virgin",
+            "oil_class": "evoo",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 14.0,
+              "satfat_g": 1.93,
+              "mufa_g": 10.21,
+              "pufa_g": 1.47,
+              "omega3_g": 0.11,
+              "omega6_g": 1.37,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [
+            "intrinsic"
+          ],
+          "total_sugars_g": 17.55,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.138,
+          "fat_energy_share": 0.423,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [
+            "caramel_color"
+          ],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 3,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_26_turkey_bean_chili",
+      "name": "Turkey & Kidney Bean Chili",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Olive oil, extra virgin",
+            "oil_class": "evoo",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 7.0,
+              "satfat_g": 0.97,
+              "mufa_g": 5.11,
+              "pufa_g": 0.74,
+              "omega3_g": 0.05,
+              "omega6_g": 0.68,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [
+            "artificial_sweetener"
+          ],
+          "total_sugars_g": 7.02,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.061,
+          "fat_energy_share": 0.359,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_27_drpraeger_burger_plate",
+      "name": "Black Bean Burger with Guacamole & Side Salad",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly. Burger/fajita-style plate can also be logged as fast_casual if user declares."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Olive oil, extra virgin",
+            "oil_class": "evoo",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 7.0,
+              "satfat_g": 0.97,
+              "mufa_g": 5.11,
+              "pufa_g": 0.74,
+              "omega3_g": 0.05,
+              "omega6_g": 0.68,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [],
+          "total_sugars_g": 1.0,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.01,
+          "fat_energy_share": 0.523,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "low"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_28_alfresco_sausage_sheetpan",
+      "name": "Chicken Sausage Sheet Pan with Brussels & Sweet Potato",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Olive oil, extra virgin",
+            "oil_class": "evoo",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 14.0,
+              "satfat_g": 1.93,
+              "mufa_g": 10.21,
+              "pufa_g": 1.47,
+              "omega3_g": 0.11,
+              "omega6_g": 1.37,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [
+            "lactose"
+          ],
+          "total_sugars_g": 13.73,
+          "added_sugars_g": 1.53,
+          "sugar_energy_share": 0.1,
+          "fat_energy_share": 0.426,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "low"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 3,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_29_maya_tikka_chicken",
+      "name": "Chicken Tikka Masala with Brown Rice",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "fruit_juice_sugar"
+          ],
+          "total_sugars_g": 5.36,
+          "added_sugars_g": 1.6,
+          "sugar_energy_share": 0.047,
+          "fat_energy_share": 0.372,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_30_shrimp_pesto_pasta",
+      "name": "Shrimp Pesto Whole Grain Spaghetti",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "lactose"
+          ],
+          "total_sugars_g": 2.0,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.018,
+          "fat_energy_share": 0.272,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "low"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_31_tuna_pasta_salad_dinner",
+      "name": "Mediterranean Tuna Pasta Salad",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Olive oil, extra virgin",
+            "oil_class": "evoo",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 14.0,
+              "satfat_g": 1.93,
+              "mufa_g": 10.21,
+              "pufa_g": 1.47,
+              "omega3_g": 0.11,
+              "omega6_g": 1.37,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [
+            "hfcs_corn_syrup"
+          ],
+          "total_sugars_g": 26.2,
+          "added_sugars_g": 20.95,
+          "sugar_energy_share": 0.209,
+          "fat_energy_share": 0.324,
+          "hp1_fat_sugar_fire": true,
+          "sweetener_flags": [
+            "HFCS",
+            "artificial_color",
+            "caramel_color"
+          ],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_32_edamame_veggie_fried_rice",
+      "name": "Veggie & Edamame 'Fried' Brown Rice",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Olive oil, extra virgin",
+            "oil_class": "evoo",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 7.0,
+              "satfat_g": 0.97,
+              "mufa_g": 5.11,
+              "pufa_g": 0.74,
+              "omega3_g": 0.05,
+              "omega6_g": 0.68,
+              "trans_fat_g": 0.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [
+            "unknown_sugar"
+          ],
+          "total_sugars_g": 6.79,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.069,
+          "fat_energy_share": 0.358,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "low"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_33_kind_bar_apple",
+      "name": "KIND Bar & Apple",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "honey",
+            "intrinsic"
+          ],
+          "total_sugars_g": 24.93,
+          "added_sugars_g": 4.0,
+          "sugar_energy_share": 0.363,
+          "fat_energy_share": 0.471,
+          "hp1_fat_sugar_fire": true,
+          "sweetener_flags": [],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_34_hummus_carrots_triscuits",
+      "name": "Hummus Snack Plate",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "unknown_sugar"
+          ],
+          "total_sugars_g": 3.76,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.046,
+          "fat_energy_share": 0.458,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "low"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_35_string_cheese_orange_almonds",
+      "name": "String Cheese, Orange & Almonds",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "lactose"
+          ],
+          "total_sugars_g": 11.9,
+          "added_sugars_g": null,
+          "sugar_energy_share": 0.217,
+          "fat_energy_share": 0.476,
+          "hp1_fat_sugar_fire": true,
+          "sweetener_flags": [],
+          "confidence": "low"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_36_siggis_blueberry",
+      "name": "siggi's Vanilla Skyr with Blueberries",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "lactose",
+            "intrinsic"
+          ],
+          "total_sugars_g": 12.64,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.263,
+          "fat_energy_share": 0.118,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 3,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_37_skinnypop_dark_chocolate",
+      "name": "SkinnyPop & Dark Chocolate",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "unknown_sugar"
+          ],
+          "total_sugars_g": 2.67,
+          "added_sugars_g": 2.66,
+          "sugar_energy_share": 0.04,
+          "fat_energy_share": 0.624,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "low"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_38_lifeway_kefir_smoothie",
+      "name": "Kefir Strawberry-Flax Smoothie",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "lactose",
+            "intrinsic"
+          ],
+          "total_sugars_g": 25.01,
+          "added_sugars_g": 7.97,
+          "sugar_energy_share": 0.478,
+          "fat_energy_share": 0.226,
+          "hp1_fat_sugar_fire": true,
+          "sweetener_flags": [],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 1,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_39_premier_shake_almonds",
+      "name": "Premier Protein Shake & Almonds",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "artificial_sweetener",
+            "lactose"
+          ],
+          "total_sugars_g": 1.05,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.015,
+          "fat_energy_share": 0.426,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [
+            "artificial_flavor",
+            "artificial_sweetener"
+          ],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 4,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "bc_40_cottage_cheese_pita",
+      "name": "Cottage Cheese & Veggie Pita Pocket",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Branded barcode meal \u2014 typically home assembly."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "fruit_juice_sugar",
+            "lactose"
+          ],
+          "total_sugars_g": 2.2,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.033,
+          "fat_energy_share": 0.205,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "barcode_products"
+        }
+      }
+    },
+    {
+      "id": "sup_01_whey_postworkout_shake",
+      "name": "Whey Protein Post-Workout Shake with Banana",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_prepared",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Supplement-boosted home context default."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "artificial_sweetener",
+            "maltodextrin_dextrin",
+            "intrinsic"
+          ],
+          "total_sugars_g": 16.4,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.279,
+          "fat_energy_share": 0.071,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [
+            "artificial_flavor",
+            "artificial_sweetener"
+          ],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "supplement_boosted"
+        }
+      }
+    },
+    {
+      "id": "sup_02_collagen_coffee_yogurt",
+      "name": "Collagen Coffee with Greek Yogurt Berry Bowl",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_prepared",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Supplement-boosted home context default."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "lactose",
+            "intrinsic"
+          ],
+          "total_sugars_g": 0.0,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.0,
+          "fat_energy_share": 0.045,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "supplement_boosted"
+        }
+      }
+    },
+    {
+      "id": "sup_03_protein_greens_smoothie",
+      "name": "Plant Protein & Greens Smoothie",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_prepared",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Supplement-boosted home context default."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "stevia_monk_class",
+            "sugar_alcohol",
+            "lactose",
+            "intrinsic"
+          ],
+          "total_sugars_g": 1.0,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.017,
+          "fat_energy_share": 0.227,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "supplement_boosted"
+        }
+      }
+    },
+    {
+      "id": "sup_04_electrolyte_recovery_snack",
+      "name": "Electrolyte Drink with RXBAR & Almonds",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_prepared",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Supplement-boosted home context default."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "stevia_monk_class",
+            "intrinsic"
+          ],
+          "total_sugars_g": 16.77,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.23,
+          "fat_energy_share": 0.431,
+          "hp1_fat_sugar_fire": true,
+          "sweetener_flags": [],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 4,
+          "plate_quality": null,
+          "category": "supplement_boosted"
+        }
+      }
+    },
+    {
+      "id": "sup_05_creatine_lemon_water",
+      "name": "Creatine Lemon Water Pre-Training Snack",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_prepared",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Supplement-boosted home context default."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "intrinsic"
+          ],
+          "total_sugars_g": 0.96,
+          "added_sugars_g": null,
+          "sugar_energy_share": 0.02,
+          "fat_energy_share": 0.348,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 3,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "supplement_boosted"
+        }
+      }
+    },
+    {
+      "id": "sup_06_spirulina_berry_smoothie",
+      "name": "Spirulina Berry Smoothie",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_prepared",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Supplement-boosted home context default."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "intrinsic"
+          ],
+          "total_sugars_g": 4.9,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.099,
+          "fat_energy_share": 0.2,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [],
+          "confidence": "medium"
+        },
+        "quality_separate": {
+          "nova_max": 1,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "supplement_boosted"
+        }
+      }
+    },
+    {
+      "id": "sup_07_muscle_milk_apple",
+      "name": "Muscle Milk RTD Shake & Apple",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_prepared",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Supplement-boosted home context default."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "artificial_sweetener",
+            "maltodextrin_dextrin",
+            "lactose",
+            "intrinsic"
+          ],
+          "total_sugars_g": 18.93,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.286,
+          "fat_energy_share": 0.175,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [
+            "artificial_flavor",
+            "artificial_sweetener"
+          ],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 4,
+          "plate_quality": null,
+          "category": "supplement_boosted"
+        }
+      }
+    },
+    {
+      "id": "upf_01_instant_ramen",
+      "name": "Instant Ramen Lunch",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "UPF seed \u2014 home assembled packages, not automatically 'fast food venue'."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "hfcs_corn_syrup",
+            "maltodextrin_dextrin",
+            "lactose"
+          ],
+          "total_sugars_g": 1.98,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.021,
+          "fat_energy_share": 0.332,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [
+            "caramel_color",
+            "corn_syrup",
+            "msg",
+            "partially_hydrogenated_oil",
+            "synthetic_preservative"
+          ],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 4,
+          "plate_quality": null,
+          "category": "ultra_processed_examples"
+        }
+      }
+    },
+    {
+      "id": "upf_02_frozen_pizza_cola",
+      "name": "Frozen Pepperoni Pizza & Cola Night",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Packaged UPF demo \u2014 acquisition defaults to home_assembled_packaged. If user logged drive-thru, set acquisition=quick_service without forcing NOVA."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "maltodextrin_dextrin",
+            "lactose",
+            "hfcs_corn_syrup"
+          ],
+          "total_sugars_g": 52.47,
+          "added_sugars_g": 38.78,
+          "sugar_energy_share": 0.262,
+          "fat_energy_share": 0.349,
+          "hp1_fat_sugar_fire": true,
+          "sweetener_flags": [
+            "HFCS",
+            "caramel_color",
+            "nitrite_nitrate",
+            "synthetic_preservative"
+          ],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 4,
+          "plate_quality": null,
+          "category": "ultra_processed_examples"
+        }
+      }
+    },
+    {
+      "id": "upf_03_mac_and_hot_dogs",
+      "name": "Boxed Mac & Cheese with Hot Dogs",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "UPF seed \u2014 home assembled packages, not automatically 'fast food venue'."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "lactose",
+            "hfcs_corn_syrup"
+          ],
+          "total_sugars_g": 7.7,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.075,
+          "fat_energy_share": 0.36,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [
+            "artificial_color",
+            "corn_syrup",
+            "nitrite_nitrate"
+          ],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 4,
+          "plate_quality": null,
+          "category": "ultra_processed_examples"
+        }
+      }
+    },
+    {
+      "id": "upf_04_nuggets_ketchup",
+      "name": "Chicken Nuggets with Ketchup",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Packaged UPF demo \u2014 acquisition defaults to home_assembled_packaged. If user logged drive-thru, set acquisition=quick_service without forcing NOVA."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "hfcs_corn_syrup"
+          ],
+          "total_sugars_g": 7.93,
+          "added_sugars_g": 7.92,
+          "sugar_energy_share": 0.063,
+          "fat_energy_share": 0.54,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [
+            "HFCS",
+            "corn_syrup"
+          ],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "ultra_processed_examples"
+        }
+      }
+    },
+    {
+      "id": "upf_05_poptarts_choc_milk",
+      "name": "Pop-Tarts & Chocolate Milk Breakfast",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "UPF seed \u2014 home assembled packages, not automatically 'fast food venue'."
+        },
+        "oils": [
+          {
+            "ingredient_name": "Kellogg's, pop-tarts, frosted toaster pastries, chocolate peanut butter, frosted chocolate peanut butter",
+            "oil_class": "butter_ghee",
+            "confidence": "high",
+            "lipid_profile": {
+              "fat_g": 10.0,
+              "satfat_g": 4.0
+            }
+          }
+        ],
+        "sugars": {
+          "kinds_present": [
+            "hfcs_corn_syrup",
+            "lactose"
+          ],
+          "total_sugars_g": 57.48,
+          "added_sugars_g": 11.34,
+          "sugar_energy_share": 0.424,
+          "fat_energy_share": 0.208,
+          "hp1_fat_sugar_fire": true,
+          "sweetener_flags": [
+            "HFCS",
+            "artificial_color",
+            "artificial_flavor",
+            "caramel_color",
+            "corn_syrup",
+            "synthetic_preservative"
+          ],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 4,
+          "plate_quality": null,
+          "category": "ultra_processed_examples"
+        }
+      }
+    },
+    {
+      "id": "upf_06_froot_loops_breakfast",
+      "name": "Froot Loops with Whole Milk",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "UPF seed \u2014 home assembled packages, not automatically 'fast food venue'."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "maltodextrin_dextrin",
+            "lactose"
+          ],
+          "total_sugars_g": 24.45,
+          "added_sugars_g": 11.97,
+          "sugar_energy_share": 0.335,
+          "fat_energy_share": 0.289,
+          "hp1_fat_sugar_fire": true,
+          "sweetener_flags": [
+            "artificial_color",
+            "synthetic_preservative"
+          ],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 1,
+          "plate_quality": null,
+          "category": "ultra_processed_examples"
+        }
+      }
+    },
+    {
+      "id": "upf_07_bologna_sandwich_chips",
+      "name": "Bologna & Cheese Sandwich with Doritos",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "UPF seed \u2014 home assembled packages, not automatically 'fast food venue'."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "hfcs_corn_syrup",
+            "lactose",
+            "maltodextrin_dextrin"
+          ],
+          "total_sugars_g": 8.48,
+          "added_sugars_g": 0.0,
+          "sugar_energy_share": 0.07,
+          "fat_energy_share": 0.458,
+          "hp1_fat_sugar_fire": false,
+          "sweetener_flags": [
+            "HFCS",
+            "artificial_color",
+            "artificial_flavor",
+            "azodicarbonamide",
+            "corn_syrup",
+            "msg",
+            "nitrite_nitrate"
+          ],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 4,
+          "plate_quality": null,
+          "category": "ultra_processed_examples"
+        }
+      }
+    },
+    {
+      "id": "upf_08_gas_station_refuel",
+      "name": "Gas-Station Refuel: Candy Bar & Sports Drink",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "convenience_retail",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "Convenience channel; quality still from packet (UPF)."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "hfcs_corn_syrup",
+            "honey",
+            "fruit_juice_sugar",
+            "lactose"
+          ],
+          "total_sugars_g": 41.02,
+          "added_sugars_g": 20.95,
+          "sugar_energy_share": 0.568,
+          "fat_energy_share": 0.281,
+          "hp1_fat_sugar_fire": true,
+          "sweetener_flags": [
+            "HFCS",
+            "artificial_color",
+            "artificial_flavor",
+            "caramel_color",
+            "corn_syrup",
+            "partially_hydrogenated_oil",
+            "synthetic_preservative"
+          ],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 4,
+          "plate_quality": null,
+          "category": "ultra_processed_examples"
+        }
+      }
+    },
+    {
+      "id": "upf_09_zebra_cakes_snack",
+      "name": "Zebra Cakes & Chocolate Milk",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "UPF seed \u2014 home assembled packages, not automatically 'fast food venue'."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "hfcs_corn_syrup",
+            "lactose"
+          ],
+          "total_sugars_g": 53.44,
+          "added_sugars_g": 42.3,
+          "sugar_energy_share": 0.463,
+          "fat_energy_share": 0.314,
+          "hp1_fat_sugar_fire": true,
+          "sweetener_flags": [
+            "artificial_flavor",
+            "corn_syrup",
+            "synthetic_preservative",
+            "titanium_dioxide"
+          ],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 4,
+          "plate_quality": null,
+          "category": "ultra_processed_examples"
+        }
+      }
+    },
+    {
+      "id": "upf_10_twinkies_cola",
+      "name": "Twinkies & Cola",
+      "food_subset_tags": {
+        "schema": "kibo.FoodSubsetTags/v1",
+        "honesty": "OPEN",
+        "meal_context": {
+          "acquisition": "home_assembled_packaged",
+          "acquisition_detail": null,
+          "qsr_path": null,
+          "chain_hint": "none",
+          "confidence": "seed_default",
+          "note": "UPF seed \u2014 home assembled packages, not automatically 'fast food venue'."
+        },
+        "oils": [],
+        "sugars": {
+          "kinds_present": [
+            "hfcs_corn_syrup",
+            "lactose"
+          ],
+          "total_sugars_g": 74.89,
+          "added_sugars_g": 38.78,
+          "sugar_energy_share": 0.651,
+          "fat_energy_share": 0.313,
+          "hp1_fat_sugar_fire": true,
+          "sweetener_flags": [
+            "HFCS",
+            "artificial_color",
+            "artificial_flavor",
+            "caramel_color",
+            "corn_syrup",
+            "titanium_dioxide"
+          ],
+          "confidence": "high"
+        },
+        "quality_separate": {
+          "nova_max": 4,
+          "nova_modal": 4,
+          "plate_quality": null,
+          "category": "ultra_processed_examples"
+        }
+      }
+    }
+  ]
+}

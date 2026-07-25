@@ -1,0 +1,508 @@
+{
+  "ssot": {
+    "personas": "/Users/morf/Downloads/morf-engineering/mealcoachai/dev/NUTRI-COLLECTIVE_0/nutri-collective/machines/schemas/fixtures/user-personas.json",
+    "meals": "/Users/morf/Downloads/morf-engineering/mealcoachai/dev/NUTRI-COLLECTIVE_0/nutri-collective/machines/schemas/fixtures/meals",
+    "meal_file": "01_raw_01_chicken_quinoa_broccoli_bowl.json"
+  },
+  "user": {
+    "slug": "alex",
+    "display_name": "Alex Rivera",
+    "goal": "weight_loss",
+    "app_kibo_score": 72,
+    "medications_structured": {
+      "schema": "kibo.MedicationProfile/v1",
+      "honesty": "OPEN",
+      "source": "mock",
+      "as_of": "2026-07-23",
+      "items": [
+        {
+          "id": "med.alex.glp1",
+          "class_id": "glp1_ra",
+          "onboard": true,
+          "label": "Wegovy-class (semaglutide mock)",
+          "ingredient_hint": "semaglutide",
+          "route": "subcutaneous",
+          "notes": "Mock weight-management GLP-1 RA for C-8 demos \u2014 not a real prescription",
+          "honesty": "OPEN"
+        }
+      ]
+    },
+    "medication_flags": {
+      "glp1_ra": true,
+      "metformin": false,
+      "statin": false,
+      "ppi": false,
+      "c8_active": true,
+      "goal_bias": {
+        "protein_priority": 1,
+        "calorie_target_scale": 0.8,
+        "fiber_target_scale": 0.8,
+        "note": "Matches ontology C-8 impact strings \u2014 FLOW teaching scales, not medical targets"
+      },
+      "claim_refuses": [
+        "Exact gastric-emptying minutes for this brand/dose",
+        "Personal disease remission guarantee from plate alone",
+        "Stop your prescription based on food score",
+        "This meal replaces your GLP-1 medication"
+      ],
+      "claim_support": [
+        "Protein density and meal quality still matter while intake is lower",
+        "UPF/hyperpalatability still relevant if grazing continues"
+      ],
+      "classes_onboard": [
+        "glp1_ra"
+      ],
+      "honesty": "OPEN"
+    }
+  },
+  "meal": {
+    "id": "raw_01_chicken_quinoa_broccoli_bowl",
+    "name": "Grilled Chicken, Quinoa & Broccoli Bowl",
+    "calories": 641.81,
+    "protein_g": 52.27,
+    "fat_g": 22.1,
+    "fiber_g": 6.68,
+    "nova_max": 4,
+    "nova_modal": 1,
+    "plate_quality": 0.82
+  },
+  "sim": {
+    "claim_tier": "open",
+    "micelle_gate_open": true,
+    "iron_walk_yield": 1.2,
+    "energy_charge": 0.955,
+    "vitamin_notes": [
+      "iron: LAW-004 ascorbate factor=0.48",
+      "iron: anti-nutrient proxy narrowed absorption"
+    ],
+    "laws_cited": [
+      "L-FAT-1",
+      "LAW-002",
+      "LAW-003",
+      "LAW-004",
+      "LAW-016",
+      "LAW-020",
+      "LAW-021",
+      "LAW-025",
+      "LAW-026",
+      "LAW-039",
+      "LAW-041",
+      "LAW-042",
+      "mod.ascorbate",
+      "mod.phytate",
+      "STUB-A-03",
+      "LAW-045",
+      "LAW-044",
+      "LAW-047",
+      "LAW-043",
+      "LAW-046"
+    ],
+    "refuse": [
+      "adek_without_fat_vehicle",
+      "use_3.5_atp_factor_as_locked_bound",
+      "call_3to1_ratio_universal_law",
+      "call_0.1_ascorbate_absence_a_gate",
+      "clinical_diagnosis",
+      "locked_scfa_kcal_as_law",
+      "ship_as_clinical_dose_engine",
+      "scfa_0.6_as_locked_law"
+    ],
+    "core_sim": {
+      "kibo_score": 75.0,
+      "atp_units": 812.6,
+      "absorbed_protein": 48.09,
+      "absorbed_carb": 52.94,
+      "absorbed_fat": 21.0,
+      "scfa_mmol": 4.01,
+      "beta_hb_mmol": 1.05,
+      "iron_bioavailability_factor": 0.48,
+      "zinc_bioavailability_factor": 0.6,
+      "messages": [
+        "Simulator start \u2014 7 phases",
+        "K1 mouth: surface-area prep + cephalic priming (teaching)",
+        "K2 stomach: acid/pepsin path (STUB-A-03 pH gate not locked)",
+        "K3/K4: micelle gate OPEN (fat co-present) \u2014 L-FAT-1 / LAW-020",
+        "Macro absorption fractions 0.9/0.92/0.95 are FLOW prototypes (open tier)",
+        "L2_REDOX: Ca:Fe ratio 11.1 > 3.0 \u2192 Fe factor \u00d70.4 (prototype; LAW-042 / LAW-047 family)",
+        "L2_REDOX: ascorbate same meal \u2192 Fe factor \u00d72.0 (LAW-004 EXPANDS)",
+        "L2_REDOX: phytate matrix \u2192 Fe/Zn \u00d70.6 (LAW-002 prior)",
+        "K5 colon: SCFA\u22484.01 (fiber\u00d70.6 FLOW prototype; LAW-026 bound not locked)",
+        "Liver FLOW: \u03b2HB\u22481.05 mmol teaching units (not locked ketogenesis law); bile recycle prior 0.95",
+        "Energy FLOW: atp_units=812.6 (teaching; refuse locked 3.5 factor)",
+        "Excretion: residual payload leaves the model",
+        "Simulator complete"
+      ]
+    },
+    "laws_cited_n": 20
+  },
+  "claim_qa_battery": [
+    {
+      "id": "q_micelle_adek",
+      "claim_frame": "Fat is required for fat-soluble vitamin absorption",
+      "question": "Will this meal allow fat-soluble vitamins (A, D, E, K) to ride the micelle path?",
+      "answer": "Yes. The engine micelle gate is OPEN because co-present fat is present (fat \u2248 22.1 g). Without fat, ADEK absorption is narratively blocked (L-FAT-1). This is a gate story, not a dose of vitamin A/D.",
+      "verdict": "support",
+      "science": [
+        "L-FAT-1 \u2014 micelle gate: fat co-presence enables fat-soluble path",
+        "LAW-020 \u2014 fat-soluble absorption family (cited when gate open)",
+        "Physiology: bile salt micelles solubilize lipophilic vitamins for enterocyte uptake"
+      ],
+      "evidence": {
+        "micelle_gate_open": true,
+        "fat_g": 22.1,
+        "absorbed_fat_g": 21.0,
+        "laws_present": [
+          "L-FAT-1",
+          "LAW-020"
+        ]
+      },
+      "honesty": "OPEN"
+    },
+    {
+      "id": "q_iron_vitamin_c",
+      "claim_frame": "Vitamin C with a meal improves non-haem iron absorption",
+      "question": "Does this plate support the \u2018C helps iron\u2019 teaching claim?",
+      "answer": "Partially yes. ascorbate_same_meal=True; iron_walk_yield=1.2; iron_bioavailability_factor=0.48. The engine applies LAW-004-style ascorbate expansion and can also apply phytate/Ca:Fe penalties (LAW-002 / LAW-042 family). Yield is a relative teaching factor, not % absorption in vivo.",
+      "verdict": "support",
+      "science": [
+        "LAW-004 \u2014 ascorbate enhances non-haem iron absorption (classic teaching)",
+        "LAW-041 / LAW-042 \u2014 mineral competition / matrix modifiers",
+        "LAW-002 \u2014 phytate prior can narrow Fe/Zn",
+        "Note: non-haem iron bioavailability is multi-factor; this is OPEN FLOW"
+      ],
+      "evidence": {
+        "ascorbate_same_meal": true,
+        "iron_walk_yield": 1.2,
+        "iron_bioavailability_factor": 0.48,
+        "vitamin_notes": [
+          "iron: LAW-004 ascorbate factor=0.48",
+          "iron: anti-nutrient proxy narrowed absorption"
+        ],
+        "anti_nutrients_proxy": 0.35
+      },
+      "honesty": "OPEN"
+    },
+    {
+      "id": "q_fiber_scfa",
+      "claim_frame": "Dietary fiber feeds colon fermentation \u2192 SCFA",
+      "question": "Does this meal produce a colon SCFA story in the sim?",
+      "answer": "Yes. fiber\u22486.7 g \u2192 scfa_mmol\u22484.01 (FLOW prototype: fiber \u00d7 soft factor, LAW-025/026 magnitudes not locked). Useful to compare high-fiber vs low-fiber plates; not a measured fecal SCFA assay.",
+      "verdict": "support",
+      "science": [
+        "LAW-025 / LAW-026 \u2014 colon fermentation / SCFA teaching bounds (open)",
+        "Physiology: microbiota ferment non-digestible CHO \u2192 acetate/propionate/butyrate"
+      ],
+      "evidence": {
+        "fiber_g": 6.68,
+        "scfa_mmol": 4.01,
+        "laws": [
+          "LAW-025",
+          "LAW-026"
+        ]
+      },
+      "honesty": "OPEN"
+    },
+    {
+      "id": "q_energy_atp",
+      "claim_frame": "The meal yields usable metabolic energy",
+      "question": "What energy signal did the system compute for this plate?",
+      "answer": "Teaching ATP units \u2248 812.6; energy_charge \u2248 0.955; absorbed macros P/C/F \u2248 48.1/52.9/21.0 g (from plate macros with soft absorption fractions). The engine explicitly refuses locked \u20183.5 ATP factor as law\u2019 \u2014 magnitudes stay OPEN.",
+      "verdict": "context",
+      "science": [
+        "Energy FLOW in kibo_core compartmental sim (open tier)",
+        "Refuse list includes locked ATP conversion factors as constitutional honesty",
+        "Not BMR/TDEE validation; not wearable energy expenditure"
+      ],
+      "evidence": {
+        "atp_units": 812.6,
+        "energy_charge": 0.955,
+        "absorbed_protein": 48.09,
+        "absorbed_carb": 52.94,
+        "absorbed_fat": 21.0,
+        "plate_calories": 641.81,
+        "refuse_energy_related": [
+          "use_3.5_atp_factor_as_locked_bound",
+          "use_3.5_atp_factor_as_locked_bound"
+        ]
+      },
+      "honesty": "OPEN"
+    },
+    {
+      "id": "q_protein_adequacy",
+      "claim_frame": "This meal is protein-adequate for a mixed adult plate",
+      "question": "Is protein content a strength of this meal in the sim framing?",
+      "answer": "Plate protein \u2248 52.3 g (absorbed teaching \u2248 48.1 g). Yes \u2014 high relative to a typical meal band. No muscle-protein-synthesis lab is run; leucine threshold is not fully instrumented here.",
+      "verdict": "support",
+      "science": [
+        "Protein digestion \u2192 amino acid absorption (jejunum narrative)",
+        "C-3 / leucine teaching may appear in product axes later \u2014 not locked in this bridge report"
+      ],
+      "evidence": {
+        "protein_g": 52.27,
+        "absorbed_protein": 48.09,
+        "quality_score": 0.82
+      },
+      "honesty": "OPEN"
+    },
+    {
+      "id": "q_nova_upf",
+      "claim_frame": "Ultra-processed foods are lower quality packets",
+      "question": "Does NOVA / processing paint this plate as ultra-processed?",
+      "answer": "Packet nova_max=4, nova_modal=1, plate_quality=0.82 (quality uses solid-food NOVA so a UPF drink does not fully paint the solids). Yes \u2014 at least one NOVA-4 component is on the packet. NOVA assignment mixes curated map, OFF, and rules \u2014 see ACCURACY.md.",
+      "verdict": "partial",
+      "science": [
+        "NOVA (Monteiro) \u2014 processing classification, not nutrient density alone",
+        "Seed nova_source: curated_map | openfoodfacts | rule (imperfect)",
+        "Product ScoreAxes matrix_vitality would also speak to processing \u2014 not run in this bridge-only test"
+      ],
+      "evidence": {
+        "nova_max": 4,
+        "nova_modal": 1,
+        "plate_quality": 0.82,
+        "density": 0.436,
+        "avoid_flag_count": 0
+      },
+      "honesty": "OPEN"
+    },
+    {
+      "id": "q_hydration",
+      "claim_frame": "Meals can include a hydration channel as co-load",
+      "question": "Did this event include a fluid co-load?",
+      "answer": "Yes. fluid_g\u2248355.0. Hydration is L1/L3 context (dilution, co-ingest), not a nutrient law by itself. Beverage NOVA (e.g. sports drink) can raise packet nova_max without rewriting solid-food quality.",
+      "verdict": "context",
+      "science": [
+        "Book Part 0 \u2014 food-shaped hole vs passive host streams; fluid is still declared input",
+        "PacketLoad.intake.hydration 0|1 carrier"
+      ],
+      "evidence": {
+        "has_hydration": true,
+        "fluid_g": 355.0,
+        "beverage_id": "gatorade_thirst_quencher"
+      },
+      "honesty": "OPEN"
+    },
+    {
+      "id": "q_goal_alignment",
+      "claim_frame": "Meals should be judged against operator goals (soft)",
+      "question": "Given goal=weight_loss, is this plate directionally aligned in the teaching frame?",
+      "answer": "User goal=weight_loss, energy_bias=deficit, plate\u2248642 kcal, protein\u224852 g, quality=0.82. For weight_loss, high protein + reasonable quality is a common teaching pattern; the bridge does not prescribe a calorie budget or guarantee fat loss. Persona app_kibo_score=72 is fixture telemetry, not this meal\u2019s engine score (75.0).",
+      "verdict": "partial",
+      "science": [
+        "UserGoals schema \u2014 operator intent, not diagnosis",
+        "Engine meal kibo_score \u2260 persona app.kibo_score (different layers)"
+      ],
+      "evidence": {
+        "goal": "weight_loss",
+        "energy_bias": "deficit",
+        "plate_kcal": 641.81,
+        "protein_g": 52.27,
+        "app_kibo_score": 72,
+        "meal_engine_kibo_score": 75.0,
+        "insulin_resistance_flag": 0.45
+      },
+      "honesty": "OPEN"
+    },
+    {
+      "id": "q_glycemic_claim",
+      "claim_frame": "This meal is low glycemic / good for blood sugar",
+      "question": "Can we claim this meal is \u2018low glycemic\u2019 from this run?",
+      "answer": "No \u2014 not as a clinical claim from this bridge report. Carbs\u224858.8 g absorbed\u224852.9 g, but there is no glycemic_velocity ScoreAxis or CGM curve in this Python path. IR host flag is only lightly wired via lifestyle, not a full IR model. Refuse personal blood-sugar predictions.",
+      "verdict": "refuse",
+      "science": [
+        "Product ScoreAxes.glycemic_velocity exists in TS schema but was not executed in this test",
+        "CGM is an output sensor (book Part 0.6), not computed here",
+        "Host insulin_resistance is a teaching flag, not a clamp study"
+      ],
+      "evidence": {
+        "carb_g": 58.82,
+        "absorbed_carb": 52.94,
+        "host_insulin_resistance": 0.45,
+        "score_axes_run": false
+      },
+      "honesty": "OPEN"
+    },
+    {
+      "id": "q_disease_claim",
+      "claim_frame": "This meal prevents or treats disease",
+      "question": "Does the system support a disease-prevention or treatment claim for this meal?",
+      "answer": "No. claim_tier is open and the refuse list blocks clinical diagnosis / locked dose engines. What you get is mechanism teaching (gates, pathways, soft yields), not FDA-style health claims. GLP-1 RA onboard does not change this \u2014 food is complementary to prescribed therapy.",
+      "verdict": "refuse",
+      "science": [
+        "Book Court / claim grammar \u2014 LAW vs FLOW vs REFUSE",
+        "Bridge refuse includes clinical_diagnosis and ship_as_clinical_dose_engine",
+        "MedicationProfile \u2014 not CDSS"
+      ],
+      "evidence": {
+        "claim_tier": "open",
+        "refuse_sample": [
+          "adek_without_fat_vehicle",
+          "use_3.5_atp_factor_as_locked_bound",
+          "call_3to1_ratio_universal_law",
+          "call_0.1_ascorbate_absence_a_gate",
+          "clinical_diagnosis",
+          "locked_scfa_kcal_as_law",
+          "ship_as_clinical_dose_engine",
+          "scfa_0.6_as_locked_law"
+        ],
+        "glp1_ra": true
+      },
+      "honesty": "OPEN"
+    },
+    {
+      "id": "q_glp1_ra_host",
+      "claim_frame": "User is on a GLP-1 receptor agonist \u2014 food coaching changes",
+      "question": "Is a GLP-1 RA (drug) onboard, and what does that change in this system?",
+      "answer": "Yes \u2014 class glp1_ra is onboard (C-8 active). Soft goal bias: protein_priority=1, calorie_target_scale=0.8, fiber_target_scale=0.8. Teaching: smaller volume is expected; prioritize protein density; do not shame low intake. This is NOT a dose engine and does not stop/start Rx.",
+      "verdict": "support",
+      "science": [
+        "Ontology C-8 GLP-1 Override \u2014 User.GLP1 \u2192 protein priority + softer calorie/fiber scales",
+        "GLP-1 RAs: satiety \u2191, gastric emptying often slowed, energy intake \u2193 (agent/dose dependent; OPEN summary)",
+        "Distinct from endogenous L-cell GLP-1 after nutrients (digestion map)",
+        "medications.catalog.json class glp1_ra"
+      ],
+      "evidence": {
+        "glp1_ra": true,
+        "c8_active": true,
+        "goal_bias": {
+          "protein_priority": 1,
+          "calorie_target_scale": 0.8,
+          "fiber_target_scale": 0.8,
+          "note": "Matches ontology C-8 impact strings \u2014 FLOW teaching scales, not medical targets"
+        },
+        "classes_onboard": [
+          "glp1_ra"
+        ],
+        "claim_refuses": [
+          "Exact gastric-emptying minutes for this brand/dose",
+          "Personal disease remission guarantee from plate alone",
+          "Stop your prescription based on food score",
+          "This meal replaces your GLP-1 medication"
+        ]
+      },
+      "honesty": "OPEN"
+    },
+    {
+      "id": "q_glp1_food_replaces_rx",
+      "claim_frame": "This meal score means you can stop GLP-1 medication",
+      "question": "Can food quality or a Kibo score replace / stop a GLP-1 RA prescription?",
+      "answer": "No \u2014 refuse. Plate quality and engine yields are complementary education. Only the prescribing clinician manages the drug. Catalog refuses include: ['Exact gastric-emptying minutes for this brand/dose', 'Personal disease remission guarantee from plate alone']",
+      "verdict": "refuse",
+      "science": [
+        "MedicationProfile claim_policy.refuse for glp1_ra",
+        "Not a medical device; not CDSS"
+      ],
+      "evidence": {
+        "glp1_ra": true,
+        "refuse": [
+          "Exact gastric-emptying minutes for this brand/dose",
+          "Personal disease remission guarantee from plate alone",
+          "Stop your prescription based on food score",
+          "This meal replaces your GLP-1 medication"
+        ]
+      },
+      "honesty": "OPEN"
+    },
+    {
+      "id": "q_glp1_protein_priority",
+      "claim_frame": "On GLP-1 RA, protein density matters more when total intake falls",
+      "question": "Does this plate support protein-priority coaching under C-8?",
+      "answer": "Plate protein\u224852 g. Yes \u2014 solid protein density for a main plate while volume may be lower on-drug. Not a lean-mass lab guarantee.",
+      "verdict": "support",
+      "science": [
+        "C-8 Protein Priority = #1",
+        "Clinical nutrition themes: protect lean mass during pharmacologic weight loss (OPEN practice theme)"
+      ],
+      "evidence": {
+        "protein_g": 52.27,
+        "c8_active": true,
+        "quality": 0.82
+      },
+      "honesty": "OPEN"
+    },
+    {
+      "id": "q_what_did_we_learn",
+      "claim_frame": "The system can explain which laws it applied",
+      "question": "What did this run teach mechanistically (top lessons)?",
+      "answer": "Top lessons from evidence: (1) Micelle/ADEK path open; (2) Iron context walk_yield=1.2, bio_factor=0.48 with ascorbate co-presence; (3) Colon SCFA teaching from fiber=6.7g \u2192 4.01; (4) Energy FLOW atp\u2248813; (5) 20 law ids cited. Compare to a UPF plate to see quality/iron/SCFA shift.",
+      "verdict": "context",
+      "science": [
+        "L-FAT-1",
+        "LAW-002",
+        "LAW-003",
+        "LAW-004",
+        "LAW-016",
+        "LAW-020",
+        "LAW-021",
+        "LAW-025",
+        "LAW-026",
+        "LAW-039",
+        "LAW-041",
+        "LAW-042",
+        "LAW-043",
+        "LAW-044",
+        "LAW-045",
+        "LAW-046"
+      ],
+      "evidence": {
+        "laws_cited": [
+          "L-FAT-1",
+          "LAW-002",
+          "LAW-003",
+          "LAW-004",
+          "LAW-016",
+          "LAW-020",
+          "LAW-021",
+          "LAW-025",
+          "LAW-026",
+          "LAW-039",
+          "LAW-041",
+          "LAW-042",
+          "LAW-043",
+          "LAW-044",
+          "LAW-045",
+          "LAW-046",
+          "LAW-047",
+          "STUB-A-03",
+          "mod.ascorbate",
+          "mod.phytate"
+        ],
+        "messages_sample": [
+          "Simulator start \u2014 7 phases",
+          "K1 mouth: surface-area prep + cephalic priming (teaching)",
+          "K2 stomach: acid/pepsin path (STUB-A-03 pH gate not locked)",
+          "K3/K4: micelle gate OPEN (fat co-present) \u2014 L-FAT-1 / LAW-020",
+          "Macro absorption fractions 0.9/0.92/0.95 are FLOW prototypes (open tier)",
+          "L2_REDOX: Ca:Fe ratio 11.1 > 3.0 \u2192 Fe factor \u00d70.4 (prototype; LAW-042 / LAW-047 family)"
+        ],
+        "narrative_events_n": 8
+      },
+      "honesty": "OPEN"
+    },
+    {
+      "id": "q_value_of_run",
+      "claim_frame": "Running user+meal through the system produces actionable teaching value",
+      "question": "What is the product value of this run if numbers are imperfect?",
+      "answer": "Value is structured explanation: gates, pathway yields, processing context, and explicit refuses. You can answer \u2018why did iron notes fire?\u2019 or \u2018why is ADEK allowed?\u2019 with law ids \u2014 even when magnitudes stay OPEN. Not a personal meal prescription; a claim x-ray + mechanism walk.",
+      "verdict": "support",
+      "science": [
+        "Book: Court + process measurements vs constitution",
+        "ACCURACY.md \u2014 real seed, imperfect micros/NOVA, honest tiers"
+      ],
+      "evidence": {
+        "has_micelle": true,
+        "has_iron_walk": true,
+        "has_scfa": true,
+        "has_refuse_list": true,
+        "qa_count": 12
+      },
+      "honesty": "OPEN"
+    }
+  ],
+  "claim_qa_summary": {
+    "n": 15,
+    "support": 7,
+    "partial": 2,
+    "refuse": 3,
+    "context": 3
+  }
+}

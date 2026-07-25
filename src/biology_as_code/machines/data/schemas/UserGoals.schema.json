@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nutricollective.local/machines/schemas/UserGoals.schema.json",
+  "title": "UserGoals",
+  "description": "L1 operator intent — weight / body-comp / health goals. SETUP for process + ScoreAxes bias later. Not a diagnosis; BMI is a coarse index only (honesty OPEN/FLOW).",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "kibo.UserGoals/v1" },
+    "honesty": {
+      "type": "string",
+      "enum": ["FLOW", "OPEN", "UNITS"],
+      "default": "OPEN"
+    },
+    "primary": {
+      "type": "string",
+      "enum": [
+        "weight_loss",
+        "weight_management",
+        "weight_gain",
+        "recomp",
+        "performance",
+        "metabolic_health",
+        "general_health",
+        "unspecified"
+      ],
+      "description": "Primary operator goal for this run / plan window."
+    },
+    "secondary": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "weight_loss",
+          "weight_management",
+          "weight_gain",
+          "recomp",
+          "performance",
+          "metabolic_health",
+          "general_health",
+          "muscle_gain",
+          "fat_loss",
+          "glycemic_control",
+          "anti_inflammatory",
+          "energy"
+        ]
+      }
+    },
+    "body": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Anthropometrics for BMI / targets — teaching bands, not medical advice.",
+      "properties": {
+        "height_cm": { "type": "number", "minimum": 50, "maximum": 250 },
+        "weight_kg": { "type": "number", "minimum": 20, "maximum": 400 },
+        "target_weight_kg": { "type": "number", "minimum": 20, "maximum": 400 },
+        "bmi": {
+          "type": "number",
+          "minimum": 10,
+          "maximum": 80,
+          "description": "Optional override; else derive weight_kg / (height_m^2)."
+        },
+        "bmi_band": {
+          "type": "string",
+          "enum": [
+            "UNKNOWN",
+            "UNDERWEIGHT",
+            "NORMAL",
+            "OVERWEIGHT",
+            "OBESITY_I",
+            "OBESITY_II",
+            "OBESITY_III"
+          ],
+          "description": "WHO-style teaching bands only."
+        },
+        "body_fat_percent": { "type": "number", "minimum": 0, "maximum": 80 },
+        "waist_cm": { "type": "number", "minimum": 0 }
+      }
+    },
+    "pace": {
+      "type": "string",
+      "enum": ["unspecified", "slow", "moderate", "aggressive"],
+      "description": "How fast they want weight change — FLOW teaching only."
+    },
+    "energy_bias": {
+      "type": "string",
+      "enum": ["deficit", "maintenance", "surplus", "unspecified"],
+      "description": "Declared calorie direction; not a calculated TDEE unless later locked."
+    },
+    "horizon_weeks": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Optional planning window."
+    },
+    "notes": { "type": "string" }
+  },
+  "required": ["primary"]
+}

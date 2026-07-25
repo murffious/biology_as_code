@@ -1,0 +1,41 @@
+{
+  "schema": "kibo.DigestRun/v1",
+  "id": "example.salad_with_oil",
+  "process_id": "process.full-digest",
+  "host": {
+    "schema": "kibo.HostState/v1",
+    "ready": 1,
+    "lifecycle": "adult",
+    "sex": "unspecified",
+    "acid_capacity": 1.0,
+    "bile_capacity": 1.0,
+    "insulin_resistance": 0.1,
+    "alcohol_with_meal": 0
+  },
+  "packet": {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "salad_with_oil",
+    "name": "Spinach salad with olive oil",
+    "intake": { "food": 1, "hydration": 1, "supplement": 0 },
+    "macros_g": { "protein": 6, "fat": 14, "carb": 12, "fiber": 5, "fructose": 3 },
+    "cargo": ["beta_carotene", "nonhaem_iron"],
+    "partners": { "lipid_g": 14, "ascorbate": true, "tannin": false },
+    "derived": {
+      "nova_max": 2,
+      "processing_combined": 0.15,
+      "matrix_integrity": 0.85,
+      "food_quality": 0.9,
+      "honesty": "FLOW"
+    }
+  },
+  "ingestion": {
+    "schema": "kibo.IngestionEvent/v1",
+    "packet_id": "salad_with_oil",
+    "meal_duration_minutes": 18,
+    "eating_speed": 0.35,
+    "hydrated_with_meal": true,
+    "chew_time_s_mean_per_bite": 4.5,
+    "mastication_quality": 0.8,
+    "food_order_score": 0.9
+  }
+}

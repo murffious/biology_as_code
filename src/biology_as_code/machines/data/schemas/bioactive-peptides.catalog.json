@@ -1,0 +1,197 @@
+{
+  "schema": "kibo.BioactivePeptideCatalog/v1",
+  "version": "1.0.0",
+  "honesty": "OPEN",
+  "note": "Peptide / collagen / bacteriocin home. Provenance tiers fix mis-filing under collagen bioactive or postbiotic. Wired into food_health_claims_500 bioactive_taxonomy (peptide_provenance_v1).",
+  "provenance_tiers": {
+    "intrinsic": {
+      "label": "Present as eaten",
+      "attachment": "food_node",
+      "scoreable_on_food": true,
+      "examples": ["carnosine", "anserine", "glutathione", "lunasin", "lycopene"]
+    },
+    "process_generated": {
+      "label": "Formed before eating (fermentation / hydrolysis)",
+      "attachment": "process_node",
+      "scoreable_on_food": true,
+      "score_belongs_to": "process_not_species",
+      "examples": ["vpp_ipp", "collagen_peptide", "soy_process_peptides", "bacteriocin"]
+    },
+    "digestion_generated": {
+      "label": "Formed in gut",
+      "attachment": "host_food_edge",
+      "scoreable_on_food": false,
+      "same_shape_as": "urolithin_A_conversion",
+      "examples": ["casomorphin", "gluten_exorphin", "ace_inhibitory_digest_peptides"]
+    }
+  },
+  "bioavailability_filter": {
+    "rule": "Most peptides hydrolyze to free AA (count as protein). Serum-surviving dietary peptides are often proline-rich (Pro-Hyp, VPP/IPP).",
+    "gate_field": "proline_rich_gate",
+    "honesty": "FLOW"
+  },
+  "splits": {
+    "collagen": {
+      "from": "collagen",
+      "to": ["collagen_peptide", "collagen_protein"],
+      "reason": "Hydrolysate peptides are process-generated; structural collagen is intrinsic protein."
+    },
+    "postbiotic": {
+      "from": "postbiotic",
+      "narrow_to": "postbiotic organic acids",
+      "extract": "bacteriocin",
+      "reason": "Bacteriocins must not be swallowed into generic postbiotic bucket."
+    }
+  },
+  "compounds": [
+    {
+      "id": "collagen_peptide",
+      "name": "collagen peptides (hydrolysate)",
+      "kind": "peptide",
+      "provenance": "process_generated",
+      "attachment": "process_node",
+      "proline_rich_gate": true,
+      "evidence_grade": "C",
+      "legacy_ids": ["collagen"],
+      "process_requirements": ["enzymatic_hydrolysis", "industrial_hydrolysis"],
+      "score_on_food_node": true,
+      "example_foods": ["collagen hydrolysate supplement", "some processed broths"],
+      "mechanism": "Pro-Hyp appears in serum; skin/tendon endpoint trials small, often industry-funded."
+    },
+    {
+      "id": "collagen_protein",
+      "name": "collagen protein (structural)",
+      "kind": "protein",
+      "provenance": "intrinsic",
+      "attachment": "food_node",
+      "proline_rich_gate": false,
+      "evidence_grade": "B",
+      "score_on_food_node": true,
+      "example_foods": ["skin-on fish", "connective tissue meat", "bone broth precursor tissue"],
+      "mechanism": "Structural matrix; digested mainly as AA unless processed into peptides."
+    },
+    {
+      "id": "carnosine",
+      "name": "carnosine",
+      "kind": "peptide",
+      "provenance": "intrinsic",
+      "attachment": "food_node",
+      "proline_rich_gate": false,
+      "evidence_grade": "C",
+      "score_on_food_node": true,
+      "example_foods": ["beef", "pork", "chicken", "tuna", "salmon"],
+      "mechanism": "Intrinsic in meat/fish; serum carnosinase cleaves most dietary intake. A-grade performance path is beta-alanine → muscle carnosine, not food carnosine claims."
+    },
+    {
+      "id": "anserine",
+      "name": "anserine",
+      "kind": "peptide",
+      "provenance": "intrinsic",
+      "attachment": "food_node",
+      "proline_rich_gate": false,
+      "evidence_grade": "C",
+      "example_foods": ["chicken", "turkey", "some fish"]
+    },
+    {
+      "id": "glutathione",
+      "name": "glutathione",
+      "kind": "peptide",
+      "provenance": "intrinsic",
+      "attachment": "food_node",
+      "proline_rich_gate": false,
+      "evidence_grade": "C",
+      "example_foods": ["fresh asparagus", "avocado", "spinach", "okara"]
+    },
+    {
+      "id": "lunasin",
+      "name": "lunasin",
+      "kind": "peptide",
+      "provenance": "intrinsic",
+      "attachment": "food_node",
+      "proline_rich_gate": false,
+      "evidence_grade": "C",
+      "example_foods": ["soy"],
+      "mechanism": "Almost entirely in vitro."
+    },
+    {
+      "id": "vpp_ipp",
+      "name": "VPP/IPP lactotripeptides",
+      "kind": "peptide",
+      "provenance": "process_generated",
+      "attachment": "process_node",
+      "proline_rich_gate": true,
+      "evidence_grade": "B",
+      "process_requirements": ["fermentation", "casein_hydrolysis"],
+      "example_foods": ["fermented milk products with documented VPP/IPP"],
+      "mechanism": "BP meta ~3/1 mmHg; large heterogeneity (stronger JP than EU). Raw milk has no VPP."
+    },
+    {
+      "id": "soy_process_peptides",
+      "name": "soy process peptides",
+      "kind": "peptide",
+      "provenance": "process_generated",
+      "attachment": "process_node",
+      "proline_rich_gate": false,
+      "evidence_grade": "C",
+      "process_requirements": ["fermentation"],
+      "example_foods": ["natto", "miso"]
+    },
+    {
+      "id": "casomorphin",
+      "name": "casomorphins (BCM-7)",
+      "kind": "peptide",
+      "provenance": "digestion_generated",
+      "attachment": "host_food_edge",
+      "proline_rich_gate": true,
+      "evidence_grade": "D",
+      "score_on_food_node": false,
+      "example_foods": ["A1 beta-casein milk as substrate only"],
+      "mechanism": "Host protease/microbiome interaction; A1/A2 marketing contested."
+    },
+    {
+      "id": "gluten_exorphin",
+      "name": "gluten exorphins",
+      "kind": "peptide",
+      "provenance": "digestion_generated",
+      "attachment": "host_food_edge",
+      "proline_rich_gate": true,
+      "evidence_grade": "D",
+      "score_on_food_node": false
+    },
+    {
+      "id": "ace_inhibitory_digest_peptides",
+      "name": "ACE-inhibitory peptides (digestion-generated)",
+      "kind": "peptide",
+      "provenance": "digestion_generated",
+      "attachment": "host_food_edge",
+      "proline_rich_gate": true,
+      "evidence_grade": "C",
+      "score_on_food_node": false,
+      "notes": "Prefer VPP/IPP process_generated when product documents them."
+    },
+    {
+      "id": "bacteriocin",
+      "name": "bacteriocins",
+      "kind": "postbiotic",
+      "provenance": "process_generated",
+      "attachment": "process_node",
+      "evidence_grade": "C",
+      "notes": "Not generic postbiotic organic acids."
+    },
+    {
+      "id": "urolithin",
+      "name": "urolithin A (host conversion)",
+      "kind": "metabolite",
+      "provenance": "digestion_generated",
+      "attachment": "host_food_edge",
+      "evidence_grade": "C",
+      "score_on_food_node": false,
+      "notes": "~40% efficient converters; precursors on food, product on edge."
+    }
+  ],
+  "meat_fish_wiring_todo": {
+    "add_to_food_nodes": ["carnosine", "anserine"],
+    "foods": ["beef", "pork", "lamb", "chicken", "turkey", "tuna", "salmon", "mackerel"],
+    "status": "catalog_ready_food_nodes_pending_full_rebuild"
+  }
+}

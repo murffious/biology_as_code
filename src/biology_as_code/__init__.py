@@ -17,6 +17,17 @@ __version__ = package_version()
 # Fail-closed claim auditor (returns UNEVALUABLE rather than guessing)
 from biology_as_code.audit import Claim, ClaimAudit, audit_claim
 
+# Unified carrier — one DigestRun object (host + packet + ingestion) that the app
+# and the engine both consume, validated against the same shared schemas.
+from biology_as_code.carrier import (
+    DigestRun,
+    conditions_from_digest_run,
+    load_digest_run,
+    run_digest_run,
+    to_machine_context,
+    validate_digest_run,
+)
+
 # High-level meal dig
 # Dig helpers
 from biology_as_code.dig import Bolus, DigestiveFlowSimulator, build_absorption_plan
@@ -64,6 +75,7 @@ __all__ = [
     "Claim",
     "ClaimAudit",
     "Conditions",
+    "DigestRun",
     "DigestionTrace",
     "DigestiveFlowSimulator",
     "FoodPayload",
@@ -75,8 +87,13 @@ __all__ = [
     "all_sources",
     "audit_claim",
     "build_absorption_plan",
+    "conditions_from_digest_run",
     "digest",
     "exercise",
+    "load_digest_run",
+    "run_digest_run",
+    "to_machine_context",
+    "validate_digest_run",
     "FoodPacket",
     "fed",
     "get_law",

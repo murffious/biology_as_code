@@ -1,0 +1,261 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nutricollective.local/machines/schemas/UserPersona.schema.json",
+  "title": "UserPersona",
+  "description": "Named mock/seed user profile for playground + kibo_simulator. Composes HostState + HostClinicalProfile + UserGoals (L1) plus product prefs/app telemetry. Not real PHI. All magnitudes OPEN/FLOW teaching unless promoted.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "slug", "display_name", "host", "goals", "app"],
+  "properties": {
+    "schema": { "const": "kibo.UserPersona/v1" },
+    "id": {
+      "type": "string",
+      "description": "Stable id e.g. persona.alex_rivera"
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "description": "Short key for ?mockUser=alex or VITE_MOCK_USER=alex"
+    },
+    "display_name": { "type": "string" },
+    "email": {
+      "type": "string",
+      "description": "Mock email only — never real addresses"
+    },
+    "why_useful": {
+      "type": "string",
+      "description": "QA/demo rationale for this persona"
+    },
+    "honesty": {
+      "type": "string",
+      "enum": ["FLOW", "OPEN", "UNITS"],
+      "default": "OPEN"
+    },
+    "host": {
+      "$ref": "HostState.schema.json",
+      "description": "L1 host machine state (process-ready)"
+    },
+    "clinical": {
+      "$ref": "HostClinicalProfile.schema.json",
+      "description": "Optional genetics/labs/hormonal/dynamic"
+    },
+    "goals": {
+      "$ref": "UserGoals.schema.json",
+      "description": "Operator intent + anthropometrics"
+    },
+    "preferences": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "MealCoach product prefs — not yet on DigestRun host.",
+      "properties": {
+        "diet_style": {
+          "type": "string",
+          "enum": [
+            "omnivore",
+            "pescatarian",
+            "vegetarian",
+            "vegan",
+            "mediterranean",
+            "keto",
+            "low_carb",
+            "unspecified"
+          ]
+        },
+        "allergies": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "dislikes": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "meal_frequency": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 8
+        },
+        "cooking_skill": {
+          "type": "string",
+          "enum": ["beginner", "intermediate", "advanced", "unspecified"]
+        },
+        "lifestyle_tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Ids from book/person-context/person_context.json lifestyle_tags"
+        },
+        "activity_level": {
+          "type": "string",
+          "enum": [
+            "sedentary",
+            "light",
+            "moderate",
+            "very_active",
+            "athlete",
+            "unspecified"
+          ]
+        }
+      }
+    },
+    "medications": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Legacy free-text meds. Prefer medications_structured when present."
+    },
+    "medications_structured": {
+      "$ref": "MedicationProfile.schema.json",
+      "description": "L4 structured meds (class_id + delivery). GLP-1 RA first ready class (C-8). Not CDSS."
+    },
+    "supplements": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Legacy free-text supplements"
+    },
+    "supplements_structured": {
+      "$ref": "HostExogenousProfile.schema.json",
+      "description": "Supplements with delivery (oral, IM B12, IV drip…). Prefer domain=supplement items."
+    },
+    "hormones_structured": {
+      "$ref": "HostExogenousProfile.schema.json",
+      "description": "Exogenous hormones with delivery (patch, pellet, injection…). Not prescribing."
+    },
+    "exogenous": {
+      "$ref": "HostExogenousProfile.schema.json",
+      "description": "Optional unified list (med+supplement+hormone). Prefer when consolidating."
+    },
+    "app": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state"],
+      "description": "Product/session telemetry for demos (not process LAW).",
+      "properties": {
+        "state": {
+          "type": "string",
+          "enum": [
+            "onboarding",
+            "active",
+            "plateau",
+            "at_risk",
+            "power_user",
+            "churned"
+          ]
+        },
+        "has_completed_onboarding": { "type": "boolean" },
+        "days_tracked": { "type": "integer", "minimum": 0 },
+        "adherence_last_7d": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Fraction of days with meaningful log last 7d"
+        },
+        "streak_days": { "type": "integer", "minimum": 0 },
+        "last_meal_logged_days_ago": { "type": "number", "minimum": 0 },
+        "missed_days_this_week": { "type": "integer", "minimum": 0, "maximum": 7 },
+        "kibo_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "FLOW teaching composite for demos — not clinical diagnosis"
+        },
+        "kibo_trend": {
+          "type": "string",
+          "enum": ["improving", "stable", "declining", "unknown"]
+        }
+      }
+    },
+    "recent_meals": {
+      "type": "array",
+      "description": "Short coach context — not full PacketLoad history.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label", "day_offset"],
+        "properties": {
+          "label": { "type": "string" },
+          "day_offset": {
+            "type": "integer",
+            "description": "0 = today, -1 = yesterday, …"
+          },
+          "meal_slot": {
+            "type": "string",
+            "enum": ["breakfast", "lunch", "dinner", "snack", "other"]
+          },
+          "nova_class": { "type": "integer", "minimum": 1, "maximum": 4 },
+          "protein_g": { "type": "number", "minimum": 0 },
+          "carb_g": { "type": "number", "minimum": 0 },
+          "fat_g": { "type": "number", "minimum": 0 },
+          "fiber_g": { "type": "number", "minimum": 0 },
+          "kibo_score_hint": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100
+          },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "data_inventory": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Book Part 0 provenance: which real-world apps/labs could have produced each field. See DataSource.schema.json + fixtures/data-sources.catalog.json.",
+      "properties": {
+        "readiness": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "configure_ready": {
+              "type": "boolean",
+              "description": "Part 0.1 configure — baseline profile present"
+            },
+            "calibrate_ready": {
+              "type": "boolean",
+              "description": "Part 0.1 calibrate — ≥1 wearable or deep diagnostic imported"
+            },
+            "host_ready_flag": { "type": "integer", "enum": [0, 1] },
+            "missing": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "summary": { "type": "string" }
+          }
+        },
+        "lifestyle_loads": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "ACLM six + book kinetic_load (Part 0.9). load_0_1 = environmental stress (higher = more load).",
+          "properties": {
+            "sleep": { "$ref": "#/$defs/LifestyleLoad" },
+            "activity": { "$ref": "#/$defs/LifestyleLoad" },
+            "stress": { "$ref": "#/$defs/LifestyleLoad" },
+            "social": { "$ref": "#/$defs/LifestyleLoad" },
+            "substance_avoidance": { "$ref": "#/$defs/LifestyleLoad" },
+            "nutrition_quality": { "$ref": "#/$defs/LifestyleLoad" },
+            "kinetic_load": { "$ref": "#/$defs/LifestyleLoad" }
+          }
+        },
+        "sources": {
+          "type": "array",
+          "items": { "$ref": "DataSource.schema.json" }
+        }
+      }
+    },
+    "created_at": { "type": "string", "format": "date-time" },
+    "last_active": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "LifestyleLoad": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "load_0_1": { "type": "number", "minimum": 0, "maximum": 1 },
+        "band": {
+          "type": "string",
+          "enum": ["UNKNOWN", "LOW", "NORMAL", "HIGH", "CRITICAL"]
+        },
+        "source_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

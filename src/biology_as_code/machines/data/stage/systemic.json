@@ -3,23 +3,42 @@
   "kind": "stage",
   "id": "stage.systemic",
   "version": "1.0.0",
-  "revision": 1,
+  "revision": 2,
   "title": "Systemic circulation — peripheral appearance & clearance",
   "status": "published",
-  "updated": "2026-07-23",
+  "updated": "2026-07-25",
   "order": 6,
   "provenance": {
     "basedOn": [
       "Standard physiology: peripheral glucose appearance shaped by gastric emptying, fiber and matrix; insulin-driven clearance back toward baseline. Teaching shape, not a personal reading."
     ],
-    "sources": [],
-    "authors": ["biology-as-code"]
+    "sources": [
+      "NIDDK - Your Digestive System & How It Works: https://www.niddk.nih.gov/health-information/digestive-diseases/digestive-system-how-it-works",
+      "Hall & Hall, Guyton and Hall Textbook of Medical Physiology, 14th ed. - Unit XII, Gastrointestinal Physiology",
+      "Boron & Boulpaep, Medical Physiology, 3rd ed. - The Gastrointestinal System"
+    ],
+    "authors": [
+      "biology-as-code"
+    ]
   },
   "inputs": [
-    { "field": "meal.glucoseG", "unit": "g" },
-    { "field": "meal.fiberG", "unit": "g" },
-    { "field": "meal.matrixIntegrity", "unit": "0-1" },
-    { "field": "host.insulinResistance", "unit": "0-1", "description": "Teaching proxy only - not a personal reading" }
+    {
+      "field": "meal.glucoseG",
+      "unit": "g"
+    },
+    {
+      "field": "meal.fiberG",
+      "unit": "g"
+    },
+    {
+      "field": "meal.matrixIntegrity",
+      "unit": "0-1"
+    },
+    {
+      "field": "host.insulinResistance",
+      "unit": "0-1",
+      "description": "Teaching proxy only - not a personal reading"
+    }
   ],
   "startAt": "appearance",
   "states": {
@@ -27,9 +46,19 @@
       "type": "task",
       "label": "Peripheral glucose appearance",
       "detail": "Glucose that cleared the liver appears in peripheral blood - the CGM-like shape, driven by everything upstream (emptying rate, fiber, matrix). Teaching shape, not your meter.",
-      "windowH": [8, 3],
-      "requires": [ { "field": "meal.glucoseG", "op": "exists" } ],
-      "emits": ["glucose-curve"],
+      "windowH": [
+        0.75,
+        2
+      ],
+      "requires": [
+        {
+          "field": "meal.glucoseG",
+          "op": "exists"
+        }
+      ],
+      "emits": [
+        "glucose-curve"
+      ],
       "next": "shapeChoice"
     },
     "shapeChoice": {
@@ -38,11 +67,25 @@
       "detail": "Fast-emptying, low-fiber, refined loads produce a sharp rise; buffered whole-food meals produce a gentle one.",
       "choices": [
         {
-          "when": { "all": [
-            { "field": "meal.fiberG", "op": "<", "value": 8 },
-            { "field": "meal.matrixIntegrity", "op": "<", "value": 0.3 },
-            { "field": "meal.glucoseG", "op": ">=", "value": 30 }
-          ] },
+          "when": {
+            "all": [
+              {
+                "field": "meal.fiberG",
+                "op": "<",
+                "value": 8
+              },
+              {
+                "field": "meal.matrixIntegrity",
+                "op": "<",
+                "value": 0.3
+              },
+              {
+                "field": "meal.glucoseG",
+                "op": ">=",
+                "value": 30
+              }
+            ]
+          },
           "next": "sharpRise",
           "note": "Unbuffered refined load -> steep appearance."
         }
@@ -56,7 +99,11 @@
       "edgeCases": [
         {
           "id": "insulin-resistance",
-          "when": { "field": "host.insulinResistance", "op": ">=", "value": 0.5 },
+          "when": {
+            "field": "host.insulinResistance",
+            "op": ">=",
+            "value": 0.5
+          },
           "effect": "Higher, more prolonged elevation for the same load - the appearance clears more slowly.",
           "note": "Teaching context only."
         }
@@ -73,7 +120,9 @@
       "type": "task",
       "label": "Insulin-driven clearance",
       "detail": "Insulin drives peripheral uptake and the curve returns toward baseline, closing the fed window.",
-      "emits": ["return-to-baseline"],
+      "emits": [
+        "return-to-baseline"
+      ],
       "end": true
     }
   }

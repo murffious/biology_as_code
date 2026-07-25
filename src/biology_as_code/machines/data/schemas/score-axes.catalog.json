@@ -1,0 +1,130 @@
+{
+  "schema": "kibo.ScoreAxes.catalog/v1",
+  "honesty": "FLOW",
+  "note": "Generalized terms for the four process measurements. Not constitutional LAW ids. Implements product law_calculator axes.",
+  "axes": [
+    {
+      "id": "density",
+      "term": "Nutrient density",
+      "consumer_label": "Nutrient ROI",
+      "clinician_label": "Micronutrient signal per energy",
+      "assesses": "micronutrient_signal_per_energy",
+      "legacy_key": "law_1_density",
+      "method": "_assess_density",
+      "verdicts": ["DENSE", "MODERATE", "HOLLOW"],
+      "default_weight": 0.3,
+      "process_hooks": [
+        { "stage_id": "stage.intake-setup", "sStage": "S-0", "role": "packet cargo declared" },
+        { "stage_id": "stage.jejunum", "sStage": "S-4", "role": "what can be absorbed depends on density of input" },
+        { "stage_id": "stage.cell", "sStage": "S-7", "role": "building blocks / cofactors available" }
+      ],
+      "digest_run_fields": [
+        "packet.macros_g",
+        "packet.cargo",
+        "packet.items",
+        "meal.proteinG",
+        "meal.fiberG"
+      ],
+      "penalty_refs": [],
+      "honesty": "FLOW"
+    },
+    {
+      "id": "glycemic_velocity",
+      "term": "Glycemic velocity",
+      "consumer_label": "Blood-sugar pace",
+      "clinician_label": "Carb appearance rate via matrix buffer",
+      "assesses": "carb_appearance_rate_via_matrix",
+      "legacy_key": "law_2_glycemic",
+      "method": "_assess_glycemic_velocity",
+      "verdicts": ["MATRIX_INTACT", "MATRIX_WEAK", "SPIKE_RISK", "NEUTRAL"],
+      "default_weight": 0.25,
+      "process_hooks": [
+        { "stage_id": "stage.oral", "sStage": "S-1", "role": "shear / liquid vs bolus sets early rate" },
+        { "stage_id": "stage.stomach", "sStage": "S-2", "role": "emptying control (C-4 preload)" },
+        { "stage_id": "stage.jejunum", "sStage": "S-4", "role": "villus glucose flux" },
+        { "stage_id": "stage.systemic", "sStage": "S-6", "role": "appearance shape" }
+      ],
+      "digest_run_fields": [
+        "packet.macros_g.carb",
+        "packet.macros_g.fiber",
+        "packet.derived.matrix_integrity",
+        "meal.glucoseG",
+        "meal.fiberG",
+        "meal.matrixIntegrity",
+        "meal.foodOrderScore",
+        "ingestion.sequence"
+      ],
+      "penalty_refs": ["C-4"],
+      "honesty": "FLOW"
+    },
+    {
+      "id": "oxidative_burden",
+      "term": "Oxidative burden",
+      "consumer_label": "Inflammation load",
+      "clinician_label": "Pro- vs anti-inflammatory packet load",
+      "assesses": "pro_vs_anti_inflammatory_load",
+      "legacy_key": "law_3_inflammation",
+      "method": "_assess_oxidative_burden",
+      "verdicts": ["ANTI_INFLAMMATORY", "NEUTRAL", "PRO_INFLAMMATORY"],
+      "default_weight": 0.3,
+      "process_hooks": [
+        { "stage_id": "stage.intake-setup", "sStage": "S-0", "role": "residue / additive flags on items" },
+        { "stage_id": "stage.duodenum", "sStage": "S-3", "role": "lipid oxidation / bile path stress" },
+        { "stage_id": "stage.portal", "sStage": "S-5", "role": "first-pass inflammatory tax narrative" },
+        { "stage_id": "stage.colon", "sStage": "S-8", "role": "barrier / SCFA vs substrate starve" }
+      ],
+      "digest_run_fields": [
+        "packet.items[].residue_flags",
+        "packet.items[].additives",
+        "packet.derived.residue_burden",
+        "packet.derived.food_quality",
+        "meal.residueBurden",
+        "meal.foodQuality"
+      ],
+      "penalty_refs": ["E-3"],
+      "honesty": "FLOW"
+    },
+    {
+      "id": "matrix_vitality",
+      "term": "Matrix vitality",
+      "consumer_label": "Alive vs processed",
+      "clinician_label": "Processing / denaturation state of the food matrix",
+      "assesses": "living_vs_denatured_processing_state",
+      "legacy_key": "law_4_vitality",
+      "method": "_assess_enzymatic_vitality",
+      "verdicts": ["LIVING", "PARTIALLY_LIVING", "DENATURED", "UNKNOWN"],
+      "default_weight": 0.15,
+      "process_hooks": [
+        { "stage_id": "stage.oral", "sStage": "S-1", "role": "form + chew open surface area" },
+        { "stage_id": "stage.stomach", "sStage": "S-2", "role": "matrix disruption continues" },
+        { "stage_id": "stage.intake-setup", "sStage": "S-0", "role": "NOVA / cooking / industrial tags" }
+      ],
+      "digest_run_fields": [
+        "packet.items[].form",
+        "packet.items[].nova_class",
+        "packet.items[].cooking_methods",
+        "packet.items[].industrial_processing",
+        "packet.derived.processing_combined",
+        "packet.derived.matrix_integrity",
+        "meal.matrixIntegrity",
+        "meal.masticationQuality",
+        "ingestion.chew_time_s_mean_per_bite",
+        "ingestion.sequence"
+      ],
+      "penalty_refs": ["E-3"],
+      "honesty": "FLOW"
+    }
+  ],
+  "default_composite_weights": {
+    "density": 0.3,
+    "glycemic_velocity": 0.25,
+    "oxidative_burden": 0.3,
+    "matrix_vitality": 0.15
+  },
+  "legacy_key_map": {
+    "law_1_density": "density",
+    "law_2_glycemic": "glycemic_velocity",
+    "law_3_inflammation": "oxidative_burden",
+    "law_4_vitality": "matrix_vitality"
+  }
+}

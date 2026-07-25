@@ -1,0 +1,104 @@
+{
+  "schema": "kibo.OffBeverageSnapshot/v1",
+  "as_of": "2026-07-23",
+  "source": "https://world.openfoodfacts.org",
+  "note": "Captured during meals-50 hydration enrichment. Used to back real barcode beverages.",
+  "products": [
+    {
+      "code": "0052000328660",
+      "brands": "GATORADE",
+      "name": "THIRST QUENCHER",
+      "energy_kcal_100g": 23.69,
+      "carbohydrates_100g": 6.09,
+      "sugars_100g": 5.75,
+      "proteins_100g": 0,
+      "fat_100g": 0,
+      "sodium_100g": 0.0457,
+      "used_as": "gatorade_thirst_quencher"
+    },
+    {
+      "code": "0052000135145",
+      "brands": "GATORADE",
+      "name": "THIRST QUENCHER",
+      "energy_kcal_100g": 22.52,
+      "carbohydrates_100g": 6.2,
+      "sugars_100g": 5.91,
+      "sodium_100g": 0.045,
+      "used_as": "gatorade_alt_reference"
+    },
+    {
+      "code": "00049000028911",
+      "brands": "Coke",
+      "name": "Diet Coke Soft Drink",
+      "energy_kcal_100g": 0,
+      "proteins_100g": 0,
+      "carbohydrates_100g": 0,
+      "fat_100g": 0,
+      "sugars_100g": 0,
+      "used_as": "diet_cola"
+    },
+    {
+      "code": "0786162200433",
+      "brands": "Glac\u00e9au, Sarah Farms",
+      "name": "SmartWater",
+      "ingredients_text": "vapor distilled water, calcium chloride and magnesium chloride and potassium bicarbonate (electrolyte sources*) electrolytes added for taste",
+      "energy_kcal_100g": 0,
+      "proteins_100g": 0,
+      "carbohydrates_100g": 0,
+      "fat_100g": 0,
+      "used_as": "smartwater"
+    },
+    {
+      "code": "0657227105539",
+      "brands": "Essentia",
+      "name": "#1 ionized alkaline water",
+      "ingredients_text": "purified water, sodium bicarbonate, dipotassium phosphate, magnesium sulfate, and calcium chloride",
+      "energy_kcal_100g": 0,
+      "sodium_100g": 0.001427,
+      "used_as": "alkaline_water_essentia_class"
+    },
+    {
+      "code": "0657227000339",
+      "brands": "Essentia",
+      "name": "Essentia water ionized alkaline bottled water",
+      "energy_kcal_100g": 0,
+      "sodium_100g": 0.001389,
+      "used_as": "alkaline_water_essentia_class_alt"
+    },
+    {
+      "code": "3502110009449",
+      "brands": "Tropicana",
+      "name": "Orangensaft",
+      "energy_kcal_100g": 40,
+      "carbohydrates_100g": 8.9,
+      "used_as": "orange_juice"
+    },
+    {
+      "code": "0810125970962",
+      "brands": "Liquid I.V.",
+      "name": "Sugar Free Lemon Lime",
+      "energy_kcal_100g": 153.85,
+      "carbohydrates_100g": 38.46,
+      "sodium_100g": 4.08,
+      "potassium_100g": 2.92,
+      "note": "POWDER mix per 100g \u2014 not RTD; kept for future mix-with-water packets, not assigned as ready drink",
+      "used_as": "not_assigned_powder"
+    },
+    {
+      "code": "0021136010541",
+      "brands": "Topo Chico",
+      "name": "Topo Chico Agua Mineral",
+      "energy_kcal_100g": 0,
+      "used_as": "sparkling_mineral_topo_class",
+      "note": "Found via OFF search; full nutriments rate-limited \u2014 0 kcal sparkling mineral class"
+    },
+    {
+      "code": "0021136010480",
+      "brands": "Topo Chico",
+      "name": "Cia. Topo Chico Agua Mineral",
+      "energy_kcal_100g": 0,
+      "used_as": "sparkling_mineral_topo_class",
+      "note": "Found via OFF search; full nutriments rate-limited \u2014 0 kcal sparkling mineral class"
+    }
+  ]
+}

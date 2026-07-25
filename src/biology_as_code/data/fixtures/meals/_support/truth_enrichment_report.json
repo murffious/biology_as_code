@@ -1,0 +1,760 @@
+{
+  "enriched_at": "2026-07-23T23:52:22.079843+00:00",
+  "meals": 67,
+  "unique_ingredients": 129,
+  "online_stats": {
+    "off_ok": 26,
+    "fdc_fail": 24
+  },
+  "nova_source_counts": {
+    "curated_map": 191,
+    "openfoodfacts": 53,
+    "rule": 77
+  },
+  "nova_confidence_counts": {
+    "high": 201,
+    "low": 60,
+    "medium": 60
+  },
+  "label_sparse_ingredients": 149,
+  "ingredients_with_peer_estimates": 242,
+  "macro_agreement_ok": 47,
+  "macro_agreement_review": 2,
+  "peer_band_classes": {
+    "animal_protein": {
+      "iron_mg": {
+        "point": 1.45,
+        "low": 1.0,
+        "high": 1.75,
+        "n": 11.0
+      },
+      "magnesium_mg": {
+        "point": 29.0,
+        "low": 29.0,
+        "high": 30.0,
+        "n": 6.0
+      },
+      "potassium_mg": {
+        "point": 256.0,
+        "low": 138.0,
+        "high": 384.0,
+        "n": 15.0
+      },
+      "zinc_mg": {
+        "point": 1.29,
+        "low": 1.0,
+        "high": 3.4,
+        "n": 13.0
+      },
+      "vitamin_b6_mg": {
+        "point": 0.6,
+        "low": 0.5,
+        "high": 0.65,
+        "n": 9.0
+      },
+      "vitamin_b12_mcg": {
+        "point": 0.89,
+        "low": 0.34,
+        "high": 2.8,
+        "n": 15.0
+      },
+      "thiamin_mg": {
+        "point": 0.07,
+        "low": 0.07,
+        "high": 0.07,
+        "n": 4.0
+      },
+      "riboflavin_mg": {
+        "point": 0.46,
+        "low": 0.12,
+        "high": 0.46,
+        "n": 8.0
+      },
+      "niacin_mg": {
+        "point": 8.5,
+        "low": 2.6,
+        "high": 13.7,
+        "n": 11.0
+      },
+      "choline_mg": {
+        "point": 81.0,
+        "low": 73.0,
+        "high": 294.0,
+        "n": 15.0
+      },
+      "phosphorus_mg": {
+        "point": 220.0,
+        "low": 198.0,
+        "high": 252.0,
+        "n": 15.0
+      },
+      "selenium_mcg": {
+        "point": 30.0,
+        "low": 26.0,
+        "high": 41.0,
+        "n": 15.0
+      },
+      "vitamin_d_mcg": {
+        "point": 2.0,
+        "low": 2.0,
+        "high": 13.1,
+        "n": 6.0
+      },
+      "vitamin_a_mcg": {
+        "point": 160.0,
+        "low": 12.0,
+        "high": 160.0,
+        "n": 6.0
+      },
+      "vitamin_e_mg": {
+        "point": 1.05,
+        "low": 1.05,
+        "high": 1.05,
+        "n": 4.0
+      },
+      "vitamin_k_mcg": {
+        "point": 0.3,
+        "low": 0.3,
+        "high": 0.3,
+        "n": 4.0
+      },
+      "folate_mcg": {
+        "point": 47.0,
+        "low": 47.0,
+        "high": 47.0,
+        "n": 4.0
+      }
+    },
+    "grain": {
+      "iron_mg": {
+        "point": 2.94,
+        "low": 1.49,
+        "high": 3.75,
+        "n": 10.0
+      },
+      "magnesium_mg": {
+        "point": 76.0,
+        "low": 39.0,
+        "high": 100.0,
+        "n": 10.0
+      },
+      "potassium_mg": {
+        "point": 172.0,
+        "low": 86.0,
+        "high": 375.0,
+        "n": 11.0
+      },
+      "zinc_mg": {
+        "point": 1.09,
+        "low": 0.71,
+        "high": 2.94,
+        "n": 9.0
+      },
+      "folate_mcg": {
+        "point": 42.0,
+        "low": 42.0,
+        "high": 56.0,
+        "n": 5.0
+      },
+      "phosphorus_mg": {
+        "point": 215.0,
+        "low": 103.0,
+        "high": 325.0,
+        "n": 10.0
+      },
+      "thiamin_mg": {
+        "point": 0.76,
+        "low": 0.18,
+        "high": 1.0,
+        "n": 4.0
+      },
+      "selenium_mcg": {
+        "point": 5.8,
+        "low": 5.8,
+        "high": 28.9,
+        "n": 3.0
+      },
+      "vitamin_b6_mg": {
+        "point": 0.294,
+        "low": 0.13,
+        "high": 0.294,
+        "n": 5.0
+      },
+      "niacin_mg": {
+        "point": 4.0,
+        "low": 2.56,
+        "high": 5.882,
+        "n": 7.0
+      },
+      "calcium_mg": {
+        "point": 26.0,
+        "low": 13.0,
+        "high": 50.0,
+        "n": 6.0
+      }
+    },
+    "vegetable": {
+      "iron_mg": {
+        "point": 2.71,
+        "low": 0.73,
+        "high": 2.71,
+        "n": 19.0
+      },
+      "calcium_mg": {
+        "point": 99.0,
+        "low": 47.0,
+        "high": 152.313,
+        "n": 19.0
+      },
+      "magnesium_mg": {
+        "point": 79.0,
+        "low": 21.0,
+        "high": 79.0,
+        "n": 18.0
+      },
+      "potassium_mg": {
+        "point": 237.0,
+        "low": 211.0,
+        "high": 558.0,
+        "n": 38.0
+      },
+      "vitamin_c_mg": {
+        "point": 28.1,
+        "low": 13.7,
+        "high": 127.7,
+        "n": 38.0
+      },
+      "vitamin_a_mcg": {
+        "point": 157.0,
+        "low": 42.0,
+        "high": 469.0,
+        "n": 37.0
+      },
+      "vitamin_k_mcg": {
+        "point": 101.6,
+        "low": 7.9,
+        "high": 482.9,
+        "n": 31.0
+      },
+      "folate_mcg": {
+        "point": 46.0,
+        "low": 15.0,
+        "high": 194.0,
+        "n": 37.0
+      },
+      "vitamin_e_mg": {
+        "point": 2.03,
+        "low": 0.7,
+        "high": 2.03,
+        "n": 21.0
+      },
+      "vitamin_b6_mg": {
+        "point": 0.29,
+        "low": 0.138,
+        "high": 0.29,
+        "n": 8.0
+      }
+    },
+    "fat": {
+      "vitamin_e_mg": {
+        "point": 14.35,
+        "low": 2.07,
+        "high": 14.35,
+        "n": 24.0
+      },
+      "vitamin_k_mcg": {
+        "point": 60.2,
+        "low": 21.0,
+        "high": 60.2,
+        "n": 22.0
+      },
+      "magnesium_mg": {
+        "point": 29.0,
+        "low": 29.0,
+        "high": 279.0,
+        "n": 7.0
+      },
+      "potassium_mg": {
+        "point": 485.0,
+        "low": 485.0,
+        "high": 748.0,
+        "n": 9.0
+      },
+      "vitamin_c_mg": {
+        "point": 10.0,
+        "low": 10.0,
+        "high": 10.0,
+        "n": 5.0
+      },
+      "vitamin_b6_mg": {
+        "point": 0.26,
+        "low": 0.26,
+        "high": 0.26,
+        "n": 5.0
+      },
+      "folate_mcg": {
+        "point": 81.0,
+        "low": 81.0,
+        "high": 81.0,
+        "n": 5.0
+      },
+      "iron_mg": {
+        "point": 3.49,
+        "low": 3.03,
+        "high": 3.49,
+        "n": 4.0
+      },
+      "calcium_mg": {
+        "point": 347.0,
+        "low": 55.0,
+        "high": 347.0,
+        "n": 4.0
+      }
+    },
+    "fruit": {
+      "calcium_mg": {
+        "point": 26.0,
+        "low": 6.0,
+        "high": 26.0,
+        "n": 13.0
+      },
+      "potassium_mg": {
+        "point": 138.0,
+        "low": 138.0,
+        "high": 358.0,
+        "n": 21.0
+      },
+      "vitamin_c_mg": {
+        "point": 8.7,
+        "low": 8.7,
+        "high": 53.0,
+        "n": 21.0
+      },
+      "folate_mcg": {
+        "point": 11.0,
+        "low": 3.0,
+        "high": 20.0,
+        "n": 13.0
+      },
+      "magnesium_mg": {
+        "point": 27.0,
+        "low": 5.0,
+        "high": 27.0,
+        "n": 12.0
+      },
+      "vitamin_b6_mg": {
+        "point": 0.367,
+        "low": 0.041,
+        "high": 0.367,
+        "n": 12.0
+      },
+      "iron_mg": {
+        "point": 0.2,
+        "low": 0.1,
+        "high": 0.3,
+        "n": 4.0
+      },
+      "zinc_mg": {
+        "point": 0.07,
+        "low": 0.04,
+        "high": 0.15,
+        "n": 4.0
+      },
+      "vitamin_e_mg": {
+        "point": 0.2,
+        "low": 0.1,
+        "high": 0.2,
+        "n": 4.0
+      },
+      "vitamin_k_mcg": {
+        "point": 2.2,
+        "low": 0.5,
+        "high": 2.2,
+        "n": 3.0
+      },
+      "thiamin_mg": {
+        "point": 0.031,
+        "low": 0.017,
+        "high": 0.087,
+        "n": 4.0
+      },
+      "riboflavin_mg": {
+        "point": 0.04,
+        "low": 0.026,
+        "high": 0.073,
+        "n": 4.0
+      },
+      "niacin_mg": {
+        "point": 0.282,
+        "low": 0.091,
+        "high": 0.665,
+        "n": 4.0
+      },
+      "choline_mg": {
+        "point": 8.4,
+        "low": 3.4,
+        "high": 9.8,
+        "n": 4.0
+      },
+      "phosphorus_mg": {
+        "point": 14.0,
+        "low": 11.0,
+        "high": 22.0,
+        "n": 4.0
+      }
+    },
+    "other": {
+      "magnesium_mg": {
+        "point": 14.0,
+        "low": 13.0,
+        "high": 43.0,
+        "n": 23.0
+      },
+      "potassium_mg": {
+        "point": 155.0,
+        "low": 77.0,
+        "high": 415.0,
+        "n": 39.0
+      },
+      "vitamin_c_mg": {
+        "point": 19.6,
+        "low": 2.8,
+        "high": 58.8,
+        "n": 34.0
+      },
+      "vitamin_a_mcg": {
+        "point": 961.0,
+        "low": 51.0,
+        "high": 961.0,
+        "n": 6.0
+      },
+      "vitamin_b6_mg": {
+        "point": 0.29,
+        "low": 0.047,
+        "high": 1.235,
+        "n": 16.0
+      },
+      "iron_mg": {
+        "point": 1.7,
+        "low": 0.4,
+        "high": 8.32,
+        "n": 21.0
+      },
+      "vitamin_k_mcg": {
+        "point": 19.3,
+        "low": 2.2,
+        "high": 50.6,
+        "n": 27.0
+      },
+      "folate_mcg": {
+        "point": 24.0,
+        "low": 21.0,
+        "high": 149.0,
+        "n": 11.0
+      },
+      "vitamin_e_mg": {
+        "point": 0.3,
+        "low": 0.3,
+        "high": 0.87,
+        "n": 7.0
+      },
+      "calcium_mg": {
+        "point": 181.0,
+        "low": 16.0,
+        "high": 1002.0,
+        "n": 18.0
+      },
+      "zinc_mg": {
+        "point": 0.14,
+        "low": 0.14,
+        "high": 0.14,
+        "n": 6.0
+      },
+      "thiamin_mg": {
+        "point": 0.024,
+        "low": 0.024,
+        "high": 1.0,
+        "n": 7.0
+      },
+      "riboflavin_mg": {
+        "point": 0.022,
+        "low": 0.022,
+        "high": 0.121,
+        "n": 7.0
+      },
+      "niacin_mg": {
+        "point": 0.386,
+        "low": 0.386,
+        "high": 0.386,
+        "n": 5.0
+      },
+      "choline_mg": {
+        "point": 5.7,
+        "low": 5.7,
+        "high": 5.7,
+        "n": 5.0
+      },
+      "phosphorus_mg": {
+        "point": 153.0,
+        "low": 24.0,
+        "high": 383.0,
+        "n": 12.0
+      },
+      "selenium_mcg": {
+        "point": 0.4,
+        "low": 0.4,
+        "high": 14.2,
+        "n": 9.0
+      }
+    },
+    "dairy": {
+      "calcium_mg": {
+        "point": 493.0,
+        "low": 110.0,
+        "high": 493.0,
+        "n": 7.0
+      },
+      "potassium_mg": {
+        "point": 62.0,
+        "low": 62.0,
+        "high": 141.0,
+        "n": 7.0
+      },
+      "vitamin_a_mcg": {
+        "point": 125.0,
+        "low": 1.0,
+        "high": 125.0,
+        "n": 7.0
+      },
+      "vitamin_b12_mcg": {
+        "point": 1.69,
+        "low": 0.75,
+        "high": 1.69,
+        "n": 7.0
+      },
+      "riboflavin_mg": {
+        "point": 0.84,
+        "low": 0.28,
+        "high": 0.84,
+        "n": 7.0
+      },
+      "phosphorus_mg": {
+        "point": 337.0,
+        "low": 135.0,
+        "high": 337.0,
+        "n": 7.0
+      }
+    },
+    "fluid": {
+      "calcium_mg": {
+        "point": 10.0,
+        "low": 1.0,
+        "high": 184.0,
+        "n": 34.0
+      },
+      "magnesium_mg": {
+        "point": 3.0,
+        "low": 2.0,
+        "high": 10.0,
+        "n": 24.0
+      },
+      "potassium_mg": {
+        "point": 99.425,
+        "low": 6.0,
+        "high": 179.0,
+        "n": 26.0
+      },
+      "zinc_mg": {
+        "point": 0.37,
+        "low": 0.02,
+        "high": 0.37,
+        "n": 9.0
+      },
+      "vitamin_d_mcg": {
+        "point": 1.3,
+        "low": 1.0,
+        "high": 1.3,
+        "n": 11.0
+      },
+      "vitamin_a_mcg": {
+        "point": 46.0,
+        "low": 8.0,
+        "high": 46.0,
+        "n": 7.0
+      },
+      "vitamin_e_mg": {
+        "point": 0.1,
+        "low": 0.1,
+        "high": 6.33,
+        "n": 8.0
+      },
+      "vitamin_k_mcg": {
+        "point": 0.3,
+        "low": 0.1,
+        "high": 0.3,
+        "n": 9.0
+      },
+      "vitamin_b6_mg": {
+        "point": 0.036,
+        "low": 0.001,
+        "high": 0.214,
+        "n": 11.0
+      },
+      "vitamin_b12_mcg": {
+        "point": 0.5,
+        "low": 0.5,
+        "high": 1.61,
+        "n": 8.0
+      },
+      "folate_mcg": {
+        "point": 5.0,
+        "low": 2.0,
+        "high": 25.0,
+        "n": 11.0
+      },
+      "thiamin_mg": {
+        "point": 0.046,
+        "low": 0.014,
+        "high": 0.046,
+        "n": 8.0
+      },
+      "riboflavin_mg": {
+        "point": 0.169,
+        "low": 0.0117,
+        "high": 0.169,
+        "n": 11.0
+      },
+      "niacin_mg": {
+        "point": 0.191,
+        "low": 0.089,
+        "high": 14.286,
+        "n": 11.0
+      },
+      "choline_mg": {
+        "point": 14.3,
+        "low": 2.6,
+        "high": 14.3,
+        "n": 9.0
+      },
+      "phosphorus_mg": {
+        "point": 84.0,
+        "low": 3.0,
+        "high": 145.284,
+        "n": 12.0
+      },
+      "selenium_mcg": {
+        "point": 3.7,
+        "low": 3.7,
+        "high": 3.7,
+        "n": 5.0
+      },
+      "iron_mg": {
+        "point": 0.302,
+        "low": 0.0625,
+        "high": 1.29,
+        "n": 10.0
+      },
+      "vitamin_c_mg": {
+        "point": 1.7,
+        "low": 1.7,
+        "high": 45.0,
+        "n": 9.0
+      }
+    },
+    "nut_seed": {
+      "iron_mg": {
+        "point": 3.71,
+        "low": 2.924,
+        "high": 7.72,
+        "n": 14.0
+      },
+      "calcium_mg": {
+        "point": 269.0,
+        "low": 40.21,
+        "high": 631.0,
+        "n": 14.0
+      },
+      "magnesium_mg": {
+        "point": 270.0,
+        "low": 158.0,
+        "high": 392.0,
+        "n": 16.0
+      },
+      "potassium_mg": {
+        "point": 733.0,
+        "low": 407.0,
+        "high": 813.0,
+        "n": 16.0
+      },
+      "zinc_mg": {
+        "point": 3.12,
+        "low": 1.828,
+        "high": 4.58,
+        "n": 14.0
+      },
+      "phosphorus_mg": {
+        "point": 481.0,
+        "low": 346.0,
+        "high": 860.0,
+        "n": 16.0
+      },
+      "vitamin_e_mg": {
+        "point": 25.63,
+        "low": 0.7,
+        "high": 25.63,
+        "n": 8.0
+      },
+      "thiamin_mg": {
+        "point": 1.64,
+        "low": 1.64,
+        "high": 1.64,
+        "n": 3.0
+      },
+      "riboflavin_mg": {
+        "point": 1.14,
+        "low": 0.138,
+        "high": 1.14,
+        "n": 8.0
+      }
+    },
+    "legume": {
+      "iron_mg": {
+        "point": 3.3,
+        "low": 2.1,
+        "high": 18.37,
+        "n": 4.0
+      },
+      "magnesium_mg": {
+        "point": 58.0,
+        "low": 36.0,
+        "high": 70.0,
+        "n": 3.0
+      },
+      "potassium_mg": {
+        "point": 369.0,
+        "low": 237.0,
+        "high": 408.0,
+        "n": 4.0
+      },
+      "zinc_mg": {
+        "point": 1.27,
+        "low": 1.12,
+        "high": 1.57,
+        "n": 3.0
+      },
+      "phosphorus_mg": {
+        "point": 190.0,
+        "low": 140.0,
+        "high": 510.0,
+        "n": 4.0
+      }
+    }
+  },
+  "accuracy_notes": {
+    "macros": "Seed per_100g retained as SSOT; FDC/OFF used as crosscheck. rel_err<=15% (FDC) or 20% (OFF) \u2192 ok.",
+    "micros_branded": "Zeros on branded/OFF panels treated as undeclared (null in nutrition_truth.declared), not true zero.",
+    "micros_estimates": "Peer P10\u2013P90 within food_class from analytical USDA rows in this corpus; honesty OPEN.",
+    "nova": "Priority: OFF nova_group \u2192 curated whole-food map \u2192 ingredient-list industrial rules. Not a government NOVA API.",
+    "online": "Live FDC/OFF cached under meals-50/cache/; DEMO_KEY and rate limits may leave many as cache-miss \u2192 rules."
+  }
+}

@@ -3,22 +3,38 @@
   "kind": "stage",
   "id": "stage.portal",
   "version": "1.0.0",
-  "revision": 1,
+  "revision": 2,
   "title": "Portal & liver — first-pass partitioning",
   "status": "published",
-  "updated": "2026-07-23",
+  "updated": "2026-07-25",
   "order": 5,
   "provenance": {
     "basedOn": [
       "Standard physiology: the portal vein delivers absorbed nutrients to the liver for first-pass partitioning - ethanol cleared first, a large fructose load handled hepatically (de novo lipogenesis), otherwise glucose to glycogen and the periphery. Teaching averages."
     ],
-    "sources": [],
-    "authors": ["biology-as-code"]
+    "sources": [
+      "NIDDK - Your Digestive System & How It Works: https://www.niddk.nih.gov/health-information/digestive-diseases/digestive-system-how-it-works",
+      "Hall & Hall, Guyton and Hall Textbook of Medical Physiology, 14th ed. - Unit XII, Gastrointestinal Physiology",
+      "Boron & Boulpaep, Medical Physiology, 3rd ed. - The Gastrointestinal System"
+    ],
+    "authors": [
+      "biology-as-code"
+    ]
   },
   "inputs": [
-    { "field": "meal.glucoseG", "unit": "g" },
-    { "field": "meal.fructoseG", "unit": "g", "description": "Fructose is handled almost entirely first-pass by the liver" },
-    { "field": "host.alcohol", "description": "Alcohol present flag" }
+    {
+      "field": "meal.glucoseG",
+      "unit": "g"
+    },
+    {
+      "field": "meal.fructoseG",
+      "unit": "g",
+      "description": "Fructose is handled almost entirely first-pass by the liver"
+    },
+    {
+      "field": "host.alcohol",
+      "description": "Alcohol present flag"
+    }
   ],
   "startAt": "firstPass",
   "states": {
@@ -26,8 +42,15 @@
       "type": "task",
       "label": "First-pass reception",
       "detail": "The portal vein delivers absorbed nutrients to the liver, which decides - before anything reaches the rest of the body - what to burn, store, or convert.",
-      "requires": [ { "field": "meal.glucoseG", "op": "exists" } ],
-      "emits": ["hepatic-partition"],
+      "requires": [
+        {
+          "field": "meal.glucoseG",
+          "op": "exists"
+        }
+      ],
+      "emits": [
+        "hepatic-partition"
+      ],
       "next": "hepaticChoice"
     },
     "hepaticChoice": {
@@ -36,12 +59,20 @@
       "detail": "The liver has a priority order: it clears ethanol first (it's a toxin), routes a fructose load through its own metabolism, and otherwise partitions glucose to glycogen and the periphery.",
       "choices": [
         {
-          "when": { "field": "host.alcohol", "op": "==", "value": true },
+          "when": {
+            "field": "host.alcohol",
+            "op": "==",
+            "value": true
+          },
           "next": "alcoholPriority",
           "note": "Ethanol is oxidized first - fat oxidation pauses while it clears."
         },
         {
-          "when": { "field": "meal.fructoseG", "op": ">=", "value": 25 },
+          "when": {
+            "field": "meal.fructoseG",
+            "op": ">=",
+            "value": 25
+          },
           "next": "fructoseHandling",
           "note": "A large fructose load is handled hepatically -> de novo lipogenesis teaching."
         }
@@ -52,28 +83,37 @@
       "type": "task",
       "label": "Ethanol first-pass oxidation",
       "detail": "The liver prioritizes clearing ethanol; fat oxidation is suppressed and dietary fat is more likely stored during the window (energy-partitioning teaching, not a score).",
-      "emits": ["ethanol-clearing"],
+      "emits": [
+        "ethanol-clearing"
+      ],
       "next": "handoff"
     },
     "fructoseHandling": {
       "type": "task",
       "label": "Fructose hepatic handling",
       "detail": "Fructose largely bypasses the glucose control step and is metabolized in the liver; a large bolus feeds de novo lipogenesis - the 'fructose tax' narrative.",
-      "emits": ["dnl-narrative"],
+      "emits": [
+        "dnl-narrative"
+      ],
       "next": "handoff"
     },
     "balancedPartition": {
       "type": "task",
       "label": "Balanced partition",
       "detail": "Glucose tops up liver glycogen and passes to the periphery; a normal mixed meal partitions cleanly toward fuel.",
-      "emits": ["glycogen", "peripheral-fuel"],
+      "emits": [
+        "glycogen",
+        "peripheral-fuel"
+      ],
       "next": "handoff"
     },
     "handoff": {
       "type": "succeed",
       "label": "Fuel -> systemic circulation",
       "detail": "What survives first-pass enters the general circulation for peripheral delivery.",
-      "emits": ["fuel->systemic"]
+      "emits": [
+        "fuel->systemic"
+      ]
     }
   }
 }

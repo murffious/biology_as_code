@@ -1,0 +1,275 @@
+{
+  "$schema": "../_schema/machine.schema.json",
+  "kind": "stage",
+  "id": "stage.intake-setup",
+  "version": "1.0.0",
+  "revision": 2,
+  "title": "Host intake setup - food | hydration | supplement (0|1)",
+  "status": "published",
+  "updated": "2026-07-25",
+  "order": 0,
+  "provenance": {
+    "basedOn": [
+      "Pre-digestion setup (S-0): identify the host, then read which payload channels are present before anything enters the mouth. Chewing and salivary enzymes are the next stage (oral, S-1); this stage is presence + routing only, not digestion. Teaching model - no product score implied."
+    ],
+    "sources": [
+      "NIDDK - Your Digestive System & How It Works: https://www.niddk.nih.gov/health-information/digestive-diseases/digestive-system-how-it-works",
+      "Hall & Hall, Guyton and Hall Textbook of Medical Physiology, 14th ed. - Unit XII, Gastrointestinal Physiology",
+      "Boron & Boulpaep, Medical Physiology, 3rd ed. - The Gastrointestinal System"
+    ],
+    "authors": [
+      "biology-as-code"
+    ]
+  },
+  "inputs": [
+    {
+      "field": "host.ready",
+      "unit": "0-1",
+      "description": "1 = host profile present enough to receive a packet (boot gate)"
+    },
+    {
+      "field": "intake.food",
+      "unit": "0|1",
+      "description": "1 = solid/meal food packet present this event; 0 = absent"
+    },
+    {
+      "field": "intake.hydration",
+      "unit": "0|1",
+      "description": "1 = water/fluid co-event present; 0 = absent"
+    },
+    {
+      "field": "intake.supplement",
+      "unit": "0|1",
+      "description": "1 = supplement/capsule packet present; 0 = absent"
+    },
+    {
+      "field": "meal.matrixIntegrity",
+      "unit": "0-1",
+      "description": "Optional: foreshadow oral form when food=1"
+    }
+  ],
+  "startAt": "hostGate",
+  "states": {
+    "hostGate": {
+      "type": "gate",
+      "label": "Host ready?",
+      "detail": "Boot gate: the instance must be identifiable before any packet is accepted. Food advice without a host is the Part 0 anti-pattern.",
+      "require": {
+        "field": "host.ready",
+        "op": ">=",
+        "value": 1
+      },
+      "onFail": {
+        "id": "host-not-ready",
+        "when": {
+          "field": "host.ready",
+          "op": "<",
+          "value": 1
+        },
+        "effect": "No host profile - refuse payload; run initialize/configure/calibrate first.",
+        "next": "refuseNoHost"
+      },
+      "next": "packetPresence"
+    },
+    "refuseNoHost": {
+      "type": "succeed",
+      "label": "REFUSE - host not ready",
+      "detail": "Empty machine. Set host.ready = 1 after boot setup. No mouth sequence starts.",
+      "emits": [
+        "REFUSE",
+        "host-missing"
+      ]
+    },
+    "packetPresence": {
+      "type": "task",
+      "label": "Read packet flags (food | hydration | supplement)",
+      "detail": "Each channel is binary presence (0|1), not a score. Multiple can be 1 in one event (e.g. meal + water + pill).",
+      "requires": [
+        {
+          "field": "intake.food",
+          "op": "exists"
+        },
+        {
+          "field": "intake.hydration",
+          "op": "exists"
+        },
+        {
+          "field": "intake.supplement",
+          "op": "exists"
+        }
+      ],
+      "emits": [
+        "intake-flags-read"
+      ],
+      "next": "anyPayload"
+    },
+    "anyPayload": {
+      "type": "choice",
+      "label": "Any payload present?",
+      "detail": "Fail-closed: if food=0 AND hydration=0 AND supplement=0, there is nothing to sequence.",
+      "choices": [
+        {
+          "when": {
+            "all": [
+              {
+                "field": "intake.food",
+                "op": "==",
+                "value": 0
+              },
+              {
+                "field": "intake.hydration",
+                "op": "==",
+                "value": 0
+              },
+              {
+                "field": "intake.supplement",
+                "op": "==",
+                "value": 0
+              }
+            ]
+          },
+          "next": "refuseEmpty",
+          "note": "All channels off - UNEVALUABLE empty log."
+        }
+      ],
+      "default": "routePrimary"
+    },
+    "refuseEmpty": {
+      "type": "succeed",
+      "label": "UNEVALUABLE - empty packet",
+      "detail": "No food, fluid, or supplement flag is on. Unlock: set at least one intake.* = 1.",
+      "emits": [
+        "UNEVALUABLE",
+        "empty-packet"
+      ]
+    },
+    "routePrimary": {
+      "type": "choice",
+      "label": "Primary path by payload mix",
+      "detail": "Food opens the full oral mill. Hydration-only is a liquid transit. Supplement often rides with a swallow of fluid. Co-presence is allowed.",
+      "choices": [
+        {
+          "when": {
+            "field": "intake.food",
+            "op": "==",
+            "value": 1
+          },
+          "next": "foodPrimary",
+          "note": "Food present -> full cephalic/oral sequence (S-1)."
+        },
+        {
+          "when": {
+            "all": [
+              {
+                "field": "intake.food",
+                "op": "==",
+                "value": 0
+              },
+              {
+                "field": "intake.supplement",
+                "op": "==",
+                "value": 1
+              }
+            ]
+          },
+          "next": "supplementPrimary",
+          "note": "Supplement without meal food -> capsule/tablet oral path."
+        },
+        {
+          "when": {
+            "all": [
+              {
+                "field": "intake.food",
+                "op": "==",
+                "value": 0
+              },
+              {
+                "field": "intake.supplement",
+                "op": "==",
+                "value": 0
+              },
+              {
+                "field": "intake.hydration",
+                "op": "==",
+                "value": 1
+              }
+            ]
+          },
+          "next": "hydrationOnly",
+          "note": "Fluid alone -> liquid oral path (no mastication)."
+        }
+      ],
+      "default": "foodPrimary"
+    },
+    "foodPrimary": {
+      "type": "task",
+      "label": "Food packet armed",
+      "detail": "Solid/meal food will enter cephalic -> mastication -> bolus. Hydration and supplement flags (if 1) travel as co-payload notes into oral.",
+      "emits": [
+        "payload:food",
+        "handoff:oral-full"
+      ],
+      "edgeCases": [
+        {
+          "id": "food-plus-hydration",
+          "when": {
+            "field": "intake.hydration",
+            "op": "==",
+            "value": 1
+          },
+          "effect": "Co-fluid present - lubrication and gastric volume teaching note."
+        },
+        {
+          "id": "food-plus-supplement",
+          "when": {
+            "field": "intake.supplement",
+            "op": "==",
+            "value": 1
+          },
+          "effect": "Supplement co-event - partners/gates still need named cargo later; presence alone is not a dose."
+        }
+      ],
+      "next": "handoffOral"
+    },
+    "supplementPrimary": {
+      "type": "task",
+      "label": "Supplement packet armed",
+      "detail": "Capsule/tablet path: usually minimal shear, depends on co-swallowed fluid. Not a meal matrix; cargo must be named before claim scoring.",
+      "emits": [
+        "payload:supplement",
+        "handoff:oral-capsule"
+      ],
+      "edgeCases": [
+        {
+          "id": "dry-swallow",
+          "when": {
+            "field": "intake.hydration",
+            "op": "==",
+            "value": 0
+          },
+          "effect": "No co-fluid flagged - teaching risk of incomplete swallow / delayed esophageal transit."
+        }
+      ],
+      "next": "handoffOral"
+    },
+    "hydrationOnly": {
+      "type": "task",
+      "label": "Hydration-only packet armed",
+      "detail": "Fluid without food/supplement: liquid oral path, no starch/fat oral enzymes required. Still counts as a timed intake event.",
+      "emits": [
+        "payload:hydration",
+        "handoff:oral-liquid"
+      ],
+      "next": "handoffOral"
+    },
+    "handoffOral": {
+      "type": "succeed",
+      "label": "-> Mouth sequence (S-1)",
+      "detail": "Intake setup closed. Next machine: stage.oral with intake.* flags still on the context.",
+      "emits": [
+        "setup-complete",
+        "start-oral"
+      ]
+    }
+  }
+}

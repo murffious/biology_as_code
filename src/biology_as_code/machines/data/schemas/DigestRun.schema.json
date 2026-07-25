@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nutricollective.local/machines/schemas/DigestRun.schema.json",
+  "title": "DigestRun",
+  "description": "One carrier object: host + packet + ingestion → process.full-digest. Surfaces map this into MachineContext (meal/host/intake) or Python FoodPayload+profile.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["host", "packet"],
+  "properties": {
+    "schema": { "const": "kibo.DigestRun/v1" },
+    "id": { "type": "string" },
+    "process_id": {
+      "type": "string",
+      "default": "process.full-digest",
+      "description": "Machine process id to execute."
+    },
+    "constitution_rev": {
+      "type": "string",
+      "description": "Optional book/law package pin."
+    },
+    "host": { "$ref": "HostState.schema.json" },
+    "packet": { "$ref": "PacketLoad.schema.json" },
+    "ingestion": { "$ref": "IngestionEvent.schema.json" },
+    "clinical": {
+      "$ref": "HostClinicalProfile.schema.json",
+      "description": "Optional genetics, biomarkers, hormonal_profile, dynamic_state (setup/mock)."
+    },
+    "goals": {
+      "$ref": "UserGoals.schema.json",
+      "description": "Optional weight / BMI / operator goals (setup — process bias later)."
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "multi_item_loop": {
+          "type": "boolean",
+          "default": false,
+          "description": "v2: run oral per sequence step. Default false = single-packet path."
+        },
+        "include_outcomes_lens": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    }
+  }
+}

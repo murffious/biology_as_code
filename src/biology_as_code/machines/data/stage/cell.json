@@ -3,22 +3,37 @@
   "kind": "stage",
   "id": "stage.cell",
   "version": "1.0.0",
-  "revision": 1,
+  "revision": 2,
   "title": "Cell & mitochondria — post-absorptive use (thin)",
   "status": "published",
-  "updated": "2026-07-23",
+  "updated": "2026-07-25",
   "order": 7,
   "provenance": {
     "basedOn": [
       "Standard physiology: tissue-specific cellular uptake of absorbed monomers and their oxidation / storage / structural use. A thin teaching stage, not a personal metabolic readout."
     ],
-    "sources": [],
-    "authors": ["biology-as-code"]
+    "sources": [
+      "NIDDK - Your Digestive System & How It Works: https://www.niddk.nih.gov/health-information/digestive-diseases/digestive-system-how-it-works",
+      "Hall & Hall, Guyton and Hall Textbook of Medical Physiology, 14th ed. - Unit XII, Gastrointestinal Physiology",
+      "Boron & Boulpaep, Medical Physiology, 3rd ed. - The Gastrointestinal System"
+    ],
+    "authors": [
+      "biology-as-code"
+    ]
   },
   "inputs": [
-    { "field": "meal.glucoseG", "unit": "g" },
-    { "field": "meal.proteinG", "unit": "g" },
-    { "field": "meal.fatG", "unit": "g" }
+    {
+      "field": "meal.glucoseG",
+      "unit": "g"
+    },
+    {
+      "field": "meal.proteinG",
+      "unit": "g"
+    },
+    {
+      "field": "meal.fatG",
+      "unit": "g"
+    }
   ],
   "startAt": "uptake",
   "states": {
@@ -26,21 +41,27 @@
       "type": "task",
       "label": "Cellular uptake",
       "detail": "Monomers already past the villi and liver enter cells via tissue-specific transporters. Thin teaching stage - not a personal metabolic lab.",
-      "emits": ["cell-uptake"],
+      "emits": [
+        "cell-uptake"
+      ],
       "next": "oxidizeOrStore"
     },
     "oxidizeOrStore": {
       "type": "task",
       "label": "Oxidize / store / build",
       "detail": "Fuel to mitochondria (ATP), storage (glycogen/lipid), or structural use (amino acids). Framing only - no fabricated efficiency percentages.",
-      "emits": ["bioenergetic-partition"],
+      "emits": [
+        "bioenergetic-partition"
+      ],
       "next": "handoff"
     },
     "handoff": {
       "type": "succeed",
       "label": "Cellular use closed",
-      "detail": "Cellular use is off-lumen. Unabsorbed residue continues as stage.colon in the process sequence.",
-      "emits": ["cell-complete"]
+      "detail": "Cellular use is off-lumen and sits on the absorbed-nutrient lane. The unabsorbed-residue lane branched off earlier at the ileum (jejunum stage) and never passes through the systemic/cell compartment; it is picked up next as stage.colon only because the process lists stages in narrative order.",
+      "emits": [
+        "cell-complete"
+      ]
     }
   }
 }

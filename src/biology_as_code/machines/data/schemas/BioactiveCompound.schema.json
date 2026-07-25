@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nutricollective.local/machines/schemas/BioactiveCompound.schema.json",
+  "title": "BioactiveCompound",
+  "description": "Compound / bioactive registry entry. Peptides are a provenance class (where they come from), not only a chemical class. Digestion-generated bioactives attach to host×food edges — same shape as urolithin A conversion.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "kind", "provenance", "attachment", "evidence_grade"],
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "kind": {
+      "type": "string",
+      "enum": [
+        "polyphenol",
+        "carotenoid",
+        "peptide",
+        "protein",
+        "amino_acid",
+        "metabolite",
+        "probiotic",
+        "postbiotic",
+        "mineral",
+        "vitamin",
+        "lipid",
+        "fiber",
+        "other"
+      ]
+    },
+    "provenance": {
+      "type": "string",
+      "enum": ["intrinsic", "process_generated", "digestion_generated"],
+      "description": "Tier 1 present as eaten; Tier 2 formed by fermentation/hydrolysis before eating; Tier 3 formed in gut (host×food edge)."
+    },
+    "attachment": {
+      "type": "string",
+      "enum": ["food_node", "process_node", "host_food_edge"],
+      "description": "Where the claim/score lives. digestion_generated must be host_food_edge."
+    },
+    "proline_rich_gate": {
+      "type": "boolean",
+      "description": "For peptides: proline-rich sequences more likely to survive peptidases into serum (structural plausibility gate, not proof)."
+    },
+    "mechanism": { "type": "string" },
+    "supports": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "evidence_grade": {
+      "type": "string",
+      "enum": ["A", "B", "C", "D", "U"],
+      "description": "Claim grade for this bioactive as scoped by provenance (not marketing copy)."
+    },
+    "notes": { "type": "string" },
+    "legacy_ids": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Old taxonomy ids this replaces (e.g. collagen)."
+    },
+    "score_on_food_node": {
+      "type": "boolean",
+      "description": "False if provenance is digestion_generated."
+    },
+    "example_foods": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "process_requirements": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "e.g. fermentation, enzymatic_hydrolysis — required for process_generated scores."
+    }
+  }
+}

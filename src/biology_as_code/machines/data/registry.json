@@ -4,85 +4,94 @@
   "note": "Single index of the open digestion machines. Read machines through here; never hard-code stage data. `revision` is the version cursor; `hash` catches silent edits (see validate.validate_all).",
   "machines": [
     {
+      "id": "stage.intake-setup",
+      "kind": "stage",
+      "path": "stage/intake-setup.json",
+      "version": "1.0.0",
+      "revision": 2,
+      "status": "published",
+      "hash": "sha256:ffb7ce76ecc84d52"
+    },
+    {
       "id": "stage.oral",
       "kind": "stage",
       "path": "stage/oral.json",
       "version": "1.0.0",
-      "revision": 1,
+      "revision": 2,
       "status": "published",
-      "hash": "sha256:4b8c33d50cfd5e38"
+      "hash": "sha256:47cfb6b506ddcef2"
     },
     {
       "id": "stage.stomach",
       "kind": "stage",
       "path": "stage/stomach.json",
       "version": "1.0.0",
-      "revision": 1,
+      "revision": 2,
       "status": "published",
-      "hash": "sha256:341fb68e992f315b"
+      "hash": "sha256:254e8b7af9344447"
     },
     {
       "id": "stage.duodenum",
       "kind": "stage",
       "path": "stage/duodenum.json",
       "version": "1.0.0",
-      "revision": 1,
+      "revision": 2,
       "status": "published",
-      "hash": "sha256:3abb574894c5d8e9"
+      "hash": "sha256:2f80c871a81c0afb"
     },
     {
       "id": "stage.jejunum",
       "kind": "stage",
       "path": "stage/jejunum.json",
       "version": "1.0.0",
-      "revision": 1,
+      "revision": 2,
       "status": "published",
-      "hash": "sha256:424943754e5a1bab"
+      "hash": "sha256:3e90448ff6a9f280"
     },
     {
       "id": "stage.portal",
       "kind": "stage",
       "path": "stage/portal.json",
       "version": "1.0.0",
-      "revision": 1,
+      "revision": 2,
       "status": "published",
-      "hash": "sha256:d2a8ccf2c7d62ef2"
+      "hash": "sha256:a18a4393e163cf54"
     },
     {
       "id": "stage.systemic",
       "kind": "stage",
       "path": "stage/systemic.json",
       "version": "1.0.0",
-      "revision": 1,
+      "revision": 2,
       "status": "published",
-      "hash": "sha256:9b6cf69e0c624395"
+      "hash": "sha256:f3c4433740113255"
     },
     {
       "id": "stage.cell",
       "kind": "stage",
       "path": "stage/cell.json",
       "version": "1.0.0",
-      "revision": 1,
+      "revision": 2,
       "status": "published",
-      "hash": "sha256:e4aa1c4b0399022e"
+      "hash": "sha256:e40446c3c778670a"
     },
     {
       "id": "stage.colon",
       "kind": "stage",
       "path": "stage/colon.json",
       "version": "1.0.0",
-      "revision": 1,
+      "revision": 2,
       "status": "published",
-      "hash": "sha256:263b6bd88c1d52c2"
+      "hash": "sha256:602ab8045c6752e4"
     },
     {
       "id": "process.full-digest",
       "kind": "process",
       "path": "process/full-digest.json",
-      "version": "1.0.0",
-      "revision": 1,
+      "version": "1.1.0",
+      "revision": 3,
       "status": "published",
-      "hash": "sha256:415324f2db0e5537"
+      "hash": "sha256:f2aa62a947c389cb"
     }
   ]
 }

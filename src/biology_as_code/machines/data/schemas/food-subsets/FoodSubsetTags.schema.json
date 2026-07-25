@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nutricollective.local/machines/schemas/food-subsets/FoodSubsetTags.schema.json",
+  "title": "FoodSubsetTags",
+  "description": "Optional tags on a meal or ingredient for acquisition, oil class, and sugar profile. Acquisition is never a quality score.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "kibo.FoodSubsetTags/v1" },
+    "honesty": {
+      "type": "string",
+      "enum": ["FLOW", "OPEN", "UNITS"],
+      "default": "OPEN"
+    },
+    "meal_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Where/how obtained — independent of NOVA/quality.",
+      "properties": {
+        "acquisition": {
+          "type": "string",
+          "enum": [
+            "home_prepared",
+            "home_assembled_packaged",
+            "grocery_deli",
+            "quick_service",
+            "fast_casual",
+            "full_service_restaurant",
+            "convenience_retail",
+            "workplace_cafeteria",
+            "unknown"
+          ]
+        },
+        "acquisition_detail": {
+          "type": "string",
+          "description": "e.g. drive_thru, counter_service, app_delivery_qsr"
+        },
+        "qsr_path": {
+          "type": "string",
+          "enum": [
+            "qsr_salad_veg_forward",
+            "qsr_grilled_protein",
+            "qsr_classic_combo",
+            "qsr_fried_default",
+            "qsr_sweet_drink",
+            "qsr_unknown_path"
+          ],
+          "description": "Optional path when at QSR/fast casual — salad path can be high quality"
+        },
+        "chain_hint": {
+          "type": "string",
+          "enum": [
+            "none",
+            "generic_qsr",
+            "generic_fast_casual",
+            "generic_pizza",
+            "generic_coffee",
+            "named_demo_only"
+          ]
+        },
+        "confidence": {
+          "type": "string",
+          "enum": ["declared", "rule", "seed_default", "unknown"]
+        },
+        "note": {
+          "type": "string",
+          "description": "e.g. QSR salad is still quick_service acquisition"
+        }
+      }
+    },
+    "oils": {
+      "type": "array",
+      "description": "Detected fat/oil identities on the plate",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["oil_class"],
+        "properties": {
+          "ingredient_name": { "type": "string" },
+          "oil_class": { "type": "string" },
+          "confidence": { "type": "string", "enum": ["high", "medium", "low"] },
+          "lipid_profile": {
+            "type": "object",
+            "additionalProperties": { "type": ["number", "null"] }
+          }
+        }
+      }
+    },
+    "sugars": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kinds_present": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "total_sugars_g": { "type": "number" },
+        "added_sugars_g": { "type": ["number", "null"] },
+        "sugar_energy_share": { "type": ["number", "null"] },
+        "fat_energy_share": { "type": ["number", "null"] },
+        "hp1_fat_sugar_fire": {
+          "type": "boolean",
+          "description": "Ontology HP-1: fat>20% energy AND sugar>20% energy"
+        },
+        "sweetener_flags": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "confidence": { "type": "string", "enum": ["high", "medium", "low"] }
+      }
+    },
+    "quality_separate": {
+      "type": "object",
+      "description": "Echo of packet quality — kept separate from acquisition on purpose",
+      "additionalProperties": false,
+      "properties": {
+        "nova_max": { "type": ["integer", "null"] },
+        "nova_modal": { "type": ["integer", "null"] },
+        "plate_quality": { "type": ["number", "null"] },
+        "category": { "type": "string" }
+      }
+    }
+  }
+}

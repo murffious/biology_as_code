@@ -1,0 +1,113 @@
+{
+  "schema": "kibo.OilLipid.catalog/v1",
+  "version": "1.0.0",
+  "honesty": "OPEN",
+  "title": "Oil / fat type taxonomy",
+  "principle": "Identity of the fat (oil_class) plus optional measured lipid_profile. Engine today often uses total fat_g only (L-FAT-1); this catalog makes oil identity first-class for later scoring.",
+  "oil_class": [
+    {
+      "id": "evoo",
+      "label": "Extra virgin olive oil",
+      "typical_profile": "high_mufa",
+      "examples": ["olive oil, extra virgin", "EVOO"]
+    },
+    {
+      "id": "olive_refined",
+      "label": "Olive oil (refined / light)",
+      "typical_profile": "high_mufa"
+    },
+    {
+      "id": "avocado_oil",
+      "label": "Avocado oil",
+      "typical_profile": "high_mufa"
+    },
+    {
+      "id": "butter_ghee",
+      "label": "Butter / ghee",
+      "typical_profile": "high_sat"
+    },
+    {
+      "id": "animal_fat",
+      "label": "Animal fat (lard, tallow, schmaltz)",
+      "typical_profile": "high_sat"
+    },
+    {
+      "id": "seed_oil",
+      "label": "Seed / vegetable oil (soy, corn, canola, sunflower, grapeseed…)",
+      "typical_profile": "high_pufa_or_mixed",
+      "examples": ["canola", "soybean oil", "vegetable oil", "corn oil"]
+    },
+    {
+      "id": "nut_seed_butter",
+      "label": "Nut/seed butter as fat source",
+      "typical_profile": "mixed",
+      "examples": ["peanut butter", "almond butter", "tahini"]
+    },
+    {
+      "id": "coconut_palm",
+      "label": "Coconut / palm oils",
+      "typical_profile": "high_sat"
+    },
+    {
+      "id": "margarine_shortening",
+      "label": "Margarine / shortening / industrial baking fat",
+      "typical_profile": "industrial",
+      "flags": ["may_include_partially_hydrogenated"]
+    },
+    {
+      "id": "deep_fry_oil",
+      "label": "Deep-fry / reused fryer oil (context)",
+      "typical_profile": "oxidized_risk",
+      "note": "Often unknown blend; use with fry cooking_method"
+    },
+    {
+      "id": "fish_oil_supplement",
+      "label": "Fish oil / algae oil (supplement)",
+      "typical_profile": "high_omega3"
+    },
+    {
+      "id": "mayo_emulsion",
+      "label": "Mayonnaise / emulsion sauce",
+      "typical_profile": "mixed_industrial_or_home"
+    },
+    {
+      "id": "unknown_fat",
+      "label": "Unknown fat",
+      "typical_profile": "unknown"
+    }
+  ],
+  "lipid_profile_fields": {
+    "description": "Prefer measured per-100g or portion fields when present on ingredients.",
+    "fields": [
+      "fat_g",
+      "satfat_g",
+      "mufa_g",
+      "pufa_g",
+      "omega3_g",
+      "omega6_g",
+      "trans_fat_g",
+      "cholesterol_mg"
+    ]
+  },
+  "engine_hooks": {
+    "today": ["total fat_g → L-FAT-1 micelle gate", "form: oil on PacketLoad"],
+    "next": [
+      "omega6:omega3 ratio teaching",
+      "oxidative_burden if deep_fry_oil + fry method",
+      "HP-2 uses fat_energy_share + sodium (not oil class alone)"
+    ],
+    "factor_ids": ["F004 frying oils oxidized", "lipid factors in L2 molecular"]
+  },
+  "name_rules": [
+    { "match": "extra virgin|evoo", "oil_class": "evoo", "confidence": "high" },
+    { "match": "olive oil", "oil_class": "olive_refined", "confidence": "medium" },
+    { "match": "avocado oil", "oil_class": "avocado_oil", "confidence": "high" },
+    { "match": "butter|ghee", "oil_class": "butter_ghee", "confidence": "high" },
+    { "match": "canola|rapeseed|soybean|soy oil|corn oil|sunflower|grapeseed|vegetable oil|safflower", "oil_class": "seed_oil", "confidence": "high" },
+    { "match": "coconut|palm oil", "oil_class": "coconut_palm", "confidence": "high" },
+    { "match": "margarine|shortening|partially hydrogenated", "oil_class": "margarine_shortening", "confidence": "high" },
+    { "match": "mayonnaise|mayo", "oil_class": "mayo_emulsion", "confidence": "high" },
+    { "match": "peanut butter|almond butter|tahini|seed butter", "oil_class": "nut_seed_butter", "confidence": "high" },
+    { "match": "fish oil|algae oil|cod liver", "oil_class": "fish_oil_supplement", "confidence": "high" }
+  ]
+}

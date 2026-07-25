@@ -1,0 +1,179 @@
+{
+  "schema": "kibo.Medications.catalog/v1",
+  "version": "1.0.0",
+  "honesty": "OPEN",
+  "title": "Medication classes for host context (starter catalog)",
+  "principle": "Keep the drug graph small. Prefer class-level nutrition/process hooks over brand encyclopedias. First full class: glp1_ra. Others are stubs until needed.",
+  "anti_patterns": [
+    "Do not prescribe, titrate, or stop medications in-app",
+    "Do not claim food replaces a GLP-1 RA",
+    "Do not invent interaction severity scores without a pharmacy knowledge base",
+    "Do not treat endogenous L-cell GLP-1 and GLP-1 RA pens as the same object"
+  ],
+  "classes": [
+    {
+      "id": "glp1_ra",
+      "label": "GLP-1 receptor agonist (and dual GIP/GLP-1 where relevant)",
+      "status": "ready",
+      "examples": [
+        "semaglutide (Ozempic, Wegovy, Rybelsus)",
+        "liraglutide (Saxenda, Victoza)",
+        "dulaglutide (Trulicity)",
+        "tirzepatide (Mounjaro, Zepbound) — dual GIP/GLP-1"
+      ],
+      "aliases": [
+        "glp1",
+        "glp-1",
+        "ozempic",
+        "wegovy",
+        "mounjaro",
+        "zepbound",
+        "semaglutide",
+        "tirzepatide",
+        "liraglutide",
+        "dulaglutide",
+        "trulicity",
+        "saxenda",
+        "rybelsus"
+      ],
+      "kibo_hooks": {
+        "ontology": "C-8",
+        "endogenous_distinct": "Endogenous GLP-1 from L-cells after nutrients is digestion teaching — not this drug class"
+      },
+      "nutrition_process_effects": {
+        "honesty": "OPEN",
+        "summary": "Pharmacologic GLP-1 RAs increase satiety, slow gastric emptying (class effect, agent/dose/time dependent), and reduce energy intake; product bias is protein-first meals and non-judgmental smaller volume — not a calorie prescription.",
+        "effects": [
+          {
+            "id": "satiety_up",
+            "description": "Appetite/satiety signaling shifted — smaller plates often sufficient",
+            "product_bias": "normalize smaller intake; avoid shaming low volume"
+          },
+          {
+            "id": "gastric_emptying_slower",
+            "description": "Delayed gastric emptying common (varies by agent and duration of therapy)",
+            "product_bias": "optional narrative on meal pace; not a full GI kinetic model"
+          },
+          {
+            "id": "energy_intake_down",
+            "description": "Average energy intake falls in trials — magnitude not locked here",
+            "product_bias": "C-8 soft goal bias: do not push aggressive surplus without context"
+          },
+          {
+            "id": "protein_priority",
+            "description": "Preserve lean mass: emphasize adequate protein density per bite when intake is low",
+            "product_bias": "C-8 Protein Priority = #1; density axis matters more when calories drop"
+          },
+          {
+            "id": "gi_side_effect_context",
+            "description": "Nausea, early fullness, constipation/diarrhea reported — food tolerance varies",
+            "product_bias": "prefer gentle logging; avoid forcing high-fat ultra-palatable challenge meals as 'shoulds'"
+          }
+        ],
+        "c8_goal_bias": {
+          "protein_priority": 1,
+          "calorie_target_scale": 0.8,
+          "fiber_target_scale": 0.8,
+          "note": "Matches ontology C-8 impact strings — FLOW teaching scales, not medical targets"
+        }
+      },
+      "claim_policy": {
+        "support": [
+          "Protein density and meal quality still matter while intake is lower",
+          "UPF/hyperpalatability still relevant if grazing continues"
+        ],
+        "refuse": [
+          "This meal replaces your GLP-1 medication",
+          "Stop your prescription based on food score",
+          "Personal disease remission guarantee from plate alone",
+          "Exact gastric-emptying minutes for this brand/dose"
+        ]
+      },
+      "science_notes": {
+        "as_of": "2026-07-23",
+        "tier": "OPEN_evidence_summary",
+        "bullets": [
+          "GLP-1 receptor agonists are established for T2D and/or chronic weight management depending on agent/label; dual GIP/GLP-1 (tirzepatide) is related but not identical.",
+          "Mechanisms relevant to food: central appetite effects + delayed gastric emptying (often attenuates somewhat with ongoing use for some agents) + reduced ad libitum energy intake in trials.",
+          "Nutrition practice themes in literature/clinical guidance discussions: prioritize protein when total intake falls; manage GI symptoms; resistance training + protein for lean mass during weight loss; do not treat the drug as a free pass for UPF.",
+          "Food-is-medicine coaching remains complementary — never a substitute for the prescribing clinician."
+        ],
+        "see_also": [
+          "Ontology C-8 GLP-1 Override",
+          "Endogenous L-cell GLP-1 / PYY in digestion maps (different object)"
+        ]
+      }
+    },
+    {
+      "id": "metformin",
+      "label": "Metformin",
+      "status": "stub",
+      "examples": ["metformin", "Glucophage"],
+      "aliases": ["metformin", "glucophage"],
+      "kibo_hooks": { "ontology": null },
+      "nutrition_process_effects": {
+        "honesty": "OPEN",
+        "summary": "Stub: B12 monitoring themes exist in clinical literature — not auto-dosed here.",
+        "effects": [
+          {
+            "id": "b12_attention",
+            "description": "Long-term metformin associated with lower B12 status in some patients",
+            "product_bias": "optional density/B12 teaching flag only"
+          }
+        ]
+      },
+      "claim_policy": {
+        "support": [],
+        "refuse": ["Adjust metformin from meal score"]
+      },
+      "science_notes": {
+        "tier": "OPEN_stub",
+        "bullets": ["Expand when needed; keep class-level only."]
+      }
+    },
+    {
+      "id": "statin",
+      "label": "Statin (HMG-CoA reductase inhibitor)",
+      "status": "stub",
+      "examples": ["atorvastatin", "rosuvastatin", "simvastatin"],
+      "aliases": ["atorvastatin", "lipitor", "statin", "rosuvastatin", "crestor"],
+      "nutrition_process_effects": {
+        "honesty": "OPEN",
+        "summary": "Stub: lipid goals remain clinical; food pattern still educational.",
+        "effects": []
+      },
+      "claim_policy": {
+        "refuse": ["Stop statin because meal score improved"]
+      },
+      "science_notes": { "tier": "OPEN_stub", "bullets": [] }
+    },
+    {
+      "id": "ppi",
+      "label": "Proton pump inhibitor",
+      "status": "stub",
+      "aliases": ["omeprazole", "pantoprazole", "ppi", "prilosec", "nexium"],
+      "nutrition_process_effects": {
+        "honesty": "OPEN",
+        "summary": "Stub: acid suppression can matter for B12/Mg/Fe absorption narratives later.",
+        "effects": [{ "id": "acid_capacity_soft", "description": "May lower host.acid_capacity teaching flag later" }]
+      },
+      "claim_policy": { "refuse": ["Diagnose GERD from food log"] },
+      "science_notes": { "tier": "OPEN_stub", "bullets": [] }
+    },
+    {
+      "id": "other",
+      "label": "Other / unclassified medication",
+      "status": "escape_hatch",
+      "aliases": [],
+      "nutrition_process_effects": {
+        "honesty": "OPEN",
+        "summary": "Store as free-text class other — no automatic process bias.",
+        "effects": []
+      },
+      "claim_policy": {
+        "refuse": ["Infer interactions for unknown drugs"]
+      },
+      "science_notes": { "tier": "OPEN", "bullets": [] }
+    }
+  ]
+}

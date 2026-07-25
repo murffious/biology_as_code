@@ -3,26 +3,59 @@
   "kind": "stage",
   "id": "stage.oral",
   "version": "1.0.0",
-  "revision": 1,
+  "revision": 2,
   "title": "Mouth & esophagus — cephalic cue to LES handoff",
   "status": "published",
-  "updated": "2026-07-23",
+  "updated": "2026-07-25",
   "order": 1,
   "provenance": {
     "basedOn": [
       "Standard GI physiology: cephalic phase, salivation, mastication and mechanical bio-accessibility, salivary amylase / lingual lipase, bolus formation, and the swallow (oral -> pharyngeal -> esophageal -> LES) sequence. NIDDK digestive-system education (mouth, saliva, swallow). Teaching averages."
     ],
-    "sources": [],
-    "authors": ["biology-as-code"]
+    "sources": [
+      "NIDDK - Your Digestive System & How It Works: https://www.niddk.nih.gov/health-information/digestive-diseases/digestive-system-how-it-works",
+      "Hall & Hall, Guyton and Hall Textbook of Medical Physiology, 14th ed. - Unit XII, Gastrointestinal Physiology",
+      "Boron & Boulpaep, Medical Physiology, 3rd ed. - The Gastrointestinal System"
+    ],
+    "authors": [
+      "biology-as-code"
+    ]
   },
   "inputs": [
-    { "field": "intake.food", "unit": "0|1", "description": "1 = food packet; 0 = no meal solids this event" },
-    { "field": "intake.hydration", "unit": "0|1", "description": "1 = fluid co-event" },
-    { "field": "intake.supplement", "unit": "0|1", "description": "1 = supplement/capsule present" },
-    { "field": "meal.matrixIntegrity", "unit": "0-1", "description": "0 = liquid/refined, 1 = intact chewed whole food" },
-    { "field": "meal.foodQuality", "unit": "0-1", "description": "Whole-food pattern vs refined/UPF" },
-    { "field": "meal.fiberG", "unit": "g" },
-    { "field": "meal.glucoseG", "unit": "g", "description": "Available carbohydrate — oral amylase relevance" }
+    {
+      "field": "intake.food",
+      "unit": "0|1",
+      "description": "1 = food packet; 0 = no meal solids this event"
+    },
+    {
+      "field": "intake.hydration",
+      "unit": "0|1",
+      "description": "1 = fluid co-event"
+    },
+    {
+      "field": "intake.supplement",
+      "unit": "0|1",
+      "description": "1 = supplement/capsule present"
+    },
+    {
+      "field": "meal.matrixIntegrity",
+      "unit": "0-1",
+      "description": "0 = liquid/refined, 1 = intact chewed whole food"
+    },
+    {
+      "field": "meal.foodQuality",
+      "unit": "0-1",
+      "description": "Whole-food pattern vs refined/UPF"
+    },
+    {
+      "field": "meal.fiberG",
+      "unit": "g"
+    },
+    {
+      "field": "meal.glucoseG",
+      "unit": "g",
+      "description": "Available carbohydrate — oral amylase relevance"
+    }
   ],
   "startAt": "entryMode",
   "states": {
@@ -32,24 +65,52 @@
       "detail": "Which oral path? Food mills; liquid skips shear; a capsule is a swallow-first object. Defaults to food-form when intake flags are unset.",
       "choices": [
         {
-          "when": { "all": [
-            { "field": "intake.food", "op": "==", "value": 0 },
-            { "field": "intake.supplement", "op": "==", "value": 1 }
-          ] },
+          "when": {
+            "all": [
+              {
+                "field": "intake.food",
+                "op": "==",
+                "value": 0
+              },
+              {
+                "field": "intake.supplement",
+                "op": "==",
+                "value": 1
+              }
+            ]
+          },
           "next": "capsulePath",
           "note": "Supplement without food -> capsule path."
         },
         {
-          "when": { "all": [
-            { "field": "intake.food", "op": "==", "value": 0 },
-            { "field": "intake.supplement", "op": "==", "value": 0 },
-            { "field": "intake.hydration", "op": "==", "value": 1 }
-          ] },
+          "when": {
+            "all": [
+              {
+                "field": "intake.food",
+                "op": "==",
+                "value": 0
+              },
+              {
+                "field": "intake.supplement",
+                "op": "==",
+                "value": 0
+              },
+              {
+                "field": "intake.hydration",
+                "op": "==",
+                "value": 1
+              }
+            ]
+          },
           "next": "liquidPath",
           "note": "Hydration-only -> liquid path."
         },
         {
-          "when": { "field": "meal.matrixIntegrity", "op": "<", "value": 0.3 },
+          "when": {
+            "field": "meal.matrixIntegrity",
+            "op": "<",
+            "value": 0.3
+          },
           "next": "liquidPath",
           "note": "Low matrix integrity -> treat as liquid/refined."
         }
@@ -60,35 +121,61 @@
       "type": "task",
       "label": "1 - Cephalic cue (sight / smell / expect)",
       "detail": "Before the first bite, the CNS anticipates intake: appetite circuits and autonomic prep fire. Weak when eating distracted / tube-fed (teaching cases).",
-      "windowH": [0, 0.05],
-      "emits": ["cephalic-start", "expectancy"],
+      "windowH": [
+        0,
+        0.05
+      ],
+      "emits": [
+        "cephalic-start",
+        "expectancy"
+      ],
       "next": "salivaPreload"
     },
     "salivaPreload": {
       "type": "task",
       "label": "2 - Saliva preload",
       "detail": "Parotid / submandibular / sublingual output rises: water, mucins, electrolytes, enzymes. Lubrication + first solvent for starch.",
-      "emits": ["saliva-volume", "mucin-coat"],
+      "emits": [
+        "saliva-volume",
+        "mucin-coat"
+      ],
       "next": "incisionGrab"
     },
     "incisionGrab": {
       "type": "task",
       "label": "3 - Incision / grab (bite)",
       "detail": "Incisors and lips portion a bite size the jaw and tongue can control.",
-      "emits": ["bite-portion"],
+      "emits": [
+        "bite-portion"
+      ],
       "next": "masticationShear"
     },
     "masticationShear": {
       "type": "task",
       "label": "4 - Mastication shear",
       "detail": "Molars grind; jaw cycles raise surface area. Enzymes only act on the exposed face - particle size is the first lever on later extraction (mechanical bio-accessibility).",
-      "windowH": [0.02, 0.15],
-      "requires": [{ "field": "meal.matrixIntegrity", "op": "exists" }],
-      "emits": ["shear-work", "particle-size-drop"],
+      "windowH": [
+        0.02,
+        0.15
+      ],
+      "requires": [
+        {
+          "field": "meal.matrixIntegrity",
+          "op": "exists"
+        }
+      ],
+      "emits": [
+        "shear-work",
+        "particle-size-drop"
+      ],
       "edgeCases": [
         {
           "id": "low-chew-cycles",
-          "when": { "field": "meal.matrixIntegrity", "op": "<", "value": 0.5 },
+          "when": {
+            "field": "meal.matrixIntegrity",
+            "op": "<",
+            "value": 0.5
+          },
           "effect": "Low integrity / soft form -> fewer effective shear cycles; surface-area gain is small, and a soft/refined matrix travels faster and less buffered downstream.",
           "note": "Teaching pattern only."
         }
@@ -99,18 +186,27 @@
       "type": "task",
       "label": "5 - Matrix surface-area open",
       "detail": "Cell walls, connective tissue, and emulsions fracture. The surface-area coefficient rises; downstream amylase/pepsin/lipase inherit this number.",
-      "emits": ["surface-area", "matrix-disrupted"],
+      "emits": [
+        "surface-area",
+        "matrix-disrupted"
+      ],
       "next": "salivaryAmylase"
     },
     "salivaryAmylase": {
       "type": "task",
       "label": "6 - Salivary amylase",
       "detail": "Starts starch -> maltose/oligosaccharides while the bolus is still oral. Stops later in acid; the early window still matters for high-carb soft meals.",
-      "emits": ["pre-digested-starch"],
+      "emits": [
+        "pre-digested-starch"
+      ],
       "edgeCases": [
         {
           "id": "low-cho-idle",
-          "when": { "field": "meal.glucoseG", "op": "<", "value": 5 },
+          "when": {
+            "field": "meal.glucoseG",
+            "op": "<",
+            "value": 5
+          },
           "effect": "Very low available carbohydrate - the amylase step is nearly idle (still runs as a no-op teaching node)."
         }
       ],
@@ -118,56 +214,78 @@
     },
     "lingualLipase": {
       "type": "task",
-      "label": "7 - Lingual lipase (minor)",
-      "detail": "Minor triglyceride nick in the mouth; more relevant for infants and high-fat teaching. Not the main fat engine (bile/pancreas later).",
-      "emits": ["minor-lipolysis"],
+      "label": "7 - Lingual lipase (secreted here, acts later)",
+      "detail": "Secreted by von Ebner glands in the mouth but acid-stable, so it does most of its work in the STOMACH alongside gastric lipase (together ~10-30% of fat digestion). Especially important in neonates. Not the main fat engine - bile + pancreatic lipase handle that later.",
+      "emits": [
+        "minor-lipolysis"
+      ],
       "next": "bolusForm"
     },
     "bolusForm": {
       "type": "task",
       "label": "8 - Bolus formation",
       "detail": "The tongue packs particles + saliva into a lubricated bolus sized for a safe swallow.",
-      "emits": ["bolus"],
+      "emits": [
+        "bolus"
+      ],
       "next": "swallowVoluntary"
     },
     "swallowVoluntary": {
       "type": "task",
       "label": "9 - Voluntary swallow initiate",
       "detail": "The oral phase of swallow is voluntary: the tongue propels the bolus into the oropharynx; then the sequence becomes automatic.",
-      "emits": ["swallow-start"],
+      "emits": [
+        "swallow-start"
+      ],
       "next": "epiglottisProtect"
     },
     "epiglottisProtect": {
       "type": "task",
       "label": "10 - Airway protect (epiglottis)",
       "detail": "The epiglottis covers the laryngeal inlet; the soft palate seals the nasopharynx. The aspiration path must stay closed.",
-      "emits": ["airway-protected"],
+      "emits": [
+        "airway-protected"
+      ],
       "next": "esophagealPeristalsis"
     },
     "esophagealPeristalsis": {
       "type": "task",
       "label": "11 - Esophageal peristalsis",
       "detail": "Primary (then secondary if needed) peristalsis drives the bolus; gravity is secondary. Transit ~5-10 s (teaching average).",
-      "windowH": [0.05, 0.15],
-      "emits": ["esophagus-transit"],
+      "windowH": [
+        0.002,
+        0.0014
+      ],
+      "emits": [
+        "esophagus-transit"
+      ],
       "next": "lesOpen"
     },
     "lesOpen": {
       "type": "task",
       "label": "12 - LES open -> stomach",
       "detail": "The lower esophageal sphincter relaxes to admit the bolus, then reseals against reflux.",
-      "emits": ["les-open"],
+      "emits": [
+        "les-open"
+      ],
       "next": "handoff"
     },
     "liquidPath": {
       "type": "task",
       "label": "L1 - Liquid / low-shear entry",
       "detail": "Hydration or refined liquid: little or no mastication. Cephalic may still fire; shear work is near zero -> faster gastric emptying later.",
-      "emits": ["liquid-mode", "fast-transit-flag"],
+      "emits": [
+        "liquid-mode",
+        "fast-transit-flag"
+      ],
       "edgeCases": [
         {
           "id": "skip-shear",
-          "when": { "field": "meal.foodQuality", "op": "<", "value": 0.5 },
+          "when": {
+            "field": "meal.foodQuality",
+            "op": "<",
+            "value": 0.5
+          },
           "effect": "Liquid/refined path skips mechanical disruption -> less buffered, faster transit downstream.",
           "note": "Teaching only, not a score."
         }
@@ -178,14 +296,19 @@
       "type": "task",
       "label": "L2 - Fluid swallow + protect",
       "detail": "Same airway-protect sequence; lower viscosity -> different sensory load than a solid bolus.",
-      "emits": ["fluid-bolus", "airway-protected"],
+      "emits": [
+        "fluid-bolus",
+        "airway-protected"
+      ],
       "next": "esophagealPeristalsis"
     },
     "capsulePath": {
       "type": "task",
       "label": "C1 - Capsule / tablet receive",
       "detail": "Solid dose form: object integrity is intentional (delayed release downstream). Not milled like food.",
-      "emits": ["dose-form-intact"],
+      "emits": [
+        "dose-form-intact"
+      ],
       "next": "capsuleCoFluid"
     },
     "capsuleCoFluid": {
@@ -194,7 +317,11 @@
       "detail": "Best practice: swallow the dose with fluid. A dry swallow is an edge case.",
       "choices": [
         {
-          "when": { "field": "intake.hydration", "op": "==", "value": 0 },
+          "when": {
+            "field": "intake.hydration",
+            "op": "==",
+            "value": 0
+          },
           "next": "capsuleDry",
           "note": "No hydration flag -> dry-swallow edge case."
         }
@@ -205,21 +332,28 @@
       "type": "task",
       "label": "C3a - Dry swallow (edge)",
       "detail": "Higher residue / delayed esophageal clearance risk in teaching models. Prefer hydration = 1.",
-      "emits": ["dry-swallow-flag"],
+      "emits": [
+        "dry-swallow-flag"
+      ],
       "next": "epiglottisProtect"
     },
     "capsuleWet": {
       "type": "task",
       "label": "C3b - Dose + fluid swallow",
       "detail": "The capsule rides a fluid vehicle through protect -> esophagus -> LES.",
-      "emits": ["dose-with-fluid"],
+      "emits": [
+        "dose-with-fluid"
+      ],
       "next": "epiglottisProtect"
     },
     "handoff": {
       "type": "succeed",
       "label": "13 - Handoff -> stomach",
       "detail": "Oral/esophageal segment closed. The stomach receives the bolus (or fluid/dose) for acid work.",
-      "emits": ["bolus->stomach", "oral-complete"]
+      "emits": [
+        "bolus->stomach",
+        "oral-complete"
+      ]
     }
   }
 }

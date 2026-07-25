@@ -1,0 +1,2676 @@
+[
+  {
+    "name": "Grilled Chicken, Quinoa & Broccoli Bowl",
+    "meal_id": "raw_01_chicken_quinoa_broccoli_bowl",
+    "nutrient_density_score": 0.436,
+    "quality_score": 0.82,
+    "macros_g": {
+      "protein": 52.27,
+      "carbs": 58.82,
+      "fats": 22.1
+    },
+    "fiber_g": 6.68,
+    "vitamins_mg": {
+      "c": 88.23,
+      "a": 27.9,
+      "e": 2.01,
+      "k": 99.87,
+      "b1": 0.1,
+      "b2": 0.17,
+      "b3": 19.18,
+      "b6": 0.84,
+      "b12": 0.48,
+      "folate": 117.15,
+      "iron": 4.15,
+      "zinc": 2.93,
+      "calcium": 46.2,
+      "magnesium": 149.1
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 30.5,
+      "calories": 641.81,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Baked Salmon with Sweet Potato & Asparagus",
+    "meal_id": "raw_02_salmon_sweet_potato_asparagus",
+    "nutrient_density_score": 0.383,
+    "quality_score": 0.82,
+    "macros_g": {
+      "protein": 38.48,
+      "carbs": 36.14,
+      "fats": 26.06
+    },
+    "fiber_g": 7.17,
+    "vitamins_mg": {
+      "c": 44.28,
+      "a": 1505.4,
+      "d": 19.65,
+      "e": 1.0,
+      "k": 49.75,
+      "b3": 12.75,
+      "b6": 1.41,
+      "b12": 4.2,
+      "folate": 135.75,
+      "iron": 0.82,
+      "calcium": 18.1,
+      "magnesium": 105.2
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 2,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 19.6,
+      "calories": 530.03,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Spinach & Feta Egg Scramble with Avocado",
+    "meal_id": "raw_03_spinach_feta_scramble",
+    "nutrient_density_score": 0.474,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 34.43,
+      "carbs": 25.2,
+      "fats": 45.51
+    },
+    "fiber_g": 6.96,
+    "vitamins_mg": {
+      "c": 35.99,
+      "a": 704.6,
+      "d": 6.12,
+      "e": 5.45,
+      "k": 316.51,
+      "b1": 0.11,
+      "b2": 1.336,
+      "b3": 0.214,
+      "b6": 0.266,
+      "b12": 3.0,
+      "folate": 267.48,
+      "iron": 4.25,
+      "zinc": 2.828,
+      "calcium": 468.64,
+      "magnesium": 91.12
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 70.0,
+      "calories": 635.5,
+      "hydration_fluid_g": 240.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Overnight Oats with Berries, Chia & Almond Butter",
+    "meal_id": "raw_04_overnight_oats_berries_chia",
+    "nutrient_density_score": 0.408,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 16.54,
+      "carbs": 61.77,
+      "fats": 20.3
+    },
+    "fiber_g": 18.3,
+    "vitamins_mg": {
+      "c": 23.42,
+      "d": 2.4,
+      "e": 19.6,
+      "k": 19.53,
+      "b1": 0.38,
+      "b2": 0.16,
+      "folate": 41.02,
+      "iron": 3.96,
+      "zinc": 3.06,
+      "calcium": 585.87,
+      "magnesium": 173.34
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 14.5,
+      "calories": 469.49,
+      "hydration_fluid_g": 240.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Greek Yogurt Berry Bowl with Walnuts & Flax",
+    "meal_id": "raw_05_greek_yogurt_berry_bowl",
+    "nutrient_density_score": 0.46,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 26.3,
+      "carbs": 29.03,
+      "fats": 16.96
+    },
+    "fiber_g": 6.85,
+    "vitamins_mg": {
+      "c": 51.28,
+      "a": 2.0,
+      "d": 2.4,
+      "e": 15.512,
+      "k": 15.93,
+      "b1": 0.13,
+      "b2": 0.58,
+      "b3": 0.29,
+      "b6": 0.04,
+      "b12": 1.5,
+      "folate": 31.72,
+      "iron": 0.7,
+      "zinc": 1.45,
+      "calcium": 691.45,
+      "magnesium": 81.31
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 45.1,
+      "calories": 353.92,
+      "hydration_fluid_g": 240.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Lentil & Kale Power Salad",
+    "meal_id": "raw_06_lentil_kale_power_salad",
+    "nutrient_density_score": 0.444,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 20.39,
+      "carbs": 43.61,
+      "fats": 21.6
+    },
+    "fiber_g": 15.78,
+    "vitamins_mg": {
+      "c": 69.08,
+      "a": 193.3,
+      "e": 2.34,
+      "k": 222.64,
+      "b1": 0.26,
+      "b2": 0.24,
+      "b3": 1.59,
+      "b6": 0.27,
+      "b12": 0.47,
+      "folate": 317.65,
+      "iron": 5.75,
+      "zinc": 1.91,
+      "calcium": 279.59,
+      "magnesium": 80.25
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 25.7,
+      "calories": 431.63,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Black Bean & Brown Rice Bowl with Avocado",
+    "meal_id": "raw_07_black_bean_rice_bowl",
+    "nutrient_density_score": 0.438,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 18.2,
+      "carbs": 100.93,
+      "fats": 12.32
+    },
+    "fiber_g": 21.03,
+    "vitamins_mg": {
+      "c": 122.86,
+      "a": 155.55,
+      "e": 2.6,
+      "k": 21.39,
+      "b1": 0.23,
+      "b3": 3.33,
+      "b6": 0.57,
+      "folate": 298.43,
+      "iron": 2.73,
+      "zinc": 2.38,
+      "calcium": 3.9,
+      "magnesium": 161.42
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 15.1,
+      "calories": 568.2,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Tofu Veggie Stir-Fry with Brown Rice",
+    "meal_id": "raw_08_tofu_veggie_stirfry",
+    "nutrient_density_score": 0.398,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 35.16,
+      "carbs": 54.33,
+      "fats": 28.95
+    },
+    "fiber_g": 9.68,
+    "vitamins_mg": {
+      "c": 178.18,
+      "a": 145.65,
+      "e": 3.2,
+      "k": 99.87,
+      "b1": 0.23,
+      "b3": 3.33,
+      "b6": 0.47,
+      "folate": 91.2,
+      "iron": 4.75,
+      "zinc": 3.27,
+      "calcium": 1088.31,
+      "magnesium": 165.95
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 3,
+      "full_panel_coverage_pct": 26.1,
+      "calories": 587.9,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Shrimp & Quinoa Mediterranean Bowl",
+    "meal_id": "raw_09_shrimp_quinoa_med_bowl",
+    "nutrient_density_score": 0.472,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 40.39,
+      "carbs": 38.83,
+      "fats": 23.31
+    },
+    "fiber_g": 5.8,
+    "vitamins_mg": {
+      "c": 22.38,
+      "a": 72.8,
+      "e": 2.01,
+      "k": 27.84,
+      "b2": 0.24,
+      "b3": 3.12,
+      "b12": 2.7,
+      "folate": 73.95,
+      "iron": 2.09,
+      "zinc": 3.2,
+      "calcium": 177.94,
+      "magnesium": 106.55
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 0.0,
+      "calories": 516.28,
+      "hydration_fluid_g": 360.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Ground Turkey & Sweet Potato Skillet",
+    "meal_id": "raw_10_turkey_sweet_potato_skillet",
+    "nutrient_density_score": 0.38,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 43.46,
+      "carbs": 56.83,
+      "fats": 28.06
+    },
+    "fiber_g": 6.4,
+    "vitamins_mg": {
+      "c": 48.13,
+      "a": 1722.9,
+      "e": 3.23,
+      "k": 298.17,
+      "b3": 9.1,
+      "b6": 1.2,
+      "b12": 2.38,
+      "folate": 116.4,
+      "iron": 3.76,
+      "zinc": 4.76,
+      "calcium": 70.26,
+      "magnesium": 87.9
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 27.6,
+      "calories": 645.6,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Chobani Greek Yogurt Parfait with Granola & Blueberries",
+    "meal_id": "bc_01_chobani_parfait",
+    "nutrient_density_score": 0.424,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 20.02,
+      "carbs": 36.96,
+      "fats": 6.24
+    },
+    "fiber_g": 3.79,
+    "vitamins_mg": {
+      "c": 7.18,
+      "k": 14.28,
+      "calcium": 223.0,
+      "magnesium": 7.2
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 0.0,
+      "calories": 279.18,
+      "hydration_fluid_g": 360.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Quaker Oatmeal with Peanut Butter & Banana",
+    "meal_id": "bc_02_quaker_pb_banana_oatmeal",
+    "nutrient_density_score": 0.409,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 13.37,
+      "carbs": 62.76,
+      "fats": 18.92
+    },
+    "fiber_g": 10.67,
+    "vitamins_mg": {
+      "c": 10.27,
+      "k": 0.65,
+      "b1": 0.034,
+      "b2": 0.182,
+      "b3": 5.308,
+      "b6": 0.432,
+      "folate": 4.8,
+      "iron": 2.58,
+      "zinc": 0.048,
+      "calcium": 55.43,
+      "magnesium": 79.06
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 55.6,
+      "calories": 444.95,
+      "hydration_fluid_g": 240.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Ezekiel Toast with Avocado & Fried Egg",
+    "meal_id": "bc_03_ezekiel_avocado_egg_toast",
+    "nutrient_density_score": 0.528,
+    "quality_score": 0.35,
+    "macros_g": {
+      "protein": 19.34,
+      "carbs": 57.51,
+      "fats": 20.72
+    },
+    "fiber_g": 11.02,
+    "vitamins_mg": {
+      "c": 114.8,
+      "a": 99.2,
+      "d": 1.0,
+      "e": 2.66,
+      "k": 17.44,
+      "b2": 0.23,
+      "b3": 4.0,
+      "b6": 0.38,
+      "b12": 0.45,
+      "folate": 138.58,
+      "iron": 3.12,
+      "zinc": 2.65,
+      "calcium": 41.68,
+      "magnesium": 95.4
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 83.1,
+      "calories": 480.3,
+      "hydration_fluid_g": 240.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Kodiak Power Cakes with Strawberries",
+    "meal_id": "bc_04_kodiak_strawberry_pancakes",
+    "nutrient_density_score": 0.553,
+    "quality_score": 0.35,
+    "macros_g": {
+      "protein": 30.64,
+      "carbs": 53.69,
+      "fats": 23.95
+    },
+    "fiber_g": 7.86,
+    "vitamins_mg": {
+      "c": 58.8,
+      "a": 190.4,
+      "d": 4.12,
+      "e": 4.94,
+      "k": 3.07,
+      "b1": 0.13,
+      "b2": 0.816,
+      "b3": 0.604,
+      "b6": 0.136,
+      "b12": 1.65,
+      "folate": 59.5,
+      "iron": 1.84,
+      "zinc": 2.198,
+      "calcium": 342.72,
+      "magnesium": 81.64
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 88.5,
+      "calories": 533.11,
+      "hydration_fluid_g": 240.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "FAGE Total 0% Bowl with Raspberries & Walnuts",
+    "meal_id": "bc_05_fage_raspberry_bowl",
+    "nutrient_density_score": 0.5,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 20.7,
+      "carbs": 21.59,
+      "fats": 13.37
+    },
+    "fiber_g": 8.33,
+    "vitamins_mg": {
+      "c": 24.1,
+      "d": 2.4,
+      "e": 16.092,
+      "k": 7.59,
+      "folate": 33.04,
+      "iron": 0.11,
+      "calcium": 628.31,
+      "magnesium": 22.12
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 0.0,
+      "calories": 273.41,
+      "hydration_fluid_g": 240.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Cheerios with Whole Milk & Banana",
+    "meal_id": "bc_06_cheerios_banana_milk",
+    "nutrient_density_score": 0.416,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 13.15,
+      "carbs": 66.33,
+      "fats": 11.09
+    },
+    "fiber_g": 7.24,
+    "vitamins_mg": {
+      "c": 18.62,
+      "a": 110.4,
+      "d": 3.12,
+      "e": 0.24,
+      "k": 0.72,
+      "b1": 0.5,
+      "b2": 0.46,
+      "b3": 0.21,
+      "b6": 1.22,
+      "b12": 3.29,
+      "folate": 12.0,
+      "iron": 11.28,
+      "zinc": 6.11,
+      "calcium": 410.43,
+      "magnesium": 100.32
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 70.3,
+      "calories": 390.65,
+      "hydration_fluid_g": 240.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Almond Milk Berry Protein Smoothie",
+    "meal_id": "bc_07_silk_berry_protein_smoothie",
+    "nutrient_density_score": 0.491,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 28.33,
+      "carbs": 47.54,
+      "fats": 7.91
+    },
+    "fiber_g": 7.32,
+    "vitamins_mg": {
+      "c": 5.13,
+      "b1": 0.11,
+      "b2": 0.03,
+      "b6": 0.22,
+      "iron": 6.39,
+      "zinc": 0.3,
+      "calcium": 822.71,
+      "magnesium": 50.37
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 0.0,
+      "calories": 366.59,
+      "hydration_fluid_g": 240.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Good Culture Cottage Cheese Bowl with Strawberries",
+    "meal_id": "bc_08_good_culture_strawberry_bowl",
+    "nutrient_density_score": 0.391,
+    "quality_score": 0.35,
+    "macros_g": {
+      "protein": 23.64,
+      "carbs": 20.77,
+      "fats": 16.98
+    },
+    "fiber_g": 7.88,
+    "vitamins_mg": {
+      "c": 58.8,
+      "e": 3.89,
+      "k": 2.2,
+      "b1": 0.02,
+      "b2": 0.18,
+      "b3": 0.39,
+      "b6": 0.05,
+      "folate": 24.0,
+      "iron": 1.85,
+      "zinc": 1.13,
+      "calcium": 315.38,
+      "magnesium": 98.2
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 17.9,
+      "calories": 321.38,
+      "hydration_fluid_g": 360.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "On-the-Go: RXBAR, Banana & Almonds",
+    "meal_id": "bc_09_rxbar_banana_almonds",
+    "nutrient_density_score": 0.473,
+    "quality_score": 0.35,
+    "macros_g": {
+      "protein": 19.45,
+      "carbs": 57.98,
+      "fats": 21.37
+    },
+    "fiber_g": 11.56,
+    "vitamins_mg": {
+      "c": 10.27,
+      "e": 7.18,
+      "k": 0.24,
+      "b1": 0.034,
+      "b2": 0.502,
+      "b3": 0.458,
+      "b6": 0.432,
+      "folate": 4.8,
+      "iron": 2.04,
+      "zinc": 0.918,
+      "calcium": 120.16,
+      "magnesium": 114.66
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 61.2,
+      "calories": 469.74,
+      "hydration_fluid_g": 240.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Dave's Killer Bread with Almond Butter & Banana",
+    "meal_id": "bc_10_daves_ab_banana_toast",
+    "nutrient_density_score": 0.521,
+    "quality_score": 0.35,
+    "macros_g": {
+      "protein": 18.55,
+      "carbs": 92.89,
+      "fats": 21.82
+    },
+    "fiber_g": 15.77,
+    "vitamins_mg": {
+      "c": 118.27,
+      "a": 19.2,
+      "k": 0.41,
+      "b2": 0.12,
+      "b3": 2.73,
+      "b6": 0.57,
+      "folate": 60.0,
+      "iron": 3.89,
+      "zinc": 1.54,
+      "calcium": 150.81,
+      "magnesium": 124.18
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 68.2,
+      "calories": 599.27,
+      "hydration_fluid_g": 240.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Tuna Salad Sandwich on Dave's Killer Bread",
+    "meal_id": "bc_11_starkist_tuna_sandwich",
+    "nutrient_density_score": 0.448,
+    "quality_score": 0.35,
+    "macros_g": {
+      "protein": 30.79,
+      "carbs": 42.26,
+      "fats": 8.13
+    },
+    "fiber_g": 9.39,
+    "vitamins_mg": {
+      "c": 16.5,
+      "a": 89.25,
+      "e": 0.3,
+      "k": 75.99,
+      "b2": 0.12,
+      "b3": 19.87,
+      "b6": 0.4,
+      "b12": 1.93,
+      "folate": 35.85,
+      "iron": 4.42,
+      "zinc": 1.54,
+      "calcium": 52.23,
+      "magnesium": 80.17
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 15.5,
+      "calories": 351.06,
+      "hydration_fluid_g": 360.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Chickpea Greek Salad",
+    "meal_id": "bc_12_goya_chickpea_greek_salad",
+    "nutrient_density_score": 0.239,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 11.53,
+      "carbs": 29.8,
+      "fats": 22.13
+    },
+    "fiber_g": 8.61,
+    "vitamins_mg": {
+      "c": 30.81,
+      "a": 213.5,
+      "e": 2.62,
+      "k": 172.71,
+      "b2": 0.24,
+      "b12": 0.47,
+      "folate": 73.35,
+      "iron": 4.74,
+      "calcium": 217.45,
+      "magnesium": 33.45
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 4.1,
+      "calories": 334.41,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Black Bean Burrito Bowl with Salsa & Avocado",
+    "meal_id": "bc_13_bushs_burrito_bowl",
+    "nutrient_density_score": 0.261,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 11.47,
+      "carbs": 71.06,
+      "fats": 11.77
+    },
+    "fiber_g": 11.77,
+    "vitamins_mg": {
+      "c": 15.23,
+      "a": 140.7,
+      "e": 2.02,
+      "k": 159.15,
+      "b6": 0.18,
+      "folate": 113.28,
+      "iron": 2.6,
+      "calcium": 66.3,
+      "magnesium": 43.42
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 3,
+      "full_panel_coverage_pct": 3.8,
+      "calories": 417.87,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Hummus Veggie Wrap",
+    "meal_id": "bc_14_sabra_veggie_wrap",
+    "nutrient_density_score": 0.246,
+    "quality_score": 0.35,
+    "macros_g": {
+      "protein": 10.38,
+      "carbs": 38.9,
+      "fats": 16.28
+    },
+    "fiber_g": 9.9,
+    "vitamins_mg": {
+      "c": 106.31,
+      "a": 258.45,
+      "e": 1.8,
+      "k": 157.17,
+      "b6": 0.22,
+      "folate": 92.7,
+      "iron": 3.79,
+      "calcium": 152.4,
+      "magnesium": 33.45
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 4.7,
+      "calories": 343.05,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Turkey & Avocado Sandwich",
+    "meal_id": "bc_15_applegate_turkey_avocado_sandwich",
+    "nutrient_density_score": 0.42,
+    "quality_score": 0.35,
+    "macros_g": {
+      "protein": 23.03,
+      "carbs": 37.57,
+      "fats": 8.48
+    },
+    "fiber_g": 10.2,
+    "vitamins_mg": {
+      "c": 15.38,
+      "a": 89.25,
+      "e": 1.33,
+      "k": 86.49,
+      "b3": 4.0,
+      "b6": 0.33,
+      "folate": 76.35,
+      "iron": 2.41,
+      "zinc": 2.0,
+      "calcium": 35.33,
+      "magnesium": 78.03
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 14.1,
+      "calories": 302.31,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Amy's Lentil Soup with Triscuits",
+    "meal_id": "bc_16_amys_lentil_soup_triscuits",
+    "nutrient_density_score": 0.345,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 16.15,
+      "carbs": 66.44,
+      "fats": 11.41
+    },
+    "fiber_g": 14.36,
+    "vitamins_mg": {
+      "c": 6.62,
+      "a": 668.0,
+      "e": 0.56,
+      "k": 10.4,
+      "b1": 0.05,
+      "b2": 0.05,
+      "b3": 0.79,
+      "b6": 0.11,
+      "folate": 15.2,
+      "iron": 5.85,
+      "zinc": 0.19,
+      "calcium": 65.76,
+      "magnesium": 9.6
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 9.5,
+      "calories": 430.32,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Banza Chickpea Pasta with Pesto & Chicken",
+    "meal_id": "bc_17_banza_pesto_chicken_bowl",
+    "nutrient_density_score": 0.435,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 44.46,
+      "carbs": 34.39,
+      "fats": 18.41
+    },
+    "fiber_g": 7.61,
+    "vitamins_mg": {
+      "c": 14.64,
+      "a": 37.8,
+      "k": 7.11,
+      "b1": 0.07,
+      "b2": 0.12,
+      "b3": 13.7,
+      "b6": 0.6,
+      "b12": 0.34,
+      "folate": 13.5,
+      "iron": 6.18,
+      "zinc": 1.0,
+      "calcium": 104.01,
+      "magnesium": 36.1
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 15.8,
+      "calories": 487.14,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Pink Salmon & Quinoa Kale Salad",
+    "meal_id": "bc_18_bumblebee_salmon_quinoa_salad",
+    "nutrient_density_score": 0.317,
+    "quality_score": 0.82,
+    "macros_g": {
+      "protein": 27.88,
+      "carbs": 34.87,
+      "fats": 19.98
+    },
+    "fiber_g": 6.39,
+    "vitamins_mg": {
+      "c": 60.77,
+      "a": 120.5,
+      "e": 2.34,
+      "k": 203.23,
+      "folate": 91.45,
+      "iron": 3.25,
+      "zinc": 1.53,
+      "calcium": 134.5,
+      "magnesium": 106.1
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 2,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 7.5,
+      "calories": 417.92,
+      "hydration_fluid_g": 360.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Peanut Noodles with Broccoli",
+    "meal_id": "bc_19_peanut_noodles_broccoli",
+    "nutrient_density_score": 0.336,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 18.5,
+      "carbs": 60.1,
+      "fats": 17.41
+    },
+    "fiber_g": 11.4,
+    "vitamins_mg": {
+      "c": 81.47,
+      "a": 27.9,
+      "k": 91.44,
+      "b3": 4.85,
+      "b6": 0.05,
+      "folate": 56.7,
+      "iron": 1.68,
+      "calcium": 75.98,
+      "magnesium": 28.25
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 3,
+      "full_panel_coverage_pct": 16.1,
+      "calories": 444.76,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Edamame & Brown Rice Teriyaki Bowl",
+    "meal_id": "bc_20_edamame_rice_bowl",
+    "nutrient_density_score": 0.521,
+    "quality_score": 0.59,
+    "macros_g": {
+      "protein": 18.34,
+      "carbs": 69.8,
+      "fats": 5.38
+    },
+    "fiber_g": 16.36,
+    "vitamins_mg": {
+      "c": 95.78,
+      "a": 117.75,
+      "e": 1.19,
+      "b6": 0.22,
+      "folate": 34.5,
+      "iron": 3.6,
+      "calcium": 15.49
+    },
+    "anti_nutrients": 0.4,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 0.0,
+      "calories": 397.15,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Chickpea Penne Marinara with Ground Turkey",
+    "meal_id": "bc_21_banza_marinara_turkey",
+    "nutrient_density_score": 0.442,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 45.27,
+      "carbs": 37.06,
+      "fats": 21.5
+    },
+    "fiber_g": 7.96,
+    "vitamins_mg": {
+      "c": 8.43,
+      "a": 140.7,
+      "e": 0.61,
+      "k": 144.87,
+      "b3": 7.28,
+      "b6": 0.56,
+      "b12": 1.9,
+      "folate": 58.2,
+      "iron": 7.34,
+      "zinc": 3.81,
+      "calcium": 71.91,
+      "magnesium": 23.7
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 3,
+      "full_panel_coverage_pct": 20.9,
+      "calories": 520.74,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Whole Grain Spaghetti Marinara with Parmesan-Style Feta",
+    "meal_id": "bc_22_ww_spaghetti_marinara",
+    "nutrient_density_score": 0.36,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 14.36,
+      "carbs": 74.85,
+      "fats": 15.16
+    },
+    "fiber_g": 8.37,
+    "vitamins_mg": {
+      "c": 12.87,
+      "a": 80.72,
+      "k": 19.55,
+      "b2": 0.24,
+      "b12": 0.47,
+      "folate": 13.5,
+      "iron": 0.35,
+      "calcium": 168.35,
+      "magnesium": 1.92
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 3,
+      "full_panel_coverage_pct": 0.0,
+      "calories": 474.83,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Baked Salmon with Quinoa & Brown Rice Pouch and Asparagus",
+    "meal_id": "bc_23_salmon_seeds_of_change",
+    "nutrient_density_score": 0.362,
+    "quality_score": 0.92,
+    "macros_g": {
+      "protein": 39.4,
+      "carbs": 44.31,
+      "fats": 21.97
+    },
+    "fiber_g": 5.34,
+    "vitamins_mg": {
+      "c": 19.56,
+      "a": 63.9,
+      "d": 19.65,
+      "k": 45.54,
+      "b3": 15.89,
+      "b6": 0.98,
+      "b12": 4.2,
+      "folate": 198.15,
+      "iron": 1.67,
+      "calcium": 33.7,
+      "magnesium": 64.7
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 1,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 20.5,
+      "calories": 537.15,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Chicken Fajitas on Whole Wheat Tortillas",
+    "meal_id": "bc_24_mission_chicken_fajitas",
+    "nutrient_density_score": 0.453,
+    "quality_score": 0.35,
+    "macros_g": {
+      "protein": 51.94,
+      "carbs": 49.5,
+      "fats": 25.63
+    },
+    "fiber_g": 10.85,
+    "vitamins_mg": {
+      "c": 195.14,
+      "a": 235.5,
+      "e": 3.37,
+      "k": 4.21,
+      "b1": 0.1,
+      "b2": 0.17,
+      "b3": 19.18,
+      "b6": 1.27,
+      "b12": 0.48,
+      "folate": 69.0,
+      "iron": 3.74,
+      "zinc": 1.4,
+      "calcium": 121.01,
+      "magnesium": 40.6
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "full_panel_coverage_pct": 17.4,
+      "calories": 642.29,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Tofu Teriyaki Stir-Fry with Birds Eye Vegetables",
+    "meal_id": "bc_25_nasoya_teriyaki_stirfry",
+    "nutrient_density_score": 0.396,
+    "quality_score": 0.59,
+    "macros_g": {
+      "protein": 23.38,
+      "carbs": 49.57,
+      "fats": 23.99
+    },
+    "fiber_g": 7.51,
+    "vitamins_mg": {
+      "c": 6.12,
+      "e": 2.01,
+      "k": 8.43,
+      "iron": 3.54,
+      "calcium": 134.49
+    },
+    "anti_nutrients": 0.05,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 3,
+      "full_panel_coverage_pct": 0.0,
+      "calories": 509.86,
+      "hydration_fluid_g": 360.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Turkey & Kidney Bean Chili",
+    "meal_id": "bc_26_turkey_bean_chili",
+    "nutrient_density_score": 0.401,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 38.15,
+      "carbs": 33.5,
+      "fats": 18.34
+    },
+    "fiber_g": 7.68,
+    "vitamins_mg": {
+      "c": 97.65,
+      "a": 117.75,
+      "e": 2.19,
+      "k": 4.21,
+      "b3": 7.28,
+      "b6": 0.85,
+      "b12": 1.9,
+      "folate": 34.5,
+      "iron": 3.6,
+      "zinc": 3.81,
+      "calcium": 73.86
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 12.7,
+      "calories": 459.67,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Black Bean Burger with Guacamole & Side Salad",
+    "meal_id": "bc_27_drpraeger_burger_plate",
+    "nutrient_density_score": 0.359,
+    "quality_score": 0.35,
+    "macros_g": {
+      "protein": 13.51,
+      "carbs": 41.68,
+      "fats": 23.91
+    },
+    "fiber_g": 15.44,
+    "vitamins_mg": {
+      "c": 32.78,
+      "a": 319.2,
+      "e": 2.22,
+      "k": 301.06,
+      "b3": 2.0,
+      "b6": 0.1,
+      "folate": 129.9,
+      "iron": 3.71,
+      "zinc": 1.0,
+      "calcium": 88.12,
+      "magnesium": 73.24
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 13.9,
+      "calories": 411.4,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Chicken Sausage Sheet Pan with Brussels & Sweet Potato",
+    "meal_id": "bc_28_alfresco_sausage_sheetpan",
+    "nutrient_density_score": 0.408,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 29.19,
+      "carbs": 51.62,
+      "fats": 25.9
+    },
+    "fiber_g": 8.39,
+    "vitamins_mg": {
+      "c": 110.48,
+      "a": 1359.7,
+      "d": 3.12,
+      "e": 2.25,
+      "k": 186.15,
+      "b1": 0.11,
+      "b2": 0.406,
+      "b3": 0.214,
+      "b6": 0.466,
+      "b12": 1.2,
+      "folate": 72.0,
+      "iron": 2.89,
+      "zinc": 0.888,
+      "calcium": 290.75,
+      "magnesium": 59.1
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 3,
+      "full_panel_coverage_pct": 42.2,
+      "calories": 547.71,
+      "hydration_fluid_g": 240.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Chicken Tikka Masala with Brown Rice",
+    "meal_id": "bc_29_maya_tikka_chicken",
+    "nutrient_density_score": 0.437,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 48.66,
+      "carbs": 31.73,
+      "fats": 18.84
+    },
+    "fiber_g": 3.14,
+    "vitamins_mg": {
+      "c": 8.43,
+      "a": 140.7,
+      "e": 0.61,
+      "k": 144.87,
+      "b1": 0.1,
+      "b2": 0.17,
+      "b3": 19.18,
+      "b6": 0.84,
+      "b12": 0.48,
+      "folate": 58.2,
+      "iron": 4.37,
+      "zinc": 1.4,
+      "calcium": 89.5,
+      "magnesium": 71.4
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 21.5,
+      "calories": 456.3,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Shrimp Pesto Whole Grain Spaghetti",
+    "meal_id": "bc_30_shrimp_pesto_pasta",
+    "nutrient_density_score": 0.515,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 38.04,
+      "carbs": 47.16,
+      "fats": 13.65
+    },
+    "fiber_g": 7.55,
+    "vitamins_mg": {
+      "c": 14.64,
+      "a": 37.8,
+      "k": 7.11,
+      "b3": 3.12,
+      "b12": 2.23,
+      "folate": 13.5,
+      "iron": 0.52,
+      "zinc": 1.67,
+      "calcium": 86.8,
+      "magnesium": 7.1
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 0.0,
+      "calories": 451.02,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Mediterranean Tuna Pasta Salad",
+    "meal_id": "bc_31_tuna_pasta_salad_dinner",
+    "nutrient_density_score": 0.432,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 27.85,
+      "carbs": 57.11,
+      "fats": 18.08
+    },
+    "fiber_g": 7.93,
+    "vitamins_mg": {
+      "c": 22.38,
+      "a": 37.8,
+      "e": 2.01,
+      "k": 27.84,
+      "b3": 12.14,
+      "b6": 0.18,
+      "b12": 1.37,
+      "folate": 15.15,
+      "iron": 5.76,
+      "calcium": 21.11,
+      "magnesium": 9.75
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 0.0,
+      "calories": 502.15,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Veggie & Edamame 'Fried' Brown Rice",
+    "meal_id": "bc_32_edamame_veggie_fried_rice",
+    "nutrient_density_score": 0.37,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 22.03,
+      "carbs": 41.87,
+      "fats": 15.75
+    },
+    "fiber_g": 12.81,
+    "vitamins_mg": {
+      "c": 6.12,
+      "a": 80.0,
+      "d": 1.0,
+      "e": 1.53,
+      "k": 4.36,
+      "b2": 0.23,
+      "b12": 0.45,
+      "folate": 23.5,
+      "iron": 3.45,
+      "zinc": 0.65,
+      "calcium": 15.73,
+      "magnesium": 7.2
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 6.6,
+      "calories": 396.12,
+      "hydration_fluid_g": 360.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "KIND Bar & Apple",
+    "meal_id": "bc_33_kind_bar_apple",
+    "nutrient_density_score": 0.313,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 6.55,
+      "carbs": 41.12,
+      "fats": 14.36
+    },
+    "fiber_g": 10.37,
+    "vitamins_mg": {
+      "c": 8.37,
+      "e": 0.36,
+      "k": 4.0,
+      "b1": 0.03,
+      "b2": 0.05,
+      "b3": 0.17,
+      "b6": 0.07,
+      "folate": 5.46,
+      "iron": 2.18,
+      "zinc": 0.07,
+      "calcium": 60.92,
+      "magnesium": 9.1
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 31.5,
+      "calories": 274.64,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Hummus Snack Plate",
+    "meal_id": "bc_34_hummus_carrots_triscuits",
+    "nutrient_density_score": 0.352,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 8.0,
+      "carbs": 36.25,
+      "fats": 16.52
+    },
+    "fiber_g": 9.5,
+    "vitamins_mg": {
+      "c": 4.72,
+      "a": 668.0,
+      "e": 0.56,
+      "k": 10.4,
+      "b1": 0.05,
+      "b2": 0.05,
+      "b3": 0.79,
+      "b6": 0.11,
+      "folate": 15.2,
+      "iron": 3.21,
+      "zinc": 0.19,
+      "calcium": 77.96,
+      "magnesium": 9.6
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 47.6,
+      "calories": 324.52,
+      "hydration_fluid_g": 0.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "String Cheese, Orange & Almonds",
+    "meal_id": "bc_35_string_cheese_orange_almonds",
+    "nutrient_density_score": 0.47,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 10.22,
+      "carbs": 21.52,
+      "fats": 11.63
+    },
+    "fiber_g": 4.83,
+    "vitamins_mg": {
+      "c": 82.6,
+      "e": 3.87,
+      "b1": 0.12,
+      "b2": 0.22,
+      "b3": 0.39,
+      "b6": 0.08,
+      "folate": 35.0,
+      "iron": 0.8,
+      "zinc": 0.54,
+      "calcium": 97.86,
+      "magnesium": 51.8
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 86.5,
+      "calories": 219.74,
+      "hydration_fluid_g": 0.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "siggi's Vanilla Skyr with Blueberries",
+    "meal_id": "bc_36_siggis_blueberry",
+    "nutrient_density_score": 0.442,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 16.64,
+      "carbs": 25.67,
+      "fats": 2.53
+    },
+    "fiber_g": 1.78,
+    "vitamins_mg": {
+      "c": 7.18,
+      "k": 14.28,
+      "calcium": 229.31
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 3,
+      "full_panel_coverage_pct": 0.0,
+      "calories": 192.18,
+      "hydration_fluid_g": 0.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "SkinnyPop & Dark Chocolate",
+    "meal_id": "bc_37_skinnypop_dark_chocolate",
+    "nutrient_density_score": 0.297,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 5.78,
+      "carbs": 21.33,
+      "fats": 18.66
+    },
+    "fiber_g": 5.77,
+    "vitamins_mg": {
+      "iron": 2.56,
+      "calcium": 16.6
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 0.0,
+      "calories": 269.08,
+      "hydration_fluid_g": 0.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Kefir Strawberry-Flax Smoothie",
+    "meal_id": "bc_38_lifeway_kefir_smoothie",
+    "nutrient_density_score": 0.333,
+    "quality_score": 0.92,
+    "macros_g": {
+      "protein": 13.03,
+      "carbs": 29.83,
+      "fats": 5.25
+    },
+    "fiber_g": 3.91,
+    "vitamins_mg": {
+      "c": 58.8,
+      "e": 0.3,
+      "k": 2.2,
+      "b1": 0.13,
+      "b2": 0.02,
+      "b3": 0.39,
+      "b6": 0.05,
+      "folate": 24.0,
+      "iron": 0.8,
+      "zinc": 0.44,
+      "calcium": 424.88,
+      "magnesium": 40.44
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 1,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 28.8,
+      "calories": 209.38,
+      "hydration_fluid_g": 240.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Premier Protein Shake & Almonds",
+    "meal_id": "bc_39_premier_shake_almonds",
+    "nutrient_density_score": 0.731,
+    "quality_score": 0.86,
+    "macros_g": {
+      "protein": 36.12,
+      "carbs": 9.83,
+      "fats": 13.66
+    },
+    "fiber_g": 5.76,
+    "vitamins_mg": {
+      "c": 48.44,
+      "d": 6.97,
+      "e": 5.38,
+      "k": 31.72,
+      "b2": 0.93,
+      "b3": 5.07,
+      "b6": 0.9,
+      "b12": 1.25,
+      "folate": 125.46,
+      "iron": 3.43,
+      "zinc": 3.62,
+      "calcium": 743.04,
+      "magnesium": 150.79
+    },
+    "anti_nutrients": 0.45,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "full_panel_coverage_pct": 100.0,
+      "calories": 288.87,
+      "hydration_fluid_g": 340.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Cottage Cheese & Veggie Pita Pocket",
+    "meal_id": "bc_40_cottage_cheese_pita",
+    "nutrient_density_score": 0.462,
+    "quality_score": 0.35,
+    "macros_g": {
+      "protein": 19.91,
+      "carbs": 37.2,
+      "fats": 6.05
+    },
+    "fiber_g": 5.79,
+    "vitamins_mg": {
+      "c": 7.57,
+      "a": 18.9,
+      "k": 11.76,
+      "folate": 6.75,
+      "calcium": 110.0,
+      "magnesium": 6.5
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 0.0,
+      "calories": 265.82,
+      "hydration_fluid_g": 0.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Whey Protein Post-Workout Shake with Banana",
+    "meal_id": "sup_01_whey_postworkout_shake",
+    "nutrient_density_score": 0.453,
+    "quality_score": 0.29,
+    "macros_g": {
+      "protein": 25.3,
+      "carbs": 30.9,
+      "fats": 1.85
+    },
+    "fiber_g": 4.06,
+    "vitamins_mg": {
+      "c": 10.27,
+      "e": 0.12,
+      "k": 0.59,
+      "b1": 0.04,
+      "b2": 0.09,
+      "b3": 0.78,
+      "b6": 0.47,
+      "folate": 23.6,
+      "iron": 1.05,
+      "zinc": 0.18,
+      "calcium": 175.92,
+      "magnesium": 39.86
+    },
+    "anti_nutrients": 0.45,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 21.4,
+      "calories": 235.04,
+      "hydration_fluid_g": 400.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Collagen Coffee with Greek Yogurt Berry Bowl",
+    "meal_id": "sup_02_collagen_coffee_yogurt",
+    "nutrient_density_score": 0.623,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 28.13,
+      "carbs": 16.84,
+      "fats": 0.92
+    },
+    "fiber_g": 1.78,
+    "vitamins_mg": {
+      "c": 7.18,
+      "a": 1.7,
+      "k": 14.52,
+      "b1": 0.03,
+      "b2": 0.66,
+      "b3": 0.46,
+      "b12": 1.27,
+      "folate": 4.8,
+      "iron": 0.3,
+      "zinc": 0.93,
+      "calcium": 191.8,
+      "magnesium": 25.9
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 82.8,
+      "calories": 184.92,
+      "hydration_fluid_g": 240.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Plant Protein & Greens Smoothie",
+    "meal_id": "sup_03_protein_greens_smoothie",
+    "nutrient_density_score": 0.463,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 22.92,
+      "carbs": 33.99,
+      "fats": 5.85
+    },
+    "fiber_g": 9.6,
+    "vitamins_mg": {
+      "c": 37.57,
+      "a": 140.7,
+      "e": 0.61,
+      "k": 184.85,
+      "b2": 0.03,
+      "b6": 0.22,
+      "folate": 58.2,
+      "iron": 9.96,
+      "calcium": 367.64,
+      "magnesium": 46.63
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 7.9,
+      "calories": 231.64,
+      "hydration_fluid_g": 240.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Electrolyte Drink with RXBAR & Almonds",
+    "meal_id": "sup_04_electrolyte_recovery_snack",
+    "nutrient_density_score": 0.262,
+    "quality_score": 0.35,
+    "macros_g": {
+      "protein": 14.96,
+      "carbs": 30.5,
+      "fats": 13.99
+    },
+    "fiber_g": 6.74,
+    "vitamins_mg": {
+      "e": 3.59,
+      "b2": 0.16,
+      "iron": 1.52,
+      "zinc": 0.44,
+      "calcium": 88.35,
+      "magnesium": 37.8
+    },
+    "anti_nutrients": 0.35,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "full_panel_coverage_pct": 3.3,
+      "calories": 291.91,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Creatine Lemon Water Pre-Training Snack",
+    "meal_id": "sup_05_creatine_lemon_water",
+    "nutrient_density_score": 0.2,
+    "quality_score": 0.62,
+    "macros_g": {
+      "protein": 4.25,
+      "carbs": 31.89,
+      "fats": 7.38
+    },
+    "fiber_g": 4.82,
+    "vitamins_mg": {
+      "c": 18.43,
+      "e": 3.59,
+      "b2": 0.16,
+      "b6": 0.43,
+      "iron": 0.52,
+      "zinc": 0.44,
+      "calcium": 42.46,
+      "magnesium": 69.66
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 2.3,
+      "calories": 190.88,
+      "hydration_fluid_g": 480.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Spirulina Berry Smoothie",
+    "meal_id": "sup_06_spirulina_berry_smoothie",
+    "nutrient_density_score": 0.282,
+    "quality_score": 0.92,
+    "macros_g": {
+      "protein": 5.69,
+      "carbs": 37.86,
+      "fats": 4.42
+    },
+    "fiber_g": 9.44,
+    "vitamins_mg": {
+      "c": 71.11,
+      "e": 0.3,
+      "k": 16.48,
+      "b1": 0.02,
+      "b2": 0.02,
+      "b3": 0.39,
+      "b6": 0.27,
+      "folate": 24.0,
+      "iron": 2.78,
+      "zinc": 0.69,
+      "calcium": 120.28,
+      "magnesium": 73.93
+    },
+    "anti_nutrients": 0.0,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 1,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 20.5,
+      "calories": 198.66,
+      "hydration_fluid_g": 240.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Muscle Milk RTD Shake & Apple",
+    "meal_id": "sup_07_muscle_milk_apple",
+    "nutrient_density_score": 0.504,
+    "quality_score": 0.86,
+    "macros_g": {
+      "protein": 24.45,
+      "carbs": 34.7,
+      "fats": 5.15
+    },
+    "fiber_g": 9.12,
+    "vitamins_mg": {
+      "c": 34.09,
+      "e": 0.36,
+      "k": 4.0,
+      "b1": 0.03,
+      "b2": 0.05,
+      "b3": 0.17,
+      "b6": 0.07,
+      "folate": 5.46,
+      "iron": 0.85,
+      "zinc": 0.07,
+      "calcium": 327.49,
+      "magnesium": 127.81
+    },
+    "anti_nutrients": 0.45,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "full_panel_coverage_pct": 30.5,
+      "calories": 264.79,
+      "hydration_fluid_g": 414.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Instant Ramen Lunch",
+    "meal_id": "upf_01_instant_ramen",
+    "nutrient_density_score": 0.258,
+    "quality_score": 0.2,
+    "macros_g": {
+      "protein": 9.89,
+      "carbs": 51.4,
+      "fats": 13.84
+    },
+    "fiber_g": 1.95,
+    "vitamins_mg": {
+      "iron": 2.85,
+      "calcium": 89.95,
+      "magnesium": 10.0
+    },
+    "anti_nutrients": 0.6,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "full_panel_coverage_pct": 0.0,
+      "calories": 375.7,
+      "hydration_fluid_g": 500.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Frozen Pepperoni Pizza & Cola Night",
+    "meal_id": "upf_02_frozen_pizza_cola",
+    "nutrient_density_score": 0.302,
+    "quality_score": 0.23,
+    "macros_g": {
+      "protein": 25.23,
+      "carbs": 108.75,
+      "fats": 31.05
+    },
+    "fiber_g": 3.94,
+    "vitamins_mg": {
+      "c": 2.22,
+      "iron": 5.25,
+      "calcium": 386.88
+    },
+    "anti_nutrients": 0.55,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "full_panel_coverage_pct": 0.0,
+      "calories": 800.44,
+      "hydration_fluid_g": 360.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Boxed Mac & Cheese with Hot Dogs",
+    "meal_id": "upf_03_mac_and_hot_dogs",
+    "nutrient_density_score": 0.303,
+    "quality_score": 0.26,
+    "macros_g": {
+      "protein": 16.66,
+      "carbs": 48.19,
+      "fats": 16.4
+    },
+    "fiber_g": 1.95,
+    "vitamins_mg": {
+      "iron": 3.22,
+      "calcium": 245.42,
+      "magnesium": 10.0
+    },
+    "anti_nutrients": 0.5,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "full_panel_coverage_pct": 0.0,
+      "calories": 409.7,
+      "hydration_fluid_g": 500.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Chicken Nuggets with Ketchup",
+    "meal_id": "upf_04_nuggets_ketchup",
+    "nutrient_density_score": 0.298,
+    "quality_score": 0.29,
+    "macros_g": {
+      "protein": 23.99,
+      "carbs": 35.91,
+      "fats": 30.0
+    },
+    "fiber_g": 0.0,
+    "vitamins_mg": {
+      "calcium": 50.0,
+      "magnesium": 10.0
+    },
+    "anti_nutrients": 0.45,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 0.0,
+      "calories": 500.24,
+      "hydration_fluid_g": 500.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Pop-Tarts & Chocolate Milk Breakfast",
+    "meal_id": "upf_05_poptarts_choc_milk",
+    "nutrient_density_score": 0.261,
+    "quality_score": 0.17,
+    "macros_g": {
+      "protein": 12.18,
+      "carbs": 95.53,
+      "fats": 12.56
+    },
+    "fiber_g": 2.96,
+    "vitamins_mg": {
+      "d": 2.41,
+      "iron": 0.72,
+      "calcium": 429.53
+    },
+    "anti_nutrients": 0.65,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "full_panel_coverage_pct": 0.0,
+      "calories": 542.37,
+      "hydration_fluid_g": 240.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Froot Loops with Whole Milk",
+    "meal_id": "upf_06_froot_loops_breakfast",
+    "nutrient_density_score": 0.294,
+    "quality_score": 0.29,
+    "macros_g": {
+      "protein": 9.9,
+      "carbs": 45.64,
+      "fats": 9.4
+    },
+    "fiber_g": 2.22,
+    "vitamins_mg": {
+      "c": 22.62,
+      "a": 110.4,
+      "d": 3.12,
+      "e": 0.24,
+      "k": 0.72,
+      "b1": 0.5,
+      "b2": 0.67,
+      "b3": 0.21,
+      "b6": 0.43,
+      "b12": 1.67,
+      "folate": 91.95,
+      "iron": 4.49,
+      "zinc": 0.89,
+      "calcium": 300.88,
+      "magnesium": 29.0
+    },
+    "anti_nutrients": 0.45,
+    "ascorbate_same_meal": true,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "full_panel_coverage_pct": 52.7,
+      "calories": 292.26,
+      "hydration_fluid_g": 490.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Bologna & Cheese Sandwich with Doritos",
+    "meal_id": "upf_07_bologna_sandwich_chips",
+    "nutrient_density_score": 0.287,
+    "quality_score": 0.15,
+    "macros_g": {
+      "protein": 14.49,
+      "carbs": 50.0,
+      "fats": 24.69
+    },
+    "fiber_g": 3.25,
+    "vitamins_mg": {
+      "c": 10.34,
+      "b1": 0.56,
+      "b2": 0.19,
+      "b3": 2.24,
+      "iron": 2.68,
+      "calcium": 466.07,
+      "magnesium": 10.0
+    },
+    "anti_nutrients": 0.7,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "full_panel_coverage_pct": 0.0,
+      "calories": 485.68,
+      "hydration_fluid_g": 500.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Gas-Station Refuel: Candy Bar & Sports Drink",
+    "meal_id": "upf_08_gas_station_refuel",
+    "nutrient_density_score": 0.2,
+    "quality_score": 0.15,
+    "macros_g": {
+      "protein": 2.0,
+      "carbs": 47.02,
+      "fats": 9.0
+    },
+    "fiber_g": 0.0,
+    "vitamins_mg": {
+      "iron": 0.72,
+      "calcium": 39.9
+    },
+    "anti_nutrients": 0.7,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "full_panel_coverage_pct": 0.0,
+      "calories": 288.67,
+      "hydration_fluid_g": 355.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Zebra Cakes & Chocolate Milk",
+    "meal_id": "upf_09_zebra_cakes_snack",
+    "nutrient_density_score": 0.231,
+    "quality_score": 0.23,
+    "macros_g": {
+      "protein": 10.12,
+      "carbs": 70.02,
+      "fats": 16.12
+    },
+    "fiber_g": 0.96,
+    "vitamins_mg": {
+      "d": 2.41,
+      "iron": 1.4,
+      "calcium": 439.57
+    },
+    "anti_nutrients": 0.55,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "full_panel_coverage_pct": 0.0,
+      "calories": 462.05,
+      "hydration_fluid_g": 240.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  },
+  {
+    "name": "Twinkies & Cola",
+    "meal_id": "upf_10_twinkies_cola",
+    "nutrient_density_score": 0.2,
+    "quality_score": 0.17,
+    "macros_g": {
+      "protein": 2.0,
+      "carbs": 84.89,
+      "fats": 16.0
+    },
+    "fiber_g": 0.0,
+    "vitamins_mg": {
+      "iron": 0.72,
+      "calcium": 40.18
+    },
+    "anti_nutrients": 0.65,
+    "ascorbate_same_meal": false,
+    "tannin_same_meal": false,
+    "rs_breakdown": {
+      "rs2": 0.3,
+      "rs3": 0.2
+    },
+    "meta": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "full_panel_coverage_pct": 0.0,
+      "calories": 459.84,
+      "hydration_fluid_g": 360.0,
+      "honesty": "OPEN",
+      "accuracy_doc": "meals-50/ACCURACY.md"
+    }
+  }
+]

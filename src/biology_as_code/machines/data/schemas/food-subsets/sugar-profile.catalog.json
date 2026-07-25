@@ -1,0 +1,94 @@
+{
+  "schema": "kibo.SugarProfile.catalog/v1",
+  "version": "1.0.0",
+  "honesty": "OPEN",
+  "title": "Sugar / sweetener type taxonomy",
+  "principle": "Separate (1) measured totals, (2) sugar_kind / role, (3) industrial sweetener flags. Glycemic velocity uses carbs+matrix; HP-1 uses sugar energy share — neither needs full molecular ID, but kinds improve coaching honesty.",
+  "sugar_kind": [
+    {
+      "id": "intrinsic",
+      "label": "Intrinsic (in intact fruit/veg/dairy matrix)",
+      "examples": ["apple", "berries", "lactose in plain yogurt"],
+      "note": "Same grams sugar, different matrix story than soda"
+    },
+    {
+      "id": "added_sucrose_class",
+      "label": "Added sugar (sucrose / table sugar class)",
+      "examples": ["sugar", "cane sugar", "brown sugar"]
+    },
+    {
+      "id": "hfcs_corn_syrup",
+      "label": "HFCS / corn syrup solids",
+      "examples": ["high fructose corn syrup", "corn syrup"],
+      "avoid_flag_ids": ["corn_syrup"]
+    },
+    {
+      "id": "other_syrup",
+      "label": "Other syrups (maple, rice, agave, malt…)",
+      "examples": ["maple syrup", "agave", "brown rice syrup"]
+    },
+    {
+      "id": "honey",
+      "label": "Honey"
+    },
+    {
+      "id": "lactose",
+      "label": "Lactose (dairy)",
+      "examples": ["milk", "plain yogurt"]
+    },
+    {
+      "id": "fruit_juice_sugar",
+      "label": "Fruit juice / concentrate sugars",
+      "examples": ["orange juice", "fruit juice concentrate"],
+      "note": "Liquid sugar — matrix weak vs whole fruit"
+    },
+    {
+      "id": "maltodextrin_dextrin",
+      "label": "Maltodextrin / dextrin (industrial CHO)",
+      "examples": ["maltodextrin"]
+    },
+    {
+      "id": "artificial_sweetener",
+      "label": "Non-nutritive artificial sweetener",
+      "examples": ["aspartame", "sucralose", "acesulfame", "saccharin"],
+      "avoid_flag_ids": ["artificial_sweetener"]
+    },
+    {
+      "id": "sugar_alcohol",
+      "label": "Sugar alcohol / polyol",
+      "examples": ["erythritol", "xylitol", "sorbitol", "maltitol"]
+    },
+    {
+      "id": "stevia_monk_class",
+      "label": "Stevia / monk fruit class non-nutritive"
+    },
+    {
+      "id": "unknown_sugar",
+      "label": "Unknown / unspecified sweet"
+    }
+  ],
+  "quantity_fields": {
+    "total_sugars_g": "sugars_g on portion or per_100g",
+    "added_sugars_g": "added_sugar_g when declared",
+    "fructose_g": "optional; PacketLoad.macros_g.fructose when known",
+    "carb_g": "total available CHO context"
+  },
+  "meal_level_rollup": {
+    "sugar_energy_share": "(sugars_g * 4) / calories",
+    "hp1_hook": "HP-1 fires when fat_energy_share > 0.20 AND sugar_energy_share > 0.20 (ontology)",
+    "glycemic_hook": "ScoreAxes.glycemic_velocity uses carb + matrix — not sugar species alone"
+  },
+  "name_and_flag_rules": [
+    { "match": "high fructose corn syrup|hfcs", "sugar_kind": "hfcs_corn_syrup", "confidence": "high" },
+    { "match": "corn syrup", "sugar_kind": "hfcs_corn_syrup", "confidence": "medium" },
+    { "match": "aspartame|sucralose|acesulfame|saccharin", "sugar_kind": "artificial_sweetener", "confidence": "high" },
+    { "match": "stevia|monk fruit|luo han", "sugar_kind": "stevia_monk_class", "confidence": "high" },
+    { "match": "erythritol|xylitol|sorbitol|maltitol|polyol", "sugar_kind": "sugar_alcohol", "confidence": "high" },
+    { "match": "maltodextrin", "sugar_kind": "maltodextrin_dextrin", "confidence": "high" },
+    { "match": "honey", "sugar_kind": "honey", "confidence": "high" },
+    { "match": "maple syrup|agave|rice syrup", "sugar_kind": "other_syrup", "confidence": "high" },
+    { "match": "orange juice|apple juice|juice concentrate|fruit juice", "sugar_kind": "fruit_juice_sugar", "confidence": "medium" },
+    { "match": "milk|yogurt|kefir|lactose", "sugar_kind": "lactose", "confidence": "low" },
+    { "match": "berry|berries|apple|banana|fruit, raw|grapes", "sugar_kind": "intrinsic", "confidence": "medium" }
+  ]
+}

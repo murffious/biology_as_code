@@ -1,0 +1,119 @@
+{
+  "schema": "kibo.DeliveryModality.catalog/v1",
+  "version": "1.0.0",
+  "honesty": "OPEN",
+  "title": "Delivery modality (how it enters the body)",
+  "principle": "One small shared enum for medications, supplements, and exogenous hormones. Describes route only — not dose, not efficacy, not PK curves. Prefer coarse classes over brand devices.",
+  "anti_patterns": [
+    "Do not build a full PK/PD simulator per route",
+    "Do not equate oral vitamin D with injectable as the same teaching effect",
+    "Do not treat IV as 'stronger nutrition' automatically",
+    "Do not invent infusion rates or implant release schedules"
+  ],
+  "modalities": [
+    {
+      "id": "oral",
+      "label": "Oral (by mouth)",
+      "channel": "gi",
+      "examples": ["tablets", "capsules", "liquids", "powders mixed to drink"],
+      "gi_first_pass": true,
+      "packet_hint": "May co-travel with food packet; first-pass / matrix relevant"
+    },
+    {
+      "id": "sublingual",
+      "label": "Sublingual / buccal",
+      "channel": "mucosal",
+      "examples": ["under tongue", "cheek"],
+      "gi_first_pass": false
+    },
+    {
+      "id": "subcutaneous",
+      "label": "Subcutaneous injection",
+      "channel": "parenteral",
+      "examples": ["GLP-1 pens", "insulin SQ", "B12 shots under skin"],
+      "gi_first_pass": false,
+      "note": "Common for GLP-1 RAs"
+    },
+    {
+      "id": "intramuscular",
+      "label": "Intramuscular injection",
+      "channel": "parenteral",
+      "examples": ["IM B12", "some hormones"],
+      "gi_first_pass": false
+    },
+    {
+      "id": "intravenous",
+      "label": "Intravenous (IV)",
+      "channel": "parenteral",
+      "examples": ["clinic IV vitamin drip", "hospital IV"],
+      "gi_first_pass": false,
+      "note": "Bypasses gut entirely — not a food-packet absorption story"
+    },
+    {
+      "id": "patch_transdermal",
+      "label": "Patch / transdermal",
+      "channel": "skin",
+      "examples": ["estradiol patch", "nicotine patch", "some testosterone gels as topical"],
+      "gi_first_pass": false
+    },
+    {
+      "id": "topical",
+      "label": "Topical (cream/gel, not systemic patch product)",
+      "channel": "skin",
+      "examples": ["creams", "gels"],
+      "gi_first_pass": false
+    },
+    {
+      "id": "pellet_implant",
+      "label": "Pellet / subcutaneous implant",
+      "channel": "parenteral",
+      "examples": ["hormone pellets"],
+      "gi_first_pass": false,
+      "note": "Long-acting depot — app only stores that it is onboard, not release kinetics"
+    },
+    {
+      "id": "nasal",
+      "label": "Nasal",
+      "channel": "mucosal",
+      "examples": ["nasal sprays"],
+      "gi_first_pass": false
+    },
+    {
+      "id": "inhaled",
+      "label": "Inhaled / pulmonary",
+      "channel": "respiratory",
+      "examples": ["inhalers"],
+      "gi_first_pass": false
+    },
+    {
+      "id": "rectal",
+      "label": "Rectal",
+      "channel": "gi_partial",
+      "examples": ["suppositories"],
+      "gi_first_pass": "partial"
+    },
+    {
+      "id": "other",
+      "label": "Other / unspecified device",
+      "channel": "unknown",
+      "gi_first_pass": null
+    },
+    {
+      "id": "unknown",
+      "label": "Unknown route",
+      "channel": "unknown",
+      "gi_first_pass": null
+    }
+  ],
+  "domains": {
+    "description": "Same modalities apply across domains",
+    "medication": "Rx / OTC drugs (glp1_ra, metformin, …)",
+    "supplement": "Dietary supplements, vitamins, herbals, sport nutraceuticals",
+    "hormone": "Exogenous hormone therapy (HRT, TRT, thyroid Rx as med class, etc.) — OPEN self-report"
+  },
+  "process_hints": {
+    "gi_channel": "May interact with meal matrix, bile, first-pass (L2 packet stories)",
+    "parenteral_or_skin": "Bypasses oral absorption laws for that agent — still coach food quality separately",
+    "never": "Do not auto-score 'IV vitamins absorb better than food' as a Court claim"
+  }
+}

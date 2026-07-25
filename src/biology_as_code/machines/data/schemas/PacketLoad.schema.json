@@ -1,0 +1,203 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nutricollective.local/machines/schemas/PacketLoad.schema.json",
+  "title": "PacketLoad",
+  "description": "L2 plate/packet — ingredients, industrial processing, cooking, residue flags, derived matrix. NutriNest load. Not host; not chew/order (see IngestionEvent).",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "kibo.PacketLoad/v1" },
+    "id": { "type": "string", "description": "Stable packet / meal log id" },
+    "name": { "type": "string" },
+    "intake": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Binary presence channels for this event (0|1).",
+      "properties": {
+        "food": { "type": "integer", "enum": [0, 1] },
+        "hydration": { "type": "integer", "enum": [0, 1] },
+        "supplement": { "type": "integer", "enum": [0, 1] }
+      },
+      "required": ["food", "hydration", "supplement"]
+    },
+    "items": {
+      "type": "array",
+      "description": "Ingredient / component lines on the plate (unordered here; order lives in IngestionEvent.sequence).",
+      "items": { "$ref": "#/$defs/IngredientItem" }
+    },
+    "macros_g": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "protein": { "type": "number", "minimum": 0 },
+        "fat": { "type": "number", "minimum": 0 },
+        "carb": { "type": "number", "minimum": 0 },
+        "fiber": { "type": "number", "minimum": 0 },
+        "fructose": { "type": "number", "minimum": 0 }
+      }
+    },
+    "cargo": {
+      "type": "array",
+      "description": "Named cargo tags for claim engine (e.g. beta_carotene, nonhaem_iron).",
+      "items": { "type": "string" }
+    },
+    "partners": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Same-meal partners (claim seats), not full chemistry.",
+      "properties": {
+        "lipid_g": { "type": "number", "minimum": 0 },
+        "ascorbate": { "type": "boolean" },
+        "tannin": { "type": "boolean" }
+      }
+    },
+    "derived": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Computed from items when possible; FLOW unless locked.",
+      "properties": {
+        "nova_max": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4,
+          "description": "Worst NOVA class among items (Monteiro methodology, our derivation)."
+        },
+        "nova_modal": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4,
+          "description": "Mass-weighted or count-modal class if known."
+        },
+        "processing_combined": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "0 = minimal industrial+cook stress, 1 = max UPF+harsh cook. FLOW teaching aggregate."
+        },
+        "matrix_integrity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "0 = liquid/refined, 1 = intact whole. Maps meal.matrixIntegrity."
+        },
+        "food_quality": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Whole-food pattern vs UPF friction. Maps meal.foodQuality / E-3."
+        },
+        "residue_burden": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Aggregate residue/proxy flag intensity — OPEN when unknown; never ppm as LAW."
+        },
+        "honesty": {
+          "type": "string",
+          "enum": ["FLOW", "UNITS", "OPEN"],
+          "default": "FLOW"
+        }
+      }
+    }
+  },
+  "required": ["intake"],
+  "$defs": {
+    "IngredientItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name"],
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "amount_g": { "type": "number", "minimum": 0 },
+        "form": {
+          "type": "string",
+          "enum": [
+            "raw_whole",
+            "cooked",
+            "juiced",
+            "flour",
+            "oil",
+            "puree",
+            "ultra_processed",
+            "capsule",
+            "liquid",
+            "unknown"
+          ]
+        },
+        "nova_class": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4,
+          "description": "NOVA 1–4 if known; omit if unknown (OPEN)."
+        },
+        "industrial_processing": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Factory refinement intensity independent of home cooking."
+        },
+        "cooking_methods": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "raw",
+              "boil",
+              "steam",
+              "bake",
+              "roast",
+              "grill",
+              "fry",
+              "air_fry",
+              "microwave",
+              "ferment",
+              "smoke",
+              "pressure",
+              "sous_vide",
+              "unknown"
+            ]
+          }
+        },
+        "residue_flags": {
+          "type": "array",
+          "description": "Presence flags only — not quantified ppm. Honesty OPEN unless sourced.",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind"],
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "pesticide_proxy",
+                  "herbicide_proxy",
+                  "additive",
+                  "heavy_metal_proxy",
+                  "unknown_contaminant"
+                ]
+              },
+              "label": { "type": "string" },
+              "intensity": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "Optional soft 0–1; default presence=1 when set without intensity."
+              },
+              "honesty": {
+                "type": "string",
+                "enum": ["FLOW", "OPEN", "UNITS"],
+                "default": "OPEN"
+              }
+            }
+          }
+        },
+        "additives": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Additive ids/names if known (E-numbers etc.)."
+        }
+      }
+    }
+  }
+}

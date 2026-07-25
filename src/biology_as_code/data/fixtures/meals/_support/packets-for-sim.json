@@ -1,0 +1,6563 @@
+[
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "raw_01_chicken_quinoa_broccoli_bowl",
+    "name": "Grilled Chicken, Quinoa & Broccoli Bowl",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "FOOD#food_chicken_breast_grilled",
+        "name": "Chicken breast, grilled, skinless",
+        "amount_g": 140.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_quinoa_cooked",
+        "name": "Quinoa, cooked",
+        "amount_g": 140.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_broccoli_raw",
+        "name": "Broccoli, raw",
+        "amount_g": 90.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_olive_oil_evoo",
+        "name": "Olive oil, extra virgin",
+        "amount_g": 14.0,
+        "form": "oil",
+        "nova_class": 2,
+        "industrial_processing": 0.3333333333333333,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_lemon",
+        "name": "Lemon, raw",
+        "amount_g": 15.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#0052000328660",
+        "name": "Gatorade Thirst Quencher",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 52.27,
+      "fat": 22.1,
+      "carb": 58.82,
+      "fiber": 6.68
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 30.5,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "raw_02_salmon_sweet_potato_asparagus",
+    "name": "Baked Salmon with Sweet Potato & Asparagus",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "FOOD#food_salmon_atlantic_baked",
+        "name": "Salmon, Atlantic, baked",
+        "amount_g": 150.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_sweet_potato_baked",
+        "name": "Sweet potato, baked, with skin",
+        "amount_g": 150.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_asparagus_steamed",
+        "name": "Asparagus, steamed",
+        "amount_g": 90.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_olive_oil_evoo",
+        "name": "Olive oil, extra virgin",
+        "amount_g": 7.0,
+        "form": "oil",
+        "nova_class": 2,
+        "industrial_processing": 0.3333333333333333,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_lemon",
+        "name": "Lemon, raw",
+        "amount_g": 15.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#0021136010541",
+        "name": "Topo Chico Agua Mineral",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 38.48,
+      "fat": 26.06,
+      "carb": 36.14,
+      "fiber": 7.17
+    },
+    "derived": {
+      "nova_max": 2,
+      "nova_modal": 1,
+      "processing_combined": 0.333,
+      "matrix_integrity": 0.717,
+      "food_quality": 0.717,
+      "full_panel_coverage_pct": 19.6,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "raw_03_spinach_feta_scramble",
+    "name": "Spinach & Feta Egg Scramble with Avocado",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "FOOD#food_egg_whole_large",
+        "name": "Egg, whole, large",
+        "amount_g": 150.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_spinach_raw",
+        "name": "Spinach, raw",
+        "amount_g": 60.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_feta_cheese",
+        "name": "Feta cheese",
+        "amount_g": 28.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_tomato_raw",
+        "name": "Tomato, red, ripe, raw",
+        "amount_g": 90.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_avocado_raw",
+        "name": "Avocado, raw",
+        "amount_g": 68.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_olive_oil_evoo",
+        "name": "Olive oil, extra virgin",
+        "amount_g": 7.0,
+        "form": "oil",
+        "nova_class": 2,
+        "industrial_processing": 0.3333333333333333,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#171265",
+        "name": "Milk, whole, 3.25% milkfat",
+        "amount_g": 240.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      }
+    ],
+    "macros_g": {
+      "protein": 34.43,
+      "fat": 45.51,
+      "carb": 25.2,
+      "fiber": 6.96
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 70.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "raw_04_overnight_oats_berries_chia",
+    "name": "Overnight Oats with Berries, Chia & Almond Butter",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "FOOD#food_oats_rolled_dry",
+        "name": "Oats, rolled, dry",
+        "amount_g": 50.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_almond_milk_unsweet",
+        "name": "Almond milk, unsweetened",
+        "amount_g": 240.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#food_chia_seeds",
+        "name": "Chia seeds, dried",
+        "amount_g": 12.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_blueberries_raw",
+        "name": "Blueberries, raw",
+        "amount_g": 74.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#food_raspberries_raw",
+        "name": "Raspberries, raw",
+        "amount_g": 62.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#food_almond_butter",
+        "name": "Almond butter, no salt added",
+        "amount_g": 16.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_cinnamon_ground",
+        "name": "Cinnamon, ground",
+        "amount_g": 1.3,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      }
+    ],
+    "macros_g": {
+      "protein": 16.54,
+      "fat": 20.3,
+      "carb": 61.77,
+      "fiber": 18.3
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 14.5,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "raw_05_greek_yogurt_berry_bowl",
+    "name": "Greek Yogurt Berry Bowl with Walnuts & Flax",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "FOOD#food_greek_yogurt_plain_nonfat",
+        "name": "Greek yogurt, plain, nonfat",
+        "amount_g": 200.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_blueberries_raw",
+        "name": "Blueberries, raw",
+        "amount_g": 74.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#167762",
+        "name": "Strawberries, raw",
+        "amount_g": 75.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#food_walnuts_raw",
+        "name": "Walnuts, raw",
+        "amount_g": 14.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_flaxseed_ground",
+        "name": "Flaxseed, ground",
+        "amount_g": 7.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_almond_milk_unsweet",
+        "name": "Almond milk, unsweetened",
+        "amount_g": 240.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      }
+    ],
+    "macros_g": {
+      "protein": 26.3,
+      "fat": 16.96,
+      "carb": 29.03,
+      "fiber": 6.85
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 45.1,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "raw_06_lentil_kale_power_salad",
+    "name": "Lentil & Kale Power Salad",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "FOOD#food_lentils_cooked",
+        "name": "Lentils, cooked",
+        "amount_g": 150.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_kale_raw",
+        "name": "Kale, raw",
+        "amount_g": 50.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_cucumber_raw",
+        "name": "Cucumber, with peel, raw",
+        "amount_g": 75.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_tomato_raw",
+        "name": "Tomato, red, ripe, raw",
+        "amount_g": 90.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_feta_cheese",
+        "name": "Feta cheese",
+        "amount_g": 28.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_olive_oil_evoo",
+        "name": "Olive oil, extra virgin",
+        "amount_g": 14.0,
+        "form": "oil",
+        "nova_class": 2,
+        "industrial_processing": 0.3333333333333333,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_lemon",
+        "name": "Lemon, raw",
+        "amount_g": 15.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00851373005082",
+        "name": "Organic electrolyte drink",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 20.39,
+      "fat": 21.6,
+      "carb": 43.61,
+      "fiber": 15.78
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 25.7,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "raw_07_black_bean_rice_bowl",
+    "name": "Black Bean & Brown Rice Bowl with Avocado",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "FOOD#food_black_beans_cooked",
+        "name": "Black beans, cooked",
+        "amount_g": 130.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_brown_rice_cooked",
+        "name": "Brown rice, long-grain, cooked",
+        "amount_g": 130.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_bell_pepper_red_raw",
+        "name": "Bell pepper, red, raw",
+        "amount_g": 75.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#food_tomato_raw",
+        "name": "Tomato, red, ripe, raw",
+        "amount_g": 90.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_avocado_raw",
+        "name": "Avocado, raw",
+        "amount_g": 68.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_lemon",
+        "name": "Lemon, raw",
+        "amount_g": 15.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#0052000328660",
+        "name": "Gatorade Thirst Quencher",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 18.2,
+      "fat": 12.32,
+      "carb": 100.93,
+      "fiber": 21.03
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 15.1,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "raw_08_tofu_veggie_stirfry",
+    "name": "Tofu Veggie Stir-Fry with Brown Rice",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "FOOD#food_tofu_firm",
+        "name": "Tofu, firm",
+        "amount_g": 150.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_broccoli_raw",
+        "name": "Broccoli, raw",
+        "amount_g": 90.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_bell_pepper_red_raw",
+        "name": "Bell pepper, red, raw",
+        "amount_g": 75.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#food_garlic_raw",
+        "name": "Garlic, raw",
+        "amount_g": 6.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_ginger_root",
+        "name": "Ginger root, fresh",
+        "amount_g": 5.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_tamari",
+        "name": "Tamari, gluten-free soy sauce",
+        "amount_g": 18.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_brown_rice_cooked",
+        "name": "Brown rice, long-grain, cooked",
+        "amount_g": 130.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_olive_oil_evoo",
+        "name": "Olive oil, extra virgin",
+        "amount_g": 14.0,
+        "form": "oil",
+        "nova_class": 2,
+        "industrial_processing": 0.3333333333333333,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00851373005082",
+        "name": "Organic electrolyte drink",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 35.16,
+      "fat": 28.95,
+      "carb": 54.33,
+      "fiber": 9.68
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 3,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 26.1,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "raw_09_shrimp_quinoa_med_bowl",
+    "name": "Shrimp & Quinoa Mediterranean Bowl",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "FOOD#food_shrimp_cooked",
+        "name": "Shrimp, cooked",
+        "amount_g": 120.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_quinoa_cooked",
+        "name": "Quinoa, cooked",
+        "amount_g": 140.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_cucumber_raw",
+        "name": "Cucumber, with peel, raw",
+        "amount_g": 75.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_tomato_raw",
+        "name": "Tomato, red, ripe, raw",
+        "amount_g": 90.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_feta_cheese",
+        "name": "Feta cheese",
+        "amount_g": 28.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_olive_oil_evoo",
+        "name": "Olive oil, extra virgin",
+        "amount_g": 14.0,
+        "form": "oil",
+        "nova_class": 2,
+        "industrial_processing": 0.3333333333333333,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_lemon",
+        "name": "Lemon, raw",
+        "amount_g": 15.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#174158",
+        "name": "Water, bottled, plain",
+        "amount_g": 360.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 40.39,
+      "fat": 23.31,
+      "carb": 38.83,
+      "fiber": 5.8
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 0.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "raw_10_turkey_sweet_potato_skillet",
+    "name": "Ground Turkey & Sweet Potato Skillet",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "FOOD#food_ground_turkey_93_cooked",
+        "name": "Ground turkey, 93% lean, cooked",
+        "amount_g": 140.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_sweet_potato_baked",
+        "name": "Sweet potato, baked, with skin",
+        "amount_g": 150.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_spinach_raw",
+        "name": "Spinach, raw",
+        "amount_g": 60.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_garlic_raw",
+        "name": "Garlic, raw",
+        "amount_g": 6.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_olive_oil_evoo",
+        "name": "Olive oil, extra virgin",
+        "amount_g": 14.0,
+        "form": "oil",
+        "nova_class": 2,
+        "industrial_processing": 0.3333333333333333,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#0052000328660",
+        "name": "Gatorade Thirst Quencher",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 43.46,
+      "fat": 28.06,
+      "carb": 56.83,
+      "fiber": 6.4
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 27.6,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_01_chobani_parfait",
+    "name": "Chobani Greek Yogurt Parfait with Granola & Blueberries",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00894700010076",
+        "name": "Non-Fat Greek Yogurt",
+        "amount_g": 170.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00855140002366",
+        "name": "Ancient Grain Granola",
+        "amount_g": 30.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_blueberries_raw",
+        "name": "Blueberries, raw",
+        "amount_g": 74.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#174158",
+        "name": "Water, bottled, plain",
+        "amount_g": 360.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 20.02,
+      "fat": 6.24,
+      "carb": 36.96,
+      "fiber": 3.79
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 0.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_02_quaker_pb_banana_oatmeal",
+    "name": "Quaker Oatmeal with Peanut Butter & Banana",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00030000562314",
+        "name": "Old Fashioned Oats",
+        "amount_g": 40.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00051500255247",
+        "name": "Natural Creamy Peanut Butter",
+        "amount_g": 32.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_banana_raw",
+        "name": "Banana, raw",
+        "amount_g": 118.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_cinnamon_ground",
+        "name": "Cinnamon, ground",
+        "amount_g": 1.3,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#171890",
+        "name": "Coffee, brewed, black",
+        "amount_g": 240.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 13.37,
+      "fat": 18.92,
+      "carb": 62.76,
+      "fiber": 10.67
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 55.6,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_03_ezekiel_avocado_egg_toast",
+    "name": "Ezekiel Toast with Avocado & Fried Egg",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00073472001202",
+        "name": "Ezekiel 4:9 sprouted grain bread",
+        "amount_g": 68.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_avocado_raw",
+        "name": "Avocado, raw",
+        "amount_g": 68.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_egg_whole_large",
+        "name": "Egg, whole, large",
+        "amount_g": 50.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_olive_oil_evoo",
+        "name": "Olive oil, extra virgin",
+        "amount_g": 5.0,
+        "form": "oil",
+        "nova_class": 2,
+        "industrial_processing": 0.3333333333333333,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#3502110009449",
+        "name": "Tropicana orange juice",
+        "amount_g": 240.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 19.34,
+      "fat": 20.72,
+      "carb": 57.51,
+      "fiber": 11.02
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 83.1,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_04_kodiak_strawberry_pancakes",
+    "name": "Kodiak Power Cakes with Strawberries",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00705599016219",
+        "name": "Power Cakes Flapjack & Waffle Mix",
+        "amount_g": 53.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_egg_whole_large",
+        "name": "Egg, whole, large",
+        "amount_g": 50.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#167762",
+        "name": "Strawberries, raw",
+        "amount_g": 100.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#food_almond_butter",
+        "name": "Almond butter, no salt added",
+        "amount_g": 16.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#171265",
+        "name": "Milk, whole, 3.25% milkfat",
+        "amount_g": 240.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      }
+    ],
+    "macros_g": {
+      "protein": 30.64,
+      "fat": 23.95,
+      "carb": 53.69,
+      "fiber": 7.86
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 88.5,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_05_fage_raspberry_bowl",
+    "name": "FAGE Total 0% Bowl with Raspberries & Walnuts",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00689544083078",
+        "name": "Fage Total 0%",
+        "amount_g": 170.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_raspberries_raw",
+        "name": "Raspberries, raw",
+        "amount_g": 92.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#food_walnuts_raw",
+        "name": "Walnuts, raw",
+        "amount_g": 14.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_cinnamon_ground",
+        "name": "Cinnamon, ground",
+        "amount_g": 1.3,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_almond_milk_unsweet",
+        "name": "Almond milk, unsweetened",
+        "amount_g": 240.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      }
+    ],
+    "macros_g": {
+      "protein": 20.7,
+      "fat": 13.37,
+      "carb": 21.59,
+      "fiber": 8.33
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 0.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_06_cheerios_banana_milk",
+    "name": "Cheerios with Whole Milk & Banana",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00016000476080",
+        "name": "Cheerios",
+        "amount_g": 39.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#171265",
+        "name": "Milk, whole, 3.25% milkfat",
+        "amount_g": 240.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#food_banana_raw",
+        "name": "Banana, raw",
+        "amount_g": 118.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 13.15,
+      "fat": 11.09,
+      "carb": 66.33,
+      "fiber": 7.24
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 70.3,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_07_silk_berry_protein_smoothie",
+    "name": "Almond Milk Berry Protein Smoothie",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00025293002494",
+        "name": "Unsweetened almondmilk",
+        "amount_g": 240.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00851770007481",
+        "name": "Plant protein powder",
+        "amount_g": 46.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00021908477978",
+        "name": "Organic cherry berry blend",
+        "amount_g": 140.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_banana_raw",
+        "name": "Banana, raw",
+        "amount_g": 59.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_flaxseed_ground",
+        "name": "Flaxseed, ground",
+        "amount_g": 7.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 28.33,
+      "fat": 7.91,
+      "carb": 47.54,
+      "fiber": 7.32
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 0.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_08_good_culture_strawberry_bowl",
+    "name": "Good Culture Cottage Cheese Bowl with Strawberries",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00859977005026",
+        "name": "Organic Cottage Cheese",
+        "amount_g": 150.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#167762",
+        "name": "Strawberries, raw",
+        "amount_g": 100.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#food_almonds_raw",
+        "name": "Almonds, raw",
+        "amount_g": 14.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_chia_seeds",
+        "name": "Chia seeds, dried",
+        "amount_g": 12.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#174158",
+        "name": "Water, bottled, plain",
+        "amount_g": 360.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 23.64,
+      "fat": 16.98,
+      "carb": 20.77,
+      "fiber": 7.88
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 17.9,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_09_rxbar_banana_almonds",
+    "name": "On-the-Go: RXBAR, Banana & Almonds",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00859162007248",
+        "name": "Protein bar",
+        "amount_g": 52.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_banana_raw",
+        "name": "Banana, raw",
+        "amount_g": 118.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_almonds_raw",
+        "name": "Almonds, raw",
+        "amount_g": 28.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#171890",
+        "name": "Coffee, brewed, black",
+        "amount_g": 240.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 19.45,
+      "fat": 21.37,
+      "carb": 57.98,
+      "fiber": 11.56
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 61.2,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_10_daves_ab_banana_toast",
+    "name": "Dave's Killer Bread with Almond Butter & Banana",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00013764027053",
+        "name": "21 whole Grains and Seeds",
+        "amount_g": 84.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00840379100235",
+        "name": "Classic Almond Butter Jars",
+        "amount_g": 32.0,
+        "form": "cooked",
+        "nova_class": 2,
+        "industrial_processing": 0.3333333333333333,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_banana_raw",
+        "name": "Banana, raw",
+        "amount_g": 118.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_cinnamon_ground",
+        "name": "Cinnamon, ground",
+        "amount_g": 1.3,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "BARCODE#3502110009449",
+        "name": "Tropicana orange juice",
+        "amount_g": 240.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 18.55,
+      "fat": 21.82,
+      "carb": 92.89,
+      "fiber": 15.77
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 68.2,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_11_starkist_tuna_sandwich",
+    "name": "Tuna Salad Sandwich on Dave's Killer Bread",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00080000516848",
+        "name": "Chunk Light Tuna In Water",
+        "amount_g": 120.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00048001354722",
+        "name": "Light mayonnaise",
+        "amount_g": 15.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00013764027053",
+        "name": "21 whole Grains and Seeds",
+        "amount_g": 84.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_tomato_raw",
+        "name": "Tomato, red, ripe, raw",
+        "amount_g": 45.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_spinach_raw",
+        "name": "Spinach, raw",
+        "amount_g": 15.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#mcai-lemon-water",
+        "name": "Lemon Water",
+        "amount_g": 360.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 30.79,
+      "fat": 8.13,
+      "carb": 42.26,
+      "fiber": 9.39
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 15.5,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_12_goya_chickpea_greek_salad",
+    "name": "Chickpea Greek Salad",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00041331024198",
+        "name": "Chick peas",
+        "amount_g": 130.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_cucumber_raw",
+        "name": "Cucumber, with peel, raw",
+        "amount_g": 75.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_tomato_raw",
+        "name": "Tomato, red, ripe, raw",
+        "amount_g": 90.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_feta_cheese",
+        "name": "Feta cheese",
+        "amount_g": 28.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_spinach_raw",
+        "name": "Spinach, raw",
+        "amount_g": 30.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_olive_oil_evoo",
+        "name": "Olive oil, extra virgin",
+        "amount_g": 14.0,
+        "form": "oil",
+        "nova_class": 2,
+        "industrial_processing": 0.3333333333333333,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_lemon",
+        "name": "Lemon, raw",
+        "amount_g": 15.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00851373005082",
+        "name": "Organic electrolyte drink",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 11.53,
+      "fat": 22.13,
+      "carb": 29.8,
+      "fiber": 8.61
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 4.1,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_13_bushs_burrito_bowl",
+    "name": "Black Bean Burrito Bowl with Salsa & Avocado",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00039400108818",
+        "name": "Black beans",
+        "amount_g": 130.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00054800031771",
+        "name": "Whole grain brown rice",
+        "amount_g": 140.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00041565341641",
+        "name": "Chunky Salsa - Medium",
+        "amount_g": 64.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_avocado_raw",
+        "name": "Avocado, raw",
+        "amount_g": 68.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_spinach_raw",
+        "name": "Spinach, raw",
+        "amount_g": 30.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#0052000328660",
+        "name": "Gatorade Thirst Quencher",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 11.47,
+      "fat": 11.77,
+      "carb": 71.06,
+      "fiber": 11.77
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 3,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 3.8,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_14_sabra_veggie_wrap",
+    "name": "Hummus Veggie Wrap",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00040822012461",
+        "name": "Classic Hummus",
+        "amount_g": 60.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00073731071175",
+        "name": "Whole Wheat Original Flour Tortillas",
+        "amount_g": 45.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#food_spinach_raw",
+        "name": "Spinach, raw",
+        "amount_g": 30.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_bell_pepper_red_raw",
+        "name": "Bell pepper, red, raw",
+        "amount_g": 75.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#food_cucumber_raw",
+        "name": "Cucumber, with peel, raw",
+        "amount_g": 75.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#0786162200433",
+        "name": "smartwater, vapor distilled",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 10.38,
+      "fat": 16.28,
+      "carb": 38.9,
+      "fiber": 9.9
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 4.7,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_15_applegate_turkey_avocado_sandwich",
+    "name": "Turkey & Avocado Sandwich",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00025317586009",
+        "name": "Oven roasted turkey breast, oven roasted",
+        "amount_g": 56.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#food_avocado_raw",
+        "name": "Avocado, raw",
+        "amount_g": 50.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_tomato_raw",
+        "name": "Tomato, red, ripe, raw",
+        "amount_g": 45.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00073472001202",
+        "name": "Ezekiel 4:9 sprouted grain bread",
+        "amount_g": 68.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_spinach_raw",
+        "name": "Spinach, raw",
+        "amount_g": 15.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#0657227105539",
+        "name": "Essentia ionized alkaline water",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 23.03,
+      "fat": 8.48,
+      "carb": 37.57,
+      "fiber": 10.2
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 14.1,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_16_amys_lentil_soup_triscuits",
+    "name": "Amy's Lentil Soup with Triscuits",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00042272005833",
+        "name": "Lentil Soup",
+        "amount_g": 380.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "BARCODE#00044000027957",
+        "name": "triscuit crackers original",
+        "amount_g": 28.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#170393",
+        "name": "Carrot, raw",
+        "amount_g": 80.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "BARCODE#00049000028911",
+        "name": "Diet Coke",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 16.15,
+      "fat": 11.41,
+      "carb": 66.44,
+      "fiber": 14.36
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 9.5,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_17_banza_pesto_chicken_bowl",
+    "name": "Banza Chickpea Pasta with Pesto & Chicken",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00857183005007",
+        "name": "Penne Chickpea Pasta",
+        "amount_g": 56.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "BARCODE#00000004112952",
+        "name": "Traditional basil pesto sauce & spread",
+        "amount_g": 30.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_chicken_breast_grilled",
+        "name": "Chicken breast, grilled, skinless",
+        "amount_g": 100.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_tomato_raw",
+        "name": "Tomato, red, ripe, raw",
+        "amount_g": 90.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#0021136010541",
+        "name": "Topo Chico Agua Mineral",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 44.46,
+      "fat": 18.41,
+      "carb": 34.39,
+      "fiber": 7.61
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 15.8,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_18_bumblebee_salmon_quinoa_salad",
+    "name": "Pink Salmon & Quinoa Kale Salad",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00000008669932",
+        "name": "Pink salmon",
+        "amount_g": 85.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_quinoa_cooked",
+        "name": "Quinoa, cooked",
+        "amount_g": 140.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_kale_raw",
+        "name": "Kale, raw",
+        "amount_g": 50.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_olive_oil_evoo",
+        "name": "Olive oil, extra virgin",
+        "amount_g": 14.0,
+        "form": "oil",
+        "nova_class": 2,
+        "industrial_processing": 0.3333333333333333,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_lemon",
+        "name": "Lemon, raw",
+        "amount_g": 15.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#mcai-lemon-water",
+        "name": "Lemon Water",
+        "amount_g": 360.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 27.88,
+      "fat": 19.98,
+      "carb": 34.87,
+      "fiber": 6.39
+    },
+    "derived": {
+      "nova_max": 2,
+      "nova_modal": 1,
+      "processing_combined": 0.333,
+      "matrix_integrity": 0.717,
+      "food_quality": 0.717,
+      "full_panel_coverage_pct": 7.5,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_19_peanut_noodles_broccoli",
+    "name": "Peanut Noodles with Broccoli",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00076808001549",
+        "name": "Whole Grain Penne & Spaghetti",
+        "amount_g": 56.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "BARCODE#00051500255247",
+        "name": "Natural Creamy Peanut Butter",
+        "amount_g": 32.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_tamari",
+        "name": "Tamari, gluten-free soy sauce",
+        "amount_g": 18.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_broccoli_raw",
+        "name": "Broccoli, raw",
+        "amount_g": 90.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_garlic_raw",
+        "name": "Garlic, raw",
+        "amount_g": 3.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_ginger_root",
+        "name": "Ginger root, fresh",
+        "amount_g": 5.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "BARCODE#00851373005082",
+        "name": "Organic electrolyte drink",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 18.5,
+      "fat": 17.41,
+      "carb": 60.1,
+      "fiber": 11.4
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 3,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 16.1,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_20_edamame_rice_bowl",
+    "name": "Edamame & Brown Rice Teriyaki Bowl",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00711575721589",
+        "name": "Edamame shelled soybeans",
+        "amount_g": 118.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "BARCODE#00054800031771",
+        "name": "Whole grain brown rice",
+        "amount_g": 140.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00896859000939",
+        "name": "Teriyaki Sauce",
+        "amount_g": 18.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "caramel_color",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "caramel_color"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_bell_pepper_red_raw",
+        "name": "Bell pepper, red, raw",
+        "amount_g": 75.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "BARCODE#0052000328660",
+        "name": "Gatorade Thirst Quencher",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 18.34,
+      "fat": 5.38,
+      "carb": 69.8,
+      "fiber": 16.36
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 0.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_21_banza_marinara_turkey",
+    "name": "Chickpea Penne Marinara with Ground Turkey",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00857183005007",
+        "name": "Penne Chickpea Pasta",
+        "amount_g": 56.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "BARCODE#00747479000215",
+        "name": "Marinara",
+        "amount_g": 125.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_ground_turkey_93_cooked",
+        "name": "Ground turkey, 93% lean, cooked",
+        "amount_g": 112.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_spinach_raw",
+        "name": "Spinach, raw",
+        "amount_g": 30.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#0657227105539",
+        "name": "Essentia ionized alkaline water",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 45.27,
+      "fat": 21.5,
+      "carb": 37.06,
+      "fiber": 7.96
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 3,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 20.9,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_22_ww_spaghetti_marinara",
+    "name": "Whole Grain Spaghetti Marinara with Parmesan-Style Feta",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00076808001549",
+        "name": "Whole Grain Penne & Spaghetti",
+        "amount_g": 56.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "BARCODE#00747479000215",
+        "name": "Marinara",
+        "amount_g": 125.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_tomato_raw",
+        "name": "Tomato, red, ripe, raw",
+        "amount_g": 90.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_feta_cheese",
+        "name": "Feta cheese",
+        "amount_g": 28.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_basil_fresh",
+        "name": "Basil, fresh",
+        "amount_g": 3.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "BARCODE#0052000328660",
+        "name": "Gatorade Thirst Quencher",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 14.36,
+      "fat": 15.16,
+      "carb": 74.85,
+      "fiber": 8.37
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 3,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 0.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_23_salmon_seeds_of_change",
+    "name": "Baked Salmon with Quinoa & Brown Rice Pouch and Asparagus",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "FOOD#food_salmon_atlantic_baked",
+        "name": "Salmon, Atlantic, baked",
+        "amount_g": 150.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00748404420221",
+        "name": "Organic Quinoa, Brown & Red Rice with Flaxseed",
+        "amount_g": 120.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#food_asparagus_steamed",
+        "name": "Asparagus, steamed",
+        "amount_g": 90.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_lemon",
+        "name": "Lemon, raw",
+        "amount_g": 15.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#0021136010541",
+        "name": "Topo Chico Agua Mineral",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 39.4,
+      "fat": 21.97,
+      "carb": 44.31,
+      "fiber": 5.34
+    },
+    "derived": {
+      "nova_max": 1,
+      "nova_modal": 1,
+      "processing_combined": 0.0,
+      "matrix_integrity": 1.0,
+      "food_quality": 1.0,
+      "full_panel_coverage_pct": 20.5,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_24_mission_chicken_fajitas",
+    "name": "Chicken Fajitas on Whole Wheat Tortillas",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00073731071175",
+        "name": "Whole Wheat Original Flour Tortillas",
+        "amount_g": 62.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#food_chicken_breast_grilled",
+        "name": "Chicken breast, grilled, skinless",
+        "amount_g": 140.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_bell_pepper_red_raw",
+        "name": "Bell pepper, red, raw",
+        "amount_g": 150.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "BARCODE#00041565341641",
+        "name": "Chunky Salsa - Medium",
+        "amount_g": 32.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "BARCODE#00616112541357",
+        "name": "Classic Guacamole Minis",
+        "amount_g": 57.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_olive_oil_evoo",
+        "name": "Olive oil, extra virgin",
+        "amount_g": 7.0,
+        "form": "oil",
+        "nova_class": 2,
+        "industrial_processing": 0.3333333333333333,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00851373005082",
+        "name": "Organic electrolyte drink",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 51.94,
+      "fat": 25.63,
+      "carb": 49.5,
+      "fiber": 10.85
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 17.4,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_25_nasoya_teriyaki_stirfry",
+    "name": "Tofu Teriyaki Stir-Fry with Birds Eye Vegetables",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00025484006959",
+        "name": "Organic Extra Firm Tofu",
+        "amount_g": 150.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "BARCODE#00014500507037",
+        "name": "Broccoli Stir-Fry",
+        "amount_g": 150.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "BARCODE#00896859000939",
+        "name": "Teriyaki Sauce",
+        "amount_g": 36.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "caramel_color",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "caramel_color"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "BARCODE#00054800031771",
+        "name": "Whole grain brown rice",
+        "amount_g": 140.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_olive_oil_evoo",
+        "name": "Olive oil, extra virgin",
+        "amount_g": 14.0,
+        "form": "oil",
+        "nova_class": 2,
+        "industrial_processing": 0.3333333333333333,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#mcai-lemon-water",
+        "name": "Lemon Water",
+        "amount_g": 360.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 23.38,
+      "fat": 23.99,
+      "carb": 49.57,
+      "fiber": 7.51
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 3,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 0.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_26_turkey_bean_chili",
+    "name": "Turkey & Kidney Bean Chili",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "FOOD#food_ground_turkey_93_cooked",
+        "name": "Ground turkey, 93% lean, cooked",
+        "amount_g": 112.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "BARCODE#00039400017455",
+        "name": "Dark Red Kidney Beans",
+        "amount_g": 130.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "BARCODE#00725342292110",
+        "name": "Diced tomatoes",
+        "amount_g": 200.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#food_garlic_raw",
+        "name": "Garlic, raw",
+        "amount_g": 6.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_bell_pepper_red_raw",
+        "name": "Bell pepper, red, raw",
+        "amount_g": 75.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#food_olive_oil_evoo",
+        "name": "Olive oil, extra virgin",
+        "amount_g": 7.0,
+        "form": "oil",
+        "nova_class": 2,
+        "industrial_processing": 0.3333333333333333,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00049000028911",
+        "name": "Diet Coke",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 38.15,
+      "fat": 18.34,
+      "carb": 33.5,
+      "fiber": 7.68
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 12.7,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_27_drpraeger_burger_plate",
+    "name": "Black Bean Burger with Guacamole & Side Salad",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00080868060194",
+        "name": "Black Bean Quinoa Veggie Burgers",
+        "amount_g": 71.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "BARCODE#00616112541357",
+        "name": "Classic Guacamole Minis",
+        "amount_g": 57.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "BARCODE#00073472001202",
+        "name": "Ezekiel 4:9 sprouted grain bread",
+        "amount_g": 34.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_spinach_raw",
+        "name": "Spinach, raw",
+        "amount_g": 60.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_tomato_raw",
+        "name": "Tomato, red, ripe, raw",
+        "amount_g": 90.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_olive_oil_evoo",
+        "name": "Olive oil, extra virgin",
+        "amount_g": 7.0,
+        "form": "oil",
+        "nova_class": 2,
+        "industrial_processing": 0.3333333333333333,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#0786162200433",
+        "name": "smartwater, vapor distilled",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 13.51,
+      "fat": 23.91,
+      "carb": 41.68,
+      "fiber": 15.44
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 13.9,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_28_alfresco_sausage_sheetpan",
+    "name": "Chicken Sausage Sheet Pan with Brussels & Sweet Potato",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00030771080840",
+        "name": "Al Fresco Sweet Italian Chicken sausage",
+        "amount_g": 85.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_brussels_sprouts_roasted",
+        "name": "Brussels sprouts, roasted",
+        "amount_g": 100.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_sweet_potato_baked",
+        "name": "Sweet potato, baked, with skin",
+        "amount_g": 130.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_olive_oil_evoo",
+        "name": "Olive oil, extra virgin",
+        "amount_g": 14.0,
+        "form": "oil",
+        "nova_class": 2,
+        "industrial_processing": 0.3333333333333333,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#171265",
+        "name": "Milk, whole, 3.25% milkfat",
+        "amount_g": 240.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      }
+    ],
+    "macros_g": {
+      "protein": 29.19,
+      "fat": 25.9,
+      "carb": 51.62,
+      "fiber": 8.39
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 3,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 42.2,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_29_maya_tikka_chicken",
+    "name": "Chicken Tikka Masala with Brown Rice",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "FOOD#food_chicken_breast_grilled",
+        "name": "Chicken breast, grilled, skinless",
+        "amount_g": 140.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00858034006181",
+        "name": "Vegan Tikka Masala Simmer Sauce",
+        "amount_g": 125.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "BARCODE#00054800031771",
+        "name": "Whole grain brown rice",
+        "amount_g": 140.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_spinach_raw",
+        "name": "Spinach, raw",
+        "amount_g": 30.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#0021136010541",
+        "name": "Topo Chico Agua Mineral",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 48.66,
+      "fat": 18.84,
+      "carb": 31.73,
+      "fiber": 3.14
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 21.5,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_30_shrimp_pesto_pasta",
+    "name": "Shrimp Pesto Whole Grain Spaghetti",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00076808001549",
+        "name": "Whole Grain Penne & Spaghetti",
+        "amount_g": 56.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "BARCODE#00000004112952",
+        "name": "Traditional basil pesto sauce & spread",
+        "amount_g": 30.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_shrimp_cooked",
+        "name": "Shrimp, cooked",
+        "amount_g": 120.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_tomato_raw",
+        "name": "Tomato, red, ripe, raw",
+        "amount_g": 90.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#0021136010541",
+        "name": "Topo Chico Agua Mineral",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 38.04,
+      "fat": 13.65,
+      "carb": 47.16,
+      "fiber": 7.55
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 0.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_31_tuna_pasta_salad_dinner",
+    "name": "Mediterranean Tuna Pasta Salad",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00857183005007",
+        "name": "Penne Chickpea Pasta",
+        "amount_g": 56.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "BARCODE#00080000516848",
+        "name": "Chunk Light Tuna In Water",
+        "amount_g": 85.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_cucumber_raw",
+        "name": "Cucumber, with peel, raw",
+        "amount_g": 75.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_tomato_raw",
+        "name": "Tomato, red, ripe, raw",
+        "amount_g": 90.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_olive_oil_evoo",
+        "name": "Olive oil, extra virgin",
+        "amount_g": 14.0,
+        "form": "oil",
+        "nova_class": 2,
+        "industrial_processing": 0.3333333333333333,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_lemon",
+        "name": "Lemon, raw",
+        "amount_g": 15.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00074390000308",
+        "name": "Electrolyte beverage",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "HFCS",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "artificial_color",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "caramel_color",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "HFCS",
+          "artificial_color",
+          "caramel_color"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 27.85,
+      "fat": 18.08,
+      "carb": 57.11,
+      "fiber": 7.93
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 0.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_32_edamame_veggie_fried_rice",
+    "name": "Veggie & Edamame 'Fried' Brown Rice",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00054800031771",
+        "name": "Whole grain brown rice",
+        "amount_g": 140.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00711575721589",
+        "name": "Edamame shelled soybeans",
+        "amount_g": 78.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "BARCODE#00014500507037",
+        "name": "Broccoli Stir-Fry",
+        "amount_g": 100.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#food_egg_whole_large",
+        "name": "Egg, whole, large",
+        "amount_g": 50.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_tamari",
+        "name": "Tamari, gluten-free soy sauce",
+        "amount_g": 18.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_olive_oil_evoo",
+        "name": "Olive oil, extra virgin",
+        "amount_g": 7.0,
+        "form": "oil",
+        "nova_class": 2,
+        "industrial_processing": 0.3333333333333333,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#mcai-lemon-water",
+        "name": "Lemon Water",
+        "amount_g": 360.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 22.03,
+      "fat": 15.75,
+      "carb": 41.87,
+      "fiber": 12.81
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 6.6,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_33_kind_bar_apple",
+    "name": "KIND Bar & Apple",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00602652279461",
+        "name": "Dark Chocolate Nuts & Sea Salt",
+        "amount_g": 40.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#171688",
+        "name": "Apple, raw, with skin",
+        "amount_g": 182.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "BARCODE#0657227105539",
+        "name": "Essentia ionized alkaline water",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 6.55,
+      "fat": 14.36,
+      "carb": 41.12,
+      "fiber": 10.37
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 31.5,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_34_hummus_carrots_triscuits",
+    "name": "Hummus Snack Plate",
+    "intake": {
+      "food": 1,
+      "hydration": 0,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00040822012461",
+        "name": "Classic Hummus",
+        "amount_g": 60.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#170393",
+        "name": "Carrot, raw",
+        "amount_g": 80.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "BARCODE#00044000027957",
+        "name": "triscuit crackers original",
+        "amount_g": 28.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      }
+    ],
+    "macros_g": {
+      "protein": 8.0,
+      "fat": 16.52,
+      "carb": 36.25,
+      "fiber": 9.5
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 47.6,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_35_string_cheese_orange_almonds",
+    "name": "String Cheese, Orange & Almonds",
+    "intake": {
+      "food": 1,
+      "hydration": 0,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00046100007013",
+        "name": "Sargento, string cheese snacks",
+        "amount_g": 24.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#169097",
+        "name": "Orange, raw, navel",
+        "amount_g": 140.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#food_almonds_raw",
+        "name": "Almonds, raw",
+        "amount_g": 14.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 10.22,
+      "fat": 11.63,
+      "carb": 21.52,
+      "fiber": 4.83
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 86.5,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_36_siggis_blueberry",
+    "name": "siggi's Vanilla Skyr with Blueberries",
+    "intake": {
+      "food": 1,
+      "hydration": 0,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00898248001534",
+        "name": "Vanilla",
+        "amount_g": 150.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_blueberries_raw",
+        "name": "Blueberries, raw",
+        "amount_g": 74.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      }
+    ],
+    "macros_g": {
+      "protein": 16.64,
+      "fat": 2.53,
+      "carb": 25.67,
+      "fiber": 1.78
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 3,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 0.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_37_skinnypop_dark_chocolate",
+    "name": "SkinnyPop & Dark Chocolate",
+    "intake": {
+      "food": 1,
+      "hydration": 0,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00850251004155",
+        "name": "Popcorn",
+        "amount_g": 28.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "BARCODE#00037466016450",
+        "name": "85% Dark Chocolate",
+        "amount_g": 20.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      }
+    ],
+    "macros_g": {
+      "protein": 5.78,
+      "fat": 18.66,
+      "carb": 21.33,
+      "fiber": 5.77
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 0.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_38_lifeway_kefir_smoothie",
+    "name": "Kefir Strawberry-Flax Smoothie",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00017077126328",
+        "name": "Kefir",
+        "amount_g": 240.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#167762",
+        "name": "Strawberries, raw",
+        "amount_g": 100.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#food_flaxseed_ground",
+        "name": "Flaxseed, ground",
+        "amount_g": 7.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 13.03,
+      "fat": 5.25,
+      "carb": 29.83,
+      "fiber": 3.91
+    },
+    "derived": {
+      "nova_max": 1,
+      "nova_modal": 1,
+      "processing_combined": 0.0,
+      "matrix_integrity": 1.0,
+      "food_quality": 1.0,
+      "full_panel_coverage_pct": 28.8,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_39_premier_shake_almonds",
+    "name": "Premier Protein Shake & Almonds",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00643843715344",
+        "name": "Chocolate Protein Shake",
+        "amount_g": 340.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "artificial_flavor",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "artificial_sweetener",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "artificial_flavor",
+          "artificial_sweetener"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_almonds_raw",
+        "name": "Almonds, raw",
+        "amount_g": 21.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 36.12,
+      "fat": 13.66,
+      "carb": 9.83,
+      "fiber": 5.76
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 100.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "bc_40_cottage_cheese_pita",
+    "name": "Cottage Cheese & Veggie Pita Pocket",
+    "intake": {
+      "food": 1,
+      "hydration": 0,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00859977005026",
+        "name": "Organic Cottage Cheese",
+        "amount_g": 110.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00000000218009",
+        "name": "whole wheat pita bread",
+        "amount_g": 57.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_cucumber_raw",
+        "name": "Cucumber, with peel, raw",
+        "amount_g": 50.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_tomato_raw",
+        "name": "Tomato, red, ripe, raw",
+        "amount_g": 45.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 19.91,
+      "fat": 6.05,
+      "carb": 37.2,
+      "fiber": 5.79
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 0.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "sup_01_whey_postworkout_shake",
+    "name": "Whey Protein Post-Workout Shake with Banana",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 1
+    },
+    "items": [
+      {
+        "id": "BARCODE#00748927029192",
+        "name": "Whey Protein",
+        "amount_g": 33.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "artificial_flavor",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "artificial_sweetener",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "artificial_flavor",
+          "artificial_sweetener"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#174158",
+        "name": "Water, bottled, plain",
+        "amount_g": 400.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#173944",
+        "name": "Banana, raw",
+        "amount_g": 118.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      }
+    ],
+    "macros_g": {
+      "protein": 25.3,
+      "fat": 1.85,
+      "carb": 30.9,
+      "fiber": 4.06
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 21.4,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "sup_02_collagen_coffee_yogurt",
+    "name": "Collagen Coffee with Greek Yogurt Berry Bowl",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 1
+    },
+    "items": [
+      {
+        "id": "BARCODE#00856769006681",
+        "name": "Collagen Peptides Unflavored",
+        "amount_g": 11.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#171890",
+        "name": "Coffee, brewed, black",
+        "amount_g": 240.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_greek_yogurt_plain_nonfat",
+        "name": "Greek yogurt, plain, nonfat",
+        "amount_g": 170.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#food_blueberries_raw",
+        "name": "Blueberries, raw",
+        "amount_g": 74.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      }
+    ],
+    "macros_g": {
+      "protein": 28.13,
+      "fat": 0.92,
+      "carb": 16.84,
+      "fiber": 1.78
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 82.8,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "sup_03_protein_greens_smoothie",
+    "name": "Plant Protein & Greens Smoothie",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 1
+    },
+    "items": [
+      {
+        "id": "BARCODE#00851770006828",
+        "name": "Vanilla bean plant based protein & greens powder",
+        "amount_g": 49.0,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "BARCODE#00025293002494",
+        "name": "Unsweetened almondmilk",
+        "amount_g": 240.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_spinach_raw",
+        "name": "Spinach, raw",
+        "amount_g": 30.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_banana_raw",
+        "name": "Banana, raw",
+        "amount_g": 59.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 22.92,
+      "fat": 5.85,
+      "carb": 33.99,
+      "fiber": 9.6
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 7.9,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "sup_04_electrolyte_recovery_snack",
+    "name": "Electrolyte Drink with RXBAR & Almonds",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 1
+    },
+    "items": [
+      {
+        "id": "BARCODE#00851373005082",
+        "name": "Organic electrolyte drink",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "BARCODE#00859162007248",
+        "name": "Protein bar",
+        "amount_g": 52.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "openfoodfacts",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_almonds_raw",
+        "name": "Almonds, raw",
+        "amount_g": 14.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 14.96,
+      "fat": 13.99,
+      "carb": 30.5,
+      "fiber": 6.74
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 3.3,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "sup_05_creatine_lemon_water",
+    "name": "Creatine Lemon Water Pre-Training Snack",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 1
+    },
+    "items": [
+      {
+        "id": "BARCODE#00810117600730",
+        "name": "Creatine",
+        "amount_g": 5.3,
+        "form": "cooked",
+        "nova_class": 3,
+        "industrial_processing": 0.6666666666666666,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#mcai-lemon-water",
+        "name": "Lemon Water",
+        "amount_g": 480.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_banana_raw",
+        "name": "Banana, raw",
+        "amount_g": 118.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_almonds_raw",
+        "name": "Almonds, raw",
+        "amount_g": 14.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 4.25,
+      "fat": 7.38,
+      "carb": 31.89,
+      "fiber": 4.82
+    },
+    "derived": {
+      "nova_max": 3,
+      "nova_modal": 1,
+      "processing_combined": 0.667,
+      "matrix_integrity": 0.433,
+      "food_quality": 0.433,
+      "full_panel_coverage_pct": 2.3,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "sup_06_spirulina_berry_smoothie",
+    "name": "Spirulina Berry Smoothie",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 1
+    },
+    "items": [
+      {
+        "id": "BARCODE#00733739026903",
+        "name": "Certified Organic Spirulina Powder",
+        "amount_g": 3.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "low"
+      },
+      {
+        "id": "FOOD#174158",
+        "name": "Water, bottled, plain",
+        "amount_g": 240.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_blueberries_raw",
+        "name": "Blueberries, raw",
+        "amount_g": 74.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#167762",
+        "name": "Strawberries, raw",
+        "amount_g": 100.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#food_banana_raw",
+        "name": "Banana, raw",
+        "amount_g": 59.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#food_chia_seeds",
+        "name": "Chia seeds, dried",
+        "amount_g": 12.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 5.69,
+      "fat": 4.42,
+      "carb": 37.86,
+      "fiber": 9.44
+    },
+    "derived": {
+      "nova_max": 1,
+      "nova_modal": 1,
+      "processing_combined": 0.0,
+      "matrix_integrity": 1.0,
+      "food_quality": 1.0,
+      "full_panel_coverage_pct": 20.5,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "sup_07_muscle_milk_apple",
+    "name": "Muscle Milk RTD Shake & Apple",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 1
+    },
+    "items": [
+      {
+        "id": "BARCODE#00876063002011",
+        "name": "Chocolate Protein Shake",
+        "amount_g": 414.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "artificial_flavor",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "artificial_sweetener",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "artificial_flavor",
+          "artificial_sweetener"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      },
+      {
+        "id": "FOOD#171688",
+        "name": "Apple, raw, with skin",
+        "amount_g": 182.0,
+        "form": "raw_whole",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      }
+    ],
+    "macros_g": {
+      "protein": 24.45,
+      "fat": 5.15,
+      "carb": 34.7,
+      "fiber": 9.12
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 30.5,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "upf_01_instant_ramen",
+    "name": "Instant Ramen Lunch",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00041789002588",
+        "name": "Ramen noodle soup",
+        "amount_g": 85.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "caramel_color",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "corn_syrup",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "msg",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "partially_hydrogenated_oil",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "synthetic_preservative",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "caramel_color",
+          "corn_syrup",
+          "msg",
+          "partially_hydrogenated_oil",
+          "synthetic_preservative"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#174158",
+        "name": "Water, bottled, plain",
+        "amount_g": 500.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 9.89,
+      "fat": 13.84,
+      "carb": 51.4,
+      "fiber": 1.95
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 0.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "upf_02_frozen_pizza_cola",
+    "name": "Frozen Pepperoni Pizza & Cola Night",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00072180638113",
+        "name": "Brick oven crust pepperoni pizza",
+        "amount_g": 254.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "nitrite_nitrate",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "synthetic_preservative",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "nitrite_nitrate",
+          "synthetic_preservative"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "BARCODE#00000004978903",
+        "name": "Coca-Cola",
+        "amount_g": 360.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "HFCS",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "caramel_color",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "HFCS",
+          "caramel_color"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 25.23,
+      "fat": 31.05,
+      "carb": 108.75,
+      "fiber": 3.94
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 0.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "upf_03_mac_and_hot_dogs",
+    "name": "Boxed Mac & Cheese with Hot Dogs",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00021000028092",
+        "name": "Macaroni & cheese dinner",
+        "amount_g": 70.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "BARCODE#00029800430268",
+        "name": "Hot Dogs",
+        "amount_g": 68.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "artificial_color",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "corn_syrup",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "nitrite_nitrate",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "artificial_color",
+          "corn_syrup",
+          "nitrite_nitrate"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#174158",
+        "name": "Water, bottled, plain",
+        "amount_g": 500.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 16.66,
+      "fat": 16.4,
+      "carb": 48.19,
+      "fiber": 1.95
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 0.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "upf_04_nuggets_ketchup",
+    "name": "Chicken Nuggets with Ketchup",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00023700018632",
+        "name": "Chicken Nuggets",
+        "amount_g": 154.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "BARCODE#00013000001243",
+        "name": "Tomato ketchup",
+        "amount_g": 34.0,
+        "form": "cooked",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "HFCS",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "corn_syrup",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "HFCS",
+          "corn_syrup"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#174158",
+        "name": "Water, bottled, plain",
+        "amount_g": 500.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 23.99,
+      "fat": 30.0,
+      "carb": 35.91,
+      "fiber": 0.0
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 0.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "upf_05_poptarts_choc_milk",
+    "name": "Pop-Tarts & Chocolate Milk Breakfast",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00038000924408",
+        "name": "Kellogg's, pop-tarts, frosted toaster pastries, chocolate peanut butter, frosted chocolate peanut butter",
+        "amount_g": 100.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "HFCS",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "artificial_color",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "artificial_flavor",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "caramel_color",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "corn_syrup",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "synthetic_preservative",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "HFCS",
+          "artificial_color",
+          "artificial_flavor",
+          "caramel_color",
+          "corn_syrup",
+          "synthetic_preservative"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "BARCODE#00028000616502",
+        "name": "Ready to drink low fat chocolate milk",
+        "amount_g": 240.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "artificial_flavor",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "artificial_flavor"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      }
+    ],
+    "macros_g": {
+      "protein": 12.18,
+      "fat": 12.56,
+      "carb": 95.53,
+      "fiber": 2.96
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 0.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "upf_06_froot_loops_breakfast",
+    "name": "Froot Loops with Whole Milk",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00038000144271",
+        "name": "Froot Loops",
+        "amount_g": 39.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "artificial_color",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "synthetic_preservative",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "artificial_color",
+          "synthetic_preservative"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#171265",
+        "name": "Milk, whole, 3.25% milkfat",
+        "amount_g": 240.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#174158",
+        "name": "Water, bottled, plain",
+        "amount_g": 250.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 9.9,
+      "fat": 9.4,
+      "carb": 45.64,
+      "fiber": 2.22
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 1,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 52.7,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "upf_07_bologna_sandwich_chips",
+    "name": "Bologna & Cheese Sandwich with Doritos",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00072250011501",
+        "name": "Classic white bread",
+        "amount_g": 56.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "HFCS",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "azodicarbonamide",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "HFCS",
+          "azodicarbonamide"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "BARCODE#00044700008607",
+        "name": "Thick cut bologna",
+        "amount_g": 43.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "corn_syrup",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "nitrite_nitrate",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "corn_syrup",
+          "nitrite_nitrate"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "BARCODE#00021000604715",
+        "name": "Singles pasteurized prepared cheese product",
+        "amount_g": 21.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "BARCODE#00028400688772",
+        "name": "Doritos",
+        "amount_g": 28.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "artificial_color",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "artificial_flavor",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "msg",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "artificial_color",
+          "artificial_flavor",
+          "msg"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "FOOD#174158",
+        "name": "Water, bottled, plain",
+        "amount_g": 500.0,
+        "form": "liquid",
+        "nova_class": 1,
+        "industrial_processing": 0.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 14.49,
+      "fat": 24.69,
+      "carb": 50.0,
+      "fiber": 3.25
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 0.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "upf_08_gas_station_refuel",
+    "name": "Gas-Station Refuel: Candy Bar & Sports Drink",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00040000503170",
+        "name": "Snickers, fun size crisper",
+        "amount_g": 42.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "artificial_flavor",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "corn_syrup",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "partially_hydrogenated_oil",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "synthetic_preservative",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "artificial_flavor",
+          "corn_syrup",
+          "partially_hydrogenated_oil",
+          "synthetic_preservative"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "BARCODE#00074390000308",
+        "name": "Electrolyte beverage",
+        "amount_g": 355.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "HFCS",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "artificial_color",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "caramel_color",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "HFCS",
+          "artificial_color",
+          "caramel_color"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 2.0,
+      "fat": 9.0,
+      "carb": 47.02,
+      "fiber": 0.0
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 0.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "upf_09_zebra_cakes_snack",
+    "name": "Zebra Cakes & Chocolate Milk",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00024300041464",
+        "name": "Zebra cakes",
+        "amount_g": 74.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "artificial_flavor",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "corn_syrup",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "synthetic_preservative",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "titanium_dioxide",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "artificial_flavor",
+          "corn_syrup",
+          "synthetic_preservative",
+          "titanium_dioxide"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "BARCODE#00028000616502",
+        "name": "Ready to drink low fat chocolate milk",
+        "amount_g": 240.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "artificial_flavor",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "artificial_flavor"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "medium"
+      }
+    ],
+    "macros_g": {
+      "protein": 10.12,
+      "fat": 16.12,
+      "carb": 70.02,
+      "fiber": 0.96
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 0.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  },
+  {
+    "schema": "kibo.PacketLoad/v1",
+    "id": "upf_10_twinkies_cola",
+    "name": "Twinkies & Cola",
+    "intake": {
+      "food": 1,
+      "hydration": 1,
+      "supplement": 0
+    },
+    "items": [
+      {
+        "id": "BARCODE#00888109111571",
+        "name": "Hostess, twinkies, covered sponge cake with filling, white peppermint",
+        "amount_g": 82.0,
+        "form": "ultra_processed",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "HFCS",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "artificial_color",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "artificial_flavor",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "corn_syrup",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "titanium_dioxide",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "HFCS",
+          "artificial_color",
+          "artificial_flavor",
+          "corn_syrup",
+          "titanium_dioxide"
+        ],
+        "nova_source": "rule",
+        "nova_confidence": "medium"
+      },
+      {
+        "id": "BARCODE#00000004978903",
+        "name": "Coca-Cola",
+        "amount_g": 360.0,
+        "form": "liquid",
+        "nova_class": 4,
+        "industrial_processing": 1.0,
+        "cooking_methods": [
+          "unknown"
+        ],
+        "residue_flags": [
+          {
+            "kind": "additive",
+            "label": "HFCS",
+            "intensity": 0.8,
+            "honesty": "OPEN"
+          },
+          {
+            "kind": "additive",
+            "label": "caramel_color",
+            "intensity": 0.4,
+            "honesty": "OPEN"
+          }
+        ],
+        "additives": [
+          "HFCS",
+          "caramel_color"
+        ],
+        "nova_source": "curated_map",
+        "nova_confidence": "high"
+      }
+    ],
+    "macros_g": {
+      "protein": 2.0,
+      "fat": 16.0,
+      "carb": 84.89,
+      "fiber": 0.0
+    },
+    "derived": {
+      "nova_max": 4,
+      "nova_modal": 4,
+      "processing_combined": 1.0,
+      "matrix_integrity": 0.15,
+      "food_quality": 0.15,
+      "full_panel_coverage_pct": 0.0,
+      "honesty": "FLOW"
+    },
+    "honesty_note": "See meals-50/ACCURACY.md \u2014 imperfect but real-sourced seed for sim"
+  }
+]

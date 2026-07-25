@@ -1,0 +1,17 @@
+{
+  "schema": "kibo.UserGoals/v1",
+  "honesty": "OPEN",
+  "primary": "weight_loss",
+  "secondary": ["glycemic_control", "anti_inflammatory"],
+  "body": {
+    "height_cm": 170,
+    "weight_kg": 88,
+    "target_weight_kg": 78,
+    "bmi": 30.4,
+    "bmi_band": "OBESITY_I"
+  },
+  "pace": "moderate",
+  "energy_bias": "deficit",
+  "horizon_weeks": 16,
+  "notes": "Mock weight-loss operator — not a patient plan."
+}

@@ -21,7 +21,7 @@ def test_list_and_get():
 def test_kind_filter():
     from biology_as_code.machines import list_machines
 
-    assert len(list_machines(kind="stage")) == 8
+    assert len(list_machines(kind="stage")) == 9  # + stage.intake-setup (S-0)
     assert list_machines(kind="process") == ["process.full-digest"]
     assert list_machines(kind="lens") == []
 
@@ -31,7 +31,7 @@ def test_validate_all_ok():
 
     result = validate_all()
     assert result["ok"], result["errors"]
-    assert result["n"] == 9
+    assert result["n"] == 10  # 9 stages (incl. intake-setup) + full-digest process
 
 
 def test_no_dangling_transitions():

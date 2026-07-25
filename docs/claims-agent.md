@@ -68,8 +68,11 @@ auto-accept its own claim. See [Contributing data](contributing-data.md).
 ## Determinism and the two-engine contract
 
 Scoring is a pure function of `(evidence, atoms, rubric_version)`. A golden fixture
-suite pins the verdicts and the bare-16-hex `claim_id`s, and the package's test suite
-enforces them — the Python engine must agree with its TypeScript twin claim for claim.
+suite pins this engine's verdicts and the bare-16-hex `claim_id`s, and the package's
+test suite enforces them in CI. Agreement with the separate TypeScript twin is the
+*goal* of the two-engine design, but it is **not yet an enforced cross-repo check** —
+the two golden sets can drift until a shared corpus (or a parity job pinning matching
+`rubric_version` + identical fixtures) is wired up.
 
 ## The one authored vocabulary — ACA
 
