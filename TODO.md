@@ -55,10 +55,3 @@ cleanly on top. AWS model: Step Functions → **EventBridge** → fan-out.
 - **nutri backend repoint** — `backend/assay_service.py` (separate repo) must switch
   its path-hack import to `from biology_as_code.agents.assay …` after a release.
 - **Housekeeping** — delete the stale `feat/auditor-and-docs` branch.
-
-## Open working-tree item (not mine, uncommitted)
-
-A `pathways/` restructuring is sitting uncommitted in the working tree (top-level
-`pathways/*` removed, new `src/biology_as_code/pathways/packs/`, modified
-`export_pathway_packs.py` + loader + `test_pathway_packs.py`). Decide whether to
-commit or discard before it drifts.
