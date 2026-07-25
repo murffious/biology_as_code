@@ -11,6 +11,9 @@ from biology_as_code.data.version_manifest import package_version
 
 __version__ = package_version()
 
+# Fail-closed claim auditor (returns UNEVALUABLE rather than guessing)
+from biology_as_code.audit import Claim, ClaimAudit, audit_claim
+
 # High-level meal dig
 # Dig helpers
 from biology_as_code.dig import Bolus, DigestiveFlowSimulator, build_absorption_plan
@@ -23,6 +26,9 @@ from biology_as_code.laws import get_law, law_card, list_laws
 
 # Open declarative digestion machines (teaching layer)
 from biology_as_code.machines import get_machine, list_machines, run_digestion, trace
+
+# Typed food packets (repo examples/foods/ — the auditor's input side)
+from biology_as_code.packets import FoodPacket, get_packet, list_packets, validate_packet
 
 # Pathways discovery (original module names preserved under .pathways)
 from biology_as_code.pathways.registry import get_pathway, list_pathways
@@ -48,6 +54,8 @@ from biology_as_code.simulation.scenarios import (
 
 __all__ = [
     "Bolus",
+    "Claim",
+    "ClaimAudit",
     "DigestiveFlowSimulator",
     "FoodPayload",
     "KIBOEngine",
@@ -56,16 +64,20 @@ __all__ = [
     "MealRunResult",
     "__version__",
     "all_sources",
+    "audit_claim",
     "build_absorption_plan",
     "exercise",
+    "FoodPacket",
     "fed",
     "get_law",
     "get_machine",
+    "get_packet",
     "get_pathway",
     "law_card",
     "law_evidence",
     "list_laws",
     "list_machines",
+    "list_packets",
     "list_pathways",
     "overnight_fast",
     "pathway_activities",
@@ -76,4 +88,5 @@ __all__ = [
     "run_product_score_analysis",
     "simulate_meal",
     "trace",
+    "validate_packet",
 ]
