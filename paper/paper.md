@@ -83,12 +83,23 @@ rather than guess. The package is deliberately scoped to the open teaching and
 audit layer; a separate proprietary scoring engine is not included, and the public
 interface returns a documented unavailability signal in its absence.
 
-# Naming note
+# Note on the name
 
-The established field of *code biology* studies naturally occurring organic codes
-[@barbieri2015]. This package makes an unrelated engineering claim — that nutrition
-rules should be written, versioned, and tested like software — and is closer in
-spirit to "infrastructure as code." The similarity of names is coincidental.
+*Code Biology* is an established research program that treats living systems as
+containing organic codes, of which the genetic code is the most familiar
+[@barbieri2015]. That program is descriptive: it makes claims about the nature of
+biological information. This software makes no such claim.
+
+The stance here is methodological. Nutrition and pathway models should be written
+the way engineers write infrastructure — versioned, tested, provenance-tracked, and
+fail-closed — so that a model is an executable specification rather than prose to be
+interpreted. The two programs are not in competition because they are not answerable
+to the same evidence: Barbieri's is defeated by showing a claimed code to be
+chemically determined rather than conventional, whereas this one is defeated by a
+model that cannot be versioned, tested, or traced to a source.
+
+The similarity of names is coincidental, and the distinction is worth stating
+because both phrases surface in the same searches.
 
 # Acknowledgements
 

@@ -1,6 +1,9 @@
 """
 biology_as_code — open dig + teaching pathways (Biology as Code companion).
 
+Unrelated to *Code Biology* (Barbieri), which studies organic codes in living
+systems; the claim here is methodological, not semiotic. See docs/naming.md.
+
 Public surface is intentionally small. Deep modules keep their original names
 under pathways/, dig/, simulation/, data/.
 

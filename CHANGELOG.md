@@ -60,6 +60,14 @@ All notable changes to the **biology-as-code** Python package are documented her
 - `.zenodo.json` for machine-readable deposit metadata on tagged releases.
 - CI, docs, Python and license badges in the README, plus links to the site,
   cookbook and validation report.
+- **`docs/naming.md`**: canonical disambiguation from *Code Biology* (Barbieri), the
+  established descriptive program on organic codes in living systems. Shortened
+  versions land in the README, the package docstring, the Zenodo description and
+  `paper/paper.md`, each at a length suited to its register.
+  `tests/test_naming_note.py` guards them against drift: every surface must name the
+  prior art and state the methodological claim, and the package-facing copy must not
+  import the book's disciplinary thesis — the package is a 0.1.0 alpha and asserting
+  what a whole field *should* do overclaims from a README.
 - `ClaimAudit.constitution_state`, mapping schema verdicts onto the four states in
   `docs/constitution.md`. Read-only view; absent from `to_dict()`, so schema
   conformance is unchanged.

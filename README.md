@@ -10,6 +10,12 @@
 
 **[Documentation](https://murffious.github.io/biology_as_code/)** · [Cookbook](https://murffious.github.io/biology_as_code/cookbook/) · [Validation report](https://murffious.github.io/biology_as_code/VALIDATION/)
 
+> **On the name.** *Code Biology* (Barbieri and others) is an existing field that
+> studies organic codes in living systems. This project is unrelated: it is a
+> methodological stance that nutrition and pathway models should be written like
+> software — versioned, tested, provenance-tracked, fail-closed. Descriptive
+> literature, prescriptive tool. See [docs/naming.md](docs/naming.md).
+
 `biology-as-code` is an open Python package that models what happens to a meal —
 digestion, absorption, and the metabolic pathways it drives — as inspectable
 "biology as code." It is the **free companion** to the *Biology as Code* book,
