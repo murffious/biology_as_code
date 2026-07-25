@@ -5,6 +5,6 @@ mTORC1 growth network. Amino acids (leucine via the Rag GTPases) and insulin/IGF
 - **Python module:** `biology_as_code.pathways.nutrient_sensing`
 - **Graph:** `pathway.mermaid` (auto)
 - **Tests:** `tests.md` + `tests/test_pathway_packs.py`
-- **Gold template:** repo root `glycolysis/`
+- **Gold template:** `packs/glycolysis/glycolysis_extra/`
 
 Tier: FLOW teaching. Not product meal score / Kibo-vars product scorer.

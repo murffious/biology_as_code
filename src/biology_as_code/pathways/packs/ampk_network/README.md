@@ -5,6 +5,6 @@ AMPK energy-stress network. A rising AMP/ADP:ATP ratio (plus LKB1 and Ca²⁺/Ca
 - **Python module:** `biology_as_code.pathways.nutrient_sensing`
 - **Graph:** `pathway.mermaid` (auto)
 - **Tests:** `tests.md` + `tests/test_pathway_packs.py`
-- **Gold template:** repo root `glycolysis/`
+- **Gold template:** `packs/glycolysis/glycolysis_extra/`
 
 Tier: FLOW teaching. Not product meal score / Kibo-vars product scorer.

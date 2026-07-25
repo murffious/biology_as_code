@@ -5,6 +5,6 @@ Ketogenesis. Liver converts excess acetyl-CoA into ketone bodies that can be use
 - **Python module:** `biology_as_code.pathways.ketogenesis`
 - **Graph:** `pathway.mermaid` (auto)
 - **Tests:** `tests.md` + `tests/test_pathway_packs.py`
-- **Gold template:** repo root `glycolysis/`
+- **Gold template:** `packs/glycolysis/glycolysis_extra/`
 
 Tier: FLOW teaching. Not product meal score / Kibo-vars product scorer.

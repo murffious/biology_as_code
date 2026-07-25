@@ -1,0 +1,21 @@
+flowchart TD
+  %% Auto-generated from registry pathway: aa_nitrogen_disposal
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  %% Source: Berg JM, Tymoczko JL, Stryer L. Biochemistry — Amino Acid Degradation and the Urea Cycle.
+  %% Source: Lehninger Principles of Biochemistry — Nitrogen excretion and the urea cycle.
+  amino_acid["Amino acid (general)"]
+  alpha_kg["α-Ketoglutarate"]
+  glutamate["Glutamate"]
+  alpha_keto_acid["α-Keto acid (carbon skeleton)"]
+  nh4["Ammonia (NH₄⁺)"]
+  aspartate["Aspartate"]
+  urea_cycle_entry["Urea cycle (see urea_cycle pack)"]
+  glutamine["Glutamine"]
+  amino_acid -->|"aminotransferase"| alpha_keto_acid
+  alpha_kg -->|"aminotransferase"| glutamate
+  glutamate -->|"glutamate_dehydrogenase"| nh4
+  glutamate -->|"aminotransferase"| aspartate
+  nh4 -->|"CPS1 entry (see urea_cycle)"| urea_cycle_entry
+  aspartate -->|"Argininosuccinate synthetase (see urea_c"| urea_cycle_entry
+  glutamate -->|"Glutamine synthetase"| glutamine
+  glutamine -->|"Glutaminase (GLS)"| nh4

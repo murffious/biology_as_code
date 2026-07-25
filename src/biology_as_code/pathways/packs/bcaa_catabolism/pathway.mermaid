@@ -1,0 +1,22 @@
+flowchart TD
+  %% Auto-generated from registry pathway: bcaa_catabolism
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  %% Source: Maple syrup urine disease / BCKDH: OMIM 248600; standard biochem texts.
+  %% Source: BCAA metabolism overview — Lehninger / Harper's Biochemistry.
+  leucine["Leucine"]
+  isoleucine["Isoleucine"]
+  valine["Valine"]
+  bcka["Branched-chain α-keto acids"]
+  bcaa_coa["Branched-chain acyl-CoA"]
+  acetyl_coa["Acetyl-CoA"]
+  acetoacetate["Acetoacetate"]
+  succinyl_coa["Succinyl-CoA"]
+  propionyl_coa["Propionyl-CoA"]
+  leucine -->|"aminotransferase"| bcka
+  isoleucine -->|"aminotransferase"| bcka
+  valine -->|"aminotransferase"| bcka
+  bcka -->|"bckdh"| bcaa_coa
+  bcaa_coa -->|"Leu / Ile ketogenic branch (multi-step)"| acetyl_coa
+  bcaa_coa -->|"HMG-CoA path (leucine)"| acetoacetate
+  bcaa_coa -->|"Val / Ile propionyl branch (multi-step)"| propionyl_coa
+  propionyl_coa -->|"Propionyl-CoA carboxylase → methylmalony"| succinyl_coa

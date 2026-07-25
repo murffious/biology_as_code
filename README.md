@@ -95,6 +95,7 @@ Logging is **quiet by default**. For dig traces: `export BIOLOGY_AS_CODE_LOG=DEB
 Setup checklist: [`docs/python/PUBLISHING.md`](docs/python/PUBLISHING.md).
 
 Architecture notes: [`docs/python/PACKAGE_ARCHITECTURE.md`](docs/python/PACKAGE_ARCHITECTURE.md)  
+**Add a pathway:** [`docs/python/ADD_PATHWAY.md`](docs/python/ADD_PATHWAY.md) (template + checklist + `check_pathway_integration.py`)  
 License: [MIT](./LICENSE) for code · [LICENSE-SAMPLES.md](./LICENSE-SAMPLES.md) for example JSON · book remains all rights reserved.
 
 Docs live under `docs/` in the repo (no Pages required for PyPI). Optional GitHub Pages is **manual only** (Actions → Deploy GitHub Pages) after Settings → Pages → Source: GitHub Actions.

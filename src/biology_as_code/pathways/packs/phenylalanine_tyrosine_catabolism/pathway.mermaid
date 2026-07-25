@@ -1,0 +1,18 @@
+flowchart TD
+  %% Auto-generated from registry pathway: phenylalanine_tyrosine_catabolism
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  %% Source: Phenylketonuria (PAH) — OMIM 261600; standard medical biochemistry.
+  %% Source: Tyrosine catabolism and alkaptonuria / tyrosinemia — Harper's / Lehninger.
+  phenylalanine["Phenylalanine"]
+  tyrosine["Tyrosine"]
+  hpp["p-Hydroxyphenylpyruvate"]
+  homogentisate["Homogentisate"]
+  fumarylacetoacetate["Fumarylacetoacetate"]
+  fumarate["Fumarate"]
+  acetoacetate["Acetoacetate"]
+  phenylalanine -->|"phenylalanine_hydroxylase"| tyrosine
+  tyrosine -->|"Tyrosine aminotransferase (TAT)"| hpp
+  hpp -->|"p-Hydroxyphenylpyruvate dioxygenase (HPD"| homogentisate
+  homogentisate -->|"Homogentisate 1,2-dioxygenase → maleylac"| fumarylacetoacetate
+  fumarylacetoacetate -->|"Fumarylacetoacetate hydrolase (FAH)"| fumarate
+  fumarylacetoacetate -->|"Fumarylacetoacetate hydrolase (FAH)"| acetoacetate

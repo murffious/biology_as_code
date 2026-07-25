@@ -5,6 +5,6 @@ Hepatic fructose (KHK → aldolase B) and Leloir galactose pathway entry into gl
 - **Python module:** `biology_as_code.pathways.supporting_pathways`
 - **Graph:** `pathway.mermaid` (auto)
 - **Tests:** `tests.md` + `tests/test_pathway_packs.py`
-- **Gold template:** repo root `glycolysis/`
+- **Gold template:** `packs/glycolysis/glycolysis_extra/`
 
 Tier: FLOW teaching. Not product meal score / Kibo-vars product scorer.

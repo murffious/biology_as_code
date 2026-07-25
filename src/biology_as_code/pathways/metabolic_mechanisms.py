@@ -382,6 +382,96 @@ class MetabolicMechanismRegistry:
             related_pathways=["tca_cycle"]
         ))
 
+        # ------------------------------------------------------------------
+        # AMINO-ACID CATABOLISM MECHANISMS
+        # ------------------------------------------------------------------
+        self.register(MetabolicMechanism(
+            id="aminotransferase",
+            name="Aminotransferase (Transaminase, PLP)",
+            category=MechanismCategory.ENZYMATIC,
+            description=(
+                "Transfers an α-amino group from an amino acid to an α-keto acid "
+                "(commonly α-ketoglutarate → glutamate). Requires pyridoxal phosphate (B6)."
+            ),
+            location="Cytosol and/or mitochondria (isoform-dependent)",
+            inputs=["Amino acid", "α-Ketoglutarate"],
+            outputs=["α-Keto acid", "Glutamate"],
+            cofactors=["Pyridoxal phosphate (PLP / B6)"],
+            notes="ALT and AST are the clinically measured liver/muscle isoforms.",
+            related_pathways=[
+                "aa_nitrogen_disposal",
+                "bcaa_catabolism",
+                "cori_glucose_alanine",
+            ],
+        ))
+
+        self.register(MetabolicMechanism(
+            id="glutamate_dehydrogenase",
+            name="Glutamate Dehydrogenase (GDH)",
+            category=MechanismCategory.ENZYMATIC,
+            description=(
+                "Oxidative deamination of glutamate to α-ketoglutarate, releasing free NH₄⁺ "
+                "and reducing NAD(P)⁺. Regenerates the α-KG acceptor for transamination."
+            ),
+            location="Mitochondrial matrix (liver-enriched)",
+            inputs=["Glutamate", "NAD(P)+", "H2O"],
+            outputs=["α-Ketoglutarate", "NH4+", "NAD(P)H"],
+            regulation=["ADP / leucine can activate (species/isoform dependent)"],
+            notes="Major route from amino-N to free ammonia for the urea cycle.",
+            related_pathways=["aa_nitrogen_disposal", "urea_cycle"],
+        ))
+
+        self.register(MetabolicMechanism(
+            id="bckdh",
+            name="Branched-Chain α-Keto Acid Dehydrogenase (BCKDH)",
+            category=MechanismCategory.ENZYMATIC,
+            description=(
+                "Mitochondrial multienzyme complex (PDH-like) that oxidative-decarboxylates "
+                "branched-chain α-keto acids from Leu, Ile, and Val. Irreversible committed step."
+            ),
+            location="Mitochondrial matrix",
+            inputs=["Branched-chain α-keto acid", "CoA", "NAD+"],
+            outputs=["Branched-chain acyl-CoA", "CO2", "NADH"],
+            cofactors=["TPP", "lipoamide", "CoA", "FAD", "NAD+"],
+            regulation=[
+                "Inactivated by BCKDK phosphorylation",
+                "Activated by PPM1K phosphatase",
+            ],
+            notes="Deficiency causes maple syrup urine disease (MSUD).",
+            related_pathways=["bcaa_catabolism"],
+        ))
+
+        self.register(MetabolicMechanism(
+            id="phenylalanine_hydroxylase",
+            name="Phenylalanine Hydroxylase (PAH)",
+            category=MechanismCategory.ENZYMATIC,
+            description=(
+                "Hydroxylates phenylalanine to tyrosine using O₂ and tetrahydrobiopterin (BH₄). "
+                "The deficient enzyme in classic phenylketonuria (PKU)."
+            ),
+            location="Liver cytosol",
+            inputs=["Phenylalanine", "O2", "BH4"],
+            outputs=["Tyrosine", "H2O", "BH2"],
+            cofactors=["Tetrahydrobiopterin (BH4)"],
+            notes="Irreversible. Dietary Phe restriction is the classic PKU intervention.",
+            related_pathways=["phenylalanine_tyrosine_catabolism"],
+        ))
+
+        self.register(MetabolicMechanism(
+            id="methionine_adenosyltransferase",
+            name="Methionine Adenosyltransferase (MAT / SAM synthase)",
+            category=MechanismCategory.ENZYMATIC,
+            description=(
+                "Activates methionine with ATP to form S-adenosylmethionine (SAM), "
+                "the universal methyl donor."
+            ),
+            location="Cytosol (liver-enriched MAT1A; ubiquitous MAT2A)",
+            inputs=["Methionine", "ATP"],
+            outputs=["S-Adenosylmethionine", "PPi", "Pi"],
+            notes="Commits methionine into one-carbon / methylation metabolism.",
+            related_pathways=["methionine_one_carbon"],
+        ))
+
 
 def get_metabolic_mechanism_registry() -> MetabolicMechanismRegistry:
     """Factory function."""

@@ -5,6 +5,6 @@ Gluconeogenesis – synthesis of glucose from non-carbohydrate precursors (lacta
 - **Python module:** `biology_as_code.pathways.gluconeogenesis`
 - **Graph:** `pathway.mermaid` (auto)
 - **Tests:** `tests.md` + `tests/test_pathway_packs.py`
-- **Gold template:** repo root `glycolysis/`
+- **Gold template:** `packs/glycolysis/glycolysis_extra/`
 
 Tier: FLOW teaching. Not product meal score / Kibo-vars product scorer.

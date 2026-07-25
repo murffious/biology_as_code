@@ -5,6 +5,6 @@ Pentose Phosphate Pathway. Oxidative phase generates NADPH and ribulose-5-P. Non
 - **Python module:** `biology_as_code.pathways.pentose_phosphate`
 - **Graph:** `pathway.mermaid` (auto)
 - **Tests:** `tests.md` + `tests/test_pathway_packs.py`
-- **Gold template:** repo root `glycolysis/`
+- **Gold template:** `packs/glycolysis/glycolysis_extra/`
 
 Tier: FLOW teaching. Not product meal score / Kibo-vars product scorer.

@@ -1,0 +1,27 @@
+flowchart TD
+  %% Auto-generated from registry pathway: glucogenic_ketogenic_aa
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  %% Source: Glucogenic vs ketogenic amino acids — standard medical biochemistry tables.
+  pyruvate["→ Pyruvate"]
+  oaa["→ Oxaloacetate"]
+  alpha_kg_fate["→ α-Ketoglutarate"]
+  succinyl_coa_fate["→ Succinyl-CoA"]
+  fumarate_fate["→ Fumarate"]
+  acetyl_coa_fate["→ Acetyl-CoA / acetoacetyl-CoA"]
+  ala_ser["Ala / Ser / Cys / Gly"]
+  asp_asn["Asp / Asn"]
+  glu_family["Glu / Gln / Pro / Arg / His"]
+  met_val_ile["Met / Val / Ile"]
+  phe_tyr["Phe / Tyr"]
+  leu_lys["Leu / Lys"]
+  trp["Tryptophan"]
+  ala_ser -->|"Glucogenic"| pyruvate
+  asp_asn -->|"Glucogenic"| oaa
+  glu_family -->|"Glucogenic"| alpha_kg_fate
+  met_val_ile -->|"Glucogenic (Ile mixed)"| succinyl_coa_fate
+  met_val_ile -->|"Ile ketogenic half"| acetyl_coa_fate
+  phe_tyr -->|"Glucogenic half"| fumarate_fate
+  phe_tyr -->|"Ketogenic half"| acetyl_coa_fate
+  leu_lys -->|"Purely ketogenic"| acetyl_coa_fate
+  trp -->|"Glucogenic partial"| pyruvate
+  trp -->|"Ketogenic partial"| acetyl_coa_fate

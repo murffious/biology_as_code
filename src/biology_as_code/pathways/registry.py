@@ -11,6 +11,9 @@ from typing import Any
 
 def pathway_loaders() -> list[tuple[str, Callable[[], Any]]]:
     """(module_label, registry_factory) pairs."""
+    from biology_as_code.pathways.amino_acid_catabolism import (
+        get_amino_acid_catabolism_registry,
+    )
     from biology_as_code.pathways.beta_oxidation import get_beta_oxidation_registry
     from biology_as_code.pathways.cholesterol_pathway import get_cholesterol_pathway_registry
     from biology_as_code.pathways.digestion_absorption_pathways import (
@@ -45,6 +48,7 @@ def pathway_loaders() -> list[tuple[str, Callable[[], Any]]]:
         ("nutrient_sensing", get_nutrient_sensing_registry),
         ("digestion_absorption_pathways", get_digestion_absorption_registry),
         ("supporting_pathways", get_supporting_pathways_registry),
+        ("amino_acid_catabolism", get_amino_acid_catabolism_registry),
     ]
 
 

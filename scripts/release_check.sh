@@ -9,6 +9,7 @@ python3 -m pip install -q -e ".[dev]" build twine
 echo "== tests =="
 python3 -m pytest tests/test_public_api.py tests/test_quiet.py tests/test_fixtures_packaged.py -q
 PYTHONPATH=src python3 tests/test_pathway_packs.py
+PYTHONPATH=src python3 scripts/check_pathway_integration.py
 
 echo "== proprietary guard =="
 if git ls-files | grep -E 'product_score/proprietary/engine|kiboScoreModel\.private'; then

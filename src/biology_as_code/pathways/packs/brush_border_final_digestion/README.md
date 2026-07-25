@@ -5,6 +5,6 @@ Brush-border disaccharidases and peptidases completing lumen → absorbable mono
 - **Python module:** `biology_as_code.pathways.digestion_absorption_pathways`
 - **Graph:** `pathway.mermaid` (auto)
 - **Tests:** `tests.md` + `tests/test_pathway_packs.py`
-- **Gold template:** repo root `glycolysis/`
+- **Gold template:** `packs/glycolysis/glycolysis_extra/`
 
 Tier: FLOW teaching. Not product meal score / Kibo-vars product scorer.

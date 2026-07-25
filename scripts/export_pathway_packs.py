@@ -14,7 +14,7 @@ from __future__ import annotations
 import re
 import sys
 from pathlib import Path
-from typing import Any, Callable, List, Tuple
+from typing import Any, List, Tuple
 
 ROOT = Path(__file__).resolve().parents[1]
 SRC = ROOT / "src"
@@ -176,7 +176,7 @@ def write_readme(pathway: Any, module: str, pack_id: str) -> str:
             f"- **Python module:** `{module}`",
             "- **Graph:** `pathway.mermaid` (auto)",
             "- **Tests:** `tests.md` + `tests/test_pathway_packs.py`",
-            "- **Gold template:** repo root `glycolysis/`",
+            "- **Gold template:** `packs/glycolysis/glycolysis_extra/`",
             "",
             "Tier: FLOW teaching. Not product meal score / Kibo-vars product scorer.",
             "",
@@ -185,45 +185,16 @@ def write_readme(pathway: Any, module: str, pack_id: str) -> str:
 
 
 def collect_pathways() -> List[Tuple[str, str, Any]]:
-    """Return list of (pack_id, module_path, pathway_obj)."""
-    from biology_as_code.pathways.beta_oxidation import get_beta_oxidation_registry
-    from biology_as_code.pathways.cholesterol_pathway import get_cholesterol_pathway_registry
-    from biology_as_code.pathways.digestion_absorption_pathways import (
-        get_digestion_absorption_registry,
-    )
-    from biology_as_code.pathways.etc_oxphos import get_etc_oxphos_registry
-    from biology_as_code.pathways.fatty_acid_synthesis import get_fatty_acid_synthesis_registry
-    from biology_as_code.pathways.gluconeogenesis import get_gluconeogenesis_registry
-    from biology_as_code.pathways.glycogen_metabolism import get_glycogen_metabolism_registry
-    from biology_as_code.pathways.ketogenesis import get_ketogenesis_registry
-    from biology_as_code.pathways.ketolysis import get_ketolysis_registry
-    from biology_as_code.pathways.metabolic_pathways import get_metabolic_pathways_registry
-    from biology_as_code.pathways.nutrient_sensing import get_nutrient_sensing_registry
-    from biology_as_code.pathways.pentose_phosphate import get_pentose_phosphate_registry
-    from biology_as_code.pathways.supporting_pathways import get_supporting_pathways_registry
-    from biology_as_code.pathways.tca_cycle import get_tca_cycle_registry
-    from biology_as_code.pathways.urea_cycle import get_urea_cycle_registry
+    """Return list of (pack_id, module_path, pathway_obj).
 
-    loaders: List[Tuple[str, Callable]] = [
-        ("biology_as_code.pathways.metabolic_pathways", get_metabolic_pathways_registry),
-        ("biology_as_code.pathways.tca_cycle", get_tca_cycle_registry),
-        ("biology_as_code.pathways.etc_oxphos", get_etc_oxphos_registry),
-        ("biology_as_code.pathways.beta_oxidation", get_beta_oxidation_registry),
-        ("biology_as_code.pathways.gluconeogenesis", get_gluconeogenesis_registry),
-        ("biology_as_code.pathways.urea_cycle", get_urea_cycle_registry),
-        ("biology_as_code.pathways.pentose_phosphate", get_pentose_phosphate_registry),
-        ("biology_as_code.pathways.glycogen_metabolism", get_glycogen_metabolism_registry),
-        ("biology_as_code.pathways.cholesterol_pathway", get_cholesterol_pathway_registry),
-        ("biology_as_code.pathways.fatty_acid_synthesis", get_fatty_acid_synthesis_registry),
-        ("biology_as_code.pathways.ketogenesis", get_ketogenesis_registry),
-        ("biology_as_code.pathways.ketolysis", get_ketolysis_registry),
-        ("biology_as_code.pathways.nutrient_sensing", get_nutrient_sensing_registry),
-        ("biology_as_code.pathways.digestion_absorption_pathways", get_digestion_absorption_registry),
-        ("biology_as_code.pathways.supporting_pathways", get_supporting_pathways_registry),
-    ]
+    Single source of truth: ``pathways.registry.pathway_loaders()``.
+    Do not re-list modules here — wire new loaders only in ``registry.py``.
+    """
+    from biology_as_code.pathways.registry import pathway_loaders
 
     out: List[Tuple[str, str, Any]] = []
-    for module, getter in loaders:
+    for label, getter in pathway_loaders():
+        module = f"biology_as_code.pathways.{label}"
         reg = getter()
         paths = reg.list_all() if hasattr(reg, "list_all") else list(reg.pathways.values())
         for p in paths:

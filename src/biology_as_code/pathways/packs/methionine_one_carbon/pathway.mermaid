@@ -1,0 +1,19 @@
+flowchart TD
+  %% Auto-generated from registry pathway: methionine_one_carbon
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  %% Source: One-carbon metabolism and methionine cycle — standard nutrition/biochem texts.
+  %% Source: Homocysteine, folate, B12 interactions — public health / vascular literature.
+  methionine["Methionine"]
+  sam["S-Adenosylmethionine (SAM)"]
+  sah["S-Adenosylhomocysteine (SAH)"]
+  homocysteine["Homocysteine"]
+  methyl_thf["5-Methyl-THF"]
+  cysteine["Cysteine"]
+  serine["Serine"]
+  methionine -->|"methionine_adenosyltransferase"| sam
+  sam -->|"Methyltransferases (many)"| sah
+  sah -->|"SAH hydrolase (AHCY)"| homocysteine
+  homocysteine -->|"Methionine synthase (MTR) — B12"| methionine
+  methyl_thf -->|"Methionine synthase (methyl transfer)"| methionine
+  homocysteine -->|"Cystathionine β-synthase (CBS) → γ-cysta"| cysteine
+  serine -->|"Transsulfuration (Ser carbon enters cyst"| cysteine

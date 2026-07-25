@@ -5,6 +5,6 @@ De novo fatty acid synthesis. Cytosolic pathway that builds palmitate from acety
 - **Python module:** `biology_as_code.pathways.fatty_acid_synthesis`
 - **Graph:** `pathway.mermaid` (auto)
 - **Tests:** `tests.md` + `tests/test_pathway_packs.py`
-- **Gold template:** repo root `glycolysis/`
+- **Gold template:** `packs/glycolysis/glycolysis_extra/`
 
 Tier: FLOW teaching. Not product meal score / Kibo-vars product scorer.

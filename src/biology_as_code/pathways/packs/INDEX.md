@@ -6,7 +6,9 @@ Gold extras: [`glycolysis/glycolysis_extra/`](./glycolysis/glycolysis_extra/) (e
 
 | Pack | Module | Nodes | Edges |
 |------|--------|------:|------:|
+| [`aa_nitrogen_disposal`](./aa_nitrogen_disposal/) | `biology_as_code.pathways.amino_acid_catabolism` | 8 | 8 |
 | [`ampk_network`](./ampk_network/) | `biology_as_code.pathways.nutrient_sensing` | 11 | 11 |
+| [`bcaa_catabolism`](./bcaa_catabolism/) | `biology_as_code.pathways.amino_acid_catabolism` | 9 | 8 |
 | [`beta_oxidation`](./beta_oxidation/) | `biology_as_code.pathways.beta_oxidation` | 9 | 8 |
 | [`bile_acid_synthesis`](./bile_acid_synthesis/) | `biology_as_code.pathways.digestion_absorption_pathways` | 4 | 3 |
 | [`brush_border_final_digestion`](./brush_border_final_digestion/) | `biology_as_code.pathways.digestion_absorption_pathways` | 4 | 2 |
@@ -18,6 +20,7 @@ Gold extras: [`glycolysis/glycolysis_extra/`](./glycolysis/glycolysis_extra/) (e
 | [`fatty_acid_synthesis`](./fatty_acid_synthesis/) | `biology_as_code.pathways.fatty_acid_synthesis` | 6 | 5 |
 | [`fructose_galactose`](./fructose_galactose/) | `biology_as_code.pathways.supporting_pathways` | 8 | 7 |
 | [`fuel_selection_hierarchy`](./fuel_selection_hierarchy/) | `biology_as_code.pathways.supporting_pathways` | 6 | 4 |
+| [`glucogenic_ketogenic_aa`](./glucogenic_ketogenic_aa/) | `biology_as_code.pathways.amino_acid_catabolism` | 13 | 10 |
 | [`gluconeogenesis`](./gluconeogenesis/) | `biology_as_code.pathways.gluconeogenesis` | 12 | 11 |
 | [`glycogen_metabolism`](./glycogen_metabolism/) | `biology_as_code.pathways.glycogen_metabolism` | 6 | 7 |
 | [`glycolysis`](./glycolysis/) | `biology_as_code.pathways.metabolic_pathways` | 12 | 12 |
@@ -25,8 +28,10 @@ Gold extras: [`glycolysis/glycolysis_extra/`](./glycolysis/glycolysis_extra/) (e
 | [`ketolysis`](./ketolysis/) | `biology_as_code.pathways.ketolysis` | 4 | 3 |
 | [`lipid_digestion_absorption`](./lipid_digestion_absorption/) | `biology_as_code.pathways.digestion_absorption_pathways` | 6 | 5 |
 | [`lipoprotein_transport`](./lipoprotein_transport/) | `biology_as_code.pathways.cholesterol_pathway` | 7 | 6 |
+| [`methionine_one_carbon`](./methionine_one_carbon/) | `biology_as_code.pathways.amino_acid_catabolism` | 7 | 7 |
 | [`mtorc1_network`](./mtorc1_network/) | `biology_as_code.pathways.nutrient_sensing` | 13 | 13 |
 | [`pentose_phosphate`](./pentose_phosphate/) | `biology_as_code.pathways.pentose_phosphate` | 10 | 9 |
+| [`phenylalanine_tyrosine_catabolism`](./phenylalanine_tyrosine_catabolism/) | `biology_as_code.pathways.amino_acid_catabolism` | 7 | 6 |
 | [`prebiotic_probiotic`](./prebiotic_probiotic/) | `biology_as_code.pathways.supporting_pathways` | 5 | 4 |
 | [`protein_digestion_absorption`](./protein_digestion_absorption/) | `biology_as_code.pathways.digestion_absorption_pathways` | 5 | 4 |
 | [`redox_shuttles`](./redox_shuttles/) | `biology_as_code.pathways.supporting_pathways` | 7 | 6 |
@@ -35,4 +40,4 @@ Gold extras: [`glycolysis/glycolysis_extra/`](./glycolysis/glycolysis_extra/) (e
 | [`tca_cycle`](./tca_cycle/) | `biology_as_code.pathways.tca_cycle` | 9 | 8 |
 | [`urea_cycle`](./urea_cycle/) | `biology_as_code.pathways.urea_cycle` | 10 | 6 |
 
-**Total:** 28 graphs
+**Total:** 33 graphs

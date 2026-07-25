@@ -79,6 +79,8 @@ nav:
   - Architecture:
       - Package: python/PACKAGE_ARCHITECTURE.md
       - Publishing: python/PUBLISHING.md
+      - Add a pathway (template): python/ADD_PATHWAY.md
+      - Pathway PR checklist: python/templates/NEW_PATHWAY_CHECKLIST.md
 
 extra:
   social:
