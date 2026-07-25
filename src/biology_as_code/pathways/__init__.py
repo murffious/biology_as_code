@@ -1,7 +1,11 @@
 """
-Teaching pathway graphs.
+Teaching pathway graphs + co-located mermaid packs.
 
-Module **filenames kept** from the simulator (no forced rename to atp.py / lipid.py).
+Code: this package (`*.py`).
+Diagrams: ``pathways/packs/<id>/pathway.mermaid`` (do not name a folder the same
+as a ``.py`` module — that would shadow the import).
+
+Coverage map: ``pathways/packs/COVERAGE.md``.
 Use :func:`list_pathways` / :func:`get_pathway` for discovery.
 """
 

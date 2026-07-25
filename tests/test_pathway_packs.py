@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Structured tests for pathway packs under pathways/ + gold glycolysis/.
+Structured tests for packs under src/biology_as_code/pathways/packs/.
 
   PYTHONPATH=src python3 tests/test_pathway_packs.py
   pytest tests/test_pathway_packs.py -q
@@ -17,9 +17,8 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
-PATHWAYS = ROOT / "pathways"
-# Hand-authored gold glycolysis variants (archived under the auto pack).
-GLYCOLYSIS_GOLD = ROOT / "pathways" / "glycolysis" / "glycolysis_extra"
+PATHWAYS = ROOT / "src" / "biology_as_code" / "pathways" / "packs"
+GLYCOLYSIS_GOLD = PATHWAYS / "glycolysis" / "glycolysis_extra"
 
 
 def _collect() -> List[Tuple[str, str, Any]]:
@@ -53,8 +52,9 @@ def test_all_pathway_packs_structural():
 def test_glycolysis_gold_folder():
     assert GLYCOLYSIS_GOLD.is_dir()
     assert (GLYCOLYSIS_GOLD / "glycolysis.mermaid").is_file()
-    assert (GLYCOLYSIS_GOLD / "tests.md").is_file()
-    print("✓ Gold glycolysis/ pack present (mermaid + tests.md)")
+    assert (PATHWAYS / "glycolysis" / "tests.md").is_file()
+    assert (PATHWAYS / "glycolysis" / "pathway.mermaid").is_file()
+    print("✓ Gold glycolysis pack present (auto mermaid + hand extras + tests.md)")
 
 
 def test_glycolysis_invariants():
@@ -121,7 +121,7 @@ def test_mechanism_ids_resolve_when_set():
 
 def test_mermaid_nonempty_when_exported():
     if not PATHWAYS.is_dir():
-        print("⊘ pathways/ missing — run scripts/export_pathway_packs.py")
+        print("⊘ pathways/packs missing — run scripts/export_pathway_packs.py")
         return
     packs = [
         p
