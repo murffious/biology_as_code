@@ -67,10 +67,35 @@ law by using it.**
 | AMPK / mTORC1 / SREBP activities | `FLOW` proxies. Signed edges are textbook; activity levels are illustrative |
 | Pathway graph stoichiometry | Teaching graphs. Not systematically diffed against a reference database such as KEGG or Rhea |
 | Bound magnitudes in the auditor | **Not emitted at all.** The auditor returns a signed direction only |
+| Colonic fermentation energy magnitude | **Unlocked by policy, not by omission.** See below |
 
-That last row is the design, not a gap. Direction is what the cited laws support;
-magnitude depends on dose, matrix and host status, and the package declines rather
-than interpolating.
+The last two rows are the design, not a gap. Direction is what the cited laws
+support; magnitude depends on dose, matrix and host status, and the package declines
+rather than interpolating.
+
+### The colonic fermentation band is unlocked on purpose
+
+`LAW026_PROMOTION_DECISION.md` is a recorded policy decision, dated 2026-07-21, and
+its conclusion is explicit:
+
+> LAW-026 is a solid mechanism/shape law; energy magnitude is a provisional band for
+> FLOW/UNITS priors, never a hard single coefficient until primary human ME evidence
+> is promoted.
+
+The reasoning is that EV-041 (PMID 33995299) documents large interindividual and
+substrate heterogeneity in resistant-starch fermentation, which forbids a point
+estimate. The band `{low: 1.5, mid: 2.0, high: 2.5, locked: false}` is therefore a
+deliberately unlocked prior carrying its own `basis` string, not an unfinished field.
+
+**Do not "finish" this by locking it.** `tests/test_law026_policy.py` asserts the
+band stays unlocked, that the mid value is never promoted to a bound, and that the
+supporting PMIDs remain attached — so the policy is enforced rather than merely
+documented. An earlier draft of this report recommended taking the band through a
+`UNITS_skeleton` → `UNITS` promotion. That recommendation was wrong: it contradicted
+this decision, which was better reasoned than the recommendation.
+
+What legitimately remains is a full-text read of PMID 40403748 and the cross-repo
+merge of EV-039–041 into the evidence register.
 
 ## Coverage of the example data
 
@@ -99,10 +124,11 @@ In rough order of value per unit of work:
 2. **Diff the pathway graphs against a reference database.** A test comparing
    stoichiometry to KEGG or Rhea would move `pathway_graphs` from teaching to
    verified for the subset it covers.
-3. **Lock one magnitude properly.** Take the colonic fermentation energy band
-   through the `UNITS_skeleton` → `UNITS` promotion with recorded evidence, as
-   `LAW026_PROMOTION_DECISION.md` does for LAW-026. One worked promotion
-   demonstrates the process better than ten more skeletons.
+3. **Read PMID 40403748 in full.** It is the only source in the LAW-026 pack that
+   links methanogenesis and SCFA production to *human* metabolizable energy, and it
+   is logged as `EV-046_candidate` pending a full-text read. Everything else in the
+   pack is in vitro or a review. This is the single highest-value unblocking task,
+   and it needs a human with journal access rather than a code change.
 4. **Criterion validation.** The strongest verdict available is `Plausible`.
    Promoting anything to `Confirmed` requires outcome evidence, which is a research
    programme rather than a code change.

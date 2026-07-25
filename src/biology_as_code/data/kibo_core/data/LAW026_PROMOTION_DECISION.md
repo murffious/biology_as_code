@@ -127,11 +127,17 @@ That is the best long-term outcome: honest science, usable product demos, no fak
 - [x] Filter 20 PMIDs; draft EV-039–045  
 - [x] Abstract-tighten EV-039–041  
 - [x] Decision: **shape solid / magnitude provisional band**  
-- [ ] Append EV-039–041 to `gleaned/registers/evidence.md` (when you want register merge)  
-- [ ] Attach PMID + FAO/Livesey notes on `base_unit_colon_fermentation.skeleton.json` `sources[]`  
-- [ ] Set units prior field `energy_kcal_per_g_fermentable: {low: 1.5, mid: 2.0, high: 2.5, locked: false}`  
-- [ ] Keep engine `claim_tiers`; optional print “ME prior band, not law-locked”  
-- [ ] Full-text 40403748 / 27786539 for possible EV-046+  
+- [ ] Append EV-039–041 to `gleaned/registers/evidence.md` (cross-repo; register not in this package)  
+- [x] Attach PMID + FAO/Livesey notes on `base_unit_colon_fermentation.skeleton.json` `sources[]`  
+- [x] Set units prior field `energy_kcal_per_g_fermentable: {low: 1.5, mid: 2.0, high: 2.5, locked: false}`  
+- [x] Keep engine `claim_tiers`; optional print “ME prior band, not law-locked”  
+- [ ] Full-text 40403748 / 27786539 for possible EV-046+ — **the one route to a magnitude lock**  
+- [x] Enforce the policy in CI (`tests/test_law026_policy.py`) so an unlocked band is not
+      mistaken for an unfinished one  
+
+*Checklist reconciled 2026-07-25: items 2–4 were already satisfied in the skeleton
+artifact but left unticked here. The remaining two are a cross-repo merge and a
+full-text read; neither is a code change.*
 
 ---
 
