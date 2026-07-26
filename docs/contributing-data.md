@@ -43,8 +43,9 @@ tier of rules the whole engine already uses.
 }
 ```
 
-- **`target.kind`** is `law`, `packet`, `nutrient`, or `claim`. `law` and `packet`
-  refs must exist in the live register, or the contribution is `REFUSE`d.
+- **`target.kind`** is `law`, `packet`, `nutrient`, `claim`, `mechanism`, or
+  `pathway_step`. `law`, `packet`, `mechanism`, and `pathway_step` refs must exist
+  in the live register, or the contribution is `REFUSE`d.
 - **`source`** is `pubmed` (a PMID), `doi`, `guideline`, or `textbook` (a citation
   string). No fabricated metadata — a PMID that isn't a PMID is `NEEDS_SOURCE`.
 - **`asserts_magnitude: true`** means you're claiming a specific number. That path
@@ -52,8 +53,53 @@ tier of rules the whole engine already uses.
   one; magnitudes always do.
 - **`strength`** is assigned by review on the ledger's 0–5 scale — leave it out.
 
-Three worked examples live in [`examples/contributions/`](https://github.com/murffious/biology_as_code/tree/main/examples/contributions):
-one `ACCEPTED`, one `NEEDS_SOURCE`, one `REFUSE`.
+Worked examples live in [`examples/contributions/`](https://github.com/murffious/biology_as_code/tree/main/examples/contributions):
+`ACCEPTED`, `NEEDS_SOURCE`, `REFUSE`, and a peer-reviewed pathway step.
+
+## Reviewing cogs and steps (mechanisms, pathway steps)
+
+The same gate reviews **code cogs**, not just the register. Point a contribution at
+a mechanism or a single modelled step and it flows through the identical pipeline:
+
+- **`mechanism`** — `ref` is a mechanism id, e.g. `"dmt1"`.
+- **`pathway_step`** — `ref` is `"<pathway>::<from_node>-><to_node>"`, e.g.
+  `"iron_absorption::fe2_lumen->fe2_enterocyte"`. A ref that doesn't match a real
+  edge is `REFUSE`d, so a step review can't drift from the graph.
+
+### Peer sign-offs and tiers
+
+A contribution can carry independent human **`signoffs`**. They don't change the
+verdict; they raise the **tier** (the ledger's 0–5 strength), so a thing keeps
+operating at whatever tier it has actually earned:
+
+| Distinct reviewers | Tier reached | May do |
+| --- | --- | --- |
+| 0 (sourced only) | 3 | usable as an established mechanism/gate |
+| 1 | 4 | direction locked, magnitude bounded |
+| **≥2 independent** | **5** | **a magnitude may be locked** |
+
+`disputed` sign-offs and duplicate reviewers never promote — locking a number
+(tier 5) always needs two *independent* verifiers, the same bar a journal uses.
+Sign-offs are assigned by review, not the submitter.
+
+```json
+{
+  "id": "contrib.review-dmt1-iron-step",
+  "type": "evidence",
+  "target": { "kind": "pathway_step", "ref": "iron_absorption::fe2_lumen->fe2_enterocyte" },
+  "payload": { "mechanism": "dmt1" },
+  "source": { "kind": "pubmed", "pmid": "39005063" },
+  "signoffs": [
+    { "reviewer": "reviewer-a", "date": "2026-07-25", "verdict": "verified" },
+    { "reviewer": "reviewer-b", "date": "2026-07-25", "verdict": "verified" }
+  ]
+}
+```
+
+> The **review board** that renders every cog/law/step at its current tier
+> (`tools/check_cog_evidence.py`) lives at the **monorepo root**, outside the
+> installed wheel. The contribution shape above is the part that ships with the
+> package; the board just reads the ledger these files form.
 
 ## How to submit
 
