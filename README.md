@@ -35,26 +35,25 @@ on its own today; you do not need the book to use it.
 
 ## The FDP-1 specification
 
-**[FDP-1: Food Data Provenance Declaration](FDP-1-food-data-provenance.md)** is a
-minimal, RFC-style specification for declaring *where a nutrient value came from*
-and *how well a score built on it is validated*. It does not score food — it
-wraps any existing system (Nutri-Score, Health Star Rating, Nutri-Grade, Food
-Compass, or a proprietary score) without modifying it.
+This package is a **reference implementation** of **[FDP-1: Food Data Provenance
+Declaration](https://github.com/murffious/fdp-1)** — a minimal, RFC-style
+specification for declaring *where a nutrient value came from* and *how well a
+score built on it is validated*. FDP-1 wraps any existing system (Nutri-Score,
+Health Star Rating, Nutri-Grade, Food Compass, or a proprietary score) without
+modifying it.
 
-- **Seven fields on a value, five on a score, one rule.** The one rule is the
-  **weakest-link rule** (§3.1): a score's provenance grade equals its
-  lowest-graded input. A composite of 40 lab values and one label value is Grade C.
-- **The OPEN / NONE convention** (§4): an unknown value is declared `OPEN`
-  (never silently imputed, zeroed, or omitted); a value or field that is *known
-  absent or not applicable* — e.g. the analytical method of a calculated value —
-  is `NONE`. Not-known and nothing-to-know are different claims.
-- **Reference implementation:** a dependency-free
-  [validator](validator/validate_fdp.py) (`python validator/validate_fdp.py
-  examples/iron-two-hosts.json`), the [`MASTER_CROSSWALK.tsv`](MASTER_CROSSWALK.tsv)
-  nutrient→metabolite join (a downstream layer — `nutrient_ref` itself resolves to
-  a nutrient vocabulary such as INFOODS/FDC, not to this crosswalk), and a worked
-  [two-host iron example](examples/iron-two-hosts.json).
-- **Terms:** Apache-2.0 with a patent [non-assertion covenant](PATENTS.md).
+- **Seven fields on a value, five on a score, one rule** — the **weakest-link
+  rule** (§3.1): a score's provenance grade equals its lowest-graded input.
+- **`OPEN` vs `NONE` (§4):** *not known* vs. *known-absent / not-applicable* —
+  different claims.
+- **`nutrient_ref`** resolves to the canonical **CDNO** food-composition
+  vocabulary (with ChEBI / FDC / INFOODS accepted as alternate keys) — *not* to
+  the [`MASTER_CROSSWALK.tsv`](MASTER_CROSSWALK.tsv) nutrient→metabolite join,
+  which this repo hosts as a separate downstream layer.
+
+The **specification, its reference validator, and the worked example** live in the
+canonical **[`fdp-1`](https://github.com/murffious/fdp-1)** repository (with its own
+DOI). Apache-2.0 with a patent [non-assertion covenant](PATENTS.md).
 
 ---
 

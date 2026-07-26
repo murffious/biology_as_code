@@ -1,16 +1,17 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it using these metadata."
-title: "Biology as Code: an open, provenance-tracked toolkit for meal digestion and metabolic-pathway modeling, incl. the FDP-1 Food Data Provenance Declaration"
+title: "Biology as Code: an open, provenance-tracked toolkit for meal digestion and metabolic-pathway modeling (reference implementation of FDP-1)"
 abstract: >-
   biology-as-code is an open-source toolkit that models what happens to a meal —
   digestion, absorption, and the metabolic pathways it drives — as inspectable code:
   a meal-simulation pipeline, a declarative model of the GI tract as versioned state
   machines, teaching metabolic-pathway graphs, LAW-SPEC law cards as queryable data, and
-  an evidence/provenance layer. This release also publishes FDP-1, the Food Data
+  an evidence/provenance layer. It is a reference implementation of FDP-1, the Food Data
   Provenance Declaration — a minimal specification for declaring the provenance of a
-  nutrient value and the validation status of any score computed from such values —
-  together with a reference validator, the MASTER_CROSSWALK ID spine, and a worked
-  example. Built to be fail-closed with no fabricated data. Teaching / research software;
+  nutrient value and the validation status of any score computed from it — which is
+  published separately as its own citable standard at github.com/murffious/fdp-1. This
+  record covers the Python package and the MASTER_CROSSWALK nutrient-to-metabolite join.
+  Built to be fail-closed with no fabricated data. Teaching / research software;
   not medical advice.
 type: software
 authors:
