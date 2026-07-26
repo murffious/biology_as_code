@@ -1,8 +1,8 @@
 {
   "title": "Biology as Code: an open, provenance-tracked toolkit for meal digestion and metabolic-pathway modeling",
-  "description": "<p><code>biology-as-code</code> is an open-source Python package that models what happens to a meal &mdash; digestion, absorption, and the metabolic pathways it drives &mdash; as inspectable code rather than a numeric verdict. It fails closed: where a required fact is not declared it returns UNEVALUABLE rather than a default pass, a zero, or an interpolated estimate.</p><p>It provides a meal-simulation pipeline, the gastrointestinal tract as versioned declarative state machines, 28 teaching metabolic-pathway graphs, 47 LAW-SPEC law cards expressing rules as queryable data, a typed food-packet loader, and a claim auditor that walks a nutrition claim through the L1&ndash;L5 delivery ladder and returns a verdict with citations to the laws it rests on. Gate (categorical) and bound (signed magnitude) are separated at the type level, and continuous integration asserts that a gate rule may only cite laws whose card declares a gate.</p><p>Pure Python (&ge;3.11), dependency-free at runtime, no network calls by default. FLOW teaching and research software; not medical advice. The patent-pending product scoring engine is deliberately not included &mdash; see PROPRIETARY_IP.md. Validation tiers are documented in docs/VALIDATION.md.</p><p><strong>On the name:</strong> unrelated to <em>Code Biology</em> (Barbieri and others), which studies organic codes in living systems. The claim here is methodological rather than semiotic: nutrition and pathway models should be written like software.</p>",
+  "description": "<p><code>biology-as-code</code> is an open-source Python package that models what happens to a meal &mdash; digestion, absorption, and the metabolic pathways it drives &mdash; as inspectable code rather than a numeric verdict. It fails closed: where a required fact is not declared it returns UNEVALUABLE rather than a default pass, a zero, or an interpolated estimate.</p><p>It provides a meal-simulation pipeline, the gastrointestinal tract as versioned declarative state machines, 28 teaching metabolic-pathway graphs, 47 LAW-SPEC law cards expressing rules as queryable data, a typed food-packet loader, and a claim auditor that walks a nutrition claim through the L1&ndash;L5 delivery ladder and returns a verdict with citations to the laws it rests on. Gate (categorical) and bound (signed magnitude) are separated at the type level, and continuous integration asserts that a gate rule may only cite laws whose card declares a gate.</p><p>Pure Python (&ge;3.11), dependency-free at runtime, no network calls by default. FLOW teaching and research software; not medical advice. The patent-pending product scoring engine is deliberately not included &mdash; see PROPRIETARY_IP.md. Validation tiers are documented in docs/VALIDATION.md.</p><p>This release also publishes <strong>FDP-1, the Food Data Provenance Declaration</strong> &mdash; a minimal, RFC-style specification for declaring the provenance grade of a nutrient value (six fields) and the validation status of any score computed from such values (five fields, incl. a weakest-link provenance rule). FDP-1 wraps any existing scoring system (Nutri-Score, Health Star Rating, Nutri-Grade, Food Compass, or proprietary scores) without modification. Shipped with a dependency-free reference validator, the MASTER_CROSSWALK ID spine, and a worked two-host iron example. A patent non-assertion covenant applies to the open layer (see PATENTS.md).</p><p><strong>On the name:</strong> unrelated to <em>Code Biology</em> (Barbieri and others), which studies organic codes in living systems. The claim here is methodological rather than semiotic: nutrition and pathway models should be written like software.</p>",
   "upload_type": "software",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "access_right": "open",
   "creators": [
     {
@@ -22,7 +22,10 @@
     "claim auditing",
     "fail-closed",
     "Python",
-    "executable specification"
+    "executable specification",
+    "FDP-1",
+    "food data provenance",
+    "specification"
   ],
   "related_identifiers": [
     {

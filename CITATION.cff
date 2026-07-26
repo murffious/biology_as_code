@@ -1,21 +1,25 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it using these metadata."
-title: "Biology as Code: an open, provenance-tracked toolkit for meal digestion and metabolic-pathway modeling"
+title: "Biology as Code: an open, provenance-tracked toolkit for meal digestion and metabolic-pathway modeling, incl. the FDP-1 Food Data Provenance Declaration"
 abstract: >-
-  biology-as-code is an open-source Python package that models what happens to a meal —
+  biology-as-code is an open-source toolkit that models what happens to a meal —
   digestion, absorption, and the metabolic pathways it drives — as inspectable code:
   a meal-simulation pipeline, a declarative model of the GI tract as versioned state
   machines, teaching metabolic-pathway graphs, LAW-SPEC law cards as queryable data, and
-  an evidence/provenance layer. Built to be fail-closed with no fabricated data. FLOW
-  teaching / research software; not medical advice.
+  an evidence/provenance layer. This release also publishes FDP-1, the Food Data
+  Provenance Declaration — a minimal specification for declaring the provenance of a
+  nutrient value and the validation status of any score computed from such values —
+  together with a reference validator, the MASTER_CROSSWALK ID spine, and a worked
+  example. Built to be fail-closed with no fabricated data. Teaching / research software;
+  not medical advice.
 type: software
 authors:
   - family-names: Murff
     given-names: Paul
     affiliation: "Morf Engineering"
 version: "0.1.0"
-date-released: "2026-07-24"
-license: MIT
+date-released: "2026-07-26"
+license: Apache-2.0
 doi: "10.5281/zenodo.21536449"
 repository-code: "https://github.com/murffious/biology_as_code"
 url: "https://pypi.org/project/biology-as-code/"
@@ -29,6 +33,9 @@ keywords:
   - provenance
   - reproducibility
   - Python
+  - FDP-1
+  - food data provenance
+  - specification
 identifiers:
   - type: doi
     value: "10.5281/zenodo.21536449"
