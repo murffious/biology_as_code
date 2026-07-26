@@ -197,6 +197,43 @@ python3 tools/verify_term_evidence.py
 Document operator-facing honesty also in `TERM_EVIDENCE_INDEX.md` (regenerated)
 and `PLAN_TERM_MAPPING.md` § evidence prebuild.
 
+### Contribution & review pipeline — cog/step targets + peer sign-off tiers
+
+The crowd-contribution gate (`biology_as_code.contrib.validate_contribution`) now
+reviews **code cogs**, not just the register — folding human review and community
+collaboration into one fail-closed pipeline: `submit → validate → peer sign-off →
+board`.
+
+- **New target kinds** in `schemas/contribution.schema.json`: `mechanism`
+  (`ref` = a mechanism id, e.g. `dmt1`) and `pathway_step`
+  (`ref` = `"<pathway>::<from>-><to>"`). Both resolve against the live registries;
+  a ref that is not a real mechanism or edge is `REFUSE`d, so a step review cannot
+  drift from the graph.
+- **Peer sign-offs → tiers.** An optional `signoffs` array raises the ledger's 0–5
+  strength: sourced-only → 3, one reviewer → 4, **≥2 independent reviewers → 5**
+  (the only tier that may lock a magnitude). `disputed` sign-offs and duplicate
+  reviewers never promote — the two-independent-verifier bar a journal uses.
+  Sign-offs are assigned by review; the submitter cannot set them.
+- **Operate in the tier they are.** Nothing is blocked and nothing over-claims; a
+  cog keeps working at whatever tier it has earned. This mirrors the auditor
+  lattice, where `Confirmed` is already unreachable from a mechanism walk.
+- **Review board (monorepo root, outside the wheel):** `tools/check_cog_evidence.py`
+  reads the contribution ledger back through the same gate and renders every
+  mechanism, pathway step and law at its current tier — alongside term-evidence
+  leads and which laws are wired into the executable auditor (**7 of 47**). It
+  replaces the throwaway `COG_REVIEW_LEDGER.json`; the contribution ledger is the
+  single source of review state.
+- Example: `examples/contributions/contrib.review-dmt1-iron-step.json` — a
+  pathway-step review promoted to tier 5 by two independent sign-offs.
+- Docs: `docs/contributing-data.md` gains a "Reviewing cogs and steps" section.
+- Tests: six new cases in `tests/test_contribution.py` (mechanism/step targets,
+  bad-step `REFUSE`, tier promotion 0/1/2, duplicate-reviewer and `disputed` do not
+  promote). Existing verdicts and `all_sources` shape are unchanged.
+
+> Coupling note: resolving the new target kinds makes `contrib.validator` import
+> the `pathways` registry, so the contribution gate now depends on the pathways
+> layer. Fine inside the package; it travels with `contrib` if that ever splits out.
+
 ### Added
 
 - **Fail-closed claim auditor** (`biology_as_code.audit`): `audit_claim(claim, packet)`
@@ -220,7 +257,7 @@ and `PLAN_TERM_MAPPING.md` § evidence prebuild.
   package's no-dependency guarantee. `unsupported_keywords()` reports its own blind
   spot, and a test fails if a schema ever uses a keyword it cannot check.
 - Tests: `tests/test_claim_audit.py` and `tests/test_packets.py` (38 new tests for the
-  auditor; **284 in the suite today**). Includes derivation of both hand-written fixtures in `examples/claims/`,
+  auditor; **291 in the suite today**). Includes derivation of both hand-written fixtures in `examples/claims/`,
   and coverage of all three teaching pairs (iron/ascorbate vs tannin, fat-vehicle
   gate, almond matrix).
 - Docs: `docs/claim-auditor.md`.
@@ -283,6 +320,12 @@ and `PLAN_TERM_MAPPING.md` § evidence prebuild.
 - `ClaimAudit.constitution_state`, mapping schema verdicts onto the four states in
   `docs/constitution.md`. Read-only view; absent from `to_dict()`, so schema
   conformance is unchanged.
+- **`references` on `MetabolicMechanism`.** Enzyme cogs now carry authoritative
+  provenance — stable **gene + EC** identifiers (NCBI Gene / ExPASy), never
+  fabricated PMIDs — via a `_MECHANISM_REFERENCES` table applied at registry build.
+  21 enzyme mechanisms sourced; the three with a nutrition-vocabulary term
+  (`lipase`, `α-amylase`, `phosphofructokinase`) link it so they join the evidence
+  spine. Surfaced by the root review board.
 
 ### Changed
 
