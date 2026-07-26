@@ -72,6 +72,7 @@ nav:
   - Validation ledger: VALIDATION_LEDGER.md
   - Contributing data: contributing-data.md
   - Standardization roadmap: standardization-roadmap.md
+  - Iron absorption weights (FDP-1 demo): iron/fractional-absorption.md
   - Awesome Internet of the Body: awesome-internet-of-the-body.md
   - Cookbook:
       - Overview: cookbook/index.md
@@ -91,4 +92,4 @@ extra:
       link: https://github.com/murffious/biology_as_code
   generator: false
 
-copyright: MIT licensed. FLOW teaching / research software — not medical advice.
+copyright: Apache-2.0 licensed. FLOW teaching / research software — not medical advice.

@@ -20,8 +20,9 @@ authors:
 version: "0.1.0"
 date-released: "2026-07-26"
 license: Apache-2.0
-# doi: set to the concept DOI minted by Zenodo when the v0.1.0 GitHub release is
-# published (the GitHub–Zenodo integration mints it on publish; do not pre-fill).
+# Existing Zenodo DOI for the current record. After the v0.1.0 GitHub release is
+# published, repoint this to the concept DOI the GitHub–Zenodo integration mints.
+doi: "10.5281/zenodo.21536449"
 repository-code: "https://github.com/murffious/biology_as_code"
 url: "https://pypi.org/project/biology-as-code/"
 keywords:
@@ -37,3 +38,7 @@ keywords:
   - FDP-1
   - food data provenance
   - specification
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.21536449"
+    description: "Archived record on Zenodo"

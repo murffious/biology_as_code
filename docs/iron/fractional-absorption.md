@@ -1,7 +1,7 @@
 # Fractional iron absorption — weights for the `absorbed-iron:demo` scores
 
 This document is the `weights_published` target for the two scores in
-[`examples/iron-two-hosts.json`](../../examples/iron-two-hosts.json). Under FDP-1
+[`examples/iron-two-hosts.json`](https://github.com/murffious/biology_as_code/blob/main/examples/iron-two-hosts.json). Under FDP-1
 §3, a score that does not publish its weights declares `weights_published: false`;
 this demo publishes them here so the example is fully self-describing.
 
