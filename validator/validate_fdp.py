@@ -18,7 +18,8 @@ import json
 import sys
 from dataclasses import dataclass, field
 
-OPEN = "OPEN"
+OPEN = "OPEN"   # §4 — not known (exists, could be supplied)
+NONE = "NONE"   # §4 — not applicable / known absent (e.g. method of a non-measured value)
 
 # §2 — every nutrient value declares these seven fields. `nutrient_ref` names
 # WHICH nutrient the value is for (resolvable through a crosswalk such as
@@ -98,10 +99,11 @@ def check_value(name: str, decl: dict, rep: Report) -> str | None:
         if f in decl and decl[f] in (None, ""):
             rep.fail(where, f"field '{f}' is empty; unknowns SHALL be the literal \"OPEN\" (§4)")
 
-    # nutrient_ref names the nutrient and should not itself be OPEN — a value you
-    # cannot name is not a value you can declare (§2).
-    if decl.get("nutrient_ref") == OPEN:
-        rep.fail(where, "nutrient_ref is OPEN; a value must name which nutrient it is for (§2)")
+    # nutrient_ref must resolve to an identifier — a standard vocabulary term or a
+    # declared local: id (§4). It is never OPEN or NONE: a value you cannot name is
+    # not a value you can declare (§2).
+    if decl.get("nutrient_ref") in (OPEN, NONE):
+        rep.fail(where, "nutrient_ref is OPEN/NONE; name the nutrient (use a local: id if no standard term exists) (§2, §4)")
 
     source = decl.get("source")
     if source is not None and source not in VALUE_SOURCES:

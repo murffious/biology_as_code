@@ -32,11 +32,11 @@ Every nutrient value SHALL declare seven fields.
 | Field | Type | Notes |
 |---|---|---|
 | `nutrient_ref` | string | Coded nutrient identity in a declared *nutrient* vocabulary: `infoods:FE`, `fdc.nutrient:303`, or a CDNO term. Names *which* nutrient this value is for. |
-| `value` | number \| `OPEN` | See §4 |
+| `value` | number \| `OPEN` \| `NONE` | See §4 |
 | `unit` | UCUM string | e.g. `mg`, `g`, `kcal` |
 | `source` | enum | `analytical` \| `label` \| `calculated` \| `imputed` \| `literature` \| `OPEN` |
 | `source_ref` | string | Identifier of the *source record* the value was taken from: `usda.fdc:169097`, `foodb:FDB012345`, `hmdb:HMDB0000122` |
-| `method` | string \| `OPEN` | Analytical method where applicable: `aoac:2011.25`, `aoac:991.43` |
+| `method` | string \| `OPEN` \| `NONE` | Analytical method where applicable: `aoac:2011.25`, `aoac:991.43`. `NONE` when the value was not measured (see §4) |
 | `retrieved` | ISO 8601 date | When the value was obtained from `source_ref` |
 
 **`nutrient_ref` names the nutrient; `source_ref` names the source.** They answer different questions — *which* nutrient this is versus *where* the number came from — and a value declaration is unreadable in isolation without the first. `nutrient_ref` resolves to a declared **nutrient** vocabulary: an INFOODS tagname, a USDA FDC nutrient number, or a CDNO (Compositional Dietary Nutrition Ontology) term — the vocabulary of food-composition components. It is deliberately **not** a metabolite identifier. FDP-1 declares the provenance of a *food-composition* value — dietary iron in a food, as reported by USDA — which is a different layer from the same element as a *metabolite in the body*. Mapping a declared nutrient onto a downstream metabolite (e.g. dietary iron → the exchange metabolite `fe2`, via `MASTER_CROSSWALK.tsv`) is a separate join, itself provenance-worthy, and not part of this declaration.
@@ -89,13 +89,19 @@ The tiers follow the rubric used in the 2023 *AJCN* systematic review of nutrien
 
 ---
 
-## 4. The OPEN convention
+## 4. The OPEN and NONE conventions
 
-> **A value that is not known SHALL be declared `OPEN`. It SHALL NOT be imputed silently, defaulted to zero, or omitted.**
+Two tokens carry the difference between *not knowing* and *knowing there is nothing to know*. Both are first-class values, matched by exact spelling (`OPEN`, `NONE`, uppercase).
 
-`OPEN` is a first-class value. Omitting a field and declaring it `OPEN` are different statements: the first is silence, the second is a claim about the limits of what is known. Consumers of a declaration MUST be able to distinguish them.
+> **`OPEN` — not known.** A value or identifier we do not have, but which exists and could in principle be supplied. A value that is not known SHALL be declared `OPEN`. It SHALL NOT be imputed silently, defaulted to zero, or omitted.
 
-Coverage SHOULD be reported as the fraction of fields carrying non-`OPEN` values, per dataset. Honest partial coverage is conforming; invented completeness is not.
+> **`NONE` — not applicable / known absent.** A field that categorically does not apply, or a value or identifier known not to exist. A value obtained without measurement (`calculated`, `label`, `imputed`) declares `method: NONE` — no analytical method was used — which is a different statement from `method: OPEN`, which asserts a method exists but is unknown.
+
+Omitting a field, declaring it `OPEN`, and declaring it `NONE` are three different statements — silence, a claim about the limit of what is known, and a claim about what does not exist. Consumers of a declaration MUST be able to distinguish them.
+
+A nutrient with no standardized vocabulary term SHALL be given an identifier in a declared local namespace (e.g. `local:polyphenols_total`) rather than `OPEN` or `NONE`, so the value remains referenceable. `local:` records that no standard term was available — not that no nutrient exists.
+
+Coverage SHOULD be reported as the fraction of fields carrying a determinate (non-`OPEN`) value, per dataset. Honest partial coverage is conforming; invented completeness is not.
 
 ---
 
@@ -116,7 +122,7 @@ An implementation conforms if:
 1. Every nutrient value carries all seven fields of §2.
 2. Every score carries all five fields of §3, and every `inputs` entry resolves to a declared value by its `{ nutrient_ref, source_ref }` pair.
 3. `provenance_grade` is computed by the weakest-link rule, not asserted.
-4. Unknown values are `OPEN`, never invented.
+4. Unknown values are `OPEN`; values or fields known absent or not applicable are `NONE`. Neither is invented, defaulted to zero, or silently omitted.
 5. `validation.level` above `none` carries a citation.
 
 Conformance says nothing about whether a score is *correct*. It says only that a reader can determine what the score was computed from and what evidence supports it. That is the entire scope of this document.

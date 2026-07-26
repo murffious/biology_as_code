@@ -44,8 +44,10 @@ Compass, or a proprietary score) without modifying it.
 - **Seven fields on a value, five on a score, one rule.** The one rule is the
   **weakest-link rule** (§3.1): a score's provenance grade equals its
   lowest-graded input. A composite of 40 lab values and one label value is Grade C.
-- **The OPEN convention** (§4): an unknown value is declared `OPEN`, never
-  silently imputed, zeroed, or omitted.
+- **The OPEN / NONE convention** (§4): an unknown value is declared `OPEN`
+  (never silently imputed, zeroed, or omitted); a value or field that is *known
+  absent or not applicable* — e.g. the analytical method of a calculated value —
+  is `NONE`. Not-known and nothing-to-know are different claims.
 - **Reference implementation:** a dependency-free
   [validator](validator/validate_fdp.py) (`python validator/validate_fdp.py
   examples/iron-two-hosts.json`), the [`MASTER_CROSSWALK.tsv`](MASTER_CROSSWALK.tsv)

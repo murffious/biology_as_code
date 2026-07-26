@@ -28,8 +28,10 @@ drops straight into CI or a pre-commit hook.
 3. **The weakest-link rule (§3.1) is recomputed, not trusted.** The validator
    derives each input's grade from its `source`, takes the worst, and rejects a
    `provenance_grade` that claims better than its inputs support.
-4. **Unknowns are the literal `OPEN` (§4)** — a `null` or empty field is
-   non-conforming; silence and "not known" are different statements.
+4. **Unknowns are the literal `OPEN`; known-absent/not-applicable is `NONE` (§4)** —
+   a `null` or empty field is non-conforming. Silence, "not known" (`OPEN`), and
+   "nothing to know" (`NONE`, e.g. the method of a calculated value) are three
+   different statements.
 5. **Validation honesty (§3.2)** — a `validation.level` above `none` must carry
    a `citation`.
 

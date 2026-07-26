@@ -2,7 +2,7 @@
   "fdp_version": "FDP-1",
   "example": "iron-two-hosts",
   "title": "Absorbed iron from one food, declared under FDP-1, evaluated for two host states",
-  "note": "Same food and same declared inputs feed two scores that differ only in host iron status. Absorbed iron differs ~6x between a replete and a deficient host, yet BOTH scores carry provenance_grade '—': one required modifier (polyphenols) is OPEN, and by the weakest-link rule (FDP-1 §3.1) an OPEN input caps the whole score's provenance. That is the point of the example, not a bug to be fixed later by filling the gap — a confidently computed number whose provenance is honestly ungraded. Each nutrient_ref is a FOOD-COMPOSITION nutrient identifier (a USDA FDC nutrient number or an INFOODS tagname), NOT a metabolite id: FDP-1 declares layer-2 food composition, and mapping a nutrient onto a body metabolite (e.g. iron -> exchange metabolite fe2 / chebi:29033, via MASTER_CROSSWALK.tsv) is a separate downstream join. The identifiers here are illustrative; total polyphenols in particular has no single universally-standardized component tag, which is part of why it is the unmeasured (OPEN) input.",
+  "note": "Same food and same declared inputs feed two scores that differ only in host iron status. Absorbed iron differs ~6x between a replete and a deficient host, yet BOTH scores carry provenance_grade '—': one required modifier (polyphenols) is OPEN, and by the weakest-link rule (FDP-1 §3.1) an OPEN input caps the whole score's provenance. That is the point of the example, not a bug to be fixed later by filling the gap — a confidently computed number whose provenance is honestly ungraded. Each nutrient_ref is a FOOD-COMPOSITION nutrient identifier (a USDA FDC nutrient number or an INFOODS tagname), NOT a metabolite id: FDP-1 declares layer-2 food composition, and mapping a nutrient onto a body metabolite (e.g. iron -> exchange metabolite fe2 / chebi:29033, via MASTER_CROSSWALK.tsv) is a separate downstream join. The example also shows FDP-1 §4's three unknown-vs-absent tokens: ascorbic acid is a CALCULATED value (cooked-food vitamin C via retention factors), so method is NONE (no analytical method was used) — distinct from OPEN, which would assert an unknown method; total polyphenols has no standardized nutrient term, so it takes a local: identifier and its value is OPEN (unmeasured, but present in the food).",
   "food": {
     "name": "Black beans, cooked, boiled, without salt",
     "source_ref": "usda.fdc:173735",
@@ -22,9 +22,9 @@
       "nutrient_ref": "fdc.nutrient:401",
       "value": 0.0,
       "unit": "mg",
-      "source": "analytical",
+      "source": "calculated",
       "source_ref": "usda.fdc:173735",
-      "method": "aoac:967.21",
+      "method": "NONE",
       "retrieved": "2026-07-01"
     },
     "phytate": {
@@ -37,7 +37,7 @@
       "retrieved": "2026-07-01"
     },
     "polyphenols_total": {
-      "nutrient_ref": "infoods:POLYPHENOL",
+      "nutrient_ref": "local:polyphenols_total",
       "value": "OPEN",
       "unit": "mg",
       "source": "OPEN",
@@ -54,7 +54,7 @@
         { "nutrient_ref": "fdc.nutrient:303", "source_ref": "usda.fdc:173735" },
         { "nutrient_ref": "fdc.nutrient:401", "source_ref": "usda.fdc:173735" },
         { "nutrient_ref": "infoods:PHYTAC", "source_ref": "foodb:FDB000012" },
-        { "nutrient_ref": "infoods:POLYPHENOL", "source_ref": "OPEN" }
+        { "nutrient_ref": "local:polyphenols_total", "source_ref": "OPEN" }
       ],
       "computed": { "fractional_absorption": 0.02, "absorbed_iron_mg": 0.042 },
       "provenance_grade": "—",
@@ -71,7 +71,7 @@
         { "nutrient_ref": "fdc.nutrient:303", "source_ref": "usda.fdc:173735" },
         { "nutrient_ref": "fdc.nutrient:401", "source_ref": "usda.fdc:173735" },
         { "nutrient_ref": "infoods:PHYTAC", "source_ref": "foodb:FDB000012" },
-        { "nutrient_ref": "infoods:POLYPHENOL", "source_ref": "OPEN" }
+        { "nutrient_ref": "local:polyphenols_total", "source_ref": "OPEN" }
       ],
       "computed": { "fractional_absorption": 0.12, "absorbed_iron_mg": 0.252 },
       "provenance_grade": "—",
