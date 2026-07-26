@@ -9,8 +9,12 @@ technologies."* In plain terms: the growing web of wearables, implants, sensors,
 and apps that measure a human being and move that data across a network.
 
 This page catalogs the software and hardware that does the measuring, with a bias
-toward **open-source and standards-based** projects you can actually inspect. It
-is the human-data companion to the rest of this repo: [`biology-as-code`](https://github.com/murffious/biology_as_code/blob/main/README.md)
+toward **open-source and standards-based** projects you can actually inspect. The
+core idea: each entry is a place you can **consume human data via app
+integrations** — an API, SDK, webhook, or open export — rather than re-instrument
+the body yourself. Wherever an entry exposes one, its integration surface is
+linked. It is the human-data companion to the rest of this repo:
+[`biology-as-code`](https://github.com/murffious/biology_as_code/blob/main/README.md)
 turns *what a body does with a meal* into inspectable code; the Internet of the
 Body is *where the data about that body comes from*.
 
@@ -157,11 +161,13 @@ the company folds?* (The 23andMe collapse is the canonical worked example.)
 
 `biology-as-code` models what a body **does** with inputs — digestion, absorption,
 metabolic pathways — as versioned, provenance-tracked code. The Internet of the
-Body is the **sensor layer** that could feed those models real signals:
+Body is the **sensor layer**, and the way you connect the two is by **consuming
+its data through app integrations** — the APIs, SDKs, and open exports the entries
+above expose:
 
-- A CGM feed (Nightscout) is a live readout of the glucose the pathway graphs describe.
-- A food log (Open Food Facts, Cronometer) is the input the models reason over.
-- A wearable's HRV/activity stream is context for the body's metabolic state.
+- A CGM integration (e.g. Nightscout's API) is a live readout of the glucose the pathway graphs describe.
+- A food-log integration (e.g. Open Food Facts, Cronometer) is the input the models reason over.
+- A wearable integration's HRV/activity stream is context for the body's metabolic state.
 
 The same ethos applies in both places: **empty beats fake**, provenance is
 mandatory, and missing data is `UNEVALUABLE` — not a green light.
