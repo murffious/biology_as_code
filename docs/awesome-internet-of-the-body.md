@@ -160,8 +160,8 @@ metabolic pathways — as versioned, provenance-tracked code. The Internet of th
 Body is the **sensor layer** that could feed those models real signals:
 
 - A CGM feed (Nightscout) is a live readout of the glucose the pathway graphs describe.
-- A food log (Open Food Facts, Cronometer) is the meal that `simulate_meal(...)` consumes.
-- A wearable's HRV/activity stream is context for the fed/fasted/exercise scenarios.
+- A food log (Open Food Facts, Cronometer) is the input the models reason over.
+- A wearable's HRV/activity stream is context for the body's metabolic state.
 
 The same ethos applies in both places: **empty beats fake**, provenance is
 mandatory, and missing data is `UNEVALUABLE` — not a green light.
