@@ -20,8 +20,9 @@ drops straight into CI or a pre-commit hook.
 
 ## What it checks (FDP-1 §6)
 
-1. **Six fields on every value** (§2) — `value`, `unit`, `source`,
-   `source_ref`, `method`, `retrieved`.
+1. **Seven fields on every value** (§2) — `nutrient_ref`, `value`, `unit`,
+   `source`, `source_ref`, `method`, `retrieved`. `nutrient_ref` names *which*
+   nutrient the value is for; `source_ref` names *where* it came from.
 2. **Five fields on every score** (§3) — `score_id`, `inputs`,
    `provenance_grade`, `weights_published`, `validation`.
 3. **The weakest-link rule (§3.1) is recomputed, not trusted.** The validator
@@ -40,13 +41,18 @@ it — the entire scope of FDP-1.
 
 ```json
 {
-  "values": { "<name>": { "value": ..., "unit": ..., "source": ...,
-                          "source_ref": ..., "method": ..., "retrieved": ... } },
-  "scores": [ { "score_id": ..., "inputs": ["<name>", ...],
-                "provenance_grade": ..., "weights_published": ...,
+  "values": { "<name>": { "nutrient_ref": ..., "value": ..., "unit": ...,
+                          "source": ..., "source_ref": ..., "method": ...,
+                          "retrieved": ... } },
+  "scores": [ { "score_id": ..., "provenance_grade": ..., "weights_published": ...,
+                "inputs": [ { "nutrient_ref": ..., "source_ref": ... } ],
                 "validation": { "level": ..., "citation": ... } } ]
 }
 ```
+
+Each `inputs` entry is a `{ nutrient_ref, source_ref }` pair; the validator
+resolves it to the matching value declaration to recompute the weakest-link
+grade.
 
 See [`examples/iron-two-hosts.json`](../examples/iron-two-hosts.json) for a
 worked declaration: one food, full provenance on every input, evaluated for two

@@ -20,8 +20,10 @@ from dataclasses import dataclass, field
 
 OPEN = "OPEN"
 
-# §2 — every nutrient value declares these six fields.
-VALUE_FIELDS = ("value", "unit", "source", "source_ref", "method", "retrieved")
+# §2 — every nutrient value declares these seven fields. `nutrient_ref` names
+# WHICH nutrient the value is for (resolvable through a crosswalk such as
+# MASTER_CROSSWALK.tsv); `source_ref` names WHERE the number came from.
+VALUE_FIELDS = ("nutrient_ref", "value", "unit", "source", "source_ref", "method", "retrieved")
 # §3 — every score declares these five fields.
 SCORE_FIELDS = ("score_id", "inputs", "provenance_grade", "weights_published", "validation")
 
@@ -74,14 +76,19 @@ def weakest_link(grades: list[str]) -> str:
     return RANK_TO_GRADE[worst_rank]
 
 
+def value_key(decl: dict) -> tuple:
+    """The (nutrient_ref, source_ref) pair a score's `inputs` reference (§3)."""
+    return (decl.get("nutrient_ref"), decl.get("source_ref"))
+
+
 def check_value(name: str, decl: dict, rep: Report) -> str | None:
     """Validate one value declaration; return its provenance grade or None."""
     where = f"value[{name}]"
     if not isinstance(decl, dict):
-        rep.fail(where, "must be an object with the six §2 fields")
+        rep.fail(where, "must be an object with the seven §2 fields")
         return None
 
-    # Requirement 1 — all six fields present.
+    # Requirement 1 — all seven fields present.
     missing = [f for f in VALUE_FIELDS if f not in decl]
     if missing:
         rep.fail(where, f"missing required §2 field(s): {', '.join(missing)}")
@@ -91,6 +98,11 @@ def check_value(name: str, decl: dict, rep: Report) -> str | None:
         if f in decl and decl[f] in (None, ""):
             rep.fail(where, f"field '{f}' is empty; unknowns SHALL be the literal \"OPEN\" (§4)")
 
+    # nutrient_ref names the nutrient and should not itself be OPEN — a value you
+    # cannot name is not a value you can declare (§2).
+    if decl.get("nutrient_ref") == OPEN:
+        rep.fail(where, "nutrient_ref is OPEN; a value must name which nutrient it is for (§2)")
+
     source = decl.get("source")
     if source is not None and source not in VALUE_SOURCES:
         rep.fail(where, f"source '{source}' is not one of {sorted(VALUE_SOURCES)}")
@@ -99,7 +111,7 @@ def check_value(name: str, decl: dict, rep: Report) -> str | None:
     return SOURCE_TO_GRADE.get(source, "—")
 
 
-def check_score(idx: int, score: dict, grades: dict[str, str], rep: Report) -> None:
+def check_score(idx: int, score: dict, grades: dict[tuple, str], rep: Report) -> None:
     label = score.get("score_id", f"#{idx}") if isinstance(score, dict) else f"#{idx}"
     where = f"score[{label}]"
     if not isinstance(score, dict):
@@ -111,24 +123,31 @@ def check_score(idx: int, score: dict, grades: dict[str, str], rep: Report) -> N
     if missing:
         rep.fail(where, f"missing required §3 field(s): {', '.join(missing)}")
 
-    # Requirement 3 — provenance_grade is COMPUTED by the weakest-link rule,
-    # not asserted. Recompute from the referenced inputs and compare.
+    # Requirement 2 (cont.) + Requirement 3 — every input resolves to a declared
+    # value by its {nutrient_ref, source_ref} pair, and provenance_grade is
+    # COMPUTED by the weakest-link rule over those inputs, not asserted.
     inputs = score.get("inputs")
     if isinstance(inputs, list) and inputs:
-        unknown_refs = [ref for ref in inputs if ref not in grades]
-        if unknown_refs:
-            rep.fail(where, f"inputs reference undeclared value(s): {', '.join(map(str, unknown_refs))}")
-        input_grades = [grades[ref] for ref in inputs if ref in grades]
+        input_grades = []
+        for i, ref in enumerate(inputs):
+            if not isinstance(ref, dict) or "nutrient_ref" not in ref or "source_ref" not in ref:
+                rep.fail(where, f"inputs[{i}] must be a {{ nutrient_ref, source_ref }} pair (§3)")
+                continue
+            key = (ref["nutrient_ref"], ref["source_ref"])
+            if key not in grades:
+                rep.fail(where, f"inputs[{i}] {key} does not resolve to any declared value (§2)")
+            else:
+                input_grades.append(grades[key])
         expected = weakest_link(input_grades)
         declared = score.get("provenance_grade")
-        if declared != expected:
+        if input_grades and declared != expected:
             rep.fail(
                 where,
                 f"provenance_grade is '{declared}' but the weakest-link rule (§3.1) "
-                f"over inputs {inputs} computes '{expected}'",
+                f"over its inputs computes '{expected}'",
             )
     elif "inputs" in score:
-        rep.fail(where, "inputs must be a non-empty array of value references (§3)")
+        rep.fail(where, "inputs must be a non-empty array of {nutrient_ref, source_ref} pairs (§3)")
 
     # Requirement 5 — validation.level above `none` carries a citation.
     validation = score.get("validation")
@@ -155,11 +174,13 @@ def validate(doc: dict) -> Report:
         rep.fail("values", "must be an object mapping names to value declarations")
         values = {}
 
-    grades: dict[str, str] = {}
+    # Index declared values by the (nutrient_ref, source_ref) pair that scores
+    # reference in their `inputs`.
+    grades: dict[tuple, str] = {}
     for name, decl in values.items():
         grade = check_value(name, decl, rep)
-        if grade is not None:
-            grades[name] = grade
+        if grade is not None and isinstance(decl, dict):
+            grades[value_key(decl)] = grade
 
     scores = doc.get("scores", [])
     if not isinstance(scores, list):

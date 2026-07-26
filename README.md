@@ -41,7 +41,7 @@ and *how well a score built on it is validated*. It does not score food — it
 wraps any existing system (Nutri-Score, Health Star Rating, Nutri-Grade, Food
 Compass, or a proprietary score) without modifying it.
 
-- **Six fields on a value, five on a score, one rule.** The one rule is the
+- **Seven fields on a value, five on a score, one rule.** The one rule is the
   **weakest-link rule** (§3.1): a score's provenance grade equals its
   lowest-graded input. A composite of 40 lab values and one label value is Grade C.
 - **The OPEN convention** (§4): an unknown value is declared `OPEN`, never

@@ -1,8 +1,9 @@
 # FDP-1: Food Data Provenance Declaration
 
 **Status:** Draft — Request for Comments
+**Version:** 0.1.0
 **Author:** Paul Murff
-**Date:** 2026
+**Date:** 2026-07-26
 **License:** Apache-2.0. Patent non-assertion covenant applies (see PATENTS.md).
 **Normative form:** This Markdown document is normative. Any rendered PDF is provided for convenience only; if the two differ, the Markdown governs.
 
@@ -26,16 +27,19 @@ The gap this addresses is not "which food is healthy." It is that no scoring sys
 
 ## 2. Value declaration
 
-Every nutrient value SHALL declare six fields.
+Every nutrient value SHALL declare seven fields.
 
 | Field | Type | Notes |
 |---|---|---|
+| `nutrient_ref` | string | Coded nutrient identity in a declared system: `hmdb:HMDB0000122`, `chebi:29033`, `usda.nutrient:303`. Names *which* nutrient this value is for. |
 | `value` | number \| `OPEN` | See §4 |
 | `unit` | UCUM string | e.g. `mg`, `g`, `kcal` |
 | `source` | enum | `analytical` \| `label` \| `calculated` \| `imputed` \| `literature` \| `OPEN` |
-| `source_ref` | string | Identifier in a declared system: `usda.fdc:169097`, `foodb:FDB012345`, `hmdb:HMDB0000122` |
+| `source_ref` | string | Identifier of the *source record* the value was taken from: `usda.fdc:169097`, `foodb:FDB012345`, `hmdb:HMDB0000122` |
 | `method` | string \| `OPEN` | Analytical method where applicable: `aoac:2011.25`, `aoac:991.43` |
 | `retrieved` | ISO 8601 date | When the value was obtained from `source_ref` |
+
+**`nutrient_ref` names the nutrient; `source_ref` names the source.** They answer different questions — *which* nutrient this is versus *where* the number came from — and a value declaration is unreadable in isolation without the first. A `nutrient_ref` resolves through a declared crosswalk such as `MASTER_CROSSWALK.tsv`; this is what makes a detached declaration self-describing and lets two declarations of the same nutrient be compared mechanically.
 
 **`method` is not optional decoration.** Dietary fibre determined by AOAC 985.29, 991.43, and 2011.25 yields systematically different results for the same food, because the later methods capture resistant starch and low-molecular-weight soluble fibre the earlier ones miss. A fibre value without a method is not comparable to another fibre value.
 
@@ -58,7 +62,7 @@ A score computed from declared values SHALL declare five fields.
 | Field | Type | Notes |
 |---|---|---|
 | `score_id` | string | System and version: `nutri-score:2023`, `kibo:2.1` |
-| `inputs` | array | References to the value declarations consumed |
+| `inputs` | array | Array of `{ nutrient_ref, source_ref }` pairs, each identifying one value declaration (§2) consumed |
 | `provenance_grade` | enum | **Computed, not asserted.** See §3.1 |
 | `weights_published` | URI \| `false` | Where the weights and their derivation can be read |
 | `validation` | object | See §3.2 |
@@ -109,8 +113,8 @@ This is a promise, not a version policy. It is why the specification is small: e
 
 An implementation conforms if:
 
-1. Every nutrient value carries all six fields of §2.
-2. Every score carries all five fields of §3.
+1. Every nutrient value carries all seven fields of §2.
+2. Every score carries all five fields of §3, and every `inputs` entry resolves to a declared value by its `{ nutrient_ref, source_ref }` pair.
 3. `provenance_grade` is computed by the weakest-link rule, not asserted.
 4. Unknown values are `OPEN`, never invented.
 5. `validation.level` above `none` carries a citation.
