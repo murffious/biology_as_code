@@ -7,7 +7,7 @@ name = "biology-as-code"
 version = "0.1.0"
 description = "Open digestion + teaching metabolic pathway graphs (Biology as Code companion)"
 readme = "README.md"
-license = "MIT"
+license = "Apache-2.0"
 license-files = ["LICENSE", "LICENSE-SAMPLES.md"]
 requires-python = ">=3.11"
 authors = [

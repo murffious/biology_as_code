@@ -56,7 +56,7 @@ pip install biology-as-code
 | **Title** | Biology as Code: an open, provenance-tracked toolkit for meal digestion and metabolic-pathway modeling |
 | **Authors** | Murff, Paul (Morf Engineering) |
 | **Version** | 0.1.0 |
-| **License** | MIT |
+| **License** | Apache-2.0 (patent non-assertion covenant — see PATENTS.md) |
 | **Keywords** | nutrition, digestion, metabolism, metabolic pathways, systems biology, bioinformatics, teaching, provenance, reproducibility, Python |
 | **Language** | English |
 | **Related identifiers** | `https://pypi.org/project/biology-as-code/` (is identical to) · `https://github.com/murffious/biology_as_code` (is supplement to) |
