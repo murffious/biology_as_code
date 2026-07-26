@@ -21,7 +21,11 @@ Body is *where the data about that body comes from*.
 > **Scope & ethos.** This is a reference index, **not medical advice** and not an
 > endorsement. Every device here collects sensitive personal data — see
 > [Privacy, ethics and data ownership](#privacy-ethics-and-data-ownership) before you
-> trust any of them. Legend: 🟢 open source · 🔵 open standard / SDK · ⚪ commercial / proprietary.
+> trust any of them.
+>
+> **Legend.**
+> *Openness* — 🟢 open source · 🔵 open standard / SDK · ⚪ commercial / proprietary.
+> *Cadence* (how you consume it) — `live` real-time / streaming / webhook · `snapshot` point-in-time or one-time export · `live + history` a live-ish feed plus a historical archive. Standards, SDKs, and tooling carry either mode, so they're left untagged.
 
 ---
 
@@ -63,38 +67,38 @@ own server.
 
 External, first-generation devices — the largest source of everyday human data.
 
-- ⚪ **[Apple Health / HealthKit](https://developer.apple.com/documentation/healthkit)** — on-device store aggregating heart rate, activity, ECG, and dozens of other types; the de-facto hub on iOS.
-- 🔵 **[Health Connect (Android)](https://developer.android.com/health-and-fitness/guides/health-connect)** — Google's on-device API that lets fitness/health apps share data with user consent. Samples: [android/health-samples](https://github.com/android/health-samples).
-- ⚪ **[Oura Ring](https://ouraring.com/)** — sleep, HRV, temperature, readiness. Has a [developer API](https://cloud.ouraring.com/docs/).
-- ⚪ **[WHOOP](https://www.whoop.com/)** — strain/recovery band with a [public API](https://developer.whoop.com/).
-- ⚪ **[Garmin](https://www.garmin.com/)** — GPS + physiology across watches; [Health API](https://developer.garmin.com/gc-developer-program/health-api/) for research.
-- ⚪ **[Fitbit](https://www.fitbit.com/)** / **[Fitbit Web API](https://dev.fitbit.com/build/reference/web-api/)** — steps, HR, sleep.
-- ⚪ **[Withings](https://www.withings.com/)** — scales, BP cuffs, sleep mats; [developer API](https://developer.withings.com/).
-- 🟢 **[Gadgetbridge](https://github.com/Freeyourgadget/Gadgetbridge)** — Android app that talks to many fitness bands/watches **without** the vendor cloud, keeping data local. A cornerstone open-source IoB project.
+- ⚪ **[Apple Health / HealthKit](https://developer.apple.com/documentation/healthkit)** — on-device store aggregating heart rate, activity, ECG, and dozens of other types; the de-facto hub on iOS. `live + history`
+- 🔵 **[Health Connect (Android)](https://developer.android.com/health-and-fitness/guides/health-connect)** — Google's on-device API that lets fitness/health apps share data with user consent. Samples: [android/health-samples](https://github.com/android/health-samples). `live + history`
+- ⚪ **[Oura Ring](https://ouraring.com/)** — sleep, HRV, temperature, readiness. Has a [developer API](https://cloud.ouraring.com/docs/). `live + history`
+- ⚪ **[WHOOP](https://www.whoop.com/)** — strain/recovery band with a [public API](https://developer.whoop.com/). `live + history`
+- ⚪ **[Garmin](https://www.garmin.com/)** — GPS + physiology across watches; [Health API](https://developer.garmin.com/gc-developer-program/health-api/) for research. `live + history`
+- ⚪ **[Fitbit](https://www.fitbit.com/)** / **[Fitbit Web API](https://dev.fitbit.com/build/reference/web-api/)** — steps, HR, sleep. `live + history`
+- ⚪ **[Withings](https://www.withings.com/)** — scales, BP cuffs, sleep mats; [developer API](https://developer.withings.com/). `live + history`
+- 🟢 **[Gadgetbridge](https://github.com/Freeyourgadget/Gadgetbridge)** — Android app that talks to many fitness bands/watches **without** the vendor cloud, keeping data local. A cornerstone open-source IoB project. `live + history`
 
 ## Continuous glucose and metabolic
 
 Second-generation sensors that read the body's chemistry in near-real time.
 
-- ⚪ **[Dexcom](https://www.dexcom.com/)** — CGM with a [developer API](https://developer.dexcom.com/).
-- ⚪ **[Abbott FreeStyle Libre](https://www.freestyle.abbott/)** — widely used CGM.
-- ⚪ **[Levels](https://www.levelshealth.com/)** / **[Nutrisense](https://www.nutrisense.io/)** — metabolic-health apps built on top of CGM hardware.
-- 🟢 **[Nightscout (cgm-remote-monitor)](https://github.com/nightscout/cgm-remote-monitor)** — the "#WeAreNotWaiting" project: self-hosted CGM data platform. You own the server and the data.
-- 🟢 **[OpenAPS](https://github.com/openaps)** & 🟢 **[Loop (LoopKit)](https://github.com/LoopKit/Loop)** — open-source "artificial pancreas" systems that close the loop between CGM and insulin pump.
+- ⚪ **[Dexcom](https://www.dexcom.com/)** — CGM with a [developer API](https://developer.dexcom.com/). `live`
+- ⚪ **[Abbott FreeStyle Libre](https://www.freestyle.abbott/)** — widely used CGM. `live`
+- ⚪ **[Levels](https://www.levelshealth.com/)** / **[Nutrisense](https://www.nutrisense.io/)** — metabolic-health apps built on top of CGM hardware. `live + history`
+- 🟢 **[Nightscout (cgm-remote-monitor)](https://github.com/nightscout/cgm-remote-monitor)** — the "#WeAreNotWaiting" project: self-hosted CGM data platform. You own the server and the data. `live`
+- 🟢 **[OpenAPS](https://github.com/openaps)** & 🟢 **[Loop (LoopKit)](https://github.com/LoopKit/Loop)** — open-source "artificial pancreas" systems that close the loop between CGM and insulin pump. `live`
 
 ## Sleep and recovery
 
-- ⚪ **[Eight Sleep](https://www.eightsleep.com/)** — sensor mattress cover (temperature, HR, HRV).
-- ⚪ **[Sleep as Android](https://sleep.urbandroid.org/)** — sleep tracking that integrates with many wearables.
-- ⚪ Oura / WHOOP / Withings (above) all double as sleep trackers.
+- ⚪ **[Eight Sleep](https://www.eightsleep.com/)** — sensor mattress cover (temperature, HR, HRV). `live + history`
+- ⚪ **[Sleep as Android](https://sleep.urbandroid.org/)** — sleep tracking that integrates with many wearables. `live + history`
+- ⚪ Oura / WHOOP / Withings (above) all double as sleep trackers. `live + history`
 
 ## Open-source health-data tooling
 
 The heart of an "Internet of the Body" list — projects you can read, run, and self-host.
 
-- 🟢 **[Nightscout](https://github.com/nightscout/cgm-remote-monitor)** — self-hosted CGM data (see above).
-- 🟢 **[Gadgetbridge](https://github.com/Freeyourgadget/Gadgetbridge)** — cloud-free wearable sync (see above).
-- 🟢 **[Home Assistant](https://github.com/home-assistant/core)** — local-first automation platform with many health/wearable integrations; a common place people pool body data at home.
+- 🟢 **[Nightscout](https://github.com/nightscout/cgm-remote-monitor)** — self-hosted CGM data (see above). `live`
+- 🟢 **[Gadgetbridge](https://github.com/Freeyourgadget/Gadgetbridge)** — cloud-free wearable sync (see above). `live + history`
+- 🟢 **[Home Assistant](https://github.com/home-assistant/core)** — local-first automation platform with many health/wearable integrations; a common place people pool body data at home. `live`
 - 🟢 **[Open mHealth](https://github.com/openmhealth)** — open schemas + libraries that normalize mobile health data across sources.
 - 🟢 **[ResearchKit](https://github.com/ResearchKit/ResearchKit)** & 🟢 **[CareKit](https://github.com/carekit-apple/CareKit)** — Apple's open frameworks for building medical research and care apps that collect participant data.
 - 🟢 **[Google Fit / Fit REST API samples](https://github.com/googlearchive/fit-samples)** — reference code for reading fitness data.
@@ -103,8 +107,8 @@ The heart of an "Internet of the Body" list — projects you can read, run, and 
 
 Platforms whose whole purpose is aggregating *your* body data — for yourself or for research.
 
-- 🟢 **[Open Humans](https://github.com/OpenHumans)** ([openhumans.org](https://www.openhumans.org/)) — nonprofit platform to aggregate personal data (wearables, genomes, microbiome) and optionally donate it to research. The most IoB-native open project here.
-- ⚪ **[Exist.io](https://exist.io/)** — correlates data from many trackers to surface patterns.
+- 🟢 **[Open Humans](https://github.com/OpenHumans)** ([openhumans.org](https://www.openhumans.org/)) — nonprofit platform to aggregate personal data (wearables, genomes, microbiome) and optionally donate it to research. The most IoB-native open project here. `snapshot`
+- ⚪ **[Exist.io](https://exist.io/)** — correlates data from many trackers to surface patterns. `live + history`
 - 🟢 **[Quantified Self (community + resources)](https://quantifiedself.com/)** — the movement that named "self-knowledge through numbers"; see the community's [tools directory](https://quantifiedself.com/tools/).
 
 ## Health-data standards and SDKs
@@ -120,27 +124,27 @@ The plumbing that lets body data move between systems — what makes IoB an *int
 
 Slower-moving but deeply personal body data.
 
-- 🟢 **[openSNP](https://github.com/openSNP/snpr)** — open database where people share their genotype + phenotype data.
-- ⚪ **[Nebula Genomics](https://nebula.org/)** — whole-genome sequencing with a privacy-forward pitch.
-- ⚪ **[23andMe](https://www.23andme.com/)** — consumer genetics (note its 2023–2025 data-breach and bankruptcy saga — a cautionary IoB privacy case study).
-- ⚪ **[Viome](https://www.viome.com/)** / **[ZOE](https://zoe.com/)** — microbiome + metabolic testing tied to nutrition apps.
+- 🟢 **[openSNP](https://github.com/openSNP/snpr)** — open database where people share their genotype + phenotype data. `snapshot`
+- ⚪ **[Nebula Genomics](https://nebula.org/)** — whole-genome sequencing with a privacy-forward pitch. `snapshot`
+- ⚪ **[23andMe](https://www.23andme.com/)** — consumer genetics (note its 2023–2025 data-breach and bankruptcy saga — a cautionary IoB privacy case study). `snapshot`
+- ⚪ **[Viome](https://www.viome.com/)** / **[ZOE](https://zoe.com/)** — microbiome + metabolic testing tied to nutrition apps. `snapshot`
 
 ## Neuro, brain-computer and implantables
 
 Third-generation, melded devices — the frontier (and the sharpest ethics).
 
-- 🟢 **[OpenBCI](https://github.com/OpenBCI)** — open-source hardware + software for EEG/EMG/ECG biosensing. The accessible on-ramp to neural IoB.
-- ⚪ **[Neuralink](https://neuralink.com/)** — implanted brain–computer interface.
-- ⚪ **[Synchron](https://synchron.com/)** — endovascular BCI (implanted via blood vessels, no open-skull surgery).
-- ⚪ **[Medtronic](https://www.medtronic.com/)** — connected pacemakers, insulin pumps, neurostimulators (a huge share of real-world "generation 2" IoB).
+- 🟢 **[OpenBCI](https://github.com/OpenBCI)** — open-source hardware + software for EEG/EMG/ECG biosensing. The accessible on-ramp to neural IoB. `live`
+- ⚪ **[Neuralink](https://neuralink.com/)** — implanted brain–computer interface. `live`
+- ⚪ **[Synchron](https://synchron.com/)** — endovascular BCI (implanted via blood vessels, no open-skull surgery). `live`
+- ⚪ **[Medtronic](https://www.medtronic.com/)** — connected pacemakers, insulin pumps, neurostimulators (a huge share of real-world "generation 2" IoB). `live + history`
 
 ## Nutrition and food logging
 
 Where IoB meets this repo most directly — apps that log what goes *into* the body.
 
 - 🟢 **[Open Food Facts](https://github.com/openfoodfacts)** — open, crowd-sourced database of foods and their labels ([openfoodfacts.org](https://world.openfoodfacts.org/)).
-- ⚪ **[Cronometer](https://cronometer.com/)** — micronutrient-accurate food/biometric logging with an [API](https://cronometer.com/api/).
-- ⚪ **[MyFitnessPal](https://www.myfitnesspal.com/)** — large-scale food and exercise logging.
+- ⚪ **[Cronometer](https://cronometer.com/)** — micronutrient-accurate food/biometric logging with an [API](https://cronometer.com/api/). `live + history`
+- ⚪ **[MyFitnessPal](https://www.myfitnesspal.com/)** — large-scale food and exercise logging. `live + history`
 
 ## Privacy, ethics and data ownership
 
