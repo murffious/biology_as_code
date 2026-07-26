@@ -72,6 +72,7 @@ nav:
   - Validation ledger: VALIDATION_LEDGER.md
   - Contributing data: contributing-data.md
   - Standardization roadmap: standardization-roadmap.md
+  - Awesome Internet of the Body: awesome-internet-of-the-body.md
   - Cookbook:
       - Overview: cookbook/index.md
       - 1. Gate vs Bound (iron): cookbook/01-gate-vs-bound.md
