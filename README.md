@@ -5,7 +5,7 @@
 [![CI](https://github.com/murffious/biology_as_code/actions/workflows/ci.yml/badge.svg)](https://github.com/murffious/biology_as_code/actions/workflows/ci.yml)
 [![Docs](https://github.com/murffious/biology_as_code/actions/workflows/docs.yml/badge.svg)](https://github.com/murffious/biology_as_code/actions/workflows/docs.yml)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21536449.svg)](https://doi.org/10.5281/zenodo.21536449)
-[![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-blue)](https://pypi.org/project/biology-as-code/)
+[![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-blue)](https://github.com/murffious/biology_as_code/blob/main/pyproject.toml)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](https://github.com/murffious/biology_as_code/blob/main/LICENSE)
 
 **[Documentation](https://murffious.github.io/biology_as_code/)** · [Cookbook](https://murffious.github.io/biology_as_code/cookbook/) · [Validation report](https://murffious.github.io/biology_as_code/VALIDATION/)
@@ -49,7 +49,8 @@ Compass, or a proprietary score) without modifying it.
 - **Reference implementation:** a dependency-free
   [validator](validator/validate_fdp.py) (`python validator/validate_fdp.py
   examples/iron-two-hosts.json`), the [`MASTER_CROSSWALK.tsv`](MASTER_CROSSWALK.tsv)
-  ID spine, and a worked
+  nutrient→metabolite join (a downstream layer — `nutrient_ref` itself resolves to
+  a nutrient vocabulary such as INFOODS/FDC, not to this crosswalk), and a worked
   [two-host iron example](examples/iron-two-hosts.json).
 - **Terms:** Apache-2.0 with a patent [non-assertion covenant](PATENTS.md).
 

@@ -31,7 +31,7 @@ Every nutrient value SHALL declare seven fields.
 
 | Field | Type | Notes |
 |---|---|---|
-| `nutrient_ref` | string | Coded nutrient identity in a declared system: `hmdb:HMDB0000122`, `chebi:29033`, `usda.nutrient:303`. Names *which* nutrient this value is for. |
+| `nutrient_ref` | string | Coded nutrient identity in a declared *nutrient* vocabulary: `infoods:FE`, `fdc.nutrient:303`, or a CDNO term. Names *which* nutrient this value is for. |
 | `value` | number \| `OPEN` | See §4 |
 | `unit` | UCUM string | e.g. `mg`, `g`, `kcal` |
 | `source` | enum | `analytical` \| `label` \| `calculated` \| `imputed` \| `literature` \| `OPEN` |
@@ -39,7 +39,7 @@ Every nutrient value SHALL declare seven fields.
 | `method` | string \| `OPEN` | Analytical method where applicable: `aoac:2011.25`, `aoac:991.43` |
 | `retrieved` | ISO 8601 date | When the value was obtained from `source_ref` |
 
-**`nutrient_ref` names the nutrient; `source_ref` names the source.** They answer different questions — *which* nutrient this is versus *where* the number came from — and a value declaration is unreadable in isolation without the first. A `nutrient_ref` resolves through a declared crosswalk such as `MASTER_CROSSWALK.tsv`; this is what makes a detached declaration self-describing and lets two declarations of the same nutrient be compared mechanically.
+**`nutrient_ref` names the nutrient; `source_ref` names the source.** They answer different questions — *which* nutrient this is versus *where* the number came from — and a value declaration is unreadable in isolation without the first. `nutrient_ref` resolves to a declared **nutrient** vocabulary: an INFOODS tagname, a USDA FDC nutrient number, or a CDNO (Compositional Dietary Nutrition Ontology) term — the vocabulary of food-composition components. It is deliberately **not** a metabolite identifier. FDP-1 declares the provenance of a *food-composition* value — dietary iron in a food, as reported by USDA — which is a different layer from the same element as a *metabolite in the body*. Mapping a declared nutrient onto a downstream metabolite (e.g. dietary iron → the exchange metabolite `fe2`, via `MASTER_CROSSWALK.tsv`) is a separate join, itself provenance-worthy, and not part of this declaration.
 
 **`method` is not optional decoration.** Dietary fibre determined by AOAC 985.29, 991.43, and 2011.25 yields systematically different results for the same food, because the later methods capture resistant starch and low-molecular-weight soluble fibre the earlier ones miss. A fibre value without a method is not comparable to another fibre value.
 
@@ -131,13 +131,13 @@ This specification does not define healthy food, prescribe nutrients to include 
 
 ## 8. Normative references
 
-FoodOn · USDA FoodData Central · FooDB · HMDB · ChEBI · KEGG · InChIKey · UCUM · AOAC Official Methods of Analysis · 21 CFR 101.9(g) · Regulation (EU) No 1169/2011
+FoodOn · INFOODS tagnames · CDNO (Compositional Dietary Nutrition Ontology) · USDA FoodData Central · FooDB · HMDB · ChEBI · KEGG · InChIKey · UCUM · AOAC Official Methods of Analysis · 21 CFR 101.9(g) · Regulation (EU) No 1169/2011
 
 ---
 
 ## 9. Reference implementation
 
-`github.com/murffious/biology_as_code` — validator, `MASTER_CROSSWALK.tsv`, and a worked example declaring full provenance across a single meal evaluated under two host states.
+`github.com/murffious/biology_as_code` — the reference validator, the `MASTER_CROSSWALK.tsv` nutrient→metabolite join (a downstream layer, not the `nutrient_ref` vocabulary), and a worked example declaring full provenance across a single meal evaluated under two host states.
 
 ---
 
