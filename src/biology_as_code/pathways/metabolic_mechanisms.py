@@ -43,6 +43,52 @@ class MetabolicMechanism:
     regulation: list[str] = field(default_factory=list)
     notes: str = ""
     related_pathways: list[str] = field(default_factory=list)  # names of pathways that use this mechanism
+    references: list[str] = field(default_factory=list)  # provenance: gene/EC/PMID/URL — see _MECHANISM_REFERENCES
+
+
+def _enzyme_ref(name: str, gene: str, ec: str, term: str = "") -> str:
+    """One authoritative provenance line: stable gene + EC identifiers (facts, not
+    fabricated PMIDs), plus a nutrition-vocabulary term_id when one carries leads."""
+    line = (
+        f"{name} — gene {gene}: https://www.ncbi.nlm.nih.gov/gene/?term={gene}"
+        f" · EC {ec}: https://enzyme.expasy.org/EC/{ec}"
+    )
+    if term:
+        line += f" · {term} (ranked PubMed leads)"
+    return line
+
+
+# Enzyme cogs the cog↔evidence report flags as absent from the nutrition vocabulary.
+# Anchored to gene + EC (stable identifiers); the three digestive/glycolytic enzymes
+# that DO have a master term link it so they join the evidence spine.
+_MECHANISM_REFERENCES: dict[str, list[str]] = {
+    # digestive enzymes (have nutrition-vocabulary terms with leads)
+    "pancreatic_lipase": [_enzyme_ref("Pancreatic lipase", "PNLIP", "3.1.1.3", "term.lipase")],
+    "salivary_amylase": [_enzyme_ref("Salivary α-amylase", "AMY1A", "3.2.1.1", "term.a_amylase")],
+    # glycolysis
+    "pfk1": [_enzyme_ref("Phosphofructokinase-1", "PFKM", "2.7.1.11", "term.phosphofructokinase")],
+    "gapdh": [_enzyme_ref("Glyceraldehyde-3-phosphate dehydrogenase", "GAPDH", "1.2.1.12")],
+    "phosphoglycerate_kinase": [_enzyme_ref("Phosphoglycerate kinase", "PGK1", "2.7.2.3")],
+    "enolase": [_enzyme_ref("Enolase", "ENO1", "4.2.1.11")],
+    "lactate_dehydrogenase": [_enzyme_ref("Lactate dehydrogenase", "LDHA", "1.1.1.27")],
+    # TCA cycle
+    "citrate_synthase": [_enzyme_ref("Citrate synthase", "CS", "2.3.3.1")],
+    "aconitase": [_enzyme_ref("Aconitase", "ACO2", "4.2.1.3")],
+    "isocitrate_dehydrogenase": [_enzyme_ref("Isocitrate dehydrogenase (NAD⁺)", "IDH3A", "1.1.1.41")],
+    "alpha_ketoglutarate_dehydrogenase": [_enzyme_ref("α-Ketoglutarate dehydrogenase (E1)", "OGDH", "1.2.4.2")],
+    "succinyl_coa_synthetase": [_enzyme_ref("Succinyl-CoA synthetase (GTP-forming)", "SUCLG1", "6.2.1.4")],
+    "succinate_dehydrogenase": [_enzyme_ref("Succinate dehydrogenase (SDHA)", "SDHA", "1.3.5.1")],
+    "fumarase": [_enzyme_ref("Fumarase (fumarate hydratase)", "FH", "4.2.1.2")],
+    "malate_dehydrogenase": [_enzyme_ref("Malate dehydrogenase (mitochondrial)", "MDH2", "1.1.1.37")],
+    # amino-acid catabolism
+    "aminotransferase": [_enzyme_ref("Aminotransferase (e.g. AST)", "GOT1", "2.6.1.1")],
+    "glutamate_dehydrogenase": [_enzyme_ref("Glutamate dehydrogenase", "GLUD1", "1.4.1.3")],
+    "bckdh": [_enzyme_ref("Branched-chain α-ketoacid dehydrogenase (E1α)", "BCKDHA", "1.2.4.4")],
+    "phenylalanine_hydroxylase": [_enzyme_ref("Phenylalanine hydroxylase", "PAH", "1.14.16.1")],
+    "methionine_adenosyltransferase": [_enzyme_ref("Methionine adenosyltransferase", "MAT1A", "2.5.1.6")],
+    # brush-border ferrireductase (iron path)
+    "duodenal_cytochrome_b": [_enzyme_ref("Duodenal cytochrome b (DcytB)", "CYBRD1", "7.2.1.3")],
+}
 
 
 class MetabolicMechanismRegistry:
@@ -54,6 +100,20 @@ class MetabolicMechanismRegistry:
     def __init__(self):
         self.mechanisms: dict[str, MetabolicMechanism] = {}
         self._build_core_mechanisms()
+        self._attach_references()
+
+    def _attach_references(self) -> None:
+        """Attach authoritative provenance to registered mechanisms.
+
+        Enzyme cogs are anchored to stable gene + EC identifiers (facts, not
+        fabricated PMIDs). Where a nutrition-vocabulary term already carries
+        ranked PubMed leads, that term_id is linked too so the cog joins the
+        evidence spine. Absence stays OPEN — nothing is invented.
+        """
+        for mid, refs in _MECHANISM_REFERENCES.items():
+            m = self.mechanisms.get(mid)
+            if m is not None:
+                m.references = list(refs)
 
     def register(self, mech: MetabolicMechanism) -> None:
         self.mechanisms[mech.id] = mech
@@ -610,6 +670,85 @@ class MetabolicMechanismRegistry:
             outputs=["Acetate", "Propionate", "Butyrate", "gases"],
             notes="Taxa- and substrate-dependent yields; FLOW teaching only.",
             related_pathways=["scfa_colonic_production", "prebiotic_probiotic"],
+        ))
+
+        # ------------------------------------------------------------------
+        # WAVE B2 — bile/micelle, one-carbon, haem iron
+        # ------------------------------------------------------------------
+        self.register(MetabolicMechanism(
+            id="bile_salt_emulsification",
+            name="Bile Salt Emulsification",
+            category=MechanismCategory.DIGESTIVE,
+            description=(
+                "Bile salts stabilize fat emulsion droplets in the duodenal lumen, "
+                "increasing surface area for pancreatic lipase."
+            ),
+            location="Duodenal lumen",
+            inputs=["Dietary triglyceride", "Bile salts"],
+            outputs=["Emulsified fat droplets"],
+            notes="Prerequisite for efficient lipolysis; no enzyme catalytic site.",
+            related_pathways=["lipid_digestion_absorption"],
+        ))
+
+        self.register(MetabolicMechanism(
+            id="bile_salt_micelle",
+            name="Bile Salt Mixed-Micelle Formation",
+            category=MechanismCategory.DIGESTIVE,
+            description=(
+                "Bile salts form mixed micelles that solubilize fatty acids, "
+                "2-monoacylglycerol, and fat-soluble vitamins for delivery to the brush border."
+            ),
+            location="Duodenal / jejunal lumen",
+            inputs=["Bile salts", "FFA", "2-MG", "phospholipids"],
+            outputs=["Mixed micelles"],
+            notes="Critical fat-vehicle gate for lipophilic cargo.",
+            related_pathways=["lipid_digestion_absorption", "enterohepatic_bile"],
+        ))
+
+        self.register(MetabolicMechanism(
+            id="methionine_synthase",
+            name="Methionine Synthase (MTR / MS)",
+            category=MechanismCategory.ENZYMATIC,
+            description=(
+                "Remethylates homocysteine to methionine using 5-methyl-THF as methyl donor "
+                "and methylcobalamin (B12) as cofactor. Links folate and B12 one-carbon paths."
+            ),
+            location="Cytosol",
+            inputs=["Homocysteine", "5-Methyl-THF"],
+            outputs=["Methionine", "THF"],
+            cofactors=["Methylcobalamin (B12)"],
+            regulation=["B12 deficiency traps folate as 5-methyl-THF (folate trap)"],
+            notes="MTR; also called 5-methyltetrahydrofolate-homocysteine methyltransferase.",
+            related_pathways=["methionine_one_carbon", "cobalamin_absorption"],
+        ))
+
+        self.register(MetabolicMechanism(
+            id="hcp1_heme_uptake",
+            name="Apical Haem Uptake (HCP1 teaching)",
+            category=MechanismCategory.TRANSPORT,
+            description=(
+                "Apical uptake of intact dietary haem into the enterocyte. Often taught as "
+                "HCP1/PCFT-related haem transport; topology is FLOW-level."
+            ),
+            location="Apical enterocyte membrane (duodenum)",
+            inputs=["Dietary haem"],
+            outputs=["Haem (enterocyte)"],
+            notes="Higher fractional absorption than non-haem iron in many meals.",
+            related_pathways=["iron_absorption"],
+        ))
+
+        self.register(MetabolicMechanism(
+            id="heme_oxygenase_1",
+            name="Heme Oxygenase-1 (HO-1)",
+            category=MechanismCategory.ENZYMATIC,
+            description=(
+                "Cleaves haem to release Fe²⁺, biliverdin, and CO inside the enterocyte, "
+                "feeding the labile ferrous pool that exits via ferroportin."
+            ),
+            location="Enterocyte (microsomal)",
+            inputs=["Haem", "O2", "NADPH"],
+            outputs=["Fe2+", "Biliverdin", "CO"],
+            related_pathways=["iron_absorption"],
         ))
 
 

@@ -17,7 +17,7 @@
       "required": ["kind", "ref"],
       "additionalProperties": false,
       "properties": {
-        "kind": { "type": "string", "enum": ["law", "packet", "nutrient", "claim"] },
+        "kind": { "type": "string", "enum": ["law", "packet", "nutrient", "claim", "mechanism", "pathway_step"] },
         "ref": { "type": "string" }
       }
     },
@@ -41,6 +41,32 @@
       "type": "integer",
       "enum": [0, 1, 2, 3, 4, 5]
     },
-    "notes": { "type": "string" }
+    "notes": { "type": "string" },
+    "signoffs": {
+      "description": "Independent human peer-review sign-offs. Tier promotion: distinct reviewers raise strength; locking a magnitude (tier 5) needs >=2. Assigned by review, ignored on submit.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["reviewer", "date"],
+        "additionalProperties": false,
+        "properties": {
+          "reviewer": { "type": "string" },
+          "date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+          "verdict": { "type": "string", "enum": ["verified", "disputed"] },
+          "source": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "kind": { "type": "string", "enum": ["pubmed", "doi", "guideline", "textbook"] },
+              "pmid": { "type": "string" },
+              "doi": { "type": "string" },
+              "citation": { "type": "string" },
+              "url": { "type": "string" }
+            }
+          },
+          "note": { "type": "string" }
+        }
+      }
+    }
   }
 }

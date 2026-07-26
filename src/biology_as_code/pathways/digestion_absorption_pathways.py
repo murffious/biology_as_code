@@ -138,10 +138,14 @@ class DigestionAbsorptionRegistry:
                                 process="Pancreatic proteases (trypsin, chymotrypsin, elastase, carboxypeptidases)",
                                 location="Duodenum / Jejunum",
                                 notes="Zymogens activated by enteropeptidase → trypsin cascade."))
-        p.add_edge(ReactionEdge("oligopeptides", "amino_acids_enterocyte",
-                                process="Brush-border peptidases + PEPT1 + amino acid transporters",
-                                location="Brush border + apical membrane",
-                                notes="PEPT1 absorbs di/tripeptides; multiple Na⁺-dependent and independent AA transporters."))
+        # Wave B2: explicit PepT1 apical peptide uptake (di/tripeptides)
+        p.add_edge(ReactionEdge(
+            "oligopeptides", "amino_acids_enterocyte",
+            mechanism_id="pept1",
+            process="PepT1 (SLC15A1) proton-coupled di/tripeptide uptake",
+            location="Apical membrane",
+            notes="Major nitrogen absorption route for di/tripeptides; free AA transporters run in parallel.",
+        ))
         p.add_edge(ReactionEdge("amino_acids_enterocyte", "amino_acids_blood",
                                 process="Basolateral amino acid transporters",
                                 location="Basolateral membrane",
@@ -163,11 +167,13 @@ class DigestionAbsorptionRegistry:
             "Exported into lacteals → lymph → thoracic duct → blood."))
 
         p.add_edge(ReactionEdge("dietary_tg", "emulsion",
+                                mechanism_id="bile_salt_emulsification",
                                 process="Mechanical emulsification + Bile salts",
                                 location="Stomach → Duodenum",
                                 notes="Bile salts stabilize small emulsion droplets."))
         p.add_edge(ReactionEdge("emulsion", "micelles",
-                                process="Bile salt micelle formation",
+                                mechanism_id="bile_salt_micelle",
+                                process="Bile salt mixed-micelle formation",
                                 location="Duodenal lumen",
                                 notes="Mixed micelles solubilize the products of lipolysis."))
         p.add_edge(ReactionEdge("micelles", "ffas_mg", mechanism_id="pancreatic_lipase",
@@ -204,7 +210,8 @@ class DigestionAbsorptionRegistry:
             "oligopeptides", "aa_di_tri",
             process="Brush-border peptidases",
             location="Brush border",
-            notes="Exopeptidases finish protein digestion for PEPT1 / AA transporters.",
+            notes="Exopeptidases finish protein digestion for PepT1 / AA transporters "
+                  "(PepT1 uptake edge lives on protein_digestion_absorption).",
         ))
         self.register(p)
 

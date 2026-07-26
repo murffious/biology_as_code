@@ -101,9 +101,10 @@ class ContributionResult:
 def _target_exists(kind: str, ref: str) -> tuple[bool, str]:
     """Resolve a contribution target against the live register.
 
-    ``law`` and ``packet`` are closed sets, so a miss is a hard ``REFUSE``.
-    ``nutrient`` and ``claim`` are open vocabularies (a new nutrient or a new
-    corpus claim is a legitimate contribution), so any non-empty ref resolves.
+    ``law``, ``packet``, ``mechanism`` and ``pathway_step`` are closed sets
+    (a miss is a hard ``REFUSE``). ``nutrient`` and ``claim`` are open
+    vocabularies (a new nutrient or corpus claim is legitimate), so any
+    non-empty ref resolves.
     """
     note = f"{kind} {ref}"
     if not ref:
@@ -126,7 +127,52 @@ def _target_exists(kind: str, ref: str) -> tuple[bool, str]:
         return True, f"{note} (new nutrient — not yet in the gate/bound table)"
     if kind == "claim":
         return True, f"{note} (new corpus claim)"
+    if kind == "mechanism":
+        from biology_as_code.pathways.metabolic_mechanisms import (
+            get_metabolic_mechanism_registry,
+        )
+        return get_metabolic_mechanism_registry().get(ref) is not None, note
+    if kind == "pathway_step":
+        # ref shape: "pathway_name::from_node->to_node"
+        from biology_as_code.pathways.registry import get_pathway
+        pname, sep, step = ref.partition("::")
+        if not sep or "->" not in step:
+            return False, f"{note} (expected 'pathway::from->to')"
+        p = get_pathway(pname)
+        if p is None:
+            return False, f"{note} (unknown pathway {pname})"
+        keys = {
+            f"{getattr(e, 'from_node', '')}->{getattr(e, 'to_node', '')}"
+            for e in getattr(p, "edges", []) or []
+        }
+        return (step in keys), note
     return False, note
+
+
+def _tier_from_signoffs(base: int, contribution: Any) -> tuple[int, tuple[str, ...]]:
+    """Raise strength by distinct peer sign-offs. Locking a magnitude (tier 5)
+    requires >=2 independent reviewers; disputed sign-offs never promote."""
+    signoffs = contribution.get("signoffs") or []
+    reviewers = {
+        s.get("reviewer")
+        for s in signoffs
+        if isinstance(s, dict) and s.get("reviewer") and s.get("verdict") != "disputed"
+    }
+    disputed = [
+        s.get("reviewer")
+        for s in signoffs
+        if isinstance(s, dict) and s.get("verdict") == "disputed"
+    ]
+    n = len(reviewers)
+    strength = min(base + n, 5)
+    if n < 2:
+        strength = min(strength, 4)  # tier 5 (lock a magnitude) needs >=2 independent sign-offs
+    notes: list[str] = []
+    if n:
+        notes.append(f"{n} independent sign-off(s)")
+    if disputed:
+        notes.append(f"{len(disputed)} disputed — not promoted")
+    return strength, tuple(notes)
 
 
 def _source_ok(source: dict[str, Any]) -> tuple[bool, str]:
@@ -178,17 +224,20 @@ def validate_contribution(contribution: Any) -> ContributionResult:
             target=tnote,
         )
 
-    # 4. Sourced, on-target, schema-clean -> ACCEPTED.
+    # 4. Sourced, on-target, schema-clean -> ACCEPTED. Peer sign-offs raise the tier.
     if src_ok:
         provenance: dict[str, Any] = {"source": dict(source), "note": src_note}
         if source.get("kind") == "pubmed":
             provenance["url"] = pubmed_url(source.get("pmid"))
+        strength, signoff_notes = _tier_from_signoffs(_ACCEPTED_STRENGTH, contribution)
+        if signoff_notes:
+            provenance["signoffs"] = list(signoff_notes)
         return ContributionResult(
             "ACCEPTED",
             cid,
-            reasons=(f"accepted on {src_note}",),
+            reasons=(f"accepted on {src_note}",) + signoff_notes,
             target=tnote,
-            strength=_ACCEPTED_STRENGTH,
+            strength=strength,
             provenance=provenance,
         )
 

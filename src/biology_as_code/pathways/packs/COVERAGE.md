@@ -36,6 +36,7 @@ Not every **`.py` file** is a graph (some are mechanisms, regulation, loaders).
 | ampk_network | `packs/ampk_network/` | `nutrient_sensing.py` |
 | mtorc1_network | `packs/mtorc1_network/` | `nutrient_sensing.py` |
 | srebp_network | `packs/srebp_network/` | `nutrient_sensing.py` |
+| gut_incretin_network | `packs/gut_incretin_network/` | `nutrient_sensing.py` |
 | aa_nitrogen_disposal | `packs/aa_nitrogen_disposal/` | `amino_acid_catabolism.py` |
 | bcaa_catabolism | `packs/bcaa_catabolism/` | `amino_acid_catabolism.py` |
 | phenylalanine_tyrosine_catabolism | `packs/phenylalanine_tyrosine_catabolism/` | `amino_acid_catabolism.py` |
@@ -46,7 +47,7 @@ Not every **`.py` file** is a graph (some are mechanisms, regulation, loaders).
 | glucose_epithelial_transport | `packs/glucose_epithelial_transport/` | `meal_critical_pathways.py` |
 | scfa_colonic_production | `packs/scfa_colonic_production/` | `meal_critical_pathways.py` |
 
-**Count:** 37 registry graphs · 37 mermaid packs · **0 missing · 0 orphan packs** (when export is up to date).
+**Count:** 38 registry graphs · 38 mermaid packs · **0 missing · 0 orphan packs** (when export is up to date).
 
 Auto mermaid is generated **from live code graphs**, so topology matches the Python model for that export. Hand gold diagrams in `glycolysis_extra/` may be richer (styling, phases) than auto `pathway.mermaid`.
 
@@ -72,6 +73,7 @@ Classic textbook *chapters* often include more named processes than we model as 
 | Digestion CHO/PRO/FAT, brush border, bile, enterohepatic | **Yes** |
 | Cori / alanine, shuttles, fructose–galactose | **Yes** (supporting) |
 | AMPK / mTOR / SREBP networks | **Yes** (nutrient_sensing) |
+| Gut incretin / CCK–GLP-1–PYY mini-graph | **Yes** (`gut_incretin_network`) |
 | AA nitrogen disposal hub (→ urea) | **Yes** (`aa_nitrogen_disposal`) |
 | BCAA catabolism (Leu/Ile/Val, BCKDH/MSUD) | **Yes** (`bcaa_catabolism`) |
 | Phe / Tyr catabolism (PKU) | **Yes** (`phenylalanine_tyrosine_catabolism`) |
@@ -101,6 +103,12 @@ PYTHONPATH=src python3 scripts/export_pathway_packs.py
 PYTHONPATH=src python3 scripts/check_pathway_integration.py
 PYTHONPATH=src python3 tests/test_pathway_packs.py
 ```
+
+**Changelog:** package-level history of graph counts, mermaid pack churn, and
+source/reference line changes is under repo root
+[`CHANGELOG.md`](../../../../CHANGELOG.md) → *Pathway graphs, mermaid packs &
+sources* (Unreleased). Update that section when INDEX totals or mechanism wire-ups
+change numbers reviewers will notice.
 
 **Contributor template:** [`docs/python/ADD_PATHWAY.md`](../../../../docs/python/ADD_PATHWAY.md)  
 (checklist, module stub, PR template under `.github/PULL_REQUEST_TEMPLATE/pathway.md`).

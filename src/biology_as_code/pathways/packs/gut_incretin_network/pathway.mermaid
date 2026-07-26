@@ -1,0 +1,30 @@
+flowchart TD
+  %% Auto-generated from registry pathway: gut_incretin_network
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  %% Source: Incretin hormones GLP-1 and GIP — standard endocrine/GI physiology.
+  %% Source: CCK and gallbladder / pancreatic secretion — GI teaching texts.
+  %% Source: PYY and ileal brake — satiety physiology reviews.
+  meal_nutrients["Meal nutrients (lumen / absorbate)"]
+  cck["CCK (cholecystokinin)"]
+  glp1["GLP-1 (glucagon-like peptide-1)"]
+  gip["GIP (glucose-dependent insulinotropic peptide)"]
+  pyy["PYY (peptide YY)"]
+  gallbladder_bile_release["Gallbladder contraction / bile release"]
+  pancreatic_enzymes["Pancreatic enzyme secretion"]
+  insulin_secretion["β-cell insulin secretion"]
+  satiety["Satiety / reduced intake drive"]
+  gastric_emptying["Gastric emptying rate"]
+  meal_nutrients -->|"activates: fat/protein → I-cell CCK"| cck
+  meal_nutrients -->|"activates: nutrients → L-cell GLP-1"| glp1
+  meal_nutrients -->|"activates: nutrients → K-cell GIP"| gip
+  meal_nutrients -->|"activates: distal nutrients → L-cell PYY"| pyy
+  cck -->|"activates: CCK → gallbladder contraction"| gallbladder_bile_release
+  cck -->|"activates: CCK → acinar secretion"| pancreatic_enzymes
+  cck -->|"inhibits: CCK slows emptying"| gastric_emptying
+  cck -->|"activates: vagal / central satiety"| satiety
+  glp1 -->|"activates: incretin effect (glucose-dependent)"| insulin_secretion
+  glp1 -->|"inhibits: GLP-1 slows emptying"| gastric_emptying
+  glp1 -->|"activates: central satiety / reduced intake"| satiety
+  gip -->|"activates: incretin effect"| insulin_secretion
+  pyy -->|"activates: ileal brake / satiety"| satiety
+  pyy -->|"inhibits: slows proximal transit teaching"| gastric_emptying

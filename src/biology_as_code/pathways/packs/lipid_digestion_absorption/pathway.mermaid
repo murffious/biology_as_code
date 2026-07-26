@@ -7,8 +7,8 @@ flowchart TD
   ffas_mg["FFAs + 2-Monoacylglycerol"]
   tg_enterocyte["Re-esterified TG (enterocyte)"]
   chylomicron["Chylomicron"]
-  dietary_tg -->|"Mechanical emulsification + Bile salts"| emulsion
-  emulsion -->|"Bile salt micelle formation"| micelles
+  dietary_tg -->|"bile_salt_emulsification"| emulsion
+  emulsion -->|"bile_salt_micelle"| micelles
   micelles -->|"pancreatic_lipase"| ffas_mg
   ffas_mg -->|"Passive diffusion + re-esterification (M"| tg_enterocyte
   tg_enterocyte -->|"Chylomicron assembly (ApoB-48, MTP)"| chylomicron

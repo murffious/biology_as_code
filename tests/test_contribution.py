@@ -24,6 +24,7 @@ EXPECTED = {
     "contrib.evidence-unlu-2005-law020": "ACCEPTED",
     "contrib.evidence-scfa-energy-law026": "NEEDS_SOURCE",
     "contrib.badmagnitude-iron-law004": "REFUSE",
+    "contrib.review-dmt1-iron-step": "ACCEPTED",
 }
 
 
@@ -114,3 +115,63 @@ def test_garbage_never_raises():
     for junk in ({}, {"id": "x"}, {"nope": 1}, [], "string", None):
         result = validate_contribution(junk)
         assert result.verdict == "REFUSE"
+
+
+# --- unified pipeline: cog/step targets + tiered peer sign-offs ---
+
+def _sourced(**over):
+    base = {
+        "id": "contrib.t",
+        "type": "evidence",
+        "target": {"kind": "mechanism", "ref": "dmt1"},
+        "payload": {},
+        "source": {"kind": "pubmed", "pmid": "39005063"},
+    }
+    base.update(over)
+    return base
+
+
+def test_mechanism_target_resolves():
+    assert validate_contribution(_sourced()).verdict == "ACCEPTED"
+
+
+def test_unknown_mechanism_is_refused():
+    assert validate_contribution(_sourced(target={"kind": "mechanism", "ref": "nonesuch"})).verdict == "REFUSE"
+
+
+def test_pathway_step_target_resolves_and_bad_step_refused():
+    good = _sourced(target={"kind": "pathway_step", "ref": "iron_absorption::fe2_lumen->fe2_enterocyte"})
+    assert validate_contribution(good).verdict == "ACCEPTED"
+    bad = _sourced(target={"kind": "pathway_step", "ref": "iron_absorption::nope->nowhere"})
+    assert validate_contribution(bad).verdict == "REFUSE"
+    malformed = _sourced(target={"kind": "pathway_step", "ref": "iron_absorption"})
+    assert validate_contribution(malformed).verdict == "REFUSE"
+
+
+def test_signoffs_tier_promotion():
+    # 0 sign-offs -> 3 ; 1 -> 4 (capped) ; >=2 -> 5 (magnitude may lock)
+    assert validate_contribution(_sourced()).strength == 3
+    one = _sourced(signoffs=[{"reviewer": "a", "date": "2026-07-25"}])
+    assert validate_contribution(one).strength == 4
+    two = _sourced(signoffs=[
+        {"reviewer": "a", "date": "2026-07-25"},
+        {"reviewer": "b", "date": "2026-07-25"},
+    ])
+    assert validate_contribution(two).strength == 5
+
+
+def test_duplicate_reviewer_does_not_reach_tier5():
+    dup = _sourced(signoffs=[
+        {"reviewer": "a", "date": "2026-07-25"},
+        {"reviewer": "a", "date": "2026-07-26"},
+    ])
+    assert validate_contribution(dup).strength == 4  # one distinct reviewer, not two
+
+
+def test_disputed_signoff_does_not_promote():
+    disp = _sourced(signoffs=[
+        {"reviewer": "a", "date": "2026-07-25", "verdict": "disputed"},
+        {"reviewer": "b", "date": "2026-07-25", "verdict": "verified"},
+    ])
+    # only 1 non-disputed reviewer -> capped at 4
+    assert validate_contribution(disp).strength == 4

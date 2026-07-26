@@ -20,9 +20,11 @@
 
 ## Mechanism links
 
-Edges with `mechanism_id`: **1** / 5
+Edges with `mechanism_id`: **3** / 5
 
 ```
+  bile_salt_emulsification
+  bile_salt_micelle
   pancreatic_lipase
 ```
 

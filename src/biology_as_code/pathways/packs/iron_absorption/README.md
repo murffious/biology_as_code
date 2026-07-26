@@ -1,6 +1,6 @@
 # iron_absorption
 
-Non-haem iron absorption teaching path. Dietary Fe³⁺ is reduced at the brush border; DMT1 takes up Fe²⁺ into the enterocyte; ferroportin exports iron basolaterally (blocked by hepcidin under iron repletion / inflammation). Ascorbate favors the Fe²⁺ pool (same-meal co-occupation). Heme path is a parallel stub. FLOW topology — magnitude bounds live in iron UNIT / laws.
+Iron absorption teaching path with parallel non-haem and haem branches. Non-haem: Fe³⁺ reduction → DMT1 apical uptake → ferroportin export (hepcidin block). Haem: HCP1-like apical uptake → HO-1 releases Fe²⁺ into the enterocyte pool → same ferroportin exit. Ascorbate co-occupation favors the ferrous lumen pool. FLOW topology — magnitude bounds live in iron UNIT / laws.
 
 - **Python module:** `biology_as_code.pathways.meal_critical_pathways`
 - **Graph:** `pathway.mermaid` (auto)

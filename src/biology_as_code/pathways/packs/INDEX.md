@@ -26,7 +26,8 @@ Gold extras: [`glycolysis/glycolysis_extra/`](./glycolysis/glycolysis_extra/) (e
 | [`glucose_epithelial_transport`](./glucose_epithelial_transport/) | `biology_as_code.pathways.meal_critical_pathways` | 6 | 5 |
 | [`glycogen_metabolism`](./glycogen_metabolism/) | `biology_as_code.pathways.glycogen_metabolism` | 6 | 7 |
 | [`glycolysis`](./glycolysis/) | `biology_as_code.pathways.metabolic_pathways` | 12 | 12 |
-| [`iron_absorption`](./iron_absorption/) | `biology_as_code.pathways.meal_critical_pathways` | 7 | 6 |
+| [`gut_incretin_network`](./gut_incretin_network/) | `biology_as_code.pathways.nutrient_sensing` | 10 | 14 |
+| [`iron_absorption`](./iron_absorption/) | `biology_as_code.pathways.meal_critical_pathways` | 8 | 7 |
 | [`ketogenesis`](./ketogenesis/) | `biology_as_code.pathways.ketogenesis` | 6 | 5 |
 | [`ketolysis`](./ketolysis/) | `biology_as_code.pathways.ketolysis` | 4 | 3 |
 | [`lipid_digestion_absorption`](./lipid_digestion_absorption/) | `biology_as_code.pathways.digestion_absorption_pathways` | 6 | 5 |
@@ -44,4 +45,4 @@ Gold extras: [`glycolysis/glycolysis_extra/`](./glycolysis/glycolysis_extra/) (e
 | [`tca_cycle`](./tca_cycle/) | `biology_as_code.pathways.tca_cycle` | 9 | 8 |
 | [`urea_cycle`](./urea_cycle/) | `biology_as_code.pathways.urea_cycle` | 10 | 6 |
 
-**Total:** 37 graphs
+**Total:** 38 graphs

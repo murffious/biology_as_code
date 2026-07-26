@@ -23,10 +23,11 @@
 
 ## Mechanism links
 
-Edges with `mechanism_id`: **1** / 7
+Edges with `mechanism_id`: **3** / 7
 
 ```
   methionine_adenosyltransferase
+  methionine_synthase
 ```
 
 ## Sources

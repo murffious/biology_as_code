@@ -428,6 +428,7 @@ class AminoAcidCatabolismRegistry:
         ))
         p.add_edge(ReactionEdge(
             from_node="homocysteine", to_node="methionine",
+            mechanism_id="methionine_synthase",
             enzyme="Methionine synthase (MTR) — B12",
             location="Cytosol",
             regulation="Requires methylcobalamin (B12) and 5-methyl-THF",
@@ -435,6 +436,7 @@ class AminoAcidCatabolismRegistry:
         ))
         p.add_edge(ReactionEdge(
             from_node="methyl_thf", to_node="methionine",
+            mechanism_id="methionine_synthase",
             enzyme="Methionine synthase (methyl transfer)",
             location="Cytosol",
             notes="5-methyl-THF methyl group → Hcy → Met; THF released.",

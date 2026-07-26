@@ -1,0 +1,18 @@
+{
+  "id": "contrib.review-dmt1-iron-step",
+  "type": "evidence",
+  "target": { "kind": "pathway_step", "ref": "iron_absorption::fe2_lumen->fe2_enterocyte" },
+  "payload": {
+    "mechanism": "dmt1",
+    "verifies": "DMT1 (SLC11A2) proton-coupled apical Fe2+ uptake is the modelled step"
+  },
+  "source": { "kind": "pubmed", "pmid": "39005063" },
+  "asserts_magnitude": false,
+  "contributor": "example",
+  "submitted": "2026-07-25",
+  "signoffs": [
+    { "reviewer": "reviewer-a", "date": "2026-07-25", "verdict": "verified", "note": "Confirmed step against DMT1 gene/mechanism references." },
+    { "reviewer": "reviewer-b", "date": "2026-07-25", "verdict": "verified", "note": "Independent confirmation." }
+  ],
+  "notes": "EXAMPLE — a peer-reviewed pathway step flowing through the ONE contribution pipeline. Two independent sign-offs promote it to tier 5 on the cog-evidence review board."
+}

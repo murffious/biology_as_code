@@ -249,6 +249,13 @@ def scfa_colonic_production_activity(state: PhysiologicalState) -> float:
     return clamp(0.5 + 0.3 * fasting)
 
 
+def gut_incretin_activity(state: PhysiologicalState) -> float:
+    """Meal-triggered gut hormone drive (CCK/GLP-1/PYY teaching proxy)."""
+    insulin = insulin_signal(state)
+    fed = 1.0 if state.is_fed() else 0.25
+    return clamp(0.6 * fed + 0.4 * insulin)
+
+
 def pathway_activity_snapshot(state: PhysiologicalState) -> dict[str, float]:
     """Return current activity levels for the major regulated pathways."""
     return {
@@ -266,6 +273,7 @@ def pathway_activity_snapshot(state: PhysiologicalState) -> dict[str, float]:
         "iron_absorption": round(iron_absorption_activity(state), 3),
         "glucose_epithelial_transport": round(glucose_epithelial_transport_activity(state), 3),
         "scfa_colonic_production": round(scfa_colonic_production_activity(state), 3),
+        "gut_incretin_network": round(gut_incretin_activity(state), 3),
     }
 
 

@@ -83,10 +83,14 @@ class NutrientSensingRegistry:
     def get(self, name: str) -> RegulatoryPathway | None:
         return self.pathways.get(name.lower())
 
+    def list_all(self) -> list[RegulatoryPathway]:
+        return list(self.pathways.values())
+
     def _build(self) -> None:
         self._build_ampk()
         self._build_mtorc1()
         self._build_srebp()
+        self._build_gut_incretin()
 
     # -- AMPK: the energy-stress sensor ---------------------------------
     def _build_ampk(self) -> None:
@@ -209,6 +213,55 @@ class NutrientSensingRegistry:
         ]:
             p.add_edge(RegulatoryEdge(a, b, eff, mech))
         self.register(p)
+
+    # -- Gut incretin / satiety mini-graph (Wave B2) -------------------------
+    def _build_gut_incretin(self) -> None:
+        p = RegulatoryPathway(
+            name="gut_incretin_network",
+            description=(
+                "Meal-triggered gut hormone mini-graph: CCK (I cells, fat/protein), "
+                "GLP-1 (L cells, carbs/mixed meal), GIP (K cells), and PYY. Teaching "
+                "edges to satiety, gallbladder/bile release, and insulin (incretin effect). "
+                "FLOW signaling topology — not a full enteroendocrine atlas."
+            ),
+        )
+        for nid, name, role, notes in [
+            ("meal_nutrients", "Meal nutrients (lumen / absorbate)", "input", "Fat, protein, carb signals."),
+            ("cck", "CCK (cholecystokinin)", "sensor", "I cells; fat/protein dominant."),
+            ("glp1", "GLP-1 (glucagon-like peptide-1)", "sensor", "L cells; incretin + satiety."),
+            ("gip", "GIP (glucose-dependent insulinotropic peptide)", "sensor", "K cells; incretin."),
+            ("pyy", "PYY (peptide YY)", "sensor", "L cells; satiety / ileal brake teaching."),
+            ("gallbladder_bile_release", "Gallbladder contraction / bile release", "effector", "CCK-driven."),
+            ("pancreatic_enzymes", "Pancreatic enzyme secretion", "effector", "CCK teaching path."),
+            ("insulin_secretion", "β-cell insulin secretion", "effector", "Incretin effect (GLP-1, GIP)."),
+            ("satiety", "Satiety / reduced intake drive", "effector", "Central + vagal teaching readout."),
+            ("gastric_emptying", "Gastric emptying rate", "effector", "Slowed by CCK/GLP-1 teaching."),
+        ]:
+            p.add_node(RegulatoryNode(nid, name, role, notes))
+        for a, b, eff, mech in [
+            ("meal_nutrients", "cck", "activates", "fat/protein → I-cell CCK"),
+            ("meal_nutrients", "glp1", "activates", "nutrients → L-cell GLP-1"),
+            ("meal_nutrients", "gip", "activates", "nutrients → K-cell GIP"),
+            ("meal_nutrients", "pyy", "activates", "distal nutrients → L-cell PYY"),
+            ("cck", "gallbladder_bile_release", "activates", "CCK → gallbladder contraction"),
+            ("cck", "pancreatic_enzymes", "activates", "CCK → acinar secretion"),
+            ("cck", "gastric_emptying", "inhibits", "CCK slows emptying"),
+            ("cck", "satiety", "activates", "vagal / central satiety"),
+            ("glp1", "insulin_secretion", "activates", "incretin effect (glucose-dependent)"),
+            ("glp1", "gastric_emptying", "inhibits", "GLP-1 slows emptying"),
+            ("glp1", "satiety", "activates", "central satiety / reduced intake"),
+            ("gip", "insulin_secretion", "activates", "incretin effect"),
+            ("pyy", "satiety", "activates", "ileal brake / satiety"),
+            ("pyy", "gastric_emptying", "inhibits", "slows proximal transit teaching"),
+        ]:
+            p.add_edge(RegulatoryEdge(a, b, eff, mech))
+        # Separate references for this graph (override shared AMPK set on register)
+        p.references = [
+            "Incretin hormones GLP-1 and GIP — standard endocrine/GI physiology.",
+            "CCK and gallbladder / pancreatic secretion — GI teaching texts.",
+            "PYY and ileal brake — satiety physiology reviews.",
+        ]
+        self.pathways[p.name.lower()] = p  # register without overwriting AMPK refs
 
 
 def evaluate_network(

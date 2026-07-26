@@ -20,10 +20,11 @@
 
 ## Mechanism links
 
-Edges with `mechanism_id`: **1** / 4
+Edges with `mechanism_id`: **2** / 4
 
 ```
   pepsin
+  pept1
 ```
 
 ## Biochemical invariants (document here)

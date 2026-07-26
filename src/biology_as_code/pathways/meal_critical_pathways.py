@@ -115,22 +115,24 @@ class MealCriticalPathwaysRegistry:
         p = MetabolicPathway(
             name="iron_absorption",
             description=(
-                "Non-haem iron absorption teaching path. Dietary Fe³⁺ is reduced at the "
-                "brush border; DMT1 takes up Fe²⁺ into the enterocyte; ferroportin exports "
-                "iron basolaterally (blocked by hepcidin under iron repletion / inflammation). "
-                "Ascorbate favors the Fe²⁺ pool (same-meal co-occupation). Heme path is a "
-                "parallel stub. FLOW topology — magnitude bounds live in iron UNIT / laws."
+                "Iron absorption teaching path with parallel non-haem and haem branches. "
+                "Non-haem: Fe³⁺ reduction → DMT1 apical uptake → ferroportin export "
+                "(hepcidin block). Haem: HCP1-like apical uptake → HO-1 releases Fe²⁺ into "
+                "the enterocyte pool → same ferroportin exit. Ascorbate co-occupation favors "
+                "the ferrous lumen pool. FLOW topology — magnitude bounds live in iron UNIT / laws."
             ),
         )
         for nid, name, nt, notes in [
             ("dietary_nonheme_fe3", "Dietary non-haem Fe³⁺", PathwayNodeType.LUMEN,
              "Label iron is not absorbed iron. Form + co-occupants matter."),
             ("dietary_heme", "Dietary haem iron", PathwayNodeType.LUMEN,
-             "Separate apical path (HCP1 teaching stub); higher fractional absorption."),
+             "Higher fractional absorption than non-haem; separate apical path."),
+            ("heme_enterocyte", "Haem (enterocyte)", PathwayNodeType.ENTEROCYTE,
+             "Intact haem after apical uptake; cleaved by HO-1."),
             ("fe2_lumen", "Fe²⁺ (lumen pool)", PathwayNodeType.LUMEN,
              "Ascorbate / reducing surface expands usable ferrous pool."),
             ("fe2_enterocyte", "Fe²⁺ (enterocyte)", PathwayNodeType.ENTEROCYTE,
-             "Cytosolic labile iron; ferritin storage branch omitted for clarity."),
+             "Cytosolic labile iron; shared by non-haem and haem branches."),
             ("plasma_transferrin_fe", "Transferrin-bound Fe (plasma)", PathwayNodeType.CIRCULATION,
              "Systemic transport form after basolateral export + oxidation."),
             ("hepcidin", "Hepcidin", PathwayNodeType.SIGNAL,
@@ -162,13 +164,28 @@ class MealCriticalPathwaysRegistry:
             regulation="Expression rises in iron deficiency",
             notes="Proton-coupled ferrous iron uptake.",
         ))
+        # Wave B2: expanded haem branch (was a single compressed stub)
+        p.add_edge(ReactionEdge(
+            from_node="dietary_heme", to_node="heme_enterocyte",
+            mechanism_id="hcp1_heme_uptake",
+            enzyme="HCP1 / PCFT-related haem uptake (teaching)",
+            location="Apical membrane",
+            notes="Apical haem uptake; higher fractional absorption than non-haem.",
+        ))
+        p.add_edge(ReactionEdge(
+            from_node="heme_enterocyte", to_node="fe2_enterocyte",
+            mechanism_id="heme_oxygenase_1",
+            enzyme="Heme oxygenase-1 (HO-1)",
+            location="Enterocyte",
+            notes="Cleaves haem → Fe²⁺ + biliverdin + CO; joins labile iron pool.",
+        ))
         p.add_edge(ReactionEdge(
             from_node="fe2_enterocyte", to_node="plasma_transferrin_fe",
             mechanism_id="ferroportin",
             enzyme="Ferroportin (SLC40A1) + hephaestin/ceruloplasmin oxidation",
             location="Basolateral membrane",
             regulation="Blocked when hepcidin high",
-            notes="Export is the systemic control point for absorption.",
+            notes="Export is the systemic control point for absorption (both branches).",
         ))
         p.add_edge(ReactionEdge(
             from_node="hepcidin", to_node="plasma_transferrin_fe",
@@ -178,12 +195,6 @@ class MealCriticalPathwaysRegistry:
             location="Enterocyte basolateral / RES",
             regulation="Inflammation and iron repletion raise hepcidin",
             notes="Inhibitory teaching edge: high hepcidin lowers effective export.",
-        ))
-        p.add_edge(ReactionEdge(
-            from_node="dietary_heme", to_node="fe2_enterocyte",
-            enzyme="Haem uptake / HO-1 release (compressed)",
-            location="Apical / enterocyte",
-            notes="Parallel path stub — not fully expanded topology.",
         ))
 
         p.references = [
