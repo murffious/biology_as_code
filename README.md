@@ -137,6 +137,16 @@ See [docs/constitution.md](docs/constitution.md).
 
 ---
 
+## Where the data comes from — Internet of the Body
+
+This repo models what a body *does* with a meal. The sensors and apps that measure
+the body itself are the companion piece: see the curated
+[**Awesome Internet of the Body**](docs/awesome-internet-of-the-body.md) —
+open-source and standards-based apps, wearables, and platforms that gather human
+data (CGMs, wearables, FHIR, Open Humans, and more), with a privacy-first framing.
+
+---
+
 ## Example food objects
 
 **Filled (teaching):**
