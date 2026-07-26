@@ -4,6 +4,7 @@
 **Author:** Paul Murff
 **Date:** 2026
 **License:** Apache-2.0. Patent non-assertion covenant applies (see PATENTS.md).
+**Normative form:** This Markdown document is normative. Any rendered PDF is provided for convenience only; if the two differ, the Markdown governs.
 
 ---
 
