@@ -6,7 +6,7 @@
 [![Docs](https://github.com/murffious/biology_as_code/actions/workflows/docs.yml/badge.svg)](https://github.com/murffious/biology_as_code/actions/workflows/docs.yml)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21536449.svg)](https://doi.org/10.5281/zenodo.21536449)
 [![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-blue)](https://pypi.org/project/biology-as-code/)
-[![License](https://img.shields.io/badge/license-MIT-green)](https://github.com/murffious/biology_as_code/blob/main/LICENSE)
+[![License](https://img.shields.io/badge/license-Apache--2.0-green)](https://github.com/murffious/biology_as_code/blob/main/LICENSE)
 
 **[Documentation](https://murffious.github.io/biology_as_code/)** · [Cookbook](https://murffious.github.io/biology_as_code/cookbook/) · [Validation report](https://murffious.github.io/biology_as_code/VALIDATION/)
 
@@ -30,6 +30,28 @@ on its own today; you do not need the book to use it.
 | **Ethos** | Fail-closed · gate ≠ bound · empty beats fake |
 
 **Not medical advice.** FLOW teaching / research software only — not a clinical decision-support system.
+
+---
+
+## The FDP-1 specification
+
+**[FDP-1: Food Data Provenance Declaration](FDP-1-food-data-provenance.md)** is a
+minimal, RFC-style specification for declaring *where a nutrient value came from*
+and *how well a score built on it is validated*. It does not score food — it
+wraps any existing system (Nutri-Score, Health Star Rating, Nutri-Grade, Food
+Compass, or a proprietary score) without modifying it.
+
+- **Six fields on a value, five on a score, one rule.** The one rule is the
+  **weakest-link rule** (§3.1): a score's provenance grade equals its
+  lowest-graded input. A composite of 40 lab values and one label value is Grade C.
+- **The OPEN convention** (§4): an unknown value is declared `OPEN`, never
+  silently imputed, zeroed, or omitted.
+- **Reference implementation:** a dependency-free
+  [validator](validator/validate_fdp.py) (`python validator/validate_fdp.py
+  examples/iron-two-hosts.json`), the [`MASTER_CROSSWALK.tsv`](MASTER_CROSSWALK.tsv)
+  ID spine, and a worked
+  [two-host iron example](examples/iron-two-hosts.json).
+- **Terms:** Apache-2.0 with a patent [non-assertion covenant](PATENTS.md).
 
 ---
 

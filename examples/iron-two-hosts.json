@@ -1,0 +1,71 @@
+{
+  "fdp_version": "FDP-1",
+  "example": "iron-two-hosts",
+  "title": "Absorbed iron from one food, declared under FDP-1, evaluated for two host states",
+  "note": "Same food and same declared inputs feed two scores that differ only in host iron status. Absorbed iron differs ~6x between a replete and a deficient host, yet BOTH scores carry provenance_grade '—': one required modifier (polyphenols) is OPEN, and by the weakest-link rule (FDP-1 §3.1) an OPEN input caps the whole score's provenance. That is the point of the example — a confidently computed number whose provenance is honestly ungraded.",
+  "food": {
+    "name": "Black beans, cooked, boiled, without salt",
+    "source_ref": "usda.fdc:173735",
+    "amount": { "value": 100, "unit": "g" }
+  },
+  "values": {
+    "iron": {
+      "value": 2.1,
+      "unit": "mg",
+      "source": "analytical",
+      "source_ref": "usda.fdc:173735",
+      "method": "aoac:2011.14",
+      "retrieved": "2026-07-01"
+    },
+    "ascorbic_acid": {
+      "value": 0.0,
+      "unit": "mg",
+      "source": "analytical",
+      "source_ref": "usda.fdc:173735",
+      "method": "aoac:967.21",
+      "retrieved": "2026-07-01"
+    },
+    "phytate": {
+      "value": 620,
+      "unit": "mg",
+      "source": "literature",
+      "source_ref": "foodb:FDB000012",
+      "method": "aoac:986.11",
+      "retrieved": "2026-07-01"
+    },
+    "polyphenols_total": {
+      "value": "OPEN",
+      "unit": "mg",
+      "source": "OPEN",
+      "source_ref": "OPEN",
+      "method": "OPEN",
+      "retrieved": "OPEN"
+    }
+  },
+  "scores": [
+    {
+      "score_id": "absorbed-iron:demo/host=iron-replete",
+      "host_state": { "serum_ferritin": "60 ng/mL", "hepcidin": "high" },
+      "inputs": ["iron", "ascorbic_acid", "phytate", "polyphenols_total"],
+      "computed": { "fractional_absorption": 0.02, "absorbed_iron_mg": 0.042 },
+      "provenance_grade": "—",
+      "weights_published": "https://github.com/murffious/biology_as_code/blob/main/docs/iron/fractional-absorption.md",
+      "validation": {
+        "level": "convergent",
+        "citation": "Hallberg L, Hulthén L. Prediction of dietary iron absorption. Am J Clin Nutr. 2000;71(5):1147-1160. PMID:10799377"
+      }
+    },
+    {
+      "score_id": "absorbed-iron:demo/host=iron-deficient",
+      "host_state": { "serum_ferritin": "8 ng/mL", "hepcidin": "low" },
+      "inputs": ["iron", "ascorbic_acid", "phytate", "polyphenols_total"],
+      "computed": { "fractional_absorption": 0.12, "absorbed_iron_mg": 0.252 },
+      "provenance_grade": "—",
+      "weights_published": "https://github.com/murffious/biology_as_code/blob/main/docs/iron/fractional-absorption.md",
+      "validation": {
+        "level": "convergent",
+        "citation": "Hallberg L, Hulthén L. Prediction of dietary iron absorption. Am J Clin Nutr. 2000;71(5):1147-1160. PMID:10799377"
+      }
+    }
+  ]
+}

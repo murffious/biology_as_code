@@ -1,0 +1,15 @@
+Biology as Code
+Copyright 2026 Paul Murff and Biology as Code contributors (Morf Engineering Inc.)
+
+This product includes the FDP-1 Food Data Provenance Declaration specification
+and its reference validator.
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+these files except in compliance with the License. You may obtain a copy of the
+License at:
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+A patent non-assertion covenant applies to the open layer published here. See
+PATENTS.md. The patent-pending KIBO product/meal-scoring engine is not included
+in this repository; see PROPRIETARY_IP.md.
