@@ -7,6 +7,7 @@
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21536449.svg)](https://doi.org/10.5281/zenodo.21536449)
 [![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-blue)](https://github.com/murffious/biology_as_code/blob/main/pyproject.toml)
 [![License](https://img.shields.io/badge/license-Apache--2.0-green)](https://github.com/murffious/biology_as_code/blob/main/LICENSE)
+[![Implements FDP-1](https://img.shields.io/badge/implements-FDP--1-blue)](https://github.com/murffious/fdp-1)
 
 **[Documentation](https://murffious.github.io/biology_as_code/)** · [Cookbook](https://murffious.github.io/biology_as_code/cookbook/) · [Validation report](https://murffious.github.io/biology_as_code/VALIDATION/)
 
@@ -52,8 +53,11 @@ modifying it.
   which this repo hosts as a separate downstream layer.
 
 The **specification, its reference validator, and the worked example** live in the
-canonical **[`fdp-1`](https://github.com/murffious/fdp-1)** repository (with its own
-DOI). Apache-2.0 with a patent [non-assertion covenant](PATENTS.md).
+canonical **[`fdp-1`](https://github.com/murffious/fdp-1)** repository — published
+as a citable *Standard* on Zenodo:
+[**doi:10.5281/zenodo.21613721**](https://doi.org/10.5281/zenodo.21613721) (concept
+DOI; always resolves to the latest version). Apache-2.0 with a patent
+[non-assertion covenant](PATENTS.md).
 
 ---
 

@@ -37,6 +37,11 @@
       "identifier": "https://pypi.org/project/biology-as-code/",
       "relation": "isIdenticalTo",
       "scheme": "url"
+    },
+    {
+      "identifier": "10.5281/zenodo.21613721",
+      "relation": "isSupplementTo",
+      "scheme": "doi"
     }
   ]
 }
