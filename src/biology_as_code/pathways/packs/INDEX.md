@@ -43,6 +43,6 @@ Gold extras: [`glycolysis/glycolysis_extra/`](./glycolysis/glycolysis_extra/) (e
 | [`secondary_bile_acids`](./secondary_bile_acids/) | `biology_as_code.pathways.supporting_pathways` | 4 | 3 |
 | [`srebp_network`](./srebp_network/) | `biology_as_code.pathways.nutrient_sensing` | 10 | 8 |
 | [`tca_cycle`](./tca_cycle/) | `biology_as_code.pathways.tca_cycle` | 9 | 8 |
-| [`urea_cycle`](./urea_cycle/) | `biology_as_code.pathways.urea_cycle` | 10 | 6 |
+| [`urea_cycle`](./urea_cycle/) | `biology_as_code.pathways.urea_cycle` | 10 | 9 |
 
 **Total:** 38 graphs

@@ -12,8 +12,11 @@ flowchart TD
   fumarate["Fumarate"]
   urea["Urea"]
   nh4 -->|"Carbamoyl phosphate synthetase I (CPS1)<br/>ATP-2"| carbamoyl_phosphate
+  co2 -->|"Carbamoyl phosphate synthetase I (CPS1)"| carbamoyl_phosphate
   carbamoyl_phosphate -->|"Ornithine transcarbamoylase (OTC)"| citrulline
-  citrulline -->|"Argininosuccinate synthetase<br/>ATP-1"| argininosuccinate
+  citrulline -->|"Argininosuccinate synthetase<br/>ATP-2"| argininosuccinate
+  aspartate -->|"Argininosuccinate synthetase"| argininosuccinate
   argininosuccinate -->|"Argininosuccinate lyase"| arginine
+  argininosuccinate -->|"Argininosuccinate lyase"| fumarate
   arginine -->|"Arginase"| urea
   arginine -->|"Arginase"| ornithine
