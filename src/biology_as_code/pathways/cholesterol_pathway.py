@@ -17,64 +17,20 @@ Key educational points:
 =================================================================
 """
 
-from dataclasses import dataclass
-from enum import Enum
 
 
-class PathwayNodeType(Enum):
-    SUBSTRATE = "substrate"
-    INTERMEDIATE = "intermediate"
-    PRODUCT = "product"
-    LIPOPROTEIN = "lipoprotein"
-    REGULATORY = "regulatory"
+from biology_as_code.pathways._types import (
+    MetabolicPathway as _BasePathway,
+)
+from biology_as_code.pathways._types import (
+    MetaboliteNode,
+    PathwayNodeType,
+    ReactionEdge,
+)
 
 
-@dataclass
-class MetaboliteNode:
-    """A single metabolite or particle (node) in the pathway graph."""
-    id: str
-    name: str
-    node_type: PathwayNodeType
-    notes: str = ""
-
-
-@dataclass
-class ReactionEdge:
-    """
-    A directed reaction or transport step.
-    
-    Cofactor sign conventions (package-wide — see pathways/_types.py):
-      atp_cost / gtp_cost   negative = consumed, positive = produced
-      nadph_cost            negative = PRODUCED, positive = consumed
-
-    The redox fields are inverted relative to the phosphate ones because they
-    track the oxidised partner (NADP+), not the reduced carrier. Cholesterol
-    synthesis consumes NADPH, so its nadph_cost values are positive.
-    """
-    from_node: str
-    to_node: str
-    enzyme_or_process: str
-    atp_cost: int = 0
-    nadph_cost: int = 0
-    regulation: str = ""
-    notes: str = ""
-    mechanism_id: str = ""
-
-
-class MetabolicPathway:
-    """A complete metabolic pathway represented as a directed graph."""
-
-    def __init__(self, name: str, description: str = ""):
-        self.name = name
-        self.description = description
-        self.nodes: dict[str, MetaboliteNode] = {}
-        self.edges: list[ReactionEdge] = []
-
-    def add_node(self, node: MetaboliteNode) -> None:
-        self.nodes[node.id] = node
-
-    def add_edge(self, edge: ReactionEdge) -> None:
-        self.edges.append(edge)
+class MetabolicPathway(_BasePathway):
+    """Shared graph type; only this module's own summary differs."""
 
     def summary(self) -> dict:
         return {
@@ -180,21 +136,21 @@ class CholesterolPathwayRegistry:
         p.add_edge(ReactionEdge(
             from_node="acetyl_coa",
             to_node="acetoacetyl_coa",
-            enzyme_or_process="Thiolase (Acetoacetyl-CoA thiolase)",
+            enzyme="Thiolase (Acetoacetyl-CoA thiolase)",
             notes="Condensation of two acetyl-CoA molecules."
         ))
 
         p.add_edge(ReactionEdge(
             from_node="acetoacetyl_coa",
             to_node="hmg_coa",
-            enzyme_or_process="HMG-CoA synthase",
+            enzyme="HMG-CoA synthase",
             notes="Adds a third acetyl-CoA. Occurs in cytosol for sterol synthesis (mitochondrial isoform is for ketogenesis)."
         ))
 
         p.add_edge(ReactionEdge(
             from_node="hmg_coa",
             to_node="mevalonate",
-            enzyme_or_process="HMG-CoA reductase",
+            enzyme="HMG-CoA reductase",
             nadph_cost=2,    # consumes 2 NADPH (positive = consumed, see class docstring)
             mechanism_id="hmg_coa_reductase",
             regulation=(
@@ -213,7 +169,7 @@ class CholesterolPathwayRegistry:
         p.add_edge(ReactionEdge(
             from_node="mevalonate",
             to_node="ipp",
-            enzyme_or_process="Mevalonate kinase + phosphomevalonate kinase + mevalonate diphosphate decarboxylase",
+            enzyme="Mevalonate kinase + phosphomevalonate kinase + mevalonate diphosphate decarboxylase",
             atp_cost=-3,
             notes="Three ATP-dependent steps convert mevalonate into the activated isoprene unit IPP."
         ))
@@ -221,28 +177,28 @@ class CholesterolPathwayRegistry:
         p.add_edge(ReactionEdge(
             from_node="ipp",
             to_node="dmap",
-            enzyme_or_process="Isopentenyl pyrophosphate isomerase",
+            enzyme="Isopentenyl pyrophosphate isomerase",
             notes="Reversible isomerization to the allylic isomer DMAPP."
         ))
 
         p.add_edge(ReactionEdge(
             from_node="dmap",
             to_node="geranyl_pp",
-            enzyme_or_process="Geranyl pyrophosphate synthase",
+            enzyme="Geranyl pyrophosphate synthase",
             notes="Condensation of DMAPP + IPP → C10 intermediate."
         ))
 
         p.add_edge(ReactionEdge(
             from_node="geranyl_pp",
             to_node="farnesyl_pp",
-            enzyme_or_process="Farnesyl pyrophosphate synthase",
+            enzyme="Farnesyl pyrophosphate synthase",
             notes="Adds another IPP to form the C15 intermediate. Farnesyl-PP is also used for protein prenylation."
         ))
 
         p.add_edge(ReactionEdge(
             from_node="farnesyl_pp",
             to_node="squalene",
-            enzyme_or_process="Squalene synthase",
+            enzyme="Squalene synthase",
             nadph_cost=1,    # consumes 1 NADPH
             notes="Head-to-head condensation of two farnesyl-PP molecules. First committed step unique to sterols (vs. other isoprenoids)."
         ))
@@ -250,14 +206,14 @@ class CholesterolPathwayRegistry:
         p.add_edge(ReactionEdge(
             from_node="squalene",
             to_node="lanosterol",
-            enzyme_or_process="Squalene epoxidase + oxidosqualene cyclase",
+            enzyme="Squalene epoxidase + oxidosqualene cyclase",
             notes="Epoxidation and cyclization create the four-ring steroid nucleus (lanosterol)."
         ))
 
         p.add_edge(ReactionEdge(
             from_node="lanosterol",
             to_node="cholesterol",
-            enzyme_or_process="Multiple enzymes (≈19 steps: demethylations, desaturations, isomerizations, reductions)",
+            enzyme="Multiple enzymes (≈19 steps: demethylations, desaturations, isomerizations, reductions)",
             notes=(
                 "Complex series of modifications that remove three methyl groups, "
                 "reduce double bonds, and rearrange the structure to produce cholesterol. "
@@ -324,28 +280,28 @@ class CholesterolPathwayRegistry:
         p.add_edge(ReactionEdge(
             from_node="liver",
             to_node="vldl",
-            enzyme_or_process="VLDL assembly and secretion",
+            enzyme="VLDL assembly and secretion",
             notes="Liver packages triglycerides + cholesterol esters + ApoB-100 into VLDL particles."
         ))
 
         p.add_edge(ReactionEdge(
             from_node="vldl",
             to_node="idl",
-            enzyme_or_process="Lipoprotein lipase (LPL) + hepatic lipase",
+            enzyme="Lipoprotein lipase (LPL) + hepatic lipase",
             notes="Progressive removal of triglycerides converts VLDL → IDL → LDL."
         ))
 
         p.add_edge(ReactionEdge(
             from_node="idl",
             to_node="ldl",
-            enzyme_or_process="Hepatic lipase + further lipolysis",
+            enzyme="Hepatic lipase + further lipolysis",
             notes="Final conversion to the cholesterol-rich LDL particle."
         ))
 
         p.add_edge(ReactionEdge(
             from_node="ldl",
             to_node="peripheral_cell",
-            enzyme_or_process="LDL receptor-mediated endocytosis",
+            enzyme="LDL receptor-mediated endocytosis",
             regulation="LDL receptor expression is down-regulated by high cellular cholesterol (SREBP pathway).",
             notes="Primary route of cholesterol delivery to extrahepatic tissues. Defects in this receptor cause familial hypercholesterolemia."
         ))
@@ -353,14 +309,14 @@ class CholesterolPathwayRegistry:
         p.add_edge(ReactionEdge(
             from_node="peripheral_cell",
             to_node="hdl",
-            enzyme_or_process="ABCA1 / ABCG1 transporters + LCAT",
+            enzyme="ABCA1 / ABCG1 transporters + LCAT",
             notes="Reverse cholesterol transport begins. Free cholesterol is transferred to nascent HDL and esterified by LCAT."
         ))
 
         p.add_edge(ReactionEdge(
             from_node="hdl",
             to_node="liver",
-            enzyme_or_process="SR-BI receptor + CETP-mediated pathways",
+            enzyme="SR-BI receptor + CETP-mediated pathways",
             notes="HDL delivers cholesterol back to the liver for excretion into bile or conversion to bile acids."
         ))
 
