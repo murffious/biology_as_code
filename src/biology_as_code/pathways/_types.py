@@ -192,6 +192,9 @@ class MetabolicPathway:
         self.nodes: dict[str, MetaboliteNode] = {}
         self.edges: list[ReactionEdge] = []
         self.references: list[str] = []
+        # Pathway-specific summary keys, merged in by summary() overrides that
+        # want per-graph totals without subclassing per graph.
+        self.extra_summary: dict = {}
 
     def add_node(self, node: MetaboliteNode) -> None:
         self.nodes[node.id] = node
