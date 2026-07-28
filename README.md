@@ -1,5 +1,39 @@
 # Biology as Code
 
+
+
+
+Precision medicine is an emerging paradigm that requires realistic, mechanistic models capturing the complexity of the human body.
+whole-body metabolism (WBM) reconstructions,
+Personalized whole-body models integrate
+metabolism, physiology, and the gut microbiome
+
+GEM stands for Genome-scale Metabolic model (also called Genome-scale Metabolic reconstruction or network).
+
+**GEM** stands for **Genome-scale Metabolic model** (also called Genome-scale Metabolic reconstruction or network).
+
+### Simple definition
+A GEM is a mathematical model of an organism’s entire known metabolism, built from its genome.  
+
+It contains:
+- All (or nearly all) known metabolic reactions the organism can perform
+- The genes (and usually proteins) that encode the enzymes for those reactions (via **GPR** rules — Gene-Protein-Reaction associations)
+- Metabolites and their stoichiometry
+- Compartments (cytosol, mitochondria, extracellular space, etc.)
+
+The model is usually represented as a stoichiometric matrix (the **S-matrix**) and is analyzed with constraint-based methods such as **Flux Balance Analysis (FBA)**.
+
+### In the context of our conversation
+- **Recon3D** = the main human GEM
+- **AGORA / AGORA2** = collections of microbial GEMs (thousands of gut bacteria)
+- **Harvey / Harvetta** = whole-body models built by connecting many copies of the human GEM (plus organs, blood, etc.)
+- The local VMH-style layer you want to rebuild is essentially a database of these GEMs + the supporting metabolite/reaction/gene/food data
+
+So when people say “run a GEM” or “constrain the GEM with a diet,” they mean: take this genome-scale network of reactions, set bounds on the exchange reactions based on the food the person ate (and any other physiological constraints), then compute what fluxes are possible through the network.
+
+That’s the core technical object behind almost everything we’ve been discussing.
+
+
 **Standardizing Nutrition Science for Preventive Medicine**
 
 [![CI](https://github.com/murffious/biology_as_code/actions/workflows/ci.yml/badge.svg)](https://github.com/murffious/biology_as_code/actions/workflows/ci.yml)
