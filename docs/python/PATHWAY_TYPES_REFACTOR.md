@@ -1,6 +1,19 @@
 # Pathway types — de-duplication plan
 
-**Status:** Phases 0–2 **done**. Phase 3 ready. Phase 4 signed off, not started.
+**Status:** Phases 0–3 **done** (14 of 16 modules migrated, −739/+232 lines).
+Phase 4 signed off, not started — `digestion_absorption_pathways` and
+`meal_critical_pathways` are the two modules still declaring their own types.
+
+> **Phase 4 pre-step — do this first.** `digestion_absorption_pathways` builds
+> `ReactionEdge` with **46 positional args** in the order
+> `(from_node, to_node, mechanism_id, process, location, notes)` — position 4 is
+> `process` where the shared class has `enzyme`. Swapping the types before
+> converting those to keywords would silently move strings between fields, and the
+> packs would still export (wrongly). Convert positional → keyword using the
+> module's own field order, verify green, *then* swap types. That is how Phase 3
+> batch C handled `supporting_pathways`, which had the same hazard.
+> `meal_critical_pathways` has no positional edge args; its 16 positional
+> `MetaboliteNode` args use the standard order and are safe.
 **Scope:** the 16 modules in `src/biology_as_code/pathways/` that each declare their own
 `PathwayNodeType`, `MetaboliteNode`, `ReactionEdge`, `MetabolicPathway`.
 
