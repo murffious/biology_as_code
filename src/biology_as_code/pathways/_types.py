@@ -57,6 +57,45 @@ YIELD_FIELDS = {**PHOSPHATE_YIELDS, **REDOX_YIELDS, **COUNT_YIELDS}
 ENZYME_FIELDS = ("enzyme", "enzyme_or_complex", "enzyme_or_process", "process")
 
 
+# --------------------------------------------------------------------------
+# Compartment catalog
+# --------------------------------------------------------------------------
+# Two axes, deliberately separate (Phase 4):
+#
+#   node_type    what role the pool plays in the reaction network
+#   compartment  where that pool physically is
+#
+# They were conflated: digestion_absorption_pathways declared LUMEN / ENTEROCYTE
+# / CIRCULATION as *node types*, so one field meant "role" in fourteen modules and
+# "place" in two. Transport is then unrepresentable — you cannot have orn[m] and
+# orn[c] as distinct pools if position is a role.
+#
+# Node identity is chemical species + compartment: two pools are two node ids.
+# Recon3D-first for intracellular work, plus an absorptive teaching scale.
+SUBCELLULAR_COMPARTMENTS = {
+    "m": "mitochondrion",
+    "c": "cytosol",
+    "e": "extracellular",
+    "n": "nucleus",
+    "x": "peroxisome",
+    "g": "Golgi",
+    "l": "lysosome",
+    "r": "endoplasmic reticulum",
+}
+TEACHING_COMPARTMENTS = {
+    "lumen": "gut lumen",
+    "enterocyte": "enterocyte cytosol",
+    "circulation": "plasma / portal blood",
+}
+# "" means not stated. Allowed — most graphs are single-compartment and saying
+# nothing is honest; inventing a location is not.
+COMPARTMENTS = {**SUBCELLULAR_COMPARTMENTS, **TEACHING_COMPARTMENTS}
+
+# Membranes are interfaces between compartments, not bulk pools, so a transporter
+# does not get its own compartment — it is an edge whose endpoints differ, with
+# `ReactionEdge.location` carrying free-text process context ("Apical membrane").
+
+
 class PathwayNodeType(Enum):
     """Metabolic role of a node. Anatomical position is `MetaboliteNode.compartment`."""
 

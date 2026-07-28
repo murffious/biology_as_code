@@ -1,19 +1,32 @@
 # Pathway types — de-duplication plan
 
-**Status:** Phases 0–3 **done** (14 of 16 modules migrated, −739/+232 lines).
-Phase 4 signed off, not started — `digestion_absorption_pathways` and
-`meal_critical_pathways` are the two modules still declaring their own types.
+**Status:** Phases 0–4 **done**. All 16 modules now use `pathways/_types.py`;
+role and compartment are separate axes. Phase 5 (urea cycle transports and the
+aspartate–malate arm) is unblocked and not started.
 
-> **Phase 4 pre-step — do this first.** `digestion_absorption_pathways` builds
-> `ReactionEdge` with **46 positional args** in the order
-> `(from_node, to_node, mechanism_id, process, location, notes)` — position 4 is
-> `process` where the shared class has `enzyme`. Swapping the types before
-> converting those to keywords would silently move strings between fields, and the
-> packs would still export (wrongly). Convert positional → keyword using the
-> module's own field order, verify green, *then* swap types. That is how Phase 3
-> batch C handled `supporting_pathways`, which had the same hazard.
-> `meal_critical_pathways` has no positional edge args; its 16 positional
-> `MetaboliteNode` args use the standard order and are safe.
+**Phase 4 outcome.** 23 constructor calls and 17 tuples rewritten across
+`digestion_absorption_pathways` and `meal_critical_pathways`. 40 nodes gained a
+compartment (24 `lumen`, 8 `enterocyte`, 8 `circulation`); no node type describes a
+place any more. Roles for those nodes were **derived from graph topology** (no
+inbound edge → SUBSTRATE, no outbound → PRODUCT, else INTERMEDIATE) read from the
+live registry, and only where the old value was a compartment — nodes already
+carrying a real role kept it, so `hepcidin` is still SIGNAL and `butyrate` still
+PRODUCT rather than being flattened by topology.
+
+Packs stayed byte-identical because the exporter never read `node_type`, so the
+golden digests remained a valid gate through a deliberately semantic change.
+
+> **Two traps worth remembering**, both of which produce a *green build and wrong
+> data*:
+>
+> 1. **`ast` `col_offset` is a UTF-8 byte offset, not a character offset.** These
+>    files are full of `Fe³⁺`, `α-`, `→`. A rewriter that computes positions in
+>    characters inserts text mid-token on every line containing non-ASCII. Caught
+>    here as `NameError: name 'athwayNodeType' is not defined`, but an insertion
+>    landing inside a string literal would have compiled fine and corrupted content
+>    silently.
+> 2. **BSD `sed` on macOS does not support `\b`.** A rename using word boundaries
+>    silently matches nothing and reports success.
 **Scope:** the 16 modules in `src/biology_as_code/pathways/` that each declare their own
 `PathwayNodeType`, `MetaboliteNode`, `ReactionEdge`, `MetabolicPathway`.
 
