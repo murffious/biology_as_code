@@ -43,9 +43,13 @@ class ReactionEdge:
     """
     A directed reaction or transport step.
     
-    Convention for atp_cost / nadh_cost / nadph_cost:
-      Negative = consumed
-      Positive = produced
+    Cofactor sign conventions (package-wide — see pathways/_types.py):
+      atp_cost / gtp_cost   negative = consumed, positive = produced
+      nadph_cost            negative = PRODUCED, positive = consumed
+
+    The redox fields are inverted relative to the phosphate ones because they
+    track the oxidised partner (NADP+), not the reduced carrier. Cholesterol
+    synthesis consumes NADPH, so its nadph_cost values are positive.
     """
     from_node: str
     to_node: str
@@ -191,7 +195,7 @@ class CholesterolPathwayRegistry:
             from_node="hmg_coa",
             to_node="mevalonate",
             enzyme_or_process="HMG-CoA reductase",
-            nadph_cost=-2,   # consumes 2 NADPH
+            nadph_cost=2,    # consumes 2 NADPH (positive = consumed, see class docstring)
             mechanism_id="hmg_coa_reductase",
             regulation=(
                 "RATE-LIMITING STEP of cholesterol biosynthesis. "
@@ -239,7 +243,7 @@ class CholesterolPathwayRegistry:
             from_node="farnesyl_pp",
             to_node="squalene",
             enzyme_or_process="Squalene synthase",
-            nadph_cost=-1,
+            nadph_cost=1,    # consumes 1 NADPH
             notes="Head-to-head condensation of two farnesyl-PP molecules. First committed step unique to sterols (vs. other isoprenoids)."
         ))
 

@@ -21,6 +21,8 @@ SRC = ROOT / "src"
 if str(SRC) not in sys.path:
     sys.path.insert(0, str(SRC))
 
+from biology_as_code.pathways._types import edge_label  # noqa: E402
+
 OUT = ROOT / "src" / "biology_as_code" / "pathways" / "packs"
 GOLD = OUT / "glycolysis" / "glycolysis_extra"
 
@@ -35,26 +37,12 @@ def _node_label(node: Any) -> str:
 
 
 def _edge_label(edge: Any) -> str:
-    parts = []
-    # Regulatory (signed) edges: show the effect + mechanism.
-    eff = getattr(edge, "effect", "") or ""
-    if eff:
-        mech = getattr(edge, "mechanism", "") or getattr(edge, "mechanism_id", "") or ""
-        parts.append(f"{eff}: {mech}"[:48] if mech else eff)
-        return "<br/>".join(parts)
-    mid = getattr(edge, "mechanism_id", "") or ""
-    enz = getattr(edge, "enzyme", "") or getattr(edge, "process", "") or ""
-    if mid:
-        parts.append(mid)
-    elif enz:
-        parts.append(str(enz)[:40])
-    atp = getattr(edge, "atp_cost", None)
-    nadh = getattr(edge, "nadh_cost", None)
-    if atp:
-        parts.append(f"ATP{atp:+g}" if isinstance(atp, (int, float)) else f"ATP={atp}")
-    if nadh:
-        parts.append(f"NADH{nadh:+g}" if isinstance(nadh, (int, float)) else f"NADH={nadh}")
-    return "<br/>".join(parts) if parts else "step"
+    """Delegated to the shared contract so every edge field is honoured.
+
+    Reads legacy per-module edges and the shared ReactionEdge alike, and
+    normalises cofactor signs to positive = produced.
+    """
+    return edge_label(edge)
 
 
 def pathway_to_mermaid(pathway: Any) -> str:

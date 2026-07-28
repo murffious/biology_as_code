@@ -11,9 +11,9 @@ flowchart TD
   gap["Glyceraldehyde-3-phosphate"]
   f6p["Fructose-6-phosphate"]
   e4p["Erythrose-4-phosphate"]
-  g6p -->|"Glucose-6-phosphate dehydrogenase (G6PD)"| 6pgl
+  g6p -->|"Glucose-6-phosphate dehydrogenase (G6PD)<br/>NADPH+1"| 6pgl
   6pgl -->|"Lactonase"| 6pg
-  6pg -->|"6-Phosphogluconate dehydrogenase"| ru5p
+  6pg -->|"6-Phosphogluconate dehydrogenase<br/>NADPH+1<br/>CO2+1"| ru5p
   ru5p -->|"Ribulose-5-phosphate isomerase"| r5p
   ru5p -->|"Ribulose-5-phosphate epimerase"| xu5p
   xu5p -->|"Transketolase"| gap

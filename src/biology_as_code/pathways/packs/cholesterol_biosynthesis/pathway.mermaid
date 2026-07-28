@@ -12,13 +12,13 @@ flowchart TD
   squalene["Squalene"]
   lanosterol["Lanosterol"]
   cholesterol["Cholesterol"]
-  acetyl_coa -->|"step"| acetoacetyl_coa
-  acetoacetyl_coa -->|"step"| hmg_coa
-  hmg_coa -->|"hmg_coa_reductase"| mevalonate
-  mevalonate -->|"ATP-3"| ipp
-  ipp -->|"step"| dmap
-  dmap -->|"step"| geranyl_pp
-  geranyl_pp -->|"step"| farnesyl_pp
-  farnesyl_pp -->|"step"| squalene
-  squalene -->|"step"| lanosterol
-  lanosterol -->|"step"| cholesterol
+  acetyl_coa -->|"Thiolase (Acetoacetyl-CoA thiolase)"| acetoacetyl_coa
+  acetoacetyl_coa -->|"HMG-CoA synthase"| hmg_coa
+  hmg_coa -->|"hmg_coa_reductase<br/>NADPH-2"| mevalonate
+  mevalonate -->|"Mevalonate kinase + phosphomevalonate ki<br/>ATP-3"| ipp
+  ipp -->|"Isopentenyl pyrophosphate isomerase"| dmap
+  dmap -->|"Geranyl pyrophosphate synthase"| geranyl_pp
+  geranyl_pp -->|"Farnesyl pyrophosphate synthase"| farnesyl_pp
+  farnesyl_pp -->|"Squalene synthase<br/>NADPH-1"| squalene
+  squalene -->|"Squalene epoxidase + oxidosqualene cycla"| lanosterol
+  lanosterol -->|"Multiple enzymes (≈19 steps: demethylati"| cholesterol

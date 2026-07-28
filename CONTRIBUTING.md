@@ -39,6 +39,14 @@ PYTHONPATH=src python3 tests/test_pathway_packs.py
 `src/biology_as_code/pathways/registry.py` (`pathway_loaders`). Export uses that
 list — do not duplicate module lists in the export script.
 
+**Import the graph types, do not redeclare them.** New modules take
+`PathwayNodeType` / `MetaboliteNode` / `ReactionEdge` / `MetabolicPathway` from
+`pathways/_types.py` and override `summary()` only. The existing 16 modules each
+declared their own copies, which is why the exporter silently dropped fields it
+did not recognise — see [docs/python/PATHWAY_TYPES_REFACTOR.md](docs/python/PATHWAY_TYPES_REFACTOR.md).
+Note the cofactor sign convention documented there: `atp_cost=-1` means ATP
+consumed, but `nadh_cost=-1` means NADH *produced*.
+
 Gold example of a complete small addition: `ketolysis.py` + `tests/test_ketolysis.py`.
 
 ## Code (general)
@@ -48,6 +56,15 @@ pip install -e ".[dev]"
 ruff check src tests --exclude tests/_legacy_test_pathways_source.py
 pytest -q
 PYTHONPATH=src python3 scripts/check_pathway_integration.py
+```
+
+**Use this package's own venv.** There are two in the workspace: the repo-root
+`.venv` (cobra/scipy, for the VMH/GEM tooling in `tools/`) has **no pytest**, so
+running the suite from it looks like the tests are missing rather than unrun. Work
+on `biology_as_code` from `biology_as_code/.venv`:
+
+```bash
+./.venv/bin/python -m pytest tests/ -q
 ```
 
 CI runs the full suite + ruff on 3.11 / 3.12 / 3.13 and builds the wheel. Keep it

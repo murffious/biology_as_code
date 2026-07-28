@@ -9,7 +9,7 @@
 | Metric | Value |
 |--------|------:|
 | Nodes | 10 |
-| Edges | 9 |
+| Edges | 10 |
 | `atp_per_urea` | 4 |
 | `main_site` | Liver |
 
@@ -22,7 +22,7 @@
 
 ## Mechanism links
 
-Edges with `mechanism_id`: **0** / 9
+Edges with `mechanism_id`: **0** / 10
 
 _No mechanism_id links (topology-only teaching graph)._
 

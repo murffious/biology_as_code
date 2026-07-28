@@ -8,9 +8,9 @@ flowchart TD
   hdl["HDL (High Density Lipoprotein)"]
   peripheral_cell["Peripheral Cell"]
   liver["Liver"]
-  liver -->|"step"| vldl
-  vldl -->|"step"| idl
-  idl -->|"step"| ldl
-  ldl -->|"step"| peripheral_cell
-  peripheral_cell -->|"step"| hdl
-  hdl -->|"step"| liver
+  liver -->|"VLDL assembly and secretion"| vldl
+  vldl -->|"Lipoprotein lipase (LPL) + hepatic lipas"| idl
+  idl -->|"Hepatic lipase + further lipolysis"| ldl
+  ldl -->|"LDL receptor-mediated endocytosis"| peripheral_cell
+  peripheral_cell -->|"ABCA1 / ABCG1 transporters + LCAT"| hdl
+  hdl -->|"SR-BI receptor + CETP-mediated pathways"| liver

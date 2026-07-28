@@ -39,6 +39,13 @@ class MetaboliteNode:
 
 @dataclass
 class ReactionEdge:
+    """Cofactor sign conventions (package-wide — see pathways/_types.py):
+
+    atp_cost    negative = consumed, positive = produced
+    nadph_cost  negative = PRODUCED, positive = consumed (tracks NADP+, so it is
+                inverted relative to atp_cost). Lipogenesis consumes NADPH.
+    """
+
     from_node: str
     to_node: str
     mechanism_id: str = ""
@@ -139,7 +146,7 @@ class FattyAcidSynthesisRegistry:
         p.add_edge(ReactionEdge(
             from_node="malonyl_coa", to_node="acyl_acp",
             enzyme="Fatty Acid Synthase (FAS) complex",
-            nadph_cost=-2,  # per 2-carbon addition
+            nadph_cost=2,   # consumes 2 NADPH per 2-carbon addition
             notes=(
                 "Multifunctional enzyme. Each cycle: condensation → reduction → dehydration → reduction. "
                 "Adds 2 carbons per cycle. Requires 2 NADPH per cycle."

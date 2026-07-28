@@ -14,13 +14,13 @@ flowchart TD
   proton_gradient["Proton Gradient (Δp)"]
   atp_synthase["ATP Synthase (Complex V)"]
   atp["ATP"]
-  nadh -->|"step"| complex_i
-  complex_i -->|"step"| coq
-  fadh2 -->|"step"| complex_ii
-  complex_ii -->|"step"| coq
-  coq -->|"step"| complex_iii
-  complex_iii -->|"step"| cyt_c
-  cyt_c -->|"step"| complex_iv
-  complex_iv -->|"step"| h2o
-  proton_gradient -->|"step"| atp_synthase
-  atp_synthase -->|"step"| atp
+  nadh -->|"Complex I<br/>H++4"| complex_i
+  complex_i -->|"Complex I → CoQ"| coq
+  fadh2 -->|"Complex II"| complex_ii
+  complex_ii -->|"Complex II → CoQ"| coq
+  coq -->|"Complex III (Q-cycle)<br/>H++4"| complex_iii
+  complex_iii -->|"Complex III → Cyt c"| cyt_c
+  cyt_c -->|"Cytochrome c → Complex IV"| complex_iv
+  complex_iv -->|"Complex IV<br/>H++2"| h2o
+  proton_gradient -->|"ATP Synthase (Complex V)"| atp_synthase
+  atp_synthase -->|"ATP Synthase"| atp

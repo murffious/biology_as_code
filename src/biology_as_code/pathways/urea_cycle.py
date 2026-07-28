@@ -158,6 +158,15 @@ class UreaCycleRegistry:
             notes="Transfers carbamoyl group to ornithine. Citrulline is then exported to cytosol."
         ))
         p.add_edge(ReactionEdge(
+            from_node="ornithine",
+            to_node="citrulline",
+            enzyme="Ornithine transcarbamoylase (OTC)",
+            atp_cost=0,  # co-substrate of the OCBTm edge above; cost counted there
+            location="Mitochondria",
+            notes="Ornithine is the carbamoyl acceptor. This edge is what closes the "
+                  "cycle: arginase regenerates ornithine, which re-enters here."
+        ))
+        p.add_edge(ReactionEdge(
             from_node="citrulline",
             to_node="argininosuccinate",
             enzyme="Argininosuccinate synthetase",

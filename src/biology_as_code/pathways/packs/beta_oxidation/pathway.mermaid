@@ -13,8 +13,8 @@ flowchart TD
   fatty_acid -->|"Acyl-CoA synthetase (thiokinase)"| acyl_coa_cyto
   acyl_coa_cyto -->|"CPT-I (Carnitine palmitoyltransferase I)"| acyl_carnitine
   acyl_carnitine -->|"CACT + CPT-II"| acyl_coa_mito
-  acyl_coa_mito -->|"Acyl-CoA dehydrogenase (ACAD)"| enoyl_coa
+  acyl_coa_mito -->|"Acyl-CoA dehydrogenase (ACAD)<br/>FADH2+1"| enoyl_coa
   enoyl_coa -->|"Enoyl-CoA hydratase"| hydroxyacyl_coa
-  hydroxyacyl_coa -->|"3-Hydroxyacyl-CoA dehydrogenase<br/>NADH-1"| ketoacyl_coa
+  hydroxyacyl_coa -->|"3-Hydroxyacyl-CoA dehydrogenase<br/>NADH+1"| ketoacyl_coa
   ketoacyl_coa -->|"Thiolase (3-ketoacyl-CoA thiolase)"| acetyl_coa
   ketoacyl_coa -->|"Thiolase"| shorter_acyl_coa

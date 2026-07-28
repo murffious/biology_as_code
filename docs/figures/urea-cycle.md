@@ -1,10 +1,13 @@
 # Urea cycle — Recon3D reaction map
 
-Rebuilt locally from Recon3D 3.01. Every reaction id, stoichiometry, EC
-number and GPR below is read out of the model file at build time by
-`tools/build_urea_cycle_figure.py` — this page is generated, not drawn.
+A **snapshot** generated from Recon3D 3.01: every reaction id, stoichiometry, EC
+number and GPR below was read out of the model file, not drawn by hand.
 
-> Regenerate: `python3 tools/build_urea_cycle_figure.py`
+> **The generator is not shipped in this package.** It lives in the surrounding
+> monorepo at `tools/build_urea_cycle_figure.py`, because regenerating needs
+> `scipy` plus the 2 MB `Recon3D_301.mat`, and Recon3D is **CC BY-NC** — it cannot
+> be bundled into an Apache-2.0 package with zero runtime dependencies. Treat this
+> page as a checked-in snapshot; re-run the generator in the monorepo to refresh it.
 
 ```mermaid
 graph TD

@@ -12,9 +12,9 @@ flowchart TD
   malate["Malate"]
   acetyl_coa -->|"citrate_synthase"| citrate
   citrate -->|"aconitase"| isocitrate
-  isocitrate -->|"isocitrate_dehydrogenase<br/>NADH-1"| alpha_ketoglutarate
-  alpha_ketoglutarate -->|"alpha_ketoglutarate_dehydrogenase<br/>NADH-1"| succinyl_coa
-  succinyl_coa -->|"succinyl_coa_synthetase"| succinate
-  succinate -->|"succinate_dehydrogenase"| fumarate
+  isocitrate -->|"isocitrate_dehydrogenase<br/>NADH+1<br/>CO2+1"| alpha_ketoglutarate
+  alpha_ketoglutarate -->|"alpha_ketoglutarate_dehydrogenase<br/>NADH+1<br/>CO2+1"| succinyl_coa
+  succinyl_coa -->|"succinyl_coa_synthetase<br/>GTP+1"| succinate
+  succinate -->|"succinate_dehydrogenase<br/>FADH2+1"| fumarate
   fumarate -->|"fumarase"| malate
-  malate -->|"malate_dehydrogenase<br/>NADH-1"| oxaloacetate
+  malate -->|"malate_dehydrogenase<br/>NADH+1"| oxaloacetate

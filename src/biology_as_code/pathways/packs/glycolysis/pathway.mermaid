@@ -19,9 +19,9 @@ flowchart TD
   f16bp -->|"Aldolase"| dhap
   f16bp -->|"Aldolase"| gap
   dhap -->|"Triose phosphate isomerase (TPI)"| gap
-  gap -->|"Glyceraldehyde-3-phosphate dehydrogenase<br/>NADH-1"| 13bpg
+  gap -->|"Glyceraldehyde-3-phosphate dehydrogenase<br/>NADH+1"| 13bpg
   13bpg -->|"Phosphoglycerate kinase (PGK)<br/>ATP+1"| 3pg
   3pg -->|"Phosphoglycerate mutase"| 2pg
   2pg -->|"Enolase"| pep
   pep -->|"pyruvate_kinase<br/>ATP+1"| pyruvate
-  pyruvate -->|"lactate_dehydrogenase<br/>NADH+1"| lactate
+  pyruvate -->|"lactate_dehydrogenase<br/>NADH-1"| lactate
