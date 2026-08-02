@@ -1,0 +1,183 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "pentose_phosphate",
+  "name": "pentose_phosphate",
+  "description": "Pentose Phosphate Pathway. Oxidative phase generates NADPH and ribulose-5-P. Non-oxidative phase interconverts sugars and can feed back into glycolysis.",
+  "provenance": {
+    "module": "biology_as_code.pathways.pentose_phosphate",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "g6p",
+      "label": "Glucose-6-phosphate",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Entry point from glycolysis / glycogenolysis."
+    },
+    {
+      "id": "6pgl",
+      "label": "6-Phosphogluconolactone",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "6pg",
+      "label": "6-Phosphogluconate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "ru5p",
+      "label": "Ribulose-5-phosphate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Product of the oxidative phase."
+    },
+    {
+      "id": "r5p",
+      "label": "Ribose-5-phosphate",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Used for nucleotide and nucleic acid synthesis."
+    },
+    {
+      "id": "xu5p",
+      "label": "Xylulose-5-phosphate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "s7p",
+      "label": "Sedoheptulose-7-phosphate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "gap",
+      "label": "Glyceraldehyde-3-phosphate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Can enter glycolysis."
+    },
+    {
+      "id": "f6p",
+      "label": "Fructose-6-phosphate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Can enter glycolysis."
+    },
+    {
+      "id": "e4p",
+      "label": "Erythrose-4-phosphate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    }
+  ],
+  "edges": [
+    {
+      "from": "g6p",
+      "to": "6pgl",
+      "enzyme": "Glucose-6-phosphate dehydrogenase (G6PD)",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "NADPH",
+          "delta": 1
+        }
+      ],
+      "mechanism_id": "",
+      "notes": "First and rate-limiting step of the oxidative phase. Most common human enzyme deficiency."
+    },
+    {
+      "from": "6pgl",
+      "to": "6pg",
+      "enzyme": "Lactonase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Hydrolyzes the lactone."
+    },
+    {
+      "from": "6pg",
+      "to": "ru5p",
+      "enzyme": "6-Phosphogluconate dehydrogenase",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "NADPH",
+          "delta": 1
+        },
+        {
+          "species": "CO2",
+          "delta": 1
+        }
+      ],
+      "mechanism_id": "",
+      "notes": "Produces the second NADPH and releases CO₂."
+    },
+    {
+      "from": "ru5p",
+      "to": "r5p",
+      "enzyme": "Ribulose-5-phosphate isomerase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Produces ribose-5-P for nucleotides."
+    },
+    {
+      "from": "ru5p",
+      "to": "xu5p",
+      "enzyme": "Ribulose-5-phosphate epimerase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Produces xylulose-5-P."
+    },
+    {
+      "from": "xu5p",
+      "to": "gap",
+      "enzyme": "Transketolase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Transfers C2 unit. Requires thiamine pyrophosphate (TPP)."
+    },
+    {
+      "from": "r5p",
+      "to": "s7p",
+      "enzyme": "Transketolase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Forms sedoheptulose-7-P + GAP."
+    },
+    {
+      "from": "s7p",
+      "to": "f6p",
+      "enzyme": "Transaldolase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Forms fructose-6-P + erythrose-4-P."
+    },
+    {
+      "from": "xu5p",
+      "to": "f6p",
+      "enzyme": "Transketolase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Can also produce F6P + GAP from xu5p + e4p."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

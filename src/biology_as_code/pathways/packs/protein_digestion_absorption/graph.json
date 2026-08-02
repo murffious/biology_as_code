@@ -1,0 +1,89 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "protein_digestion_absorption",
+  "name": "protein_digestion_absorption",
+  "description": "Protein digestion cascade from stomach to amino acid/peptide absorption.",
+  "provenance": {
+    "module": "biology_as_code.pathways.digestion_absorption_pathways",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "dietary_protein",
+      "label": "Dietary Protein",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "peptides_stomach",
+      "label": "Large Peptides (stomach)",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "oligopeptides",
+      "label": "Oligopeptides + Amino Acids",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "amino_acids_enterocyte",
+      "label": "Amino Acids / Di-Tri Peptides (enterocyte)",
+      "kind": "enterocyte",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "amino_acids_blood",
+      "label": "Amino Acids (portal blood)",
+      "kind": "circulation",
+      "compartment": "",
+      "notes": ""
+    }
+  ],
+  "edges": [
+    {
+      "from": "dietary_protein",
+      "to": "peptides_stomach",
+      "enzyme": "Pepsin",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "pepsin",
+      "notes": "Acid-stable endopeptidase. Initiates protein digestion."
+    },
+    {
+      "from": "peptides_stomach",
+      "to": "oligopeptides",
+      "enzyme": "Pancreatic proteases (trypsin, chymotrypsin, elastase, carboxypeptidases)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Zymogens activated by enteropeptidase → trypsin cascade."
+    },
+    {
+      "from": "oligopeptides",
+      "to": "amino_acids_enterocyte",
+      "enzyme": "PepT1 (SLC15A1) proton-coupled di/tripeptide uptake",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "pept1",
+      "notes": "Major nitrogen absorption route for di/tripeptides; free AA transporters run in parallel."
+    },
+    {
+      "from": "amino_acids_enterocyte",
+      "to": "amino_acids_blood",
+      "enzyme": "Basolateral amino acid transporters",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Exit into portal circulation."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

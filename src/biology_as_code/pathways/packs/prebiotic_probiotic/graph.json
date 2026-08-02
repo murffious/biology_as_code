@@ -1,0 +1,89 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "prebiotic_probiotic",
+  "name": "prebiotic_probiotic",
+  "description": "Teaching sketch: prebiotic substrate → selective growth → SCFA/signals; probiotic as introduced taxa.",
+  "provenance": {
+    "module": "biology_as_code.pathways.supporting_pathways",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "prebiotic_fiber",
+      "label": "Prebiotic fiber / oligos",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "selective_taxa",
+      "label": "Selective taxa expansion",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "scfa_signals",
+      "label": "SCFA + microbial signals",
+      "kind": "product",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "probiotic_input",
+      "label": "Probiotic organisms (input)",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "host_effects",
+      "label": "Host barrier / immune effects",
+      "kind": "product",
+      "compartment": "",
+      "notes": ""
+    }
+  ],
+  "edges": [
+    {
+      "from": "prebiotic_fiber",
+      "to": "selective_taxa",
+      "enzyme": "Selective fermentation",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "selective_taxa",
+      "to": "scfa_signals",
+      "enzyme": "Fermentation / exchange",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Links to colonic medium + SCFA FLOW."
+    },
+    {
+      "from": "probiotic_input",
+      "to": "selective_taxa",
+      "enzyme": "Transient colonization",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Strain- and dose-dependent; often transient."
+    },
+    {
+      "from": "scfa_signals",
+      "to": "host_effects",
+      "enzyme": "Host sensing",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

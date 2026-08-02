@@ -1,0 +1,218 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "gut_incretin_network",
+  "name": "gut_incretin_network",
+  "description": "Meal-triggered gut hormone mini-graph: CCK (I cells, fat/protein), GLP-1 (L cells, carbs/mixed meal), GIP (K cells), and PYY. Teaching edges to satiety, gallbladder/bile release, and insulin (incretin effect). FLOW signaling topology — not a full enteroendocrine atlas.",
+  "provenance": {
+    "module": "biology_as_code.pathways.nutrient_sensing",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "prior",
+    "references": [
+      "Incretin hormones GLP-1 and GIP — standard endocrine/GI physiology.",
+      "CCK and gallbladder / pancreatic secretion — GI teaching texts.",
+      "PYY and ileal brake — satiety physiology reviews."
+    ]
+  },
+  "nodes": [
+    {
+      "id": "meal_nutrients",
+      "label": "Meal nutrients (lumen / absorbate)",
+      "kind": "input",
+      "compartment": "",
+      "notes": "Fat, protein, carb signals."
+    },
+    {
+      "id": "cck",
+      "label": "CCK (cholecystokinin)",
+      "kind": "sensor",
+      "compartment": "",
+      "notes": "I cells; fat/protein dominant."
+    },
+    {
+      "id": "glp1",
+      "label": "GLP-1 (glucagon-like peptide-1)",
+      "kind": "sensor",
+      "compartment": "",
+      "notes": "L cells; incretin + satiety."
+    },
+    {
+      "id": "gip",
+      "label": "GIP (glucose-dependent insulinotropic peptide)",
+      "kind": "sensor",
+      "compartment": "",
+      "notes": "K cells; incretin."
+    },
+    {
+      "id": "pyy",
+      "label": "PYY (peptide YY)",
+      "kind": "sensor",
+      "compartment": "",
+      "notes": "L cells; satiety / ileal brake teaching."
+    },
+    {
+      "id": "gallbladder_bile_release",
+      "label": "Gallbladder contraction / bile release",
+      "kind": "effector",
+      "compartment": "",
+      "notes": "CCK-driven."
+    },
+    {
+      "id": "pancreatic_enzymes",
+      "label": "Pancreatic enzyme secretion",
+      "kind": "effector",
+      "compartment": "",
+      "notes": "CCK teaching path."
+    },
+    {
+      "id": "insulin_secretion",
+      "label": "β-cell insulin secretion",
+      "kind": "effector",
+      "compartment": "",
+      "notes": "Incretin effect (GLP-1, GIP)."
+    },
+    {
+      "id": "satiety",
+      "label": "Satiety / reduced intake drive",
+      "kind": "effector",
+      "compartment": "",
+      "notes": "Central + vagal teaching readout."
+    },
+    {
+      "id": "gastric_emptying",
+      "label": "Gastric emptying rate",
+      "kind": "effector",
+      "compartment": "",
+      "notes": "Slowed by CCK/GLP-1 teaching."
+    }
+  ],
+  "edges": [
+    {
+      "from": "meal_nutrients",
+      "to": "cck",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "meal_nutrients",
+      "to": "glp1",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "meal_nutrients",
+      "to": "gip",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "meal_nutrients",
+      "to": "pyy",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "cck",
+      "to": "gallbladder_bile_release",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "cck",
+      "to": "pancreatic_enzymes",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "cck",
+      "to": "gastric_emptying",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "cck",
+      "to": "satiety",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "glp1",
+      "to": "insulin_secretion",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "glp1",
+      "to": "gastric_emptying",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "glp1",
+      "to": "satiety",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "gip",
+      "to": "insulin_secretion",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "pyy",
+      "to": "satiety",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "pyy",
+      "to": "gastric_emptying",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

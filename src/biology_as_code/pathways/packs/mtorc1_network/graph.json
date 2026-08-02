@@ -1,0 +1,230 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "mtorc1_network",
+  "name": "mtorc1_network",
+  "description": "mTORC1 growth network. Amino acids (leucine via the Rag GTPases) and insulin/IGF (PI3K→Akt→TSC2→Rheb) converge to activate mTORC1, which drives protein synthesis (S6K1, 4E-BP1) and lipogenesis (SREBP) while shutting down autophagy (ULK1). AMPK opposes it (double-negative feedback).",
+  "provenance": {
+    "module": "biology_as_code.pathways.nutrient_sensing",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "prior",
+    "references": [
+      "New developments in AMPK and mTORC1 cross-talk — Essays in Biochemistry 2024: PMC12055038 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12055038/)",
+      "AMPK-ULK1-mTORC1 regulatory triangle / autophagy oscillation: PMC7576158 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7576158/)",
+      "mTORC1, the maestro of cell metabolism and growth — Genes & Development 2025: https://genesdev.cshlp.org/content/39/1-2/109.full"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "amino_acids",
+      "label": "Amino acids (leucine)",
+      "kind": "input",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "rag_gtpases",
+      "label": "Rag GTPases (lysosome)",
+      "kind": "sensor",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "insulin_igf",
+      "label": "Insulin / IGF-1",
+      "kind": "input",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "pi3k_akt",
+      "label": "PI3K → Akt",
+      "kind": "kinase",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "tsc2",
+      "label": "TSC2",
+      "kind": "effector",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "rheb",
+      "label": "Rheb-GTP",
+      "kind": "effector",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "mtorc1",
+      "label": "mTORC1",
+      "kind": "kinase",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "s6k1",
+      "label": "S6K1",
+      "kind": "kinase",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "fourebp1",
+      "label": "4E-BP1",
+      "kind": "effector",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "protein_synthesis",
+      "label": "Protein synthesis",
+      "kind": "effector",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "srebp",
+      "label": "SREBP-1c/2",
+      "kind": "transcription_factor",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "ulk1",
+      "label": "ULK1 (autophagy)",
+      "kind": "effector",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "ampk",
+      "label": "AMPK",
+      "kind": "sensor",
+      "compartment": "",
+      "notes": ""
+    }
+  ],
+  "edges": [
+    {
+      "from": "amino_acids",
+      "to": "rag_gtpases",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "rag_gtpases",
+      "to": "mtorc1",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "insulin_igf",
+      "to": "pi3k_akt",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "pi3k_akt",
+      "to": "tsc2",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "tsc2",
+      "to": "rheb",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "rheb",
+      "to": "mtorc1",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "mtorc1",
+      "to": "s6k1",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "s6k1",
+      "to": "protein_synthesis",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "mtorc1",
+      "to": "fourebp1",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "fourebp1",
+      "to": "protein_synthesis",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "mtorc1",
+      "to": "srebp",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "mtorc1",
+      "to": "ulk1",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "ampk",
+      "to": "mtorc1",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

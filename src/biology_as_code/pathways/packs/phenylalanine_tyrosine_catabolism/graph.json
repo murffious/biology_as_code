@@ -1,0 +1,124 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "phenylalanine_tyrosine_catabolism",
+  "name": "phenylalanine_tyrosine_catabolism",
+  "description": "Phenylalanine and tyrosine catabolism. Phe is hydroxylated to Tyr by phenylalanine hydroxylase (PAH, BH₄ cofactor) — the PKU enzyme. Tyr proceeds via homogentisate to fumarate (glucogenic) + acetoacetate (ketogenic). Teaching compression of the full multi-enzyme cascade.",
+  "provenance": {
+    "module": "biology_as_code.pathways.amino_acid_catabolism",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "prior",
+    "references": [
+      "Phenylketonuria (PAH) — OMIM 261600; standard medical biochemistry.",
+      "Tyrosine catabolism and alkaptonuria / tyrosinemia — Harper's / Lehninger."
+    ]
+  },
+  "nodes": [
+    {
+      "id": "phenylalanine",
+      "label": "Phenylalanine",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Essential AA. Excess must be cleared via Tyr path."
+    },
+    {
+      "id": "tyrosine",
+      "label": "Tyrosine",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Also dietary/protein-derived; precursor of catecholamines, thyroid hormone, melanin."
+    },
+    {
+      "id": "hpp",
+      "label": "p-Hydroxyphenylpyruvate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "homogentisate",
+      "label": "Homogentisate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Deficiency of homogentisate oxidase → alkaptonuria."
+    },
+    {
+      "id": "fumarylacetoacetate",
+      "label": "Fumarylacetoacetate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Cleaved to fumarate + acetoacetate. FAH deficiency → tyrosinemia type I."
+    },
+    {
+      "id": "fumarate",
+      "label": "Fumarate",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Glucogenic — enters TCA."
+    },
+    {
+      "id": "acetoacetate",
+      "label": "Acetoacetate",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Ketogenic product."
+    }
+  ],
+  "edges": [
+    {
+      "from": "phenylalanine",
+      "to": "tyrosine",
+      "enzyme": "Phenylalanine hydroxylase (PAH)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "phenylalanine_hydroxylase",
+      "notes": "Irreversible. PAH deficiency → phenylketonuria (PKU)."
+    },
+    {
+      "from": "tyrosine",
+      "to": "hpp",
+      "enzyme": "Tyrosine aminotransferase (TAT)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "PLP-dependent transamination."
+    },
+    {
+      "from": "hpp",
+      "to": "homogentisate",
+      "enzyme": "p-Hydroxyphenylpyruvate dioxygenase (HPD)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Requires ascorbate as a supporting cofactor in classic teaching."
+    },
+    {
+      "from": "homogentisate",
+      "to": "fumarylacetoacetate",
+      "enzyme": "Homogentisate 1,2-dioxygenase → maleylacetoacetate isomerase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Compressed two steps for teaching graph clarity."
+    },
+    {
+      "from": "fumarylacetoacetate",
+      "to": "fumarate",
+      "enzyme": "Fumarylacetoacetate hydrolase (FAH)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Glucogenic half of the split."
+    },
+    {
+      "from": "fumarylacetoacetate",
+      "to": "acetoacetate",
+      "enzyme": "Fumarylacetoacetate hydrolase (FAH)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Ketogenic half of the split."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

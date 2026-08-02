@@ -1,0 +1,201 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "glucogenic_ketogenic_aa",
+  "name": "glucogenic_ketogenic_aa",
+  "description": "Carbon-skeleton fate map for amino acids (teaching classification). Glucogenic AA feed TCA intermediates or pyruvate (→ glucose via GNG). Ketogenic AA yield acetyl-CoA or acetoacetate (cannot make net glucose in humans). Several AA are mixed. Not a reaction sequence — a topology of destinations for exam / nutrition teaching.",
+  "provenance": {
+    "module": "biology_as_code.pathways.amino_acid_catabolism",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "prior",
+    "references": [
+      "Glucogenic vs ketogenic amino acids — standard medical biochemistry tables."
+    ]
+  },
+  "nodes": [
+    {
+      "id": "pyruvate",
+      "label": "→ Pyruvate",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Glucogenic hub (Ala, Ser, Cys, Gly, Thr, Trp partial)."
+    },
+    {
+      "id": "oaa",
+      "label": "→ Oxaloacetate",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Asp, Asn."
+    },
+    {
+      "id": "alpha_kg_fate",
+      "label": "→ α-Ketoglutarate",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Glu, Gln, Pro, Arg, His."
+    },
+    {
+      "id": "succinyl_coa_fate",
+      "label": "→ Succinyl-CoA",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Met, Val, Ile (partial), Thr (partial)."
+    },
+    {
+      "id": "fumarate_fate",
+      "label": "→ Fumarate",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Phe, Tyr (partial), Asp (urea link)."
+    },
+    {
+      "id": "acetyl_coa_fate",
+      "label": "→ Acetyl-CoA / acetoacetyl-CoA",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Leu, Lys, Ile partial, Phe/Tyr partial, Trp partial."
+    },
+    {
+      "id": "ala_ser",
+      "label": "Ala / Ser / Cys / Gly",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Classic glucogenic → pyruvate."
+    },
+    {
+      "id": "asp_asn",
+      "label": "Asp / Asn",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "→ OAA."
+    },
+    {
+      "id": "glu_family",
+      "label": "Glu / Gln / Pro / Arg / His",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "→ α-KG."
+    },
+    {
+      "id": "met_val_ile",
+      "label": "Met / Val / Ile",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "→ succinyl-CoA (Ile also acetyl-CoA)."
+    },
+    {
+      "id": "phe_tyr",
+      "label": "Phe / Tyr",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "→ fumarate + acetoacetate (mixed)."
+    },
+    {
+      "id": "leu_lys",
+      "label": "Leu / Lys",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Purely ketogenic essentials."
+    },
+    {
+      "id": "trp",
+      "label": "Tryptophan",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Mixed; also NAD⁺ precursor (kynurenine path)."
+    }
+  ],
+  "edges": [
+    {
+      "from": "ala_ser",
+      "to": "pyruvate",
+      "enzyme": "Glucogenic",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "ALT / serine dehydratase family routes."
+    },
+    {
+      "from": "asp_asn",
+      "to": "oaa",
+      "enzyme": "Glucogenic",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "AST / asparaginase."
+    },
+    {
+      "from": "glu_family",
+      "to": "alpha_kg_fate",
+      "enzyme": "Glucogenic",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Transamination / deamination / Pro/Arg rings open to Glu."
+    },
+    {
+      "from": "met_val_ile",
+      "to": "succinyl_coa_fate",
+      "enzyme": "Glucogenic (Ile mixed)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Propionyl-CoA route; see also bcaa + met packs."
+    },
+    {
+      "from": "met_val_ile",
+      "to": "acetyl_coa_fate",
+      "enzyme": "Ile ketogenic half",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Isoleucine is mixed."
+    },
+    {
+      "from": "phe_tyr",
+      "to": "fumarate_fate",
+      "enzyme": "Glucogenic half",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "See phenylalanine_tyrosine_catabolism."
+    },
+    {
+      "from": "phe_tyr",
+      "to": "acetyl_coa_fate",
+      "enzyme": "Ketogenic half",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Acetoacetate / acetyl-CoA."
+    },
+    {
+      "from": "leu_lys",
+      "to": "acetyl_coa_fate",
+      "enzyme": "Purely ketogenic",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "No net glucose in humans."
+    },
+    {
+      "from": "trp",
+      "to": "pyruvate",
+      "enzyme": "Glucogenic partial",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Alanine-like fragment in teaching maps."
+    },
+    {
+      "from": "trp",
+      "to": "acetyl_coa_fate",
+      "enzyme": "Ketogenic partial",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Via kynurenine → acetyl-CoA branch."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

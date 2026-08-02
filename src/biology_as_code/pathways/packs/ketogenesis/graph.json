@@ -1,0 +1,110 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "ketogenesis",
+  "name": "ketogenesis",
+  "description": "Ketogenesis. Liver converts excess acetyl-CoA into ketone bodies that can be used by brain, heart, and muscle during fasting or low-carbohydrate states.",
+  "provenance": {
+    "module": "biology_as_code.pathways.ketogenesis",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "acetyl_coa",
+      "label": "Acetyl-CoA",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "From β-oxidation. Accumulates when TCA capacity is limited (low OAA)."
+    },
+    {
+      "id": "acetoacetyl_coa",
+      "label": "Acetoacetyl-CoA",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "hmg_coa",
+      "label": "HMG-CoA",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Same intermediate as in cholesterol synthesis, but mitochondrial isoform."
+    },
+    {
+      "id": "acetoacetate",
+      "label": "Acetoacetate",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Primary ketone body. Can be reduced to β-hydroxybutyrate or spontaneously decarboxylated."
+    },
+    {
+      "id": "beta_hydroxybutyrate",
+      "label": "β-Hydroxybutyrate",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Most abundant circulating ketone body. Preferred fuel for many tissues."
+    },
+    {
+      "id": "acetone",
+      "label": "Acetone",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Volatile. Formed by spontaneous decarboxylation of acetoacetate. Exhaled."
+    }
+  ],
+  "edges": [
+    {
+      "from": "acetyl_coa",
+      "to": "acetoacetyl_coa",
+      "enzyme": "Thiolase (Acetyl-CoA acetyltransferase)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Condensation of two acetyl-CoA. Reversible."
+    },
+    {
+      "from": "acetoacetyl_coa",
+      "to": "hmg_coa",
+      "enzyme": "HMG-CoA synthase (mitochondrial)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Adds a third acetyl-CoA. Rate-influencing step under ketogenic conditions."
+    },
+    {
+      "from": "hmg_coa",
+      "to": "acetoacetate",
+      "enzyme": "HMG-CoA lyase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Cleaves HMG-CoA to acetoacetate + acetyl-CoA. Key ketogenic enzyme."
+    },
+    {
+      "from": "acetoacetate",
+      "to": "beta_hydroxybutyrate",
+      "enzyme": "β-Hydroxybutyrate dehydrogenase",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "NADH",
+          "delta": -1
+        }
+      ],
+      "mechanism_id": "",
+      "notes": "Reversible. Ratio of β-HB / AcAc reflects mitochondrial NADH/NAD⁺ ratio."
+    },
+    {
+      "from": "acetoacetate",
+      "to": "acetone",
+      "enzyme": "Spontaneous decarboxylation",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Non-enzymatic. Acetone is exhaled and accounts for the fruity odor in ketoacidosis."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

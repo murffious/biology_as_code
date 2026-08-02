@@ -1,0 +1,121 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "lipoprotein_transport",
+  "name": "lipoprotein_transport",
+  "description": "Lipoprotein-mediated transport of cholesterol and triglycerides. VLDL carries cholesterol out of the liver; LDL delivers it to tissues; HDL performs reverse cholesterol transport back to the liver.",
+  "provenance": {
+    "module": "biology_as_code.pathways.cholesterol_pathway",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "chylomicron",
+      "label": "Chylomicron",
+      "kind": "lipoprotein",
+      "compartment": "",
+      "notes": "Intestine-derived. Carries dietary fat and cholesterol. ApoB-48."
+    },
+    {
+      "id": "vldl",
+      "label": "VLDL (Very Low Density Lipoprotein)",
+      "kind": "lipoprotein",
+      "compartment": "",
+      "notes": "Liver-derived. Carries endogenously synthesized triglycerides and cholesterol. ApoB-100."
+    },
+    {
+      "id": "idl",
+      "label": "IDL (Intermediate Density Lipoprotein)",
+      "kind": "lipoprotein",
+      "compartment": "",
+      "notes": "Remnant of VLDL after partial triglyceride removal by lipoprotein lipase."
+    },
+    {
+      "id": "ldl",
+      "label": "LDL (Low Density Lipoprotein)",
+      "kind": "lipoprotein",
+      "compartment": "",
+      "notes": "Major cholesterol-carrying particle in plasma. Delivers cholesterol to peripheral tissues via LDL receptor. Elevated LDL is a major risk factor for atherosclerosis."
+    },
+    {
+      "id": "hdl",
+      "label": "HDL (High Density Lipoprotein)",
+      "kind": "lipoprotein",
+      "compartment": "",
+      "notes": "Reverse cholesterol transport particle. Collects excess cholesterol from peripheral cells and returns it to the liver (for excretion as bile acids or biliary cholesterol)."
+    },
+    {
+      "id": "peripheral_cell",
+      "label": "Peripheral Cell",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Extrahepatic cells that take up LDL cholesterol for membrane synthesis or steroidogenesis."
+    },
+    {
+      "id": "liver",
+      "label": "Liver",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Central organ of cholesterol homeostasis. Synthesizes cholesterol, packages it into VLDL, and excretes it via bile."
+    }
+  ],
+  "edges": [
+    {
+      "from": "liver",
+      "to": "vldl",
+      "enzyme": "VLDL assembly and secretion",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Liver packages triglycerides + cholesterol esters + ApoB-100 into VLDL particles."
+    },
+    {
+      "from": "vldl",
+      "to": "idl",
+      "enzyme": "Lipoprotein lipase (LPL) + hepatic lipase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Progressive removal of triglycerides converts VLDL → IDL → LDL."
+    },
+    {
+      "from": "idl",
+      "to": "ldl",
+      "enzyme": "Hepatic lipase + further lipolysis",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Final conversion to the cholesterol-rich LDL particle."
+    },
+    {
+      "from": "ldl",
+      "to": "peripheral_cell",
+      "enzyme": "LDL receptor-mediated endocytosis",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Primary route of cholesterol delivery to extrahepatic tissues. Defects in this receptor cause familial hypercholesterolemia."
+    },
+    {
+      "from": "peripheral_cell",
+      "to": "hdl",
+      "enzyme": "ABCA1 / ABCG1 transporters + LCAT",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Reverse cholesterol transport begins. Free cholesterol is transferred to nascent HDL and esterified by LCAT."
+    },
+    {
+      "from": "hdl",
+      "to": "liver",
+      "enzyme": "SR-BI receptor + CETP-mediated pathways",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "HDL delivers cholesterol back to the liver for excretion into bile or conversion to bile acids."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

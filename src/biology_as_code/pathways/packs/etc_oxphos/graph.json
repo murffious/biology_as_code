@@ -1,0 +1,214 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "etc_oxphos",
+  "name": "etc_oxphos",
+  "description": "Electron Transport Chain + Oxidative Phosphorylation. Electrons from NADH and FADH₂ flow through Complexes I–IV, creating a proton gradient that drives ATP synthesis via ATP synthase.",
+  "provenance": {
+    "module": "biology_as_code.pathways.etc_oxphos",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "nadh",
+      "label": "NADH",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Primary electron donor from TCA, β-oxidation, PDH, etc."
+    },
+    {
+      "id": "fadh2",
+      "label": "FADH₂",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Electron donor from succinate dehydrogenase (Complex II) and acyl-CoA dehydrogenase."
+    },
+    {
+      "id": "complex_i",
+      "label": "Complex I (NADH Dehydrogenase)",
+      "kind": "complex",
+      "compartment": "",
+      "notes": "Accepts electrons from NADH, pumps 4 H⁺."
+    },
+    {
+      "id": "complex_ii",
+      "label": "Complex II (Succinate Dehydrogenase)",
+      "kind": "complex",
+      "compartment": "",
+      "notes": "Accepts electrons from FADH₂ / succinate. Does NOT pump protons."
+    },
+    {
+      "id": "coq",
+      "label": "Coenzyme Q (Ubiquinone)",
+      "kind": "carrier",
+      "compartment": "",
+      "notes": "Mobile lipid-soluble carrier. Accepts electrons from I and II."
+    },
+    {
+      "id": "complex_iii",
+      "label": "Complex III (Cytochrome bc₁)",
+      "kind": "complex",
+      "compartment": "",
+      "notes": "Transfers electrons from QH₂ to cytochrome c. Pumps 4 H⁺ (Q-cycle)."
+    },
+    {
+      "id": "cyt_c",
+      "label": "Cytochrome c",
+      "kind": "carrier",
+      "compartment": "",
+      "notes": "Mobile peripheral membrane protein. Carries one electron at a time."
+    },
+    {
+      "id": "complex_iv",
+      "label": "Complex IV (Cytochrome c Oxidase)",
+      "kind": "complex",
+      "compartment": "",
+      "notes": "Transfers electrons to O₂, forming H₂O. Pumps 2 H⁺."
+    },
+    {
+      "id": "o2",
+      "label": "O₂",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Final electron acceptor."
+    },
+    {
+      "id": "h2o",
+      "label": "H₂O",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Product of Complex IV."
+    },
+    {
+      "id": "proton_gradient",
+      "label": "Proton Gradient (Δp)",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Electrochemical gradient across the inner mitochondrial membrane (intermembrane space positive/acidic)."
+    },
+    {
+      "id": "atp_synthase",
+      "label": "ATP Synthase (Complex V)",
+      "kind": "complex",
+      "compartment": "",
+      "notes": "Uses the proton-motive force to drive ATP synthesis from ADP + Pi."
+    },
+    {
+      "id": "atp",
+      "label": "ATP",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Final energy currency produced."
+    }
+  ],
+  "edges": [
+    {
+      "from": "nadh",
+      "to": "complex_i",
+      "enzyme": "Complex I",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "H+",
+          "delta": 4
+        }
+      ],
+      "mechanism_id": "",
+      "notes": "NADH donates 2 electrons. 4 protons pumped to intermembrane space."
+    },
+    {
+      "from": "complex_i",
+      "to": "coq",
+      "enzyme": "Complex I → CoQ",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Electrons transferred to ubiquinone, forming ubiquinol (QH₂)."
+    },
+    {
+      "from": "fadh2",
+      "to": "complex_ii",
+      "enzyme": "Complex II",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "FADH₂ / succinate electrons enter here. No protons pumped at Complex II."
+    },
+    {
+      "from": "complex_ii",
+      "to": "coq",
+      "enzyme": "Complex II → CoQ",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Electrons from FADH₂ also reduce CoQ."
+    },
+    {
+      "from": "coq",
+      "to": "complex_iii",
+      "enzyme": "Complex III (Q-cycle)",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "H+",
+          "delta": 4
+        }
+      ],
+      "mechanism_id": "",
+      "notes": "Q-cycle results in 4 protons translocated per 2 electrons."
+    },
+    {
+      "from": "complex_iii",
+      "to": "cyt_c",
+      "enzyme": "Complex III → Cyt c",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "One electron at a time is passed to cytochrome c."
+    },
+    {
+      "from": "cyt_c",
+      "to": "complex_iv",
+      "enzyme": "Cytochrome c → Complex IV",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Cyt c delivers electrons to Complex IV."
+    },
+    {
+      "from": "complex_iv",
+      "to": "h2o",
+      "enzyme": "Complex IV",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "H+",
+          "delta": 2
+        }
+      ],
+      "mechanism_id": "",
+      "notes": "4 electrons + 4 H⁺ + O₂ → 2 H₂O. 2 protons pumped."
+    },
+    {
+      "from": "proton_gradient",
+      "to": "atp_synthase",
+      "enzyme": "ATP Synthase (Complex V)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Protons flow back into the matrix through ATP synthase, driving ATP synthesis (chemiosmosis)."
+    },
+    {
+      "from": "atp_synthase",
+      "to": "atp",
+      "enzyme": "ATP Synthase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "ADP + Pi → ATP. Approximate yield: 2.5 ATP per NADH, 1.5 ATP per FADH₂."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

@@ -1,0 +1,163 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "beta_oxidation",
+  "name": "beta_oxidation",
+  "description": "β-Oxidation of fatty acids. Mitochondrial spiral that removes 2-carbon units as acetyl-CoA. Each cycle yields 1 NADH + 1 FADH₂ + 1 Acetyl-CoA.",
+  "provenance": {
+    "module": "biology_as_code.pathways.beta_oxidation",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "fatty_acid",
+      "label": "Fatty Acid (cytosol)",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Free fatty acid released by lipolysis."
+    },
+    {
+      "id": "acyl_coa_cyto",
+      "label": "Fatty Acyl-CoA (cytosol)",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Activated form. Costs 2 ATP equivalents (ATP → AMP + PPi)."
+    },
+    {
+      "id": "acyl_carnitine",
+      "label": "Acyl-Carnitine",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Transport form that crosses the inner mitochondrial membrane."
+    },
+    {
+      "id": "acyl_coa_mito",
+      "label": "Fatty Acyl-CoA (mitochondrial matrix)",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Re-formed inside the matrix, ready for β-oxidation."
+    },
+    {
+      "id": "enoyl_coa",
+      "label": "trans-Δ²-Enoyl-CoA",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Product of the first dehydrogenation."
+    },
+    {
+      "id": "hydroxyacyl_coa",
+      "label": "L-3-Hydroxyacyl-CoA",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Product of hydration."
+    },
+    {
+      "id": "ketoacyl_coa",
+      "label": "3-Ketoacyl-CoA",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Product of the second dehydrogenation."
+    },
+    {
+      "id": "acetyl_coa",
+      "label": "Acetyl-CoA",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Released each cycle. Enters TCA cycle."
+    },
+    {
+      "id": "shorter_acyl_coa",
+      "label": "Shortened Acyl-CoA (n-2)",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Re-enters the spiral until fully converted to acetyl-CoA."
+    }
+  ],
+  "edges": [
+    {
+      "from": "fatty_acid",
+      "to": "acyl_coa_cyto",
+      "enzyme": "Acyl-CoA synthetase (thiokinase)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Activation step. ATP → AMP + PPi (effectively costs 2 ATP). Occurs on outer mitochondrial membrane."
+    },
+    {
+      "from": "acyl_coa_cyto",
+      "to": "acyl_carnitine",
+      "enzyme": "CPT-I (Carnitine palmitoyltransferase I)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Rate-limiting step for long-chain fatty acid entry into mitochondria."
+    },
+    {
+      "from": "acyl_carnitine",
+      "to": "acyl_coa_mito",
+      "enzyme": "CACT + CPT-II",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Translocase moves acyl-carnitine in; CPT-II reforms acyl-CoA in the matrix."
+    },
+    {
+      "from": "acyl_coa_mito",
+      "to": "enoyl_coa",
+      "enzyme": "Acyl-CoA dehydrogenase (ACAD)",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "FADH2",
+          "delta": 1
+        }
+      ],
+      "mechanism_id": "",
+      "notes": "First step of the spiral. Produces FADH₂. Different isoforms for different chain lengths."
+    },
+    {
+      "from": "enoyl_coa",
+      "to": "hydroxyacyl_coa",
+      "enzyme": "Enoyl-CoA hydratase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Hydration across the double bond."
+    },
+    {
+      "from": "hydroxyacyl_coa",
+      "to": "ketoacyl_coa",
+      "enzyme": "3-Hydroxyacyl-CoA dehydrogenase",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "NADH",
+          "delta": 1
+        }
+      ],
+      "mechanism_id": "",
+      "notes": "Second dehydrogenation. Produces NADH."
+    },
+    {
+      "from": "ketoacyl_coa",
+      "to": "acetyl_coa",
+      "enzyme": "Thiolase (3-ketoacyl-CoA thiolase)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Cleaves off one acetyl-CoA. The remaining acyl-CoA is two carbons shorter and re-enters the spiral."
+    },
+    {
+      "from": "ketoacyl_coa",
+      "to": "shorter_acyl_coa",
+      "enzyme": "Thiolase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "The shortened acyl-CoA continues β-oxidation until only acetyl-CoA remains."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

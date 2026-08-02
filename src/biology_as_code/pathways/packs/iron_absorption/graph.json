@@ -1,0 +1,143 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "iron_absorption",
+  "name": "iron_absorption",
+  "description": "Iron absorption teaching path with parallel non-haem and haem branches. Non-haem: Fe³⁺ reduction → DMT1 apical uptake → ferroportin export (hepcidin block). Haem: HCP1-like apical uptake → HO-1 releases Fe²⁺ into the enterocyte pool → same ferroportin exit. Ascorbate co-occupation favors the ferrous lumen pool. FLOW topology — magnitude bounds live in iron UNIT / laws.",
+  "provenance": {
+    "module": "biology_as_code.pathways.meal_critical_pathways",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "prior",
+    "references": [
+      "Iron homeostasis / ferroportin regulation (lactoferrin model): PMID 39005063 (https://pubmed.ncbi.nlm.nih.gov/39005063/).",
+      "DMT1 apical Fe²⁺ uptake — NCBI Gene SLC11A2: https://www.ncbi.nlm.nih.gov/gene/?term=SLC11A2",
+      "Ferroportin basolateral iron export — NCBI Gene SLC40A1: https://www.ncbi.nlm.nih.gov/gene/?term=SLC40A1",
+      "Hepcidin (HAMP) ⊣ ferroportin control point — NCBI Gene HAMP: https://www.ncbi.nlm.nih.gov/gene/?term=HAMP",
+      "Magnitude bounds live in iron UNIT / laws (Biology as Code)."
+    ]
+  },
+  "nodes": [
+    {
+      "id": "dietary_nonheme_fe3",
+      "label": "Dietary non-haem Fe³⁺",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": "Label iron is not absorbed iron. Form + co-occupants matter."
+    },
+    {
+      "id": "dietary_heme",
+      "label": "Dietary haem iron",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": "Higher fractional absorption than non-haem; separate apical path."
+    },
+    {
+      "id": "heme_enterocyte",
+      "label": "Haem (enterocyte)",
+      "kind": "enterocyte",
+      "compartment": "",
+      "notes": "Intact haem after apical uptake; cleaved by HO-1."
+    },
+    {
+      "id": "fe2_lumen",
+      "label": "Fe²⁺ (lumen pool)",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": "Ascorbate / reducing surface expands usable ferrous pool."
+    },
+    {
+      "id": "fe2_enterocyte",
+      "label": "Fe²⁺ (enterocyte)",
+      "kind": "enterocyte",
+      "compartment": "",
+      "notes": "Cytosolic labile iron; shared by non-haem and haem branches."
+    },
+    {
+      "id": "plasma_transferrin_fe",
+      "label": "Transferrin-bound Fe (plasma)",
+      "kind": "circulation",
+      "compartment": "",
+      "notes": "Systemic transport form after basolateral export + oxidation."
+    },
+    {
+      "id": "hepcidin",
+      "label": "Hepcidin",
+      "kind": "signal",
+      "compartment": "",
+      "notes": "Liver peptide; internalizes/blocks ferroportin."
+    },
+    {
+      "id": "ascorbate_meal",
+      "label": "Meal ascorbate (enhancer)",
+      "kind": "signal",
+      "compartment": "",
+      "notes": "Same-meal co-occupation gate — not daily average."
+    }
+  ],
+  "edges": [
+    {
+      "from": "dietary_nonheme_fe3",
+      "to": "fe2_lumen",
+      "enzyme": "DcytB / brush-border reductases",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "duodenal_cytochrome_b",
+      "notes": "Fe³⁺ → Fe²⁺. Supported by reducing agents including ascorbate."
+    },
+    {
+      "from": "ascorbate_meal",
+      "to": "fe2_lumen",
+      "enzyme": "Reductant co-occupation",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Teaching link: ascorbate expands ferrous pool (not a second substrate edge)."
+    },
+    {
+      "from": "fe2_lumen",
+      "to": "fe2_enterocyte",
+      "enzyme": "DMT1 (SLC11A2)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "dmt1",
+      "notes": "Proton-coupled ferrous iron uptake."
+    },
+    {
+      "from": "dietary_heme",
+      "to": "heme_enterocyte",
+      "enzyme": "HCP1 / PCFT-related haem uptake (teaching)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "hcp1_heme_uptake",
+      "notes": "Apical haem uptake; higher fractional absorption than non-haem."
+    },
+    {
+      "from": "heme_enterocyte",
+      "to": "fe2_enterocyte",
+      "enzyme": "Heme oxygenase-1 (HO-1)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "heme_oxygenase_1",
+      "notes": "Cleaves haem → Fe²⁺ + biliverdin + CO; joins labile iron pool."
+    },
+    {
+      "from": "fe2_enterocyte",
+      "to": "plasma_transferrin_fe",
+      "enzyme": "Ferroportin (SLC40A1) + hephaestin/ceruloplasmin oxidation",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "ferroportin",
+      "notes": "Export is the systemic control point for absorption (both branches)."
+    },
+    {
+      "from": "hepcidin",
+      "to": "plasma_transferrin_fe",
+      "enzyme": "Hepcidin ⊣ ferroportin",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "hepcidin_ferroportin",
+      "notes": "Inhibitory teaching edge: high hepcidin lowers effective export."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

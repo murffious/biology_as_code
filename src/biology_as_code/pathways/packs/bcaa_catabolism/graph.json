@@ -1,0 +1,156 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "bcaa_catabolism",
+  "name": "bcaa_catabolism",
+  "description": "Branched-chain amino acid (BCAA) catabolism: leucine, isoleucine, and valine. Shared trunk: transamination → branched-chain keto acid dehydrogenase (BCKDH, MSUD enzyme). Then diverge: Leu → ketogenic (acetyl-CoA / acetoacetate); Val → glucogenic (succinyl-CoA); Ile → both.",
+  "provenance": {
+    "module": "biology_as_code.pathways.amino_acid_catabolism",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "prior",
+    "references": [
+      "Maple syrup urine disease / BCKDH: OMIM 248600; standard biochem texts.",
+      "BCAA metabolism overview — Lehninger / Harper's Biochemistry."
+    ]
+  },
+  "nodes": [
+    {
+      "id": "leucine",
+      "label": "Leucine",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Purely ketogenic essential AA."
+    },
+    {
+      "id": "isoleucine",
+      "label": "Isoleucine",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Mixed glucogenic + ketogenic."
+    },
+    {
+      "id": "valine",
+      "label": "Valine",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Purely glucogenic essential AA."
+    },
+    {
+      "id": "bcka",
+      "label": "Branched-chain α-keto acids",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "α-Ketoisocaproate (Leu), α-keto-β-methylvalerate (Ile), α-ketoisovalerate (Val)."
+    },
+    {
+      "id": "bcaa_coa",
+      "label": "Branched-chain acyl-CoA",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Products of BCKDH oxidative decarboxylation."
+    },
+    {
+      "id": "acetyl_coa",
+      "label": "Acetyl-CoA",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Ketogenic end from Leu / Ile."
+    },
+    {
+      "id": "acetoacetate",
+      "label": "Acetoacetate",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Ketone body precursor from Leu."
+    },
+    {
+      "id": "succinyl_coa",
+      "label": "Succinyl-CoA",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Glucogenic end from Val / Ile (via propionyl-CoA → methylmalonyl-CoA)."
+    },
+    {
+      "id": "propionyl_coa",
+      "label": "Propionyl-CoA",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "3-carbon intermediate toward succinyl-CoA (B12-dependent mutase)."
+    }
+  ],
+  "edges": [
+    {
+      "from": "leucine",
+      "to": "bcka",
+      "enzyme": "Branched-chain aminotransferase (BCAT)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "aminotransferase",
+      "notes": "Leucine → corresponding BCKA + Glu (from α-KG)."
+    },
+    {
+      "from": "isoleucine",
+      "to": "bcka",
+      "enzyme": "Branched-chain aminotransferase (BCAT)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "aminotransferase",
+      "notes": "Isoleucine → corresponding BCKA + Glu (from α-KG)."
+    },
+    {
+      "from": "valine",
+      "to": "bcka",
+      "enzyme": "Branched-chain aminotransferase (BCAT)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "aminotransferase",
+      "notes": "Valine → corresponding BCKA + Glu (from α-KG)."
+    },
+    {
+      "from": "bcka",
+      "to": "bcaa_coa",
+      "enzyme": "Branched-chain α-keto acid dehydrogenase (BCKDH complex)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "bckdh",
+      "notes": "Irreversible committed step. Deficiency → maple syrup urine disease (MSUD)."
+    },
+    {
+      "from": "bcaa_coa",
+      "to": "acetyl_coa",
+      "enzyme": "Leu / Ile ketogenic branch (multi-step)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Leucine and part of isoleucine yield acetyl-CoA."
+    },
+    {
+      "from": "bcaa_coa",
+      "to": "acetoacetate",
+      "enzyme": "HMG-CoA path (leucine)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Leucine is purely ketogenic: acetoacetate + acetyl-CoA."
+    },
+    {
+      "from": "bcaa_coa",
+      "to": "propionyl_coa",
+      "enzyme": "Val / Ile propionyl branch (multi-step)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Valine and part of isoleucine → propionyl-CoA."
+    },
+    {
+      "from": "propionyl_coa",
+      "to": "succinyl_coa",
+      "enzyme": "Propionyl-CoA carboxylase → methylmalonyl-CoA mutase (B12)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Biotin + B12 dependent. Succinyl-CoA enters TCA / GNG."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

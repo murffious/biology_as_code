@@ -1,0 +1,200 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "cholesterol_biosynthesis",
+  "name": "cholesterol_biosynthesis",
+  "description": "Cholesterol biosynthesis (mevalonate pathway). Starts from acetyl-CoA and produces cholesterol. HMG-CoA reductase is the rate-limiting step and primary statin target.",
+  "provenance": {
+    "module": "biology_as_code.pathways.cholesterol_pathway",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "acetyl_coa",
+      "label": "Acetyl-CoA",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Starting substrate. Comes from pyruvate (via PDH), fatty acid oxidation, or ketogenic amino acids."
+    },
+    {
+      "id": "acetoacetyl_coa",
+      "label": "Acetoacetyl-CoA",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Two-carbon units condensed. Also an intermediate in ketone body synthesis."
+    },
+    {
+      "id": "hmg_coa",
+      "label": "HMG-CoA (3-Hydroxy-3-methylglutaryl-CoA)",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Key branch-point intermediate. Can go to ketone bodies (liver mitochondria) or to mevalonate (cytosol) for sterol synthesis."
+    },
+    {
+      "id": "mevalonate",
+      "label": "Mevalonate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "First committed intermediate of the sterol pathway. Product of the rate-limiting enzyme."
+    },
+    {
+      "id": "ipp",
+      "label": "Isopentenyl pyrophosphate (IPP)",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Five-carbon building block (isoprene unit). Requires 3 ATP equivalents to form from mevalonate."
+    },
+    {
+      "id": "dmap",
+      "label": "Dimethylallyl pyrophosphate (DMAPP)",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Isomer of IPP. Condenses with IPP to form longer chains."
+    },
+    {
+      "id": "geranyl_pp",
+      "label": "Geranyl pyrophosphate (C10)",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "10-carbon intermediate."
+    },
+    {
+      "id": "farnesyl_pp",
+      "label": "Farnesyl pyrophosphate (C15)",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "15-carbon intermediate. Two molecules condense to form squalene. Also used for protein prenylation."
+    },
+    {
+      "id": "squalene",
+      "label": "Squalene",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "30-carbon linear hydrocarbon. First dedicated sterol precursor."
+    },
+    {
+      "id": "lanosterol",
+      "label": "Lanosterol",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "First sterol in the pathway (contains the four-ring steroid nucleus). Undergoes many modifications to become cholesterol."
+    },
+    {
+      "id": "cholesterol",
+      "label": "Cholesterol",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Final product. Essential membrane component, precursor of bile acids, steroid hormones (cortisol, aldosterone, sex steroids), and vitamin D."
+    }
+  ],
+  "edges": [
+    {
+      "from": "acetyl_coa",
+      "to": "acetoacetyl_coa",
+      "enzyme": "Thiolase (Acetoacetyl-CoA thiolase)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Condensation of two acetyl-CoA molecules."
+    },
+    {
+      "from": "acetoacetyl_coa",
+      "to": "hmg_coa",
+      "enzyme": "HMG-CoA synthase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Adds a third acetyl-CoA. Occurs in cytosol for sterol synthesis (mitochondrial isoform is for ketogenesis)."
+    },
+    {
+      "from": "hmg_coa",
+      "to": "mevalonate",
+      "enzyme": "HMG-CoA reductase",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "NADPH",
+          "delta": -2
+        }
+      ],
+      "mechanism_id": "hmg_coa_reductase",
+      "notes": "Most important regulatory enzyme in the entire pathway. Primary target of statin medications used to lower LDL cholesterol. This step commits HMG-CoA to the sterol pathway rather than ketone bodies."
+    },
+    {
+      "from": "mevalonate",
+      "to": "ipp",
+      "enzyme": "Mevalonate kinase + phosphomevalonate kinase + mevalonate diphosphate decarboxylase",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "ATP",
+          "delta": -3
+        }
+      ],
+      "mechanism_id": "",
+      "notes": "Three ATP-dependent steps convert mevalonate into the activated isoprene unit IPP."
+    },
+    {
+      "from": "ipp",
+      "to": "dmap",
+      "enzyme": "Isopentenyl pyrophosphate isomerase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Reversible isomerization to the allylic isomer DMAPP."
+    },
+    {
+      "from": "dmap",
+      "to": "geranyl_pp",
+      "enzyme": "Geranyl pyrophosphate synthase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Condensation of DMAPP + IPP → C10 intermediate."
+    },
+    {
+      "from": "geranyl_pp",
+      "to": "farnesyl_pp",
+      "enzyme": "Farnesyl pyrophosphate synthase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Adds another IPP to form the C15 intermediate. Farnesyl-PP is also used for protein prenylation."
+    },
+    {
+      "from": "farnesyl_pp",
+      "to": "squalene",
+      "enzyme": "Squalene synthase",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "NADPH",
+          "delta": -1
+        }
+      ],
+      "mechanism_id": "",
+      "notes": "Head-to-head condensation of two farnesyl-PP molecules. First committed step unique to sterols (vs. other isoprenoids)."
+    },
+    {
+      "from": "squalene",
+      "to": "lanosterol",
+      "enzyme": "Squalene epoxidase + oxidosqualene cyclase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Epoxidation and cyclization create the four-ring steroid nucleus (lanosterol)."
+    },
+    {
+      "from": "lanosterol",
+      "to": "cholesterol",
+      "enzyme": "Multiple enzymes (≈19 steps: demethylations, desaturations, isomerizations, reductions)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Complex series of modifications that remove three methyl groups, reduce double bonds, and rearrange the structure to produce cholesterol. Many of these steps are also regulated."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

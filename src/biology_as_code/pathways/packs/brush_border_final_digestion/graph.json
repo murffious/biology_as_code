@@ -1,0 +1,64 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "brush_border_final_digestion",
+  "name": "brush_border_final_digestion",
+  "description": "Brush-border disaccharidases and peptidases completing lumen → absorbable monomers.",
+  "provenance": {
+    "module": "biology_as_code.pathways.digestion_absorption_pathways",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "disaccharides",
+      "label": "Disaccharides (maltose, sucrose, lactose)",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "monosaccharides",
+      "label": "Monosaccharides",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "oligopeptides",
+      "label": "Oligopeptides",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "aa_di_tri",
+      "label": "AA + di/tripeptides",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": ""
+    }
+  ],
+  "edges": [
+    {
+      "from": "disaccharides",
+      "to": "monosaccharides",
+      "enzyme": "Maltase, sucrase-isomaltase, lactase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Final carb hydrolysis before SGLT1/GLUT5/GLUT2."
+    },
+    {
+      "from": "oligopeptides",
+      "to": "aa_di_tri",
+      "enzyme": "Brush-border peptidases",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Exopeptidases finish protein digestion for PepT1 / AA transporters (PepT1 uptake edge lives on protein_digestion_absorption)."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

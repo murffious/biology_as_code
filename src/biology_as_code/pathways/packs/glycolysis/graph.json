@@ -1,0 +1,240 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "glycolysis",
+  "name": "glycolysis",
+  "description": "Glycolysis – the central pathway that converts glucose into pyruvate (or lactate under anaerobic conditions). Modeled from the book pathway chart.",
+  "provenance": {
+    "module": "biology_as_code.pathways.metabolic_pathways",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "glucose",
+      "label": "Glucose",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Starting substrate. Blood glucose enters the cell via GLUT transporters."
+    },
+    {
+      "id": "g6p",
+      "label": "Glucose-6-phosphate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "First committed intermediate. Traps glucose inside the cell."
+    },
+    {
+      "id": "f6p",
+      "label": "Fructose-6-phosphate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Isomer of G6P. Substrate for the major regulatory enzyme PFK-1."
+    },
+    {
+      "id": "f16bp",
+      "label": "Fructose-1,6-bisphosphate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Product of the committed step. Split into two triose phosphates."
+    },
+    {
+      "id": "dhap",
+      "label": "Dihydroxyacetone phosphate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "One of the two trioses produced by aldolase. Rapidly isomerized to GAP."
+    },
+    {
+      "id": "gap",
+      "label": "Glyceraldehyde-3-phosphate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "The triose that continues through the payoff phase. Two molecules per glucose."
+    },
+    {
+      "id": "13bpg",
+      "label": "1,3-Bisphosphoglycerate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "High-energy intermediate. Contains a mixed anhydride capable of substrate-level phosphorylation."
+    },
+    {
+      "id": "3pg",
+      "label": "3-Phosphoglycerate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Product of the first substrate-level phosphorylation (ATP generation)."
+    },
+    {
+      "id": "2pg",
+      "label": "2-Phosphoglycerate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Isomer of 3-PG. Prepared for dehydration to PEP."
+    },
+    {
+      "id": "pep",
+      "label": "Phosphoenolpyruvate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Highest-energy phosphate compound in glycolysis. Drives the second ATP-forming step."
+    },
+    {
+      "id": "pyruvate",
+      "label": "Pyruvate",
+      "kind": "product",
+      "compartment": "",
+      "notes": "End product of aerobic glycolysis. Can enter mitochondria (PDH → acetyl-CoA) or be reduced to lactate."
+    },
+    {
+      "id": "lactate",
+      "label": "Lactate",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Anaerobic end product. Regenerates NAD⁺ so glycolysis can continue when oxygen is limited."
+    }
+  ],
+  "edges": [
+    {
+      "from": "glucose",
+      "to": "g6p",
+      "enzyme": "Hexokinase (most tissues) / Glucokinase (liver)",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "ATP",
+          "delta": -1
+        }
+      ],
+      "mechanism_id": "hexokinase",
+      "notes": "First ATP investment. Irreversible under physiological conditions. Traps glucose in the cell."
+    },
+    {
+      "from": "g6p",
+      "to": "f6p",
+      "enzyme": "Phosphoglucose isomerase (PGI)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Reversible isomerization. Prepares the molecule for the next phosphorylation."
+    },
+    {
+      "from": "f6p",
+      "to": "f16bp",
+      "enzyme": "Phosphofructokinase-1 (PFK-1)",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "ATP",
+          "delta": -1
+        }
+      ],
+      "mechanism_id": "pfk1",
+      "notes": "Second ATP investment. The committed step of glycolysis. Highly regulated."
+    },
+    {
+      "from": "f16bp",
+      "to": "dhap",
+      "enzyme": "Aldolase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Cleaves the 6-carbon sugar into two 3-carbon units (DHAP + GAP)."
+    },
+    {
+      "from": "f16bp",
+      "to": "gap",
+      "enzyme": "Aldolase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Same reaction produces the second triose (GAP)."
+    },
+    {
+      "from": "dhap",
+      "to": "gap",
+      "enzyme": "Triose phosphate isomerase (TPI)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Rapidly converts DHAP into GAP so both trioses can proceed through the payoff phase. Near-equilibrium reaction."
+    },
+    {
+      "from": "gap",
+      "to": "13bpg",
+      "enzyme": "Glyceraldehyde-3-phosphate dehydrogenase (GAPDH)",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "NADH",
+          "delta": 1
+        }
+      ],
+      "mechanism_id": "",
+      "notes": "Oxidative step. Uses NAD⁺ and inorganic phosphate. Produces the high-energy mixed anhydride 1,3-BPG and one NADH. This is the only redox step in glycolysis."
+    },
+    {
+      "from": "13bpg",
+      "to": "3pg",
+      "enzyme": "Phosphoglycerate kinase (PGK)",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "ATP",
+          "delta": 1
+        }
+      ],
+      "mechanism_id": "",
+      "notes": "First substrate-level phosphorylation. Transfers the high-energy phosphate to ADP → ATP."
+    },
+    {
+      "from": "3pg",
+      "to": "2pg",
+      "enzyme": "Phosphoglycerate mutase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Reversible relocation of the phosphate group from carbon 3 to carbon 2."
+    },
+    {
+      "from": "2pg",
+      "to": "pep",
+      "enzyme": "Enolase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Dehydration reaction that creates the high-energy enol phosphate PEP."
+    },
+    {
+      "from": "pep",
+      "to": "pyruvate",
+      "enzyme": "Pyruvate kinase",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "ATP",
+          "delta": 1
+        }
+      ],
+      "mechanism_id": "pyruvate_kinase",
+      "notes": "Second substrate-level phosphorylation. Generates the second pair of ATP molecules and produces pyruvate."
+    },
+    {
+      "from": "pyruvate",
+      "to": "lactate",
+      "enzyme": "Lactate dehydrogenase (LDH)",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "NADH",
+          "delta": -1
+        }
+      ],
+      "mechanism_id": "lactate_dehydrogenase",
+      "notes": "Anaerobic regeneration of NAD⁺. Allows glycolysis to continue when oxygen (and therefore the electron transport chain) is limited. Lactate can later be converted back to glucose in the liver (Cori cycle)."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

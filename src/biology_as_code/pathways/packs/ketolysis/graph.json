@@ -1,0 +1,77 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "ketolysis",
+  "name": "ketolysis",
+  "description": "Ketolysis. Extrahepatic tissues oxidize β-hydroxybutyrate and acetoacetate back to acetyl-CoA for the TCA cycle when glucose is scarce. The liver cannot run this pathway (no SCOT/OXCT1), which prevents a futile cycle with ketogenesis.",
+  "provenance": {
+    "module": "biology_as_code.pathways.ketolysis",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "prior",
+    "references": [
+      "Ketone Bodies — Biology LibreTexts 17.3 (BDH1 / SCOT / thiolase steps): https://bio.libretexts.org/Bookshelves/Biochemistry",
+      "OXCT1/SCOT as the rate-limiting ketolytic enzyme, absent in liver: PMC12838892 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12838892/)",
+      "Metabolic and Signaling Roles of Ketone Bodies: PMC8922216 (https://pmc.ncbi.nlm.nih.gov/articles/PMC8922216/)"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "beta_hydroxybutyrate",
+      "label": "β-Hydroxybutyrate",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Most abundant circulating ketone body. Taken up by brain/heart/muscle via MCT transporters."
+    },
+    {
+      "id": "acetoacetate",
+      "label": "Acetoacetate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Also circulates directly. The actual substrate for SCOT."
+    },
+    {
+      "id": "acetoacetyl_coa",
+      "label": "Acetoacetyl-CoA",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "acetyl_coa",
+      "label": "Acetyl-CoA",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Two per ketone body. Enters the TCA cycle for oxidation to CO₂ + ATP."
+    }
+  ],
+  "edges": [
+    {
+      "from": "beta_hydroxybutyrate",
+      "to": "acetoacetate",
+      "enzyme": "β-Hydroxybutyrate dehydrogenase (BDH1)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Oxidation generates 1 NADH (the reverse of the ketogenesis reduction step)."
+    },
+    {
+      "from": "acetoacetate",
+      "to": "acetoacetyl_coa",
+      "enzyme": "Succinyl-CoA:3-oxoacid CoA transferase (SCOT / OXCT1)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Transfers CoA from succinyl-CoA → succinate, 'spending' one TCA GTP-equivalent."
+    },
+    {
+      "from": "acetoacetyl_coa",
+      "to": "acetyl_coa",
+      "enzyme": "Acetoacetyl-CoA thiolase (ACAT1)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Thiolytic cleavage with CoA yields 2 acetyl-CoA. Largest flux control in ketone oxidation."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

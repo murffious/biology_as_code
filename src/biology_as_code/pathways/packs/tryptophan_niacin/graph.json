@@ -1,0 +1,360 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "tryptophan_niacin",
+  "name": "tryptophan_niacin",
+  "description": "Tryptophan catabolism through the kynurenine route to niacin, with the serotonin/melatonin branch. The source of the niacin equivalent, and PLP-dependent at two steps.",
+  "provenance": {
+    "module": "biology_as_code.pathways.micronutrient_cofactor_pathways",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "prior",
+    "references": [
+      "Berdanier CD. Advanced Nutrition: Macronutrients, 2nd ed. CRC Press, 2000. Appendix 2, Metabolic Maps, pp. 471-492. Map 6, p. 475.",
+      "Institute of Medicine. Dietary Reference Intakes for Thiamin, Riboflavin, Niacin, Vitamin B6, Folate, Vitamin B12, Pantothenic Acid, Biotin, and Choline. National Academies Press, 1998. DOI 10.17226/6015 [accession UNVERIFIED — resolve before it is quoted as the anchor]"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "TRP",
+      "label": "Tryptophan",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Indispensable amino acid; dietary entry point"
+    },
+    {
+      "id": "NFK",
+      "label": "N-formylkynurenine",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "KYN",
+      "label": "Kynurenine",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Branch point: three competing fates"
+    },
+    {
+      "id": "KYNA",
+      "label": "Kynurenate",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Excreted; diverts from niacin"
+    },
+    {
+      "id": "ANTH",
+      "label": "Anthranilate",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Diverts from niacin"
+    },
+    {
+      "id": "OHKYN",
+      "label": "3-hydroxykynurenine",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "XANTH",
+      "label": "Xanthurenate",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Accumulates and spills into urine when PLP is short — the classic B6 status marker"
+    },
+    {
+      "id": "OHANTH",
+      "label": "3-hydroxyanthranilate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "ACMS",
+      "label": "2-amino-3-carboxymuconate semialdehyde",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "The commitment point: cyclise to quinolinate or divert to picolinate"
+    },
+    {
+      "id": "QUIN",
+      "label": "Quinolinate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "NIACIN",
+      "label": "Niacin (nicotinic acid)",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Endogenous synthesis; low yield"
+    },
+    {
+      "id": "PIC",
+      "label": "Picolinate",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Competing branch; implicated in trace-mineral conservation"
+    },
+    {
+      "id": "AMS",
+      "label": "2-aminomuconate semialdehyde",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "AM",
+      "label": "Aminomuconate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "GLU",
+      "label": "Glutamate",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Full oxidation route; no niacin made"
+    },
+    {
+      "id": "SERO",
+      "label": "Serotonin (5-HT)",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Neurotransmitter branch"
+    },
+    {
+      "id": "MEL",
+      "label": "Melatonin",
+      "kind": "product",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "FORM",
+      "label": "Formate",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Co-product"
+    },
+    {
+      "id": "ALA",
+      "label": "Alanine",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Co-product of both kynureninase steps"
+    }
+  ],
+  "edges": [
+    {
+      "from": "TRP",
+      "to": "NFK",
+      "enzyme": "tryptophan 2,3-dioxygenase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "O2-dependent ring opening; rate-limiting and cortisol-inducible"
+    },
+    {
+      "from": "TRP",
+      "to": "SERO",
+      "enzyme": "tryptophan hydroxylase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Competing branch — the same dietary tryptophan cannot do both"
+    },
+    {
+      "from": "SERO",
+      "to": "MEL",
+      "enzyme": "N-acetylation + O-methylation",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "NFK",
+      "to": "KYN",
+      "enzyme": "formamidase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "NFK",
+      "to": "FORM",
+      "enzyme": "co-product release",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "KYN",
+      "to": "KYNA",
+      "enzyme": "kynurenine aminotransferase",
+      "cofactors": [
+        "vitamin B6 (PLP)"
+      ],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Transaminase, so also PLP-dependent; drains the pool away from niacin"
+    },
+    {
+      "from": "KYN",
+      "to": "ANTH",
+      "enzyme": "kynureninase",
+      "cofactors": [
+        "vitamin B6 (PLP)"
+      ],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "KYN",
+      "to": "OHKYN",
+      "enzyme": "kynurenine 3-monooxygenase",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "NADPH",
+          "delta": -1
+        }
+      ],
+      "mechanism_id": "",
+      "notes": "O2 + NADPH consumed"
+    },
+    {
+      "from": "OHKYN",
+      "to": "XANTH",
+      "enzyme": "kynurenine aminotransferase",
+      "cofactors": [
+        "vitamin B6 (PLP)"
+      ],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "THE B6 SPILLWAY. When kynureninase stalls for want of PLP, 3-hydroxykynurenine backs up and exits here instead of continuing to niacin"
+    },
+    {
+      "from": "OHKYN",
+      "to": "OHANTH",
+      "enzyme": "kynureninase",
+      "cofactors": [
+        "vitamin B6 (PLP)"
+      ],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "THE BOTTLENECK. The only route from tryptophan to niacin runs through this PLP-dependent step"
+    },
+    {
+      "from": "OHKYN",
+      "to": "ALA",
+      "enzyme": "co-product release",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "OHANTH",
+      "to": "ACMS",
+      "enzyme": "3-hydroxyanthranilate 3,4-dioxygenase",
+      "cofactors": [
+        "iron"
+      ],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Non-heme iron dioxygenase"
+    },
+    {
+      "from": "ACMS",
+      "to": "QUIN",
+      "enzyme": "non-enzymatic cyclisation",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Spontaneous, so it only wins when ACMS decarboxylase is saturated"
+    },
+    {
+      "from": "ACMS",
+      "to": "PIC",
+      "enzyme": "ACMS decarboxylase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Competing branch; its capacity sets how much reaches niacin"
+    },
+    {
+      "from": "ACMS",
+      "to": "AMS",
+      "enzyme": "ACMS decarboxylase",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "CO2",
+          "delta": 1
+        }
+      ],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "QUIN",
+      "to": "NIACIN",
+      "enzyme": "quinolinate phosphoribosyltransferase",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "CO2",
+          "delta": 1
+        }
+      ],
+      "mechanism_id": "",
+      "notes": "LOW YIELD — Berdanier: 'this conversion is not very efficient'"
+    },
+    {
+      "from": "AMS",
+      "to": "AM",
+      "enzyme": "aminomuconate semialdehyde dehydrogenase",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "NADH",
+          "delta": 1
+        }
+      ],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "AM",
+      "to": "GLU",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Complete oxidation route; tryptophan spent without making niacin"
+    }
+  ],
+  "nutrient_dependencies": {
+    "iron": [
+      "3-hydroxyanthranilate 3,4-dioxygenase"
+    ],
+    "vitamin B6 (PLP)": [
+      "kynurenine aminotransferase",
+      "kynureninase",
+      "kynurenine aminotransferase",
+      "kynureninase"
+    ]
+  },
+  "net_yields": {
+    "CO2": 2,
+    "NADH": 1,
+    "NADPH": -1
+  }
+}

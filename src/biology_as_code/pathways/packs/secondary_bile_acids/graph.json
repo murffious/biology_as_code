@@ -1,0 +1,73 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "secondary_bile_acids",
+  "name": "secondary_bile_acids",
+  "description": "Microbial 7α-dehydroxylation and related transforms of primary → secondary bile acids.",
+  "provenance": {
+    "module": "biology_as_code.pathways.supporting_pathways",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "primary_ba",
+      "label": "Primary bile acids (CA, CDCA)",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "deconj",
+      "label": "Deconjugated bile acids",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "secondary_ba",
+      "label": "Secondary bile acids (DCA, LCA)",
+      "kind": "product",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "fxr_tgr5",
+      "label": "FXR / TGR5 signaling",
+      "kind": "signal",
+      "compartment": "",
+      "notes": ""
+    }
+  ],
+  "edges": [
+    {
+      "from": "primary_ba",
+      "to": "deconj",
+      "enzyme": "Bile salt hydrolases",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "deconj",
+      "to": "secondary_ba",
+      "enzyme": "7α-dehydroxylation",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "secondary_ba",
+      "to": "fxr_tgr5",
+      "enzyme": "Host nuclear / GPCR sensing",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Metabolic regulation; dose/context sensitive."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

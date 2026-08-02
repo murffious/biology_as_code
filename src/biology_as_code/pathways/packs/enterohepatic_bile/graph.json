@@ -1,0 +1,98 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "enterohepatic_bile",
+  "name": "enterohepatic_bile",
+  "description": "Enterohepatic circulation of bile acids: liver → bile → ileum reuptake → portal return.",
+  "provenance": {
+    "module": "biology_as_code.pathways.digestion_absorption_pathways",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "hepatic_bile_acids",
+      "label": "Hepatic bile acids",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "gallbladder_bile",
+      "label": "Stored / secreted bile",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "ileal_lumen",
+      "label": "Bile acids in ileal lumen",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "portal_bile_acids",
+      "label": "Portal bile acids",
+      "kind": "circulation",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "fecal_loss",
+      "label": "Fecal bile acid loss (~5%)",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    }
+  ],
+  "edges": [
+    {
+      "from": "hepatic_bile_acids",
+      "to": "gallbladder_bile",
+      "enzyme": "Biliary secretion + gallbladder storage",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "CCK drives gallbladder contraction on a fatty meal."
+    },
+    {
+      "from": "gallbladder_bile",
+      "to": "ileal_lumen",
+      "enzyme": "Micelle transit through SI",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Bile acids enable fat micelles then reach terminal ileum."
+    },
+    {
+      "from": "ileal_lumen",
+      "to": "portal_bile_acids",
+      "enzyme": "ASBT / IBAT reuptake",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "~95% recovery; active transport of conjugated bile acids."
+    },
+    {
+      "from": "portal_bile_acids",
+      "to": "hepatic_bile_acids",
+      "enzyme": "Hepatic extraction",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Closes enterohepatic loop."
+    },
+    {
+      "from": "ileal_lumen",
+      "to": "fecal_loss",
+      "enzyme": "Incomplete reabsorption",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Daily fecal loss replaced by de novo bile acid synthesis."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

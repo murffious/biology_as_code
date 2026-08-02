@@ -1,0 +1,149 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "aa_nitrogen_disposal",
+  "name": "aa_nitrogen_disposal",
+  "description": "Amino-acid nitrogen disposal hub. Most amino acids transfer their α-amino group to α-ketoglutarate (aminotransferases → glutamate). Glutamate dehydrogenase releases free NH₄⁺; aspartate donates the second N into the urea cycle. Carbon skeletons exit as α-keto acids toward glucogenic or ketogenic fates. Links to existing urea_cycle graph.",
+  "provenance": {
+    "module": "biology_as_code.pathways.amino_acid_catabolism",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "prior",
+    "references": [
+      "Berg JM, Tymoczko JL, Stryer L. Biochemistry — Amino Acid Degradation and the Urea Cycle.",
+      "Lehninger Principles of Biochemistry — Nitrogen excretion and the urea cycle."
+    ]
+  },
+  "nodes": [
+    {
+      "id": "amino_acid",
+      "label": "Amino acid (general)",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Dietary or endogenous protein-derived AA."
+    },
+    {
+      "id": "alpha_kg",
+      "label": "α-Ketoglutarate",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Universal amino-group acceptor for most transaminations."
+    },
+    {
+      "id": "glutamate",
+      "label": "Glutamate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Central nitrogen collector in liver (and muscle ALT branch)."
+    },
+    {
+      "id": "alpha_keto_acid",
+      "label": "α-Keto acid (carbon skeleton)",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Enters TCA / GNG / ketone paths depending on AA identity."
+    },
+    {
+      "id": "nh4",
+      "label": "Ammonia (NH₄⁺)",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Toxic; must be detoxified — mainly via urea cycle in liver."
+    },
+    {
+      "id": "aspartate",
+      "label": "Aspartate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Second nitrogen donor to urea (via argininosuccinate synthetase)."
+    },
+    {
+      "id": "urea_cycle_entry",
+      "label": "Urea cycle (see urea_cycle pack)",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Teaching link node — full cycle is modeled in urea_cycle.py."
+    },
+    {
+      "id": "glutamine",
+      "label": "Glutamine",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Safe N transport form (muscle → gut/kidney/liver); GLS releases NH₄⁺."
+    }
+  ],
+  "edges": [
+    {
+      "from": "amino_acid",
+      "to": "alpha_keto_acid",
+      "enzyme": "Aminotransferase (ALT/AST family, PLP)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "aminotransferase",
+      "notes": "Transfers α-amino N; leaves the carbon skeleton as an α-keto acid."
+    },
+    {
+      "from": "alpha_kg",
+      "to": "glutamate",
+      "enzyme": "Aminotransferase (receives N on α-KG)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "aminotransferase",
+      "notes": "α-KG + amino-N → glutamate. Coupled to AA → α-keto acid."
+    },
+    {
+      "from": "glutamate",
+      "to": "nh4",
+      "enzyme": "Glutamate dehydrogenase (GDH)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "glutamate_dehydrogenase",
+      "notes": "Oxidative deamination regenerates α-KG and free NH₄⁺."
+    },
+    {
+      "from": "glutamate",
+      "to": "aspartate",
+      "enzyme": "Aspartate aminotransferase (AST / GOT)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "aminotransferase",
+      "notes": "Glu + OAA ⇌ α-KG + Asp. Feeds the second N into urea."
+    },
+    {
+      "from": "nh4",
+      "to": "urea_cycle_entry",
+      "enzyme": "CPS1 entry (see urea_cycle)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "NH₄⁺ + CO₂ → carbamoyl phosphate. Full topology in urea_cycle pack."
+    },
+    {
+      "from": "aspartate",
+      "to": "urea_cycle_entry",
+      "enzyme": "Argininosuccinate synthetase (see urea_cycle)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Asp donates the second nitrogen atom of urea."
+    },
+    {
+      "from": "glutamate",
+      "to": "glutamine",
+      "enzyme": "Glutamine synthetase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "NH₄⁺ + Glu + ATP → Gln. Safe inter-organ nitrogen transport."
+    },
+    {
+      "from": "glutamine",
+      "to": "nh4",
+      "enzyme": "Glutaminase (GLS)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Releases NH₄⁺ for urea (liver) or ammonium excretion (kidney)."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

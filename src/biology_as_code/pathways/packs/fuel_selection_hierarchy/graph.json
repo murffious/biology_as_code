@@ -1,0 +1,96 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "fuel_selection_hierarchy",
+  "name": "fuel_selection_hierarchy",
+  "description": "Teaching hierarchy of fuel use under hormonal state: glucose/glycogen priority under insulin; fat under low insulin; ketones in prolonged fast.",
+  "provenance": {
+    "module": "biology_as_code.pathways.supporting_pathways",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "fed_insulin",
+      "label": "Fed / high insulin",
+      "kind": "signal",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "glucose_use",
+      "label": "Glucose oxidation + storage",
+      "kind": "product",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "fasted_glucagon",
+      "label": "Fasted / low insulin",
+      "kind": "signal",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "fat_use",
+      "label": "Fatty acid oxidation",
+      "kind": "product",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "prolonged_fast",
+      "label": "Prolonged fast / low carb",
+      "kind": "signal",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "ketone_use",
+      "label": "Ketone production / use",
+      "kind": "product",
+      "compartment": "",
+      "notes": ""
+    }
+  ],
+  "edges": [
+    {
+      "from": "fed_insulin",
+      "to": "glucose_use",
+      "enzyme": "Insulin-dominant state",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Suppresses net lipolysis / fat oxidation."
+    },
+    {
+      "from": "fasted_glucagon",
+      "to": "fat_use",
+      "enzyme": "Mobilization-dominant state",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "prolonged_fast",
+      "to": "ketone_use",
+      "enzyme": "Hepatic ketogenesis + peripheral use",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "fed_insulin",
+      "to": "fat_use",
+      "enzyme": "Conflict if concurrent high fat+carb",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Teaching concurrency foil; not every mixed meal."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

@@ -1,0 +1,123 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "cori_glucose_alanine",
+  "name": "cori_glucose_alanine",
+  "description": "Cori cycle (lactate ↔ glucose) and glucose-alanine cycle (muscle alanine → liver glucose).",
+  "provenance": {
+    "module": "biology_as_code.pathways.supporting_pathways",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "muscle_glycogen",
+      "label": "Muscle glycogen / glucose",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "pyruvate_muscle",
+      "label": "Pyruvate (muscle)",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "lactate",
+      "label": "Lactate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "alanine",
+      "label": "Alanine",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "liver_pyruvate",
+      "label": "Pyruvate (liver)",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "liver_glucose",
+      "label": "Glucose (liver → blood)",
+      "kind": "product",
+      "compartment": "",
+      "notes": ""
+    }
+  ],
+  "edges": [
+    {
+      "from": "muscle_glycogen",
+      "to": "pyruvate_muscle",
+      "enzyme": "Glycolysis",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "pyruvate_muscle",
+      "to": "lactate",
+      "enzyme": "LDH",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Anaerobic / Cori branch."
+    },
+    {
+      "from": "pyruvate_muscle",
+      "to": "alanine",
+      "enzyme": "ALT transamination",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Glucose-alanine cycle."
+    },
+    {
+      "from": "lactate",
+      "to": "liver_pyruvate",
+      "enzyme": "LDH",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "alanine",
+      "to": "liver_pyruvate",
+      "enzyme": "ALT",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "N → urea path side branch."
+    },
+    {
+      "from": "liver_pyruvate",
+      "to": "liver_glucose",
+      "enzyme": "Gluconeogenesis",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "liver_glucose",
+      "to": "muscle_glycogen",
+      "enzyme": "Blood glucose → muscle uptake",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

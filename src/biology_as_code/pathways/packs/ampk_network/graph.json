@@ -1,0 +1,198 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "ampk_network",
+  "name": "ampk_network",
+  "description": "AMPK energy-stress network. A rising AMP/ADP:ATP ratio (plus LKB1 and Ca²⁺/CaMKK2) activates AMPK, which switches the cell from anabolic to catabolic: it inhibits ACC and mTORC1/SREBP while activating fatty-acid oxidation, autophagy (ULK1), and mitochondrial biogenesis (PGC-1α).",
+  "provenance": {
+    "module": "biology_as_code.pathways.nutrient_sensing",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "prior",
+    "references": [
+      "New developments in AMPK and mTORC1 cross-talk — Essays in Biochemistry 2024: PMC12055038 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12055038/)",
+      "AMPK-ULK1-mTORC1 regulatory triangle / autophagy oscillation: PMC7576158 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7576158/)",
+      "mTORC1, the maestro of cell metabolism and growth — Genes & Development 2025: https://genesdev.cshlp.org/content/39/1-2/109.full"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "amp_adp_atp",
+      "label": "AMP/ADP : ATP ratio",
+      "kind": "input",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "lkb1",
+      "label": "LKB1",
+      "kind": "kinase",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "camkk2",
+      "label": "CaMKK2 (Ca²⁺)",
+      "kind": "kinase",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "ampk",
+      "label": "AMPK",
+      "kind": "sensor",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "acc",
+      "label": "Acetyl-CoA carboxylase (ACC)",
+      "kind": "effector",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "fatty_acid_oxidation",
+      "label": "Fatty-acid oxidation",
+      "kind": "effector",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "tsc2",
+      "label": "TSC2",
+      "kind": "effector",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "mtorc1",
+      "label": "mTORC1",
+      "kind": "kinase",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "ulk1",
+      "label": "ULK1 (autophagy initiator)",
+      "kind": "effector",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "srebp1c",
+      "label": "SREBP-1c",
+      "kind": "transcription_factor",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "pgc1a",
+      "label": "PGC-1α (mito biogenesis)",
+      "kind": "transcription_factor",
+      "compartment": "",
+      "notes": ""
+    }
+  ],
+  "edges": [
+    {
+      "from": "amp_adp_atp",
+      "to": "ampk",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "lkb1",
+      "to": "ampk",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "camkk2",
+      "to": "ampk",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "ampk",
+      "to": "acc",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "acc",
+      "to": "fatty_acid_oxidation",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "ampk",
+      "to": "tsc2",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "tsc2",
+      "to": "mtorc1",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "ampk",
+      "to": "mtorc1",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "ampk",
+      "to": "ulk1",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "ampk",
+      "to": "srebp1c",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "ampk",
+      "to": "pgc1a",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

@@ -1,0 +1,488 @@
+{
+  "schema": "biology-as-code/pathway-graph-index@1",
+  "generator": "scripts/export_graph_json.py",
+  "count": 40,
+  "pathways": [
+    {
+      "id": "aa_nitrogen_disposal",
+      "name": "aa_nitrogen_disposal",
+      "description": "Amino-acid nitrogen disposal hub. Most amino acids transfer their α-amino group to α-ketoglutarate (aminotransferases → glutamate). Glutamate dehydrogenase releases free NH₄⁺; aspartate donates the second N into the urea cycle. Carbon skeletons exit as α-keto acids toward glucogenic or ketogenic fates. Links to existing urea_cycle graph.",
+      "module": "biology_as_code.pathways.amino_acid_catabolism",
+      "certification": "prior",
+      "nodes": 8,
+      "edges": 8,
+      "cofactors": [],
+      "graph": "aa_nitrogen_disposal/graph.json"
+    },
+    {
+      "id": "ampk_network",
+      "name": "ampk_network",
+      "description": "AMPK energy-stress network. A rising AMP/ADP:ATP ratio (plus LKB1 and Ca²⁺/CaMKK2) activates AMPK, which switches the cell from anabolic to catabolic: it inhibits ACC and mTORC1/SREBP while activating fatty-acid oxidation, autophagy (ULK1), and mitochondrial biogenesis (PGC-1α).",
+      "module": "biology_as_code.pathways.nutrient_sensing",
+      "certification": "prior",
+      "nodes": 11,
+      "edges": 11,
+      "cofactors": [],
+      "graph": "ampk_network/graph.json"
+    },
+    {
+      "id": "bcaa_catabolism",
+      "name": "bcaa_catabolism",
+      "description": "Branched-chain amino acid (BCAA) catabolism: leucine, isoleucine, and valine. Shared trunk: transamination → branched-chain keto acid dehydrogenase (BCKDH, MSUD enzyme). Then diverge: Leu → ketogenic (acetyl-CoA / acetoacetate); Val → glucogenic (succinyl-CoA); Ile → both.",
+      "module": "biology_as_code.pathways.amino_acid_catabolism",
+      "certification": "prior",
+      "nodes": 9,
+      "edges": 8,
+      "cofactors": [],
+      "graph": "bcaa_catabolism/graph.json"
+    },
+    {
+      "id": "beta_oxidation",
+      "name": "beta_oxidation",
+      "description": "β-Oxidation of fatty acids. Mitochondrial spiral that removes 2-carbon units as acetyl-CoA. Each cycle yields 1 NADH + 1 FADH₂ + 1 Acetyl-CoA.",
+      "module": "biology_as_code.pathways.beta_oxidation",
+      "certification": "candidate",
+      "nodes": 9,
+      "edges": 8,
+      "cofactors": [],
+      "graph": "beta_oxidation/graph.json"
+    },
+    {
+      "id": "bile_acid_synthesis",
+      "name": "bile_acid_synthesis",
+      "description": "Classic pathway: cholesterol → primary bile acids (cholic / chenodeoxycholic) in hepatocytes.",
+      "module": "biology_as_code.pathways.digestion_absorption_pathways",
+      "certification": "candidate",
+      "nodes": 4,
+      "edges": 3,
+      "cofactors": [],
+      "graph": "bile_acid_synthesis/graph.json"
+    },
+    {
+      "id": "brush_border_final_digestion",
+      "name": "brush_border_final_digestion",
+      "description": "Brush-border disaccharidases and peptidases completing lumen → absorbable monomers.",
+      "module": "biology_as_code.pathways.digestion_absorption_pathways",
+      "certification": "candidate",
+      "nodes": 4,
+      "edges": 2,
+      "cofactors": [],
+      "graph": "brush_border_final_digestion/graph.json"
+    },
+    {
+      "id": "carb_digestion_absorption",
+      "name": "carb_digestion_absorption",
+      "description": "Carbohydrate digestion and absorption from starch/sugars to portal blood glucose.",
+      "module": "biology_as_code.pathways.digestion_absorption_pathways",
+      "certification": "candidate",
+      "nodes": 5,
+      "edges": 4,
+      "cofactors": [],
+      "graph": "carb_digestion_absorption/graph.json"
+    },
+    {
+      "id": "carnitine_synthesis",
+      "name": "carnitine_synthesis",
+      "description": "Endogenous carnitine from lysine and methionine. Five micronutrient dependencies on one linear chain — the cleanest argument against scoring nutrients independently.",
+      "module": "biology_as_code.pathways.micronutrient_cofactor_pathways",
+      "certification": "prior",
+      "nodes": 8,
+      "edges": 7,
+      "cofactors": [
+        "folate",
+        "iron",
+        "methionine (SAM)",
+        "niacin (NAD)",
+        "vitamin B12",
+        "vitamin B6 (PLP)",
+        "vitamin C"
+      ],
+      "graph": "carnitine_synthesis/graph.json"
+    },
+    {
+      "id": "cholesterol_biosynthesis",
+      "name": "cholesterol_biosynthesis",
+      "description": "Cholesterol biosynthesis (mevalonate pathway). Starts from acetyl-CoA and produces cholesterol. HMG-CoA reductase is the rate-limiting step and primary statin target.",
+      "module": "biology_as_code.pathways.cholesterol_pathway",
+      "certification": "candidate",
+      "nodes": 11,
+      "edges": 10,
+      "cofactors": [],
+      "graph": "cholesterol_biosynthesis/graph.json"
+    },
+    {
+      "id": "cobalamin_absorption",
+      "name": "cobalamin_absorption",
+      "description": "Vitamin B12 (cobalamin) absorption requires gastric intrinsic factor (IF). Dietary B12 is released in the stomach, binds IF, and the IF–B12 complex is absorbed in the terminal ileum via cubam receptor teaching path. Failure poles: IF deficiency (pernicious anemia), ileal disease.",
+      "module": "biology_as_code.pathways.meal_critical_pathways",
+      "certification": "prior",
+      "nodes": 6,
+      "edges": 5,
+      "cofactors": [],
+      "graph": "cobalamin_absorption/graph.json"
+    },
+    {
+      "id": "cori_glucose_alanine",
+      "name": "cori_glucose_alanine",
+      "description": "Cori cycle (lactate ↔ glucose) and glucose-alanine cycle (muscle alanine → liver glucose).",
+      "module": "biology_as_code.pathways.supporting_pathways",
+      "certification": "candidate",
+      "nodes": 6,
+      "edges": 7,
+      "cofactors": [],
+      "graph": "cori_glucose_alanine/graph.json"
+    },
+    {
+      "id": "enterohepatic_bile",
+      "name": "enterohepatic_bile",
+      "description": "Enterohepatic circulation of bile acids: liver → bile → ileum reuptake → portal return.",
+      "module": "biology_as_code.pathways.digestion_absorption_pathways",
+      "certification": "candidate",
+      "nodes": 5,
+      "edges": 5,
+      "cofactors": [],
+      "graph": "enterohepatic_bile/graph.json"
+    },
+    {
+      "id": "etc_oxphos",
+      "name": "etc_oxphos",
+      "description": "Electron Transport Chain + Oxidative Phosphorylation. Electrons from NADH and FADH₂ flow through Complexes I–IV, creating a proton gradient that drives ATP synthesis via ATP synthase.",
+      "module": "biology_as_code.pathways.etc_oxphos",
+      "certification": "candidate",
+      "nodes": 13,
+      "edges": 10,
+      "cofactors": [],
+      "graph": "etc_oxphos/graph.json"
+    },
+    {
+      "id": "fatty_acid_synthesis",
+      "name": "fatty_acid_synthesis",
+      "description": "De novo fatty acid synthesis. Cytosolic pathway that builds palmitate from acetyl-CoA. Requires NADPH and is highly regulated at ACC.",
+      "module": "biology_as_code.pathways.fatty_acid_synthesis",
+      "certification": "candidate",
+      "nodes": 6,
+      "edges": 5,
+      "cofactors": [],
+      "graph": "fatty_acid_synthesis/graph.json"
+    },
+    {
+      "id": "fructose_galactose",
+      "name": "fructose_galactose",
+      "description": "Hepatic fructose (KHK → aldolase B) and Leloir galactose pathway entry into glycolytic intermediates.",
+      "module": "biology_as_code.pathways.supporting_pathways",
+      "certification": "candidate",
+      "nodes": 8,
+      "edges": 7,
+      "cofactors": [],
+      "graph": "fructose_galactose/graph.json"
+    },
+    {
+      "id": "fuel_selection_hierarchy",
+      "name": "fuel_selection_hierarchy",
+      "description": "Teaching hierarchy of fuel use under hormonal state: glucose/glycogen priority under insulin; fat under low insulin; ketones in prolonged fast.",
+      "module": "biology_as_code.pathways.supporting_pathways",
+      "certification": "candidate",
+      "nodes": 6,
+      "edges": 4,
+      "cofactors": [],
+      "graph": "fuel_selection_hierarchy/graph.json"
+    },
+    {
+      "id": "glucogenic_ketogenic_aa",
+      "name": "glucogenic_ketogenic_aa",
+      "description": "Carbon-skeleton fate map for amino acids (teaching classification). Glucogenic AA feed TCA intermediates or pyruvate (→ glucose via GNG). Ketogenic AA yield acetyl-CoA or acetoacetate (cannot make net glucose in humans). Several AA are mixed. Not a reaction sequence — a topology of destinations for exam / nutrition teaching.",
+      "module": "biology_as_code.pathways.amino_acid_catabolism",
+      "certification": "prior",
+      "nodes": 13,
+      "edges": 10,
+      "cofactors": [],
+      "graph": "glucogenic_ketogenic_aa/graph.json"
+    },
+    {
+      "id": "gluconeogenesis",
+      "name": "gluconeogenesis",
+      "description": "Gluconeogenesis – synthesis of glucose from non-carbohydrate precursors (lactate, glycerol, glucogenic amino acids). Bypasses the three irreversible steps of glycolysis. Costs 6 ATP equivalents per glucose.",
+      "module": "biology_as_code.pathways.gluconeogenesis",
+      "certification": "candidate",
+      "nodes": 12,
+      "edges": 11,
+      "cofactors": [],
+      "graph": "gluconeogenesis/graph.json"
+    },
+    {
+      "id": "glucose_epithelial_transport",
+      "name": "glucose_epithelial_transport",
+      "description": "Epithelial glucose handling after luminal liberation: SGLT1 (SLC5A1) Na⁺-coupled apical uptake in duodenum/jejunum; GLUT2 (SLC2A2) basolateral exit toward portal blood. GLUT5 fructose stub noted. Complements carb_digestion_absorption pack without duplicating amylase steps.",
+      "module": "biology_as_code.pathways.meal_critical_pathways",
+      "certification": "prior",
+      "nodes": 6,
+      "edges": 5,
+      "cofactors": [],
+      "graph": "glucose_epithelial_transport/graph.json"
+    },
+    {
+      "id": "glycogen_metabolism",
+      "name": "glycogen_metabolism",
+      "description": "Glycogen synthesis (glycogenesis) and breakdown (glycogenolysis). Reciprocally regulated so that both processes are not active at the same time.",
+      "module": "biology_as_code.pathways.glycogen_metabolism",
+      "certification": "candidate",
+      "nodes": 6,
+      "edges": 7,
+      "cofactors": [],
+      "graph": "glycogen_metabolism/graph.json"
+    },
+    {
+      "id": "glycolysis",
+      "name": "glycolysis",
+      "description": "Glycolysis – the central pathway that converts glucose into pyruvate (or lactate under anaerobic conditions). Modeled from the book pathway chart.",
+      "module": "biology_as_code.pathways.metabolic_pathways",
+      "certification": "candidate",
+      "nodes": 12,
+      "edges": 12,
+      "cofactors": [],
+      "graph": "glycolysis/graph.json"
+    },
+    {
+      "id": "gut_incretin_network",
+      "name": "gut_incretin_network",
+      "description": "Meal-triggered gut hormone mini-graph: CCK (I cells, fat/protein), GLP-1 (L cells, carbs/mixed meal), GIP (K cells), and PYY. Teaching edges to satiety, gallbladder/bile release, and insulin (incretin effect). FLOW signaling topology — not a full enteroendocrine atlas.",
+      "module": "biology_as_code.pathways.nutrient_sensing",
+      "certification": "prior",
+      "nodes": 10,
+      "edges": 14,
+      "cofactors": [],
+      "graph": "gut_incretin_network/graph.json"
+    },
+    {
+      "id": "iron_absorption",
+      "name": "iron_absorption",
+      "description": "Iron absorption teaching path with parallel non-haem and haem branches. Non-haem: Fe³⁺ reduction → DMT1 apical uptake → ferroportin export (hepcidin block). Haem: HCP1-like apical uptake → HO-1 releases Fe²⁺ into the enterocyte pool → same ferroportin exit. Ascorbate co-occupation favors the ferrous lumen pool. FLOW topology — magnitude bounds live in iron UNIT / laws.",
+      "module": "biology_as_code.pathways.meal_critical_pathways",
+      "certification": "prior",
+      "nodes": 8,
+      "edges": 7,
+      "cofactors": [],
+      "graph": "iron_absorption/graph.json"
+    },
+    {
+      "id": "ketogenesis",
+      "name": "ketogenesis",
+      "description": "Ketogenesis. Liver converts excess acetyl-CoA into ketone bodies that can be used by brain, heart, and muscle during fasting or low-carbohydrate states.",
+      "module": "biology_as_code.pathways.ketogenesis",
+      "certification": "candidate",
+      "nodes": 6,
+      "edges": 5,
+      "cofactors": [],
+      "graph": "ketogenesis/graph.json"
+    },
+    {
+      "id": "ketolysis",
+      "name": "ketolysis",
+      "description": "Ketolysis. Extrahepatic tissues oxidize β-hydroxybutyrate and acetoacetate back to acetyl-CoA for the TCA cycle when glucose is scarce. The liver cannot run this pathway (no SCOT/OXCT1), which prevents a futile cycle with ketogenesis.",
+      "module": "biology_as_code.pathways.ketolysis",
+      "certification": "prior",
+      "nodes": 4,
+      "edges": 3,
+      "cofactors": [],
+      "graph": "ketolysis/graph.json"
+    },
+    {
+      "id": "lipid_digestion_absorption",
+      "name": "lipid_digestion_absorption",
+      "description": "Lipid digestion from emulsion to chylomicron export into lymph.",
+      "module": "biology_as_code.pathways.digestion_absorption_pathways",
+      "certification": "candidate",
+      "nodes": 6,
+      "edges": 5,
+      "cofactors": [],
+      "graph": "lipid_digestion_absorption/graph.json"
+    },
+    {
+      "id": "lipoprotein_transport",
+      "name": "lipoprotein_transport",
+      "description": "Lipoprotein-mediated transport of cholesterol and triglycerides. VLDL carries cholesterol out of the liver; LDL delivers it to tissues; HDL performs reverse cholesterol transport back to the liver.",
+      "module": "biology_as_code.pathways.cholesterol_pathway",
+      "certification": "candidate",
+      "nodes": 7,
+      "edges": 6,
+      "cofactors": [],
+      "graph": "lipoprotein_transport/graph.json"
+    },
+    {
+      "id": "methionine_one_carbon",
+      "name": "methionine_one_carbon",
+      "description": "Methionine and one-carbon metabolism. Met is activated to S-adenosylmethionine (SAM), the universal methyl donor. After methyl transfer, SAH → homocysteine. Homocysteine is remethylated to Met (methionine synthase, B12 + 5-methyl-THF) or committed to cysteine via transsulfuration (CBS, B6).",
+      "module": "biology_as_code.pathways.amino_acid_catabolism",
+      "certification": "prior",
+      "nodes": 7,
+      "edges": 7,
+      "cofactors": [],
+      "graph": "methionine_one_carbon/graph.json"
+    },
+    {
+      "id": "mtorc1_network",
+      "name": "mtorc1_network",
+      "description": "mTORC1 growth network. Amino acids (leucine via the Rag GTPases) and insulin/IGF (PI3K→Akt→TSC2→Rheb) converge to activate mTORC1, which drives protein synthesis (S6K1, 4E-BP1) and lipogenesis (SREBP) while shutting down autophagy (ULK1). AMPK opposes it (double-negative feedback).",
+      "module": "biology_as_code.pathways.nutrient_sensing",
+      "certification": "prior",
+      "nodes": 13,
+      "edges": 13,
+      "cofactors": [],
+      "graph": "mtorc1_network/graph.json"
+    },
+    {
+      "id": "pentose_phosphate",
+      "name": "pentose_phosphate",
+      "description": "Pentose Phosphate Pathway. Oxidative phase generates NADPH and ribulose-5-P. Non-oxidative phase interconverts sugars and can feed back into glycolysis.",
+      "module": "biology_as_code.pathways.pentose_phosphate",
+      "certification": "candidate",
+      "nodes": 10,
+      "edges": 9,
+      "cofactors": [],
+      "graph": "pentose_phosphate/graph.json"
+    },
+    {
+      "id": "phenylalanine_tyrosine_catabolism",
+      "name": "phenylalanine_tyrosine_catabolism",
+      "description": "Phenylalanine and tyrosine catabolism. Phe is hydroxylated to Tyr by phenylalanine hydroxylase (PAH, BH₄ cofactor) — the PKU enzyme. Tyr proceeds via homogentisate to fumarate (glucogenic) + acetoacetate (ketogenic). Teaching compression of the full multi-enzyme cascade.",
+      "module": "biology_as_code.pathways.amino_acid_catabolism",
+      "certification": "prior",
+      "nodes": 7,
+      "edges": 6,
+      "cofactors": [],
+      "graph": "phenylalanine_tyrosine_catabolism/graph.json"
+    },
+    {
+      "id": "prebiotic_probiotic",
+      "name": "prebiotic_probiotic",
+      "description": "Teaching sketch: prebiotic substrate → selective growth → SCFA/signals; probiotic as introduced taxa.",
+      "module": "biology_as_code.pathways.supporting_pathways",
+      "certification": "candidate",
+      "nodes": 5,
+      "edges": 4,
+      "cofactors": [],
+      "graph": "prebiotic_probiotic/graph.json"
+    },
+    {
+      "id": "protein_digestion_absorption",
+      "name": "protein_digestion_absorption",
+      "description": "Protein digestion cascade from stomach to amino acid/peptide absorption.",
+      "module": "biology_as_code.pathways.digestion_absorption_pathways",
+      "certification": "candidate",
+      "nodes": 5,
+      "edges": 4,
+      "cofactors": [],
+      "graph": "protein_digestion_absorption/graph.json"
+    },
+    {
+      "id": "redox_shuttles",
+      "name": "redox_shuttles",
+      "description": "Malate-aspartate and glycerol-3-phosphate shuttles transfer cytosolic NADH reducing power into mitochondria.",
+      "module": "biology_as_code.pathways.supporting_pathways",
+      "certification": "candidate",
+      "nodes": 7,
+      "edges": 6,
+      "cofactors": [],
+      "graph": "redox_shuttles/graph.json"
+    },
+    {
+      "id": "scfa_colonic_production",
+      "name": "scfa_colonic_production",
+      "description": "Colonic short-chain fatty acid production from fermentable fiber / RS. Microbiota ferment substrates to acetate, propionate, and butyrate; butyrate fuels colonocytes; acetate/propionate reach portal blood. Extends prebiotic_probiotic sketch with explicit SCFA products (FLOW).",
+      "module": "biology_as_code.pathways.meal_critical_pathways",
+      "certification": "prior",
+      "nodes": 7,
+      "edges": 7,
+      "cofactors": [],
+      "graph": "scfa_colonic_production/graph.json"
+    },
+    {
+      "id": "secondary_bile_acids",
+      "name": "secondary_bile_acids",
+      "description": "Microbial 7α-dehydroxylation and related transforms of primary → secondary bile acids.",
+      "module": "biology_as_code.pathways.supporting_pathways",
+      "certification": "candidate",
+      "nodes": 4,
+      "edges": 3,
+      "cofactors": [],
+      "graph": "secondary_bile_acids/graph.json"
+    },
+    {
+      "id": "srebp_network",
+      "name": "srebp_network",
+      "description": "SREBP lipogenic/sterol network. SREBP-1c (fatty-acid synthesis) is driven by insulin and mTORC1 and braked by AMPK; SREBP-2 (cholesterol) is sterol-regulated through SCAP/INSIG. Active SREBPs turn on ACC/FASN and HMGCR/LDLR.",
+      "module": "biology_as_code.pathways.nutrient_sensing",
+      "certification": "prior",
+      "nodes": 10,
+      "edges": 8,
+      "cofactors": [],
+      "graph": "srebp_network/graph.json"
+    },
+    {
+      "id": "tca_cycle",
+      "name": "tca_cycle",
+      "description": "TCA / Citric Acid Cycle (Krebs Cycle). Central amphibolic pathway that oxidizes acetyl-CoA to CO₂ while generating reducing equivalents (NADH, FADH₂) and one GTP. Edges are formally linked to MetabolicMechanism objects.",
+      "module": "biology_as_code.pathways.tca_cycle",
+      "certification": "candidate",
+      "nodes": 9,
+      "edges": 8,
+      "cofactors": [],
+      "graph": "tca_cycle/graph.json"
+    },
+    {
+      "id": "tryptophan_niacin",
+      "name": "tryptophan_niacin",
+      "description": "Tryptophan catabolism through the kynurenine route to niacin, with the serotonin/melatonin branch. The source of the niacin equivalent, and PLP-dependent at two steps.",
+      "module": "biology_as_code.pathways.micronutrient_cofactor_pathways",
+      "certification": "prior",
+      "nodes": 19,
+      "edges": 18,
+      "cofactors": [
+        "iron",
+        "vitamin B6 (PLP)"
+      ],
+      "graph": "tryptophan_niacin/graph.json"
+    },
+    {
+      "id": "urea_cycle",
+      "name": "urea_cycle",
+      "description": "Urea Cycle (Ornithine Cycle). Converts toxic ammonia into urea for safe excretion. Occurs mainly in the liver. Costs ~4 ATP equivalents per urea.",
+      "module": "biology_as_code.pathways.urea_cycle",
+      "certification": "candidate",
+      "nodes": 10,
+      "edges": 10,
+      "cofactors": [],
+      "graph": "urea_cycle/graph.json"
+    }
+  ],
+  "nutrient_index": {
+    "folate": [
+      "carnitine_synthesis::protein-lysine methyltransferase"
+    ],
+    "iron": [
+      "carnitine_synthesis::TML dioxygenase (TMLD)",
+      "carnitine_synthesis::γ-butyrobetaine dioxygenase (BBD)",
+      "tryptophan_niacin::3-hydroxyanthranilate 3,4-dioxygenase"
+    ],
+    "methionine (SAM)": [
+      "carnitine_synthesis::protein-lysine methyltransferase"
+    ],
+    "niacin (NAD)": [
+      "carnitine_synthesis::γ-butyrobetaine aldehyde dehydrogenase"
+    ],
+    "vitamin B12": [
+      "carnitine_synthesis::protein-lysine methyltransferase"
+    ],
+    "vitamin B6 (PLP)": [
+      "carnitine_synthesis::HTML aldolase",
+      "tryptophan_niacin::kynureninase",
+      "tryptophan_niacin::kynureninase",
+      "tryptophan_niacin::kynurenine aminotransferase",
+      "tryptophan_niacin::kynurenine aminotransferase"
+    ],
+    "vitamin C": [
+      "carnitine_synthesis::TML dioxygenase (TMLD)",
+      "carnitine_synthesis::γ-butyrobetaine dioxygenase (BBD)"
+    ]
+  }
+}

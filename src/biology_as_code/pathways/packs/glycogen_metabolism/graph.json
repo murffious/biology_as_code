@@ -1,0 +1,123 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "glycogen_metabolism",
+  "name": "glycogen_metabolism",
+  "description": "Glycogen synthesis (glycogenesis) and breakdown (glycogenolysis). Reciprocally regulated so that both processes are not active at the same time.",
+  "provenance": {
+    "module": "biology_as_code.pathways.glycogen_metabolism",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "glucose",
+      "label": "Glucose",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "g6p",
+      "label": "Glucose-6-phosphate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "g1p",
+      "label": "Glucose-1-phosphate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "udp_glucose",
+      "label": "UDP-Glucose",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Activated form of glucose for glycogen synthesis."
+    },
+    {
+      "id": "glycogen",
+      "label": "Glycogen",
+      "kind": "polymer",
+      "compartment": "",
+      "notes": "Branched polymer of glucose (α-1,4 linkages with α-1,6 branches)."
+    },
+    {
+      "id": "limit_dextrin",
+      "label": "Limit Dextrin",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Glycogen with branches exposed after phosphorylase action."
+    }
+  ],
+  "edges": [
+    {
+      "from": "glucose",
+      "to": "g6p",
+      "enzyme": "Hexokinase / Glucokinase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Same as first step of glycolysis."
+    },
+    {
+      "from": "g6p",
+      "to": "g1p",
+      "enzyme": "Phosphoglucomutase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Reversible."
+    },
+    {
+      "from": "g1p",
+      "to": "udp_glucose",
+      "enzyme": "UDP-glucose pyrophosphorylase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Activates glucose. UTP + G1P → UDP-glucose + PPi."
+    },
+    {
+      "from": "udp_glucose",
+      "to": "glycogen",
+      "enzyme": "Glycogen synthase + Branching enzyme",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Key regulated step of glycogenesis. Branching enzyme creates α-1,6 branches."
+    },
+    {
+      "from": "glycogen",
+      "to": "g1p",
+      "enzyme": "Glycogen phosphorylase + Debranching enzyme",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Key regulated step of glycogenolysis. Produces G1P (not free glucose)."
+    },
+    {
+      "from": "g1p",
+      "to": "g6p",
+      "enzyme": "Phosphoglucomutase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Reversible. G6P can enter glycolysis (muscle) or be dephosphorylated to free glucose (liver)."
+    },
+    {
+      "from": "g6p",
+      "to": "glucose",
+      "enzyme": "Glucose-6-phosphatase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Liver (and kidney) only. Allows free glucose to be released into the blood."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

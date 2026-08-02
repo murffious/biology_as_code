@@ -1,0 +1,73 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "bile_acid_synthesis",
+  "name": "bile_acid_synthesis",
+  "description": "Classic pathway: cholesterol → primary bile acids (cholic / chenodeoxycholic) in hepatocytes.",
+  "provenance": {
+    "module": "biology_as_code.pathways.digestion_absorption_pathways",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "cholesterol",
+      "label": "Cholesterol",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "7a_hydroxycholesterol",
+      "label": "7α-Hydroxycholesterol",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "primary_bile_acids",
+      "label": "Primary bile acids (CA, CDCA)",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "conjugated_bile_acids",
+      "label": "Glycine/taurine conjugates",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    }
+  ],
+  "edges": [
+    {
+      "from": "cholesterol",
+      "to": "7a_hydroxycholesterol",
+      "enzyme": "CYP7A1 (cholesterol 7α-hydroxylase)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Rate-limiting step of classic bile acid synthesis; feedback via FXR/SHP."
+    },
+    {
+      "from": "7a_hydroxycholesterol",
+      "to": "primary_bile_acids",
+      "enzyme": "Multiple sterol modifications",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Produces cholic and chenodeoxycholic acids."
+    },
+    {
+      "from": "primary_bile_acids",
+      "to": "conjugated_bile_acids",
+      "enzyme": "BAAT conjugation",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Conjugation improves solubility for micelles."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

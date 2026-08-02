@@ -1,0 +1,186 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "tca_cycle",
+  "name": "tca_cycle",
+  "description": "TCA / Citric Acid Cycle (Krebs Cycle). Central amphibolic pathway that oxidizes acetyl-CoA to CO₂ while generating reducing equivalents (NADH, FADH₂) and one GTP. Edges are formally linked to MetabolicMechanism objects.",
+  "provenance": {
+    "module": "biology_as_code.pathways.tca_cycle",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "acetyl_coa",
+      "label": "Acetyl-CoA",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Two-carbon unit entering the cycle. Comes from pyruvate (PDH), β-oxidation, or ketogenic amino acids."
+    },
+    {
+      "id": "oxaloacetate",
+      "label": "Oxaloacetate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Four-carbon acceptor that is regenerated each turn. Also an important anaplerotic / gluconeogenic intermediate."
+    },
+    {
+      "id": "citrate",
+      "label": "Citrate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Six-carbon product of the first condensation. Can also signal high energy and inhibit glycolysis (PFK-1)."
+    },
+    {
+      "id": "isocitrate",
+      "label": "Isocitrate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Isomer of citrate. Substrate for the first oxidative decarboxylation."
+    },
+    {
+      "id": "alpha_ketoglutarate",
+      "label": "α-Ketoglutarate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Five-carbon intermediate. Important precursor for glutamate and other amino acids (amphibolic)."
+    },
+    {
+      "id": "succinyl_coa",
+      "label": "Succinyl-CoA",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "High-energy thioester. Precursor for porphyrins / heme. Also regulates its own production."
+    },
+    {
+      "id": "succinate",
+      "label": "Succinate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Four-carbon intermediate. Substrate of the only membrane-bound TCA enzyme (Complex II)."
+    },
+    {
+      "id": "fumarate",
+      "label": "Fumarate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Four-carbon unsaturated intermediate."
+    },
+    {
+      "id": "malate",
+      "label": "Malate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Four-carbon intermediate. Can also be exported for gluconeogenesis (malate-aspartate shuttle)."
+    }
+  ],
+  "edges": [
+    {
+      "from": "acetyl_coa",
+      "to": "citrate",
+      "enzyme": "Citrate synthase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "citrate_synthase",
+      "notes": "Condenses the 2-carbon acetyl group with 4-carbon oxaloacetate. Highly exergonic / irreversible. Commits acetyl-CoA to the cycle."
+    },
+    {
+      "from": "citrate",
+      "to": "isocitrate",
+      "enzyme": "Aconitase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "aconitase",
+      "notes": "Isomerization via cis-aconitate. Iron-sulfur cluster enzyme."
+    },
+    {
+      "from": "isocitrate",
+      "to": "alpha_ketoglutarate",
+      "enzyme": "Isocitrate dehydrogenase",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "NADH",
+          "delta": 1
+        },
+        {
+          "species": "CO2",
+          "delta": 1
+        }
+      ],
+      "mechanism_id": "isocitrate_dehydrogenase",
+      "notes": "First oxidative decarboxylation. Produces NADH and releases the first CO₂."
+    },
+    {
+      "from": "alpha_ketoglutarate",
+      "to": "succinyl_coa",
+      "enzyme": "α-Ketoglutarate dehydrogenase complex",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "NADH",
+          "delta": 1
+        },
+        {
+          "species": "CO2",
+          "delta": 1
+        }
+      ],
+      "mechanism_id": "alpha_ketoglutarate_dehydrogenase",
+      "notes": "Second oxidative decarboxylation. Produces NADH and the second CO₂. Irreversible."
+    },
+    {
+      "from": "succinyl_coa",
+      "to": "succinate",
+      "enzyme": "Succinyl-CoA synthetase",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "GTP",
+          "delta": 1
+        }
+      ],
+      "mechanism_id": "succinyl_coa_synthetase",
+      "notes": "Only substrate-level phosphorylation in the TCA cycle. Produces GTP (which can be converted to ATP). High-energy thioester is used."
+    },
+    {
+      "from": "succinate",
+      "to": "fumarate",
+      "enzyme": "Succinate dehydrogenase",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "FADH2",
+          "delta": 1
+        }
+      ],
+      "mechanism_id": "succinate_dehydrogenase",
+      "notes": "Only membrane-bound TCA enzyme. Functions as Complex II of the electron transport chain. Produces FADH₂ instead of NADH."
+    },
+    {
+      "from": "fumarate",
+      "to": "malate",
+      "enzyme": "Fumarase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "fumarase",
+      "notes": "Hydration reaction. Reversible and near equilibrium."
+    },
+    {
+      "from": "malate",
+      "to": "oxaloacetate",
+      "enzyme": "Malate dehydrogenase",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "NADH",
+          "delta": 1
+        }
+      ],
+      "mechanism_id": "malate_dehydrogenase",
+      "notes": "Regenerates oxaloacetate so the cycle can continue. Highly endergonic; pulled forward by continuous use of oxaloacetate by citrate synthase. Produces the third NADH."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

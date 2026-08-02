@@ -1,0 +1,105 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "lipid_digestion_absorption",
+  "name": "lipid_digestion_absorption",
+  "description": "Lipid digestion from emulsion to chylomicron export into lymph.",
+  "provenance": {
+    "module": "biology_as_code.pathways.digestion_absorption_pathways",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "dietary_tg",
+      "label": "Dietary Triglycerides",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "emulsion",
+      "label": "Emulsified Fat Droplets",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "micelles",
+      "label": "Mixed Micelles",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "ffas_mg",
+      "label": "FFAs + 2-Monoacylglycerol",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "tg_enterocyte",
+      "label": "Re-esterified TG (enterocyte)",
+      "kind": "enterocyte",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "chylomicron",
+      "label": "Chylomicron",
+      "kind": "circulation",
+      "compartment": "",
+      "notes": "Exported into lacteals → lymph → thoracic duct → blood."
+    }
+  ],
+  "edges": [
+    {
+      "from": "dietary_tg",
+      "to": "emulsion",
+      "enzyme": "Mechanical emulsification + Bile salts",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "bile_salt_emulsification",
+      "notes": "Bile salts stabilize small emulsion droplets."
+    },
+    {
+      "from": "emulsion",
+      "to": "micelles",
+      "enzyme": "Bile salt mixed-micelle formation",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "bile_salt_micelle",
+      "notes": "Mixed micelles solubilize the products of lipolysis."
+    },
+    {
+      "from": "micelles",
+      "to": "ffas_mg",
+      "enzyme": "Pancreatic lipase + Colipase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "pancreatic_lipase",
+      "notes": "Requires colipase. Cleaves sn-1 and sn-3 positions."
+    },
+    {
+      "from": "ffas_mg",
+      "to": "tg_enterocyte",
+      "enzyme": "Passive diffusion + re-esterification (MGAT, DGAT)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "FFAs and 2-MG enter by diffusion; re-esterified in smooth ER."
+    },
+    {
+      "from": "tg_enterocyte",
+      "to": "chylomicron",
+      "enzyme": "Chylomicron assembly (ApoB-48, MTP)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Packaged with ApoB-48 and exported into lymph."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

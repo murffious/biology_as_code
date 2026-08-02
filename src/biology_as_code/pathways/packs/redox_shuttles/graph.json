@@ -1,0 +1,121 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "redox_shuttles",
+  "name": "redox_shuttles",
+  "description": "Malate-aspartate and glycerol-3-phosphate shuttles transfer cytosolic NADH reducing power into mitochondria.",
+  "provenance": {
+    "module": "biology_as_code.pathways.supporting_pathways",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "nadh_cyto",
+      "label": "NADH (cytosol)",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "malate",
+      "label": "Malate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "oaa_mito",
+      "label": "OAA (mito)",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "nadh_mito",
+      "label": "NADH (mito)",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "g3p",
+      "label": "Glycerol-3-phosphate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "dhap",
+      "label": "DHAP",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "fadh2_eq",
+      "label": "FADH₂-equivalent (G3P DH)",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    }
+  ],
+  "edges": [
+    {
+      "from": "nadh_cyto",
+      "to": "malate",
+      "enzyme": "MDH cytosolic",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Malate-aspartate shuttle start."
+    },
+    {
+      "from": "malate",
+      "to": "oaa_mito",
+      "enzyme": "Malate/αKG antiport + MDH mito",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "oaa_mito",
+      "to": "nadh_mito",
+      "enzyme": "MDH mito regenerates NADH",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "~2.5 ATP/NADH via ETC."
+    },
+    {
+      "from": "nadh_cyto",
+      "to": "g3p",
+      "enzyme": "cG3PDH",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "G3P shuttle."
+    },
+    {
+      "from": "g3p",
+      "to": "dhap",
+      "enzyme": "mG3PDH",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Yields FADH₂-eq (~1.5 ATP)."
+    },
+    {
+      "from": "dhap",
+      "to": "g3p",
+      "enzyme": "cG3PDH reverse pool",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

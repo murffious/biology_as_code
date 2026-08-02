@@ -1,0 +1,188 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "urea_cycle",
+  "name": "urea_cycle",
+  "description": "Urea Cycle (Ornithine Cycle). Converts toxic ammonia into urea for safe excretion. Occurs mainly in the liver. Costs ~4 ATP equivalents per urea.",
+  "provenance": {
+    "module": "biology_as_code.pathways.urea_cycle",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "nh4",
+      "label": "Ammonia (NH₄⁺)",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Toxic nitrogen waste from amino acid catabolism."
+    },
+    {
+      "id": "co2",
+      "label": "CO₂ / HCO₃⁻",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Source of the carbon atom in urea. Hydrated to bicarbonate before CPS1 uses it."
+    },
+    {
+      "id": "carbamoyl_phosphate",
+      "label": "Carbamoyl Phosphate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Formed in mitochondria. First committed intermediate."
+    },
+    {
+      "id": "ornithine",
+      "label": "Ornithine",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Carrier molecule that is regenerated each turn."
+    },
+    {
+      "id": "citrulline",
+      "label": "Citrulline",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Exported from mitochondria to cytosol."
+    },
+    {
+      "id": "aspartate",
+      "label": "Aspartate",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Donates the second nitrogen atom."
+    },
+    {
+      "id": "argininosuccinate",
+      "label": "Argininosuccinate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "arginine",
+      "label": "Arginine",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Immediate precursor of urea."
+    },
+    {
+      "id": "fumarate",
+      "label": "Fumarate",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Released when argininosuccinate is cleaved. Links to TCA cycle."
+    },
+    {
+      "id": "urea",
+      "label": "Urea",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Non-toxic nitrogen waste excreted by the kidney."
+    }
+  ],
+  "edges": [
+    {
+      "from": "nh4",
+      "to": "carbamoyl_phosphate",
+      "enzyme": "Carbamoyl phosphate synthetase I (CPS1)",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "ATP",
+          "delta": -2
+        }
+      ],
+      "mechanism_id": "",
+      "notes": "Requires 2 ATP. Most important regulatory enzyme of the urea cycle."
+    },
+    {
+      "from": "co2",
+      "to": "carbamoyl_phosphate",
+      "enzyme": "Carbamoyl phosphate synthetase I (CPS1)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Bicarbonate is the carbon donor. Contributes the carbonyl carbon of urea."
+    },
+    {
+      "from": "carbamoyl_phosphate",
+      "to": "citrulline",
+      "enzyme": "Ornithine transcarbamoylase (OTC)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Transfers carbamoyl group to ornithine. Citrulline is then exported to cytosol."
+    },
+    {
+      "from": "ornithine",
+      "to": "citrulline",
+      "enzyme": "Ornithine transcarbamoylase (OTC)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Ornithine is the carbamoyl acceptor. This edge is what closes the cycle: arginase regenerates ornithine, which re-enters here."
+    },
+    {
+      "from": "citrulline",
+      "to": "argininosuccinate",
+      "enzyme": "Argininosuccinate synthetase",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "ATP",
+          "delta": -2
+        }
+      ],
+      "mechanism_id": "",
+      "notes": "Condenses citrulline with aspartate. Costs 2 ATP equivalents."
+    },
+    {
+      "from": "aspartate",
+      "to": "argininosuccinate",
+      "enzyme": "Argininosuccinate synthetase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Donates the second nitrogen atom of urea."
+    },
+    {
+      "from": "argininosuccinate",
+      "to": "arginine",
+      "enzyme": "Argininosuccinate lyase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Cleaves argininosuccinate into arginine + fumarate."
+    },
+    {
+      "from": "argininosuccinate",
+      "to": "fumarate",
+      "enzyme": "Argininosuccinate lyase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Second product of the lyase step. Carries the cycle's carbon skeleton into the TCA cycle, where it is reoxidised to oxaloacetate and transaminated back to aspartate."
+    },
+    {
+      "from": "arginine",
+      "to": "urea",
+      "enzyme": "Arginase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Hydrolyzes arginine to urea + ornithine. Ornithine re-enters mitochondria."
+    },
+    {
+      "from": "arginine",
+      "to": "ornithine",
+      "enzyme": "Arginase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Ornithine is regenerated and returns to the mitochondria to continue the cycle."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

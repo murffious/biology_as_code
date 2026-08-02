@@ -1,0 +1,164 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "srebp_network",
+  "name": "srebp_network",
+  "description": "SREBP lipogenic/sterol network. SREBP-1c (fatty-acid synthesis) is driven by insulin and mTORC1 and braked by AMPK; SREBP-2 (cholesterol) is sterol-regulated through SCAP/INSIG. Active SREBPs turn on ACC/FASN and HMGCR/LDLR.",
+  "provenance": {
+    "module": "biology_as_code.pathways.nutrient_sensing",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "prior",
+    "references": [
+      "New developments in AMPK and mTORC1 cross-talk — Essays in Biochemistry 2024: PMC12055038 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12055038/)",
+      "AMPK-ULK1-mTORC1 regulatory triangle / autophagy oscillation: PMC7576158 (https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7576158/)",
+      "mTORC1, the maestro of cell metabolism and growth — Genes & Development 2025: https://genesdev.cshlp.org/content/39/1-2/109.full"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "insulin",
+      "label": "Insulin",
+      "kind": "input",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "mtorc1",
+      "label": "mTORC1",
+      "kind": "kinase",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "ampk",
+      "label": "AMPK",
+      "kind": "sensor",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "sterols",
+      "label": "ER cholesterol",
+      "kind": "input",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "scap_insig",
+      "label": "SCAP / INSIG",
+      "kind": "sensor",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "srebp1c",
+      "label": "SREBP-1c",
+      "kind": "transcription_factor",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "srebp2",
+      "label": "SREBP-2",
+      "kind": "transcription_factor",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "acc_fasn",
+      "label": "ACC + FASN",
+      "kind": "effector",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "hmgcr",
+      "label": "HMG-CoA reductase",
+      "kind": "effector",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "ldlr",
+      "label": "LDL receptor",
+      "kind": "effector",
+      "compartment": "",
+      "notes": ""
+    }
+  ],
+  "edges": [
+    {
+      "from": "insulin",
+      "to": "srebp1c",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "mtorc1",
+      "to": "srebp1c",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "ampk",
+      "to": "srebp1c",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "sterols",
+      "to": "scap_insig",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "scap_insig",
+      "to": "srebp2",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "srebp1c",
+      "to": "acc_fasn",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "srebp2",
+      "to": "hmgcr",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "srebp2",
+      "to": "ldlr",
+      "enzyme": "",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

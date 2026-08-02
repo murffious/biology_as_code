@@ -1,0 +1,195 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "carnitine_synthesis",
+  "name": "carnitine_synthesis",
+  "description": "Endogenous carnitine from lysine and methionine. Five micronutrient dependencies on one linear chain — the cleanest argument against scoring nutrients independently.",
+  "provenance": {
+    "module": "biology_as_code.pathways.micronutrient_cofactor_pathways",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "prior",
+    "references": [
+      "Berdanier CD. Advanced Nutrition: Macronutrients, 2nd ed. CRC Press, 2000. Appendix 2, Metabolic Maps, pp. 471-492. Map 25, p. 489."
+    ]
+  },
+  "nodes": [
+    {
+      "id": "LYS",
+      "label": "Lysine (protein-bound)",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Carbon skeleton; must already be incorporated into protein to be methylated"
+    },
+    {
+      "id": "SAM",
+      "label": "S-adenosylmethionine",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Methyl donor; its supply is downstream of methionine, folate and B12"
+    },
+    {
+      "id": "TML",
+      "label": "ε-N-trimethyl-L-lysine",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "HTML",
+      "label": "β-hydroxy-ε-N-trimethyl-L-lysine",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "BBALD",
+      "label": "γ-butyrobetaine aldehyde",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "BB",
+      "label": "γ-butyrobetaine",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Hydroxylated in liver and kidney; most tissues cannot finish the job"
+    },
+    {
+      "id": "CARN",
+      "label": "L-carnitine",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Required to carry long-chain fatty acyl groups into mitochondria"
+    },
+    {
+      "id": "GLY",
+      "label": "Glycine",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Co-product"
+    }
+  ],
+  "edges": [
+    {
+      "from": "LYS",
+      "to": "TML",
+      "enzyme": "protein-lysine methyltransferase",
+      "cofactors": [
+        "methionine (SAM)",
+        "folate",
+        "vitamin B12"
+      ],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Three methyl transfers. Folate and B12 enter indirectly by regenerating methionine for SAM"
+    },
+    {
+      "from": "SAM",
+      "to": "TML",
+      "enzyme": "methyl donation",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Co-substrate edge; SAM is consumed, not transformed into TML"
+    },
+    {
+      "from": "TML",
+      "to": "HTML",
+      "enzyme": "TML dioxygenase (TMLD)",
+      "cofactors": [
+        "iron",
+        "vitamin C"
+      ],
+      "yields": [
+        {
+          "species": "CO2",
+          "delta": 1
+        }
+      ],
+      "mechanism_id": "",
+      "notes": "Fe(II)/2-oxoglutarate dioxygenase; ascorbate keeps the iron reduced"
+    },
+    {
+      "from": "HTML",
+      "to": "BBALD",
+      "enzyme": "HTML aldolase",
+      "cofactors": [
+        "vitamin B6 (PLP)"
+      ],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "HTML",
+      "to": "GLY",
+      "enzyme": "co-product release",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "BBALD",
+      "to": "BB",
+      "enzyme": "γ-butyrobetaine aldehyde dehydrogenase",
+      "cofactors": [
+        "niacin (NAD)"
+      ],
+      "yields": [
+        {
+          "species": "NADH",
+          "delta": 1
+        }
+      ],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "BB",
+      "to": "CARN",
+      "enzyme": "γ-butyrobetaine dioxygenase (BBD)",
+      "cofactors": [
+        "iron",
+        "vitamin C"
+      ],
+      "yields": [
+        {
+          "species": "CO2",
+          "delta": 1
+        }
+      ],
+      "mechanism_id": "",
+      "notes": "Second ascorbate-dependent dioxygenase. Tissue-restricted, so muscle depends on hepatic supply"
+    }
+  ],
+  "nutrient_dependencies": {
+    "folate": [
+      "protein-lysine methyltransferase"
+    ],
+    "iron": [
+      "TML dioxygenase (TMLD)",
+      "γ-butyrobetaine dioxygenase (BBD)"
+    ],
+    "methionine (SAM)": [
+      "protein-lysine methyltransferase"
+    ],
+    "niacin (NAD)": [
+      "γ-butyrobetaine aldehyde dehydrogenase"
+    ],
+    "vitamin B12": [
+      "protein-lysine methyltransferase"
+    ],
+    "vitamin B6 (PLP)": [
+      "HTML aldolase"
+    ],
+    "vitamin C": [
+      "TML dioxygenase (TMLD)",
+      "γ-butyrobetaine dioxygenase (BBD)"
+    ]
+  },
+  "net_yields": {
+    "CO2": 2,
+    "NADH": 1
+  }
+}

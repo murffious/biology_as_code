@@ -1,0 +1,89 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "carb_digestion_absorption",
+  "name": "carb_digestion_absorption",
+  "description": "Carbohydrate digestion and absorption from starch/sugars to portal blood glucose.",
+  "provenance": {
+    "module": "biology_as_code.pathways.digestion_absorption_pathways",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "starch",
+      "label": "Starch / Glycogen",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "maltose_limit",
+      "label": "Maltose + Limit Dextrins",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "glucose_lumen",
+      "label": "Glucose (lumen)",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "glucose_enterocyte",
+      "label": "Glucose (enterocyte)",
+      "kind": "enterocyte",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "glucose_blood",
+      "label": "Glucose (portal blood)",
+      "kind": "circulation",
+      "compartment": "",
+      "notes": ""
+    }
+  ],
+  "edges": [
+    {
+      "from": "starch",
+      "to": "maltose_limit",
+      "enzyme": "Salivary + Pancreatic Amylase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "salivary_amylase",
+      "notes": "α-1,4 cleavage. Pancreatic amylase continues in small intestine."
+    },
+    {
+      "from": "maltose_limit",
+      "to": "glucose_lumen",
+      "enzyme": "Brush-border disaccharidases (maltase, isomaltase, sucrase, lactase)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Final hydrolysis to monosaccharides."
+    },
+    {
+      "from": "glucose_lumen",
+      "to": "glucose_enterocyte",
+      "enzyme": "SGLT1",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "sglt1",
+      "notes": "Sodium-glucose cotransport. Primary route for glucose & galactose."
+    },
+    {
+      "from": "glucose_enterocyte",
+      "to": "glucose_blood",
+      "enzyme": "GLUT2",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Facilitated exit into portal blood."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

@@ -1,0 +1,120 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "fatty_acid_synthesis",
+  "name": "fatty_acid_synthesis",
+  "description": "De novo fatty acid synthesis. Cytosolic pathway that builds palmitate from acetyl-CoA. Requires NADPH and is highly regulated at ACC.",
+  "provenance": {
+    "module": "biology_as_code.pathways.fatty_acid_synthesis",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "acetyl_coa_mito",
+      "label": "Acetyl-CoA (mitochondria)",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Cannot cross the inner mitochondrial membrane directly."
+    },
+    {
+      "id": "citrate",
+      "label": "Citrate",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Shuttle form that carries acetyl units to the cytosol."
+    },
+    {
+      "id": "acetyl_coa_cyto",
+      "label": "Acetyl-CoA (cytosol)",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "malonyl_coa",
+      "label": "Malonyl-CoA",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Activated 3-carbon donor. Key regulatory intermediate."
+    },
+    {
+      "id": "acyl_acp",
+      "label": "Growing Acyl-ACP chain",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Attached to Acyl Carrier Protein during synthesis."
+    },
+    {
+      "id": "palmitate",
+      "label": "Palmitate (C16:0)",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Primary end product of mammalian FAS."
+    }
+  ],
+  "edges": [
+    {
+      "from": "acetyl_coa_mito",
+      "to": "citrate",
+      "enzyme": "Citrate synthase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Acetyl-CoA + OAA → Citrate (same as TCA entry). Citrate is exported when energy is high."
+    },
+    {
+      "from": "citrate",
+      "to": "acetyl_coa_cyto",
+      "enzyme": "ATP-citrate lyase",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "ATP",
+          "delta": -1
+        }
+      ],
+      "mechanism_id": "",
+      "notes": "Cytosolic cleavage of citrate regenerates acetyl-CoA + OAA."
+    },
+    {
+      "from": "acetyl_coa_cyto",
+      "to": "malonyl_coa",
+      "enzyme": "Acetyl-CoA carboxylase (ACC)",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "ATP",
+          "delta": -1
+        }
+      ],
+      "mechanism_id": "",
+      "notes": "Requires biotin. Malonyl-CoA also inhibits CPT-I, preventing simultaneous β-oxidation."
+    },
+    {
+      "from": "malonyl_coa",
+      "to": "acyl_acp",
+      "enzyme": "Fatty Acid Synthase (FAS) complex",
+      "cofactors": [],
+      "yields": [
+        {
+          "species": "NADPH",
+          "delta": -2
+        }
+      ],
+      "mechanism_id": "",
+      "notes": "Multifunctional enzyme. Each cycle: condensation → reduction → dehydration → reduction. Adds 2 carbons per cycle. Requires 2 NADPH per cycle."
+    },
+    {
+      "from": "acyl_acp",
+      "to": "palmitate",
+      "enzyme": "Thioesterase (part of FAS)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Releases free palmitate when the chain reaches 16 carbons."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

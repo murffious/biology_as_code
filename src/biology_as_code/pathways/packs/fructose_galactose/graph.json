@@ -1,0 +1,137 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "fructose_galactose",
+  "name": "fructose_galactose",
+  "description": "Hepatic fructose (KHK → aldolase B) and Leloir galactose pathway entry into glycolytic intermediates.",
+  "provenance": {
+    "module": "biology_as_code.pathways.supporting_pathways",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "candidate",
+    "references": []
+  },
+  "nodes": [
+    {
+      "id": "fructose",
+      "label": "Fructose",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "f1p",
+      "label": "Fructose-1-P",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "dhap_gap",
+      "label": "DHAP + Glyceraldehyde → GAP",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "galactose",
+      "label": "Galactose",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "gal1p",
+      "label": "Galactose-1-P",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "udp_gal",
+      "label": "UDP-galactose",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "g1p",
+      "label": "Glucose-1-P / G6P pool",
+      "kind": "product",
+      "compartment": "",
+      "notes": ""
+    },
+    {
+      "id": "glycolysis",
+      "label": "Glycolytic intermediates",
+      "kind": "product",
+      "compartment": "",
+      "notes": ""
+    }
+  ],
+  "edges": [
+    {
+      "from": "fructose",
+      "to": "f1p",
+      "enzyme": "Ketohexokinase (KHK)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Bypasses PFK-1 regulation."
+    },
+    {
+      "from": "f1p",
+      "to": "dhap_gap",
+      "enzyme": "Aldolase B",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "dhap_gap",
+      "to": "glycolysis",
+      "enzyme": "Triose kinase / TPI",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "galactose",
+      "to": "gal1p",
+      "enzyme": "Galactokinase",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "gal1p",
+      "to": "udp_gal",
+      "enzyme": "GALT",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Classic galactosemia enzyme."
+    },
+    {
+      "from": "udp_gal",
+      "to": "g1p",
+      "enzyme": "GALE + UDP-glucose cycle",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "g1p",
+      "to": "glycolysis",
+      "enzyme": "PGM / G6Pase context",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

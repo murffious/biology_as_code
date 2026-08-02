@@ -1,0 +1,110 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "cobalamin_absorption",
+  "name": "cobalamin_absorption",
+  "description": "Vitamin B12 (cobalamin) absorption requires gastric intrinsic factor (IF). Dietary B12 is released in the stomach, binds IF, and the IF–B12 complex is absorbed in the terminal ileum via cubam receptor teaching path. Failure poles: IF deficiency (pernicious anemia), ileal disease.",
+  "provenance": {
+    "module": "biology_as_code.pathways.meal_critical_pathways",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "prior",
+    "references": [
+      "Intrinsic factor required for B12 absorption in pernicious anemia: PMID 18112756 (https://pubmed.ncbi.nlm.nih.gov/18112756/).",
+      "Intrinsic factor localization (gastric / duodenal extracts): PMID 15405205 (https://pubmed.ncbi.nlm.nih.gov/15405205/).",
+      "Pernicious anemia = IF failure pole (B12 replacement): PMID 14935513 (https://pubmed.ncbi.nlm.nih.gov/14935513/).",
+      "Ileal cubam receptor — NCBI Gene CUBN (cubilin) + AMN (amnionless): https://www.ncbi.nlm.nih.gov/gene/?term=CUBN"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "dietary_b12",
+      "label": "Dietary cobalamin (B12)",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": "Protein-bound in food; acid/pepsin help release."
+    },
+    {
+      "id": "free_b12",
+      "label": "Free B12 (gastric/duodenal)",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": "Transient; binds haptocorrin then IF."
+    },
+    {
+      "id": "intrinsic_factor",
+      "label": "Intrinsic factor (IF)",
+      "kind": "signal",
+      "compartment": "",
+      "notes": "Parietal-cell glycoprotein; acid-dependent production context."
+    },
+    {
+      "id": "if_b12_complex",
+      "label": "IF–B12 complex",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Resistant complex for ileal uptake."
+    },
+    {
+      "id": "ileal_uptake",
+      "label": "Ileal enterocyte uptake",
+      "kind": "enterocyte",
+      "compartment": "",
+      "notes": "Cubam (cubilin/amnionless) teaching receptor."
+    },
+    {
+      "id": "plasma_b12",
+      "label": "Transcobalamin-bound B12 (plasma)",
+      "kind": "circulation",
+      "compartment": "",
+      "notes": "Delivery to tissues; methyl-B12 / Ado-B12 cofactor forms."
+    }
+  ],
+  "edges": [
+    {
+      "from": "dietary_b12",
+      "to": "free_b12",
+      "enzyme": "Gastric release (acid / pepsin context)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Hypochlorhydria can impair release from food matrix."
+    },
+    {
+      "from": "free_b12",
+      "to": "if_b12_complex",
+      "enzyme": "Intrinsic factor binding",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "intrinsic_factor",
+      "notes": "IF is obligatory for efficient ileal absorption."
+    },
+    {
+      "from": "intrinsic_factor",
+      "to": "if_b12_complex",
+      "enzyme": "IF co-occupation",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "intrinsic_factor",
+      "notes": "Teaching edge: IF must be present with B12."
+    },
+    {
+      "from": "if_b12_complex",
+      "to": "ileal_uptake",
+      "enzyme": "Cubam receptor-mediated endocytosis",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Receptor-mediated; ileal resection loses this step."
+    },
+    {
+      "from": "ileal_uptake",
+      "to": "plasma_b12",
+      "enzyme": "Export + transcobalamin binding",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Compressed multi-step exit to circulation."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

@@ -1,0 +1,133 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "methionine_one_carbon",
+  "name": "methionine_one_carbon",
+  "description": "Methionine and one-carbon metabolism. Met is activated to S-adenosylmethionine (SAM), the universal methyl donor. After methyl transfer, SAH → homocysteine. Homocysteine is remethylated to Met (methionine synthase, B12 + 5-methyl-THF) or committed to cysteine via transsulfuration (CBS, B6).",
+  "provenance": {
+    "module": "biology_as_code.pathways.amino_acid_catabolism",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "prior",
+    "references": [
+      "One-carbon metabolism and methionine cycle — standard nutrition/biochem texts.",
+      "Homocysteine, folate, B12 interactions — public health / vascular literature."
+    ]
+  },
+  "nodes": [
+    {
+      "id": "methionine",
+      "label": "Methionine",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Essential AA; also recycled from Hcy."
+    },
+    {
+      "id": "sam",
+      "label": "S-Adenosylmethionine (SAM)",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Universal methyl donor (DNA, proteins, lipids, neurotransmitters)."
+    },
+    {
+      "id": "sah",
+      "label": "S-Adenosylhomocysteine (SAH)",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Product after methyl transfer; competitive inhibitor of many methyltransferases."
+    },
+    {
+      "id": "homocysteine",
+      "label": "Homocysteine",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Branch point: remethylation vs transsulfuration. Elevated Hcy = vascular risk marker."
+    },
+    {
+      "id": "methyl_thf",
+      "label": "5-Methyl-THF",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Folate one-carbon form; methyl donor for Met synthase."
+    },
+    {
+      "id": "cysteine",
+      "label": "Cysteine",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Non-essential if Met + Ser sufficient; GSH precursor."
+    },
+    {
+      "id": "serine",
+      "label": "Serine",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Carbon/N donor into transsulfuration (with Hcy → cystathionine)."
+    }
+  ],
+  "edges": [
+    {
+      "from": "methionine",
+      "to": "sam",
+      "enzyme": "Methionine adenosyltransferase (MAT / SAM synthase)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "methionine_adenosyltransferase",
+      "notes": "Met + ATP → SAM + PPi + Pi. Commits Met to methyl metabolism."
+    },
+    {
+      "from": "sam",
+      "to": "sah",
+      "enzyme": "Methyltransferases (many)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "SAM donates methyl → SAH. Huge set of acceptor substrates."
+    },
+    {
+      "from": "sah",
+      "to": "homocysteine",
+      "enzyme": "SAH hydrolase (AHCY)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Reversible; high Hcy or adenosine can push back toward SAH."
+    },
+    {
+      "from": "homocysteine",
+      "to": "methionine",
+      "enzyme": "Methionine synthase (MTR) — B12",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "methionine_synthase",
+      "notes": "Remethylation cycle. Folate trap if B12 deficient."
+    },
+    {
+      "from": "methyl_thf",
+      "to": "methionine",
+      "enzyme": "Methionine synthase (methyl transfer)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "methionine_synthase",
+      "notes": "5-methyl-THF methyl group → Hcy → Met; THF released."
+    },
+    {
+      "from": "homocysteine",
+      "to": "cysteine",
+      "enzyme": "Cystathionine β-synthase (CBS) → γ-cystathionase (CTH)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Irreversible transsulfuration. Compressed two steps. Serine co-substrate."
+    },
+    {
+      "from": "serine",
+      "to": "cysteine",
+      "enzyme": "Transsulfuration (Ser carbon enters cystathionine)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Serine provides the carbon skeleton half of cysteine."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

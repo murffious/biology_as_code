@@ -1,0 +1,109 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "glucose_epithelial_transport",
+  "name": "glucose_epithelial_transport",
+  "description": "Epithelial glucose handling after luminal liberation: SGLT1 (SLC5A1) Na⁺-coupled apical uptake in duodenum/jejunum; GLUT2 (SLC2A2) basolateral exit toward portal blood. GLUT5 fructose stub noted. Complements carb_digestion_absorption pack without duplicating amylase steps.",
+  "provenance": {
+    "module": "biology_as_code.pathways.meal_critical_pathways",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "prior",
+    "references": [
+      "SGLT1 Na⁺-glucose apical cotransport — NCBI Gene SLC5A1: https://www.ncbi.nlm.nih.gov/gene/?term=SLC5A1",
+      "GLUT2 basolateral hexose exit — NCBI Gene SLC2A2: https://www.ncbi.nlm.nih.gov/gene/?term=SLC2A2",
+      "GLUT5 apical fructose transport — NCBI Gene SLC2A5: https://www.ncbi.nlm.nih.gov/gene/?term=SLC2A5"
+    ]
+  },
+  "nodes": [
+    {
+      "id": "glucose_lumen",
+      "label": "Glucose (lumen)",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": "From starch/disaccharide digestion."
+    },
+    {
+      "id": "galactose_lumen",
+      "label": "Galactose (lumen)",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": "Also SGLT1 cargo."
+    },
+    {
+      "id": "glucose_enterocyte",
+      "label": "Glucose (enterocyte)",
+      "kind": "enterocyte",
+      "compartment": "",
+      "notes": "Apical uptake product."
+    },
+    {
+      "id": "glucose_portal",
+      "label": "Glucose (portal blood)",
+      "kind": "circulation",
+      "compartment": "",
+      "notes": "To liver / systemic."
+    },
+    {
+      "id": "fructose_lumen",
+      "label": "Fructose (lumen)",
+      "kind": "lumen",
+      "compartment": "",
+      "notes": "GLUT5 path; not SGLT1."
+    },
+    {
+      "id": "fructose_enterocyte",
+      "label": "Fructose (enterocyte)",
+      "kind": "enterocyte",
+      "compartment": "",
+      "notes": "GLUT5 apical."
+    }
+  ],
+  "edges": [
+    {
+      "from": "glucose_lumen",
+      "to": "glucose_enterocyte",
+      "enzyme": "SGLT1 (SLC5A1)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "sglt1",
+      "notes": "Na⁺-glucose cotransport; secondary active."
+    },
+    {
+      "from": "galactose_lumen",
+      "to": "glucose_enterocyte",
+      "enzyme": "SGLT1 (SLC5A1)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "sglt1",
+      "notes": "Galactose shares SGLT1."
+    },
+    {
+      "from": "glucose_enterocyte",
+      "to": "glucose_portal",
+      "enzyme": "GLUT2 (SLC2A2)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "glut2",
+      "notes": "Facilitated exit to interstitium / capillary."
+    },
+    {
+      "from": "fructose_lumen",
+      "to": "fructose_enterocyte",
+      "enzyme": "GLUT5 (SLC2A5)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "glut5",
+      "notes": "Fructose-specific facilitated transporter."
+    },
+    {
+      "from": "fructose_enterocyte",
+      "to": "glucose_portal",
+      "enzyme": "GLUT2 (basolateral fructose/glucose)",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "glut2",
+      "notes": "Compressed: fructose can exit via GLUT2 toward portal blood."
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}

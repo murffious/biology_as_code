@@ -1,0 +1,134 @@
+{
+  "schema": "biology-as-code/pathway-graph@1",
+  "id": "scfa_colonic_production",
+  "name": "scfa_colonic_production",
+  "description": "Colonic short-chain fatty acid production from fermentable fiber / RS. Microbiota ferment substrates to acetate, propionate, and butyrate; butyrate fuels colonocytes; acetate/propionate reach portal blood. Extends prebiotic_probiotic sketch with explicit SCFA products (FLOW).",
+  "provenance": {
+    "module": "biology_as_code.pathways.meal_critical_pathways",
+    "generator": "scripts/export_graph_json.py",
+    "certification": "prior",
+    "references": [
+      "Short-chain fatty acids — physiology and effects review: PMID 39845918 (https://pubmed.ncbi.nlm.nih.gov/39845918/).",
+      "SCFA and intestinal mucosal immunity review: PMID 39286812 (https://pubmed.ncbi.nlm.nih.gov/39286812/).",
+      "Colonic SCFA production (acetate / propionate / butyrate) — FLOW teaching; yields are taxa- and substrate-dependent."
+    ]
+  },
+  "nodes": [
+    {
+      "id": "fermentable_fiber",
+      "label": "Fermentable fiber / RS",
+      "kind": "substrate",
+      "compartment": "",
+      "notes": "Escapes small-bowel absorption; substrate for microbiota."
+    },
+    {
+      "id": "microbiota",
+      "label": "Colonic microbiota",
+      "kind": "intermediate",
+      "compartment": "",
+      "notes": "Taxa-dependent fermentation capacity."
+    },
+    {
+      "id": "acetate",
+      "label": "Acetate (C2)",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Often most abundant SCFA; portal delivery."
+    },
+    {
+      "id": "propionate",
+      "label": "Propionate (C3)",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Portal → liver gluconeogenesis teaching link."
+    },
+    {
+      "id": "butyrate",
+      "label": "Butyrate (C4)",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Preferred colonocyte fuel; barrier support teaching."
+    },
+    {
+      "id": "colonocyte_use",
+      "label": "Colonocyte oxidation",
+      "kind": "product",
+      "compartment": "",
+      "notes": "Local host use of butyrate."
+    },
+    {
+      "id": "portal_scfa",
+      "label": "Portal SCFA delivery",
+      "kind": "circulation",
+      "compartment": "",
+      "notes": "Acetate/propionate systemic exposure."
+    }
+  ],
+  "edges": [
+    {
+      "from": "fermentable_fiber",
+      "to": "microbiota",
+      "enzyme": "Substrate delivery to colon",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Transit + matrix determine how much reaches the colon."
+    },
+    {
+      "from": "microbiota",
+      "to": "acetate",
+      "enzyme": "Fermentation → acetate",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "colonic_fermentation",
+      "notes": ""
+    },
+    {
+      "from": "microbiota",
+      "to": "propionate",
+      "enzyme": "Fermentation → propionate",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "colonic_fermentation",
+      "notes": ""
+    },
+    {
+      "from": "microbiota",
+      "to": "butyrate",
+      "enzyme": "Fermentation → butyrate",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "colonic_fermentation",
+      "notes": ""
+    },
+    {
+      "from": "butyrate",
+      "to": "colonocyte_use",
+      "enzyme": "Colonocyte β-oxidation / fuel use",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": "Local consumption reduces systemic butyrate vs acetate."
+    },
+    {
+      "from": "acetate",
+      "to": "portal_scfa",
+      "enzyme": "Absorption → portal vein",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    },
+    {
+      "from": "propionate",
+      "to": "portal_scfa",
+      "enzyme": "Absorption → portal vein",
+      "cofactors": [],
+      "yields": [],
+      "mechanism_id": "",
+      "notes": ""
+    }
+  ],
+  "nutrient_dependencies": {},
+  "net_yields": {}
+}
