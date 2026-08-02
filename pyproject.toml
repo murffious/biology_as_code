@@ -46,6 +46,10 @@ dev = [
   "ruff>=0.4",
   "build>=1.0",
   "twine>=5.0",
+  # Nutrient nodes and the absorption seed are YAML. Kept out of `dependencies`
+  # so the core package stays zero-dependency; the loaders raise a directed
+  # ImportError when it is missing rather than degrading silently.
+  "pyyaml>=6.0",
 ]
 docs = [
   "mkdocs>=1.6",
@@ -70,6 +74,7 @@ biology_as_code = [
   "data/fixtures/*.json",
   "data/fixtures/**/*.json",
   "data/kibo_core/data/**/*",
+  "nodes/data/*.yaml",
   "product_score/**/*.md",
   "machines/data/**/*.json",
   "machines/**/*.md",

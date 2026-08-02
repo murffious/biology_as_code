@@ -77,6 +77,52 @@ Legacy citations embedded in law `bound` text, worth promoting to real refs:
 **FAO** food energy factors (~8 kJ/g fibre ME), **Livesey** fermentable-fibre energy
 synthesis (~1.5–2.5 kcal/g), **SLAMENGHI** carotenoid-modifier framework (LAW-020).
 
+### Berdanier Ch. 1 errata — five arithmetic errors in a cited secondary source
+
+**Berdanier CD, Berdanier LA, Zempleni J.** *Advanced Nutrition: Macronutrients,
+Micronutrients, and Metabolism.* CRC Press, 2009. Ch. 1, pp. 1–19.
+
+Extraction into `simulation/energy_accounting.py` surfaced five errors in the
+printed chapter. They are recorded here rather than silently corrected in code,
+because anyone else reading the same pages will hit them and because two of them
+propagate into every efficiency figure the chapter reports. Corrected constants
+ship in `energy_accounting.py` with the printed values retained alongside.
+
+| id | Locator | Severity | As printed | Correct |
+| --- | --- | --- | --- | --- |
+| ERR-ATP-01 | Table 1.3 p. 9; pp. 10–11 | **High** | 36 ATP/glucose (NADH=3, FADH2=2) | 30–32 ATP/glucose (P/O 2.5 and 1.5) |
+| ERR-GLU-01 | p. 11, Table 1.4 | **High** | glucose = 294.8 kcal/mol | 669.9 kcal/mol (2802.7 kJ/mol) |
+| ERR-TRIP-01 | p. 10 | Medium | C55H106O6 + 76.5 O2; RQ 0.719 | C51H98O6 + 72.5 O2; RQ 0.703 |
+| ERR-PALM-01 | p. 9 | Low | C16H22O2 (does not balance on H) | C16H32O2; RQ 0.696 either way |
+| ERR-KJ-01 | p. 17 | Low | 2000–2500 kcal = 8368–8577 kJ | 8368–10460 kJ |
+
+**ERR-GLU-01 is the instructive one.** Berdanier's lipogenesis efficiency is
+written as `(7597 − glucose cost) / 7597`, which returns a positive number *only*
+because the glucose constant is 2.27× too low; substituting the correct heat of
+combustion sends the expression negative, which is what exposed the framing itself
+as wrong. Recast as product over substrate, de novo lipogenesis comes out ~80%
+efficient — agreeing with McGuire & Beerman (4th ed., Ch. 7), who put the cost of
+converting glucose to triglyceride at 20–25% of the original energy. **It was
+caught by cross-reading two textbooks; neither alone would have surfaced it.**
+Tripalmitin is C51H98O6, MW 807.32, CAS 555-44-2 (NIST WebBook); glucose heat of
+combustion via CRC Handbook / Hess's law.
+
+**One claim in the extraction did not survive review.** The note accompanying
+these corrections asserted that the corrected model agrees with McGuire on *both*
+storage routes. It does not. De novo lipogenesis agrees (80.5% computed vs 75–80%
+reported). Preformed dietary fat does not: the 10-ATP Table 1.4 accounting gives
+99.0%, while McGuire's ~5% cost implies ~95%. The two are measuring different
+scopes — esterification alone versus whole-body handling including digestion,
+chylomicron assembly and transport — so they are not in conflict, but they are not
+interchangeable either. `efficiency_preformed_fat_storage()` carries the narrower
+scope and says so.
+
+- **Now: 3** (established mechanism, secondary source, corrections verified against
+  independent chemical references). **Target: 3** — this is a textbook-errata
+  record, not a magnitude claim, and does not need promotion.
+- **Action:** none outstanding. If Ch. 1 figures are ever quoted directly in the
+  paper or in product copy, quote the corrected column.
+
 ---
 
 ## Validation TODO ledger

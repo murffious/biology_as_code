@@ -1,0 +1,393 @@
+---
+# Glucose — nutrient-node.schema.json v1
+# Source: Berdanier, C. D. (2000). Advanced nutrition: Macronutrients (2nd ed.).
+#         CRC Press. Ch. 5 Carbohydrates, pp. 204-205.
+#
+# CITATION CORRECTION: the running head on p. 204 reads "Advanced Nutrition:
+# Macronutrients, Second Edition". This confirms that Appendix 2 (Metabolic
+# Maps, pp. 471-492) belongs to THIS volume, not to Berdanier & Zempleni 2009.
+# Amend tca_map1.mermaid and pathways.py accordingly.
+#
+# Why this node matters more than it looks: glucose is the case where
+# `identity.forms` stops being decorative. Figure 5.5 shows one molecule
+# existing as an open chain and two ring anomers, and the anomeric
+# configuration of the bond it later forms decides whether a human can
+# digest the resulting polymer at all.
+
+nutrient_id: glucose
+node_kind: compound
+schema_version: nutrient-node/v1
+
+identity:
+  name: D-glucose
+  chebi: "CHEBI:4167"
+  formula: C6H12O6
+  forms:
+    - form: open_chain_aldehyde
+      note: >
+        The reactive form. Free aldehyde at C1 makes glucose a REDUCING sugar —
+        the basis of Maillard browning and of glycation (HbA1c). Present at
+        well under 1% at equilibrium but it is the species that reacts.
+    - form: alpha_D_glucopyranose
+      note: "Six-membered ring. C1 hydroxyl below the plane."
+    - form: beta_D_glucopyranose
+      note: "Six-membered ring. C1 hydroxyl above the plane."
+  anomeric_equilibrium:
+    interconverts_via: mutarotation
+    note: >
+      α and β interconvert freely in solution THROUGH the open chain. This is
+      why free glucose is a reducing sugar regardless of which anomer you
+      dissolve — and why sucrose is not (see bond_digestibility below).
+  ring_parent:
+    pyranose: pyran
+    furanose: furan
+    note: "Fig 5.4. Glucose closes to pyranose; fructose to furanose."
+
+biological_context:
+  life_stage: [infant, child, adolescent, adult, older_adult]
+  sex: [female, male]
+  physiological_state: [standard]
+
+substance_class:
+  class: nutrient
+  note: >
+    Satisfies the energy predicate and carries a reference intake (as part of
+    the carbohydrate aggregate). Contrast fibre, which is a food_component
+    under the same test.
+nutrient_predicate:
+  satisfies: [energy]
+  primary: energy
+  note: >
+    McGuire's three-predicate test. Glucose is almost purely `energy`; it does
+    not maintain structure and is not a regulator. Contrast zinc, which
+    satisfies structure + regulation and not energy.
+
+reference_intakes:
+  - type: RDA
+    value: {point: 130, unit: g/day, condition: "total digestible carbohydrate, adults and children"}
+    population: adult
+    provenance:
+      claim_id: GLC-RDA-01
+      certification: gate
+      source_ref: iom2005_macronutrients
+      existence_verdict: REAL
+      support_verdict: SUPPORTS
+      confidence: HIGH
+      species: human
+      flag: >
+        This RDA is for CARBOHYDRATE, not glucose, and it is set from brain
+        glucose utilisation — the only DRI in the whole system derived from a
+        single organ's substrate demand. Berdanier gives brain use as ~120 g/d
+        (4 oz); Kohlmeier and Cahill give ~115 g/d. Do not attach this value to
+        the glucose node without the aggregate scoping.
+
+stages:
+  luminal:
+    site: [mouth, small_intestine]
+    notes: >
+      Free glucose needs no digestion. Everything upstream — starch, lactose,
+      sucrose, maltose — must first be hydrolysed at a glycosidic bond, and
+      whether that is possible is decided by bond_digestibility below.
+
+  absorption:
+    site: [small_intestine]
+    fraction:
+      point: 1.0
+      unit: fraction
+      condition: "free glucose, normal small intestine, below transport saturation"
+      provenance:
+        claim_id: GLC-ABS-01
+        certification: gate
+        source_ref: kohlmeier2003
+        source_locator: "p. 48, Figure 4.2"
+        existence_verdict: NO_PARENT_CITED
+        support_verdict: CANNOT_VERIFY
+        confidence: MEDIUM
+    dose_dependence:
+      is_saturable: true
+      shape: saturating
+      note: >
+        SGLT1 is a carrier and therefore saturable. Kohlmeier gives intestinal
+        lumen glucose at 5-100 mmol/L against Na⁺ at 140 mmol/L, with each
+        SGLT1 cycle moving 1 glucose, 2 Na⁺ and ~210 water molecules. The
+        water number is why hypertonic glucose loads cause osmotic diarrhoea
+        and why oral rehydration solutions are formulated at specific
+        glucose:sodium ratios.
+    transporters:
+      - hgnc_symbol: SLC5A1
+        aliases_in_source: [SGLT1]
+        resolution_status: HGNC_RESOLVED
+        role: uptake
+        membrane: apical
+        shared_substrates: [galactose]
+        provenance: {claim_id: GLC-TRP-01, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 48", existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: MEDIUM}
+      - hgnc_symbol: SLC2A2
+        aliases_in_source: [GLUT2]
+        resolution_status: HGNC_RESOLVED
+        role: efflux
+        membrane: basolateral
+        shared_substrates: [galactose, fructose]
+        provenance: {claim_id: GLC-TRP-02, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 48", existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: MEDIUM}
+
+  circulation:
+    carriers: []
+    reference_range:
+      low: 3.9
+      high: 5.6
+      unit: mmol/L
+      condition: "fasting plasma, non-diabetic"
+      provenance: {claim_id: GLC-CIR-01, certification: candidate, existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: LOW, flag: "not from this page; needs a clinical source before use"}
+
+  tissue_gates:
+    - gate: blood_brain_barrier
+      direction: restrictive
+      mechanism_status: established
+      transporters:
+        - hgnc_symbol: SLC2A1
+          aliases_in_source: [GLUT1]
+          resolution_status: HGNC_RESOLVED
+          role: uptake
+          membrane: plasma
+      notes: >
+        GLUT1 is the sole meaningful glucose conduit into brain; deficiency is
+        not compensated. Ketosis upregulates MCT1 and GLUT1, which is the
+        mechanism behind the brain's shift to ketones in prolonged fasting.
+      provenance: {claim_id: GLC-BBB-01, certification: gate, source_ref: kohlmeier2003, source_locator: "pp. 71-72", existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: MEDIUM}
+
+  storage:
+    total_body: {low: 370, high: 600, unit: g, condition: "as glycogen, liver + skeletal muscle"}
+    pools:
+      - name: hepatic_glycogen
+        compartment: liver
+        readily_exchangeable: true
+        size: {low: 70, high: 100, unit: g}
+        time_to_functional_depletion: {point: 24, unit: hours}
+        provenance:
+          claim_id: GLC-STO-01
+          certification: gate
+          source_ref: mcguire2023
+          source_locator: "§7-4, p. 289"
+          existence_verdict: REAL
+          support_verdict: SUPPORTS
+          confidence: MEDIUM
+          flag: >
+            THE pool that sets the fasting clock. McGuire defines `fasting` as
+            beginning 24 h after the last meal precisely because hepatic
+            glycogen is exhausted by then. Berdanier Ch. 1 gives 75 g total
+            glycogen contributing ~300 kcal in the first 24 h — same order,
+            different partition.
+      - name: muscle_glycogen
+        compartment: skeletal_muscle
+        readily_exchangeable: false
+        size: {low: 300, high: 500, unit: g}
+        provenance:
+          claim_id: GLC-STO-02
+          certification: gate
+          source_ref: mcguire2023
+          source_locator: "§7-4, p. 289"
+          existence_verdict: REAL
+          support_verdict: SUPPORTS
+          confidence: MEDIUM
+          flag: >
+            NOT available to blood glucose. Muscle lacks glucose-6-phosphatase,
+            so muscle glycogen is a local fuel only. The larger pool is the
+            unavailable one — modelling total body glycogen as one number gets
+            blood glucose maintenance wrong by a factor of five.
+
+  excretion:
+    routes:
+      - route: urinary
+        amount: {point: 0, unit: g/day, condition: "below the renal threshold"}
+        is_regulated: true
+        provenance:
+          claim_id: GLC-EXC-01
+          certification: gate
+          source_ref: kohlmeier2003
+          source_locator: "p. 60"
+          existence_verdict: NO_PARENT_CITED
+          support_verdict: CANNOT_VERIFY
+          confidence: MEDIUM
+          flag: "Spillage above ~180 mg/dl. A threshold, not a gradient."
+
+# ---------------------------------------------------------------------------
+# THE LOAD-BEARING BLOCK
+# ---------------------------------------------------------------------------
+# Berdanier p. 204: a glycosidic bond forms between the anomeric carbon of one
+# sugar and any hydroxyl of another. The ANOMERIC CONFIGURATION of that bond,
+# not the composition, decides human digestibility.
+#
+# Cellulose and starch are both pure glucose polymers. Identical elemental
+# formula. Identical gross energy in a bomb calorimeter. One is 4 kcal/g and
+# one is fibre. The entire difference is α versus β at C1.
+#
+# This is the concrete reason the Ch. 1 energy cascade has a GE -> DE step.
+
+bond_digestibility:
+  rule: >
+    Human amylases and brush-border disaccharidases are α-specific. Dietary
+    β-linked glucose polymers pass undigested to the colon. The major
+    exception is lactase (lactase-phlorizin hydrolase), a β-galactosidase —
+    and it is precisely the conditionally expressed one.
+  entries:
+    - name: maltose
+      composition: "glucose + glucose"
+      bond: "α(1→4)"
+      human_enzyme: maltase
+      digestible: true
+    - name: cellobiose
+      composition: "glucose + glucose"
+      bond: "β(1→4)"
+      human_enzyme: null
+      digestible: false
+      note: "Repeating unit of cellulose. Same two sugars as maltose."
+    - name: gentiobiose
+      composition: "glucose + glucose"
+      bond: "β(1→6)"
+      human_enzyme: null
+      digestible: false
+    - name: trehalose
+      composition: "glucose + glucose"
+      bond: "α(1↔1)"
+      human_enzyme: trehalase
+      digestible: true
+    - name: sucrose
+      composition: "glucose + fructose"
+      bond: "α(1↔2)"
+      human_enzyme: sucrase
+      digestible: true
+      note: >
+        Both anomeric carbons are committed to the bond, so sucrose has NO free
+        anomeric carbon. Consequences: non-reducing, does not mutarotate, and
+        does not participate in Maillard browning as itself. Acid or invertase
+        hydrolysis frees glucose and fructose; because fructose is strongly
+        levorotatory the specific rotation flips sign — hence INVERT SUGAR.
+        Honey is largely invert sugar; bees supply the invertase.
+    - name: lactose
+      composition: "galactose + glucose"
+      bond: "β(1→4)"
+      human_enzyme: lactase (LCT)
+      digestible: conditional
+      note: >
+        THE INSTRUCTIVE EXCEPTION. The one β-linked dietary disaccharide humans
+        can cleave, via the one enzyme whose expression is conditional on
+        genotype, ancestry and age. Digestibility here is a COHORT property,
+        not a food property — the same gram of lactose is 4 kcal for one person
+        and an osmotic load for another.
+    - name: amylose
+      composition: "glucose polymer"
+      bond: "α(1→4) linear"
+      human_enzyme: "α-amylase + maltase"
+      digestible: true
+    - name: amylopectin
+      composition: "glucose polymer"
+      bond: "α(1→4) with α(1→6) branches"
+      human_enzyme: "α-amylase + isomaltase"
+      digestible: true
+    - name: cellulose
+      composition: "glucose polymer"
+      bond: "β(1→4)"
+      human_enzyme: null
+      digestible: false
+      note: "Identical formula to starch. Zero digestible energy in humans."
+  provenance:
+    claim_id: GLC-BOND-01
+    certification: gate
+    source_ref: berdanier2000
+    source_locator: "Ch. 5, pp. 204-205, Oligosaccharides / Disaccharides"
+    existence_verdict: NO_PARENT_CITED
+    support_verdict: PARTIAL
+    confidence: MEDIUM
+    flag: >
+      Bonds and non-reducing behaviour are stated on the page. Enzyme
+      assignments and the α/β generalisation are mine from the same chapter's
+      logic, not printed as a rule. Verify against Ch. 5's digestion section
+      before promotion.
+
+monosaccharide_reaction_products:
+  note: "Table 5.1 — five general product groups from monosaccharide reactions."
+  groups:
+    - phosphoric_acid_esters   # glucose-6-phosphate; every entry into glycolysis
+    - polyhydroxy_alcohols     # sorbitol, mannitol — the sugar alcohols
+    - deoxy_sugars             # deoxyribose
+    - sugar_acids              # glucuronic acid, ascorbic acid precursors
+    - amino_sugars             # glucosamine, N-acetylglucosamine
+  flag: >
+    Polyhydroxy alcohols are why sugar alcohols need their own scoring path —
+    partially absorbed, incompletely metabolised, ~2 kcal/g rather than 4, and
+    osmotically active in the colon.
+
+function:
+  summary: "Primary metabolic fuel; obligate substrate for brain and erythrocytes."
+  domains: [glycolysis, pentose_phosphate_pathway, glycogenesis, lipogenesis]
+
+scoring_guard:
+  response_shape: u_shaped
+  monotonic_safe: false
+  requires_form_scoping: true
+  requires_matrix_scoping: true
+  requires_cohort_scoping: true
+  must_not_score_independently_of: [dietary_fibre, fructose, chromium, thiamin]
+  rationale: >
+    (1) IDENTICAL COMPOSITION IS NOT IDENTICAL AVAILABILITY. Cellulose and
+    starch are the same polymer of the same sugar with the same gross energy.
+    Any score reading elemental or monosaccharide composition without the
+    glycosidic bond will value them equally. This is the single strongest
+    argument in the carbohydrate chapter for scoping by form.
+    (2) LACTOSE DIGESTIBILITY IS A COHORT PROPERTY, not a food property.
+    (3) Glucose has an RDA only as part of the carbohydrate aggregate, and that
+    RDA is set from brain demand — it is a floor for organ function, not an
+    optimum for health, and must never be presented as a target to approach
+    from below.
+    (4) Free glucose absorption saturates at SGLT1 and drags ~210 water
+    molecules per cycle; the dose-response is not linear at high loads.
+
+sources:
+  berdanier2000:
+    authors: [Berdanier, C. D.]
+    year: 2000
+    title: "Advanced nutrition: Macronutrients"
+    edition: 2
+    publisher: CRC Press
+    source_type: book
+    existence_verdict: REAL
+    note: >
+      CONFIRMED from the running head on p. 204. This is the volume containing
+      Appendix 2 Metabolic Maps (pp. 471-492), previously attributed
+      provisionally to Berdanier & Zempleni 2009. Correct that attribution.
+  kohlmeier2003:
+    authors: [Kohlmeier, M.]
+    year: 2003
+    title: "Nutrient metabolism"
+    publisher: Academic Press
+    source_type: book
+    existence_verdict: REAL
+  mcguire2023:
+    authors: [McGuire, M., Beerman, K. A.]
+    year: 2023
+    title: "Nutritional sciences: From fundamentals to food"
+    edition: 4
+    publisher: Cengage Learning
+    source_type: book
+    existence_verdict: REAL
+  iom2005_macronutrients:
+    authors: [Institute of Medicine]
+    year: 2005
+    title: >
+      Dietary Reference Intakes for Energy, Carbohydrate, Fiber, Fat, Fatty
+      Acids, Cholesterol, Protein, and Amino Acids
+    publisher: National Academies Press
+    doi: 10.17226/10490
+    source_type: consensus_report
+    existence_verdict: REAL
+
+provenance:
+  extraction_method: photographic capture of pp. 204-205
+  verification_method: >
+    Structural facts (ring forms, anomers, bond configurations, non-reducing
+    behaviour of sucrose) are read directly off the page and are chemically
+    checkable. Enzyme assignments and the α/β digestibility generalisation are
+    inference from the same chapter and are marked PARTIAL.
+  promotion_blockers:
+    - "Ch. 5 digestion section not yet read — needed to confirm bond_digestibility"
+    - "circulation.reference_range is not from any source in the stack"
+    - "No primary source read for any value in this node"

@@ -1,0 +1,42 @@
+flowchart TD
+  %% Auto-generated from registry pathway: tryptophan_niacin
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  %% Source: Berdanier CD. Advanced Nutrition: Macronutrients, 2nd ed. CRC Press, 2000. Appendix 2, Metabolic Maps, pp. 471-492. Map 6, p. 475.
+  %% Source: Institute of Medicine. Dietary Reference Intakes for Thiamin, Riboflavin, Niacin, Vitamin B6, Folate, Vitamin B12, Pantothenic Acid, Biotin, and Choline. National Academies Press, 1998. DOI 10.17226/6015 [accession UNVERIFIED — resolve before it is quoted as the anchor]
+  TRP["Tryptophan"]
+  NFK["N-formylkynurenine"]
+  KYN["Kynurenine"]
+  KYNA["Kynurenate"]
+  ANTH["Anthranilate"]
+  OHKYN["3-hydroxykynurenine"]
+  XANTH["Xanthurenate"]
+  OHANTH["3-hydroxyanthranilate"]
+  ACMS["2-amino-3-carboxymuconate semialdehyde"]
+  QUIN["Quinolinate"]
+  NIACIN["Niacin (nicotinic acid)"]
+  PIC["Picolinate"]
+  AMS["2-aminomuconate semialdehyde"]
+  AM["Aminomuconate"]
+  GLU["Glutamate"]
+  SERO["Serotonin (5-HT)"]
+  MEL["Melatonin"]
+  FORM["Formate"]
+  ALA["Alanine"]
+  TRP -->|"tryptophan 2,3-dioxygenase"| NFK
+  TRP -->|"tryptophan hydroxylase"| SERO
+  SERO -->|"N-acetylation + O-methylation"| MEL
+  NFK -->|"formamidase"| KYN
+  NFK -->|"co-product release"| FORM
+  KYN -->|"kynurenine aminotransferase<br/>⟨vitamin B6 (PLP)⟩"| KYNA
+  KYN -->|"kynureninase<br/>⟨vitamin B6 (PLP)⟩"| ANTH
+  KYN -->|"kynurenine 3-monooxygenase<br/>NADPH-1"| OHKYN
+  OHKYN -->|"kynurenine aminotransferase<br/>⟨vitamin B6 (PLP)⟩"| XANTH
+  OHKYN -->|"kynureninase<br/>⟨vitamin B6 (PLP)⟩"| OHANTH
+  OHKYN -->|"co-product release"| ALA
+  OHANTH -->|"3-hydroxyanthranilate 3,4-dioxygenase<br/>⟨iron⟩"| ACMS
+  ACMS -->|"non-enzymatic cyclisation"| QUIN
+  ACMS -->|"ACMS decarboxylase"| PIC
+  ACMS -->|"ACMS decarboxylase<br/>CO2+1"| AMS
+  QUIN -->|"quinolinate phosphoribosyltransferase<br/>CO2+1"| NIACIN
+  AMS -->|"aminomuconate semialdehyde dehydrogenase<br/>NADH+1"| AM
+  AM -->|"step"| GLU

@@ -1,0 +1,19 @@
+flowchart TD
+  %% Auto-generated from registry pathway: carnitine_synthesis
+  %% Do not hand-edit; re-run scripts/export_pathway_packs.py
+  %% Source: Berdanier CD. Advanced Nutrition: Macronutrients, 2nd ed. CRC Press, 2000. Appendix 2, Metabolic Maps, pp. 471-492. Map 25, p. 489.
+  LYS["Lysine (protein-bound)"]
+  SAM["S-adenosylmethionine"]
+  TML["ε-N-trimethyl-L-lysine"]
+  HTML["β-hydroxy-ε-N-trimethyl-L-lysine"]
+  BBALD["γ-butyrobetaine aldehyde"]
+  BB["γ-butyrobetaine"]
+  CARN["L-carnitine"]
+  GLY["Glycine"]
+  LYS -->|"protein-lysine methyltransferase<br/>⟨methionine (SAM), folate, vitamin B12⟩"| TML
+  SAM -->|"methyl donation"| TML
+  TML -->|"TML dioxygenase (TMLD)<br/>CO2+1<br/>⟨iron, vitamin C⟩"| HTML
+  HTML -->|"HTML aldolase<br/>⟨vitamin B6 (PLP)⟩"| BBALD
+  HTML -->|"co-product release"| GLY
+  BBALD -->|"γ-butyrobetaine aldehyde dehydrogenase<br/>NADH+1<br/>⟨niacin (NAD)⟩"| BB
+  BB -->|"γ-butyrobetaine dioxygenase (BBD)<br/>CO2+1<br/>⟨iron, vitamin C⟩"| CARN

@@ -1,0 +1,254 @@
+# =============================================================================
+# Biology-as-Code — Bounds seed: fractional absorption (Assimilation system)
+# =============================================================================
+# These parameterize the gut ABSORPTION edges (e.g. rxn.zn_absorption), i.e. the
+# fraction of an ingested dose that crosses the enterocyte into portal/plasma.
+#
+# GATE POLICY (see nutrient-layer gate lattice):
+#   Source below is SECONDARY (a textbook). Every value therefore enters as
+#   `gate: prior` — a tier-2 quantitative prior, NOT a tier-4 Bound.
+#   Promotion prior -> bound REQUIRES: read the primary -> confirm it reports a
+#   fraction with a stated population + dose. Until then a query at tier `bound`
+#   treats the edge as UNEVALUABLE(reason: unverified-prior).
+#
+# The 5 named parents now carry VERIFIED DOIs (resolved via lookup + corroborated
+# against publisher PII/DOI, not guessed). `provenance: resolved` means the citation
+# chain is traceable to the primary; it does NOT auto-promote gate to `bound` — that
+# still needs reading the primary to confirm the quantitative fraction + population.
+# Entries with no named parent on the textbook page keep doi: null.
+# -----------------------------------------------------------------------------
+
+meta:
+  seed: absorption.fractional
+  system: Assimilation
+  units: fraction_of_ingested_dose
+  gate_default: prior
+  source_secondary:
+    author: "Kohlmeier, M."
+    year: 2003
+    work: "Nutrient Metabolism"
+    publisher: "Academic Press"
+    chapter: "4 — Absorption, Transport, and Retention"
+    pages: "45–61"
+    cite_style: "page-anchored (single-author book; no chapter entry)"
+    example_cites: ["(Kohlmeier, 2003, p. 53)", "(Kohlmeier, 2003, pp. 48–53)"]
+  promote_requires: [read_primary, population_stated, dose_stated]
+
+bounds:
+
+  # ---- trace elements ----
+  - id: absorb.zn
+    nutrient: nut.zn
+    label: Zinc
+    edge: rxn.zn_absorption
+    site: small_intestine
+    fraction: 0.70
+    dose_ref_mg: 3
+    dose_response: "saturable — fraction falls as dose rises"
+    parent: { cite: "Lönnerdal, 2000", ref: "J Nutr 130(5):1378S–1383S", doi: "10.1093/jn/130.5.1378S", provenance: resolved }
+    gate: prior
+    status: usable
+
+  - id: absorb.cu
+    nutrient: nut.cu
+    label: Copper
+    edge: rxn.cu_absorption
+    site: small_intestine
+    dose_response:
+      shape: strongly_dose_dependent
+      points:
+        - { at_dose_mg: "low",   fraction: ">0.50" }
+        - { above_dose_mg: 6.5,  fraction: "<0.15" }   # threshold given as 6–7 mg
+    parent: { cite: "Wapnir, 1998", ref: "Am J Clin Nutr 67(5 Suppl):1054S–1060S", doi: "10.1093/ajcn/67.5.1054S", provenance: resolved }
+    gate: prior
+    status: usable
+
+  - id: absorb.mn
+    nutrient: nut.mn
+    label: Manganese
+    edge: rxn.mn_absorption
+    fraction: "<0.02"
+    basis: food_manganese
+    parent: { cite: null, doi: null }
+    gate: prior
+    status: usable
+
+  - id: absorb.cr
+    nutrient: nut.cr
+    label: "Chromium (picolinate)"
+    edge: rxn.cr_absorption
+    fraction: { min: 0.005, max: 0.02 }
+    form: picolinate
+    parent: { cite: null, doi: null }
+    gate: prior
+    status: usable
+
+  - id: absorb.f
+    nutrient: nut.f
+    label: Fluoride
+    edge: rxn.f_absorption
+    fraction: 0.50
+    parent: { cite: null, doi: null }
+    gate: prior
+    status: usable
+
+  - id: absorb.ni
+    nutrient: nut.ni
+    label: Nickel
+    edge: rxn.ni_absorption
+    fraction: 0.01
+    parent: { cite: null, doi: null }
+    gate: prior
+    status: usable
+
+  - id: absorb.v
+    nutrient: nut.v
+    label: Vanadium
+    edge: rxn.v_absorption
+    fraction: { min: 0.01, max: 0.05 }
+    parent: { cite: null, doi: null }
+    gate: prior
+    status: usable
+
+  - id: absorb.se
+    nutrient: nut.se
+    label: Selenium
+    edge: rxn.se_absorption
+    fraction: ">0.90"
+    note: near_complete
+    parent: { cite: "Vendeland et al., 1992", ref: "J Nutr Biochem 3(7):359–365", doi: "10.1016/0955-2863(92)90028-H", provenance: resolved }
+    gate: prior
+    status: usable
+
+  - id: absorb.i
+    nutrient: nut.i
+    label: Iodine
+    edge: rxn.i_absorption
+    fraction: ">0.90"
+    note: near_complete
+    parent: { cite: null, doi: null }
+    gate: prior
+    status: usable
+
+  - id: absorb.mo
+    nutrient: nut.mo
+    label: Molybdenum
+    edge: rxn.mo_absorption
+    fraction: ">0.90"
+    note: near_complete
+    parent: { cite: null, doi: null }
+    gate: prior
+    status: usable
+
+  - id: absorb.as
+    nutrient: nut.as
+    label: Arsenic
+    edge: rxn.as_absorption
+    fraction: ">0.90"
+    note: near_complete
+    parent: { cite: null, doi: null }
+    gate: prior
+    status: usable
+
+  # ---- macro-minerals ----
+  - id: absorb.mg
+    nutrient: nut.mg
+    label: Magnesium
+    edge: rxn.mg_absorption
+    site: "distal jejunum / ileum"
+    fraction: { min: 0.30, max: 0.60 }
+    parent: { cite: "Sabatier et al., 2002", ref: "Am J Clin Nutr 75(1):65–71", doi: "10.1093/ajcn/75.1.65", provenance: resolved }
+    gate: prior
+    status: usable
+
+  - id: absorb.ca
+    nutrient: nut.ca
+    label: Calcium
+    edge: rxn.ca_absorption
+    fraction: { young_adult: 0.40, older: 0.20 }
+    parent: { cite: null, doi: null }
+    gate: prior
+    status: REANCHOR
+    flag:
+      issue: "textbook >40% (young adults) reads high"
+      current: "DRI-era mixed-diet adult fractional absorption ≈ 0.25–0.30; 40%+ fits infants/adolescents"
+      action: "re-anchor to DRI (IOM 2011, Ca & Vitamin D); do not admit as bound"
+
+  # ---- water-soluble vitamins ----
+  - id: absorb.vit_c
+    nutrient: vit.c
+    label: "Ascorbate (Vitamin C)"
+    edge: rxn.vitc_absorption
+    site: jejunum
+    fraction: 0.75
+    dose_response: "declines steeply with dose"
+    parent: { cite: null, doi: null }
+    gate: prior
+    status: usable
+
+  - id: absorb.folate
+    nutrient: vit.b9
+    label: "Folate (synthetic)"
+    edge: rxn.folate_absorption
+    fraction: 0.85
+    dose_ref: moderate_dose
+    form: synthetic_folic_acid
+    parent: { cite: null, doi: null }
+    gate: prior
+    status: usable
+
+  # ---- fat-soluble vitamins ----
+  - id: absorb.retinol
+    nutrient: vit.a
+    label: "Retinol / retinyl esters"
+    edge: rxn.retinol_absorption
+    fraction: { min: 0.70, max: 0.90 }
+    parent: { cite: null, doi: null }
+    gate: prior
+    status: usable
+
+  - id: absorb.provit_a
+    nutrient: nut.provitA_carotenoids
+    label: "Provitamin-A carotenoids"
+    edge: rxn.provitA_absorption
+    fraction: "<0.03"
+    parent: { cite: null, doi: null }
+    gate: prior
+    status: usable
+
+  - id: absorb.betacarotene_conv
+    nutrient: nut.betacarotene
+    label: "β-carotene → retinal (conversion)"
+    edge: rxn.betacarotene_cleavage
+    fraction: 0.15
+    basis: "of absorbed β-carotene cleaved to retinal"
+    parent: { cite: null, doi: null }
+    gate: prior
+    status: REANCHOR
+    flag:
+      issue: "conversion superseded by RAE standard"
+      current: "IOM (2001) RAE — 12:1 food β-carotene, 24:1 other provitamin-A carotenoids"
+      action: "cite the DRI report, not the textbook page; do not admit as bound"
+
+  - id: absorb.vit_k
+    nutrient: vit.k
+    label: "Vitamin K (from greens)"
+    edge: rxn.vitk_absorption
+    fraction: "<0.20"
+    source_food: leafy_greens
+    parent: { cite: null, doi: null }
+    gate: prior
+    status: usable
+
+  # ---- macronutrient (digestion-stage figure, not net absorption) ----
+  - id: digest.fat_diglyceride
+    nutrient: nut.fat
+    label: "Fat — mono-/diglyceride stage"
+    edge: rxn.fat_lipolysis
+    fraction: { min: 0.10, max: 0.20 }
+    basis: "of digestion at the mono-/diglyceride stage (NOT net fat absorption, which is ~0.95)"
+    parent: { cite: "Carriere et al., 1993", ref: "Gastroenterology 105(3):876–888", doi: "10.1016/0016-5085(93)90908-U", provenance: resolved }
+    gate: prior
+    status: usable
+    flag:
+      note: "this is a lipolysis-stage fraction; keep distinct from net triglyceride absorption"

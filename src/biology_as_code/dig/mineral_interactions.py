@@ -5,6 +5,20 @@ Minerals, trace elements, and nutrient–nutrient interaction matrix.
 Grounded in Handbook of Nutrition and Food + Advanced Nutrition and Human
 Metabolism mineral chapters: competitive absorption, antinutrients, and
 classic pairs (Zn–Cu, Ca–Fe, phytate–Zn/Fe, ascorbate–non-heme Fe, etc.).
+
+On ``typical_bioavailability``
+------------------------------
+These floats are meal-realistic defaults with no citation, no dose and no cohort
+attached. ``nodes/bounds.py`` carries the same quantity as sourced, dose-scoped
+priors, and the two disagree for several minerals — see
+:func:`absorption_prior` and ``reconcile_with_registry``. The disagreements are
+mostly scope, not error: zinc absorbs at ~0.70 from a 3 mg dose with nothing
+competing, and at ~0.30 across a mixed diet. Both are true of zinc; only one is
+true of a meal.
+
+The floats are deliberately left alone here. Changing them would silently move
+every simulation result, and the choice of which condition a default should model
+is a modelling decision that belongs in a reviewed diff, not in a data import.
 """
 
 from __future__ import annotations
@@ -27,7 +41,9 @@ class MineralSpec:
     name: str
     symbol: str
     family: MineralFamily
-    typical_bioavailability: float  # 0–1
+    #: Meal-realistic default, 0–1. Unsourced by construction — for the sourced,
+    #: dose-scoped prior call :func:`absorption_prior` with this mineral's id.
+    typical_bioavailability: float
     primary_site: str
     transporters: list[str] = field(default_factory=list)
     dri_adult_mg: float = 0.0  # adult RDA/AI-ish reference (mg/day; µg as noted)
@@ -396,6 +412,48 @@ class MineralInteractionSystem:
                     return max(0.2, min(1.0, float(val) / max(dri * 2, 0.01)))
                 return max(0.2, min(1.0, float(val)))
         return 1.0  # boolean presence → full rule strength
+
+
+# ---------------------------------------------------------------------------
+# Sourced priors — the bridge to nodes/bounds.py
+# ---------------------------------------------------------------------------
+
+
+def absorption_prior(mineral_id: str) -> Any | None:
+    """The sourced, dose-scoped absorption prior for a mineral, or None.
+
+    Returns an ``AbsorptionBound`` carrying the fraction *as the source stated
+    it* — which may be a one-sided bound, a range, a cohort split, or a
+    dose-response curve rather than a number. Unlike
+    :attr:`MineralSpec.typical_bioavailability` it never flattens to a float,
+    because for copper the honest answer is a curve and for calcium it is two
+    cohorts.
+
+    Returns None when the seed has no entry (iron, phosphorus, potassium and
+    sodium are all registry-only today), and imports lazily so the mineral module
+    keeps working without PyYAML installed.
+    """
+    try:
+        from biology_as_code.nodes.bounds import bounds_by_mineral
+    except ImportError:
+        return None
+    return bounds_by_mineral().get(mineral_id)
+
+
+def unsourced_minerals() -> list[str]:
+    """Registry ids whose bioavailability float has no counterpart in the seed.
+
+    These are the numbers with nothing behind them at all. Worth knowing, because
+    iron is on the list and iron is the one the interaction rules lean on hardest.
+    """
+    seeded = set()
+    try:
+        from biology_as_code.nodes.bounds import bounds_by_mineral
+
+        seeded = set(bounds_by_mineral())
+    except ImportError:
+        pass
+    return sorted(set(MINERAL_REGISTRY) - seeded)
 
 
 if __name__ == "__main__":

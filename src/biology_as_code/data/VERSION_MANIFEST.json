@@ -50,10 +50,25 @@
         "tca_cycle.py",
         "etc_oxphos.py",
         "supporting_pathways.py",
-        "digestion_absorption_pathways.py"
+        "digestion_absorption_pathways.py",
+        "micronutrient_cofactor_pathways.py"
       ],
       "tier": "FLOW",
-      "notes": "Teaching graphs; mechanism_id links where present"
+      "notes": "Teaching graphs; mechanism_id links where present. micronutrient_cofactor_pathways carries requires_nutrient edges (tryptophan->niacin, carnitine synthesis)"
+    },
+    "nutrient_nodes": {
+      "id": "nutrient_nodes",
+      "version": "1.0.0",
+      "module": "nodes/",
+      "tier": "EVIDENCE",
+      "notes": "Per-nutrient pipeline model with a provenance record on every claim; validated against schemas/nutrient-node.schema.json. Reference instances: zinc, glucose. Needs PyYAML (dev extra)"
+    },
+    "energy_accounting": {
+      "id": "energy_accounting",
+      "version": "1.0.0",
+      "module": "energy_accounting.py",
+      "tier": "FLOW",
+      "notes": "Energy as a balance, not a nutrient node: AMDR distribution verdicts, storage-cost asymmetry, postabsorptive clock. Carries Berdanier Ch.1 errata corrections"
     },
     "pathway_regulation": {
       "id": "pathway_regulation",

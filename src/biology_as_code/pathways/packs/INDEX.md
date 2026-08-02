@@ -13,6 +13,7 @@ Gold extras: [`glycolysis/glycolysis_extra/`](./glycolysis/glycolysis_extra/) (e
 | [`bile_acid_synthesis`](./bile_acid_synthesis/) | `biology_as_code.pathways.digestion_absorption_pathways` | 4 | 3 |
 | [`brush_border_final_digestion`](./brush_border_final_digestion/) | `biology_as_code.pathways.digestion_absorption_pathways` | 4 | 2 |
 | [`carb_digestion_absorption`](./carb_digestion_absorption/) | `biology_as_code.pathways.digestion_absorption_pathways` | 5 | 4 |
+| [`carnitine_synthesis`](./carnitine_synthesis/) | `biology_as_code.pathways.micronutrient_cofactor_pathways` | 8 | 7 |
 | [`cholesterol_biosynthesis`](./cholesterol_biosynthesis/) | `biology_as_code.pathways.cholesterol_pathway` | 11 | 10 |
 | [`cobalamin_absorption`](./cobalamin_absorption/) | `biology_as_code.pathways.meal_critical_pathways` | 6 | 5 |
 | [`cori_glucose_alanine`](./cori_glucose_alanine/) | `biology_as_code.pathways.supporting_pathways` | 6 | 7 |
@@ -43,6 +44,7 @@ Gold extras: [`glycolysis/glycolysis_extra/`](./glycolysis/glycolysis_extra/) (e
 | [`secondary_bile_acids`](./secondary_bile_acids/) | `biology_as_code.pathways.supporting_pathways` | 4 | 3 |
 | [`srebp_network`](./srebp_network/) | `biology_as_code.pathways.nutrient_sensing` | 10 | 8 |
 | [`tca_cycle`](./tca_cycle/) | `biology_as_code.pathways.tca_cycle` | 9 | 8 |
+| [`tryptophan_niacin`](./tryptophan_niacin/) | `biology_as_code.pathways.micronutrient_cofactor_pathways` | 19 | 18 |
 | [`urea_cycle`](./urea_cycle/) | `biology_as_code.pathways.urea_cycle` | 10 | 10 |
 
-**Total:** 38 graphs
+**Total:** 40 graphs

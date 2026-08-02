@@ -4,6 +4,99 @@ All notable changes to the **biology-as-code** Python package are documented her
 
 ## [Unreleased]
 
+### Nutrient nodes, absorption bounds & the nutrient-requirement edge
+
+Four loose drafts sat in the repo root describing work the package could not
+execute: two `*.node.yaml` files declaring a schema that did not exist, an
+absorption seed nothing read, and two standalone Python modules. Harvested into
+the package; originals moved to `../archive/biology_as_code-harvest-2026-08-01/`
+with a per-file note recording what was taken and what was deliberately not.
+
+#### Added — nutrient nodes (`nodes/`, tier EVIDENCE)
+
+- **`schemas/nutrient-node.schema.json`** — the contract `zinc.node.yaml` and
+  `glucose.node.yaml` already claimed to satisfy. Written inside the repo's
+  zero-dependency validator subset (no `$ref`), so `packets/validate.py` checks it.
+- **`nodes/`** — loader, `NutrientNode`, and the `rejected < candidate < prior <
+  gate < bound` certification lattice with `at_least()`. Both reference nodes now
+  load and validate; **52 claims, none at `bound`**, which is the correct answer
+  for two nodes built entirely from secondary sources.
+- `validate_node()` runs three passes: document spine, the claim-provenance
+  vocabulary lifted from `$defs`, then cross-references. The third pass carries
+  the real rule — a `source_ref` must always resolve, while a `parent_ref` may
+  dangle *only* when the claim declares `existence_verdict: NOT_FOUND`. The zinc
+  node legitimately has fourteen such unresolved parents.
+- `nodes/data/{zinc,glucose}.node.yaml` now ship as package data (`zinc.node.yaml`
+  moved from the repo root). Parsing needs PyYAML, added to the `dev` extra —
+  core stays zero-dependency and the loaders raise a directed `ImportError`.
+
+#### Added — fractional-absorption bounds (`nodes/bounds.py`)
+
+- Parses the absorption seed **without flattening it**: `FractionSpec` keeps
+  `">0.90"` as a lower bound rather than inventing a midpoint, and keeps calcium's
+  cohort split and copper's dose-response curve intact.
+- `reconcile_with_registry()` compares the sourced priors against the unsourced
+  `typical_bioavailability` floats in `dig/mineral_interactions.py`. **Five
+  minerals conflict** (zinc, selenium, manganese, molybdenum, fluoride), pinned by
+  tests so neither side moves silently.
+- **The registry floats were not overwritten.** Most conflicts are scope, not
+  error — zinc absorbs at 0.70 from a 3 mg dose and 0.30 across a mixed diet, and
+  both are true. Choosing which condition a default models is a modelling decision
+  for a reviewed diff. The seed's own calcium `REANCHOR` flag turned out to agree
+  with the code already in place.
+- `absorption_prior()` and `unsourced_minerals()` on the mineral module. Iron is
+  on the unsourced list, and the interaction rules lean on iron hardest.
+
+#### Added — `requires_nutrient` edges (→ 40 graphs)
+
+- `ReactionEdge.requires_nutrient` in `pathways/_types.py`: the micronutrient a
+  step cannot run without. Every other field on the edge tracks carbon or energy;
+  this is the one that tracks nutrition. Read through `edge_nutrients()`, so the
+  sixteen legacy per-module edge classes are unaffected.
+- `MetabolicPathway.nutrient_dependencies()` — which steps stop if a nutrient is
+  short. A rendered diagram cannot answer this.
+- **`pathways/micronutrient_cofactor_pathways.py`** with two graphs, the first
+  module built on the shared `_types` contract:
+  - `tryptophan_niacin` (Berdanier Map 6) — four PLP-dependent steps, so low B6
+    lowers effective niacin. A nutrient-nutrient edge with a direction.
+  - `carnitine_synthesis` (Map 25) — five micronutrient families on one linear
+    chain, the cleanest argument against independent per-nutrient scoring.
+- Berdanier volume question **resolved**: the running head on p. 204 confirms
+  Appendix 2 belongs to the 2000 2nd edition, not Berdanier/Zempleni 2009.
+- The 60:1 niacin-equivalent ratio is **not** attributed to Map 6 — it is a DRI
+  convention, carried with its accession explicitly marked UNVERIFIED.
+
+#### Added — energy as a balance (`simulation/energy_accounting.py`)
+
+- `SCORING_GUARD`: energy has no reference intake and cannot have one, so a score
+  may act on macronutrient distribution and substrate storage cost and **must not
+  act on an absolute kcal target**. Plus `amdr_verdict()`, `EnergyCascade`, the
+  species-specific postabsorptive clock, and the storage-cost asymmetry.
+- Deliberately excludes BMR (already in `body_composition_energy.py`, with better
+  equations) and RQ (already in `respiratory_quotient.py`).
+
+#### Fixed
+
+- `respiratory_quotient.py` compared RQ against `1.0` and `0.7` with `==`. Real
+  divisions essentially never land there, so both branches were unreachable and
+  ordinary fat-predominant values (0.75) fell through to "protein or mixed with
+  ketogenesis". Now banded, with `substrate_mix()` that refuses to extrapolate
+  outside 0.70–1.00 rather than returning a fraction outside 0–1.
+- `interpretation()` read `self.rq` before computing it, so calling it directly
+  interpreted the `0.0` default as a measurement.
+
+#### Documented
+
+- `docs/VALIDATION_LEDGER.md` — **five arithmetic errors in Berdanier Ch. 1**,
+  two of which propagate into every efficiency figure in the chapter. ERR-GLU-01
+  (glucose heat of combustion low by 2.27×) was caught by cross-reading two
+  textbooks; neither alone would have surfaced it.
+- One claim from the extraction **did not survive review**: it asserted the
+  corrected model agrees with McGuire & Beerman on both storage routes. It agrees
+  on de novo lipogenesis (80.5% vs 75–80%) and not on preformed fat (99.0% vs
+  ~95%), because the two measure different scopes. Now stated in both the
+  function and the ledger.
+
 ### Pathway graphs, mermaid packs & sources (teaching FLOW)
 
 Numbers below are **registry pathway graphs** (each with a co-located

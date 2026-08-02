@@ -46,8 +46,14 @@ Not every **`.py` file** is a graph (some are mechanisms, regulation, loaders).
 | cobalamin_absorption | `packs/cobalamin_absorption/` | `meal_critical_pathways.py` |
 | glucose_epithelial_transport | `packs/glucose_epithelial_transport/` | `meal_critical_pathways.py` |
 | scfa_colonic_production | `packs/scfa_colonic_production/` | `meal_critical_pathways.py` |
+| tryptophan_niacin | `packs/tryptophan_niacin/` | `micronutrient_cofactor_pathways.py` |
+| carnitine_synthesis | `packs/carnitine_synthesis/` | `micronutrient_cofactor_pathways.py` |
 
-**Count:** 38 registry graphs · 38 mermaid packs · **0 missing · 0 orphan packs** (when export is up to date).
+**Count:** 40 registry graphs · 40 mermaid packs · **0 missing · 0 orphan packs** (when export is up to date).
+
+The last two carry `requires_nutrient` on their edges — the micronutrient a step
+cannot run without. They are the only graphs here that answer "which steps stop
+if this person is short on B6" rather than "where does the carbon go".
 
 Auto mermaid is generated **from live code graphs**, so topology matches the Python model for that export. Hand gold diagrams in `glycolysis_extra/` may be richer (styling, phases) than auto `pathway.mermaid`.
 

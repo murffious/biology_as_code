@@ -1,0 +1,197 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/murffious/biology_as_code/schemas/nutrient-node.schema.json",
+  "title": "Nutrient node v1",
+  "description": "One nutrient modelled as a pipeline: intake -> luminal -> absorption -> circulation -> tissue gates -> storage -> excretion, with a provenance record on every quantitative claim. Reference instances: nodes/data/zinc.node.yaml (element) and nodes/data/glucose.node.yaml (compound). Energy deliberately does NOT fit this shape - see simulation/energy_accounting.py.",
+  "type": "object",
+  "required": [
+    "nutrient_id",
+    "node_kind",
+    "schema_version",
+    "identity",
+    "sources",
+    "provenance"
+  ],
+  "properties": {
+    "nutrient_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$",
+      "description": "Stable lowercase id. Filename is <nutrient_id>.node.yaml."
+    },
+    "node_kind": {
+      "type": "string",
+      "enum": ["element", "compound", "vitamin", "food_component"],
+      "description": "What kind of thing the node is. Energy is not on this list on purpose."
+    },
+    "schema_version": {
+      "const": "nutrient-node/v1"
+    },
+    "identity": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string" },
+        "symbol": { "type": "string" },
+        "chebi": { "type": "string", "pattern": "^CHEBI:[0-9]+$" },
+        "formula": { "type": "string" },
+        "forms": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["form"],
+            "properties": {
+              "form": { "type": "string" },
+              "note": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "biological_context": {
+      "type": "object",
+      "properties": {
+        "life_stage": { "type": "array", "items": { "type": "string" } },
+        "sex": { "type": "array", "items": { "type": "string" } },
+        "physiological_state": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "substance_class": {
+      "type": "object",
+      "required": ["class"],
+      "properties": {
+        "class": {
+          "type": "string",
+          "enum": ["nutrient", "food_component", "xenobiotic"]
+        },
+        "note": { "type": "string" }
+      }
+    },
+    "nutrient_predicate": {
+      "type": "object",
+      "description": "McGuire's three-predicate test: does the substance supply energy, maintain structure, or regulate a process.",
+      "properties": {
+        "satisfies": {
+          "type": "array",
+          "items": { "type": "string", "enum": ["energy", "structure", "regulation"] }
+        },
+        "primary": { "type": "string", "enum": ["energy", "structure", "regulation"] },
+        "note": { "type": "string" }
+      }
+    },
+    "reference_intakes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "value"],
+        "properties": {
+          "type": { "type": "string", "enum": ["RDA", "AI", "UL", "EAR", "AMDR"] },
+          "population": { "type": "string" },
+          "value": { "type": "object" }
+        }
+      }
+    },
+    "stages": {
+      "type": "object",
+      "description": "The pipeline. Every stage is optional; a node that omits one is declaring it unmodelled, not declaring it absent.",
+      "properties": {
+        "luminal": { "type": "object" },
+        "absorption": { "type": "object" },
+        "circulation": { "type": "object" },
+        "tissue_gates": { "type": "array" },
+        "storage": { "type": "object" },
+        "excretion": { "type": "object" }
+      }
+    },
+    "scoring_guard": {
+      "type": "object",
+      "description": "Why this nutrient cannot be scored naively. Load-bearing: a scorer reads this before it reads any number.",
+      "required": ["rationale"],
+      "properties": {
+        "response_shape": {
+          "type": "string",
+          "enum": ["monotonic_benefit", "saturating", "u_shaped", "threshold", "balance"]
+        },
+        "monotonic_safe": { "type": "boolean" },
+        "requires_form_scoping": { "type": "boolean" },
+        "requires_matrix_scoping": { "type": "boolean" },
+        "requires_cohort_scoping": { "type": "boolean" },
+        "must_not_score_independently_of": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "rationale": { "type": "string" }
+      }
+    },
+    "sources": {
+      "type": "object",
+      "description": "Keyed bibliography. Every provenance.source_ref / parent_ref must name a key here."
+    },
+    "provenance": {
+      "type": "object",
+      "description": "Document-level provenance: how this node was built, and what blocks promotion.",
+      "required": ["extraction_method"],
+      "properties": {
+        "extraction_method": { "type": "string" },
+        "verification_method": { "type": "string" },
+        "unresolved_parents": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Parents the secondary source named that were not chased down. Claims pointing at these must carry existence_verdict: NOT_FOUND."
+        },
+        "promotion_blockers": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  },
+  "$defs": {
+    "claim_provenance": {
+      "title": "Claim provenance",
+      "description": "Applied by the loader to every nested `provenance` object. The vocabulary is closed on purpose: an unrecognised certification or verdict is a typo that would otherwise read as authority.",
+      "type": "object",
+      "required": ["claim_id", "certification"],
+      "properties": {
+        "claim_id": {
+          "type": "string",
+          "pattern": "^[A-Z][A-Z0-9]*-[A-Z]+-[0-9]+$",
+          "description": "e.g. ZN-ABS-01. Unique within the node."
+        },
+        "certification": {
+          "type": "string",
+          "enum": ["rejected", "candidate", "prior", "gate", "bound"],
+          "description": "The gate lattice, ascending. `bound` requires a primary read with population and dose stated."
+        },
+        "source_ref": { "type": "string" },
+        "source_locator": { "type": "string" },
+        "source_verbatim": { "type": "string" },
+        "parent_ref": { "type": "string" },
+        "existence_verdict": {
+          "type": "string",
+          "enum": ["REAL", "NOT_FOUND", "NO_PARENT_CITED", "UNCHECKED"],
+          "description": "Does the cited parent exist. NO_PARENT_CITED means the secondary named none - it is not a failure to find one."
+        },
+        "support_verdict": {
+          "type": "string",
+          "enum": ["SUPPORTS", "PARTIAL", "CONTRADICTS", "CANNOT_VERIFY"],
+          "description": "Does the parent support the claim. CANNOT_VERIFY is the honest default until the primary is read."
+        },
+        "confidence": { "type": "string", "enum": ["HIGH", "MEDIUM", "LOW"] },
+        "species": { "type": "string" },
+        "flag": { "type": "string" }
+      }
+    },
+    "document_provenance": {
+      "title": "Document provenance",
+      "type": "object",
+      "required": ["extraction_method"],
+      "properties": {
+        "extraction_method": { "type": "string" },
+        "verification_method": { "type": "string" },
+        "unresolved_parents": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Parents the secondary source named that were not chased down. Claims pointing at these must carry existence_verdict: NOT_FOUND."
+        },
+        "promotion_blockers": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

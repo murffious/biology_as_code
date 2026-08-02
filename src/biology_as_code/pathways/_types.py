@@ -19,7 +19,7 @@ See docs/python/PATHWAY_TYPES_REFACTOR.md.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any, Optional
 
@@ -98,6 +98,16 @@ class ReactionEdge:
     co2_produced: int = 0
     protons_pumped: int = 0
 
+    #: Micronutrients this step cannot run without — the vitamin or mineral that
+    #: is the enzyme's cofactor, not a substrate. Every other field on this edge
+    #: tracks carbon and energy; this is the only one that tracks *nutrition*, and
+    #: it is the edge that makes these graphs answer a dietary question rather
+    #: than a biochemical one. Carnitine synthesis is the worked case: five
+    #: distinct dependencies on one linear chain, so a shortfall at any single
+    #: step stops the whole pathway. Scoring those five nutrients independently
+    #: cannot represent that.
+    requires_nutrient: list[str] = field(default_factory=list)
+
     # descriptors, all optional
     process: str = ""  # non-enzymatic step ("passive diffusion"); distinct from `enzyme`
     location: str = ""
@@ -153,7 +163,20 @@ def edge_label(edge: Any) -> str:
         if enzyme:
             parts.append(enzyme[:40])
     parts.extend(f"{species}{delta:+g}" for species, delta in edge_yields(edge))
+    required = edge_nutrients(edge)
+    if required:
+        parts.append("⟨" + ", ".join(required) + "⟩")
     return "<br/>".join(parts) if parts else "step"
+
+
+def edge_nutrients(edge: Any) -> list[str]:
+    """Micronutrients this step requires. Empty for edges that declare none.
+
+    Read via getattr like the other accessors here, so legacy per-module edge
+    dataclasses (which have no such field) keep working untouched.
+    """
+    required = getattr(edge, "requires_nutrient", None) or []
+    return [str(n) for n in required]
 
 
 class MetabolicPathway:
@@ -200,6 +223,21 @@ class MetabolicPathway:
             for species, delta in edge_yields(edge):
                 totals[species] = totals.get(species, 0) + delta
         return {k: v for k, v in totals.items() if v}
+
+    def nutrient_dependencies(self) -> dict[str, list[str]]:
+        """Which steps need which micronutrient — the query a diagram cannot answer.
+
+        A rendered pathway shows the dependency as a label next to one arrow. It
+        cannot answer "which steps stop if this person is short on B6", which is
+        the question a nutrition model actually has. Returns nutrient -> the steps
+        that require it, each named by enzyme where one is declared.
+        """
+        deps: dict[str, list[str]] = {}
+        for edge in self.edges:
+            step = edge_enzyme(edge) or f"{edge.from_node}→{edge.to_node}"
+            for nutrient in edge_nutrients(edge):
+                deps.setdefault(nutrient, []).append(step)
+        return deps
 
     def summary(self) -> dict:
         return {
