@@ -1,0 +1,539 @@
+---
+# Zinc — reference instance for nutrient-node.schema.json v1
+# Source: Kohlmeier, M. (2003). Nutrient metabolism. Academic Press. Ch. 11, pp. 687-691.
+#
+# This node is the worked example because zinc exercises every hard part of the
+# schema at once: saturable absorption, homeostatic flattening, a U-shaped
+# response from copper antagonism, transporter competition, matrix inhibition,
+# and a two-pool store where the small pool governs the timescale.
+
+nutrient_id: zinc
+node_kind: element
+schema_version: nutrient-node/v1
+
+identity:
+  name: Zinc
+  symbol: Zn
+  chebi: "CHEBI:27363"
+  forms:
+    - form: zinc_ion
+      note: Zn2+, the transported species
+    - form: protein_bound
+      note: dominant food form; requires proteolytic release
+    - form: dna_bound
+      note: released by intraluminal DNAses/RNAses
+    - form: zinc_histidine_complex
+      note: absorbed better than free zinc
+    - form: zinc_cysteine_complex
+      note: absorbed better than free zinc
+    - form: zinc_phytate
+      note: poorly absorbed; the dominant plant-food constraint
+
+biological_context:
+  life_stage: [adult]
+  sex: [female, male]
+  physiological_state: [standard]
+
+reference_intakes:
+  - type: RDA
+    value: {point: 8, unit: mg/day, condition: "adult women, mixed diet"}
+    population: adult_female
+    provenance:
+      claim_id: ZN-RDA-01
+      certification: gate
+      source_ref: kohlmeier2003
+      source_locator: "p. 687, Nutritional summary"
+      parent_ref: iom2001_micronutrients
+      existence_verdict: REAL
+      support_verdict: SUPPORTS
+      confidence: HIGH
+      species: human
+      flag: >
+        Kohlmeier dates this parent 2002; the DRI report for zinc is IOM 2001
+        (10.17226/10026). Minor year drift, same document. Cite the DOI.
+  - type: RDA
+    value: {point: 11, unit: mg/day, condition: "adult men, mixed diet"}
+    population: adult_male
+    provenance:
+      claim_id: ZN-RDA-02
+      certification: gate
+      source_ref: kohlmeier2003
+      source_locator: "p. 687"
+      parent_ref: iom2001_micronutrients
+      existence_verdict: REAL
+      support_verdict: SUPPORTS
+      confidence: HIGH
+      species: human
+  - type: UL
+    value: {point: 40, unit: mg/day}
+    population: adult
+    provenance:
+      claim_id: ZN-UL-01
+      certification: gate
+      source_ref: kohlmeier2003
+      source_locator: "p. 687, Excessive intake"
+      source_verbatim: "Consumption of more than 40 mg/d may deplete copper stores, impair immune function, and lower HDL levels."
+      parent_ref: iom2001_micronutrients
+      existence_verdict: REAL
+      support_verdict: SUPPORTS
+      confidence: HIGH
+      species: human
+
+dietary_sources:
+  - food: oysters
+    density: {low: 70, unit: mg/serving, bound_type: lower}
+    matrix_note: exceptionally rich; single serving exceeds the UL
+    provenance: {claim_id: ZN-SRC-01, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 687", existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: LOW}
+  - food: meats
+    density: {low: 2, high: 3, unit: mg/100g}
+    provenance: {claim_id: ZN-SRC-02, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 687", existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: LOW}
+  - food: clams_cooked
+    density: {point: 2.7, unit: mg/100g}
+    provenance: {claim_id: ZN-SRC-03, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 687", existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: LOW}
+  - food: plant_foods
+    matrix_note: >
+      Much poorer sources, and the gap is larger than density alone suggests
+      because phytate co-occurs. Density and bioavailability move together here,
+      which is exactly what a per-100g score misses.
+    provenance: {claim_id: ZN-SRC-04, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 687", existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: LOW}
+
+stages:
+
+  luminal:
+    site: [small_intestine]
+    notes: >
+      Pancreatic secretions add significant zinc to the lumen, so luminal zinc
+      is not dietary zinc. Proteases, DNAses and RNAses release zinc from the
+      food matrix. Complexation with histidine, cysteine and nucleotides
+      improves subsequent uptake.
+    modifiers:
+      - agent: histidine
+        direction: enhances
+        stage: luminal
+        mechanism: forms absorbable zinc-histidine complex
+        provenance: {claim_id: ZN-MOD-01, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 687", parent_ref: lonnerdal2000, existence_verdict: REAL, support_verdict: SUPPORTS, confidence: HIGH, species: human}
+      - agent: cysteine
+        direction: enhances
+        stage: luminal
+        mechanism: forms absorbable zinc-cysteine complex
+        provenance: {claim_id: ZN-MOD-02, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 687", parent_ref: lonnerdal2000, existence_verdict: REAL, support_verdict: SUPPORTS, confidence: HIGH, species: human}
+      - agent: phytate
+        direction: inhibits
+        stage: luminal
+        mechanism: insoluble complex; inositol hexa- and pentaphosphates are the active forms
+        provenance: {claim_id: ZN-MOD-03, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 687", parent_ref: lonnerdal2000, existence_verdict: REAL, support_verdict: SUPPORTS, confidence: HIGH, species: human}
+
+  absorption:
+    site: [small_intestine, large_intestine]
+    fraction:
+      low: 0.70
+      bound_type: lower
+      unit: fraction
+      condition: "dose below 3 mg, no interference from other meal constituents"
+      provenance:
+        claim_id: ZN-ABS-01
+        certification: gate
+        source_ref: kohlmeier2003
+        source_locator: "p. 687, Digestion and absorption"
+        source_verbatim: "More than 70% of a small zinc dose (less than 3 mg) is absorbed from the small intestine (Lonnerdal, 2000), when there is no interference from other meal constituents."
+        parent_ref: lonnerdal2000
+        existence_verdict: REAL
+        support_verdict: CANNOT_VERIFY
+        confidence: MEDIUM
+        species: human
+        flag: >
+          UPGRADE from seed row ABS-ZN-01. Kohlmeier's attribution and scoping
+          condition are now captured verbatim, which the earlier p.53 extraction
+          lacked. Parent full text still not read, so the verdict stays
+          CANNOT_VERIFY — but the claim is now precisely located and the
+          "no interference" condition is recorded. That condition is doing heavy
+          lifting: it means 70% is a ceiling under artificial conditions, not a
+          meal-realistic figure.
+    dose_dependence:
+      is_saturable: true
+      shape: saturating
+      elbow: {point: 3, unit: mg, condition: "single dose"}
+      note: >
+        Fractional absorption falls with higher doses AND with replete status.
+        Two independent downregulations stacked on the same axis.
+    transporters:
+      - hgnc_symbol: SLC39A4
+        aliases_in_source: [ZIP4]
+        resolution_status: HGNC_RESOLVED
+        role: uptake
+        membrane: apical
+        tissue: [small_intestine, large_intestine]
+        regulated_by: [zinc_status]
+        provenance: {claim_id: ZN-TRP-01, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 687", parent_ref: wang2002, existence_verdict: NOT_FOUND, support_verdict: CANNOT_VERIFY, confidence: MEDIUM, flag: "parent 'Wang et al., 2002' not yet resolved to a DOI"}
+      - hgnc_symbol: SLC11A2
+        aliases_in_source: [DMT1, DMT-1]
+        resolution_status: HGNC_RESOLVED
+        role: uptake
+        membrane: apical
+        shared_substrates: [iron, copper, cadmium, manganese]
+        regulated_by: [enterocyte_iron_concentration]
+        provenance: {claim_id: ZN-TRP-02, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 687", parent_ref: mcmahon_cousins1998, existence_verdict: NOT_FOUND, support_verdict: CANNOT_VERIFY, confidence: MEDIUM, flag: "minor uptake route; the competition edge matters more than the flux"}
+      - hgnc_symbol: SLC15A1
+        aliases_in_source: [PepT1]
+        resolution_status: HGNC_RESOLVED
+        role: uptake
+        membrane: apical
+        shared_substrates: [di_peptides, tri_peptides]
+        provenance: {claim_id: ZN-TRP-03, certification: candidate, source_ref: kohlmeier2003, source_locator: "p. 687", parent_ref: tacnet1993, existence_verdict: NOT_FOUND, support_verdict: CANNOT_VERIFY, confidence: LOW, flag: "described as 'a possible alternative route' — hedged in source, keep as candidate"}
+      - hgnc_symbol: SLC30A1
+        aliases_in_source: [ZnT-1]
+        resolution_status: HGNC_RESOLVED
+        role: efflux
+        membrane: basolateral
+        regulated_by: [MTF1, zinc_status]
+        provenance: {claim_id: ZN-TRP-04, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 689", existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: MEDIUM}
+      - hgnc_symbol: SLC30A2
+        aliases_in_source: [ZnT-2]
+        resolution_status: HGNC_RESOLVED
+        role: efflux
+        membrane: basolateral
+        provenance: {claim_id: ZN-TRP-05, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 689", existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: MEDIUM}
+    modifiers:
+      - agent: phytate
+        direction: inhibits
+        stage: absorption
+        mechanism: reduces absorption efficiency, dose-dependent, same-meal effect
+        provenance: {claim_id: ZN-MOD-04, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 687", parent_ref: lonnerdal2000, existence_verdict: REAL, support_verdict: SUPPORTS, confidence: HIGH, species: human}
+      - agent: protein_hydrolysates
+        direction: enhances
+        stage: absorption
+        provenance: {claim_id: ZN-MOD-05, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 687", existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: LOW}
+      - agent: replete_zinc_status
+        direction: inhibits
+        stage: absorption
+        mechanism: metallothionein-mediated downregulation
+        provenance: {claim_id: ZN-MOD-06, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 687", existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: MEDIUM}
+      - agent: iron_calcium_divalent_cations
+        direction: no_significant_effect
+        stage: absorption
+        mechanism: >
+          NEGATIVE RESULT, worth keeping. Concurrent high dietary intakes do not
+          appear to meaningfully impact zinc absorption, despite sharing DMT1.
+          Supplement co-dosing is a different question — Lonnerdal reports iron
+          inhibition when given together as a supplement but not as meal
+          fortificants. Do not generalize the null across delivery formats.
+        provenance: {claim_id: ZN-MOD-07, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 687", parent_ref: sandstrom2001, existence_verdict: NOT_FOUND, support_verdict: CANNOT_VERIFY, confidence: MEDIUM}
+    bypass_routes:
+      - >
+        Paracellular flux across tight junctions becomes significant at high
+        intraluminal concentration, bypassing DMT1 and metallothionein control
+        entirely. This is the mechanistic reason high-dose supplements defeat
+        homeostasis and why the UL exists.
+
+  circulation:
+    carriers: [albumin, alpha_2_macroglobulin]
+    reference_range:
+      low: 10
+      high: 17
+      unit: umol/L
+      condition: typical venous; lower in severe deficiency
+      provenance: {claim_id: ZN-CIR-01, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 689", parent_ref: cousins1986, existence_verdict: NOT_FOUND, support_verdict: CANNOT_VERIFY, confidence: MEDIUM}
+
+  tissue_gates:
+    - gate: blood_brain_barrier
+      direction: unknown
+      mechanism_status: unresolved
+      transporters:
+        - hgnc_symbol: SLC11A2
+          aliases_in_source: [DMT1]
+          resolution_status: HGNC_RESOLVED
+          role: uptake
+          membrane: plasma
+      notes: >
+        Explicitly unresolved in source. Likely a zinc-histidinyl complex plus
+        DMT1. Choroid plexus transport into and out of CSF is the major route
+        for brain zinc homeostasis, molecular mechanism equally unresolved.
+        Do not model brain zinc delivery as a function of intake.
+      provenance: {claim_id: ZN-BBB-01, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 689", parent_ref: takeda2000, existence_verdict: NOT_FOUND, support_verdict: CANNOT_VERIFY, confidence: LOW}
+    - gate: placenta
+      direction: gradient_driven
+      mechanism_status: partial
+      notes: >
+        CONTRAST WITH MOST NUTRIENTS. Zinc crosses by a slow process that
+        facilitates transfer in either direction depending on the prevailing
+        gradient — it is NOT concentrative like ascorbate (SVCT2) or folate
+        (FR1/FR2). A pregnancy cohort model cannot assume fetal prioritization
+        for zinc the way it can for those.
+      provenance: {claim_id: ZN-PLA-01, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 689", parent_ref: beer1992, existence_verdict: NOT_FOUND, support_verdict: CANNOT_VERIFY, confidence: LOW}
+    - gate: mammary
+      direction: concentrative
+      mechanism_status: established
+      transporters:
+        - hgnc_symbol: SLC30A4
+          aliases_in_source: [ZnT-4]
+          resolution_status: HGNC_RESOLVED
+          role: efflux
+          tissue: [mammary_gland, brain]
+      notes: >
+        Zinc is exported into milk by ZnT-4. Co-secreted metallothionein greatly
+        increases bioavailability for the breastfed infant — the carrier is part
+        of the delivered nutrient, not a contaminant.
+      provenance: {claim_id: ZN-MAM-01, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 689", existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: MEDIUM}
+
+  storage:
+    total_body:
+      low: 1.5
+      high: 2.5
+      unit: g
+      condition: "1.5 g replete women, 2.5 g men"
+      provenance: {claim_id: ZN-STO-01, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 689", parent_ref: king_keen1994, existence_verdict: NOT_FOUND, support_verdict: CANNOT_VERIFY, confidence: MEDIUM}
+    pools:
+      - name: structural
+        compartment: muscle_and_bone
+        readily_exchangeable: false
+        size:
+          low: 1.3
+          high: 2.3
+          unit: g
+          condition: "DERIVED: total_body minus rapidly_exchangeable pool"
+        turnover_half_life: {point: 300, unit: days}
+        mobilization_rate: {high: 6, unit: mg/day, bound_type: upper}
+        provenance:
+          claim_id: ZN-STO-02
+          certification: candidate
+          source_ref: kohlmeier2003
+          source_locator: "p. 689"
+          parent_ref: wastney2000
+          existence_verdict: NOT_FOUND
+          support_verdict: CANNOT_VERIFY
+          confidence: LOW
+          flag: >
+            Size is NOT stated in source — it is subtraction I performed from
+            ZN-STO-01 and ZN-STO-03. Certification dropped to candidate to mark
+            derived arithmetic. The half-life and mobilization rate ARE stated.
+            Schema validation surfaced this gap; without the required `size`
+            field the pool would have loaded looking fully sourced.
+      - name: rapidly_exchangeable
+        compartment: liver_metallothionein
+        readily_exchangeable: true
+        size: {high: 170, unit: mg, bound_type: upper}
+        turnover_half_life: {point: 14, unit: days}
+        time_to_functional_depletion: {point: 7, unit: days}
+        provenance:
+          claim_id: ZN-STO-03
+          certification: gate
+          source_ref: kohlmeier2003
+          source_locator: "p. 689"
+          parent_ref: miller1994
+          existence_verdict: NOT_FOUND
+          support_verdict: CANNOT_VERIFY
+          confidence: MEDIUM
+          flag: >
+            THE LOAD-BEARING NUMBER FOR SCORING. 2 g of body zinc is irrelevant
+            to whether a week of low intake matters; <170 mg with a 2-week
+            half-life is what sets the timescale. A schema that stored only
+            total_body would answer the question wrong.
+
+  excretion:
+    routes:
+      - route: sweat_skin_hair
+        amount: {point: 1, unit: mg/day}
+        is_regulated: false
+        provenance: {claim_id: ZN-EXC-01, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 689", existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: LOW}
+      - route: fecal
+        is_regulated: true
+        provenance: {claim_id: ZN-EXC-02, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 689", parent_ref: sian1996, existence_verdict: NOT_FOUND, support_verdict: CANNOT_VERIFY, confidence: MEDIUM, flag: "unabsorbed dietary PLUS endogenous secretions; varies with intake and status — this is the main regulated loss"}
+      - route: urinary
+        amount: {low: 0.4, high: 0.6, unit: mg/day, condition: "2-10% of intake"}
+        is_regulated: true
+        transporters:
+          - hgnc_symbol: SLC30A1
+            aliases_in_source: [ZnT-1]
+            resolution_status: HGNC_RESOLVED
+            role: reabsorption
+            tissue: [distal_renal_tubule]
+        provenance: {claim_id: ZN-EXC-03, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 689", parent_ref: lee1990, existence_verdict: NOT_FOUND, support_verdict: CANNOT_VERIFY, confidence: MEDIUM}
+      - route: menstrual
+        amount: {low: 0.1, high: 0.5, unit: mg/cycle}
+        is_regulated: false
+        provenance: {claim_id: ZN-EXC-04, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 689", existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: LOW}
+      - route: ejaculate
+        amount: {low: 0.1, high: 0.5, unit: mg}
+        is_regulated: false
+        provenance: {claim_id: ZN-EXC-05, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 689", existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: LOW}
+
+regulation:
+  is_homeostatically_controlled: true
+  primary_mechanism: >
+    Metallothionein expression. Increased expression in small intestine
+    decreases absorption; increased expression in liver expands stores. This is
+    the dominant control point, upstream of everything else.
+  sensors: [MTF1]
+  effectors: [metallothionein, SLC30A1]
+  provenance:
+    claim_id: ZN-REG-01
+    certification: gate
+    source_ref: kohlmeier2003
+    source_locator: "p. 689, Regulation"
+    parent_ref: langmade2000
+    existence_verdict: NOT_FOUND
+    support_verdict: CANNOT_VERIFY
+    confidence: MEDIUM
+    flag: >
+      MTF-1 binds metal response elements via six zinc-coordinated finger loops
+      when free Zn2+ is high. The sensor is made of the thing it senses. That
+      closed loop is why intake-to-status is not linear.
+
+function:
+  summary: >
+    Cofactor of several hundred enzymes; required for DNA replication and
+    transcription; structural role in zinc finger domains.
+  enzyme_cofactor_count: "several hundred"
+  ec_numbers:
+    - "EC 4.2.1.1"    # carbonic anhydrase
+    - "EC 3.4.11.1"   # leucine aminopeptidase
+    - "EC 3.4.13.19"  # membrane dipeptidase
+    - "EC 3.4.11.7"   # glutamyl aminopeptidase
+    - "EC 3.4.24.11"  # neprilysin
+    - "EC 3.4.15.1"   # angiotensin I-converting enzyme
+    - "EC 3.4.24.18"  # meprin A
+    - "EC 3.1.3.1"    # alkaline phosphatase
+    - "EC 1.1.1.1"    # alcohol dehydrogenase
+    - "EC 1.15.1.1"   # superoxide dismutase
+    - "EC 2.7.7.7"    # DNA polymerase
+    - "EC 2.7.7.6"    # RNA polymerase
+    - "EC 1.14.13.39" # nitric oxide synthase
+  domains: [zinc_finger]
+
+deficiency:
+  signs: [loss_of_appetite, scaling_skin_lesions, impaired_immune_function, impaired_taste_acuity]
+  onset: {point: 7, unit: days, condition: "functional relevance, from exhaustion of the rapidly exchangeable pool"}
+  at_risk_groups: [vegetarians, pregnant_women, breastfeeding_women, high_phytate_diets]
+  provenance: {claim_id: ZN-DEF-01, certification: gate, source_ref: kohlmeier2003, source_locator: "pp. 687, 689", existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: MEDIUM}
+
+excess:
+  threshold: {point: 40, unit: mg/day}
+  signs: [copper_depletion, impaired_immune_function, lowered_HDL]
+  antagonized_nutrients: [copper]
+  provenance:
+    claim_id: ZN-EXS-01
+    certification: gate
+    source_ref: kohlmeier2003
+    source_locator: "p. 687"
+    parent_ref: iom2001_micronutrients
+    existence_verdict: REAL
+    support_verdict: SUPPORTS
+    confidence: HIGH
+    flag: >
+      Note the symmetry with ZN-DEF-01: impaired immune function appears at BOTH
+      ends. Any scorer using immune function as an outcome proxy for zinc will
+      get the wrong sign above 40 mg/day.
+
+interactions:
+  - partner: copper
+    direction: depletes
+    stage: storage
+    mechanism: high zinc intake induces intestinal metallothionein, which sequesters copper
+    provenance: {claim_id: ZN-INT-01, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 687", existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: MEDIUM}
+  - partner: iron
+    direction: competes_for_transporter
+    stage: absorption
+    shared_transporter: SLC11A2
+    mechanism: shared divalent metal carrier; enterocyte iron sets DMT1 expression
+    provenance: {claim_id: ZN-INT-02, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 687", parent_ref: mcmahon_cousins1998, existence_verdict: NOT_FOUND, support_verdict: CANNOT_VERIFY, confidence: MEDIUM}
+  - partner: calcium
+    direction: competes_for_transporter
+    stage: absorption
+    shared_transporter: SLC11A2
+    provenance: {claim_id: ZN-INT-03, certification: candidate, source_ref: kohlmeier2003, source_locator: "p. 687", existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: LOW, flag: "source hedges: 'may be the basis for'"}
+  - partner: cadmium
+    direction: competes_for_transporter
+    stage: absorption
+    shared_transporter: SLC11A2
+    provenance: {claim_id: ZN-INT-04, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 687", existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: LOW}
+  - partner: phytate
+    direction: inhibits
+    stage: absorption
+    provenance: {claim_id: ZN-INT-05, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 687", parent_ref: lonnerdal2000, existence_verdict: REAL, support_verdict: SUPPORTS, confidence: HIGH}
+  - partner: folate
+    direction: enhances
+    stage: luminal
+    mechanism: zinc-dependent folate hydrolases are required for folate absorption
+    provenance: {claim_id: ZN-INT-06, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 691", existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: MEDIUM, flag: "reverse-direction edge — zinc status gates ANOTHER nutrient's absorption. Easy to miss when building per-nutrient."}
+  - partner: vitamin_a
+    direction: enhances
+    stage: circulation
+    mechanism: zinc-containing ADH isoenzyme oxidizes retinol to the retinal form used for vision
+    provenance: {claim_id: ZN-INT-07, certification: gate, source_ref: kohlmeier2003, source_locator: "p. 691", existence_verdict: NO_PARENT_CITED, support_verdict: CANNOT_VERIFY, confidence: MEDIUM}
+
+scoring_guard:
+  response_shape: u_shaped
+  monotonic_safe: false
+  saturation_point: {point: 3, unit: mg, condition: "single dose; fractional absorption declines above"}
+  harm_threshold: {point: 40, unit: mg/day}
+  requires_form_scoping: true
+  requires_matrix_scoping: true
+  requires_cohort_scoping: true
+  must_not_score_independently_of: [copper, iron, calcium, cadmium, phytate, folate]
+  rationale: >
+    Four independent reasons a linear "more zinc is better" term is wrong.
+    (1) Absorption saturates above ~3 mg per dose. (2) Replete status
+    downregulates absorption via metallothionein, flattening the curve again.
+    (3) Above 40 mg/day the response turns negative through copper depletion —
+    impaired immune function appears at BOTH tails, so an immune-function proxy
+    inverts sign at the top. (4) The number is meaningless without matrix:
+    identical mg from oysters and from whole grain differ several-fold after
+    phytate. Score zinc as a plateau with a penalty tail, matrix-adjusted, never
+    as a linear contributor.
+
+sources:
+  kohlmeier2003:
+    authors: [Kohlmeier, M.]
+    year: 2003
+    title: Nutrient metabolism
+    publisher: Academic Press
+    pages: "687-691"
+    source_type: book
+    existence_verdict: REAL
+  lonnerdal2000:
+    authors: [Lönnerdal, B.]
+    year: 2000
+    title: Dietary factors influencing zinc absorption
+    venue: The Journal of Nutrition
+    volume: "130"
+    pages: "1378S-1383S"
+    doi: 10.1093/jn/130.5.1378S
+    pmid: "10801947"
+    source_type: review
+    existence_verdict: REAL
+  iom2001_micronutrients:
+    authors: [Institute of Medicine]
+    year: 2001
+    title: "Dietary Reference Intakes for Vitamin A, Vitamin K, Arsenic, Boron, Chromium, Copper, Iodine, Iron, Manganese, Molybdenum, Nickel, Silicon, Vanadium, and Zinc"
+    publisher: National Academies Press
+    doi: 10.17226/10026
+    source_type: consensus_report
+    existence_verdict: REAL
+
+provenance:
+  extraction_method: photographic capture of pp. 687, 689, 691
+  verification_method: >
+    Two parents resolved to DOIs and verified live (lonnerdal2000,
+    iom2001_micronutrients). Eleven parents named by Kohlmeier remain
+    unresolved. No parent full text read. Every claim depending on an
+    unresolved parent is capped at gate.
+  unresolved_parents:
+    - "Wang et al., 2002 (ZIP4 / SLC39A4)"
+    - "McMahon and Cousins, 1998 (DMT1 divalent competition)"
+    - "Tacnet et al., 1993 (PepT1 zinc-peptide route)"
+    - "Sandström, 2001 (iron/calcium null result)"
+    - "Cousins, 1986 (albumin binding)"
+    - "Osterberg and Malmensten, 1984 (alpha-2-macroglobulin)"
+    - "King and Keen, 1994 (total body zinc)"
+    - "Wastney et al., 2000 (300-day structural half-life)"
+    - "Miller et al., 1994 (170 mg exchangeable pool, 7-day depletion)"
+    - "Lee et al., 1990 (urinary losses)"
+    - "Sian et al., 1996 (fecal losses)"
+    - "Langmade et al., 2000 (MTF-1)"
+    - "Takeda, 2000 (BBB)"
+    - "Beer et al., 1992 (placental)"
+  promotion_blockers:
+    - "No parent full text read. Every fraction and pool figure is secondary."
+    - "Miller et al., 1994 is the highest-priority resolve — ZN-STO-03 is the load-bearing number for depletion timing and nothing else in the node substitutes for it."
+    - "Node not checked against Kohlmeier 2nd ed. (2015)."
+    - "No Crossref retraction check run on resolved parents."
