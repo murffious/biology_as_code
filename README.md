@@ -1,271 +1,214 @@
-# Biology as Code
+<h1 align="center">Biology as Code</h1>
 
+<p align="center"><strong>Standardizing nutrition science for preventive medicine.</strong></p>
 
+<p align="center">
+  <a href="https://github.com/murffious/biology_as_code/actions/workflows/ci.yml"><img src="https://github.com/murffious/biology_as_code/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/murffious/biology_as_code/actions/workflows/docs.yml"><img src="https://github.com/murffious/biology_as_code/actions/workflows/docs.yml/badge.svg" alt="Docs"></a>
+  <a href="https://doi.org/10.5281/zenodo.21536449"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.21536449.svg" alt="DOI"></a>
+  <a href="https://github.com/murffious/biology_as_code/blob/main/pyproject.toml"><img src="https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-blue" alt="Python"></a>
+  <a href="https://github.com/murffious/biology_as_code/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-green" alt="License"></a>
+  <a href="https://github.com/murffious/fdp-1"><img src="https://img.shields.io/badge/implements-FDP--1-blue" alt="Implements FDP-1"></a>
+</p>
 
-
-Precision medicine is an emerging paradigm that requires realistic, mechanistic models capturing the complexity of the human body.
-whole-body metabolism (WBM) reconstructions,
-Personalized whole-body models integrate
-metabolism, physiology, and the gut microbiome
-
-GEM stands for Genome-scale Metabolic model (also called Genome-scale Metabolic reconstruction or network).
-
-**GEM** stands for **Genome-scale Metabolic model** (also called Genome-scale Metabolic reconstruction or network).
-
-### Simple definition
-A GEM is a mathematical model of an organism’s entire known metabolism, built from its genome.  
-
-It contains:
-- All (or nearly all) known metabolic reactions the organism can perform
-- The genes (and usually proteins) that encode the enzymes for those reactions (via **GPR** rules — Gene-Protein-Reaction associations)
-- Metabolites and their stoichiometry
-- Compartments (cytosol, mitochondria, extracellular space, etc.)
-
-The model is usually represented as a stoichiometric matrix (the **S-matrix**) and is analyzed with constraint-based methods such as **Flux Balance Analysis (FBA)**.
-
-### In the context of our conversation
-- **Recon3D** = the main human GEM
-- **AGORA / AGORA2** = collections of microbial GEMs (thousands of gut bacteria)
-- **Harvey / Harvetta** = whole-body models built by connecting many copies of the human GEM (plus organs, blood, etc.)
-- The local VMH-style layer you want to rebuild is essentially a database of these GEMs + the supporting metabolite/reaction/gene/food data
-
-So when people say “run a GEM” or “constrain the GEM with a diet,” they mean: take this genome-scale network of reactions, set bounds on the exchange reactions based on the food the person ate (and any other physiological constraints), then compute what fluxes are possible through the network.
-
-That’s the core technical object behind almost everything we’ve been discussing.
-
-
-**Standardizing Nutrition Science for Preventive Medicine**
-
-[![CI](https://github.com/murffious/biology_as_code/actions/workflows/ci.yml/badge.svg)](https://github.com/murffious/biology_as_code/actions/workflows/ci.yml)
-[![Docs](https://github.com/murffious/biology_as_code/actions/workflows/docs.yml/badge.svg)](https://github.com/murffious/biology_as_code/actions/workflows/docs.yml)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21536449.svg)](https://doi.org/10.5281/zenodo.21536449)
-[![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-blue)](https://github.com/murffious/biology_as_code/blob/main/pyproject.toml)
-[![License](https://img.shields.io/badge/license-Apache--2.0-green)](https://github.com/murffious/biology_as_code/blob/main/LICENSE)
-[![Implements FDP-1](https://img.shields.io/badge/implements-FDP--1-blue)](https://github.com/murffious/fdp-1)
-
-**[Documentation](https://murffious.github.io/biology_as_code/)** · [Cookbook](https://murffious.github.io/biology_as_code/cookbook/) · [Validation report](https://murffious.github.io/biology_as_code/VALIDATION/)
-
-> **On the name.** *Code Biology* (Barbieri and others) is an existing field that
-> studies organic codes in living systems. This project is unrelated: it is a
-> methodological stance that nutrition and pathway models should be written like
-> software — versioned, tested, provenance-tracked, fail-closed. Descriptive
-> literature, prescriptive tool. See [docs/naming.md](docs/naming.md).
-
-`biology-as-code` is an open Python package that models what happens to a meal —
-digestion, absorption, and the metabolic pathways it drives — as inspectable
-"biology as code." It is the **free companion** to the *Biology as Code* book,
-which is **still being written and has not been released yet**. The package works
-on its own today; you do not need the book to use it.
-
-| | |
-|--|--|
-| **Book** | 📖 *In progress — not yet released.* This repo is its open companion. |
-| **This repo / PyPI** | Schemas, food examples, **open dig + teaching pathways** |
-| **Not included** | Product **meal score** / Kibo-vars product scorer (patent pending) |
-| **Ethos** | Fail-closed · gate ≠ bound · empty beats fake |
-
-**Not medical advice.** FLOW teaching / research software only — not a clinical decision-support system.
+<p align="center">
+  <a href="https://murffious.github.io/biology_as_code/"><strong>Documentation</strong></a> ·
+  <a href="https://murffious.github.io/biology_as_code/cookbook/">Cookbook</a> ·
+  <a href="https://murffious.github.io/biology_as_code/VALIDATION/">Validation report</a>
+</p>
 
 ---
 
-## The FDP-1 specification
+**`biology-as-code` models what happens to a meal — digestion, absorption, and the
+metabolic pathways it drives — as inspectable, versioned, provenance-tracked code.**
 
-This package is a **reference implementation** of **[FDP-1: Food Data Provenance
-Declaration](https://github.com/murffious/fdp-1)** — a minimal, RFC-style
-specification for declaring *where a nutrient value came from* and *how well a
-score built on it is validated*. FDP-1 wraps any existing system (Nutri-Score,
-Health Star Rating, Nutri-Grade, Food Compass, or a proprietary score) without
-modifying it.
+Nutrition data loses its origins as it travels. A number measured once in one lab
+becomes a label value, becomes a database entry, becomes an input to a score, and by
+the end nobody can say what it was or how well it was evidenced. This package takes
+the opposite stance: every value carries where it came from, missing data stays
+missing instead of quietly becoming zero, and the rules are queryable data rather
+than assumptions buried in code.
 
-- **Seven fields on a value, five on a score, one rule** — the **weakest-link
-  rule** (§3.1): a score's provenance grade equals its lowest-graded input.
-- **`OPEN` vs `NONE` (§4):** *not known* vs. *known-absent / not-applicable* —
-  different claims.
-- **`nutrient_ref`** resolves to the canonical **CDNO** food-composition
-  vocabulary (with ChEBI / FDC / INFOODS accepted as alternate keys) — *not* to
-  the [`MASTER_CROSSWALK.tsv`](MASTER_CROSSWALK.tsv) nutrient→metabolite join,
-  which this repo hosts as a separate downstream layer.
+It is a zero-dependency Python package (3.11+) and it works on its own today.
 
-The **specification, its reference validator, and the worked example** live in the
-canonical **[`fdp-1`](https://github.com/murffious/fdp-1)** repository — published
-as a citable *Standard* on Zenodo:
-[**doi:10.5281/zenodo.21613721**](https://doi.org/10.5281/zenodo.21613721) (concept
-DOI; always resolves to the latest version). Apache-2.0 with a patent
-[non-assertion covenant](PATENTS.md).
-
----
-
-## What's inside
-
-Install it and `import biology_as_code` — a small, **zero-dependency** toolkit (pure Python 3.11+):
-
-- **Metabolic pathway graphs** (glycolysis, TCA, β-oxidation, ketogenesis/ketolysis,
-  AMPK·mTORC1·SREBP nutrient sensing) — `get_pathway(...)`, rendered via
-  `visualization.pathway_to_mermaid`.
-- **Declarative digestion machines** — the GI tract (oral → colon) as versioned,
-  inspectable state graphs: `list_machines()`, `trace()`, `run_digestion(...)`.
-- **LAW-SPEC law cards** — the constitution as queryable data:
-  `law_card("LAW-004")` → System / Organ / Gate / Bound / Conditions / relation.
-- **Meal simulation** — `simulate_meal(carbs_g=…, protein_g=…, fats_g=…, fiber_g=…)`
-  and fed / fasted / exercise scenarios.
-- **Bundled data** — meal fixtures, a vitamins registry, personas, and iron/colon/law data.
-- **Provenance** — `all_sources()` / `pubmed_url()` surface every citation; no fabricated
-  data and no network calls by default.
-
-Not included: the patent-pending product/meal score (open hook only) and the book itself.
-
----
+> **Not medical advice.** Teaching and research software — not a clinical
+> decision-support system.
 
 ## Install
-
-**From PyPI** — *once the first release is published* (not on PyPI yet):
 
 ```bash
 pip install biology-as-code
 ```
 
-**From source** — works today:
+> **Note:** the first release is not on PyPI yet. Until it lands, install from source:
+>
+> ```bash
+> git clone https://github.com/murffious/biology_as_code.git
+> cd biology_as_code
+> pip install -e ".[dev]"
+> ```
 
-```bash
-git clone https://github.com/murffious/biology_as_code.git
-cd biology_as_code
-pip install -e ".[dev]"
-```
-
-### Minimal usage
+## Quick start
 
 ```python
-from biology_as_code import simulate_meal, list_pathways, get_pathway, fed, pathway_activities
+from biology_as_code import simulate_meal, list_pathways, pathway_activities, fed
 
-r = simulate_meal(carbs_g=55, protein_g=35, fats_g=18, fiber_g=20)
-print(r.absorbed_macros_g)       # dig residual path (open FLOW)
-print(list_pathways()[:5])       # teaching pathway graphs
-print(pathway_activities(fed())) # regulation snapshot
-# Product meal score is NOT computed here (enable_product_score defaults False)
+result = simulate_meal(carbs_g=55, protein_g=35, fats_g=18, fiber_g=20)
+print(result.absorbed_macros_g)
+# {'carbs': 51.894, 'protein': 33.041, 'fats': 15.102}
+
+print(list_pathways()[:5])
+# ['glycolysis', 'tca_cycle', 'etc_oxphos', 'beta_oxidation', 'gluconeogenesis']
+
+print(pathway_activities(fed())['glycolysis'])
+# 0.868
 ```
+
+Two runnable examples ship with the repo:
 
 ```bash
 python examples/python/run_meal.py
 python examples/python/fed_vs_fasted.py
-bash scripts/release_check.sh   # pre-upload tests + wheel smoke (does not publish)
 ```
 
-Logging is **quiet by default**. For dig traces: `export BIOLOGY_AS_CODE_LOG=DEBUG`.
+Logging is quiet by default; `export BIOLOGY_AS_CODE_LOG=DEBUG` turns on digestion traces.
 
-**Publishing:** not automatic. Push to `main` = CI only. Upload to PyPI only when you  
-**Actions → Publish** with `confirm=PUBLISH`, or publish a **GitHub Release** on a `v*` tag.  
-Setup checklist: [`docs/python/PUBLISHING.md`](docs/python/PUBLISHING.md).
+## What's inside
 
-Architecture notes: [`docs/python/PACKAGE_ARCHITECTURE.md`](docs/python/PACKAGE_ARCHITECTURE.md)  
-**Add a pathway:** [`docs/python/ADD_PATHWAY.md`](docs/python/ADD_PATHWAY.md) (template + checklist + `check_pathway_integration.py`)  
-License: [Apache-2.0](./LICENSE) for code (patent covenant in [PATENTS.md](./PATENTS.md)) · [LICENSE-SAMPLES.md](./LICENSE-SAMPLES.md) for example JSON · book remains all rights reserved.
+- **40 metabolic pathway graphs** — glycolysis, TCA, β-oxidation, ketogenesis and
+  ketolysis, AMPK·mTORC1·SREBP nutrient sensing, and more. Fetch with `get_pathway(...)`,
+  render with `visualization.pathway_to_mermaid`.
+- **10 digestion machines** — the GI tract from oral to colon as versioned, inspectable
+  state graphs: `list_machines()`, `trace()`, `run_digestion(...)`.
+- **47 LAW-SPEC law cards** — the constitution as queryable data. `law_card("LAW-004")`
+  returns its System, Organ, Gate, Bound, Conditions, and relation.
+- **Meal simulation** — `simulate_meal(...)` plus fed, fasted, and exercise scenarios.
+- **Bundled data** — meal fixtures, a vitamins registry, personas, and iron/colon/law data.
+- **Provenance throughout** — `all_sources()` and `pubmed_url()` surface every citation.
+  No fabricated data, and no network calls by default.
 
-Docs live under `docs/` in the repo (no Pages required for PyPI). Optional GitHub Pages is **manual only** (Actions → Deploy GitHub Pages) after Settings → Pages → Source: GitHub Actions.
+Not included: the patent-pending product/meal score (an open hook only), and the book text.
 
----
+## Core ideas in 60 seconds
 
-## Repository map
+1. **Label ≠ dose** — printed milligrams are not delivered dose.
+2. **Gate ≠ bound** — whether something can happen is a separate question from how much.
+3. **Four seats** — host, partner, stage, clock, in one law envelope.
+4. **L1→L5** — matrix → nutrient → mechanism → physiology → outcome, with no tunnels between levels.
+5. **Empty beats fake** — missing data is `UNEVALUABLE`, never a green score.
 
-```text
-docs/                 # public site / short free content
-schemas/              # packet + claim + relation subset
-examples/
-  foods/              # small teaching food packets (gates / claims)
-  meals/README.md     # pointer only — full meals live in package fixtures
-  claims/             # claim audit fixtures
-  units/              # teaching UNIT fixtures
-src/biology_as_code/
-  data/fixtures/meals/  # SSOT full meal JSON (ships in wheel; no kibo_score)
-  data/fixtures/        # vitamins, personas
-  pathways/ dig/ simulation/ ...
-pathways/             # mermaid + tests.md packs
-glycolysis/           # gold hand-authored mermaid
-```
+The full reasoning is in the [constitution](docs/constitution.md).
 
-**Meals:** one copy only → `src/biology_as_code/data/fixtures/meals/`  
-**Foods:** separate teaching packets → `examples/foods/` (not the same as meals)
+## Built on FDP-1
 
----
+This package is a reference implementation of
+**[FDP-1: Food Data Provenance Declaration](https://github.com/murffious/fdp-1)** — a
+minimal, RFC-style specification for declaring where a nutrient value came from and how
+well a score built on it is validated. FDP-1 wraps any existing system (Nutri-Score,
+Health Star Rating, Nutri-Grade, Food Compass, or a proprietary score) without modifying it.
 
-## Core ideas (60 seconds)
+- **Seven fields on a value, five on a score, one rule** — the *weakest-link rule*
+  (§3.1): a score's provenance grade equals its lowest-graded input.
+- **`OPEN` vs `NONE`** (§4) — *not known* versus *known-absent or not-applicable*. These
+  are different claims and the spec keeps them apart.
+- **`nutrient_ref`** resolves to the canonical CDNO food-composition vocabulary, with
+  ChEBI, FDC, and INFOODS accepted as alternate keys. It does *not* resolve to
+  [`MASTER_CROSSWALK.tsv`](MASTER_CROSSWALK.tsv), the nutrient→metabolite join this repo
+  hosts as a separate downstream layer.
 
-1. **Label ≠ dose** — printed milligrams are not delivered dose.  
-2. **Gate ≠ bound** — whether something can happen vs how much.  
-3. **Four seats** — host · partner · stage · clock (one law envelope).  
-4. **L1→L5** — matrix → nutrient → mechanism → physiology → outcome; no tunnels.  
-5. **Empty beats fake** — missing data is `UNEVALUABLE`, not a green score.
-
-See [docs/constitution.md](docs/constitution.md).
-
----
-
-## Where the data comes from — Internet of the Body
-
-This repo models what a body *does* with a meal. The sensors and apps that measure
-the body itself are the companion piece: the curated
-[**Awesome Internet of the Body**](https://github.com/murffious/awesome-internet-of-the-body)
-list — open-source and standards-based apps, wearables, and platforms that gather
-human data (CGMs, wearables, FHIR, Open Humans, and more), with a privacy-first
-framing — lives in its own repo.
-
----
+The specification, its reference validator, and the worked example live in the canonical
+[`fdp-1`](https://github.com/murffious/fdp-1) repository, published as a citable Standard
+on Zenodo: [**doi:10.5281/zenodo.21613721**](https://doi.org/10.5281/zenodo.21613721)
+(concept DOI — always resolves to the latest version).
 
 ## Example food objects
 
-**Filled (teaching):**
+Small teaching packets, each built to make one mechanism visible:
 
 | File | Teaching point |
 |------|----------------|
 | [`spinach_salad_zero_fat.json`](examples/foods/spinach_salad_zero_fat.json) | Fat-vehicle gate **closed** |
-| [`spinach_salad_with_oil.json`](examples/foods/spinach_salad_with_oil.json) | Same cargo + lipid partner |
-| [`lentils_with_tea.json`](examples/foods/lentils_with_tea.json) | Iron bound narrowed (tannin) |
-| [`lentils_with_ascorbate.json`](examples/foods/lentils_with_ascorbate.json) | Iron bound expanded (ascorbate) |
-| [`almond_whole.json`](examples/foods/almond_whole.json) / [`almond_flour.json`](examples/foods/almond_flour.json) | Matrix intact vs destroyed |
+| [`spinach_salad_with_oil.json`](examples/foods/spinach_salad_with_oil.json) | Same cargo, plus a lipid partner |
+| [`lentils_with_tea.json`](examples/foods/lentils_with_tea.json) | Iron bound narrowed by tannin |
+| [`lentils_with_ascorbate.json`](examples/foods/lentils_with_ascorbate.json) | Iron bound expanded by ascorbate |
+| [`almond_whole.json`](examples/foods/almond_whole.json) / [`almond_flour.json`](examples/foods/almond_flour.json) | Matrix intact versus destroyed |
 
-**Stubs (`status: stub`)** — placeholders for real cargo/partners later: oats, breads, rice, orange/juice, salmon, olive oil, tea/lemon/coffee, dairy, meats, tofu, produce, UPF snacks/soda, supplements, IV clinical, etc. See full list under [`examples/foods/`](examples/foods/).
+Files marked `status: stub` are placeholders awaiting real cargo and partner data — oats,
+breads, rice, juice, salmon, dairy, tofu, UPF snacks, supplements, and more. See
+[`examples/foods/`](examples/foods/) for the full set. To add one, copy
+[`_template.json`](examples/foods/_template.json), keep the schema, and leave fields
+`"open"` until you have real values. That last part is the whole point.
 
-Copy [`_template.json`](examples/foods/_template.json) for new ones. Keep schema; leave `"open"` until you have real fields.
+## Repository map
 
----
+```text
+docs/                      # public documentation site
+schemas/                   # packet + claim + relation subset
+examples/
+  foods/                   # teaching food packets (gates / claims)
+  claims/                  # claim audit fixtures
+  units/                   # teaching UNIT fixtures
+  python/                  # runnable scripts
+src/biology_as_code/
+  data/fixtures/meals/     # full meal JSON, ships in the wheel
+  data/fixtures/           # vitamins, personas
+  pathways/ dig/ simulation/ visualization/
+```
 
-## Book
+Meals live in exactly one place (`src/biology_as_code/data/fixtures/meals/`). Foods are a
+separate concept in `examples/foods/` — teaching packets, not meals.
 
-**Biology as Code** — *Standardizing Nutrition Science for Preventive Medicine*
+## Documentation
 
-- **Status: in progress.** The manuscript is still being written and is **not yet published** — there is nothing to buy or preorder yet.
-- The full prose is **not in this repo** and will be released separately as a commercial book when it's done.
-- This repository is the **open companion** (schemas, examples, and the Python package) and is fully usable on its own today.
-- Issues welcome for **schemas and examples only** — not the book text.
+- [Package architecture](docs/python/PACKAGE_ARCHITECTURE.md)
+- [Add a pathway](docs/python/ADD_PATHWAY.md) — template, checklist, and integration check
+- [GEM primer](docs/gem-primer.md) — genome-scale metabolic models, and how this differs
+- [A note on the name](docs/naming.md) — why this is unrelated to Barbieri's *Code Biology*
+- [Contributing](CONTRIBUTING.md) · [Roadmap](ROADMAP.md) · [Changelog](CHANGELOG.md)
 
----
+## Related project
 
-## License
+This repo models what a body *does* with a meal. The sensors and apps that measure the
+body itself are the companion piece:
+[**Awesome Internet of the Body**](https://github.com/murffious/awesome-internet-of-the-body)
+is a curated, privacy-first list of open-source and standards-based apps, wearables, and
+platforms for gathering human data — CGMs, wearables, FHIR, Open Humans, and others.
 
-- **Schemas & examples:** see [LICENSE-SAMPLES.md](LICENSE-SAMPLES.md) (permissive for reuse with attribution).  
-- **Book text, figures, and brand:** © author — all rights reserved unless a separate license is published.
+## The book
 
----
+**Biology as Code — Standardizing Nutrition Science for Preventive Medicine** is
+**in progress and not yet published.** There is nothing to buy or preorder yet, and the
+manuscript is not in this repository; it will be released separately as a commercial book.
 
-## Citation
-
-If you use `biology-as-code` in your work, please cite it via its archived release:
-
-> Murff, P. (2026). *Biology as Code: an open, provenance-tracked toolkit for meal digestion and metabolic-pathway modeling* (v0.1.0) [Software]. Zenodo. https://doi.org/10.5281/zenodo.21536449
-
-A [`CITATION.cff`](CITATION.cff) is included, so GitHub's **"Cite this repository"** button works too.
-
----
+This repo is its open companion and is fully usable on its own. Issues are welcome for
+schemas and examples — not for the book text.
 
 ## Status
 
-Early companion scaffold (alpha). The Python package works today and installs from source; food objects and schemas will keep growing. The **book itself is still in progress and has not been released** — this repo does not depend on it.
+Alpha. The Python package works today and installs from source; the schemas and food
+objects will keep growing. Nothing here depends on the book being finished.
+
+## License
+
+- **Code:** [Apache-2.0](LICENSE), with a patent non-assertion covenant in [PATENTS.md](PATENTS.md).
+- **Schemas and examples:** see [LICENSE-SAMPLES.md](LICENSE-SAMPLES.md) — permissive reuse with attribution.
+- **Book text, figures, and brand:** © the author, all rights reserved unless separately licensed.
+
+## Citation
+
+If you use `biology-as-code` in your work, please cite the archived release:
+
+> Murff, P. (2026). *Biology as Code: an open, provenance-tracked toolkit for meal
+> digestion and metabolic-pathway modeling* (v0.1.0) [Software]. Zenodo.
+> https://doi.org/10.5281/zenodo.21536449
+
+A [`CITATION.cff`](CITATION.cff) is included, so GitHub's **Cite this repository** button
+works as well.
 
 ---
 
 <p align="center">
-  <img src="docs/assets/biology-as-code-cover.jpg" alt="Biology as Code — Standardizing Nutrition Science for Preventive Medicine — Paul Murff" width="420" />
+  <img src="docs/assets/biology-as-code-cover.jpg" alt="Biology as Code — Standardizing Nutrition Science for Preventive Medicine, by Paul Murff" width="380" />
 </p>
 
-<p align="center"><em>Biology as Code: Standardizing Nutrition Science for Preventive Medicine</em> — Paul Murff</p>
-
-<p align="center"><sub><em>Note: cover art is a draft (not final), and the glucose chemistry shown on it is not yet corrected.</em></sub></p>
+<p align="center"><sub>Cover art is a draft. The glucose chemistry shown on it is not yet corrected.</sub></p>

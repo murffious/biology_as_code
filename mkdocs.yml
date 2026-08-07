@@ -60,6 +60,7 @@ nav:
   - Home: index.md
   - Constitution: constitution.md
   - Note on the title: naming.md
+  - "Primer: genome-scale metabolic models": gem-primer.md
   - Claim auditor: claim-auditor.md
   - Digestion engine: digestion.md
   - Digestion process (A-Z stages): digestion-process.md
