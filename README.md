@@ -34,6 +34,28 @@ It is a zero-dependency Python package (3.11+) and it works on its own today.
 > **Not medical advice.** Teaching and research software — not a clinical
 > decision-support system.
 
+> **On the name.** *Code Biology* (Barbieri and others) is an existing field that
+> studies organic codes in living systems. This project is unrelated to it. The name
+> here marks a methodological stance rather than a claim about semiotics: that
+> nutrition and pathway models should be written like software — versioned, tested,
+> provenance-tracked, fail-closed. That field is descriptive literature; this is a
+> prescriptive tool. See [docs/naming.md](docs/naming.md).
+
+## Announcements
+
+Three working papers on federal nutrition data infrastructure are now published and
+citable on Zenodo — [announcement thread](https://x.com/murffious/status/2085568972314071473):
+
+| Date | Working paper | DOI |
+|------|---------------|-----|
+| 2026-08-07 | [Federal Nutrition Accountability and Processing Transparency Act](https://zenodo.org/records/21831722) | [10.5281/zenodo.21831722](https://doi.org/10.5281/zenodo.21831722) |
+| 2026-08-07 | [Studies on Federal Nutrition Initiatives and Outcomes, 1900s–Present](https://zenodo.org/records/21830829) | [10.5281/zenodo.21830829](https://doi.org/10.5281/zenodo.21830829) |
+| 2026-07-29 | [Systems Biology Over Reductionism: A Federal Blueprint for Nutrition Research Infrastructure, Open-Science Governance, and Matrix-Aware Regulation](https://zenodo.org/records/21658173) | [10.5281/zenodo.21658173](https://doi.org/10.5281/zenodo.21658173) |
+
+These are policy and infrastructure companions to this repository: the papers argue the
+case for provenance-tracked nutrition data, and this package is a working implementation
+of it.
+
 ## Install
 
 ```bash
