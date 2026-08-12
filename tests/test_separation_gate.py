@@ -47,6 +47,19 @@ _SKIP_SUFFIXES = {".pyc", ".pyo", ".png", ".jpg", ".jpeg", ".JPG"}
 _SKIP_DIR_SUFFIXES = (".egg-info", ".dist-info")
 
 
+def _is_build_artifact(path: Path) -> bool:
+    """
+    Generated metadata is not source.
+
+    ``src/*.egg-info/PKG-INFO`` restates the author's email from
+    ``pyproject.toml``, which is authorship, not a product identifier — but the
+    gate is a blunt substring search and cannot tell the difference. CI checks
+    out clean so it never sees this directory; a developer who has run a build
+    would otherwise get a spurious failure.
+    """
+    return any(part.endswith(".egg-info") for part in path.parts)
+
+
 def _scanned_files() -> list[Path]:
     out: list[Path] = []
     for root in SCANNED:
@@ -58,6 +71,8 @@ def _scanned_files() -> list[Path]:
             if any(part.endswith(_SKIP_DIR_SUFFIXES) for part in path.parts):
                 continue
             if path.suffix in _SKIP_SUFFIXES:
+                continue
+            if _is_build_artifact(path):
                 continue
             if path.resolve() == Path(__file__).resolve():
                 continue

@@ -19,7 +19,7 @@ jobs:
         # scope -- their patent disposition is a pending legal decision and they
         # are annotated, not rewritten. See design/BASELINE.md.
         run: |
-          if grep -rniE "kibo|mealcoach|morf" src/ tests/; then
+          if grep -rniE --exclude-dir="*.egg-info" "kibo|mealcoach|morf" src/ tests/; then
             echo "::error::product identifier found in src/ or tests/ (see PROPRIETARY_IP.md)"
             exit 1
           fi

@@ -5,6 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
+from biology_as_code.engine.clocks import Clock
+
 
 @dataclass
 class MetabolicState:
@@ -51,6 +53,11 @@ class MetabolicState:
     flow_score: float = 50.0
 
     # —— Trace ——
+    #: Clock this state object is being stepped on. Additive and defaulted, so
+    #: existing phase code is unaffected; a caller running a bite-level or
+    #: diurnal simulation sets it and the trace says which rate the numbers
+    #: belong to. See biology_as_code.engine.clocks.
+    clock: Clock = Clock.MEAL
     current_phase: str = "start"
     kingdom: str = "K0"
     system: str = ""
