@@ -27,12 +27,17 @@ text rather than blocked:
 Two items were named in the work order but had **no source to copy from**:
 
 1. *"seed registry rows are in the hoststate_v0 README"* — the genome
-   `ModifierBinding` seed rows. These were authored from the repo's own
-   existing law and pathway content (MTHFR/one-carbon, HFE/iron, LCT/lactase,
-   FTO/appetite, CYP1A2/caffeine, APOE/lipoprotein) with every row marked
-   `evidence_state` conservatively and bound to a real engine parameter. They
-   are **candidate seed rows, not the approved v0 registry** — reconcile them
-   against `hoststate_v0.yaml` when it lands.
+   `ModifierBinding` seed rows, written to `design/genome_modifier_seed.json`.
+   Six candidates were authored from the repo's own law and pathway content
+   (MTHFR/one-carbon, HFE/iron, LCT/lactase, FTO/appetite, CYP1A2/caffeine,
+   APOE/lipoprotein). **Only three survived**: `tools/resolve_bindings.py`
+   rejected MTHFR outright (it pointed at a parameter that does not exist), and
+   review of the rest found CYP1A2 and APOE bound to parameters that *resolve*
+   and are wrong — elapsed time since eating is not caffeine clearance, and
+   APOE acts post-absorptively rather than on fat absorption. All three are
+   recorded in an `unmodellable` section naming the parameter that would have
+   to exist first. They are **candidate seed rows, not the approved v0
+   registry** — reconcile against `hoststate_v0.yaml` when it lands.
 2. The exact v0 field-to-stratum mapping. Every existing flat `HostState`
    property was mapped into a stratum by this work; the mapping is recorded in
    `HostState.v2.schema.json` and is likewise subject to reconciliation.
@@ -73,7 +78,7 @@ are breaking for any out-of-tree caller:
 | env var `KIBO_PRODUCT_SCORE_MODULE` | `BAC_SCORER_MODULE` |
 | result field `kibo_vars_score` | `vendor_scores` |
 | result `schema: "kibo.ProductScoreAnalysis/v1"` | `"bac.ExternalScoreAnalysis/v1"` |
-| candidate import `kibo_product_score` | none (env var or local `scoring/plugin/`) |
+| candidate import `kibo_product_score` | none — the env var is the only entry point |
 
 The old `biology_as_code.product_score` import path is **not** kept as a shim:
 keeping it would re-introduce a product identifier into `src/`, which the
@@ -81,18 +86,23 @@ no-product gate forbids. The rename is called out in `CHANGELOG.md`.
 
 ---
 
-## D-004 — `Modifier` is a schema/registry construct, not a dataclass
+## D-004 — withdrawn; the work order was right about `Modifier`
 
-**Work order says:** "`Modifier` dataclass (id, nutrient, relation, law_id)".
+An earlier draft of this file claimed the `Modifier` dataclass did not exist and
+that Phase 2 had introduced it. That was wrong, and it is recorded here rather
+than deleted because a divergence log that quietly drops its own errors is worth
+less than one that keeps them.
 
-**Repo reality:** the modifier concept lives in the law registry as
-`RelationType`-typed relations plus the absorption-modifier rows in
-`nodes/data/`, not as a standalone `Modifier` dataclass. Phase 2 therefore
-*introduced* the typed `Modifier` / `ModifierBinding` dataclasses in
-`engine/modifiers.py` carrying the requested `effect_direction`,
-`effect_magnitude`, `evidence_state` and `binding_site` fields, and wired them
-to the existing `RelationType` rather than editing a dataclass that did not
-exist.
+`engine/laws/models.py` has carried `@dataclass(frozen=True) class Modifier`
+with exactly the fields the work order named — `id`, `nutrient`, `relation`,
+`law_id` — plus `magnitude`, `conditions`, `prior`, `requires_context` and
+`note`, since before this work started. No divergence.
+
+What Phase 2 actually did is additive and is not a divergence either: the
+pathway-graph `Modifier` is enough to walk a graph and not enough to bind host
+state, so `engine/modifiers.py` adds `ModifierBinding` alongside it with the
+four fields the work order asked for (`effect_direction`, `effect_magnitude`,
+`evidence_state`, `binding_site`). The original `Modifier` is untouched.
 
 ---
 
