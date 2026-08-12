@@ -27,11 +27,27 @@ _REPO = Path(__file__).resolve().parents[3]
 EXAMPLES = _REPO / "examples"
 
 #: Surface relation words in the law register mapped to the closed ENUM.
+#:
+#: This is the *graph* relation vocabulary and it is deliberately not identical
+#: to ``engine.laws.models.RelationType``: it carries edge kinds the law model
+#: has no use for (COMPETES_WITH, PART_OF, NEEDS_RESOLUTION,
+#: MALFORMED_MECHANISM) and omits the law model's non-structural values
+#: (STATE_FUNCTION, FRAMEWORK, MIXED), which assert nothing an edge could
+#: represent.
+#:
+#: The overlap is load-bearing, though: a law carrying a *determinate*
+#: structural relation must be representable here, or ``load_laws`` silently
+#: emits no self-declared edge for it. That is how retyping LAW-039 to
+#: CONSERVES dropped its edge — the law model gained a value and this map did
+#: not. ``tests/test_graph_relation_vocabulary.py`` now fails when the two
+#: diverge on a determinate relation.
 _REL_ALIASES = {
     "OPENS_GATE": "OPENS_GATE",
     "CLOSES_GATE": "CLOSES_GATE",
     "EXPANDS_BOUND": "EXPANDS_BOUND",
     "NARROWS_BOUND": "NARROWS_BOUND",
+    "CONSERVES": "CONSERVES",
+    "IDENTITY": "IDENTITY",
     "COMPETES_WITH": "COMPETES_WITH",
     "PART_OF": "PART_OF",
     "NEEDS_RESOLUTION": "NEEDS_RESOLUTION",
