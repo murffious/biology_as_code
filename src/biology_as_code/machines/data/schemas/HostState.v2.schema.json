@@ -1,0 +1,721 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/murffious/biology_as_code/schemas/HostState.v2.schema.json",
+  "title": "HostState v2",
+  "description": "Host state in five strata, each field carrying four mandatory facets. v1 was a good flat fast-state/context layer and remains valid; v2 groups the same properties by rate of change and annotates each with where it reaches the engine (x-binding_site), how fast it moves (x-clock), how deep in the stack it sits (x-tier T0-T4) and how well established it is (x-evidence_state). Genome enters only as ModifierBinding instances under constants.genome. post_surgical selects an ExoticCompartment rather than scaling a default organ. Every non-null x-binding_site is checked by tools/resolve_bindings.py in CI.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "fast_state"
+  ],
+  "x-facets": {
+    "x-binding_site": "Dotted engine parameter path this field reaches, or null when the field is carried but no engine process reads it. Null must be written explicitly: an omitted facet is a defect, an explicit null is a declaration.",
+    "x-clock": {
+      "enum": [
+        "fixed",
+        "adaptation",
+        "diurnal",
+        "meal",
+        "bite",
+        "event"
+      ]
+    },
+    "x-tier": {
+      "enum": [
+        "T0",
+        "T1",
+        "T2",
+        "T3",
+        "T4"
+      ],
+      "description": "T0 identity/boot, T1 measured, T2 modelled, T3 inferred, T4 speculative."
+    },
+    "x-evidence_state": {
+      "enum": [
+        "verified",
+        "supported",
+        "contested",
+        "candidate"
+      ]
+    }
+  },
+  "properties": {
+    "schema": {
+      "const": "bac.HostState/v2",
+      "description": "Version marker. v1 documents remain valid; see the migration note."
+    },
+    "constants": {
+      "type": "object",
+      "description": "Does not change within the model's horizon. Read once.",
+      "additionalProperties": false,
+      "properties": {
+        "sex": {
+          "type": "string",
+          "enum": [
+            "female",
+            "male",
+            "other",
+            "unspecified"
+          ],
+          "description": "Recorded for reference intake lookups. Not bound: no engine process reads it directly; effects travel through slow_state instead.",
+          "x-binding_site": null,
+          "x-clock": "fixed",
+          "x-tier": "T0",
+          "x-evidence_state": "verified"
+        },
+        "age_years": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 120,
+          "description": "Fixed within a model run. Age acts on digestion through acid_capacity and lean mass, both of which are bound, so binding age itself would double-count.",
+          "x-binding_site": null,
+          "x-clock": "fixed",
+          "x-tier": "T0",
+          "x-evidence_state": "verified"
+        },
+        "lifecycle": {
+          "type": "string",
+          "description": "adult | pregnancy | lactation | older_adult. Free string until the enum is locked.",
+          "x-binding_site": null,
+          "x-clock": "fixed",
+          "x-tier": "T0",
+          "x-evidence_state": "supported"
+        },
+        "genome": {
+          "type": "array",
+          "description": "ModifierBinding instances. This is the ONLY route by which genotype enters the model: a variant with no binding site has no modelled effect, and carrying a genotype the engine silently ignores is worse than not carrying it. See design/genome_modifier_seed.json. Genome as bindings, never as a bag of genotypes.",
+          "items": {
+            "$ref": "#/$defs/modifierBinding"
+          },
+          "default": [],
+          "x-binding_site": null,
+          "x-clock": "fixed",
+          "x-tier": "T2",
+          "x-evidence_state": "contested"
+        }
+      }
+    },
+    "slow_state": {
+      "type": "object",
+      "description": "Weeks to months. Adaptation-clock quantities: body composition, enzyme and transporter capacity, microbial community, stores.",
+      "additionalProperties": false,
+      "properties": {
+        "body_fat_percent": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 80,
+          "description": "Adiposity. Moves on an adaptation clock.",
+          "x-binding_site": null,
+          "x-clock": "adaptation",
+          "x-tier": "T1",
+          "x-evidence_state": "verified"
+        },
+        "muscle_mass_kg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "description": "Lean mass.",
+          "x-binding_site": null,
+          "x-clock": "adaptation",
+          "x-tier": "T1",
+          "x-evidence_state": "verified"
+        },
+        "insulin_resistance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "0 = sensitive, 1 = maximally resistant (teaching intensity, not HOMA-IR). Acts on carbohydrate disposal.",
+          "x-binding_site": "sim.state.absorbed_carb",
+          "x-clock": "adaptation",
+          "x-tier": "T2",
+          "x-evidence_state": "supported"
+        },
+        "acid_capacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Teaching proxy for gastric acid output; PPI use and age lower it. Bound to the gastric pH window because that is what it actually moves.",
+          "x-binding_site": "compartments.stomach.pH_range",
+          "x-clock": "adaptation",
+          "x-tier": "T2",
+          "x-evidence_state": "supported"
+        },
+        "bile_capacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Emulsification capacity. Bound to the LAW-039 recycling term.",
+          "x-binding_site": "sim.state.bile_recycling_efficiency",
+          "x-clock": "adaptation",
+          "x-tier": "T2",
+          "x-evidence_state": "supported"
+        },
+        "microbiome_diversity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Community diversity proxy. Read by the colonic fermentation process; the direction is supported and the magnitude is not, hence contested.",
+          "x-binding_site": "processes.colon_scfa.colon.fermentation.context.high_microbiome_diversity",
+          "x-clock": "adaptation",
+          "x-tier": "T2",
+          "x-evidence_state": "contested"
+        },
+        "iron_stores": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Repletion state, 0 = depleted. Acts through hepcidin on ferroportin export.",
+          "x-binding_site": "processes.nonhaem_iron.fe.ferroportin_export.context.hepcidin_block",
+          "x-clock": "adaptation",
+          "x-tier": "T2",
+          "x-evidence_state": "supported"
+        },
+        "post_surgical": {
+          "type": "boolean",
+          "default": false,
+          "description": "Altered GI anatomy. NOT a scaling factor: it selects an ExoticCompartment that changes the stomach's bounds and can remove a segment from the path entirely. See biology_as_code.engine.compartments.ExoticCompartment.",
+          "x-binding_site": "compartments.stomach",
+          "x-clock": "event",
+          "x-tier": "T3",
+          "x-evidence_state": "supported"
+        }
+      }
+    },
+    "fast_state": {
+      "type": "object",
+      "description": "This occasion and this day. Meal-, bite- and diurnal-clock quantities.",
+      "additionalProperties": false,
+      "properties": {
+        "ready": {
+          "type": "integer",
+          "enum": [
+            0,
+            1
+          ],
+          "description": "Boot gate: 1 = host profile complete enough to receive a packet (Part 0).",
+          "x-binding_site": null,
+          "x-clock": "event",
+          "x-tier": "T0",
+          "x-evidence_state": "verified"
+        },
+        "hours_since_meal": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Time since the previous eating occasion.",
+          "x-binding_site": "sim.state.hours_since_meal",
+          "x-clock": "meal",
+          "x-tier": "T1",
+          "x-evidence_state": "verified"
+        },
+        "fed": {
+          "type": "boolean",
+          "default": true,
+          "description": "Fed or fasted at packet arrival.",
+          "x-binding_site": "sim.state.fed",
+          "x-clock": "meal",
+          "x-tier": "T1",
+          "x-evidence_state": "verified"
+        },
+        "fermentable_fraction": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.55,
+          "description": "Fraction of the ileal residue that is actually fermentable. Not all fiber_g is.",
+          "x-binding_site": "processes.colon_scfa.colon.residue_arrival.context.high_fermentable_fraction",
+          "x-clock": "meal",
+          "x-tier": "T2",
+          "x-evidence_state": "contested"
+        },
+        "micelle_gate_open": {
+          "type": "boolean",
+          "description": "L-FAT-1 micelle formation gate for fat-soluble cargo.",
+          "x-binding_site": "sim.state.micelle_gate_open",
+          "x-clock": "meal",
+          "x-tier": "T2",
+          "x-evidence_state": "supported"
+        },
+        "gastric_ph": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "maximum": 14,
+          "description": "Measured or modelled gastric pH this occasion.",
+          "x-binding_site": "compartments.stomach.pH_range",
+          "x-clock": "meal",
+          "x-tier": "T2",
+          "x-evidence_state": "supported"
+        },
+        "hydration_status": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Relative hydration.",
+          "x-binding_site": null,
+          "x-clock": "meal",
+          "x-tier": "T1",
+          "x-evidence_state": "supported"
+        },
+        "alcohol_with_meal": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Relative alcohol co-load this occasion (portal tax teaching). Direction supported, magnitude not.",
+          "x-binding_site": "sim.state.absorbed_fat",
+          "x-clock": "meal",
+          "x-tier": "T3",
+          "x-evidence_state": "contested"
+        },
+        "leucine_adequacy": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Whether the occasion clears the leucine threshold for the C-3 context.",
+          "x-binding_site": "sim.state.absorbed_protein",
+          "x-clock": "meal",
+          "x-tier": "T2",
+          "x-evidence_state": "supported"
+        },
+        "eating_rate_g_per_min": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "description": "Oral processing rate. The only bite-clock field in fast_state; it is what texture actually acts on, and modelling it at the meal clock loses the mechanism.",
+          "x-binding_site": "sim.state.hours_since_meal",
+          "x-clock": "bite",
+          "x-tier": "T2",
+          "x-evidence_state": "supported"
+        },
+        "sleep_hours_last_night": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 24,
+          "description": "Prior-night sleep duration.",
+          "x-binding_site": null,
+          "x-clock": "diurnal",
+          "x-tier": "T1",
+          "x-evidence_state": "supported"
+        },
+        "sleep_quality": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Subjective or device-derived sleep quality.",
+          "x-binding_site": null,
+          "x-clock": "diurnal",
+          "x-tier": "T1",
+          "x-evidence_state": "candidate"
+        },
+        "hour_of_day": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 24,
+          "default": 12,
+          "description": "Clock time of the eating occasion.",
+          "x-binding_site": "sim.state.hour_of_day",
+          "x-clock": "diurnal",
+          "x-tier": "T2",
+          "x-evidence_state": "supported"
+        },
+        "chronotype": {
+          "type": "string",
+          "default": "intermediate",
+          "description": "early | intermediate | late. Direction of effect is contested.",
+          "x-binding_site": "sim.state.chronotype",
+          "x-clock": "diurnal",
+          "x-tier": "T3",
+          "x-evidence_state": "contested"
+        },
+        "jet_lag_hours": {
+          "type": "number",
+          "description": "Circadian misalignment in hours.",
+          "x-binding_site": "sim.state.jet_lag_hours",
+          "x-clock": "diurnal",
+          "x-tier": "T3",
+          "x-evidence_state": "candidate"
+        },
+        "hrv_rmssd": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "description": "Heart-rate variability, RMSSD.",
+          "x-binding_site": null,
+          "x-clock": "diurnal",
+          "x-tier": "T1",
+          "x-evidence_state": "supported"
+        },
+        "resting_hr": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0,
+          "description": "Resting heart rate.",
+          "x-binding_site": null,
+          "x-clock": "diurnal",
+          "x-tier": "T1",
+          "x-evidence_state": "verified"
+        },
+        "stress_level": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Device- or model-derived stress.",
+          "x-binding_site": null,
+          "x-clock": "diurnal",
+          "x-tier": "T2",
+          "x-evidence_state": "candidate"
+        },
+        "perceived_stress": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Self-reported stress.",
+          "x-binding_site": null,
+          "x-clock": "diurnal",
+          "x-tier": "T1",
+          "x-evidence_state": "supported"
+        },
+        "steps_today": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Step count so far today.",
+          "x-binding_site": null,
+          "x-clock": "diurnal",
+          "x-tier": "T1",
+          "x-evidence_state": "verified"
+        },
+        "active_minutes_today": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Active minutes so far today.",
+          "x-binding_site": null,
+          "x-clock": "diurnal",
+          "x-tier": "T1",
+          "x-evidence_state": "verified"
+        },
+        "recent_exercise_intensity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Intensity of the most recent bout.",
+          "x-binding_site": null,
+          "x-clock": "diurnal",
+          "x-tier": "T2",
+          "x-evidence_state": "supported"
+        }
+      }
+    },
+    "context_stream": {
+      "type": "object",
+      "description": "What else is present. Co-ingested packets, medications in effect, same-meal modifiers. Not properties of the host, but read alongside it.",
+      "additionalProperties": false,
+      "properties": {
+        "exogenous_signals": {
+          "type": "array",
+          "description": "Medications and supplements in effect, as ExogenousSignal records. A receptor agonist is not the endogenous hormone: it has its own onset and duration, so it enters here and names what it acts on rather than impersonating it. Built from MedicationProfile. Exogenous inputs on the event clock.",
+          "items": {
+            "$ref": "#/$defs/exogenousSignal"
+          },
+          "default": [],
+          "x-binding_site": null,
+          "x-clock": "event",
+          "x-tier": "T3",
+          "x-evidence_state": "supported"
+        },
+        "co_ingested": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "description": "Ids of other packets in the same eating occasion. Same-meal partners are context, not host state, and they are what most modifier context keys actually key off. Same-occasion co-ingestion.",
+          "x-binding_site": null,
+          "x-clock": "meal",
+          "x-tier": "T1",
+          "x-evidence_state": "verified"
+        },
+        "ascorbate_same_meal": {
+          "type": "boolean",
+          "default": false,
+          "description": "Vitamin C present in the same meal (LAW-004 flagship enhancer).",
+          "x-binding_site": "processes.nonhaem_iron.fe.lumen_speciation.context.ascorbate_same_meal",
+          "x-clock": "meal",
+          "x-tier": "T2",
+          "x-evidence_state": "verified"
+        },
+        "tannin_same_meal": {
+          "type": "boolean",
+          "default": false,
+          "description": "Tea or other tannin source in the same meal (LAW-006).",
+          "x-binding_site": "processes.nonhaem_iron.fe.lumen_speciation.context.tannin",
+          "x-clock": "meal",
+          "x-tier": "T2",
+          "x-evidence_state": "verified"
+        },
+        "phytate_matrix": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whole-grain or legume matrix supplying phytate (LAW-002).",
+          "x-binding_site": "processes.nonhaem_iron.fe.lumen_speciation.context.phytate",
+          "x-clock": "meal",
+          "x-tier": "T2",
+          "x-evidence_state": "supported"
+        },
+        "meat_fish_factor": {
+          "type": "boolean",
+          "default": false,
+          "description": "MFP factor present in the same meal.",
+          "x-binding_site": "processes.nonhaem_iron.fe.lumen_speciation.context.meat_fish_factor",
+          "x-clock": "meal",
+          "x-tier": "T2",
+          "x-evidence_state": "supported"
+        }
+      }
+    },
+    "response_history": {
+      "type": "object",
+      "description": "What this host did last time. Versioned response records, each tagged with the protocol that produced it.",
+      "additionalProperties": false,
+      "properties": {
+        "glycemic": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/responseRecord"
+          },
+          "default": [],
+          "description": "Prior GlycemicResponse/1.0 results. Every record carries the protocol id that produced it: two iAUCs computed under different windows are not the same quantity and must not be compared.",
+          "x-binding_site": "responses.GlycemicResponse/1.0",
+          "x-clock": "meal",
+          "x-tier": "T2",
+          "x-evidence_state": "supported"
+        },
+        "satiety": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/responseRecord"
+          },
+          "default": [],
+          "description": "Prior satiety observations. Unbound: SatietyResponse has no executable protocol yet, so there is no engine parameter to point at.",
+          "x-binding_site": null,
+          "x-clock": "meal",
+          "x-tier": "T3",
+          "x-evidence_state": "candidate"
+        },
+        "lipemic": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/responseRecord"
+          },
+          "default": [],
+          "description": "Prior postprandial lipaemia observations. Unbound for the same reason.",
+          "x-binding_site": null,
+          "x-clock": "meal",
+          "x-tier": "T3",
+          "x-evidence_state": "candidate"
+        }
+      }
+    },
+    "honesty": {
+      "type": "string",
+      "enum": [
+        "FLOW",
+        "UNITS",
+        "OPEN"
+      ],
+      "default": "FLOW",
+      "description": "Most host scalars are teaching FLOW unless promoted.",
+      "x-binding_site": null,
+      "x-clock": "fixed",
+      "x-tier": "T0",
+      "x-evidence_state": "verified"
+    }
+  },
+  "$defs": {
+    "modifierBinding": {
+      "type": "object",
+      "description": "A modifier bound to a concrete engine parameter. Mirrors biology_as_code.engine.modifiers.ModifierBinding.",
+      "required": [
+        "id",
+        "modifier",
+        "binding_site",
+        "effect_direction",
+        "evidence_state"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "modifier": {
+          "type": "string",
+          "description": "Variant id, nutrient, or host condition."
+        },
+        "binding_site": {
+          "type": "string",
+          "description": "Dotted engine parameter path; must resolve."
+        },
+        "effect_direction": {
+          "type": "string",
+          "enum": [
+            "increase",
+            "decrease",
+            "none",
+            "unknown"
+          ]
+        },
+        "effect_magnitude": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0,
+          "description": "Fold change, or null for direction-only. Null is a legitimate published state."
+        },
+        "relation": {
+          "type": "string",
+          "enum": [
+            "OPENS_GATE",
+            "CLOSES_GATE",
+            "EXPANDS_BOUND",
+            "NARROWS_BOUND",
+            "STATE_FUNCTION",
+            "FRAMEWORK",
+            "MIXED",
+            "CONSERVES",
+            "IDENTITY"
+          ]
+        },
+        "evidence_state": {
+          "type": "string",
+          "enum": [
+            "verified",
+            "supported",
+            "contested",
+            "candidate"
+          ]
+        },
+        "law_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "clock": {
+          "type": "string",
+          "enum": [
+            "fixed",
+            "adaptation",
+            "diurnal",
+            "meal",
+            "bite",
+            "event"
+          ]
+        },
+        "requires_context": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "citations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "exogenousSignal": {
+      "type": "object",
+      "required": [
+        "id"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "acts_on": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "description": "Catalog id of the endogenous signal engaged, or null when unresolved. Null is carried, not dropped."
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "agonist",
+            "antagonist",
+            "substrate",
+            "inhibitor",
+            "unknown"
+          ]
+        },
+        "route": {
+          "type": "string"
+        },
+        "clock": {
+          "type": "string",
+          "enum": [
+            "fixed",
+            "adaptation",
+            "diurnal",
+            "meal",
+            "bite",
+            "event"
+          ],
+          "default": "event"
+        }
+      }
+    },
+    "responseRecord": {
+      "type": "object",
+      "required": [
+        "protocol",
+        "value"
+      ],
+      "additionalProperties": true,
+      "properties": {
+        "protocol": {
+          "type": "string",
+          "description": "Versioned protocol id, e.g. GlycemicResponse/1.0."
+        },
+        "value": {
+          "type": "number"
+        },
+        "unit": {
+          "type": "string"
+        },
+        "classification": {
+          "type": "string"
+        },
+        "observed_at": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

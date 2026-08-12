@@ -1,0 +1,79 @@
+{
+  "schema": "bac.GenomeModifierSeed/v1",
+  "status": "candidate — see design/DIVERGENCES.md D-001",
+  "provenance": "The work order says these seed rows live in the hoststate_v0 README. That file was never delivered into the tree, so these rows were authored from the repository's own law and pathway content. Treat hoststate_v0.yaml as authoritative when it lands and reconcile against it.",
+  "principle": "Genome enters the model ONLY as ModifierBinding instances. There is no genotype field on host state. A variant with no binding site has no modelled effect, and saying that explicitly is better than carrying a genotype the engine silently ignores. Every row under `bindings` therefore names a parameter that tools/resolve_bindings.py can actually resolve.",
+  "magnitude_policy": "effect_magnitude is null wherever the direction is better established than the size. Null is a published state, not a gap to be filled with a plausible number: ModifierBinding.effective_magnitude() returns None for contested and candidate rows even when a magnitude is present, so an unreviewed number cannot reach a computation merely by being written down here.",
+
+  "bindings": [
+    {
+      "id": "genome.hfe.c282y",
+      "modifier": "HFE p.Cys282Tyr (rs1800562)",
+      "binding_site": "processes.nonhaem_iron.fe.ferroportin_export.context.hepcidin_block",
+      "effect_direction": "increase",
+      "effect_magnitude": null,
+      "relation": "OPENS_GATE",
+      "evidence_state": "supported",
+      "law_ids": ["LAW-004", "LAW-041"],
+      "clock": "fixed",
+      "requires_context": "hepcidin_block",
+      "note": "Impaired hepcidin signalling releases the ferroportin brake, raising iron export. Binds to the hepcidin gate the iron pathway already reads — which is the whole point of requiring a binding site: the variant acts through a mechanism the engine models, or it does not act."
+    },
+    {
+      "id": "genome.lct.13910",
+      "modifier": "LCT -13910C>T (rs4988235), non-persistence allele",
+      "binding_site": "processes.colon_scfa.colon.residue_arrival.context.high_fermentable_fraction",
+      "effect_direction": "increase",
+      "effect_magnitude": null,
+      "relation": "EXPANDS_BOUND",
+      "evidence_state": "verified",
+      "law_ids": ["LAW-017", "LAW-025"],
+      "clock": "fixed",
+      "requires_context": "high_fermentable_fraction",
+      "note": "Non-persistence sends undigested lactose to the colon, raising the fermentable fraction of the residue. The genotype-phenotype link is verified; what it does to SCFA yield is a downstream question the bound pathway answers, not something this row asserts."
+    },
+    {
+      "id": "genome.fto.rs9939609",
+      "modifier": "FTO rs9939609 risk allele",
+      "binding_site": "signals.ghrelin",
+      "effect_direction": "increase",
+      "effect_magnitude": null,
+      "relation": "MIXED",
+      "evidence_state": "contested",
+      "law_ids": [],
+      "clock": "fixed",
+      "requires_context": null,
+      "note": "Associated with higher circulating ghrelin and blunted postprandial suppression in some cohorts and not others, and the causal route through IRX3/IRX5 does not obviously run via ghrelin at all. Contested, direction only, and it stays that way until the mechanism settles."
+    }
+  ],
+
+  "unmodellable": {
+    "why_this_section_exists": "These variants have real, well-known dietary relevance and NO engine parameter to act on. Under the principle above they are not bindings — a row with a plausible-looking but wrong binding_site is worse than no row, because the resolver would pass it and the engine would move something the variant does not actually move. Each entry names the parameter that would have to exist first. Three of the six seed candidates landed here, which is the honest state of the engine rather than a failure of the registry.",
+    "variants": [
+      {
+        "modifier": "MTHFR c.665C>T (rs1801133)",
+        "effect_direction": "decrease",
+        "evidence_state": "supported",
+        "law_ids": ["LAW-012"],
+        "needs_parameter": "a one-carbon / folate pool term on MetabolicState",
+        "note": "TT homozygotes have reduced MTHFR thermostability and a higher folate requirement. The direction is well established, but MetabolicState carries no folate or one-carbon pool, so there is nothing to bind to. The methionine_one_carbon pathway pack describes the chemistry without exposing a parameter. An earlier draft of this file bound it to sim.state.micronutrient_pool_factor, which does not exist; tools/resolve_bindings.py caught it."
+      },
+      {
+        "modifier": "CYP1A2 -163A>C (rs762551), slow-metaboliser allele",
+        "effect_direction": "increase",
+        "evidence_state": "contested",
+        "law_ids": [],
+        "needs_parameter": "a xenobiotic clearance term (caffeine half-life)",
+        "note": "Slow caffeine clearance extends exposure. An earlier draft bound this to sim.state.hours_since_meal as 'the nearest existing parameter'. That resolves and is wrong: elapsed time since eating is not caffeine clearance, and moving it would produce a confidently incorrect result. Removed rather than approximated."
+      },
+      {
+        "modifier": "APOE ε4",
+        "effect_direction": "unknown",
+        "evidence_state": "contested",
+        "law_ids": ["LAW-039"],
+        "needs_parameter": "a lipoprotein clearance term downstream of absorption",
+        "note": "ε4 acts post-absorptively on lipoprotein handling, not on fat absorption. An earlier draft bound it to sim.state.absorbed_fat, which is the wrong compartment entirely. The lipoprotein_transport pack has the biology; the sim has no clearance parameter."
+      }
+    ]
+  }
+}
