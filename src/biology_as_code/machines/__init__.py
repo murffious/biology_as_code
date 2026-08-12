@@ -3,7 +3,7 @@ Open declarative digestion machines — a teaching layer for ``biology_as_code``
 
 Each GI stage is a versioned, inspectable JSON state graph (states, transitions,
 edge cases, teaching time windows) instead of hard-coded procedure — "biology as
-code." Open FLOW tier only: these carry **no** product-score / Kibo-vars hooks.
+code." Open FLOW tier only: these carry **no** product-score / vendor-scoring hooks.
 
     from biology_as_code.machines import list_machines, get_machine, validate_all
 

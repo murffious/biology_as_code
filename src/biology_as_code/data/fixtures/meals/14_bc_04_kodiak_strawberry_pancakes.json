@@ -24,7 +24,7 @@
       "grams": 53,
       "source": {
         "type": "barcode_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "BARCODE#00705599016219",
         "barcode_gtin14": "00705599016219",
         "serving_size_g": 63,
@@ -294,7 +294,7 @@
       "grams": 50,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_egg_whole_large",
         "nutrition_source": "usda_fdc"
       },
@@ -524,7 +524,7 @@
       "grams": 100,
       "source": {
         "type": "fdc_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#167762",
         "nutrition_source": "usda_fdc_sr_legacy",
         "fdcId": 167762
@@ -758,7 +758,7 @@
       "grams": 16,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_almond_butter",
         "nutrition_source": "usda_fdc"
       },
@@ -988,7 +988,7 @@
       "grams": 240,
       "source": {
         "type": "fdc_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#171265",
         "nutrition_source": "usda_fdc_sr_legacy",
         "fdcId": 171265
@@ -1299,7 +1299,7 @@
       "OpenFoodFacts (fallback macros)",
       "USDA FDC gold (branded/SR Legacy/Foundation)",
       "hydration enrich 2026-07-23 (corpus + OFF + USDA class)",
-      "mealcoach-foods-dev (DynamoDB)"
+      "curated-foods-dev (DynamoDB)"
     ],
     "macros_coverage": "all_ingredients",
     "full_panel_coverage_pct": 75.8,

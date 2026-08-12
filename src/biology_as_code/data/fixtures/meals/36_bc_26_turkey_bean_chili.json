@@ -24,7 +24,7 @@
       "grams": 112,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_ground_turkey_93_cooked",
         "nutrition_source": "usda_fdc"
       },
@@ -254,7 +254,7 @@
       "grams": 130,
       "source": {
         "type": "barcode_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "BARCODE#00039400017455",
         "barcode_gtin14": "00039400017455",
         "serving_size_g": 130,
@@ -534,7 +534,7 @@
       "grams": 200,
       "source": {
         "type": "barcode_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "BARCODE#00725342292110",
         "barcode_gtin14": "00725342292110",
         "serving_size_g": 120,
@@ -728,7 +728,7 @@
       "grams": 6,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_garlic_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -1049,7 +1049,7 @@
       "grams": 75,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_bell_pepper_red_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -1316,7 +1316,7 @@
       "grams": 7,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_olive_oil_evoo",
         "nutrition_source": "usda_fdc"
       },
@@ -2016,7 +2016,7 @@
       "OpenFoodFacts (fallback macros)",
       "USDA FDC gold (branded/SR Legacy/Foundation)",
       "hydration enrich 2026-07-23 (corpus + OFF + USDA class)",
-      "mealcoach-foods-dev (DynamoDB)"
+      "curated-foods-dev (DynamoDB)"
     ],
     "macros_coverage": "all_ingredients",
     "full_panel_coverage_pct": 62.3,

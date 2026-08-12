@@ -469,8 +469,8 @@ board`.
 - `simulate_meal()` high-level API wrapping the meal compile pipeline.
 - Pathway graph discovery (`list_pathways`, `get_pathway`) over existing modules.
 - Physiological scenarios: fed / overnight fast / prolonged fast / exercise.
-- Meal fixtures (no product meal score / kibo_score fields), vitamins registry, personas.
-- Law / iron / colon data via `data.kibo_core`.
+- Meal fixtures (no product meal score / flow_score fields), vitamins registry, personas.
+- Law / iron / colon data via `engine`.
 - **Ketolysis** teaching pathway (`get_pathway("ketolysis")`) — ketone-body oxidation
   (BDH1 -> SCOT/OXCT1 -> ACAT1 -> 2 acetyl-CoA), including the liver's lack of SCOT.
   Closes TODO 6b; complements the existing ketogenesis graph.
@@ -483,7 +483,7 @@ board`.
 - `β-hydroxybutyrate` signaling pathway (HCAR2/GPR109A, class-I HDAC inhibition, NLRP3,
   GPR41) in the signaling registry — ketones as signals, not just fuel.
 - Public LAW-SPEC **law cards** (`get_law`, `list_laws`, `law_card`) over the 47-law
-  kibo_core register (System / Organ / Gate / Bound / Conditions / relation).
+  engine register (System / Organ / Gate / Bound / Conditions / relation).
 - Open **evidence/provenance** surface (`all_sources`, `pubmed_url`, `law_evidence`):
   aggregates declared sources, loads bundled LAW-026 PubMed candidates, and offers a
   **fail-closed** (offline, no fabricated citations) PubMed lookup.
@@ -507,5 +507,5 @@ board`.
 ### Notes
 
 - FLOW teaching software — not clinical decision support.
-- Product meal score and Kibo-vars product scorer are **not** included.
+- Product meal score and vendor-variable product scorer are **not** included.
 - Book manuscript is **in progress / not yet released**, and is separately licensed (not part of this package).

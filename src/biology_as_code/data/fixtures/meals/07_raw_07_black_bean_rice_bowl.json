@@ -24,7 +24,7 @@
       "grams": 130,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_black_beans_cooked",
         "nutrition_source": "usda_fdc"
       },
@@ -254,7 +254,7 @@
       "grams": 130,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_brown_rice_cooked",
         "nutrition_source": "usda_fdc"
       },
@@ -484,7 +484,7 @@
       "grams": 75,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_bell_pepper_red_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -751,7 +751,7 @@
       "grams": 90,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_tomato_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -1027,7 +1027,7 @@
       "grams": 68,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_avocado_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -1348,7 +1348,7 @@
       "grams": 15,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_lemon",
         "nutrition_source": "usda_fdc"
       },
@@ -2085,7 +2085,7 @@
       "OpenFoodFacts (fallback macros)",
       "USDA FDC gold (branded/SR Legacy/Foundation)",
       "hydration enrich 2026-07-23 (corpus + OFF + USDA class)",
-      "mealcoach-foods-dev (DynamoDB)"
+      "curated-foods-dev (DynamoDB)"
     ],
     "macros_coverage": "all_ingredients",
     "full_panel_coverage_pct": 100.0,

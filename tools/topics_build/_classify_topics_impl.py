@@ -9,7 +9,7 @@ from pathlib import Path
 
 BOOK = Path(__file__).resolve().parents[2]
 SRC = BOOK / "biology_as_code_nutrition_intelligence-main" / "list.topics.md"
-OUT = (Path(__file__).resolve().parents[2] / "src" / "biology_as_code" / "data" / "kibo_core" / "data" / "topics_ontology.json")
+OUT = (Path(__file__).resolve().parents[2] / "src" / "biology_as_code" / "engine" / "data" / "topics_ontology.json")
 
 # Module-level rules — importable by tests without running main()
 LAW_LINK_RULES: list[tuple[str, list[str]]] = [

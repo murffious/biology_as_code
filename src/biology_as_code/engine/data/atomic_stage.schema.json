@@ -1,0 +1,95 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://nutricollective.local/schemas/atomic_pathway_stage.schema.json",
+  "title": "AtomicPathwayStage",
+  "description": "One step as cargo moves down a host system pathway — nutrient ontology bindings + science + laws + next_pathways.",
+  "type": "object",
+  "required": ["id", "order", "system", "organ", "cargo", "next_pathways", "priors"],
+  "properties": {
+    "order": { "type": "integer", "minimum": 0 },
+    "id": { "type": "string" },
+    "label": { "type": "string" },
+    "system": {
+      "type": "string",
+      "enum": [
+        "Assimilation",
+        "Transport",
+        "Communication",
+        "Defense",
+        "Biotransformation",
+        "Energy",
+        "Structure"
+      ]
+    },
+    "organ": { "type": "string" },
+    "subsystem": { "type": "string" },
+    "depth": {
+      "type": "string",
+      "description": "payload | lumen | apical_membrane | intracellular | basolateral_membrane | systemic_transport | …"
+    },
+    "science": {
+      "type": "object",
+      "properties": {
+        "summary": { "type": "string" },
+        "reactions": { "type": "array", "items": { "type": "string" } },
+        "gene": { "type": "string" },
+        "gap": { "type": "string" }
+      }
+    },
+    "cargo": {
+      "type": "object",
+      "required": ["primary"],
+      "properties": {
+        "primary": {
+          "type": "object",
+          "required": ["nutrient_ref", "form", "state"],
+          "properties": {
+            "nutrient_ref": {
+              "type": "string",
+              "description": "Catalog id e.g. nut.iron, nut.ascorbate"
+            },
+            "form": { "type": "string" },
+            "state": { "type": "string" },
+            "ontology": { "type": "object" },
+            "carrier_ref": { "type": "string" }
+          }
+        },
+        "species_present": { "type": "array", "items": { "type": "string" } },
+        "co_nutrients": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["nutrient_ref", "role"],
+            "properties": {
+              "nutrient_ref": { "type": "string" },
+              "role": { "type": "string" },
+              "required_context": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "mechanisms": { "type": "array", "items": { "type": "object" } },
+    "transporters": { "type": "array", "items": { "type": "object" } },
+    "compartments": { "type": "array", "items": { "type": "object" } },
+    "laws": { "type": "array", "items": { "type": "object" } },
+    "enhancers": { "type": "array", "items": { "type": "object" } },
+    "inhibitors": { "type": "array", "items": { "type": "object" } },
+    "gates": { "type": "array", "items": { "type": "object" } },
+    "priors": {
+      "type": "object",
+      "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1 }
+    },
+    "next_pathways": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Next atomic unit ids — follow these to move down the system"
+    },
+    "terminus": { "type": "boolean" },
+    "next_systems_out": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "growth": { "type": "array", "items": { "type": "string" } }
+  }
+}

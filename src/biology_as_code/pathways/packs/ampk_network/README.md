@@ -7,4 +7,4 @@ AMPK energy-stress network. A rising AMP/ADP:ATP ratio (plus LKB1 and Ca²⁺/Ca
 - **Tests:** `tests.md` + `tests/test_pathway_packs.py`
 - **Gold template:** `packs/glycolysis/glycolysis_extra/`
 
-Tier: FLOW teaching. Not product meal score / Kibo-vars product scorer.
+Tier: FLOW teaching. Not an external product score.

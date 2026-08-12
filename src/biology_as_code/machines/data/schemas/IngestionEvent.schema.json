@@ -6,7 +6,7 @@
   "type": "object",
   "additionalProperties": false,
   "properties": {
-    "schema": { "const": "kibo.IngestionEvent/v1" },
+    "schema": { "const": "bac.IngestionEvent/v1" },
     "id": { "type": "string" },
     "packet_id": {
       "type": "string",

@@ -3,7 +3,7 @@ Build the graph from the repository's own registers.
 
 Sources, in order of authority:
 
-  1. ``data.kibo_core.laws.registry``   — the 47 system-bound laws
+  1. ``engine.laws.registry``   — the 47 system-bound laws
   2. ``examples/contributions/*.json``  — accepted evidence contributions
   3. ``examples/claims/*.json``         — adjudicated claim fixtures
   4. ``examples/claims/food_health_claims_500.json`` — 500 foods, their claims,
@@ -55,7 +55,7 @@ def build(path: str | Path = ":memory:", *, include_foods: bool = True) -> Graph
 
 def load_laws(g: GraphStore) -> int:
     """The 47-law register, with systems, organs, gates and bounds split out."""
-    from biology_as_code.data.kibo_core.laws.registry import load_system_bound_registry
+    from biology_as_code.engine.laws.registry import load_system_bound_registry
 
     reg = load_system_bound_registry()
     n = 0
@@ -67,7 +67,7 @@ def load_laws(g: GraphStore) -> int:
             law_id,
             "Law",
             rec.get("law_statement") or law_id,
-            system=rec.get("kibo_system"),
+            system=rec.get("system_name"),
             organ=rec.get("organ"),
             subsystem=rec.get("subsystem"),
             status=rec.get("status"),
@@ -83,7 +83,7 @@ def load_laws(g: GraphStore) -> int:
         n += 1
 
         # seat: system and organ
-        if sys_name := (rec.get("kibo_system") or "").strip():
+        if sys_name := (rec.get("system_name") or "").strip():
             sid = f"system:{_slug(sys_name)}"
             g.add_node(sid, "System", sys_name)
             g.add_edge(law_id, "SEATED_IN", sid)

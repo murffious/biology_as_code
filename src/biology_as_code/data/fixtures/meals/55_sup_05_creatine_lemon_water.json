@@ -23,7 +23,7 @@
       "grams": 5.3,
       "source": {
         "type": "barcode_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "BARCODE#00810117600730",
         "barcode_gtin14": "00810117600730",
         "serving_size_g": 5.3,
@@ -243,7 +243,7 @@
       "grams": 480,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#mcai-lemon-water",
         "nutrition_source": "usda_fdc"
       },
@@ -524,7 +524,7 @@
       "grams": 118,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_banana_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -854,7 +854,7 @@
       "grams": 14,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_almonds_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -1132,7 +1132,7 @@
   "nutrition_provenance": {
     "method": "computed_from_per_100g",
     "sources": [
-      "mealcoach-foods-dev (DynamoDB)",
+      "curated-foods-dev (DynamoDB)",
       "USDA FDC gold (branded/SR Legacy/Foundation)",
       "OpenFoodFacts (fallback macros)"
     ],

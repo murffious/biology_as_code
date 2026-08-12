@@ -6,7 +6,7 @@
   "type": "object",
   "additionalProperties": false,
   "properties": {
-    "schema": { "const": "kibo.PacketLoad/v1" },
+    "schema": { "const": "bac.PacketLoad/v1" },
     "id": { "type": "string", "description": "Stable packet / meal log id" },
     "name": { "type": "string" },
     "intake": {

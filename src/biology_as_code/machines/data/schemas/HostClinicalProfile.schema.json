@@ -6,7 +6,7 @@
   "type": "object",
   "additionalProperties": false,
   "properties": {
-    "schema": { "const": "kibo.HostClinicalProfile/v1" },
+    "schema": { "const": "bac.HostClinicalProfile/v1" },
     "honesty": {
       "type": "string",
       "enum": ["FLOW", "OPEN", "UNITS"],

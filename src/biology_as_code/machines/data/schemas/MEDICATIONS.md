@@ -34,7 +34,7 @@ Exogenous **GLP-1 RA** is a **host medication class**.
 
 ## C-8 (ontology) ↔ product
 
-From `kiboMasterOntology` **C-8 GLP-1 Override**:
+From `masterOntology` **C-8 GLP-1 Override**:
 
 > If User.GLP1 = True → Calorie Goal −20%; Fiber Goal −20%; Protein Priority = #1
 
@@ -45,7 +45,7 @@ Implementation: soft `c8_goal_bias` when `glp1_ra.onboard` — **FLOW teaching s
 As of catalog `as_of` (not a systematic review):
 
 1. **Class effects** include reduced appetite / increased satiety and **delayed gastric emptying** (degree varies by agent and duration of therapy).  
-2. Trials show **lower energy intake** and clinically meaningful weight loss for labeled weight-management agents — magnitudes not locked into Kibo.  
+2. Trials show **lower energy intake** and clinically meaningful weight loss for labeled weight-management agents — magnitudes not locked into the engine.  
 3. Practical nutrition themes: **protein density** when total food volume falls; GI symptom tolerance; resistance training + protein for lean mass during loss; UPF quality still matters.  
 4. **Complementary** to clinician-prescribed therapy — app never stops or starts the drug.
 

@@ -25,7 +25,7 @@ register leaves a magnitude open the graph leaves it open too.
 
 | Source | Contributes |
 |---|---|
-| `data.kibo_core.laws.registry` | 47 laws, 7 systems, 44 organs, 9 gates, 47 bounds |
+| `engine.laws.registry` | 47 laws, 7 systems, 44 organs, 9 gates, 47 bounds |
 | `examples/contributions/*.json` | 4 contributions, 2 sources |
 | `examples/claims/claim_*.json` | 2 hand-adjudicated gold fixtures |
 | `examples/claims/food_health_claims_500.json` | 500 foods, 1,228 claims, 88 compounds, 27 outcomes |

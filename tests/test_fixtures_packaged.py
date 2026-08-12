@@ -17,13 +17,13 @@ def test_meals_and_vitamins():
     m = load_meal(ids[0])
     assert m is not None
     blob = str(m)
-    assert "kibo_score" not in blob
+    assert "flow_score" not in blob
     assert vitamins_path().is_file()
 
 
-def test_product_score_hook_unavailable():
-    from biology_as_code import product_score_available, run_product_score_analysis
+def test_external_scorer_hook_unavailable():
+    from biology_as_code import external_scorer_available, run_external_score_analysis
 
-    assert product_score_available() is False
-    out = run_product_score_analysis(enabled=True)
+    assert external_scorer_available() is False
+    out = run_external_score_analysis(enabled=True)
     assert out["available"] is False

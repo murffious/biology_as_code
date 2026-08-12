@@ -91,7 +91,7 @@ Classic textbook *chapters* often include more named processes than we model as 
 | Colonic SCFA (acetate / propionate / butyrate) | **Yes** (`scfa_colonic_production`) |
 | Remaining single-AA cascades (His, Trp full, Lys, Pro, Arg, Thr, …) | **Partial** — covered via classification map + nitrogen hub; expand only when clinically needed |
 | Photosynthesis / non-human pathways | **Out of scope** |
-| Product meal score / Kibo-vars scorer | **Excluded** (patent pending) |
+| External product scoring | **Excluded** (patent pending) |
 
 Goal: **every registry pathway graph has a mermaid pack** (met today).  
 Stretch: add new **graphs in code first**, then re-run `export_pathway_packs.py` so docs never drift.

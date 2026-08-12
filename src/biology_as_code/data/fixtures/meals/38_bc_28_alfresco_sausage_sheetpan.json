@@ -24,7 +24,7 @@
       "grams": 85,
       "source": {
         "type": "barcode_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "BARCODE#00030771080840",
         "barcode_gtin14": "00030771080840",
         "serving_size_g": 57,
@@ -412,7 +412,7 @@
       "grams": 100,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_brussels_sprouts_roasted",
         "nutrition_source": "usda_fdc"
       },
@@ -751,7 +751,7 @@
       "grams": 130,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_sweet_potato_baked",
         "nutrition_source": "usda_fdc"
       },
@@ -1090,7 +1090,7 @@
       "grams": 14,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_olive_oil_evoo",
         "nutrition_source": "usda_fdc"
       },
@@ -1384,7 +1384,7 @@
       "grams": 240,
       "source": {
         "type": "fdc_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#171265",
         "nutrition_source": "usda_fdc_sr_legacy",
         "fdcId": 171265
@@ -1695,7 +1695,7 @@
       "OpenFoodFacts (fallback macros)",
       "USDA FDC gold (branded/SR Legacy/Foundation)",
       "hydration enrich 2026-07-23 (corpus + OFF + USDA class)",
-      "mealcoach-foods-dev (DynamoDB)"
+      "curated-foods-dev (DynamoDB)"
     ],
     "macros_coverage": "all_ingredients",
     "full_panel_coverage_pct": 100.0,

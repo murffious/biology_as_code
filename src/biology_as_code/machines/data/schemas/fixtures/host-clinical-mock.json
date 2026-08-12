@@ -1,5 +1,5 @@
 {
-  "schema": "kibo.HostClinicalProfile/v1",
+  "schema": "bac.HostClinicalProfile/v1",
   "honesty": "OPEN",
   "source": "mock",
   "as_of": "2026-07-23",

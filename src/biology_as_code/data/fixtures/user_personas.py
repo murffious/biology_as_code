@@ -2,9 +2,9 @@
 User persona seed loader (public package fixtures).
 
 SSOT: biology_as_code/data/fixtures/user-personas.json
-Product meal score / kibo_score fields are stripped from public fixtures.
+Any external-scorer telemetry is stripped from public fixtures.
 
-Not real PHI. Not clinical decision support. Not product score IP.
+Not real PHI. Not clinical decision support. Carries no scoring IP.
 """
 
 from __future__ import annotations
@@ -18,17 +18,19 @@ _HERE = Path(__file__).resolve().parent
 _LOCAL_SEED = _HERE / "user-personas.json"
 _LOCAL_INVENTORY = _HERE / "user-persona-data-inventory.json"
 
-# Keys never exposed on public load (patent-pending product telemetry)
+# Keys never exposed on public load. The committed seed carries none of them;
+# the filter is a standing guard so an upstream re-export cannot leak scorer
+# telemetry into the open fixtures without the test suite noticing.
 _SCRUB_KEYS = frozenset(
     {
-        "kibo_score",
-        "app_kibo_score",
-        "kibo_score_hint",
-        "kibo_trend",
+        "flow_score",
+        "app_vendor_score",
+        "vendor_score_hint",
+        "vendor_score_trend",
         "product_score",
-        "product_score_analysis",
-        "kibo_vars",
-        "kibo_vars_score",
+        "external_score_analysis",
+        "vendor_vars",
+        "vendor_scores",
         "score_axes",
         "meal_score",
     }
@@ -155,7 +157,7 @@ def persona_to_clinical_context(persona: dict[str, Any]):
 
 def persona_engine_profile(persona: dict[str, Any]) -> dict[str, Any]:
     """
-    Flat profile dict for kibo_engine / bridge adapters.
+    Flat profile dict for meal_engine / bridge adapters.
     Mirrors TS host + a few clinical/goal flags.
     """
     h = persona.get("host") or {}
@@ -199,7 +201,7 @@ def persona_engine_profile(persona: dict[str, Any]) -> dict[str, Any]:
         "activity_level": prefs.get("activity_level"),
         "lifestyle_tags": list(prefs.get("lifestyle_tags") or []),
         "app_state": app.get("state"),
-        # no kibo_score / product meal score in public package
+        # no flow_score / product meal score in public package
         "adherence_last_7d": app.get("adherence_last_7d"),
         "honesty": persona.get("honesty", "OPEN"),
     }

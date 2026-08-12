@@ -23,7 +23,7 @@
       "grams": 50,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_oats_rolled_dry",
         "nutrition_source": "usda_fdc"
       },
@@ -253,7 +253,7 @@
       "grams": 240,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_almond_milk_unsweet",
         "nutrition_source": "usda_fdc"
       },
@@ -619,7 +619,7 @@
       "grams": 12,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_chia_seeds",
         "nutrition_source": "usda_fdc"
       },
@@ -877,7 +877,7 @@
       "grams": 74,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_blueberries_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -1234,7 +1234,7 @@
       "grams": 62,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_raspberries_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -1573,7 +1573,7 @@
       "grams": 16,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_almond_butter",
         "nutrition_source": "usda_fdc"
       },
@@ -1803,7 +1803,7 @@
       "grams": 1.3,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_cinnamon_ground",
         "nutrition_source": "usda_fdc"
       },
@@ -2207,7 +2207,7 @@
   "nutrition_provenance": {
     "method": "computed_from_per_100g",
     "sources": [
-      "mealcoach-foods-dev (DynamoDB)",
+      "curated-foods-dev (DynamoDB)",
       "USDA FDC gold (branded/SR Legacy/Foundation)",
       "OpenFoodFacts (fallback macros)"
     ],

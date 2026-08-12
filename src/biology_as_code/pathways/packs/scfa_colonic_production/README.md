@@ -7,4 +7,4 @@ Colonic short-chain fatty acid production from fermentable fiber / RS. Microbiot
 - **Tests:** `tests.md` + `tests/test_pathway_packs.py`
 - **Gold template:** `packs/glycolysis/glycolysis_extra/`
 
-Tier: FLOW teaching. Not product meal score / Kibo-vars product scorer.
+Tier: FLOW teaching. Not an external product score.

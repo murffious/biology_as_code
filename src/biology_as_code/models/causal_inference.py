@@ -1,7 +1,7 @@
 """
 causal_inference.py
 =================================================================
-Causal Inference Engine over the KIBO multi-layer graph
+Causal Inference Engine over the multi-layer graph
 
   NUTRIENT/COMPOUND → L3 Mechanism → L4 Effect → L5 Outcome
 

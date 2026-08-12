@@ -155,7 +155,7 @@ class VitaminAbsorptionSystem:
 
 class VitaminAbsorptionEngine(VitaminAbsorptionSystem):
     """
-    Engine-facing API expected by kibo_engine.
+    Engine-facing API expected by meal_engine.
     Wraps dose/interaction logic into a single absorb() call.
     """
 

@@ -7,7 +7,7 @@
   "additionalProperties": false,
   "required": ["host", "packet"],
   "properties": {
-    "schema": { "const": "kibo.DigestRun/v1" },
+    "schema": { "const": "bac.DigestRun/v1" },
     "id": { "type": "string" },
     "process_id": {
       "type": "string",

@@ -1,6 +1,6 @@
 """
 metabolic_state.py
-Core MetabolicState controller for KIBO.
+Core MetabolicState controller for the engine.
 Includes hormonal profiles, energy charge, pathway signals,
 vitamin status, organ laws, and bound conditions.
 """

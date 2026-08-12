@@ -1,5 +1,5 @@
 {
-  "schema": "kibo.UserGoals/v1",
+  "schema": "bac.UserGoals/v1",
   "honesty": "OPEN",
   "primary": "weight_loss",
   "secondary": ["glycemic_control", "anti_inflammatory"],

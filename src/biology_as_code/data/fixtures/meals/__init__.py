@@ -1,4 +1,4 @@
-"""Open meal fixtures for dig sim — no product meal score / kibo_score fields."""
+"""Open meal fixtures for dig sim — no product meal score / flow_score fields."""
 
 from __future__ import annotations
 
@@ -47,7 +47,7 @@ def meal_to_food_payload_dict(meal: dict[str, Any]) -> dict[str, Any]:
     """
     Map fixture meal → fields useful for FoodPayload / dig (open path).
 
-    Does **not** compute product meal score or Kibo-vars score.
+    Does **not** compute product meal score or vendor-variable score.
     """
     n = meal.get("nutrition_per_serving") or meal.get("nutrition") or {}
     derived = meal.get("derived") or {}

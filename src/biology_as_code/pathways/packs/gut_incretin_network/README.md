@@ -7,4 +7,4 @@ Meal-triggered gut hormone mini-graph: CCK (I cells, fat/protein), GLP-1 (L cell
 - **Tests:** `tests.md` + `tests/test_pathway_packs.py`
 - **Gold template:** `packs/glycolysis/glycolysis_extra/`
 
-Tier: FLOW teaching. Not product meal score / Kibo-vars product scorer.
+Tier: FLOW teaching. Not an external product score.

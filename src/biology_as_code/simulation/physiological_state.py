@@ -1,7 +1,7 @@
 """
 physiological_state.py
 =================================================================
-Central Physiological State for KIBO
+Central Physiological State for the engine
 
 This is the single source of truth for system-wide variables that
 pathways, mechanisms, and user scenarios can read.
@@ -185,7 +185,7 @@ class ClinicalContext:
 @dataclass
 class PhysiologicalState:
     """
-    Master state object for the entire KIBO system.
+    Master state object for the entire engine.
 
     Pathways and mechanisms should eventually query this object
     instead of relying only on static regulation notes.

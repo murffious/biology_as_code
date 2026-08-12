@@ -1,5 +1,5 @@
 {
-  "schema": "kibo.DeliveryModality.catalog/v1",
+  "schema": "bac.DeliveryModality.catalog/v1",
   "version": "1.0.0",
   "honesty": "OPEN",
   "title": "Delivery modality (how it enters the body)",

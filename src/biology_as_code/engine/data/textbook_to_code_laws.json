@@ -1,0 +1,1846 @@
+{
+  "schema_version": "1.0.0",
+  "title": "Textbook → Code Missing Link (Nutritional Laws for the engine)",
+  "thesis": "Textbooks already contain laws (homeostasis, interactions, digestion bounds). They do not package them for a code system: System category, organ, subsystem, gate vs bound, typed relations, meal/host conditions. This file is that missing link.",
+  "seven_systems": [
+    "Assimilation",
+    "Transport",
+    "Communication",
+    "Defense",
+    "Biotransformation",
+    "Energy",
+    "Structure"
+  ],
+  "sources_of_shape": [
+    "meta/LAW-SPEC.md (gate/bound split, typed relations)",
+    "gleaned/protocol/law-extraction-protocol.md",
+    "GROK_laws.md (JSON law objects, governingSystems, boundsAndConditions, pathwayDetails, appApplications)",
+    "gleaned/registers/laws.md (LAW-001…042 extraction, intact)"
+  ],
+  "grok_textbook_mega_laws": {
+    "METABOLIC_HOMEOSTASIS_01": {
+      "name": "Law of Metabolic Homeostasis and Feedback Regulation",
+      "textbook_says": "Systems hold metabolites in bounds via negative feedback (e.g. vit D hydroxylation, PTH).",
+      "missing_for_code": "Which functional system? Gate vs bound? What is the executable edge?",
+      "our_laws": [
+        "LAW-015",
+        "LAW-018",
+        "LAW-021",
+        "LAW-011"
+      ],
+      "our_fill": "Protein-stat, appetite dual-loop, cholesterol pool, Fe U-curve = concrete controllers with bounds"
+    },
+    "MACRONUTRIENT_PARTITIONING_02": {
+      "name": "Law of Macronutrient Digestion, Absorption, and Partitioning",
+      "textbook_says": "Macros broken down, absorbed, partitioned by energy state and hormones.",
+      "missing_for_code": "Per-cargo transfer functions; label≠dose stages; system address.",
+      "our_laws": [
+        "LAW-016",
+        "LAW-019",
+        "LAW-020",
+        "LAW-024",
+        "LAW-025",
+        "LAW-026"
+      ],
+      "our_fill": "CCK-bile, ED seesaw, bioefficacy pipeline, viscosity rate, RS, SCFA energy"
+    },
+    "LIPID_DIGESTION_ABSORPTION_03": {
+      "name": "Law of Lipid Digestion, Absorption, and Transport",
+      "textbook_says": "Bile emulsify → lipase → micelles → chylomicrons → lymph.",
+      "missing_for_code": "OPENS_GATE (fat vehicle) vs NARROWS_BOUND; print L-FAT-1.",
+      "our_laws": [
+        "LAW-016",
+        "LAW-039",
+        "LAW-020"
+      ],
+      "our_fill": "Bile CCK, BA recycle; carotenoid bioefficacy needs fat gate (L-FAT-1 in manuscript/laws)",
+      "print_law": "L-FAT-1"
+    },
+    "LIPID_METABOLISM_PARTITIONING_04": {
+      "name": "Law of Lipid Metabolism and Energy Partitioning",
+      "textbook_says": "Lipids oxidized, stored, or transported; hormone regulated.",
+      "missing_for_code": "Depot-resolved edges; LPL vs HSL; FA structure matrix.",
+      "our_laws": [
+        "LAW-022",
+        "LAW-030",
+        "LAW-031",
+        "LAW-032",
+        "LAW-033",
+        "LAW-034"
+      ],
+      "our_fill": "FA→lipoprotein matrix; LPL/HSL; regional receptors; insulin/sex/glucocorticoid"
+    },
+    "NUTRIENT_INTERACTIONS_05": {
+      "name": "Law of Nutrient Interrelationships and Antagonisms/Synergies",
+      "textbook_says": "Nutrients interact; imbalances cascade.",
+      "missing_for_code": "Typed edges OPENS_GATE/EXPANDS_BOUND/NARROWS_BOUND + magnitudes.",
+      "our_laws": [
+        "LAW-002",
+        "LAW-003",
+        "LAW-004",
+        "LAW-005",
+        "LAW-006",
+        "LAW-007",
+        "LAW-041",
+        "LAW-042",
+        "LAW-035",
+        "LAW-036",
+        "LAW-037"
+      ],
+      "our_fill": "Phytate/Fe-C/meat/tannin/oxalate/Cu-redox/mineral graph + requirement couplings"
+    },
+    "BODY_COMPOSITION_06": {
+      "name": "Law of Body Composition and Energy Partitioning Bounds",
+      "textbook_says": "Fat/muscle/bone regulated; BMI/WHR cutoffs.",
+      "missing_for_code": "Host-config vs food law; Vol-I filter.",
+      "our_laws": [
+        "LAW-029",
+        "LAW-040",
+        "LAW-030",
+        "LAW-031"
+      ],
+      "our_fill": "WHR/BMI as Structure host meters; depot laws for Energy"
+    },
+    "CONDITIONAL_REQUIREMENTS_07": {
+      "name": "Law of Conditional Requirements and Life-Stage Adaptation",
+      "textbook_says": "Needs vary by stage, genetics, disease.",
+      "missing_for_code": "Requirement as f(state, diet couplings), not fixed RDA cell.",
+      "our_laws": [
+        "LAW-015",
+        "LAW-028",
+        "LAW-035",
+        "LAW-036",
+        "LAW-014"
+      ],
+      "our_fill": "Adaptive protein; life-stage rescale; E↔PUFA; thiamin↔CHO; Fe-in-malnutrition"
+    },
+    "MINERAL_MATRIX_08": {
+      "name": "Law of Matrix-Dependent Mineral Delivery (label ≠ dose)",
+      "textbook_says": "Often buried as 'bioavailability factors' tables — not stated as computable laws.",
+      "missing_for_code": "Executable fraction modifiers on mineral payload.",
+      "our_laws": [
+        "LAW-001",
+        "LAW-002",
+        "LAW-003",
+        "LAW-008",
+        "LAW-009",
+        "LAW-010"
+      ],
+      "our_fill": "Composite effect + chelation + phytate:Zn + framework + pectin/bran"
+    },
+    "REDOX_IRON_09": {
+      "name": "Law of Iron Essentiality–Toxicity and Redox Context",
+      "textbook_says": "Iron needed and dangerous; Fenton chemistry in boxes.",
+      "missing_for_code": "U-curve bounds + context flip (C enhances gut Fe / fuels radicals).",
+      "our_laws": [
+        "LAW-011",
+        "LAW-012",
+        "LAW-013",
+        "LAW-014",
+        "LAW-004",
+        "LAW-041"
+      ],
+      "our_fill": "Biphasic Fe; Fenton; antioxidant network; malnutrition gate; ascorbate dual"
+    },
+    "FIBRE_NOT_ONE_10": {
+      "name": "Law of Fibre Component Specificity",
+      "textbook_says": "Fiber grams; sometimes soluble vs insoluble.",
+      "missing_for_code": "Opposite-sign components; structure (LM pectin); rate laws.",
+      "our_laws": [
+        "LAW-017",
+        "LAW-023",
+        "LAW-024",
+        "LAW-025",
+        "LAW-001",
+        "LAW-008"
+      ],
+      "our_fill": "BA opposite signs; milling NSP; viscosity; RS prep; mineral composite"
+    },
+    "NEURO_PRECURSOR_11": {
+      "name": "Law of Precursor ≠ Product (neuro / conversion)",
+      "textbook_says": "Amino acid precursors feed neurotransmitters and vitamins with competition and fixed equivalences.",
+      "missing_for_code": "Ratio transport + partition edges.",
+      "our_laws": [
+        "LAW-027",
+        "LAW-037"
+      ],
+      "our_fill": "Trp:LNAA serotonin path; 60:1 Trp→niacin"
+    },
+    "PROTEIN_TURNOVER_12": {
+      "name": "Law of Sequence-Encoded Protein Turnover",
+      "textbook_says": "N-end rule / PEST degrons in cell biology chapters.",
+      "missing_for_code": "Structure system seat; not meal assimilation.",
+      "our_laws": [
+        "LAW-038",
+        "LAW-015"
+      ],
+      "our_fill": "N-end/PEST degradation; protein-stat adaptive demand"
+    }
+  },
+  "laws": [
+    {
+      "id": "LAW-001",
+      "name": "Under fibre-rich whole-plant diets, measured apparent fractional absorption of Ca, Mg, P, K tends to fall.",
+      "status": "EFFECT_COMPOSITE",
+      "system_name": "Assimilation",
+      "kingdom_hint": "Lumen / delivery mechanics",
+      "organ": "Small intestine + lumen (whole-gut meter)",
+      "subsystem": "ApparentFractionalMineralAbsorption",
+      "address": "Assimilation.ApparentFractionalMineralAbsorption",
+      "law_statement": "Under fibre-rich whole-plant diets, measured apparent fractional absorption of Ca, Mg, P, K tends to fall.",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Example (Southgate 1987 via H89): fibre ~9.3→21.5 g/d, Ca fraction ~0.26→0.19; Mg/P/K parallel. Provisional; not pure isolated-fibre.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Fibre from unrefined sources; phytate co-travel; absolute mineral intake may rise so grams absorbed partly compensate.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "NARROWS_BOUND",
+        "expression": "fibre_rich_matrix NARROWS_BOUND fractional_absorption(Ca|Mg|P|K)"
+      },
+      "related_to": "Lumen.MineralSpeciation (LAW-002); SI.ZnAvailability (LAW-003); Transit; Dilution; LAW-008 framework",
+      "code_hooks": {
+        "score_role": "telemetry_composite",
+        "inputs_hint": "Fibre from unrefined sources; phytate co-travel; absolute mineral intake may rise so grams absorbed partly compensate.",
+        "output_hint": "Example (Southgate 1987 via H89): fibre ~9.3→21.5 g/d, Ca fraction ~0.26→0.19; Mg/P/K parallel. Provisional; not pure isolated-fibre.",
+        "executable": false,
+        "needs_primary_pull": true
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Meter reading of several mechanisms. Atomic split: see reformulations/LAW-001-fibre-mineral-fraction.md (L-001a–f)."
+    },
+    {
+      "id": "LAW-002",
+      "name": "Phytate binds divalent minerals into insoluble complexes until phytase hydrolyses it and frees them.",
+      "status": "MECHANISM",
+      "system_name": "Assimilation",
+      "kingdom_hint": "Lumen / delivery mechanics",
+      "organ": "Small-intestinal lumen",
+      "subsystem": "MineralSpeciation.PhytateChelation",
+      "address": "Assimilation.MineralSpeciation.PhytateChelation",
+      "law_statement": "Phytate binds divalent minerals into insoluble complexes until phytase hydrolyses it and frees them.",
+      "gate": {
+        "present": false,
+        "text": "none (monoferric phytate partial exception — not total lock)",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Qualitative free-ion reduction; dose–response locked as ratio in LAW-003. Monoferric phytate <5% of wheat-bran phytate (Morris & Ellis).",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Co-present phytate in meal lumen; phytase from food processing, microbes, or host context; divalent mineral load.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "MIXED",
+        "expression": "phytate NARROWS_BOUND free_mineral_for_uptake; phytase EXPANDS_BOUND free_mineral"
+      },
+      "related_to": "LAW-001 composite; LAW-003 ratio bound; LAW-041 iron redox; Biotransformation (microbial phytase)",
+      "code_hooks": {
+        "score_role": "mechanism_rule",
+        "inputs_hint": "Co-present phytate in meal lumen; phytase from food processing, microbes, or host context; divalent mineral load.",
+        "output_hint": "Qualitative free-ion reduction; dose–response locked as ratio in LAW-003. Monoferric phytate <5% of wheat-bran phytate (Morris & Ellis).",
+        "executable": false,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "True governing mechanism for much of LAW-001's effect."
+    },
+    {
+      "id": "LAW-003",
+      "name": "Dietary phytate:Zn molar ratio predicts Zn bioavailability risk; phytate×Ca:Zn is a sharper predictor.",
+      "status": "BOUND",
+      "system_name": "Assimilation",
+      "kingdom_hint": "Lumen / delivery mechanics",
+      "organ": "Small intestine",
+      "subsystem": "ZnAvailability.PhytateZnRatio",
+      "address": "Assimilation.ZnAvailability.PhytateZnRatio",
+      "law_statement": "Dietary phytate:Zn molar ratio predicts Zn bioavailability risk; phytate×Ca:Zn is a sharper predictor.",
+      "gate": {
+        "present": false,
+        "text": "none (risk threshold, not zero absorption)",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "phytate:Zn ≳ ~10 elevated risk; phytate×Ca:Zn ~0.51 cited as upper edge of normal range in Harland vegetarians.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Habitual co-intake of phytate, Ca, Zn; fermentation/phytase lowers effective phytate; population diet pattern.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "NARROWS_BOUND",
+        "expression": "phytate:Zn_ratio NARROWS_BOUND Zn_bioavailability (step-like risk)"
+      },
+      "related_to": "LAW-002 chelation; LAW-005 meat factor; LAW-010 bran selectivity",
+      "code_hooks": {
+        "score_role": "meal_matrix_modifier",
+        "inputs_hint": "Habitual co-intake of phytate, Ca, Zn; fermentation/phytase lowers effective phytate; population diet pattern.",
+        "output_hint": "phytate:Zn ≳ ~10 elevated risk; phytate×Ca:Zn ~0.51 cited as upper edge of normal range in Harland vegetarians.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Standout computable Vol-I law — promote early to print."
+    },
+    {
+      "id": "LAW-004",
+      "name": "Co-ingested ascorbic acid increases non-haem Fe absorption and can overcome inhibitors such as tea tannin.",
+      "status": "BOUND",
+      "system_name": "Assimilation",
+      "kingdom_hint": "Lumen / delivery mechanics",
+      "organ": "Duodenum",
+      "subsystem": "NonHaemFeUptake.AscorbateEnhancer",
+      "address": "Assimilation.NonHaemFeUptake.AscorbateEnhancer",
+      "law_statement": "Co-ingested ascorbic acid increases non-haem Fe absorption and can overcome inhibitors such as tea tannin.",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Tea 3.8%→2.1% Fe abs.; ascorbate ~10× rise and cancels tea inhibition (Derman 1977); orange juice ~2× (Rossander).",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Ascorbate in the SAME meal as non-haem Fe (L3 event); applies to non-haem not haem Fe.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "MIXED",
+        "expression": "ascorbate EXPANDS_BOUND nonhaem_Fe_absorption; can override tannin NARROWS_BOUND"
+      },
+      "related_to": "LAW-006 tannin inhibitor; LAW-012 Fenton (same ascorbate, opposite context); LAW-041 redox gate",
+      "code_hooks": {
+        "score_role": "meal_matrix_modifier",
+        "inputs_hint": "Ascorbate in the SAME meal as non-haem Fe (L3 event); applies to non-haem not haem Fe.",
+        "output_hint": "Tea 3.8%→2.1% Fe abs.; ascorbate ~10× rise and cancels tea inhibition (Derman 1977); orange juice ~2× (Rossander).",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Flagship EXPANDS_BOUND. Context-flips with LAW-012."
+    },
+    {
+      "id": "LAW-005",
+      "name": "Animal tissue co-ingested with plant meals increases absorption of non-haem Fe (and Zn).",
+      "status": "BOUND",
+      "system_name": "Assimilation",
+      "kingdom_hint": "Lumen / delivery mechanics",
+      "organ": "Small intestine",
+      "subsystem": "NonHaemFeZnUptake.MeatFishFactor",
+      "address": "Assimilation.NonHaemFeZnUptake.MeatFishFactor",
+      "law_statement": "Animal tissue co-ingested with plant meals increases absorption of non-haem Fe (and Zn).",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "~2× (50 g meat / 100 g fish / 150 g papaya-as-C); fruit+meat ~5× (Hallberg); animal protein+milk ↑ Zn from wholemeal bread.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Same-meal animal tissue (L3); partly independent of ascorbate path.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "EXPANDS_BOUND",
+        "expression": "meat_fish_factor EXPANDS_BOUND nonhaem_Fe_and_Zn_absorption"
+      },
+      "related_to": "LAW-004 ascorbate (independent enhancer); LAW-003 Zn; LAW-006 tannin",
+      "code_hooks": {
+        "score_role": "meal_matrix_modifier",
+        "inputs_hint": "Same-meal animal tissue (L3); partly independent of ascorbate path.",
+        "output_hint": "~2× (50 g meat / 100 g fish / 150 g papaya-as-C); fruit+meat ~5× (Hallberg); animal protein+milk ↑ Zn from wholemeal bread.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Interaction term, not additive food score."
+    },
+    {
+      "id": "LAW-006",
+      "name": "Tea/coffee tannins bind Fe and reduce non-haem absorption; milk casein partly neutralises tannin.",
+      "status": "MECHANISM_BOUND",
+      "system_name": "Assimilation",
+      "kingdom_hint": "Lumen / delivery mechanics",
+      "organ": "Lumen",
+      "subsystem": "NonHaemFeUptake.TanninInhibition",
+      "address": "Assimilation.NonHaemFeUptake.TanninInhibition",
+      "law_statement": "Tea/coffee tannins bind Fe and reduce non-haem absorption; milk casein partly neutralises tannin.",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Tea inhibition quantified with LAW-004 (3.8%→2.1%); casein rescue narrower single-source.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Tannin beverage with meal; milk co-present for casein path; ascorbate alternate rescue.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "MIXED",
+        "expression": "tannin NARROWS_BOUND nonhaem_Fe; casein EXPANDS_BOUND (partial rescue); ascorbate EXPANDS_BOUND (stronger rescue)"
+      },
+      "related_to": "LAW-004 ascorbate rescue; casein rescue; LAW-002 chelation family",
+      "code_hooks": {
+        "score_role": "meal_matrix_modifier",
+        "inputs_hint": "Tannin beverage with meal; milk co-present for casein path; ascorbate alternate rescue.",
+        "output_hint": "Tea inhibition quantified with LAW-004 (3.8%→2.1%); casein rescue narrower single-source.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Two independent antidotes to one blocker."
+    },
+    {
+      "id": "LAW-007",
+      "name": "Dietary oxalate binds Ca/Mg/Zn into insoluble complexes; gut microbes can hydrolyse them with person-to-person capacity.",
+      "status": "MECHANISM_BOUND",
+      "system_name": "Assimilation",
+      "kingdom_hint": "Lumen / delivery mechanics",
+      "organ": "Small intestine + colon",
+      "subsystem": "MineralAvailability.OxalateComplex",
+      "address": "Assimilation.MineralAvailability.OxalateComplex",
+      "law_statement": "Dietary oxalate binds Ca/Mg/Zn into insoluble complexes; gut microbes can hydrolyse them with person-to-person capacity.",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "High-fibre high-oxalate diet drove mean apparent Ca/Mg/Zn balances negative (Kelsay & Prather 1983); microbial capacity varies.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Oxalate-rich foods; individual microbiome oxalate-degrading capacity (host software).",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "MIXED",
+        "expression": "oxalate NARROWS_BOUND mineral_absorption; microbial_oxalate_hydrolase EXPANDS_BOUND (variable)"
+      },
+      "related_to": "Biotransformation (microbial oxalate hydrolysis); LAW-002 phytate parallel; host config (microbiome)",
+      "code_hooks": {
+        "score_role": "meal_matrix_modifier",
+        "inputs_hint": "Oxalate-rich foods; individual microbiome oxalate-degrading capacity (host software).",
+        "output_hint": "High-fibre high-oxalate diet drove mean apparent Ca/Mg/Zn balances negative (Kelsay & Prather 1983); microbial capacity varies.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Identical input → different output by host microbiome — Part 0 config."
+    },
+    {
+      "id": "LAW-008",
+      "name": "Fibre lowers mineral absorption via four routes: shortened transit; dilution/bulking; chelation; altered mucosal transpo",
+      "status": "FRAMEWORK",
+      "system_name": "Assimilation",
+      "kingdom_hint": "Lumen / delivery mechanics",
+      "organ": "GI tract (multi-organ)",
+      "subsystem": "MineralUptake.FibreMechanismSet",
+      "address": "Assimilation.MineralUptake.FibreMechanismSet",
+      "law_statement": "Fibre lowers mineral absorption via four routes: shortened transit; dilution/bulking; chelation; altered mucosal transport.",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Framework only — no single numeric bound; use child laws for magnitudes.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Fibre amount, type (soluble/insoluble), physicochemical properties.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "NARROWS_BOUND",
+        "expression": "framework → maps to multiple NARROWS_BOUND edges"
+      },
+      "related_to": "Decomposes to LAW-001/002 + transit + dilution + mucosal transport (L-001a–e)",
+      "code_hooks": {
+        "score_role": "framework",
+        "inputs_hint": "Fibre amount, type (soluble/insoluble), physicochemical properties.",
+        "output_hint": "Framework only — no single numeric bound; use child laws for magnitudes.",
+        "executable": false,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Organizing synthesis, not a standalone citation. Prefer atomic children."
+    },
+    {
+      "id": "LAW-009",
+      "name": "Degree of esterification of pectin — not pectin per se — governs mineral-binding effect.",
+      "status": "MECHANISM_BOUND",
+      "system_name": "Assimilation",
+      "kingdom_hint": "Lumen / delivery mechanics",
+      "organ": "Small intestine",
+      "subsystem": "MineralUptake.PectinEsterification",
+      "address": "Assimilation.MineralUptake.PectinEsterification",
+      "law_statement": "Degree of esterification of pectin — not pectin per se — governs mineral-binding effect.",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "LM apple pectin → Ca/Mg/Zn negative apparent balance; HM pectin little effect (pig, Bagheri & Guéguen 1985).",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Soluble fibre structure (HM vs LM methoxyl); species=pig provisional for human.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "NARROWS_BOUND",
+        "expression": "LM_pectin NARROWS_BOUND Ca_Mg_Zn_absorption (stronger than HM)"
+      },
+      "related_to": "LAW-002 chelation; LAW-017 fibre components; LAW-001 matrix",
+      "code_hooks": {
+        "score_role": "meal_matrix_modifier",
+        "inputs_hint": "Soluble fibre structure (HM vs LM methoxyl); species=pig provisional for human.",
+        "output_hint": "LM apple pectin → Ca/Mg/Zn negative apparent balance; HM pectin little effect (pig, Bagheri & Guéguen 1985).",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Structure parameter, not category grams. SSI 🟡 human."
+    },
+    {
+      "id": "LAW-010",
+      "name": "Among Ca, Fe, Mg, Zn, wheat bran selectively drives Zn toward negative balance.",
+      "status": "MECHANISM_BOUND",
+      "system_name": "Assimilation",
+      "kingdom_hint": "Lumen / delivery mechanics",
+      "organ": "Small intestine",
+      "subsystem": "ZnUptake.WheatBranSelectivity",
+      "address": "Assimilation.ZnUptake.WheatBranSelectivity",
+      "law_statement": "Among Ca, Fe, Mg, Zn, wheat bran selectively drives Zn toward negative balance.",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Rat: only Zn negative balance with wheat bran at 100 g/kg (Vahouny 1987).",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Wheat bran / insoluble fibre load; SPECIES=rat → provisional for human.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "NARROWS_BOUND",
+        "expression": "wheat_bran NARROWS_BOUND Zn_absorption (selective)"
+      },
+      "related_to": "LAW-003 phytate:Zn (human solid twin); LAW-002",
+      "code_hooks": {
+        "score_role": "meal_matrix_modifier",
+        "inputs_hint": "Wheat bran / insoluble fibre load; SPECIES=rat → provisional for human.",
+        "output_hint": "Rat: only Zn negative balance with wheat bran at 100 g/kg (Vahouny 1987).",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "🔴 provisional; rhymes with human LAW-003."
+    },
+    {
+      "id": "LAW-011",
+      "name": "Iron function is non-monotonic: too little loses function; too much (or free) causes oxidative damage — optimum is a win",
+      "status": "BOUND",
+      "system_name": "Defense",
+      "kingdom_hint": "Barrier / immune / biphasic toxin",
+      "organ": "Systemic iron economy",
+      "subsystem": "IronHomeostasis.UShapedDoseResponse",
+      "address": "Defense.IronHomeostasis.UShapedDoseResponse",
+      "law_statement": "Iron function is non-monotonic: too little loses function; too much (or free) causes oxidative damage — optimum is a window.",
+      "gate": {
+        "present": false,
+        "text": "none (window, not binary)",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Qualitative U-curve; toxic arm quantified via LAW-012 free Fe²⁺/H₂O₂; deficiency arm = energy + pathogen killing failure.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Iron load AND integrity of binding + antioxidant systems; phagocytes weaponise Fe radical chemistry.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "NARROWS_BOUND",
+        "expression": "iron_load outside_window → dual failure modes (not more-is-better)"
+      },
+      "related_to": "Energy (mitochondrial Fe); Defense (pathogen killing); LAW-012 toxic arm; LAW-014 malnutrition context",
+      "code_hooks": {
+        "score_role": "control_system",
+        "inputs_hint": "Iron load AND integrity of binding + antioxidant systems; phagocytes weaponise Fe radical chemistry.",
+        "output_hint": "Qualitative U-curve; toxic arm quantified via LAW-012 free Fe²⁺/H₂O₂; deficiency arm = energy + pathogen killing failure.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Primary system Defense; Energy co-system for deficiency phenotype."
+    },
+    {
+      "id": "LAW-012",
+      "name": "Free Fe²⁺ + H₂O₂ generates •OH (Fenton); reducing agents regenerate Fe²⁺ catalytic cycle; damage local to site of produc",
+      "status": "MECHANISM",
+      "system_name": "Biotransformation",
+      "kingdom_hint": "Conversion / liver–enterocyte / redox",
+      "organ": "Cell membranes / redox compartment",
+      "subsystem": "RedoxCycling.FentonHaberWeiss",
+      "address": "Biotransformation.RedoxCycling.FentonHaberWeiss",
+      "law_statement": "Free Fe²⁺ + H₂O₂ generates •OH (Fenton); reducing agents regenerate Fe²⁺ catalytic cycle; damage local to site of production.",
+      "gate": {
+        "present": true,
+        "text": "Free (non-protein-bound) Fe²⁺ + H₂O₂ required for Fenton leg; binding proteins constrain free pool (physiological containment)",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Rate depends on Fe²⁺:Fe³⁺ ratio and [H₂O₂] (Braughler; Minotti & Aust). Three-reaction Haber–Weiss scheme as in register.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Non-protein-bound Fe only; reducing agents (superoxide, ascorbate); H₂O₂ present.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "OPENS_GATE",
+        "expression": "free_Fe2+ OPENS_GATE local_oxidative_damage_path (catalytic); transferrin/ferritin NARROWS free pool"
+      },
+      "related_to": "LAW-004 (ascorbate enhancer at gut vs reducing agent here); LAW-013 antioxidant network; LAW-011 toxic arm",
+      "code_hooks": {
+        "score_role": "mechanism_rule",
+        "inputs_hint": "Non-protein-bound Fe only; reducing agents (superoxide, ascorbate); H₂O₂ present.",
+        "output_hint": "Rate depends on Fe²⁺:Fe³⁺ ratio and [H₂O₂] (Braughler; Minotti & Aust). Three-reaction Haber–Weiss scheme as in register.",
+        "executable": false,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Context-flip with LAW-004 ascorbate."
+    },
+    {
+      "id": "LAW-013",
+      "name": "Radical defence is an interlocking enzyme cascade; each node needs a nutrient cofactor — any missing cofactor degrades t",
+      "status": "MECHANISM",
+      "system_name": "Defense",
+      "kingdom_hint": "Barrier / immune / biphasic toxin",
+      "organ": "Systemic (multi-organ enzyme network)",
+      "subsystem": "AntioxidantEnzymeNetwork.CofactorDependency",
+      "address": "Defense.AntioxidantEnzymeNetwork.CofactorDependency",
+      "law_statement": "Radical defence is an interlocking enzyme cascade; each node needs a nutrient cofactor — any missing cofactor degrades total capacity.",
+      "gate": {
+        "present": false,
+        "text": "none for whole network; single-cofactor gap degrades flux (soft gate on cascade capacity)",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "~13 essential nutrients map to network (RG89 Fig. 2); enzyme chain SOD → catalase/GPX → GSH cycle → HMP NADPH.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Simultaneous adequacy of all cofactors; kwashiorkor = production up + protection down.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "MIXED",
+        "expression": "cofactor_i EXPANDS_BOUND network_capacity; missing_cofactor_i NARROWS_BOUND network_capacity"
+      },
+      "related_to": "LAW-012 radical generation; LAW-014 malnutrition collapse; Energy (NADPH/HMP shunt)",
+      "code_hooks": {
+        "score_role": "network_edge",
+        "inputs_hint": "Simultaneous adequacy of all cofactors; kwashiorkor = production up + protection down.",
+        "output_hint": "~13 essential nutrients map to network (RG89 Fig. 2); enzyme chain SOD → catalase/GPX → GSH cycle → HMP NADPH.",
+        "executable": false,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Network property, not single-nutrient score."
+    },
+    {
+      "id": "LAW-014",
+      "name": "In PEM, serum Fe is not low (≈/≥ reference); with defences down, iron is a liability — supplement timing gated on host s",
+      "status": "BOUND_CONDITIONAL",
+      "system_name": "Defense",
+      "kingdom_hint": "Barrier / immune / biphasic toxin",
+      "organ": "Systemic (malnutrition host state)",
+      "subsystem": "IronInMalnutrition.ContextDependentRisk",
+      "address": "Defense.IronInMalnutrition.ContextDependentRisk",
+      "law_statement": "In PEM, serum Fe is not low (≈/≥ reference); with defences down, iron is a liability — supplement timing gated on host state, not the number alone.",
+      "gate": {
+        "present": true,
+        "text": "Clinical: withhold Fe in acute SAM stabilization (F75 phase) — protocol gate, not chemistry gate",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Serum Fe means ~470–760 µg/l malnourished vs ref ~590–750; iron not deficient by serum.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Host = kwashiorkor/marasmus acute phase; antioxidant integrity down; add Fe only in rehabilitation.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "STATE_FUNCTION",
+        "expression": "host_malnutrition_state flips iron from EXPANDS function → NARROWS safety (liability)"
+      },
+      "related_to": "LAW-011 U-curve; LAW-012 free Fe; LAW-013 collapsed defences; Assimilation (when to supplement)",
+      "code_hooks": {
+        "score_role": "host_state_modifier",
+        "inputs_hint": "Host = kwashiorkor/marasmus acute phase; antioxidant integrity down; add Fe only in rehabilitation.",
+        "output_hint": "Serum Fe means ~470–760 µg/l malnourished vs ref ~590–750; iron not deficient by serum.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Ultimate context-dependence. Part 0 host config."
+    },
+    {
+      "id": "LAW-015",
+      "name": "Protein/AA requirement = obligatory + regulatory (adaptive oxidation) + growth — regulatory term varies with intake (pro",
+      "status": "MECHANISM_BOUND",
+      "system_name": "Structure",
+      "kingdom_hint": "Lean mass / bone / geometry / requirements",
+      "organ": "Whole-body lean mass / AA economy",
+      "subsystem": "ProteinRequirement.AdaptiveMetabolicDemand",
+      "address": "Structure.ProteinRequirement.AdaptiveMetabolicDemand",
+      "law_statement": "Protein/AA requirement = obligatory + regulatory (adaptive oxidation) + growth — regulatory term varies with intake (protein-stat).",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "R = Lo+Lp+Lr+Gn; Rmin/Rop with Lr,min vs Lr,op; BCAA dehydrogenase activated by intake; adult IAA needs ≈ obligatory oxidative loss rates.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Intake level + anabolic drive hormones; adaptive up/down oxidation.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "EXPANDS_BOUND",
+        "expression": "intake EXPANDS_BOUND Lr_oxidation (matches supply); anabolic_drive EXPANDS_BOUND net_deposition"
+      },
+      "related_to": "Assimilation (intake); Communication (insulin/IGF/T3 anabolic drive); Energy; LAW-038 sequence turnover",
+      "code_hooks": {
+        "score_role": "control_system",
+        "inputs_hint": "Intake level + anabolic drive hormones; adaptive up/down oxidation.",
+        "output_hint": "R = Lo+Lp+Lr+Gn; Rmin/Rop with Lr,min vs Lr,op; BCAA dehydrogenase activated by intake; adult IAA needs ≈ obligatory oxidative loss rates.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Primary Structure (lean mass set-point); Assimilation is input side. Control-system law."
+    },
+    {
+      "id": "LAW-016",
+      "name": "Intraluminal fatty acids trigger CCK → gallbladder contraction and bile delivery; strength scales with FA chain length a",
+      "status": "MECHANISM_BOUND",
+      "system_name": "Assimilation",
+      "kingdom_hint": "Lumen / delivery mechanics",
+      "organ": "Gallbladder / bile ducts",
+      "subsystem": "BileDelivery.CCKFatStimulus",
+      "address": "Assimilation.BileDelivery.CCKFatStimulus",
+      "law_statement": "Intraluminal fatty acids trigger CCK → gallbladder contraction and bile delivery; strength scales with FA chain length and saturation.",
+      "gate": {
+        "present": false,
+        "text": "none for CCK path; long-term pool size adapts",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Long-chain saturated TG strongest stimulus; MCT much weaker; chronic dietary fat sets bile-salt pool size via synthesis.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "FA structure (chain, saturation) + fat load; acute meal loop + chronic pool adaptation.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "EXPANDS_BOUND",
+        "expression": "long_chain_SFA EXPANDS_BOUND CCK_gallbladder_stimulus; dietary_fat_load EXPANDS_BOUND bile_salt_pool (chronic)"
+      },
+      "related_to": "Communication (CCK hormone); LAW-039 enterohepatic pool; L-FAT-1 micelle (downstream fat-soluble cargo); LAW-021 cholesterol",
+      "code_hooks": {
+        "score_role": "meal_matrix_modifier",
+        "inputs_hint": "FA structure (chain, saturation) + fat load; acute meal loop + chronic pool adaptation.",
+        "output_hint": "Long-chain saturated TG strongest stimulus; MCT much weaker; chronic dietary fat sets bile-salt pool size via synthesis.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Links food FA structure to bile delivery for Assimilation of lipids."
+    },
+    {
+      "id": "LAW-017",
+      "name": "Fibre sub-components act with opposite signs on bile-acid pool composition; lignin inert; cellulose ≠ pectin.",
+      "status": "MECHANISM_BOUND",
+      "system_name": "Biotransformation",
+      "kingdom_hint": "Conversion / liver–enterocyte / redox",
+      "organ": "Enterohepatic circulation (gut–liver)",
+      "subsystem": "BileAcidPool.FibreComponentModulation",
+      "address": "Biotransformation.BileAcidPool.FibreComponentModulation",
+      "law_statement": "Fibre sub-components act with opposite signs on bile-acid pool composition; lignin inert; cellulose ≠ pectin.",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Wheat bran/cellulose → ↓ deoxycholic (secondary), ↑ chenodeoxycholic (primary); pectin reverse; saturates at high baseline fibre.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Which component (cellulose vs pectin vs lignin), not total fibre grams; baseline fibre high abolishes bran effect.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "NARROWS_BOUND",
+        "expression": "cellulose NARROWS secondary_BA_share; pectin EXPANDS secondary_BA_share (opposite signs)"
+      },
+      "related_to": "Assimilation (lumen fibre); LAW-039 recycling; LAW-021 cholesterol→bile acids; LAW-008/001 fibre family",
+      "code_hooks": {
+        "score_role": "mechanism_rule",
+        "inputs_hint": "Which component (cellulose vs pectin vs lignin), not total fibre grams; baseline fibre high abolishes bran effect.",
+        "output_hint": "Wheat bran/cellulose → ↓ deoxycholic (secondary), ↑ chenodeoxycholic (primary); pectin reverse; saturates at high baseline fibre.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Cannot score total fibre grams for bile acids."
+    },
+    {
+      "id": "LAW-018",
+      "name": "Intake governed by episodic (meal) + tonic (adiposity) negative-feedback loops integrated centrally; either loop alone i",
+      "status": "MECHANISM",
+      "system_name": "Communication",
+      "kingdom_hint": "Signals / gut–brain / hormones",
+      "organ": "CNS (hypothalamus/brainstem) ↔ periphery",
+      "subsystem": "AppetiteRegulation.DualTimescaleFeedback",
+      "address": "Communication.AppetiteRegulation.DualTimescaleFeedback",
+      "law_statement": "Intake governed by episodic (meal) + tonic (adiposity) negative-feedback loops integrated centrally; either loop alone insufficient.",
+      "gate": {
+        "present": true,
+        "text": "Absent tonic signal (leptin deficiency / MC4R null) → continuous drive (open-loop failure of episodic-only control)",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Episodic: CCK, ghrelin, GLP-1, PYY, 5-HT…; tonic: leptin, insulin; satiety cascade stages; ARC NPY/AgRP vs POMC/MC4R.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Peripheral signals + central receptors; timescale: meal vs days–weeks stores.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "CLOSES_GATE",
+        "expression": "episodic_signals NARROWS meal_size; tonic_adiposity_signals NARROWS long_term_intake; leptin_absence CLOSES effective satiety gate"
+      },
+      "related_to": "Energy (stores/metabolism); Assimilation (gut peptides CCK/GLP-1/PYY); LAW-019 ED intake; LAW-027 Trp:LNAA",
+      "code_hooks": {
+        "score_role": "control_system",
+        "inputs_hint": "Peripheral signals + central receptors; timescale: meal vs days–weeks stores.",
+        "output_hint": "Episodic: CCK, ghrelin, GLP-1, PYY, 5-HT…; tonic: leptin, insulin; satiety cascade stages; ARC NPY/AgRP vs POMC/MC4R.",
+        "executable": false,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Primary Communication; Energy co-system for tonic stores."
+    },
+    {
+      "id": "LAW-019",
+      "name": "Food energy density set mainly by water and fat (water dominant); high ED facilitates short-term energy intake, low ED c",
+      "status": "BOUND",
+      "system_name": "Assimilation",
+      "kingdom_hint": "Lumen / delivery mechanics",
+      "organ": "Food matrix (payload) → short-term intake behaviour",
+      "subsystem": "EnergyDensity.FatWaterSeesaw",
+      "address": "Assimilation.EnergyDensity.FatWaterSeesaw",
+      "law_statement": "Food energy density set mainly by water and fat (water dominant); high ED facilitates short-term energy intake, low ED constrains it.",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Determinant rank: water > fat > protein/carb minor; acute intake constraint; chronic adaptation attenuates.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Formulation/processing sets ED; time horizon short–medium; learning adapts long-term.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "MIXED",
+        "expression": "water_content NARROWS_BOUND ED; fat_content EXPANDS_BOUND ED; ED EXPANDS_BOUND short_term_EI"
+      },
+      "related_to": "Communication (intake behaviour LAW-018); Energy; L2 substrate layer",
+      "code_hooks": {
+        "score_role": "meal_matrix_modifier",
+        "inputs_hint": "Formulation/processing sets ED; time horizon short–medium; learning adapts long-term.",
+        "output_hint": "Determinant rank: water > fat > protein/carb minor; acute intake constraint; chronic adaptation attenuates.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Seat as Assimilation/payload property acting on Communication intake."
+    },
+    {
+      "id": "LAW-020",
+      "name": "Delivery = multi-stage fractional yields: bioaccessibility → bioavailability → bioconversion → bioefficacy (= BA × BC).",
+      "status": "MECHANISM_BOUND",
+      "system_name": "Assimilation",
+      "kingdom_hint": "Lumen / delivery mechanics",
+      "organ": "GI tract + enterocyte (+ conversion site)",
+      "subsystem": "BioefficacyPipeline.ProvitaminA",
+      "address": "Assimilation.BioefficacyPipeline.ProvitaminA",
+      "law_statement": "Delivery = multi-stage fractional yields: bioaccessibility → bioavailability → bioconversion → bioefficacy (= BA × BC).",
+      "gate": {
+        "present": true,
+        "text": "Fat co-presence for micellar carotenoid path (links L-FAT-1 OPENS_GATE); micelle capacity finite for high single doses",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Idealized 1:1 tables vs real ~3–6 µg βC/µg retinol biofortified to 10–80 µg/µg vegetables — 6–80× overstatement of label.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "SLAMENGHI modifiers: species, linkage, amount, matrix, effectors (fat), nutrient status, genetics, host, interactions.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "OPENS_GATE",
+        "expression": "matrix/effectors NARROWS_BOUND bioefficacy; dietary_lipid OPENS_GATE micellar_bioavailability (carotenoids)"
+      },
+      "related_to": "L-FAT-1 micelle (fat effector); LAW-016 bile; Transport (after absorption); Structure of matrix L2",
+      "code_hooks": {
+        "score_role": "pathway_stage",
+        "inputs_hint": "SLAMENGHI modifiers: species, linkage, amount, matrix, effectors (fat), nutrient status, genetics, host, interactions.",
+        "output_hint": "Idealized 1:1 tables vs real ~3–6 µg βC/µg retinol biofortified to 10–80 µg/µg vegetables — 6–80× overstatement of label.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Generalizes beyond carotenoids. Label ≠ dose pipeline."
+    },
+    {
+      "id": "LAW-021",
+      "name": "Cholesterol is a defended pool: endogenous synthesis dominates; dietary cholesterol only modestly raises blood cholester",
+      "status": "MECHANISM_BOUND",
+      "system_name": "Biotransformation",
+      "kingdom_hint": "Conversion / liver–enterocyte / redox",
+      "organ": "Liver + enterocyte",
+      "subsystem": "CholesterolPool.FeedbackDefended",
+      "address": "Biotransformation.CholesterolPool.FeedbackDefended",
+      "law_statement": "Cholesterol is a defended pool: endogenous synthesis dominates; dietary cholesterol only modestly raises blood cholesterol; absorption saturable/selective; BA exit recycled.",
+      "gate": {
+        "present": true,
+        "text": "NPC1L1 absorption path (ezetimibe target); ABCG5/G8 selectivity filter (reject phytosterols)",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "~70 kg: synth ~840 mg/d vs abs ~180 mg/d; fractional abs ~60% (20–80% between people); diet chol → LDL ~+6 mg/dl per +200 mg/d; BA recycle 6–10×/day, 98–99% ileal reuptake.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "HMG-CoA reductase suppressed by hepatic chol; apoE genotype modifies; plant sterols/fibre lower abs but synthesis compensates.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "MIXED",
+        "expression": "dietary_cholesterol EXPANDS_BOUND LDL (small, variable); synthesis compensates (defended set-point); phytosterols NARROWS_BOUND absorption"
+      },
+      "related_to": "Assimilation (NPC1L1 absorption); LAW-039 bile recycle; LAW-016/017 bile; LAW-022 FA matrix; Transport (lipoproteins)",
+      "code_hooks": {
+        "score_role": "control_system",
+        "inputs_hint": "HMG-CoA reductase suppressed by hepatic chol; apoE genotype modifies; plant sterols/fibre lower abs but synthesis compensates.",
+        "output_hint": "~70 kg: synth ~840 mg/d vs abs ~180 mg/d; fractional abs ~60% (20–80% between people); diet chol → LDL ~+6 mg/dl per +200 mg/d; BA recycle 6–10×/day, 98–99% ileal reuptake.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Primary Biotransformation (hepatic defense of pool); Assimilation for absorption gate."
+    },
+    {
+      "id": "LAW-022",
+      "name": "Each FA's effect on serum lipoproteins depends on chain length and saturation relative to oleic (C18:1 n-9) baseline — n",
+      "status": "BOUND",
+      "system_name": "Transport",
+      "kingdom_hint": "Circulation / lipoproteins",
+      "organ": "Serum lipoprotein compartment",
+      "subsystem": "LipoproteinProfile.FattyAcidStructureMatrix",
+      "address": "Transport.LipoproteinProfile.FattyAcidStructureMatrix",
+      "law_statement": "Each FA's effect on serum lipoproteins depends on chain length and saturation relative to oleic (C18:1 n-9) baseline — not 'sat vs unsat' lumps.",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Table vs oleic: C16:0 LDL↑↑↑; C18:0 LDL≈0; trans LDL↑ HDL↓; n-6 LDL↓; n-3 VLDL↓↓↓; carb replacing fat VLDL↑↑↑ HDL↓.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Effects relative to oleic baseline; FA vector of the diet, not total fat grams.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "EXPANDS_BOUND",
+        "expression": "each FA_i NARROWS_or_EXPANDS_BOUND lipoprotein_j (signed matrix)"
+      },
+      "related_to": "Biotransformation (hepatic lipid handling); Assimilation (dietary FA input); LAW-021 cholesterol pool",
+      "code_hooks": {
+        "score_role": "mechanism_rule",
+        "inputs_hint": "Effects relative to oleic baseline; FA vector of the diet, not total fat grams.",
+        "output_hint": "Table vs oleic: C16:0 LDL↑↑↑; C18:0 LDL≈0; trans LDL↑ HDL↓; n-6 LDL↓; n-3 VLDL↓↓↓; carb replacing fat VLDL↑↑↑ HDL↓.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Anti-lumping. Transport = blood lipoprotein readout; input is Assimilation payload."
+    },
+    {
+      "id": "LAW-023",
+      "name": "Milling extraction rate sets non-starch polysaccharide content — refining strips fibre.",
+      "status": "BOUND",
+      "system_name": "Assimilation",
+      "kingdom_hint": "Lumen / delivery mechanics",
+      "organ": "Food substrate (milling process)",
+      "subsystem": "FibreContent.MillingExtractionRate",
+      "address": "Assimilation.FibreContent.MillingExtractionRate",
+      "law_statement": "Milling extraction rate sets non-starch polysaccharide content — refining strips fibre.",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "NSP falls as extraction rate rises (white flour vs wholemeal) — use encyclopedia/JF05 table when locked.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Cereal processing extraction rate; food form decision is the lever.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "NARROWS_BOUND",
+        "expression": "higher_extraction_rate NARROWS_BOUND NSP_content"
+      },
+      "related_to": "LAW-001/008/017/024 fibre family; L2 processing",
+      "code_hooks": {
+        "score_role": "meal_matrix_modifier",
+        "inputs_hint": "Cereal processing extraction rate; food form decision is the lever.",
+        "output_hint": "NSP falls as extraction rate rises (white flour vs wholemeal) — use encyclopedia/JF05 table when locked.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Substrate law: processing parameter → fibre payload."
+    },
+    {
+      "id": "LAW-024",
+      "name": "Food form and fibre viscosity govern gastric emptying, transit, and rates of glucose/lipid absorption.",
+      "status": "MECHANISM_BOUND",
+      "system_name": "Assimilation",
+      "kingdom_hint": "Lumen / delivery mechanics",
+      "organ": "Stomach + small intestine",
+      "subsystem": "GastricEmptyingTransit.FoodFormViscosity",
+      "address": "Assimilation.GastricEmptyingTransit.FoodFormViscosity",
+      "law_statement": "Food form and fibre viscosity govern gastric emptying, transit, and rates of glucose/lipid absorption.",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Viscous soluble fibre slows emptying and flattens postprandial glucose; particle size/form alter rate (JF05).",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Viscosity, particle size, food form, meal composition.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "NARROWS_BOUND",
+        "expression": "viscosity NARROWS_BOUND absorption_rate (glucose/lipid); intact_form NARROWS_BOUND emptying_rate"
+      },
+      "related_to": "Communication (satiety); Energy (glucose rate); LAW-001 transit mineral window; LAW-025 RS",
+      "code_hooks": {
+        "score_role": "meal_matrix_modifier",
+        "inputs_hint": "Viscosity, particle size, food form, meal composition.",
+        "output_hint": "Viscous soluble fibre slows emptying and flattens postprandial glucose; particle size/form alter rate (JF05).",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Rate control law inside Assimilation."
+    },
+    {
+      "id": "LAW-025",
+      "name": "Same starch polymer has different digestive fate depending on preparation — resistant starch is preparation-dependent.",
+      "status": "MECHANISM_BOUND",
+      "system_name": "Assimilation",
+      "kingdom_hint": "Lumen / delivery mechanics",
+      "organ": "Small intestine (escape) → colon",
+      "subsystem": "StarchFate.ResistantStarchPreparation",
+      "address": "Assimilation.StarchFate.ResistantStarchPreparation",
+      "law_statement": "Same starch polymer has different digestive fate depending on preparation — resistant starch is preparation-dependent.",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "RS types I–IV; cooking/cooling (retrogradation) increases RS; amount escaping SI is preparation-set.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Thermal history, structure, processing; host enzyme competence.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "MIXED",
+        "expression": "cooling_retrogradation EXPANDS_BOUND RS_fraction; refining may NARROWS_BOUND RS"
+      },
+      "related_to": "LAW-026 SCFA energy; Biotransformation (microbiome); L2 preparation",
+      "code_hooks": {
+        "score_role": "meal_matrix_modifier",
+        "inputs_hint": "Thermal history, structure, processing; host enzyme competence.",
+        "output_hint": "RS types I–IV; cooking/cooling (retrogradation) increases RS; amount escaping SI is preparation-set.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Same molecule, different code path after prep."
+    },
+    {
+      "id": "LAW-026",
+      "name": "Fermentable carbohydrate reaching the colon is not calorie-free — SCFA recovery returns energy to the host.",
+      "status": "BOUND",
+      "system_name": "Energy",
+      "kingdom_hint": "ATP / stores / SCFA",
+      "organ": "Large intestine (microbiota)",
+      "subsystem": "SCFAEnergyRecovery.FermentableCarb",
+      "address": "Energy.SCFAEnergyRecovery.FermentableCarb",
+      "law_statement": "Fermentable carbohydrate reaching the colon is not calorie-free — SCFA recovery returns energy to the host.",
+      "gate": {
+        "present": false,
+        "text": "none (requires competent microbiota)",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "SCFA yield recovers a fraction of escaped carb energy (encyclopedia range — lock primary % when pulled).",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Fermentable substrate reaches colon; microbiome competence; not all fibre equally fermentable.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "EXPANDS_BOUND",
+        "expression": "fermentable_carb_to_colon EXPANDS_BOUND host_energy_recovery_via_SCFA"
+      },
+      "related_to": "Assimilation (escape to colon); Biotransformation (fermentation); LAW-025 RS input",
+      "code_hooks": {
+        "score_role": "mechanism_rule",
+        "inputs_hint": "Fermentable substrate reaches colon; microbiome competence; not all fibre equally fermentable.",
+        "output_hint": "SCFA yield recovers a fraction of escaped carb energy (encyclopedia range — lock primary % when pulled).",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Energy system primary; Assimilation delivers the substrate."
+    },
+    {
+      "id": "LAW-027",
+      "name": "Brain serotonin precursor supply set by plasma tryptophan:LNAA ratio — carb meals raise it (insulin clears LNAA); protei",
+      "status": "MECHANISM_BOUND",
+      "system_name": "Communication",
+      "kingdom_hint": "Signals / gut–brain / hormones",
+      "organ": "Gut → blood → blood–brain barrier → CNS",
+      "subsystem": "BrainSerotonin.TryptophanLNAARatio",
+      "address": "Communication.BrainSerotonin.TryptophanLNAARatio",
+      "law_statement": "Brain serotonin precursor supply set by plasma tryptophan:LNAA ratio — carb meals raise it (insulin clears LNAA); protein meals lower it.",
+      "gate": {
+        "present": true,
+        "text": "LNAA transporter competition at BBB (shared carrier)",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Fernstrom–Wurtman mechanism; high-protein → more Trp but more competing LNAA → lower brain Trp path.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Meal macronutrient mix; insulin response; competing large neutral amino acids.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "MIXED",
+        "expression": "carb_insulin EXPANDS_BOUND Trp:LNAA → serotonin path; protein NARROWS_BOUND Trp:LNAA"
+      },
+      "related_to": "Assimilation (meal AA mix); LAW-037 Trp→niacin partition; Energy (carb meal insulin)",
+      "code_hooks": {
+        "score_role": "mechanism_rule",
+        "inputs_hint": "Meal macronutrient mix; insulin response; competing large neutral amino acids.",
+        "output_hint": "Fernstrom–Wurtman mechanism; high-protein → more Trp but more competing LNAA → lower brain Trp path.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Precursor in food ≠ product in brain."
+    },
+    {
+      "id": "LAW-028",
+      "name": "Nutrient requirements are life-stage-dependent and rescale non-uniformly (micronutrients can outpace energy).",
+      "status": "BOUND",
+      "system_name": "Structure",
+      "kingdom_hint": "Lean mass / bone / geometry / requirements",
+      "organ": "Whole-body requirements",
+      "subsystem": "NutrientRequirement.LifeStageRescale",
+      "address": "Structure.NutrientRequirement.LifeStageRescale",
+      "law_statement": "Nutrient requirements are life-stage-dependent and rescale non-uniformly (micronutrients can outpace energy).",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Pregnancy tables (e.g. Insel): micronutrient needs rise more than energy → density, not just calories.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Life stage / physiological state (pregnancy, growth, aging).",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "STATE_FUNCTION",
+        "expression": "life_stage rescales requirement_vector (non-uniform)"
+      },
+      "related_to": "All systems as consumers; LAW-015 protein adaptive; LAW-035/036 requirement couplings",
+      "code_hooks": {
+        "score_role": "host_state_modifier",
+        "inputs_hint": "Life stage / physiological state (pregnancy, growth, aging).",
+        "output_hint": "Pregnancy tables (e.g. Insel): micronutrient needs rise more than energy → density, not just calories.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Host-config requirements law; Structure as embodied growth/maintenance."
+    },
+    {
+      "id": "LAW-029",
+      "name": "WHR indexes central vs peripheral fat patterning; disease risk rises across sex-specific elevated bands.",
+      "status": "BOUND",
+      "system_name": "Structure",
+      "kingdom_hint": "Lean mass / bone / geometry / requirements",
+      "organ": "Body fat depots (anthropometry)",
+      "subsystem": "FatPatterning.WaistHipRatioRisk",
+      "address": "Structure.FatPatterning.WaistHipRatioRisk",
+      "law_statement": "WHR indexes central vs peripheral fat patterning; disease risk rises across sex-specific elevated bands.",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Elevated-risk WHR ≈ men 0.90–0.95, women 0.80–0.85 (review-derived).",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Sex-specific cutpoints; imperfect proxy for visceral fat.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "EXPANDS_BOUND",
+        "expression": "WHR above_band EXPANDS_BOUND metabolic_disease_risk"
+      },
+      "related_to": "Energy (metabolic risk); Communication (endocrine); LAW-031 depot specialization",
+      "code_hooks": {
+        "score_role": "host_state_modifier",
+        "inputs_hint": "Sex-specific cutpoints; imperfect proxy for visceral fat.",
+        "output_hint": "Elevated-risk WHR ≈ men 0.90–0.95, women 0.80–0.85 (review-derived).",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Vol-II+/host-config. Not food assimilation."
+    },
+    {
+      "id": "LAW-030",
+      "name": "Fat mass balance set by LPL (storage uptake) vs HSL (lipolysis) antagonism.",
+      "status": "MECHANISM",
+      "system_name": "Energy",
+      "kingdom_hint": "ATP / stores / SCFA",
+      "organ": "Adipocyte",
+      "subsystem": "TAGBalance.LPLvsHSL",
+      "address": "Energy.TAGBalance.LPLvsHSL",
+      "law_statement": "Fat mass balance set by LPL (storage uptake) vs HSL (lipolysis) antagonism.",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "More LPL → accumulation; more HSL → mobilization; regional basal lipolysis differences (see LAW-031).",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Hormonal set of LPL/HSL (insulin, catecholamines, sex steroids, glucocorticoids).",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "EXPANDS_BOUND",
+        "expression": "LPL EXPANDS_BOUND storage; HSL EXPANDS_BOUND mobilization"
+      },
+      "related_to": "Communication (hormones LAW-032–034); Transport (circulating TAG); Structure (depot mass)",
+      "code_hooks": {
+        "score_role": "mechanism_rule",
+        "inputs_hint": "Hormonal set of LPL/HSL (insulin, catecholamines, sex steroids, glucocorticoids).",
+        "output_hint": "More LPL → accumulation; more HSL → mobilization; regional basal lipolysis differences (see LAW-031).",
+        "executable": false,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Two-node energy store control."
+    },
+    {
+      "id": "LAW-031",
+      "name": "Depots are region- and sex-specialized; same catecholamine produces opposite net flux by receptor complement (β vs α₂).",
+      "status": "MECHANISM_BOUND",
+      "system_name": "Energy",
+      "kingdom_hint": "ATP / stores / SCFA",
+      "organ": "Adipose depots (regional)",
+      "subsystem": "RegionalLipolysis.ReceptorMap",
+      "address": "Energy.RegionalLipolysis.ReceptorMap",
+      "law_statement": "Depots are region- and sex-specialized; same catecholamine produces opposite net flux by receptor complement (β vs α₂).",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Catecholamine lipolytic effect 10–20× greater abdominal vs gluteal-femoral; ~2× β receptors; women α sensitivity 10–15× lower abdominally.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Regional receptor balance + sex-hormone milieu.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "STATE_FUNCTION",
+        "expression": "site×receptor_map routes same_signal → opposite local flux"
+      },
+      "related_to": "Communication (catecholamine receptors); LAW-030 LPL/HSL; LAW-029 WHR; Structure",
+      "code_hooks": {
+        "score_role": "mechanism_rule",
+        "inputs_hint": "Regional receptor balance + sex-hormone milieu.",
+        "output_hint": "Catecholamine lipolytic effect 10–20× greater abdominal vs gluteal-femoral; ~2× β receptors; women α sensitivity 10–15× lower abdominally.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Location is first-class parameter."
+    },
+    {
+      "id": "LAW-032",
+      "name": "Insulin favours storage (↑LPL, ↓HSL); antilipolytic effect strongest abdominally (post-receptor).",
+      "status": "MECHANISM_BOUND",
+      "system_name": "Communication",
+      "kingdom_hint": "Signals / gut–brain / hormones",
+      "organ": "Adipose (abdominal > femoral)",
+      "subsystem": "InsulinAction.AntilipolysisStorage",
+      "address": "Communication.InsulinAction.AntilipolysisStorage",
+      "law_statement": "Insulin favours storage (↑LPL, ↓HSL); antilipolytic effect strongest abdominally (post-receptor).",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Abdominal antilipolytic effect > femoral both sexes; binding paradox implies post-receptor regulation.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Insulin / insulinogenic meals; regional depot.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "MIXED",
+        "expression": "insulin EXPANDS_BOUND storage / NARROWS_BOUND lipolysis (site-weighted)"
+      },
+      "related_to": "Energy (LPL/HSL LAW-030); Assimilation (insulinogenic meals); LAW-031 regional",
+      "code_hooks": {
+        "score_role": "mechanism_rule",
+        "inputs_hint": "Insulin / insulinogenic meals; regional depot.",
+        "output_hint": "Abdominal antilipolytic effect > femoral both sexes; binding paradox implies post-receptor regulation.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Communication hormone → Energy depot."
+    },
+    {
+      "id": "LAW-033",
+      "name": "Androgens/estrogens set storage vs mobilization balance and its regional bias.",
+      "status": "MECHANISM",
+      "system_name": "Communication",
+      "kingdom_hint": "Signals / gut–brain / hormones",
+      "organ": "Adipose depots",
+      "subsystem": "SexHormoneBias.StorageMobilization",
+      "address": "Communication.SexHormoneBias.StorageMobilization",
+      "law_statement": "Androgens/estrogens set storage vs mobilization balance and its regional bias.",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Directional regional sex differences (premenopausal gluteal-femoral vs male abdominal patterns) — primaries not captured in OB05 pass.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Sex-hormone milieu; life stage.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "EXPANDS_BOUND",
+        "expression": "estrogen/androgen EXPANDS_BOUND regional_storage_bias"
+      },
+      "related_to": "LAW-031 regional; LAW-030 enzymes; Structure (sex phenotype)",
+      "code_hooks": {
+        "score_role": "mechanism_rule",
+        "inputs_hint": "Sex-hormone milieu; life stage.",
+        "output_hint": "Directional regional sex differences (premenopausal gluteal-femoral vs male abdominal patterns) — primaries not captured in OB05 pass.",
+        "executable": false,
+        "needs_primary_pull": true
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "SSI limited by review source."
+    },
+    {
+      "id": "LAW-034",
+      "name": "Glucocorticoids drive central (visceral) fat accumulation via receptor-dense visceral depot.",
+      "status": "MECHANISM_BOUND",
+      "system_name": "Communication",
+      "kingdom_hint": "Signals / gut–brain / hormones",
+      "organ": "Visceral adipose",
+      "subsystem": "GlucocorticoidDrive.CentralFat",
+      "address": "Communication.GlucocorticoidDrive.CentralFat",
+      "law_statement": "Glucocorticoids drive central (visceral) fat accumulation via receptor-dense visceral depot.",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Visceral glucocorticoid receptor density higher — directional from OB05; numeric dose not locked.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Glucocorticoid exposure / stress axis activity.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "EXPANDS_BOUND",
+        "expression": "glucocorticoids EXPANDS_BOUND visceral_fat_storage"
+      },
+      "related_to": "Energy depots; LAW-031 receptors densest viscerally; Defense/stress axis",
+      "code_hooks": {
+        "score_role": "mechanism_rule",
+        "inputs_hint": "Glucocorticoid exposure / stress axis activity.",
+        "output_hint": "Visceral glucocorticoid receptor density higher — directional from OB05; numeric dose not locked.",
+        "executable": true,
+        "needs_primary_pull": true
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Host endocrine state."
+    },
+    {
+      "id": "LAW-035",
+      "name": "Vitamin E requirement rises with polyunsaturated fat intake (E protects oxidizable PUFA).",
+      "status": "BOUND",
+      "system_name": "Defense",
+      "kingdom_hint": "Barrier / immune / biphasic toxin",
+      "organ": "Systemic membranes (PUFA targets)",
+      "subsystem": "VitaminERequirement.ScalesWithPUFA",
+      "address": "Defense.VitaminERequirement.ScalesWithPUFA",
+      "law_statement": "Vitamin E requirement rises with polyunsaturated fat intake (E protects oxidizable PUFA).",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Requirement is a function of PUFA load — not a fixed RDA independent of diet FA (Harper).",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Dietary PUFA intake; E status; oxidizable substrate load.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "EXPANDS_BOUND",
+        "expression": "PUFA_intake EXPANDS_BOUND vitamin_E_requirement"
+      },
+      "related_to": "LAW-013 antioxidant network; Assimilation (PUFA intake); Energy/Structure membranes",
+      "code_hooks": {
+        "score_role": "requirement_function",
+        "inputs_hint": "Dietary PUFA intake; E status; oxidizable substrate load.",
+        "output_hint": "Requirement is a function of PUFA load — not a fixed RDA independent of diet FA (Harper).",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Coupled requirements — system of equations."
+    },
+    {
+      "id": "LAW-036",
+      "name": "Thiamin need tracks carbohydrate load; fat is thiamin-sparing.",
+      "status": "BOUND",
+      "system_name": "Energy",
+      "kingdom_hint": "ATP / stores / SCFA",
+      "organ": "Systemic CHO metabolism",
+      "subsystem": "ThiaminRequirement.TracksCarbohydrate",
+      "address": "Energy.ThiaminRequirement.TracksCarbohydrate",
+      "law_statement": "Thiamin need tracks carbohydrate load; fat is thiamin-sparing.",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Higher CHO → higher thiamin demand (cofactor for keto-acid decarboxylation); fat spares.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Macronutrient mix of the diet.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "MIXED",
+        "expression": "CHO_load EXPANDS_BOUND thiamin_requirement; fat_share NARROWS_BOUND thiamin_requirement"
+      },
+      "related_to": "Assimilation (carb load); LAW-035 coupling pattern; Biotransformation (decarboxylation cofactor)",
+      "code_hooks": {
+        "score_role": "requirement_function",
+        "inputs_hint": "Macronutrient mix of the diet.",
+        "output_hint": "Higher CHO → higher thiamin demand (cofactor for keto-acid decarboxylation); fat spares.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Requirement coupling to macronutrient."
+    },
+    {
+      "id": "LAW-037",
+      "name": "Tryptophan is a niacin precursor at fixed equivalence (~60 mg Trp → 1 mg niacin) while also feeding protein and serotoni",
+      "status": "BOUND",
+      "system_name": "Biotransformation",
+      "kingdom_hint": "Conversion / liver–enterocyte / redox",
+      "organ": "Liver",
+      "subsystem": "TryptophanPartition.NiacinEquivalence",
+      "address": "Biotransformation.TryptophanPartition.NiacinEquivalence",
+      "law_statement": "Tryptophan is a niacin precursor at fixed equivalence (~60 mg Trp → 1 mg niacin) while also feeding protein and serotonin paths.",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "60:1 Trp→niacin equivalence; partition state-dependent across three fates.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Trp beyond protein needs; competition with serotonin path (LAW-027); niacin status.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "EXPANDS_BOUND",
+        "expression": "Trp EXPANDS_BOUND niacin_equivalence_pool at 60:1; meal AA mix routes flux among fates"
+      },
+      "related_to": "Communication (LAW-027 serotonin path); Structure (protein synthesis); Assimilation (Trp intake)",
+      "code_hooks": {
+        "score_role": "mechanism_rule",
+        "inputs_hint": "Trp beyond protein needs; competition with serotonin path (LAW-027); niacin status.",
+        "output_hint": "60:1 Trp→niacin equivalence; partition state-dependent across three fates.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Flow/allocation law, not single product lookup."
+    },
+    {
+      "id": "LAW-038",
+      "name": "Intracellular protein half-life encoded in sequence: N-terminal residue (N-end rule) + PEST regions → ubiquitin–proteaso",
+      "status": "MECHANISM",
+      "system_name": "Structure",
+      "kingdom_hint": "Lean mass / bone / geometry / requirements",
+      "organ": "Intracellular proteome",
+      "subsystem": "ProteinTurnover.NEndRulePEST",
+      "address": "Structure.ProteinTurnover.NEndRulePEST",
+      "law_statement": "Intracellular protein half-life encoded in sequence: N-terminal residue (N-end rule) + PEST regions → ubiquitin–proteasome rate.",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Directional: destabilizing N-termini/PEST → short half-life; numeric residue→half-life table not on ADV page — pull later.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Sequence features; ATP-dependent ubiquitin cascade.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "EXPANDS_BOUND",
+        "expression": "destabilizing_sequence EXPANDS_BOUND degradation_rate"
+      },
+      "related_to": "LAW-015 protein-stat (degradation half); Energy (ATP ubiquitin); Biotransformation",
+      "code_hooks": {
+        "score_role": "mechanism_rule",
+        "inputs_hint": "Sequence features; ATP-dependent ubiquitin cascade.",
+        "output_hint": "Directional: destabilizing N-termini/PEST → short half-life; numeric residue→half-life table not on ADV page — pull later.",
+        "executable": false,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Vol-II+ intracellular; not meal Assimilation."
+    },
+    {
+      "id": "LAW-039",
+      "name": "Bile-acid pool conserved by enterohepatic recycling; interrupting ileal reabsorption forces cholesterol → BA synthesis.",
+      "status": "MECHANISM_BOUND",
+      "system_name": "Biotransformation",
+      "kingdom_hint": "Conversion / liver–enterocyte / redox",
+      "organ": "Enterohepatic loop (ileum ↔ liver)",
+      "subsystem": "BileAcidPool.EnterohepaticRecycling",
+      "address": "Biotransformation.BileAcidPool.EnterohepaticRecycling",
+      "law_statement": "Bile-acid pool conserved by enterohepatic recycling; interrupting ileal reabsorption forces cholesterol → BA synthesis.",
+      "gate": {
+        "present": true,
+        "text": "Ileal BA reuptake path (clinical interruption = resin/surgery/disease)",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "~98–99% reabsorbed; recycle 6–10×/day (with LAW-021); interruption ↑ BA synthesis from cholesterol.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Intact ileal transport; interruption is the clinical lever.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "EXPANDS_BOUND",
+        "expression": "ileal_reuptake EXPANDS_BOUND conserved_BA_pool; interrupt_reuptake EXPANDS_BOUND chol_to_BA_synthesis"
+      },
+      "related_to": "Assimilation (ileal reuptake); LAW-021 cholesterol→BA; LAW-016/017; L-FAT-1 micelles",
+      "code_hooks": {
+        "score_role": "mechanism_rule",
+        "inputs_hint": "Intact ileal transport; interruption is the clinical lever.",
+        "output_hint": "~98–99% reabsorbed; recycle 6–10×/day (with LAW-021); interruption ↑ BA synthesis from cholesterol.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Strong Vol-I link via ileal Assimilation + hepatic Biotransformation."
+    },
+    {
+      "id": "LAW-040",
+      "name": "BMI is a computable weight-for-height risk band — sex/age-banded — and by the field's admission blind to composition.",
+      "status": "BOUND",
+      "system_name": "Structure",
+      "kingdom_hint": "Lean mass / bone / geometry / requirements",
+      "organ": "Whole body (anthropometry)",
+      "subsystem": "BMI.WeightForHeightRisk",
+      "address": "Structure.BMI.WeightForHeightRisk",
+      "law_statement": "BMI is a computable weight-for-height risk band — sex/age-banded — and by the field's admission blind to composition.",
+      "gate": {
+        "present": false,
+        "text": "none",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Standard BMI bands (underweight/normal/overweight/obese) as published cutpoints; composition blindness explicit.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Adult anthropometry context; not a fat-mass measure.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "EXPANDS_BOUND",
+        "expression": "BMI above_band EXPANDS_BOUND population_risk (coarse)"
+      },
+      "related_to": "Energy balance; LAW-029 WHR (composition-blind caveat)",
+      "code_hooks": {
+        "score_role": "host_state_modifier",
+        "inputs_hint": "Adult anthropometry context; not a fat-mass measure.",
+        "output_hint": "Standard BMI bands (underweight/normal/overweight/obese) as published cutpoints; composition blindness explicit.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Host-config risk meter, not food law."
+    },
+    {
+      "id": "LAW-041",
+      "name": "Iron absorption is redox-gated; copper (cuprous) helps keep iron in absorbable ferrous state — enhancer of redox compete",
+      "status": "MECHANISM_BOUND",
+      "system_name": "Assimilation",
+      "kingdom_hint": "Lumen / delivery mechanics",
+      "organ": "Gut absorption (enterocyte Fe path)",
+      "subsystem": "IronUptake.RedoxGateCopper",
+      "address": "Assimilation.IronUptake.RedoxGateCopper",
+      "law_statement": "Iron absorption is redox-gated; copper (cuprous) helps keep iron in absorbable ferrous state — enhancer of redox competence.",
+      "gate": {
+        "present": true,
+        "text": "Redox state: Fe must be ferrous for DMT1-class uptake path (simplified)",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Directional copper enhancement of Fe absorption redox; numeric fold — pull figure/table from source chapter.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Copper status / cuprous ion; reducing environment; non-haem Fe path.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "MIXED",
+        "expression": "Cu+ EXPANDS_BOUND Fe_redox_absorption_competence; oxidised_Fe NARROWS_BOUND uptake"
+      },
+      "related_to": "LAW-004 ascorbate (Fe²⁺ keep); LAW-012 Fenton; LAW-042 mineral antagonism; LAW-002",
+      "code_hooks": {
+        "score_role": "meal_matrix_modifier",
+        "inputs_hint": "Copper status / cuprous ion; reducing environment; non-haem Fe path.",
+        "output_hint": "Directional copper enhancement of Fe absorption redox; numeric fold — pull figure/table from source chapter.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Assimilation redox gate for iron."
+    },
+    {
+      "id": "LAW-042",
+      "name": "Mineral bioavailability set by competitive antagonism network — ratio to antagonist minerals, not absolute amount alone,",
+      "status": "MECHANISM_BOUND",
+      "system_name": "Assimilation",
+      "kingdom_hint": "Lumen / delivery mechanics",
+      "organ": "Gut absorption",
+      "subsystem": "MineralUptake.CompetitiveAntagonismNetwork",
+      "address": "Assimilation.MineralUptake.CompetitiveAntagonismNetwork",
+      "law_statement": "Mineral bioavailability set by competitive antagonism network — ratio to antagonist minerals, not absolute amount alone, governs uptake.",
+      "gate": {
+        "present": false,
+        "text": "none (competition, not hard off)",
+        "note": "Categorical on/off — if none, process still occurs without the lever"
+      },
+      "bound": {
+        "text": "Signed directed interactions (Figure 11.1); ratios not absolutes — exact edge weights need figure capture.",
+        "note": "Magnitude — may move with better data; not the same as gate"
+      },
+      "conditions": {
+        "text": "Co-ingested mineral cocktail; meal matrix; status of each mineral.",
+        "note": "If-then: co-nutrients, same-meal, host state, species"
+      },
+      "typed_relation": {
+        "primary_type": "NARROWS_BOUND",
+        "expression": "antagonist_mineral_j NARROWS_BOUND absorption_of_mineral_i (network of edges)"
+      },
+      "related_to": "LAW-002/003/004/005/006/041; all mineral matrix laws; Figure 11.1 signed graph",
+      "code_hooks": {
+        "score_role": "network_edge",
+        "inputs_hint": "Co-ingested mineral cocktail; meal matrix; status of each mineral.",
+        "output_hint": "Signed directed interactions (Figure 11.1); ratios not absolutes — exact edge weights need figure capture.",
+        "executable": true,
+        "needs_primary_pull": false
+      },
+      "textbook_gap": "Textbook states the mechanism in prose/tables but does not: (1) seat it on one of 7 functional systems, (2) split gate vs bound, (3) type the relation for a graph/score engine, (4) name co-nutrient conditions for meal code.",
+      "original_register": "gleaned/registers/laws.md",
+      "note": "Graph law — native Neptune object. Capstone of mineral Assimilation cluster."
+    }
+  ],
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-07-18",
+    "law_count": 42,
+    "executable_count": 33,
+    "by_system": {
+      "Assimilation": 18,
+      "Transport": 1,
+      "Communication": 5,
+      "Defense": 4,
+      "Biotransformation": 5,
+      "Energy": 4,
+      "Structure": 5
+    },
+    "by_score_role": {
+      "telemetry_composite": 1,
+      "mechanism_rule": 14,
+      "meal_matrix_modifier": 13,
+      "framework": 1,
+      "control_system": 4,
+      "network_edge": 2,
+      "host_state_modifier": 4,
+      "pathway_stage": 1,
+      "requirement_function": 2
+    }
+  }
+}

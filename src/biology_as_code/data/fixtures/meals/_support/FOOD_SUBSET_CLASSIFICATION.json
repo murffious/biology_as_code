@@ -1,8 +1,8 @@
 {
-  "schema": "kibo.FoodSubsetClassificationReport/v1",
+  "schema": "bac.FoodSubsetClassificationReport/v1",
   "honesty": "OPEN",
   "principle": "acquisition_is_not_quality",
-  "meals_dir": "/Users/morf/Downloads/morf-engineering/mealcoachai/dev/NUTRI-COLLECTIVE_0/nutri-collective/machines/schemas/fixtures/meals",
+  "meals_dir": "<private-workspace>/nutri-collective/machines/schemas/fixtures/meals",
   "counts": {
     "meals": 67,
     "acquisition": {
@@ -67,7 +67,7 @@
       "id": "raw_01_chicken_quinoa_broccoli_bowl",
       "name": "Grilled Chicken, Quinoa & Broccoli Bowl",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_prepared",
@@ -117,7 +117,7 @@
       "id": "raw_02_salmon_sweet_potato_asparagus",
       "name": "Baked Salmon with Sweet Potato & Asparagus",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_prepared",
@@ -165,7 +165,7 @@
       "id": "raw_03_spinach_feta_scramble",
       "name": "Spinach & Feta Egg Scramble with Avocado",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_prepared",
@@ -215,7 +215,7 @@
       "id": "raw_04_overnight_oats_berries_chia",
       "name": "Overnight Oats with Berries, Chia & Almond Butter",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_prepared",
@@ -266,7 +266,7 @@
       "id": "raw_05_greek_yogurt_berry_bowl",
       "name": "Greek Yogurt Berry Bowl with Walnuts & Flax",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_prepared",
@@ -302,7 +302,7 @@
       "id": "raw_06_lentil_kale_power_salad",
       "name": "Lentil & Kale Power Salad",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_prepared",
@@ -352,7 +352,7 @@
       "id": "raw_07_black_bean_rice_bowl",
       "name": "Black Bean & Brown Rice Bowl with Avocado",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_prepared",
@@ -387,7 +387,7 @@
       "id": "raw_08_tofu_veggie_stirfry",
       "name": "Tofu Veggie Stir-Fry with Brown Rice",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_prepared",
@@ -437,7 +437,7 @@
       "id": "raw_09_shrimp_quinoa_med_bowl",
       "name": "Shrimp & Quinoa Mediterranean Bowl",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_prepared",
@@ -485,7 +485,7 @@
       "id": "raw_10_turkey_sweet_potato_skillet",
       "name": "Ground Turkey & Sweet Potato Skillet",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_prepared",
@@ -535,7 +535,7 @@
       "id": "bc_01_chobani_parfait",
       "name": "Chobani Greek Yogurt Parfait with Granola & Blueberries",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -571,7 +571,7 @@
       "id": "bc_02_quaker_pb_banana_oatmeal",
       "name": "Quaker Oatmeal with Peanut Butter & Banana",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -620,7 +620,7 @@
       "id": "bc_03_ezekiel_avocado_egg_toast",
       "name": "Ezekiel Toast with Avocado & Fried Egg",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -670,7 +670,7 @@
       "id": "bc_04_kodiak_strawberry_pancakes",
       "name": "Kodiak Power Cakes with Strawberries",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -721,7 +721,7 @@
       "id": "bc_05_fage_raspberry_bowl",
       "name": "FAGE Total 0% Bowl with Raspberries & Walnuts",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -757,7 +757,7 @@
       "id": "bc_06_cheerios_banana_milk",
       "name": "Cheerios with Whole Milk & Banana",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -793,7 +793,7 @@
       "id": "bc_07_silk_berry_protein_smoothie",
       "name": "Almond Milk Berry Protein Smoothie",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -829,7 +829,7 @@
       "id": "bc_08_good_culture_strawberry_bowl",
       "name": "Good Culture Cottage Cheese Bowl with Strawberries",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -866,7 +866,7 @@
       "id": "bc_09_rxbar_banana_almonds",
       "name": "On-the-Go: RXBAR, Banana & Almonds",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -901,7 +901,7 @@
       "id": "bc_10_daves_ab_banana_toast",
       "name": "Dave's Killer Bread with Almond Butter & Banana",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -951,7 +951,7 @@
       "id": "bc_11_starkist_tuna_sandwich",
       "name": "Tuna Salad Sandwich on Dave's Killer Bread",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1000,7 +1000,7 @@
       "id": "bc_12_goya_chickpea_greek_salad",
       "name": "Chickpea Greek Salad",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1050,7 +1050,7 @@
       "id": "bc_13_bushs_burrito_bowl",
       "name": "Black Bean Burrito Bowl with Salsa & Avocado",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1085,7 +1085,7 @@
       "id": "bc_14_sabra_veggie_wrap",
       "name": "Hummus Veggie Wrap",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1118,7 +1118,7 @@
       "id": "bc_15_applegate_turkey_avocado_sandwich",
       "name": "Turkey & Avocado Sandwich",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1151,7 +1151,7 @@
       "id": "bc_16_amys_lentil_soup_triscuits",
       "name": "Amy's Lentil Soup with Triscuits",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1186,7 +1186,7 @@
       "id": "bc_17_banza_pesto_chicken_bowl",
       "name": "Banza Chickpea Pasta with Pesto & Chicken",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1221,7 +1221,7 @@
       "id": "bc_18_bumblebee_salmon_quinoa_salad",
       "name": "Pink Salmon & Quinoa Kale Salad",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1269,7 +1269,7 @@
       "id": "bc_19_peanut_noodles_broccoli",
       "name": "Peanut Noodles with Broccoli",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1318,7 +1318,7 @@
       "id": "bc_20_edamame_rice_bowl",
       "name": "Edamame & Brown Rice Teriyaki Bowl",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1355,7 +1355,7 @@
       "id": "bc_21_banza_marinara_turkey",
       "name": "Chickpea Penne Marinara with Ground Turkey",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1390,7 +1390,7 @@
       "id": "bc_22_ww_spaghetti_marinara",
       "name": "Whole Grain Spaghetti Marinara with Parmesan-Style Feta",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1425,7 +1425,7 @@
       "id": "bc_23_salmon_seeds_of_change",
       "name": "Baked Salmon with Quinoa & Brown Rice Pouch and Asparagus",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1458,7 +1458,7 @@
       "id": "bc_24_mission_chicken_fajitas",
       "name": "Chicken Fajitas on Whole Wheat Tortillas",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1508,7 +1508,7 @@
       "id": "bc_25_nasoya_teriyaki_stirfry",
       "name": "Tofu Teriyaki Stir-Fry with Birds Eye Vegetables",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1560,7 +1560,7 @@
       "id": "bc_26_turkey_bean_chili",
       "name": "Turkey & Kidney Bean Chili",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1610,7 +1610,7 @@
       "id": "bc_27_drpraeger_burger_plate",
       "name": "Black Bean Burger with Guacamole & Side Salad",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1658,7 +1658,7 @@
       "id": "bc_28_alfresco_sausage_sheetpan",
       "name": "Chicken Sausage Sheet Pan with Brussels & Sweet Potato",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1708,7 +1708,7 @@
       "id": "bc_29_maya_tikka_chicken",
       "name": "Chicken Tikka Masala with Brown Rice",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1743,7 +1743,7 @@
       "id": "bc_30_shrimp_pesto_pasta",
       "name": "Shrimp Pesto Whole Grain Spaghetti",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1778,7 +1778,7 @@
       "id": "bc_31_tuna_pasta_salad_dinner",
       "name": "Mediterranean Tuna Pasta Salad",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1832,7 +1832,7 @@
       "id": "bc_32_edamame_veggie_fried_rice",
       "name": "Veggie & Edamame 'Fried' Brown Rice",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1882,7 +1882,7 @@
       "id": "bc_33_kind_bar_apple",
       "name": "KIND Bar & Apple",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1918,7 +1918,7 @@
       "id": "bc_34_hummus_carrots_triscuits",
       "name": "Hummus Snack Plate",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1953,7 +1953,7 @@
       "id": "bc_35_string_cheese_orange_almonds",
       "name": "String Cheese, Orange & Almonds",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -1988,7 +1988,7 @@
       "id": "bc_36_siggis_blueberry",
       "name": "siggi's Vanilla Skyr with Blueberries",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -2024,7 +2024,7 @@
       "id": "bc_37_skinnypop_dark_chocolate",
       "name": "SkinnyPop & Dark Chocolate",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -2059,7 +2059,7 @@
       "id": "bc_38_lifeway_kefir_smoothie",
       "name": "Kefir Strawberry-Flax Smoothie",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -2095,7 +2095,7 @@
       "id": "bc_39_premier_shake_almonds",
       "name": "Premier Protein Shake & Almonds",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -2134,7 +2134,7 @@
       "id": "bc_40_cottage_cheese_pita",
       "name": "Cottage Cheese & Veggie Pita Pocket",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -2170,7 +2170,7 @@
       "id": "sup_01_whey_postworkout_shake",
       "name": "Whey Protein Post-Workout Shake with Banana",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_prepared",
@@ -2210,7 +2210,7 @@
       "id": "sup_02_collagen_coffee_yogurt",
       "name": "Collagen Coffee with Greek Yogurt Berry Bowl",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_prepared",
@@ -2246,7 +2246,7 @@
       "id": "sup_03_protein_greens_smoothie",
       "name": "Plant Protein & Greens Smoothie",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_prepared",
@@ -2284,7 +2284,7 @@
       "id": "sup_04_electrolyte_recovery_snack",
       "name": "Electrolyte Drink with RXBAR & Almonds",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_prepared",
@@ -2320,7 +2320,7 @@
       "id": "sup_05_creatine_lemon_water",
       "name": "Creatine Lemon Water Pre-Training Snack",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_prepared",
@@ -2355,7 +2355,7 @@
       "id": "sup_06_spirulina_berry_smoothie",
       "name": "Spirulina Berry Smoothie",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_prepared",
@@ -2390,7 +2390,7 @@
       "id": "sup_07_muscle_milk_apple",
       "name": "Muscle Milk RTD Shake & Apple",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_prepared",
@@ -2431,7 +2431,7 @@
       "id": "upf_01_instant_ramen",
       "name": "Instant Ramen Lunch",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -2474,7 +2474,7 @@
       "id": "upf_02_frozen_pizza_cola",
       "name": "Frozen Pepperoni Pizza & Cola Night",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -2516,7 +2516,7 @@
       "id": "upf_03_mac_and_hot_dogs",
       "name": "Boxed Mac & Cheese with Hot Dogs",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -2556,7 +2556,7 @@
       "id": "upf_04_nuggets_ketchup",
       "name": "Chicken Nuggets with Ketchup",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -2594,7 +2594,7 @@
       "id": "upf_05_poptarts_choc_milk",
       "name": "Pop-Tarts & Chocolate Milk Breakfast",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -2647,7 +2647,7 @@
       "id": "upf_06_froot_loops_breakfast",
       "name": "Froot Loops with Whole Milk",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -2686,7 +2686,7 @@
       "id": "upf_07_bologna_sandwich_chips",
       "name": "Bologna & Cheese Sandwich with Doritos",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -2731,7 +2731,7 @@
       "id": "upf_08_gas_station_refuel",
       "name": "Gas-Station Refuel: Candy Bar & Sports Drink",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "convenience_retail",
@@ -2777,7 +2777,7 @@
       "id": "upf_09_zebra_cakes_snack",
       "name": "Zebra Cakes & Chocolate Milk",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",
@@ -2818,7 +2818,7 @@
       "id": "upf_10_twinkies_cola",
       "name": "Twinkies & Cola",
       "food_subset_tags": {
-        "schema": "kibo.FoodSubsetTags/v1",
+        "schema": "bac.FoodSubsetTags/v1",
         "honesty": "OPEN",
         "meal_context": {
           "acquisition": "home_assembled_packaged",

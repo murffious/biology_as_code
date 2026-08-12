@@ -1,4 +1,4 @@
-"""Fixtures, law data (kibo_core), version manifest."""
+"""Fixtures, law data (engine), version manifest."""
 
 from biology_as_code.data.version_manifest import package_version
 

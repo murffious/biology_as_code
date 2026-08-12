@@ -1,6 +1,6 @@
 {
-  "name": "mealcoach-50-seed-meals",
-  "description": "Seed meals with hydration enrichment. Nutrition from mealcoach-foods-dev / USDA / OFF; beverages include corpus fluids + OFF Gatorade/smartwater + USDA juice/diet cola + specialty water classes.",
+  "name": "curated-50-seed-meals",
+  "description": "Seed meals with hydration enrichment. Nutrition from curated-foods-dev / USDA / OFF; beverages include corpus fluids + OFF Gatorade/smartwater + USDA juice/diet cola + specialty water classes.",
   "counts": {
     "total": 67,
     "raw_whole_foods": 10,

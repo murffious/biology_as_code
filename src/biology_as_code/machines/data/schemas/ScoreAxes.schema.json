@@ -2,12 +2,12 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://nutricollective.local/machines/schemas/ScoreAxes.schema.json",
   "title": "ScoreAxes",
-  "description": "Four process *measurements* (FLOW product axes) — not constitutional LAW ids. Assess packet quality along the digest process. Legacy keys: law_1_density … law_4_vitality (mealcoach law_calculator).",
+  "description": "Four process *measurements* (FLOW product axes) — not constitutional LAW ids. Assess packet quality along the digest process. Legacy keys: law_1_density … law_4_vitality (legacy product law_calculator).",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema", "axes"],
   "properties": {
-    "schema": { "const": "kibo.ScoreAxes/v1" },
+    "schema": { "const": "bac.ScoreAxes/v1" },
     "honesty": {
       "type": "string",
       "enum": ["FLOW", "OPEN"],
