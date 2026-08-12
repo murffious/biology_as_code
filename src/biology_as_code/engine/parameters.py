@@ -36,6 +36,7 @@ Nothing here is written by hand except the shape of the path strings.
 
 from __future__ import annotations
 
+import re
 from dataclasses import fields as dataclass_fields
 from functools import lru_cache
 from typing import Any, Iterable, Mapping
@@ -45,7 +46,13 @@ __all__ = [
     "parameter_space",
     "resolve_binding",
     "list_parameters",
+    "resolve_intrinsic",
+    "INTRINSIC_PATTERN",
 ]
+
+#: ``%NAME%`` — a specification-defined symbol resolving to a catalog entry.
+#: See docs/notational-conventions.md section 5.
+INTRINSIC_PATTERN = re.compile(r"%([A-Za-z][A-Za-z0-9_]*)%")
 
 
 class ParameterSpace:
@@ -186,3 +193,46 @@ def check_bindings(paths: Iterable[str]) -> dict[str, list[str]]:
     for p in paths:
         (resolved if p in space else dangling).append(p)
     return {"resolved": sorted(set(resolved)), "dangling": sorted(set(dangling))}
+
+
+def resolve_intrinsic(token: str) -> str:
+    """
+    Resolve a ``%NAME%`` intrinsic to the parameter path it denotes.
+
+    Intrinsics are resolved at validation time, not run time: an unresolvable
+    intrinsic is a defect in the law, caught before anything executes. A law
+    that cites ``%GLP1%`` is making a checkable claim; one that says "GLP-1" in
+    prose is making none.
+
+    Raises ``KeyError`` on an unknown name rather than returning the token
+    unchanged, which would let a typo pass straight through into a report.
+    """
+    match = INTRINSIC_PATTERN.fullmatch(token.strip())
+    if not match:
+        raise ValueError(f"{token!r} is not an intrinsic; expected %NAME%")
+    name = match.group(1)
+    space = parameter_space()
+
+    # Signals first: the catalog is case-insensitive and alias-aware.
+    from biology_as_code.engine.signals import get_signal
+
+    try:
+        return f"signals.{get_signal(name).id}"
+    except KeyError:
+        pass
+
+    # CamelCase intrinsics map onto snake_case compartment ids:
+    # %SmallIntestine% -> compartments.small_intestine.
+    snake = re.sub(r"(?<!^)(?=[A-Z])", "_", name).lower()
+    for candidate in (f"compartments.{name.lower()}", f"compartments.{snake}"):
+        if candidate in space:
+            return candidate
+
+    for path in space.under("responses"):
+        if path.split(".", 1)[1].split("/", 1)[0].lower() == name.lower():
+            return path
+
+    raise KeyError(
+        f"intrinsic %{name}% does not resolve. Known namespaces: "
+        f"{', '.join(space.namespaces())}."
+    )
