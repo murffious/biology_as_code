@@ -26,11 +26,13 @@ import pytest
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SCANNED = ("src", "tests")
 
-# Assembled so this file does not match itself.
-FORBIDDEN = (
-    "ki" + "bo",
-    "meal" + "coach",
-    "mo" + "rf",
+# Reversed, and reversed back through a function call at import time, so this
+# file does not match itself. Note the round trip has to be a *call*: the first
+# version of this used "ki" + "bo", and CPython constant-folds adjacent string
+# literals at compile time, so the term reappeared intact inside the compiled
+# .pyc and the gate matched its own bytecode cache.
+FORBIDDEN = tuple(
+    "".join(reversed(term)) for term in ("obik", "hcaoclaem", "from")
 )
 _PATTERN = re.compile("|".join(FORBIDDEN), re.IGNORECASE)
 
