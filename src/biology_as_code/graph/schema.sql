@@ -49,6 +49,8 @@ CREATE TABLE IF NOT EXISTS edge (
         'CLOSES_GATE',
         'EXPANDS_BOUND',
         'NARROWS_BOUND',
+        'CONSERVES',
+        'IDENTITY',
         'COMPETES_WITH',
         'PART_OF',
         'NEEDS_RESOLUTION',
