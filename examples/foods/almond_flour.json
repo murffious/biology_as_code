@@ -6,8 +6,25 @@
     "form": "flour",
     "family_hint": "Rosaceae"
   },
+  "method_identity": [
+    {
+      "op": "harvest",
+      "severity": "light",
+      "matrix_effect": "preserves"
+    },
+    {
+      "op": "mill",
+      "severity": "severe",
+      "target": "cell_wall",
+      "matrix_effect": "destroys",
+      "note": "particle size below the cotyledon cell diameter; intracellular lipid becomes free lipid. This single operation is the whole difference from ex.almond.whole."
+    }
+  ],
   "cargo": [
-    { "nutrient": "lipid", "label_amount": "open" }
+    {
+      "nutrient": "lipid",
+      "label_amount": "open"
+    }
   ],
   "matrix": {
     "integrity": "destroyed",
@@ -17,6 +34,6 @@
   "teaching": {
     "point": "Same identity string as whole almond; different execution program.",
     "gate": "matrix destruction is process field, not a new nutrient",
-    "book_ref": "Part 3.11–3.12"
+    "book_ref": "Part 3.11\u20133.12"
   }
 }

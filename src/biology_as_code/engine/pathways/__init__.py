@@ -6,9 +6,12 @@ from .colon_scfa import (
 )
 from .food_quality import apply_claim_pipeline, apply_substrate_folds, load_quality_claims
 from .nonhaem_iron import NONHAEM_IRON_PATHWAY, build_nonhaem_iron_pathway
+from .scfa_process import COLON_FERMENTATION, ColonFermentationProcess
 
 __all__ = [
+    "COLON_FERMENTATION",
     "COLON_SCFA_PATHWAY",
+    "ColonFermentationProcess",
     "NONHAEM_IRON_PATHWAY",
     "apply_claim_pipeline",
     "apply_substrate_folds",

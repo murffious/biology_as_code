@@ -6,6 +6,21 @@
     "form": "cooked",
     "family_hint": "Poaceae"
   },
+  "method_identity": [
+    {
+      "op": "flake",
+      "severity": "moderate",
+      "target": "cell_wall",
+      "matrix_effect": "partially_disrupts"
+    },
+    {
+      "op": "heat_moist",
+      "severity": "moderate",
+      "target": "starch",
+      "matrix_effect": "partially_disrupts",
+      "note": "gelatinisation"
+    }
+  ],
   "cargo": [],
   "partners": [],
   "injection_zone": "zone1_matrix",
