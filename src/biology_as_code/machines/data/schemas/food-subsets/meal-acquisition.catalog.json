@@ -1,5 +1,5 @@
 {
-  "schema": "kibo.MealAcquisition.catalog/v1",
+  "schema": "bac.MealAcquisition.catalog/v1",
   "version": "1.0.0",
   "honesty": "OPEN",
   "title": "Meal acquisition / venue taxonomy",
@@ -127,7 +127,7 @@
       "2. Score packet: NOVA, matrix, density, oils, sugars, HP-1/HP-2",
       "3. Optional coach copy: 'Even at a drive-thru, this salad path looks different from the combo path'"
     ],
-    "kibo_hooks": [
+    "engine_hooks": [
       "F087 hyperpalatability (stub→partial when HP wired)",
       "matrix_vitality ScoreAxis",
       "persona Casey (time-poor) — acquisition friction, not moral failure"

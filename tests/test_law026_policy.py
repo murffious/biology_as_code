@@ -26,7 +26,7 @@ from pathlib import Path
 import pytest
 
 PKG_DATA = (
-    Path(__file__).resolve().parents[1] / "src" / "biology_as_code" / "data" / "kibo_core" / "data"
+    Path(__file__).resolve().parents[1] / "src" / "biology_as_code" / "engine" / "data"
 )
 SKELETON = PKG_DATA / "base_unit_colon_fermentation.skeleton.json"
 DECISION = PKG_DATA / "LAW026_PROMOTION_DECISION.md"

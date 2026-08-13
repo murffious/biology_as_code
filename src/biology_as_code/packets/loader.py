@@ -51,6 +51,11 @@ class FoodPacket:
     id: str
     status: str
     identity: dict[str, Any]
+    #: Ordered process operations already applied, oldest first. Identity says
+    #: what the food is; method identity says what was done to it. An empty
+    #: tuple is ambiguous between "no processing" and "not declared" —
+    #: :attr:`declares_method_identity` separates the two.
+    method_identity: tuple[dict[str, Any], ...]
     cargo: tuple[dict[str, Any], ...]
     partners: tuple[dict[str, Any], ...]
     injection_zone: str
@@ -67,6 +72,25 @@ class FoodPacket:
     def is_filled(self) -> bool:
         """True only for packets whose author marked them as filled in."""
         return self.status == "filled"
+
+    @property
+    def declares_method_identity(self) -> bool:
+        """Whether the packet declares a method identity at all.
+
+        An empty ``method_identity`` array asserts *no processing*; an absent
+        field asserts nothing. Collapsing the two would let an undeclared food
+        pass as raw.
+        """
+        return "method_identity" in self.raw
+
+    def method_ops(self) -> tuple[str, ...]:
+        """The operation names in order, e.g. ``("harvest", "mill")``."""
+        return tuple(str(op["op"]) for op in self.method_identity if "op" in op)
+
+    @property
+    def matrix_destroyed_by_processing(self) -> bool:
+        """True when any declared operation destroys the matrix."""
+        return any(op.get("matrix_effect") == "destroys" for op in self.method_identity)
 
     @property
     def matrix_integrity(self) -> str:
@@ -100,6 +124,7 @@ class FoodPacket:
             id=str(data["id"]),
             status=str(data.get("status", "stub")),
             identity=dict(data.get("identity") or {}),
+            method_identity=tuple(data.get("method_identity") or ()),
             cargo=tuple(data.get("cargo") or ()),
             partners=tuple(data.get("partners") or ()),
             injection_zone=str(data.get("injection_zone", "unknown")),

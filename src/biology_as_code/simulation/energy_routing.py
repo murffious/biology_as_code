@@ -1,7 +1,7 @@
 """
 energy_routing.py
 =================================================================
-Post-meal energy-routing snapshot for kibo_engine.
+Post-meal energy-routing snapshot for meal_engine.
 
 Joins:
   - PhysiologicalState + pathway_regulation activities (incl. AMPK/mTOR proxies)

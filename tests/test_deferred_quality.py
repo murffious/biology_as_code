@@ -9,12 +9,12 @@ def test_m4_build_scripts_not_in_package():
     # Must not be importable from the installed package path
     assert (
         importlib.util.find_spec(
-            "biology_as_code.data.kibo_core.topics._classify_topics_impl"
+            "biology_as_code.engine.topics._classify_topics_impl"
         )
         is None
     )
     assert (
-        importlib.util.find_spec("biology_as_code.data.kibo_core.topics.build_from_list")
+        importlib.util.find_spec("biology_as_code.engine.topics.build_from_list")
         is None
     )
 

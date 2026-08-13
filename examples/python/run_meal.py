@@ -10,10 +10,10 @@ if __name__ == "__main__":
         protein_g=35,
         fats_g=18,
         fiber_g=22,
-        enable_product_score=False,
+        enable_external_score=False,
     )
     print("payload:", result.payload_name)
     print("absorbed:", result.absorbed_macros_g)
     print("residual:", result.residual_macros_g)
     print("pathway_regulation:", result.pathway_regulation)
-    print("product_score_available:", result.product_score_available)
+    print("external_scorer_available:", result.external_scorer_available)

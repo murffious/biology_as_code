@@ -1,5 +1,5 @@
 {
-  "schema": "kibo.Hormones.catalog/v1",
+  "schema": "bac.Hormones.catalog/v1",
   "version": "1.0.0",
   "honesty": "OPEN",
   "title": "Exogenous hormone therapy classes (starter — keep small)",

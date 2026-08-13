@@ -24,7 +24,7 @@
       "grams": 40,
       "source": {
         "type": "barcode_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "BARCODE#00030000562314",
         "barcode_gtin14": "00030000562314",
         "serving_size_g": 40,
@@ -323,7 +323,7 @@
       "grams": 32,
       "source": {
         "type": "barcode_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "BARCODE#00051500255247",
         "barcode_gtin14": "00051500255247",
         "serving_size_g": 33,
@@ -638,7 +638,7 @@
       "grams": 118,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_banana_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -968,7 +968,7 @@
       "grams": 1.3,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_cinnamon_ground",
         "nutrition_source": "usda_fdc"
       },
@@ -1325,7 +1325,7 @@
       "grams": 240,
       "source": {
         "type": "fdc_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#171890",
         "nutrition_source": "usda_fdc_sr_legacy",
         "fdcId": 171890
@@ -1637,7 +1637,7 @@
       "OpenFoodFacts (fallback macros)",
       "USDA FDC gold (branded/SR Legacy/Foundation)",
       "hydration enrich 2026-07-23 (corpus + OFF + USDA class)",
-      "mealcoach-foods-dev (DynamoDB)"
+      "curated-foods-dev (DynamoDB)"
     ],
     "macros_coverage": "all_ingredients",
     "full_panel_coverage_pct": 100.0,

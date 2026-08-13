@@ -1,5 +1,15 @@
 # Patent Non-Assertion Covenant
 
+> **Status note — under review, August 2026.** The project owner operates no
+> commercial implementation of this specification. Product identifiers have been
+> removed from `src/` and `tests/` and a CI gate now keeps them out (see
+> `design/BASELINE.md`). **Disposition of the patent claims described below is a
+> pending legal decision.** This document is retained unchanged pending that
+> decision — it is not evidence of an active commercial program, and nothing
+> here should be read as having been withdrawn. Paths named below that pointed
+> into the package were updated where the code moved; the substantive terms are
+> untouched.
+
 Morf Engineering Inc. holds pending patent claims covering the KIBO product meal
 score and the Kibo-vars weighted product composite. Those claims are **not
 asserted** against any implementation of the open evaluation layer published in

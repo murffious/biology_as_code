@@ -12,7 +12,7 @@ def test_list_laws_and_systems():
     assert "LAW-004" in ids
     systems = list_systems()
     assert "Assimilation" in systems
-    assert len(systems) <= 7  # the seven KIBO systems
+    assert len(systems) <= 7  # the seven functional systems
 
 
 def test_get_law_accepts_flexible_ids():
@@ -47,7 +47,7 @@ def test_laws_by_system():
 
     assim = laws_by_system("assimilation")  # case-insensitive
     assert assim
-    assert all(law.kibo_system.lower() == "assimilation" for law in assim)
+    assert all(law.system_name.lower() == "assimilation" for law in assim)
 
 
 def test_bhb_signaling_pathway_registered():

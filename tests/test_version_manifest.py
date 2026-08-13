@@ -117,7 +117,10 @@ def test_component_module_resolves(name: str, module: str):
     ids=lambda v: str(v),
 )
 def test_data_artifact_resolves(name: str, relative: str):
-    assert (PKG_ROOT / "data" / relative).exists(), f"artifact {name!r} missing: {relative}"
+    # Artifact paths are package-root-relative. They were `data/`-relative until
+    # the engine moved out from under `data/`; anchoring on the package root
+    # keeps the manifest readable when artifacts live in more than one subtree.
+    assert (PKG_ROOT / relative).exists(), f"artifact {name!r} missing: {relative}"
 
 
 # --- tier vocabulary ----------------------------------------------------------

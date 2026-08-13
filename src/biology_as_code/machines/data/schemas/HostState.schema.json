@@ -2,11 +2,11 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://nutricollective.local/machines/schemas/HostState.schema.json",
   "title": "HostState",
-  "description": "L1 host machine state — who is running. Frozen from book/kibo_simulator_latest physiological_state.HostState + process boot gates. Not the plate; not chew/order.",
+  "description": "L1 host machine state — who is running. Frozen from book/simulator_latest physiological_state.HostState + process boot gates. Not the plate; not chew/order.",
   "type": "object",
   "additionalProperties": false,
   "properties": {
-    "schema": { "const": "kibo.HostState/v1" },
+    "schema": { "const": "bac.HostState/v1" },
     "ready": {
       "type": "integer",
       "enum": [0, 1],

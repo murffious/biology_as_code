@@ -24,7 +24,7 @@
       "grams": 380,
       "source": {
         "type": "barcode_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "BARCODE#00042272005833",
         "barcode_gtin14": "00042272005833",
         "serving_size_g": 411,
@@ -315,7 +315,7 @@
       "grams": 28,
       "source": {
         "type": "barcode_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "BARCODE#00044000027957",
         "barcode_gtin14": "00044000027957",
         "serving_size_g": 28,
@@ -680,7 +680,7 @@
       "grams": 80,
       "source": {
         "type": "fdc_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#170393",
         "nutrition_source": "usda_fdc_sr_legacy",
         "fdcId": 170393
@@ -1327,7 +1327,7 @@
       "OpenFoodFacts (fallback macros)",
       "USDA FDC gold (branded/SR Legacy/Foundation)",
       "hydration enrich 2026-07-23 (corpus + OFF + USDA class)",
-      "mealcoach-foods-dev (DynamoDB)"
+      "curated-foods-dev (DynamoDB)"
     ],
     "macros_coverage": "all_ingredients",
     "full_panel_coverage_pct": 100.0,

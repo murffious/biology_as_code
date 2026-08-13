@@ -25,7 +25,7 @@ Time windows are `windowH: [centerHours, durationHours]` (both ≥ 0), not start
 ## Open tier only
 
 These machines are **FLOW teaching** artifacts. They deliberately carry **no**
-scoring `penalties`, product-score gates, or Kibo-vars hooks — the validator
+scoring `penalties`, product-score gates, or vendor-scoring hooks — the validator
 (`validate_all()`) fails if any score-shaped field ever leaks in. Product scoring
 lives in the separate patent-pending engine (see `PROPRIETARY_IP.md`).
 

@@ -56,7 +56,7 @@ You can copy the text below directly into your documentation next to the origina
 
 This figure shows the classic 10-step glycolytic pathway as presented in the source textbook.
 
-**KIBO Computational Model Mapping**
+**Computational model mapping**
 
 - **Nodes**: Each labeled intermediate in the figure is represented as a `MetaboliteNode`.
 - **Edges**: Each enzymatic arrow is a `ReactionEdge` that optionally links to a formal `MetabolicMechanism` object.
@@ -95,7 +95,7 @@ Because the original scanned textbook figure is the authoritative visual, the cl
 - Generate a clean Mermaid or text diagram version of glycolysis that you can also embed in the docs alongside the original photo?
 
 
-Glycolysis Pathway – KIBO Computational Model
+Glycolysis Pathway – computational model
 
 Net yield: +2 ATP and +2 NADH per glucose
 ★ = Primary regulatory (irreversible) steps

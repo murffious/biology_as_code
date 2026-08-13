@@ -1,0 +1,173 @@
+{
+  "id": "colon.fermentation",
+  "order": 1,
+  "label": "Microbiome fermentation → SCFA pool",
+  "name": "Colon fermentation base unit (skeleton)",
+  "description": "Provisional base unit for LAW-026 SCFA energy recovery. Shape is solid (fermentable cargo → SCFA → host can absorb). Magnitudes are a soft prior band only — FLOW may demo ~2 kcal/g fermentable; do not treat as law-locked.",
+  "system": "Biotransformation",
+  "governing_systems": ["Biotransformation", "Energy", "Assimilation"],
+  "organ": "colon lumen (microbiota)",
+  "key_organs": ["colon", "microbiota"],
+  "subsystem": "Colon.MicrobiomeFermentation",
+  "depth": "lumen",
+  "ontology_layer_span": [2, 3, 4],
+  "science": {
+    "summary": "Fermentable fiber/RS → acetate, propionate, butyrate. Yield and SCFA mix depend on substrate type/form and microbiome. Fermentable CHO reaching the colon is not energy-free.",
+    "reactions": [
+      "fermentable_polysaccharide → SCFA + gas + biomass"
+    ],
+    "gap": "No primary human balance study locked as single kcal/g in this unit; use magnitude band only. Do not promote engine-only coefficients as LAW-SPEC.",
+    "shape_claim": "LAW-026 shape solid: fermentable colon substrate → SCFA → host absorption possible; bulk/gas pathways exist."
+  },
+  "cargo": {
+    "primary": {
+      "nutrient_ref": "met.scfa_pool",
+      "form": "scfa_mix",
+      "state": "produced",
+      "ontology": {
+        "note": "expand: CHEBI butyrate/acetate/propionate"
+      }
+    },
+    "species_present": ["acetate", "propionate", "butyrate"]
+  },
+  "mechanisms": [
+    {
+      "id": "mech.microbiome_scfa_production",
+      "label": "Microbial fermentation to SCFA",
+      "kind": "fermentation",
+      "law_ids": ["LAW-026"],
+      "notes": "Join engine FiberRSModel.simulate_fermentation as FLOW only; host ME uses prior band below"
+    }
+  ],
+  "transporters": [],
+  "compartments": [
+    { "id": "comp.colon", "label": "Colon lumen" }
+  ],
+  "laws": [
+    {
+      "id": "LAW-026",
+      "role": "primary",
+      "relation": "EXPANDS_BOUND",
+      "note": "energy recovery exists (shape solid); magnitude = provisional band, not locked"
+    },
+    {
+      "id": "LAW-025",
+      "role": "upstream",
+      "relation": "RS_prep_sets_fermentability"
+    }
+  ],
+  "enhancers": [
+    {
+      "id": "mod.fermentable_substrate",
+      "nutrient_ref": "nut.fiber_fermentable",
+      "relation": "EXPANDS_BOUND",
+      "requires_context": "high_fermentable_fraction"
+    }
+  ],
+  "inhibitors": [
+    {
+      "id": "mod.low_fermentable",
+      "nutrient_ref": "mat.low_fermentable_diet",
+      "relation": "NARROWS_BOUND",
+      "requires_context": "low_fermentable_fraction"
+    }
+  ],
+  "gates": [],
+  "priors": {
+    "human_evidence": 0.8,
+    "magnitude_locked": false,
+    "ontology_bound": 0.35,
+    "prototype_unbacked": false,
+    "shape_confidence": 0.9,
+    "energy_kcal_per_g_fermentable": {
+      "low": 1.5,
+      "mid": 2.0,
+      "high": 2.5,
+      "units": "kcal/g_fermentable_substrate",
+      "locked": false,
+      "basis": "Secondary synthesis band (e.g. Livesey-type ~1.5–2.5; FAO conventional dietary fibre ME often ~8 kJ/g ≈ 2.0 kcal/g). Not a single FLOW coefficient. RS/microbiome heterogeneity (EV-041) forbids point lock.",
+      "flow_demo_midpoint": 2.0,
+      "note": "Use mid for demos only; claim_tiers.scfa remains flow until locked elsewhere"
+    }
+  },
+  "next_pathways": ["colon.scfa_absorption", "colon.host_energy_recovery"],
+  "bounds_and_conditions": {
+    "lower_bound": 1.5,
+    "upper_bound": 2.5,
+    "units": "kcal/g_fermentable_substrate_provisional",
+    "bound_kind": "soft_prior_range",
+    "magnitude_locked": false,
+    "modifying_factors": [
+      "fermentable_fraction",
+      "rs_type",
+      "microbiome_diversity",
+      "transit_time",
+      "co_substrate_protein"
+    ],
+    "risks_of_deviation": "Treating mid (2.0) or any single sim coeff as law overstates certainty; interindividual and substrate heterogeneity are large (EV-041).",
+    "gate_text": "none",
+    "conditions_text": "Requires fermentable cargo reaching colon (LAW-025/017). Yield and SCFA mix depend on substrate form and community."
+  },
+  "sources": [
+    {
+      "type": "internal",
+      "ref": "path_colon_scfa.atomic.json",
+      "note": "spine stages"
+    },
+    {
+      "type": "internal",
+      "ref": "LAW026_PROMOTION_DECISION.md",
+      "note": "shape solid / magnitude band policy 2026-07-21"
+    },
+    {
+      "type": "internal",
+      "ref": "LAW026_PMID_FILTER.md",
+      "note": "PMID keep/drop + EV-039–045 stubs"
+    },
+    {
+      "type": "pmid",
+      "ref": "38441170",
+      "ev_stub": "EV-039",
+      "note": "fiber±protein fermentation → butyrate"
+    },
+    {
+      "type": "pmid",
+      "ref": "10702589",
+      "ev_stub": "EV-040",
+      "note": "fiber digesta → SCFA in vitro"
+    },
+    {
+      "type": "pmid",
+      "ref": "33995299",
+      "ev_stub": "EV-041",
+      "note": "RS source + microbiome set butyrate; anti-overlock"
+    },
+    {
+      "type": "pmid",
+      "ref": "40403748",
+      "ev_stub": "EV-046_candidate",
+      "note": "methanogenesis / SCFA / human ME — full-text pending"
+    },
+    {
+      "type": "secondary",
+      "ref": "FAO food energy factors (dietary fibre ME often cited ~8 kJ/g / 2 kcal/g)",
+      "note": "conventional factor for prior mid only"
+    },
+    {
+      "type": "secondary",
+      "ref": "Livesey-type synthesis of fermentable fiber energy yield ~1.5–2.5 kcal/g monogastric",
+      "note": "band endpoints for soft prior"
+    }
+  ],
+  "app_applications": [
+    "meal_engine report colonic_medium + scfa (FLOW; may use mid 2.0)",
+    "walk colon_scfa pathway with soft priors",
+    "claim language: fiber not zero energy; no precise kcal savings claim"
+  ],
+  "growth": [
+    "Fill CHEBI ids for SCFA species",
+    "Full-text 40403748 / 27786539 / 35688319 before tightening band",
+    "Merge EV-039–041 into gleaned/registers/evidence.md on approval",
+    "Do not set magnitude_locked true without primary human ME EV"
+  ]
+}

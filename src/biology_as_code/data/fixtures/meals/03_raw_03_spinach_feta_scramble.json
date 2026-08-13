@@ -24,7 +24,7 @@
       "grams": 150,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_egg_whole_large",
         "nutrition_source": "usda_fdc"
       },
@@ -254,7 +254,7 @@
       "grams": 60,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_spinach_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -484,7 +484,7 @@
       "grams": 28,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_feta_cheese",
         "nutrition_source": "usda_fdc"
       },
@@ -714,7 +714,7 @@
       "grams": 90,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_tomato_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -990,7 +990,7 @@
       "grams": 68,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_avocado_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -1311,7 +1311,7 @@
       "grams": 7,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_olive_oil_evoo",
         "nutrition_source": "usda_fdc"
       },
@@ -1605,7 +1605,7 @@
       "grams": 240,
       "source": {
         "type": "fdc_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#171265",
         "nutrition_source": "usda_fdc_sr_legacy",
         "fdcId": 171265
@@ -1915,7 +1915,7 @@
       "OpenFoodFacts (fallback macros)",
       "USDA FDC gold (branded/SR Legacy/Foundation)",
       "hydration enrich 2026-07-23 (corpus + OFF + USDA class)",
-      "mealcoach-foods-dev (DynamoDB)"
+      "curated-foods-dev (DynamoDB)"
     ],
     "macros_coverage": "all_ingredients",
     "full_panel_coverage_pct": 100.0,

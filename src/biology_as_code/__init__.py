@@ -7,7 +7,7 @@ systems; the claim here is methodological, not semiotic. See docs/naming.md.
 Public surface is intentionally small. Deep modules keep their original names
 under pathways/, dig/, simulation/, data/.
 
-Product meal score / Kibo-vars product scorer: not included (see product_score/).
+External product scoring: not included (see product_score/).
 """
 
 from biology_as_code.data.version_manifest import package_version
@@ -52,12 +52,12 @@ from biology_as_code.packets import FoodPacket, get_packet, list_packets, valida
 from biology_as_code.pathways.registry import get_pathway, list_pathways
 
 # Optional product score hook (usually unavailable)
-from biology_as_code.product_score import product_score_available, run_product_score_analysis
-from biology_as_code.simulation.kibo_engine import (
+from biology_as_code.scoring import external_scorer_available, run_external_score_analysis
+from biology_as_code.simulation.meal_engine import (
     FoodPayload,
-    KIBOEngine,
     LifecycleStage,
     LifestyleFactors,
+    MealEngine,
 )
 from biology_as_code.simulation.runner import MealRunResult, simulate_meal
 
@@ -79,7 +79,7 @@ __all__ = [
     "DigestionTrace",
     "DigestiveFlowSimulator",
     "FoodPayload",
-    "KIBOEngine",
+    "MealEngine",
     "LifecycleStage",
     "LifestyleFactors",
     "MealRunResult",
@@ -108,11 +108,11 @@ __all__ = [
     "list_pathways",
     "overnight_fast",
     "pathway_activities",
-    "product_score_available",
+    "external_scorer_available",
     "prolonged_fast",
     "pubmed_url",
     "run_digestion",
-    "run_product_score_analysis",
+    "run_external_score_analysis",
     "simulate_meal",
     "trace",
     "validate_packet",

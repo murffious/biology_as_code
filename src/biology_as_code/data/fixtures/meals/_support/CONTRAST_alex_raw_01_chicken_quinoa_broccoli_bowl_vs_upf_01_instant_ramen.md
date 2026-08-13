@@ -1,6 +1,6 @@
 # Contrast report — Alex Rivera × two plates
 
-**SSOT:** `/Users/morf/Downloads/morf-engineering/mealcoachai/dev/NUTRI-COLLECTIVE_0/nutri-collective/machines/schemas/fixtures/meals`  
+**SSOT:** `<private-workspace>/nutri-collective/machines/schemas/fixtures/meals`  
 **User:** Alex Rivera (`alex`) · goal=weight_loss · app_score=72
 
 **Meal A:** Grilled Chicken, Quinoa & Broccoli Bowl (`raw_01_chicken_quinoa_broccoli_bowl`)  
@@ -19,7 +19,7 @@ _All magnitudes OPEN/FLOW teaching. Not clinical advice. See meals/ACCURACY.md._
 | `fiber_g` | 6.68 | 1.95 | 4.73 | context |
 | `protein_g` | 52.27 | 9.89 | 42.38 | context |
 | `nova_max` | 4 | 4 | 0.0 | lower often less UPF |
-| `kibo_score` | 75.0 | 70.0 | 5.0 | meal engine OPEN |
+| `flow_score` | 75.0 | 70.0 | 5.0 | meal engine OPEN |
 | `atp_units` | 812.6 | 702.8 | 109.8 | OPEN energy FLOW |
 | `iron_walk_yield` | 1.2 | 0.33 | 0.87 | higher friendlier iron story |
 | `iron_bioavailability_factor` | 0.48 | 0.132 | 0.348 | OPEN |

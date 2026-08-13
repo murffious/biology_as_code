@@ -1,5 +1,5 @@
 {
-  "schema": "kibo.version_manifest/v1",
+  "schema": "bac.version_manifest/v1",
   "package": "biology-as-code",
   "package_version": "0.1.0",
   "semver": {
@@ -10,22 +10,22 @@
   },
   "released": "2026-07-24",
   "git": {
-    "note": "PyPI package biology-as-code; engine lineage from kibo_simulator_latest FLOW stack",
+    "note": "PyPI package biology-as-code; engine lineage from simulator_latest FLOW stack",
     "repo_root_hint": "biology_as_code/"
   },
   "components": {
-    "engine": {
-      "id": "kibo_engine",
+    "meal_engine": {
+      "id": "meal_engine",
       "version": "0.1.0",
       "api": "0.1",
-      "module": "simulation/kibo_engine.py",
+      "module": "simulation/meal_engine.py",
       "tier": "FLOW",
       "notes": "Meal pipeline: colonic medium, SCFA FLOW, energy routing, claim_tiers, colon UNITS walk"
     },
-    "kibo_core": {
-      "id": "kibo_core",
+    "engine": {
+      "id": "engine",
       "version": "0.1.0",
-      "module": "kibo_core/",
+      "module": "engine/",
       "tier": "UNITS",
       "notes": "Laws walk, iron pathway, colon_scfa skeleton"
     },
@@ -87,7 +87,7 @@
   },
   "data_artifacts": {
     "base_unit_colon_fermentation": {
-      "path": "kibo_core/data/base_unit_colon_fermentation.skeleton.json",
+      "path": "engine/data/base_unit_colon_fermentation.skeleton.json",
       "version": "0.2.0",
       "tier": "UNITS_skeleton",
       "magnitude_locked": false,
@@ -99,24 +99,24 @@
       }
     },
     "path_colon_scfa_atomic": {
-      "path": "kibo_core/data/path_colon_scfa.atomic.json",
+      "path": "engine/data/path_colon_scfa.atomic.json",
       "version": "0.1.0",
       "tier": "UNITS_skeleton",
       "magnitude_locked": false
     },
     "evidence_candidates_LAW026": {
-      "path": "kibo_core/data/evidence_candidates_LAW026.json",
+      "path": "engine/data/evidence_candidates_LAW026.json",
       "version": "0.2.0",
       "tier": "EVIDENCE",
       "magnitude_locked": false
     },
     "law026_promotion_decision": {
-      "path": "kibo_core/data/LAW026_PROMOTION_DECISION.md",
+      "path": "engine/data/LAW026_PROMOTION_DECISION.md",
       "version": "0.1.0",
       "tier": "POLICY"
     },
     "base_unit_lumen_iron": {
-      "path": "kibo_core/data/base_unit_lumen_iron.filled.json",
+      "path": "engine/data/base_unit_lumen_iron.filled.json",
       "version": "1.0.0",
       "tier": "UNITS"
     }

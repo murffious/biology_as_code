@@ -24,7 +24,7 @@
       "grams": 49,
       "source": {
         "type": "barcode_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "BARCODE#00851770006828",
         "barcode_gtin14": "00851770006828",
         "serving_size_g": 49,
@@ -296,7 +296,7 @@
       "grams": 240,
       "source": {
         "type": "barcode_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "BARCODE#00025293002494",
         "barcode_gtin14": "00025293002494",
         "serving_size_g": 240,
@@ -686,7 +686,7 @@
       "grams": 30,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_spinach_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -916,7 +916,7 @@
       "grams": 59,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_banana_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -1298,7 +1298,7 @@
   "nutrition_provenance": {
     "method": "computed_from_per_100g",
     "sources": [
-      "mealcoach-foods-dev (DynamoDB)",
+      "curated-foods-dev (DynamoDB)",
       "USDA FDC gold (branded/SR Legacy/Foundation)",
       "OpenFoodFacts (fallback macros)"
     ],

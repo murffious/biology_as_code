@@ -1,6 +1,6 @@
 """
 organ_pathway_network.py
-Expanded organ laws and metabolic pathway network for KIBO.
+Expanded organ laws and metabolic pathway network for the engine.
 Captures multi-organ interactions, pathway dependencies,
 and lever/limit constraints derived from textbook physiology.
 """

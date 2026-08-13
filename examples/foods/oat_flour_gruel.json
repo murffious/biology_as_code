@@ -6,6 +6,21 @@
     "form": "flour",
     "family_hint": "Poaceae"
   },
+  "method_identity": [
+    {
+      "op": "mill",
+      "severity": "severe",
+      "target": "cell_wall",
+      "matrix_effect": "destroys"
+    },
+    {
+      "op": "heat_moist",
+      "severity": "moderate",
+      "target": "starch",
+      "matrix_effect": "destroys",
+      "note": "gelatinised starch with no intact cell wall left"
+    }
+  ],
   "cargo": [],
   "partners": [],
   "injection_zone": "zone1_matrix",

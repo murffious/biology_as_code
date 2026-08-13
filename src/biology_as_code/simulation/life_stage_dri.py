@@ -3,7 +3,7 @@ life_stage_dri.py
 Life-stage specific dietary reference intakes and demand multipliers.
 
 Covers infancy, childhood, adolescence, adulthood, pregnancy, lactation,
-and older adults — vitamins + minerals used by the KIBO engine.
+and older adults — vitamins + minerals used by the engine.
 Values are simplified textbook/DRI-style references for modeling (not medical advice).
 """
 

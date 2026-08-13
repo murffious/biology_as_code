@@ -21,7 +21,6 @@ keywords = [
   "digestion",
   "metabolism",
   "pathways",
-  "kibo",
   "biology-as-code",
   "meal",
   "simulation",
@@ -73,17 +72,21 @@ biology_as_code = [
   "data/*.json",
   "data/fixtures/*.json",
   "data/fixtures/**/*.json",
-  "data/kibo_core/data/**/*",
+  "engine/data/**/*",
   "nodes/data/*.yaml",
-  "product_score/**/*.md",
+  "scoring/**/*.md",
   "machines/data/**/*.json",
   "machines/**/*.md",
 ]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src"]
+pythonpath = ["src", "."]
 addopts = "-q"
+markers = [
+  "conformance: a ward-literature acceptance criterion (see tests/conformance/README.md)",
+  "conformance_guard: guards a conformance test against being satisfied the wrong way",
+]
 
 [tool.ruff]
 line-length = 100

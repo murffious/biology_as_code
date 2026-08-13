@@ -1,5 +1,5 @@
 {
-  "schema": "kibo.Medications.catalog/v1",
+  "schema": "bac.Medications.catalog/v1",
   "version": "1.0.0",
   "honesty": "OPEN",
   "title": "Medication classes for host context (starter catalog)",
@@ -36,7 +36,7 @@
         "saxenda",
         "rybelsus"
       ],
-      "kibo_hooks": {
+      "engine_hooks": {
         "ontology": "C-8",
         "endogenous_distinct": "Endogenous GLP-1 from L-cells after nutrients is digestion teaching — not this drug class"
       },
@@ -110,7 +110,7 @@
       "status": "stub",
       "examples": ["metformin", "Glucophage"],
       "aliases": ["metformin", "glucophage"],
-      "kibo_hooks": { "ontology": null },
+      "engine_hooks": { "ontology": null },
       "nutrition_process_effects": {
         "honesty": "OPEN",
         "summary": "Stub: B12 monitoring themes exist in clinical literature — not auto-dosed here.",

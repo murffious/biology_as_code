@@ -23,7 +23,7 @@
       "grams": 11,
       "source": {
         "type": "barcode_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "BARCODE#00856769006681",
         "barcode_gtin14": "00856769006681",
         "serving_size_g": 11,
@@ -416,7 +416,7 @@
       "grams": 240,
       "source": {
         "type": "fdc_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#171890",
         "nutrition_source": "usda_fdc_sr_legacy",
         "fdcId": 171890
@@ -650,7 +650,7 @@
       "grams": 170,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_greek_yogurt_plain_nonfat",
         "nutrition_source": "usda_fdc"
       },
@@ -880,7 +880,7 @@
       "grams": 74,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_blueberries_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -1289,7 +1289,7 @@
   "nutrition_provenance": {
     "method": "computed_from_per_100g",
     "sources": [
-      "mealcoach-foods-dev (DynamoDB)",
+      "curated-foods-dev (DynamoDB)",
       "USDA FDC gold (branded/SR Legacy/Foundation)",
       "OpenFoodFacts (fallback macros)"
     ],

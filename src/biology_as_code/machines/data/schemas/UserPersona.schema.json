@@ -2,12 +2,12 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://nutricollective.local/machines/schemas/UserPersona.schema.json",
   "title": "UserPersona",
-  "description": "Named mock/seed user profile for playground + kibo_simulator. Composes HostState + HostClinicalProfile + UserGoals (L1) plus product prefs/app telemetry. Not real PHI. All magnitudes OPEN/FLOW teaching unless promoted.",
+  "description": "Named mock/seed user profile for playground + simulator. Composes HostState + HostClinicalProfile + UserGoals (L1) plus product prefs/app telemetry. Not real PHI. All magnitudes OPEN/FLOW teaching unless promoted.",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema", "id", "slug", "display_name", "host", "goals", "app"],
   "properties": {
-    "schema": { "const": "kibo.UserPersona/v1" },
+    "schema": { "const": "bac.UserPersona/v1" },
     "id": {
       "type": "string",
       "description": "Stable id e.g. persona.alex_rivera"
@@ -46,7 +46,7 @@
     "preferences": {
       "type": "object",
       "additionalProperties": false,
-      "description": "MealCoach product prefs — not yet on DigestRun host.",
+      "description": "Product-app prefs — not yet on DigestRun host.",
       "properties": {
         "diet_style": {
           "type": "string",
@@ -150,13 +150,13 @@
         "streak_days": { "type": "integer", "minimum": 0 },
         "last_meal_logged_days_ago": { "type": "number", "minimum": 0 },
         "missed_days_this_week": { "type": "integer", "minimum": 0, "maximum": 7 },
-        "kibo_score": {
+        "flow_score": {
           "type": "number",
           "minimum": 0,
           "maximum": 100,
           "description": "FLOW teaching composite for demos — not clinical diagnosis"
         },
-        "kibo_trend": {
+        "vendor_score_trend": {
           "type": "string",
           "enum": ["improving", "stable", "declining", "unknown"]
         }
@@ -184,7 +184,7 @@
           "carb_g": { "type": "number", "minimum": 0 },
           "fat_g": { "type": "number", "minimum": 0 },
           "fiber_g": { "type": "number", "minimum": 0 },
-          "kibo_score_hint": {
+          "vendor_score_hint": {
             "type": "number",
             "minimum": 0,
             "maximum": 100

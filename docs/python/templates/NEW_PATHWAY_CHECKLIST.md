@@ -50,7 +50,7 @@ Guide: [docs/python/ADD_PATHWAY.md](../ADD_PATHWAY.md)
 
 ## Boundaries
 
-- [ ] No product meal score / Kibo-vars / proprietary engine
+- [ ] No product meal score / vendor-variable / proprietary engine
 - [ ] No invented citations or fabricated magnitudes
 - [ ] Zero new runtime dependencies
 

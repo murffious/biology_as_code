@@ -30,7 +30,7 @@ Copy-paste assets:
 | Nutrient-sensing networks with edges | `metabolic_mechanisms.py` (catalog only) |
 | Classification map that is still a graph | `pathway_regulation.py` (activity 0–1 rules) |
 
-Product meal score / Kibo-vars formulas stay **out of this repo** (patent pending).
+Product meal score / vendor-variable formulas stay **out of this repo** (patent pending).
 
 **Shadowing trap:** never create a directory with the same name as a `.py` module
 (e.g. `beta_oxidation/` next to `beta_oxidation.py`). Mermaids live under

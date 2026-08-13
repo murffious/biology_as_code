@@ -23,9 +23,9 @@ def test_list_pathways():
 def test_simulate_meal_open():
     from biology_as_code import simulate_meal
 
-    r = simulate_meal(carbs_g=40, protein_g=20, fats_g=12, fiber_g=15, enable_product_score=False)
+    r = simulate_meal(carbs_g=40, protein_g=20, fats_g=12, fiber_g=15, enable_external_score=False)
     assert r.absorbed_macros_g
-    assert r.product_score_available is False
+    assert r.external_scorer_available is False
     assert "pathway_regulation" in r.report or r.pathway_regulation
 
 

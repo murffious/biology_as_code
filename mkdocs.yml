@@ -69,6 +69,7 @@ nav:
       - Overview: claims-agent.md
       - Claim schema: claim-schema.md
       - Source registry: claim-sources.md
+  - Notational conventions: notational-conventions.md
   - Validation report: VALIDATION.md
   - Validation ledger: VALIDATION_LEDGER.md
   - Contributing data: contributing-data.md

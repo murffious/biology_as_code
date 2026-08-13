@@ -26,38 +26,29 @@ htmlcov/
 node_modules/
 
 # ---------------------------------------------------------------------------
-# PATENT-PENDING / PROPRIETARY PRODUCT IP — never commit
-# Product MEAL score + Kibo-vars product scorer (optional private plugins)
-# Open dig FLOW evals and claim evaluation are fine to ship.
-# See PROPRIETARY_IP.md
+# EXTERNAL / PROPRIETARY SCORERS — never commit
+# An external scorer is resolved only from the BAC_SCORER_MODULE environment
+# variable; this repository has no in-package slot for one. These patterns are
+# a standing net for private engines that get parked in the working tree by
+# accident. Open dig FLOW evals and claim evaluation are fine to ship.
+# See PROPRIETARY_IP.md and the `separation` CI job.
 # ---------------------------------------------------------------------------
 
-# Private product-score engines (any tree layout)
-**/product_score/proprietary/**
-!**/product_score/proprietary/.gitignore
-!**/product_score/proprietary/README.md
-!**/product_score/proprietary/__init__.py
-
-**/proprietary/productScoreEngine.*
-**/proprietary/**/productScore*
-**/machines/proprietary/**
+**/proprietary/**
 !**/machines/proprietary/.gitignore
 !**/machines/proprietary/README.md
 
-# Explicit engine drop-ins
-**/product_score/proprietary/engine.py
-**/product_score/proprietary/engine.*.py
-**/kibo_product_score/**
+**/external_scorer/**
 **/private_score/**
 **/patent/**
 **/*_product_score_engine.py
 **/*product*meal*score*.py
-**/kiboScoreModel.private.*
+**/scoreModel.private.*
 **/score_weights.private.*
 **/score-axes.weights.private.json
 
 # Product formula dumps / score system PDFs
-**/Kibo_Score_System_Book.pdf
+**/*Score_System_Book.pdf
 **/*Meal*Score*Formula*
 **/*product*score*formula*
 

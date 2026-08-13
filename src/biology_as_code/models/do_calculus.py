@@ -1,7 +1,7 @@
 """
 do_calculus.py
 =================================================================
-Lightweight do-calculus support for the KIBO causal graph.
+Lightweight do-calculus support for the causal graph.
 
 1. Explicit confounder / back-door nodes
 2. Identifiability checker for queries of the form
@@ -209,7 +209,7 @@ class IdentifiabilityChecker:
     Lightweight identifiability checker for queries:
         P(outcome | do(nutrient))
 
-    Uses the layered KIBO graph + explicit confounders.
+    Uses the layered causal graph + explicit confounders.
 
     Approximation of do-calculus Rule 2 / back-door criterion:
       - Causal paths (nutrient → … → outcome) must exist

@@ -1,13 +1,13 @@
 {
-  "schema": "kibo.UserPersonaSeed/v1",
+  "schema": "bac.UserPersonaSeed/v1",
   "version": "1.0.0",
   "honesty": "OPEN",
-  "title": "Named user personas — shared seed for playground + kibo_simulator",
+  "title": "Named user personas — shared seed for playground + simulator",
   "description": "Hand-crafted profiles using HostState + HostClinicalProfile + UserGoals. Not real people. Not clinical decision support. Switch via slug: alex, jordan, sam, taylor, morgan, casey, riley, avery.",
   "as_of": "2026-07-23",
   "personas": [
     {
-      "schema": "kibo.UserPersona/v1",
+      "schema": "bac.UserPersona/v1",
       "id": "persona.alex_rivera",
       "slug": "alex",
       "display_name": "Alex Rivera",
@@ -15,7 +15,7 @@
       "why_useful": "Core happy path — fat loss + metabolic health, active, good adherence. Includes mock GLP-1 RA for C-8 / meds system demos.",
       "honesty": "OPEN",
       "host": {
-        "schema": "kibo.HostState/v1",
+        "schema": "bac.HostState/v1",
         "ready": 1,
         "lifecycle": "adult",
         "sex": "male",
@@ -41,7 +41,7 @@
         "honesty": "FLOW"
       },
       "clinical": {
-        "schema": "kibo.HostClinicalProfile/v1",
+        "schema": "bac.HostClinicalProfile/v1",
         "honesty": "OPEN",
         "source": "mock",
         "as_of": "2026-07-10",
@@ -102,7 +102,7 @@
         }
       },
       "goals": {
-        "schema": "kibo.UserGoals/v1",
+        "schema": "bac.UserGoals/v1",
         "honesty": "OPEN",
         "primary": "weight_loss",
         "secondary": [
@@ -189,7 +189,7 @@
       "created_at": "2026-06-01T12:00:00Z",
       "last_active": "2026-07-23T14:30:00Z",
       "medications_structured": {
-        "schema": "kibo.MedicationProfile/v1",
+        "schema": "bac.MedicationProfile/v1",
         "honesty": "OPEN",
         "source": "mock",
         "as_of": "2026-07-23",
@@ -210,7 +210,7 @@
       }
     },
     {
-      "schema": "kibo.UserPersona/v1",
+      "schema": "bac.UserPersona/v1",
       "id": "persona.jordan_lee",
       "slug": "jordan",
       "display_name": "Jordan Lee",
@@ -218,7 +218,7 @@
       "why_useful": "Power user — muscle gain / recomp, high protein, training days.",
       "honesty": "OPEN",
       "host": {
-        "schema": "kibo.HostState/v1",
+        "schema": "bac.HostState/v1",
         "ready": 1,
         "lifecycle": "adult",
         "sex": "female",
@@ -244,7 +244,7 @@
         "honesty": "FLOW"
       },
       "clinical": {
-        "schema": "kibo.HostClinicalProfile/v1",
+        "schema": "bac.HostClinicalProfile/v1",
         "honesty": "OPEN",
         "source": "mock",
         "as_of": "2026-07-01",
@@ -294,7 +294,7 @@
         }
       },
       "goals": {
-        "schema": "kibo.UserGoals/v1",
+        "schema": "bac.UserGoals/v1",
         "honesty": "OPEN",
         "primary": "recomp",
         "secondary": [
@@ -380,7 +380,7 @@
       "created_at": "2025-12-15T09:00:00Z",
       "last_active": "2026-07-23T18:10:00Z",
       "supplements_structured": {
-        "schema": "kibo.HostExogenousProfile/v1",
+        "schema": "bac.HostExogenousProfile/v1",
         "honesty": "OPEN",
         "source": "mock",
         "as_of": "2026-07-23",
@@ -421,7 +421,7 @@
       }
     },
     {
-      "schema": "kibo.UserPersona/v1",
+      "schema": "bac.UserPersona/v1",
       "id": "persona.sam_patel",
       "slug": "sam",
       "display_name": "Sam Patel",
@@ -429,7 +429,7 @@
       "why_useful": "Older adult longevity / anti-inflammatory focus — plateau state.",
       "honesty": "OPEN",
       "host": {
-        "schema": "kibo.HostState/v1",
+        "schema": "bac.HostState/v1",
         "ready": 1,
         "lifecycle": "older_adult",
         "sex": "male",
@@ -455,7 +455,7 @@
         "honesty": "FLOW"
       },
       "clinical": {
-        "schema": "kibo.HostClinicalProfile/v1",
+        "schema": "bac.HostClinicalProfile/v1",
         "honesty": "OPEN",
         "source": "mock",
         "as_of": "2026-06-20",
@@ -523,7 +523,7 @@
         }
       },
       "goals": {
-        "schema": "kibo.UserGoals/v1",
+        "schema": "bac.UserGoals/v1",
         "honesty": "OPEN",
         "primary": "general_health",
         "secondary": [
@@ -603,7 +603,7 @@
       "created_at": "2026-03-01T10:00:00Z",
       "last_active": "2026-07-22T20:00:00Z",
       "medications_structured": {
-        "schema": "kibo.MedicationProfile/v1",
+        "schema": "bac.MedicationProfile/v1",
         "honesty": "OPEN",
         "source": "mock",
         "as_of": "2026-07-23",
@@ -619,7 +619,7 @@
         ]
       },
       "supplements_structured": {
-        "schema": "kibo.HostExogenousProfile/v1",
+        "schema": "bac.HostExogenousProfile/v1",
         "honesty": "OPEN",
         "items": [
           {
@@ -642,7 +642,7 @@
       }
     },
     {
-      "schema": "kibo.UserPersona/v1",
+      "schema": "bac.UserPersona/v1",
       "id": "persona.taylor_kim",
       "slug": "taylor",
       "display_name": "Taylor Kim",
@@ -650,7 +650,7 @@
       "why_useful": "At-risk glycemic path — IR high, low adherence, blood sugar goal.",
       "honesty": "OPEN",
       "host": {
-        "schema": "kibo.HostState/v1",
+        "schema": "bac.HostState/v1",
         "ready": 1,
         "lifecycle": "adult",
         "sex": "female",
@@ -676,7 +676,7 @@
         "honesty": "FLOW"
       },
       "clinical": {
-        "schema": "kibo.HostClinicalProfile/v1",
+        "schema": "bac.HostClinicalProfile/v1",
         "honesty": "OPEN",
         "source": "mock",
         "as_of": "2026-07-05",
@@ -738,7 +738,7 @@
         }
       },
       "goals": {
-        "schema": "kibo.UserGoals/v1",
+        "schema": "bac.UserGoals/v1",
         "honesty": "OPEN",
         "primary": "metabolic_health",
         "secondary": [
@@ -825,7 +825,7 @@
       "created_at": "2026-06-20T08:00:00Z",
       "last_active": "2026-07-20T11:00:00Z",
       "medications_structured": {
-        "schema": "kibo.MedicationProfile/v1",
+        "schema": "bac.MedicationProfile/v1",
         "honesty": "OPEN",
         "source": "mock",
         "as_of": "2026-07-23",
@@ -841,7 +841,7 @@
         ]
       },
       "supplements_structured": {
-        "schema": "kibo.HostExogenousProfile/v1",
+        "schema": "bac.HostExogenousProfile/v1",
         "honesty": "OPEN",
         "items": [
           {
@@ -865,7 +865,7 @@
       }
     },
     {
-      "schema": "kibo.UserPersona/v1",
+      "schema": "bac.UserPersona/v1",
       "id": "persona.morgan_ellis",
       "slug": "morgan",
       "display_name": "Morgan Ellis",
@@ -873,7 +873,7 @@
       "why_useful": "New user / onboarding — incomplete profile (host.ready=0) for gate testing.",
       "honesty": "OPEN",
       "host": {
-        "schema": "kibo.HostState/v1",
+        "schema": "bac.HostState/v1",
         "ready": 0,
         "lifecycle": "adult",
         "sex": "other",
@@ -899,7 +899,7 @@
         "honesty": "FLOW"
       },
       "clinical": {
-        "schema": "kibo.HostClinicalProfile/v1",
+        "schema": "bac.HostClinicalProfile/v1",
         "honesty": "OPEN",
         "source": "mock",
         "as_of": "2026-07-23",
@@ -925,7 +925,7 @@
         }
       },
       "goals": {
-        "schema": "kibo.UserGoals/v1",
+        "schema": "bac.UserGoals/v1",
         "honesty": "OPEN",
         "primary": "weight_management",
         "secondary": [],
@@ -964,7 +964,7 @@
       "last_active": "2026-07-23T09:15:00Z"
     },
     {
-      "schema": "kibo.UserPersona/v1",
+      "schema": "bac.UserPersona/v1",
       "id": "persona.casey_brooks",
       "slug": "casey",
       "display_name": "Casey Brooks",
@@ -972,7 +972,7 @@
       "why_useful": "Busy professional — time-poor, UPF-heavy pattern, inconsistent logging.",
       "honesty": "OPEN",
       "host": {
-        "schema": "kibo.HostState/v1",
+        "schema": "bac.HostState/v1",
         "ready": 1,
         "lifecycle": "adult",
         "sex": "female",
@@ -998,7 +998,7 @@
         "honesty": "FLOW"
       },
       "clinical": {
-        "schema": "kibo.HostClinicalProfile/v1",
+        "schema": "bac.HostClinicalProfile/v1",
         "honesty": "OPEN",
         "source": "mock",
         "as_of": "2026-07-12",
@@ -1048,7 +1048,7 @@
         }
       },
       "goals": {
-        "schema": "kibo.UserGoals/v1",
+        "schema": "bac.UserGoals/v1",
         "honesty": "OPEN",
         "primary": "weight_management",
         "secondary": [
@@ -1132,15 +1132,15 @@
       "last_active": "2026-07-21T22:40:00Z"
     },
     {
-      "schema": "kibo.UserPersona/v1",
+      "schema": "bac.UserPersona/v1",
       "id": "persona.riley_chen",
       "slug": "riley",
       "display_name": "Riley Chen",
       "email": "riley.chen.mock@nutricollective.local",
-      "why_useful": "Plant-based / vegan — high Kibo score, nutrient-density + restriction edge cases (B12).",
+      "why_useful": "Plant-based / vegan — high product score, nutrient-density + restriction edge cases (B12).",
       "honesty": "OPEN",
       "host": {
-        "schema": "kibo.HostState/v1",
+        "schema": "bac.HostState/v1",
         "ready": 1,
         "lifecycle": "adult",
         "sex": "female",
@@ -1166,7 +1166,7 @@
         "honesty": "FLOW"
       },
       "clinical": {
-        "schema": "kibo.HostClinicalProfile/v1",
+        "schema": "bac.HostClinicalProfile/v1",
         "honesty": "OPEN",
         "source": "mock",
         "as_of": "2026-07-08",
@@ -1229,7 +1229,7 @@
         }
       },
       "goals": {
-        "schema": "kibo.UserGoals/v1",
+        "schema": "bac.UserGoals/v1",
         "honesty": "OPEN",
         "primary": "general_health",
         "secondary": [
@@ -1314,7 +1314,7 @@
       "created_at": "2025-09-01T12:00:00Z",
       "last_active": "2026-07-23T16:00:00Z",
       "supplements_structured": {
-        "schema": "kibo.HostExogenousProfile/v1",
+        "schema": "bac.HostExogenousProfile/v1",
         "honesty": "OPEN",
         "source": "mock",
         "items": [
@@ -1347,7 +1347,7 @@
       }
     },
     {
-      "schema": "kibo.UserPersona/v1",
+      "schema": "bac.UserPersona/v1",
       "id": "persona.avery_torres",
       "slug": "avery",
       "display_name": "Avery Torres",
@@ -1355,7 +1355,7 @@
       "why_useful": "Athlete — very high activity, high energy needs, recovery context.",
       "honesty": "OPEN",
       "host": {
-        "schema": "kibo.HostState/v1",
+        "schema": "bac.HostState/v1",
         "ready": 1,
         "lifecycle": "adult",
         "sex": "male",
@@ -1381,7 +1381,7 @@
         "honesty": "FLOW"
       },
       "clinical": {
-        "schema": "kibo.HostClinicalProfile/v1",
+        "schema": "bac.HostClinicalProfile/v1",
         "honesty": "OPEN",
         "source": "mock",
         "as_of": "2026-07-15",
@@ -1435,7 +1435,7 @@
         }
       },
       "goals": {
-        "schema": "kibo.UserGoals/v1",
+        "schema": "bac.UserGoals/v1",
         "honesty": "OPEN",
         "primary": "performance",
         "secondary": [
@@ -1519,7 +1519,7 @@
       "created_at": "2026-01-10T08:00:00Z",
       "last_active": "2026-07-23T19:00:00Z",
       "supplements_structured": {
-        "schema": "kibo.HostExogenousProfile/v1",
+        "schema": "bac.HostExogenousProfile/v1",
         "honesty": "OPEN",
         "items": [
           {

@@ -9,7 +9,7 @@ from dataclasses import dataclass
 class PackageConfig:
     """Runtime flags for open dig."""
 
-    enable_product_score: bool = False  # patent-pending plugin; default off
+    enable_external_score: bool = False  # patent-pending plugin; default off
     claim_tier_default: str = "open"
     verbose: bool = False
 
