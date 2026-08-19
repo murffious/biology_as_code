@@ -86,3 +86,8 @@ ISBN-10: 0-8493-9429-5
 Call number visible: QP 187 .C73 1996 Vol. 1  
 
 These align well with work on metabolic processes, nutrient effects, gastrointestinal handling of food, and endocrine regulation of metabolism. Let me know if you need DOIs, chapter-level citations, or help locating PDFs/library access for any of them.
+
+
+
+
+Ultra-Processed Food Literature Synthesis A narrative review mapping the competing taxonomies (NOVA, HPF, EPIC-Soft, CHIPS) and the mechanistic evidence linking processing to metabolic outcomes.
