@@ -53,3 +53,36 @@ These convert raw LC-MS/GC-MS data (mzML preferred after conversion via ProteoWi
 Resources for deeper exploration include the Enveda curated tools list (GitHub), MetaboAnalyst tutorials, MS-DIAL documentation, GNPS docs, and recent review papers on preprocessing comparisons. Public datasets (e.g., from MetaboLights or UK Biobank metabolomics releases) are excellent for testing workflows.
 
 If you have a specific data type (LC-MS, GC-MS, NMR, targeted vs. untargeted, lipidomics, exposomics), instrument vendor, or goal (e.g., biomarker discovery, pathway mapping for nutrition schemas, or integrating with your System Load Index work), I can narrow recommendations or outline a concrete pipeline.
+
+
+Here are the bibliographic details for the four books shown in the photo:
+
+**1. Metabolomics, Metabonomics and Metabolite Profiling**  
+Edited by William J. Griffiths  
+RSC Biomolecular Sciences series  
+Royal Society of Chemistry, 2007 (hardback; some library records list 2008)  
+ISBN-13: 978-0-85404-299-9  
+ISBN-10: 0-85404-299-7  
+Call number visible: QP 171 .M3824 2008  
+
+**2. Nutritional Factors: Modulating Effects on Metabolic Processes**  
+Authors: Boers & Bassett (full first names not clearly legible on the spine)  
+Call number visible: QP 171 .N87  
+
+*(This appears to be a less widely catalogued title; library call numbers confirm the subject area as nutritional/metabolic physiology.)*
+
+**3. Gastrointestinal Physiology, 2nd Edition**  
+Author: Kim E. Barrett  
+Lange Physiology Series / McGraw-Hill Education  
+2013–2014  
+ISBN-13: 978-0-07-177401-7  
+ISBN-10: 0-07-177401-7  
+
+**4. Handbook of Endocrinology, Volume I, Second Edition**  
+Edited by George H. Gass & Harold M. Kaplan  
+CRC Press, 1996  
+ISBN-13: 978-0-8493-9429-4  
+ISBN-10: 0-8493-9429-5  
+Call number visible: QP 187 .C73 1996 Vol. 1  
+
+These align well with work on metabolic processes, nutrient effects, gastrointestinal handling of food, and endocrine regulation of metabolism. Let me know if you need DOIs, chapter-level citations, or help locating PDFs/library access for any of them.
