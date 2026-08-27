@@ -59,7 +59,7 @@ HALL_2019 = TrialCoverage(
         _note(
             "digestive",
             EvalState.HOLDS,
-            "Eating rate measured (≈48 vs 31 kcal/min in the published figure set; trial text also reports kcal/min and g/min). Oro-sensory/matrix path is in scope.",
+            "Eating rate measured (demo contrast used in fixture: ≈48 vs 31 kcal/min; trial text reports kcal/min and g/min but these fixture values are not verbatim extracted cells). Oro-sensory/matrix path is in scope.",
             measured=("energy_intake_kcal_d", "eating_rate_kcal_min", "eating_rate_g_min"),
         ),
         _note(
