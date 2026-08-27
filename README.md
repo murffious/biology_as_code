@@ -28,6 +28,8 @@
 **`biology-as-code` models what happens to a meal — digestion, absorption, and the
 metabolic pathways it drives — as inspectable, versioned, provenance-tracked code.**
 
+meal → digestion → pathway claims, fail-closed
+
 Nutrition data loses its origins as it travels. A number measured once in one lab
 becomes a label value, becomes a database entry, becomes an input to a score, and by
 the end nobody can say what it was or how well it was evidenced. This package takes
