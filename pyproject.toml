@@ -78,6 +78,8 @@ biology_as_code = [
   "product_score/**/*.md",
   "machines/data/**/*.json",
   "machines/**/*.md",
+  "data/systems/*.json",
+  "data/systems/**/*.json",
 ]
 
 [tool.pytest.ini_options]

@@ -1,0 +1,13 @@
+{
+  "meal_id": "hall_2019_upf_pattern",
+  "label": "Hall 2019 UPF arm (pattern, not one plate)",
+  "nova_group": 4,
+  "matrix": "disrupted",
+  "eating_rate_kcal_min": 48,
+  "energy_kcal": 500,
+  "sodium_mg": 1800,
+  "fiber_g": 8,
+  "hpf_fat_sodium": true,
+  "emulsifiers_declared": true,
+  "source": "demo pattern from published eating-rate contrast"
+}

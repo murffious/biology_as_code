@@ -70,7 +70,14 @@ from biology_as_code.simulation.scenarios import (
     prolonged_fast,
 )
 
+# System coverage table, claim linter, and trial-gap ledger
+from biology_as_code.systems import cover_meal, lint_claim, next_studies, trial_coverage
+
 __all__ = [
+    "cover_meal",
+    "lint_claim",
+    "next_studies",
+    "trial_coverage",
     "Bolus",
     "Claim",
     "ClaimAudit",
