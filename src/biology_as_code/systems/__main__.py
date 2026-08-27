@@ -10,7 +10,6 @@ from biology_as_code.systems.edges import default_ledger
 from biology_as_code.systems.linter import lint_claim
 from biology_as_code.systems.trials import trial_coverage
 
-
 DEMO_MEALS = {
     "hall_upf_arm": {
         "meal_id": "hall_2019_upf_pattern",

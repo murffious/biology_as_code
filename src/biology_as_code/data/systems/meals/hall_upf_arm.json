@@ -8,5 +8,6 @@
   "sodium_mg": 1800,
   "fiber_g": 8,
   "hpf_fat_sodium": true,
-  "emulsifiers_declared": true
+  "emulsifiers_declared": true,
+  "source": "demo pattern from published eating-rate contrast"
 }

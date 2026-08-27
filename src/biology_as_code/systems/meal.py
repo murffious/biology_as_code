@@ -9,7 +9,6 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any, Mapping
 
-
 # Keys adapters are allowed to read. Anything else is ignored, not invented.
 KNOWN_FIELDS: frozenset[str] = frozenset(
     {

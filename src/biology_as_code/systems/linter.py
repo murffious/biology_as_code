@@ -9,11 +9,10 @@ section. It does not score truth. It scores walk shape.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
 import re
+from dataclasses import dataclass
 
 from biology_as_code.systems.states import EvalState
-
 
 L5_PATTERNS = (
     r"\bdiabetes\b",

@@ -12,7 +12,12 @@ respiratory, urinary, reproductive are registered as PARKED so a coverage
 table can still print 11 rows of honest grey.
 """
 
-from biology_as_code.systems.anatomy import BODY_SYSTEMS, SystemSpec, parked_systems, shipped_systems
+from biology_as_code.systems.anatomy import (
+    BODY_SYSTEMS,
+    SystemSpec,
+    parked_systems,
+    shipped_systems,
+)
 from biology_as_code.systems.coverage import (
     SystemCoverageRow,
     SystemCoverageTable,
@@ -22,7 +27,7 @@ from biology_as_code.systems.coverage import (
 from biology_as_code.systems.edges import Edge, EdgeLedger, default_ledger, next_studies
 from biology_as_code.systems.linter import LintResult, lint_claim, lint_many
 from biology_as_code.systems.states import EvalState, WalkResult
-from biology_as_code.systems.trials import TrialCoverage, trial_coverage, list_trials
+from biology_as_code.systems.trials import TrialCoverage, list_trials, trial_coverage
 
 __all__ = [
     "BODY_SYSTEMS",
