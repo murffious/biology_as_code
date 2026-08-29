@@ -1,0 +1,298 @@
+{
+  "schema_version": "1.0.0",
+  "register": "ontology-principles",
+  "as_of": "2026-08-29",
+  "title": "Ontology design principles we follow",
+  "what_this_is": "Every principle from Palantir's open ontology docs, plus the places we depart. One register instead of six prose documents, because a principle that is only asserted in prose is not a principle — it is a preference. Each carries a stance and, where one is possible, a machine check that runs in CI.",
+  "sources": [
+    "palantir.com/docs/foundry/ontology/overview",
+    "palantir.com/docs/foundry/ontology/ontology-best-practices",
+    "palantir.com/docs/foundry/ontology/ontology-structural-guidance",
+    "palantir.com/docs/foundry/ontology/ontology-anti-patterns",
+    "palantir.com/docs/foundry/ontology-sdk/overview",
+    "palantir.com/docs/foundry/object-backend/overview",
+    "palantir.com/docs/foundry/object-views/overview",
+    "palantir.com/docs/foundry/ontology-manager/overview"
+  ],
+  "stances": {
+    "adopt": "Taken as written. No local variant.",
+    "adapt": "Taken, with a stated change of authority or scope.",
+    "refuse": "Deliberately not followed. The reason is the interesting part.",
+    "guard": "An anti-pattern we are not in but could fall into.",
+    "open": "Not yet decided or not yet reachable."
+  },
+  "principles": [
+    {
+      "id": "ddd-model-the-world",
+      "group": "design",
+      "stance": "adopt",
+      "rule": "Model the real world, not the source data. Never map 1:1 from whatever the upstream table happened to look like.",
+      "ours": "A composition row is a source-system artifact. The object is a food in a matrix, eaten by a host, at a rate.",
+      "check": null,
+      "why_not_checkable": "Needs the manifest, which does not exist yet."
+    },
+    {
+      "id": "ddd-identity-vs-observation",
+      "group": "design",
+      "stance": "adopt",
+      "rule": "Separate identity from observation: the entity is not the measurement.",
+      "ours": "Q1 does not determine Q2. `Food` and `FoodValue` are different object types — the apple is the entity, 927 compounds from three labs are observations of it.",
+      "check": null,
+      "why_not_checkable": "Needs the manifest."
+    },
+    {
+      "id": "dry-rule-of-three",
+      "group": "design",
+      "stance": "adopt",
+      "rule": "One instance is coincidence, two is a pattern, three triggers refactoring.",
+      "ours": "Applied to duplicated ontology artifacts across repos.",
+      "check": "check_no_artifact_triplicated"
+    },
+    {
+      "id": "open-closed",
+      "group": "design",
+      "stance": "adopt",
+      "rule": "Lock the essential properties of core types. Extend via linked types, new interface implementations or property namespaces — never by editing the core.",
+      "ours": "The governance model FDP-1 needs anyway: consumers pin a version, and a public ontology cannot reshape a type underneath them.",
+      "check": "check_frozen_types_unchanged"
+    },
+    {
+      "id": "composition-over-hierarchy",
+      "group": "design",
+      "stance": "adopt",
+      "rule": "Interfaces around capabilities, not taxonomy (Inspectable, Schedulable, Billable).",
+      "ours": "Gradeable, Declarable, Fenced, Refusable. A workflow written against Gradeable runs over a food value, a score, a study record and a claim without knowing which it has.",
+      "check": null,
+      "why_not_checkable": "Needs the manifest."
+    },
+    {
+      "id": "struct-for-related-fields",
+      "group": "structure",
+      "stance": "adopt",
+      "rule": "A multi-field, semantically related value is a struct.",
+      "ours": "An FDP-1 value: value + unit + source + method + source_ref + retrieved.",
+      "check": null,
+      "why_not_checkable": "Needs the manifest."
+    },
+    {
+      "id": "main-field",
+      "group": "structure",
+      "stance": "adopt",
+      "rule": "A struct that should behave like a simple value designates a main field.",
+      "ours": "`Declared[T]` — `.value()` is the main field, provenance rides along.",
+      "check": "check_declared_has_main_field"
+    },
+    {
+      "id": "interface-for-shared-capability",
+      "group": "structure",
+      "stance": "adopt",
+      "rule": "Common properties or actions across types become an interface.",
+      "ours": "Gradeable / Declarable / Fenced / Refusable.",
+      "check": null,
+      "why_not_checkable": "Needs the manifest."
+    },
+    {
+      "id": "object-backed-link",
+      "group": "structure",
+      "stance": "adopt",
+      "rule": "A relationship carrying metadata is an object-backed link.",
+      "ours": "SURFACE_CLAIM's join — claim to study, carrying verb class and verdict. The join IS the object.",
+      "check": null,
+      "why_not_checkable": "Needs the manifest."
+    },
+    {
+      "id": "derived-never-denormalized",
+      "group": "structure",
+      "stance": "adopt",
+      "rule": "A value computed from linked objects is a derived property. Never store it.",
+      "ours": "The weakest-link grade. A stored grade is a grade that can drift from its inputs.",
+      "check": "check_grade_is_computed_not_stored"
+    },
+    {
+      "id": "pipeline-transform",
+      "group": "structure",
+      "stance": "adopt",
+      "rule": "A value from stable pipeline inputs is a pipeline transform, not a derived property.",
+      "ours": "Register builds (`make registers`), the crosswalk normalizer, the vocabulary builder.",
+      "check": "check_generated_artifacts_are_gated"
+    },
+    {
+      "id": "name-singular-concrete-nouns",
+      "group": "naming",
+      "stance": "adopt",
+      "rule": "Object types are singular concrete nouns.",
+      "ours": "Food, Nutrient, Study, Claim, Host, Law, Exposure.",
+      "check": null,
+      "why_not_checkable": "Needs the manifest."
+    },
+    {
+      "id": "name-no-type-encoding",
+      "group": "naming",
+      "stance": "adopt",
+      "rule": "Do not encode the type in the property name (`nameStr`, `dateDt`).",
+      "ours": "Register fields follow this already.",
+      "check": null,
+      "why_not_checkable": "Broad convention; no cheap complete check."
+    },
+    {
+      "id": "name-one-date-convention",
+      "group": "naming",
+      "stance": "adopt",
+      "rule": "One date convention across the ontology.",
+      "ours": "ISO 8601 everywhere; `as_of` on registers, `retrieved` on FDP-1 values.",
+      "check": "check_dates_are_iso"
+    },
+    {
+      "id": "name-qualify-ambiguous",
+      "group": "naming",
+      "stance": "adopt",
+      "rule": "Qualify ambiguous terms specifically rather than reusing a vague one.",
+      "ours": "The fix for the layer collision. THE OPEN BLOCKER.",
+      "check": "check_layer_misnomer"
+    },
+    {
+      "id": "ap-system-silos",
+      "group": "anti-pattern",
+      "stance": "guard",
+      "rule": "Same entity, separate types per source system.",
+      "ours": "aca.ttl and claim-shape.ttl exist in two places as byte-identical mirrors with no declared owner. The crosswalk pair is NOT this — it is a declared derivation.",
+      "check": "check_no_artifact_triplicated"
+    },
+    {
+      "id": "ap-misnomer",
+      "group": "anti-pattern",
+      "stance": "guard",
+      "rule": "Vague or overloaded names cause cross-team confusion from varied interpretations.",
+      "ours": "PRESENT, and the worst one. 'Layer' means the OBO causal spine L1-L5 and the standardization stack L0-L9. Also 'unit' and 'grade' vs 'tier'.",
+      "check": "check_layer_misnomer"
+    },
+    {
+      "id": "ap-god-object",
+      "group": "anti-pattern",
+      "stance": "guard",
+      "rule": "One type covering distinct entities.",
+      "ours": "Risk that Food absorbs raw ingredient, branded product, recipe and meal at once.",
+      "check": null,
+      "why_not_checkable": "Needs the manifest. Guard it there."
+    },
+    {
+      "id": "ap-time-machine",
+      "group": "anti-pattern",
+      "stance": "guard",
+      "rule": "Historical versions modelled as separate objects.",
+      "ours": "Versioning is on the record (`*.v1.json` + `as_of`, Zenodo concept + version DOIs), not modelled as separate objects.",
+      "check": "check_versioning_is_on_the_record"
+    },
+    {
+      "id": "ap-department-silos",
+      "group": "anti-pattern",
+      "stance": "guard",
+      "rule": "Separate versions of a shared entity per team.",
+      "ours": "NOT the anti-pattern. STUDY_UNIT and MI-Nutrition share two properties and are orthogonal axes (licenses vs discloses), not rival copies. Recorded because the resemblance is misleading.",
+      "check": null,
+      "why_not_checkable": "Settled by field comparison, not by a standing check."
+    },
+    {
+      "id": "ap-kitchen-sink",
+      "group": "anti-pattern",
+      "stance": "refuse",
+      "rule": "ETL metadata should not become properties.",
+      "ours": "REFUSED. Here provenance IS business data — it is what licenses the claim. A naive application of this would strip exactly the fields the book exists to argue for.",
+      "check": "check_provenance_fields_survive"
+    },
+    {
+      "id": "ap-action-sprawl",
+      "group": "anti-pattern",
+      "stance": "guard",
+      "rule": "Many single-property actions instead of cohesive ones.",
+      "ours": "Validators are cohesive (validate_fdp, validate_mi_nutrition).",
+      "check": null,
+      "why_not_checkable": "Needs the manifest's action types."
+    },
+    {
+      "id": "ap-golden-hammer",
+      "group": "anti-pattern",
+      "stance": "open",
+      "rule": "One tool applied to every problem.",
+      "ours": "No evidence either way yet. Recorded rather than guessed.",
+      "check": null,
+      "why_not_checkable": "Not assessable without the manifest; refusing to fake a verdict."
+    },
+    {
+      "id": "fourfold-data-logic-action",
+      "group": "model",
+      "stance": "adopt",
+      "rule": "Every operational decision comprises Data, Logic, Action and Security.",
+      "ours": "Data = registers, packets, crosswalk, corpus. Logic = 47 laws / 9 gates / 38 bounds. Action = validators and Declared[T] refusals.",
+      "check": "check_laws_gates_bounds_intact"
+    },
+    {
+      "id": "fourth-pillar-is-provenance",
+      "group": "model",
+      "stance": "adapt",
+      "rule": "The fourth component is Security — does policy permit this decision?",
+      "ours": "ADAPTED to Provenance — is this decision LICENSED BY EVIDENCE? Same shape, different authority. Published evidence has no access-control problem, and a claim with perfect access control and no method is still worthless.",
+      "check": null,
+      "why_not_checkable": "A modelling stance, not a testable state."
+    },
+    {
+      "id": "dataset-to-ontology-mapping",
+      "group": "model",
+      "stance": "adapt",
+      "rule": "Dataset->object type, row->object, column->property, field->property value, join->link type.",
+      "ours": "Exact until row four. 'Field -> property value' ASSUMES A FIELD HAS A VALUE. 20,983 of our 33,564 crosswalk cells do not. We extend with a third state.",
+      "check": "check_open_is_not_null"
+    },
+    {
+      "id": "declared-three-states",
+      "group": "model",
+      "stance": "adapt",
+      "rule": "(Our extension.) A property value is a value, NONE (checked, none exists), or OPEN (nobody looked). Never Optional[T].",
+      "ours": "Declared[T]. The whole reason the SDK is worth building rather than wrapping.",
+      "check": "check_declared_three_states"
+    },
+    {
+      "id": "manager-dependents",
+      "group": "manager",
+      "stance": "adopt",
+      "rule": "Every object type shows its dependents: an ontology has consumers and a type change breaks them.",
+      "ours": "Generated by ontology_inventory.py. Not having this is what let the crosswalk sit blocked for a month.",
+      "check": "check_dependents_are_generated"
+    },
+    {
+      "id": "manager-observability",
+      "group": "manager",
+      "stance": "open",
+      "rule": "Near-real-time usage and monitoring rules per type and per function.",
+      "ours": "PARTIAL and hand-measured once (2026-08-24: two phrases moved a published pooled effect 0.78 to 0.75). Nothing recomputes it. This is the valuable missing piece.",
+      "check": null,
+      "why_not_checkable": "Not built. Declared as the gap rather than claimed."
+    },
+    {
+      "id": "manager-branches",
+      "group": "manager",
+      "stance": "open",
+      "rule": "Propose an ontology change on a branch without breaking live readers.",
+      "ours": "We have ratchets, not branches. A ratchet makes a change fail loudly; it does not let you see the consequence before committing.",
+      "check": null,
+      "why_not_checkable": "Not built."
+    },
+    {
+      "id": "object-views-are-not-the-ontology",
+      "group": "departure",
+      "stance": "adopt",
+      "rule": "Object views are a presentation layer, not a structural component.",
+      "ours": "The evidence hub is NOT part of this ontology and must not be modelled into it. It renders registers; it does not define them.",
+      "check": "check_sdk_does_not_import_the_hub"
+    },
+    {
+      "id": "pragmatism-clause",
+      "group": "departure",
+      "stance": "adopt",
+      "rule": "Build reasonably now with clear improvement paths rather than blocking on perfection. Defend critical invariants: naming quality, semantic clarity and security design are hard to fix retroactively.",
+      "ours": "Our hard-to-fix-later invariants are NAMING (the layer collision), IDENTITY (one canonical crosswalk) and DECLAREDNESS (OPEN never collapsing to null). Two of three are now gated.",
+      "check": null,
+      "why_not_checkable": "A meta-rule about the other rules."
+    }
+  ]
+}

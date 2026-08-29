@@ -138,10 +138,17 @@ policy, public change history, and the `as_of` discipline already in every regis
 
 ## What this changes about the plan
 
-Unchanged: the blocker is still one canonical `MASTER_CROSSWALK`. Identity is L2, it
-is our only passing layer, and it currently exists in two copies that disagree —
-which is to say **the one thing the field got right is the one thing we have broken
-locally.** Fix that first; it is also the L2→L3 bridge's foundation.
+Cleared: `MASTER_CROSSWALK` has a canonical copy (`biology_as_code/`), a written
+transform from its extract, and a byte-exact gate. Identity is L2, our only passing
+layer, and it is now reproducible rather than inherited — the L2→L3 bridge has a
+foundation that can be rebuilt from a snapshot.
+
+The correction is worth carrying into the manifest: the copies were never in
+conflict (0 value differences across 24,893 differing cells). What we had was a
+derivation nobody had written down, which for a month was indistinguishable from
+corruption. **A published ontology must declare its derivations, not just its
+types** — otherwise every downstream consumer has to re-derive the question of
+whether two artifacts agree, and most will guess.
 
 Added by this pass:
 - Adopt **shared properties** for the `nutrient_ref`/`method_ref` pair — the highest

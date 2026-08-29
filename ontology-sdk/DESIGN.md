@@ -57,9 +57,12 @@ Ontology SDKs generate accessors; this one generates accessors **that can refuse
 That is the differentiator, it is already specified, and it is why the thing is
 worth building rather than wrapping.
 
-*(Live evidence it matters: `MASTER_CROSSWALK.tsv` exists in two copies, one with
-20,983 `OPEN` cells and one with 20,983 blanks. A round-trip through a type system
-without three states is how the second one happened.)*
+*(Live evidence it matters: `MASTER_CROSSWALK.tsv` exists as an extract with 20,983
+blank cells and a canonical copy where the same 20,983 say `OPEN`. The blanks are a
+faithful dump — the source genuinely had nothing — but a consumer reading the extract
+cannot tell that from "nobody filled it in". A round-trip through a type system
+without three states is how a table loses that distinction, permanently and
+silently.)*
 
 ---
 
@@ -102,10 +105,15 @@ pip-installable, Apache-2.0, zero runtime dependencies — the SDK depends on it
 
 ## What blocks it today, honestly
 
-1. **The identity spine disagrees with itself.** `MASTER_CROSSWALK.tsv` has two
-   copies: 1,361 of 2,797 rows differ in value, on top of the OPEN/blank split.
-   **An SDK whose identity layer contradicts itself cannot ship.** Pick the
-   canonical copy first — this is the single hard blocker.
+1. ~~**The identity spine disagrees with itself.**~~ **Cleared 2026-08-29.** It did
+   not: 0 cells differed in value; the "1,361 rows" was a comparison bug of mine
+   (notation counted as fact). `biology_as_code/MASTER_CROSSWALK.tsv` is canonical,
+   derived from the extract by `tools/normalize_crosswalk.py`, gated byte-for-byte
+   by `make crosswalk-check`. See `CROSSWALK-CANONICAL.md`.
+   *Replaced by a smaller but real one:* `inchiKey` is 0% populated (2,797/2,797
+   `OPEN`), so agreement between KEGG, ChEBI and PubChem ids in this table is
+   asserted, never structurally verified. That is a data gap, not a blocker — the
+   SDK can ship an identity layer that declares it.
 2. **MI-Nutrition is fluid.** Codegen against a moving schema produces types that
    churn. Either pin a version for v0 or leave `Study` out of the first release.
 3. **EDP-1 has no DOI and is undeposited.** `Exposure` cannot be a public object
@@ -229,9 +237,16 @@ proprietary asset. That gap is the opening.
 the one usually missing from a project like this, and here it already exists and is
 tested — which is why the SDK is a packaging problem rather than a research problem.
 
-## 6. Unchanged: the blocker
+## 6. The blocker is cleared
 
-None of this starts until `MASTER_CROSSWALK.tsv` has one canonical copy. Identity is
-the spine of an ontology; 1,361 rows currently disagree between two copies, on top
-of one copy having lost the `OPEN` convention entirely. Everything above is
-downstream of that one decision.
+`MASTER_CROSSWALK.tsv` has one canonical copy — `biology_as_code/` — and the extract
+it derives from is now joined to it by a written, tested, byte-exact transform rather
+than by an assumption. The identity spine is reproducible from a VMH snapshot in two
+commands. Work above this line can start.
+
+What the decision surfaced in its place is smaller and sharper: the `inchiKey`
+column is entirely `OPEN`, so the table's cross-registry identity claims rest on the
+registries agreeing with each other, which nothing here checks. The SDK should
+therefore expose identity as `Declared[T]` from day one — not as a courtesy, but
+because the honest value for "is `kegg:C00001` the same substance as `chebi:15377`?"
+is currently `OPEN`.
