@@ -170,186 +170,76 @@ collision), **identity** (one canonical crosswalk), and **declaredness** (OPEN n
 collapsing to null). Those three block the manifest. Everything else can improve
 incrementally.
 
-
-## The core model, verbatim
-
-*Kept as published, so the mapping below can be checked against it.*
-
-> Palantir models each operational decision as comprising four components:
->
-> - **Data** — the information leveraged to make the decision.
-> - **Logic** — the heuristics and computational processes that evaluate a decision.
-> - **Action** — the orchestration and execution of the chosen decision.
-> - **Security** — the assurance that the decision complies with operational policies.
->
-> Foundry Ontology creates a complete picture of an organization's world by mapping
-> datasets and models to object types, properties, link types, and action types.
->
-> - An **object type** defines an entity or event in an organization.
-> - A **property** defines the object type's characteristics.
-> - A **link type** defines the relationship between two object types.
-> - An **action type** defines how an object type can be modified.
-
-| Datasets | Ontology |
-|---|---|
-| Dataset | Object type |
-| Row | Object |
-| Column | Property |
-| Field | Property value |
-| Join | Link type |Define Ontologies
-Ontologies
-Object and link types
-Action types
-Functions
-Interfaces
-Ontology design: Best practices
-Ontology design: Structural guidance
-Ontology design: Anti-patterns
-Show less
-Bash Write the manager-layer analysis and refresh the tracker
-IN
-make ontology-write 2>&1 | tail -3
-cat > /Users/morf/Downloads/morf-engineering/mealcoachai/dev/NUTRI-COLLECTIVE_0/biology_as_code/ontology-sdk/ONTOLOGY-MANAGER.md <<'MD'
-# The manager layer — what OMA is for, and what ours has to be
-
-Palantir ships an **Ontology Manager** (OMA) alongside the ontology itself. Reading it
-as an authoring UI misses the point: the object-type editor is the least interesting
-part. The load-bearing panels are the ones that answer *what happens if I change
-this* — **Branches**, **Dependents**, **Usage / Usage History**, **Observability**.
-
-That is not UI polish. It is the admission that **an ontology has consumers, and a
-type change breaks them.** A vocabulary with no consumers needs no manager. Ours has
-consumers, so it needs the functions — not necessarily the application.
-
-## The three questions a manager exists to answer
-
-| OMA panel | The question | Our answer today |
-|---|---|---|
-| **Dependents** | Who reads this artifact? | **Now generated.** `ontology_inventory.py` scans the tree; `MASTER_CROSSWALK.tsv` has **29** readers, `aca.ttl` **14**, the vocabulary **7**. |
-| **Observability / Usage** | How much moves if I change it? | **Partial, and hand-measured once.** 2026-08-24: adding two phrases to the `cardiovascular` group changed 4 of 123 association rows, added 5 studies (716→721), and moved a published pooled effect 0.78→0.75. Nothing recomputes that automatically. |
-| **Branches** | Can I propose a change without breaking live readers? | **Ratchets, not branches.** `nutrition-vocab.baseline.json` and `quality_baseline.json` make a change *fail loudly*; they do not let you see the consequence before committing to it. |
-
-Not having the first answer is what cost the crosswalk a month. The question *who
-reads `MASTER_CROSSWALK.tsv`* had to be re-derived by hand on 2026-08-29, and the
-answer — FDP-1 §2 cites it by URL, plus `README`, `CITATION.cff`, `PATENTS.md`,
-`.zenodo.json` — is what settled which copy was canonical in about a minute. A
-standing Dependents view would have made the decision available all along.
-
-**So the v0 manager is not an application. It is those three answers, on the command
-line, kept fresh by the same generators that already gate everything else.** One is
-done. The second is the valuable one and is genuinely hard: it means being able to
-say, before a vocabulary edit lands, *this moves N published effect sizes.* That is
-the same capability the book demands of nutrition, turned on ourselves.
-
-If a UI ever exists it is a tab in `evidence-hub-v2.html`, never a new page.
-
 ---
 
-## The four components, and the one substitution
+## Applying all of this to our scope
 
-Palantir models every operational decision as **Data · Logic · Action · Security**.
-Three map cleanly. The fourth does not, and the mismatch is informative.
+*The point of the list above is not completeness for its own sake. Their docs describe
+a multi-tenant enterprise platform; we are shipping a public evidence standard. Most of
+it transfers, some of it inverts, and a little of it has to be refused. This is the
+triage.*
 
-| Component | Theirs | Ours |
-|---|---|---|
-| **Data** | datasets mapped to object types | registers, FDP-1 packets, the crosswalk, the corpus |
-| **Logic** | functions evaluating a decision | 47 laws, 9 gates, 38 bounds — already frozen, already tested |
-| **Action** | orchestrated writes back to the source | validators; `Declared[T]` refusals |
-| **Security** | policy compliance on the decision | **Provenance.** |
+**Adopt as-is — no local variant needed (19 of 32).**
+The four design principles, the whole structural decision table, and the naming
+conventions. These were written about airlines and hospitals and they land unchanged on
+food evidence, which is the strongest possible argument for taking them: two unrelated
+traditions reaching the same rule means the rule is load-bearing rather than cultural.
+`Gradeable` / `Declarable` / `Fenced` / `Refusable` are the single highest-value idea we
+take from them — a workflow written against `Gradeable` runs over a food value, a score,
+a study record and a claim without knowing which it has.
 
-Their fourth component asks *is this decision permitted?* Ours asks *is this decision
-licensed by evidence?* Those are the same shape — a gate the decision must pass that
-is not about the data's content — but a different authority. Access control says who
-may see a number. Provenance says whether the number may be used at all, by anyone,
-including its author. **A nutrition claim with perfect access control and no method is
-still worthless**, which is why the substitution is not a rename.
+**Adapt — same shape, different authority (3).**
 
-## Dataset → ontology, and the cell that is missing
+- **Security → Provenance.** Their fourth component asks *is this decision permitted?*
+  Ours asks *is this decision licensed by evidence?* Published evidence has no
+  access-control problem. A nutrition claim with perfect access control and no method
+  is still worthless, so this is a substitution rather than a rename.
+- **The dataset mapping, extended.** Exact until the fourth row. *"Field → property
+  value"* assumes a field has a value; **20,983 of our 33,564 crosswalk cells do not**,
+  and the entire `inchiKey` column is one of them. In their model those are nulls, and
+  a null is not a property value — it is the absence of one.
+- **`Declared[T]`.** Which is the previous point made into a type: a value, `NONE`
+  (checked, none exists), or `OPEN` (nobody looked). Never `Optional[T]`. Their model
+  has no cell for the third state because in an operational system somebody always
+  knows. In nutrition nobody does.
 
-| Datasets | Ontology | Here |
-|---|---|---|
-| Dataset | Object type | `MASTER_CROSSWALK.tsv` → `Metabolite`; `nutrition-vocab.v1.json` → `Concept` |
-| Row | Object | one metabolite; one SKOS concept |
-| Column | Property | `chebi`, `hmdb`, `kegg`, `inchiKey`; `prefLabel`, `altLabel`, `hiddenLabel` |
-| Field | Property value | `chebi:15637` |
-| Join | Link type | the crosswalk **is** a link type, already — nutrient ↔ metabolite |
+**Refuse — exactly one (1).**
+**The Kitchen Sink.** Their anti-pattern says ETL metadata should not become properties.
+Applied naively here it would strip `retrieved`, `source_ref` and `method` from every
+FDP-1 value — which is to say, it would delete the fields the book exists to argue for.
+Here provenance *is* business data: it is what licenses the claim. This must be written
+into the manifest so nobody later "cleans" it.
 
-The mapping is exact until the fourth row, and then it stops. **"Field → Property
-value" assumes a field has a value.** 20,983 of our 33,564 crosswalk cells do not —
-they say `OPEN`, and 2,797 of them are the entire `inchiKey` column. In their table
-those are nulls, and a null is not a property value; it is the absence of one.
+**Guard — not in it, could fall into it (6).**
+System Silos, The Misnomer, The God Object, The Time Machine, Department Silos, Action
+Sprawl. Two are live: the **layer collision** (`L1–L5` causal spine vs `L0–L9`
+standardization stack) is The Misnomer and is the open naming blocker; the mirrored
+`aca.ttl` / `claim-shape.ttl` pair is a mild System Silo. The crosswalk pair looked like
+one for a month and was not — it was an undeclared *derivation*, which is a different
+defect with an identical outward appearance.
 
-That is where we extend rather than adopt, and it is the whole of `Declared[T]`: a
-property whose value may be `a value`, `NONE` (checked, genuinely none exists), or
-`OPEN` (nobody has looked). Three states, never `Optional[T]`. Their model has no
-cell for the third, because in an operational system somebody always knows. In
-nutrition nobody does, and pretending otherwise is the failure the book is about.
+**Open — honestly not decided (3).**
+The Golden Hammer (not assessable without a manifest; refusing to fake a verdict), and
+two of OMA's four panels: **Observability** and **Branches**. We have ratchets, which
+make a change fail loudly, not branches, which let you see the consequence first.
+Observability is the valuable gap — being able to say *this vocabulary edit moves N
+published effect sizes* before it lands. That is the capability the book demands of
+nutrition, turned on ourselves.
 
-**Borrow the four nouns. Borrow the dataset mapping. Refuse the assumption that a
-field has a value.**
-MD
-echo "written"
+### What this changes about the order of work
 
-OUT
-wrote inventory into ONTOLOGY-CONSOLIDATION.md
-written
-Bash Final verification across every gate
-IN
-cd /Users/morf/Downloads/morf-engineering/mealcoachai/dev/NUTRI-COLLECTIVE_0
-echo "### crosswalk"; make crosswalk-check
-echo "### vocabulary"; (cd nutri-collective/evidence-platform && make vocab-check)
-echo "### platform suite"; (cd nutri-collective/evidence-platform && make test 2>&1 | tail -1)
-echo "### ontology inventory"; (cd book && make ontology 2>&1 | tail -1)
-echo "### claims"; (cd book/final-draft/claims && make test 2>&1 | grep -E "^(FAIL|closed|ok|FAILED)")
+Their pragmatism clause is the one to quote at ourselves: *"Defend critical invariants:
+naming quality, semantic clarity, and security design are difficult to fix
+retroactively."* Ours are **naming**, **identity** and **declaredness**. Identity and
+declaredness are now gated (`make crosswalk-check`, `make vocab-check`). Naming is not,
+and the layer collision is therefore the last thing blocking the manifest.
 
-OUT
-### crosswalk
-OK    canonical == normalize(extract), byte for byte (2797 rows, 12 cols)
-### vocabulary
-OK    vocabulary round-trips to the source tables (118 concepts)
-### platform suite
-623 passed, 5 skipped in 8.85s
-### ontology inventory
+### Where the rest of this lives
 
-### claims
-FAIL refuted CLM-Z1: prose not yet rewritten — a refuted claim is a rewrite, not an edit. Add rewrite.completed once it is done.
-closed CLM-XW-1361-ROWS: refuted, prose rewritten 2026-08-29 (5 files)
-closed CLM-VOCAB-FOUR-CONVENTIONS: refuted, prose rewritten 2026-08-29 (1 files)
-FAILED
-Both done, and the first one turned out to be a correction rather than a decision.
-
-1. Canonical crosswalk — CROSSWALK-CANONICAL.md
-The copies never disagreed. 24,893 cells differ; 0 values do. 12,581 populated cells on each side.
-
-The "1,361 rows differ in value" was my bug: compare() flattened OPEN but knew nothing about CURIE prefixes, so kegg:C00234 vs C00234 counted as a conflict. They're a pipeline, not a fork:
-
-
-VMH snapshot ──build──▶ extract (raw ids, blanks) ──normalize──▶ canonical (CURIEs, OPEN)
-Two links were code. The middle one existed only as someone's memory of running it in July. A transform that isn't written down is indistinguishable from corruption — and it fails in the safe-looking direction: identical files get reported as contradictory and work stops on a blocker that was never there.
-
-biology_as_code/ is canonical — FDP-1 §2 cites it by URL, it carries OPEN where the extract carries blanks, and every populated cell is a resolvable CURIE. Wrote normalize_crosswalk.py, fixed build_master_crosswalk.py (its paths were broken — neither copy was regenerable), and gated it: make crosswalk-check passes byte-for-byte. Regeneration doesn't touch the published file (md5 unchanged).
-
-What it exposed is worse than what it replaced: inchiKey is 0% populated, 2,797/2,797 OPEN. It's the only structure-derived id in the table, so KEGG/ChEBI/PubChem agreement here is asserted and never verified.
-
-2. Controlled vocabulary — 118 SKOS concepts
-nutrition-vocab.v1.json + .ttl, via build_vocab.py / vocab.py. make vocab, make vocab-check.
-
-Descriptive, never leading. Generated from lexicon.py and SEARCH_ONLY as they stand, and the gate is that those tables regenerate from it unchanged — the builder refuses to write otherwise. Full suite 623 passed, 5 skipped; nothing moved.
-
-Your search/scoring rule is now structural, not remembered: lexicon_tables() returns prefLabel + altLabel and is unable to see a hiddenLabel.
-
-Your earlier framing — "four times, four conventions" — was overstated, and I registered it REFUTED. Only two of the four own vocabulary; across ~1,490 strings just 14 appear in more than one. The real defect: every table maps string → string, never string → concept. Which is why nothing noticed that the typeahead files osteoporosis under bone while the screener files it under fracture, or that cognition and cognitive are two groups for one idea.
-
-Debt declared and ratcheted, never auto-fixed — 12 ambiguous terms, 4 faked hierarchies, 3 cross-reader conflicts. Merging cognition into cognitive would rewrite screening for every cognition study in the ledger.
-
-3. On Ontology Manager and the four components — ONTOLOGY-MANAGER.md
-The load-bearing panels aren't the editor — they're Dependents, Usage, Branches: an ontology has consumers and a type change breaks them. Not having the first answer is exactly what cost the crosswalk a month; "who reads this?" settled it in a minute once asked. So I built it: the inventory now generates a Dependents table — MASTER_CROSSWALK.tsv 29 readers, aca.ttl 14, the vocabulary 7.
-
-On Data·Logic·Action·Security: their dataset→ontology mapping is exact until row four. "Field → Property value" assumes a field has a value. 20,983 of ours don't. That's the one place we extend rather than adopt — and it's the whole of Declared[T].
-
-Red, and staying red
-make test in claims fails on CLM-Z1 — the MCS refutation whose Part IV prose rewrite is genuinely still pending. I added a close path for refuted claims (they previously could never be closed, so the gate would stay red forever), verified against the files, and it correctly refuses to close Z1.
-
-Next cheapest move: skos:definition — no concept has one, and that's what turns the 12 ambiguous terms from visible into resolvable.
-
-I pasted all teh key pricnicples we want to folow no
+- **[`principles.v1.json`](principles.v1.json)** — all 32, with a stance and, for 16 of
+  them, a machine check. That register is the rule; this document is the reasoning.
+- **[`ONTOLOGY-MANAGER.md`](ONTOLOGY-MANAGER.md)** — OMA's four panels, the fourfold,
+  and the dataset mapping worked through in full.
+- **[`WHERE-THIS-FITS.md`](WHERE-THIS-FITS.md)** — the borrow / own / refuse boundary
+  against the nine-layer scores.
+- **[`DESIGN.md`](DESIGN.md)** — the object model and build order.

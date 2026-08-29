@@ -134,8 +134,25 @@ in it.
 ## Status
 
 `declared.py` in this folder is the core primitive, with tests. Everything else
-above is design. The manifest and generator are not started, and should not start
-until blocker 1 is resolved.
+above is design.
+
+**The object model above is superseded by
+[`GROUNDED-OBJECT-MODEL.md`](GROUNDED-OBJECT-MODEL.md)**, which was produced by a
+22-agent verification pass against the repo (264 findings survived, 154 refuted).
+It found that this document never mentions the OBO causal spine at all, and that
+the one artifact declaring a food→disease ladder — `bfo_stack_ontology.json` — is
+absent from the object-type table, the link-type row and the blocker list. Read
+that file first; this one is the argument, not the inventory.
+
+**Order of work, corrected.** Identity (the crosswalk) and stage one (the
+controlled vocabulary) are done and gated. The manifest is now blocked on the
+**layer naming collision**, not on identity — see
+`GROUNDED-OBJECT-MODEL.md` §2 for the resolution (`spine:` named stages; the
+format stack keeps `L0–L9`) and §8 for the ordered blockers.
+
+*Correction:* an earlier version of this line gated all work on blocker 1 while §6
+of this same file declared blocker 1 cleared. Both statements were in the file at
+once for several hours.
 
 ---
 
