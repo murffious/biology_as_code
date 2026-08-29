@@ -1,9 +1,33 @@
 # Licence enquiry to VMH — draft, ready to send
+ines.thiele@universityofgalway.ie.
+**Status:** unsent as of 2026-08-29. **Address resolved 2026-08-29** — see below.
 
-**Status:** unsent as of 2026-08-29. Send to the VMH contact listed at
-<https://www.vmh.life> (the site lists a contact/feedback address; the group is
-Thiele/Fleming, University of Galway). Copy `vmh-support` if a support alias exists.
-Do not guess an address — take it from the site.
+## Where to send it
+
+`vmh.life` and `delta.vmh.life` both return **403** to us, so the site's own contact
+route is unusable and its Citation page offers only a LinkedIn message. Use the
+**published corresponding-author addresses** from the VMH database paper instead —
+these are peer-reviewed contact details, not scraped, and correspondence about the
+resource is exactly what they are published for:
+
+| | |
+|---|---|
+| **To** | Prof. Ines Thiele — `ines.thiele@universityofgalway.ie` |
+| **Cc** | `ines.thiele@gmail.com` — the address printed in the NAR paper |
+| **Cc** | Prof. Ronan M.T. Fleming — `ronan.mt.fleming@gmail.com` (NAR paper) |
+
+Thiele has moved since the paper: she is now Personal Professor in the **School of
+Biological and Chemical Sciences and the Ryan Institute, University of Galway**, and
+directs the **Digital Metabolic Twin Centre** — which is what the copyright line at
+the foot of the VMH site (`ThieleLab/FlemingLab @ DMTC`) refers to. The Luxembourg
+address in the paper is stale; the Galway institutional address is the live one, so
+it goes in the To line and the paper's gmail addresses are the fallback.
+
+**Do not use LinkedIn.** A licence answer needs to be attributable and archivable —
+a LinkedIn DM to a company page reaches whoever runs the account, is not on the
+record, and cannot be cited in `THIRD-PARTY-DATA.json` as the basis for a licence
+determination. Email from an institutional address can. Keep LinkedIn as the nudge
+route only if there is no reply in three weeks.
 
 **Why this letter matters:** the answer collapses three open items at once. If the
 terms are permissive, the non-commercial constraint, the Human-GEM swap question,
@@ -102,3 +126,68 @@ record the attempt and its date in `THIRD-PARTY-DATA.json` and leave the status
 `OPEN`. An unanswered good-faith enquiry, documented, is a materially better
 position than never having asked — and it is exactly the "declared, not asserted"
 discipline this project applies to everything else.
+
+
+Virtual Metabolic Human
+Browse
+Toolbox
+Models
+Clinicians
+API
+Search for metabolites, reactions, diseases...
+
+Background
+Citations
+
+Virtual Metabolic Human Website
+
+
+Human Metabolism Resource
+
+
+Microbial Metabolism Resource
+
+
+Disease Resource
+
+
+Thermodynamic Information
+
+
+ReconMap
+
+
+Leigh Map
+
+Virtual Metabolic Human
+Integrating human and gut-microbiome metabolism with nutrition and disease.
+
+Follow us:
+LinkedIn
+YouTube
+Browse
+Human
+Microbes
+Microbiome
+Disease
+Nutrition
+Maps
+Toolbox
+Overview
+Persephone
+Molecule editor
+Metabolomics upload
+Downloads
+Resources
+API
+SPARQL
+About
+Statistics
+Visitor map
+How to cite
+FAQ
+Index
+© 2026 by ThieleLab/FlemingLab @ DMTC
+Disclaimer: For research purposes only
+Feedback
+/general/Citation
