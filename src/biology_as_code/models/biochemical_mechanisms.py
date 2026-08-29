@@ -115,7 +115,7 @@ class BiochemicalMechanismRegistry:
              "GO:0038202", "GO:0038202", [],
              ["R-HSA-165159"],
              "Mechanism real; free-living magnitude is evidence-tier",
-             "kiboAnabolicGraph",
+             "anabolicGraph",
              ["chebi:leucine"]),
             ("mech.gulo_absent_human",
              "Human GULO pseudogene — no endogenous ascorbate synthesis",

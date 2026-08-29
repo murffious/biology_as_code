@@ -25,7 +25,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 _PUBMED_URL = "https://pubmed.ncbi.nlm.nih.gov/{}/"
-_LAW026 = Path(__file__).resolve().parent / "data" / "kibo_core" / "data" / "evidence_candidates_LAW026.json"
+_LAW026 = Path(__file__).resolve().parent / "engine" / "data" / "evidence_candidates_LAW026.json"
 
 
 @dataclass(frozen=True)

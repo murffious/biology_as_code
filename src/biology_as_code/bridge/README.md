@@ -1,11 +1,11 @@
 # Bridge
 
-Product API → `kibo_core` (LAW-tagged GI, FLOW sim, iron walk).
+Product API → `engine` (LAW-tagged GI, FLOW sim, iron walk).
 
 **Full doc:** [../docs/BRIDGE.md](../docs/BRIDGE.md)
 
 ```bash
-cd book/kibo_simulator_latest
+cd book/simulator_latest
 PYTHONPATH=. python3 -m unittest bridge.tests.test_bridge -v
 ```
 
@@ -15,4 +15,4 @@ PYTHONPATH=. python3 -m unittest bridge.tests.test_bridge -v
 | `tests/test_bridge.py` | Tests |
 | `module_test.py` | Legacy exercises |
 
-Prefer `kibo_engine` for full depth meal sim; use bridge when you need law ids + core FLOW.
+Prefer `meal_engine` for full depth meal sim; use bridge when you need law ids + core FLOW.

@@ -129,12 +129,12 @@ if (shouldMultiItemOral(run)) {
 - Claim: `digestRunToClaimPacket(run)` + optional `<MachineStageTrace digestRun={…} />` in Claim cards.  
 - Process hop still **meal aggregate** `toMachineContext`; only **oral** micro-runs per item.
 
-## Python crosswalk (kibo_simulator_latest)
+## Python crosswalk (simulator_latest)
 
 | Schema | Python today |
 |--------|----------------|
 | HostState | `physiological_state.HostState` + profile flags |
-| PacketLoad | `kibo_engine.FoodPayload` (+ extend items) |
+| PacketLoad | `meal_engine.FoodPayload` (+ extend items) |
 | IngestionEvent | `physiological_state.IngestionContext` |
 | DigestRun | not unified yet — build from payload + profile |
 
@@ -222,7 +222,7 @@ Hints only — **not** enforced on process/ScoreAxes yet. Honesty **OPEN**.
 Hand-crafted personas — **not** Faker noise. Same JSON is the SSOT for:
 
 - Playground / app: `src/lib/machines/userPersonas.ts`
-- Python simulator: `book/kibo_simulator_latest/fixtures/user_personas.py`
+- Python simulator: `book/simulator_latest/fixtures/user_personas.py`
 
 ```ts
 import {
@@ -257,7 +257,7 @@ Each persona embeds **HostState** + **HostClinicalProfile** + **UserGoals** (pro
 Python:
 
 ```bash
-cd book/kibo_simulator_latest && python3 fixtures/user_personas.py
+cd book/simulator_latest && python3 fixtures/user_personas.py
 # or: from fixtures.user_personas import get_persona, apply_persona_to_physiological_state
 ```
 
@@ -272,7 +272,7 @@ Mocks must answer *where the number came from*, not invent perfect panels.
 | Blood panel | 0.3 deep diagnostic | Quest, Labcorp, Function Health | MATURE |
 | Genetics ROM | 0.8 | 23andMe, SelfDecode | MATURE (partial dump) |
 | Stool microbiome | 0.3 deep diagnostic | Viome, Thorne, Tiny Health | EMERGING |
-| Food log | 0.3 food-shaped hole | MealCoach, Cronometer, photo AI | EMERGING / MANUAL |
+| Food log | 0.3 food-shaped hole | tracking app, Cronometer, photo AI | EMERGING / MANUAL |
 | Meds / supplements | 0.6 L4 | Pharmacy / HealthKit / self-report | MANUAL |
 | Social / substances | 0.6, A.7 pillars | Onboarding questionnaire | MANUAL |
 

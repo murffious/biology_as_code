@@ -64,7 +64,7 @@ def test_open_tier_has_no_score_hooks():
 
     for mid in list_machines():
         blob = json.dumps(get_machine(mid)).lower()
-        for banned in ("penalties", "deduct", "biosolvency", "kibo_vars", "product_score"):
+        for banned in ("penalties", "deduct", "biosolvency", "vendor_vars", "product_score"):
             assert banned not in blob, f"{mid} leaked '{banned}'"
 
 

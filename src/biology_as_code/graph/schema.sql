@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS node (
     id     TEXT PRIMARY KEY,
     label  TEXT NOT NULL CHECK (label IN (
         'Law',          -- LAW-001 … LAW-047, the register
-        'System',       -- the seven KIBO systems
+        'System',       -- the seven functional systems
         'Organ',
         'Subsystem',
         'Nutrient',

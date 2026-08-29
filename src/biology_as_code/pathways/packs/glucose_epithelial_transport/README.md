@@ -7,4 +7,4 @@ Epithelial glucose handling after luminal liberation: SGLT1 (SLC5A1) Na⁺-coupl
 - **Tests:** `tests.md` + `tests/test_pathway_packs.py`
 - **Gold template:** `packs/glycolysis/glycolysis_extra/`
 
-Tier: FLOW teaching. Not product meal score / Kibo-vars product scorer.
+Tier: FLOW teaching. Not an external product score.

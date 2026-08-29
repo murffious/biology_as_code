@@ -23,7 +23,7 @@
       "grams": 82,
       "source": {
         "type": "barcode_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "BARCODE#00888109111571",
         "barcode_gtin14": "00888109111571",
         "serving_size_g": 41,
@@ -411,7 +411,7 @@
       "grams": 360,
       "source": {
         "type": "barcode_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "BARCODE#00000004978903",
         "barcode_gtin14": "00000004978903",
         "serving_size_g": 360,
@@ -944,7 +944,7 @@
   "nutrition_provenance": {
     "method": "computed_from_per_100g",
     "sources": [
-      "mealcoach-foods-dev (DynamoDB)",
+      "curated-foods-dev (DynamoDB)",
       "USDA FDC gold (branded/SR Legacy/Foundation)",
       "OpenFoodFacts (fallback macros)"
     ],

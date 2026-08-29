@@ -24,7 +24,7 @@
       "grams": 140,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_ground_turkey_93_cooked",
         "nutrition_source": "usda_fdc"
       },
@@ -254,7 +254,7 @@
       "grams": 150,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_sweet_potato_baked",
         "nutrition_source": "usda_fdc"
       },
@@ -593,7 +593,7 @@
       "grams": 60,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_spinach_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -823,7 +823,7 @@
       "grams": 6,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_garlic_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -1144,7 +1144,7 @@
       "grams": 14,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_olive_oil_evoo",
         "nutrition_source": "usda_fdc"
       },
@@ -1845,7 +1845,7 @@
       "OpenFoodFacts (fallback macros)",
       "USDA FDC gold (branded/SR Legacy/Foundation)",
       "hydration enrich 2026-07-23 (corpus + OFF + USDA class)",
-      "mealcoach-foods-dev (DynamoDB)"
+      "curated-foods-dev (DynamoDB)"
     ],
     "macros_coverage": "all_ingredients",
     "full_panel_coverage_pct": 100.0,

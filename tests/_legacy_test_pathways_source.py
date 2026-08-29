@@ -1,7 +1,7 @@
 """
 test_pathways.py
 =================================================================
-Minimal verification for KIBO metabolic pathway models.
+Minimal verification for the engine metabolic pathway models.
 
 Run:
     python test_pathways.py
@@ -261,8 +261,8 @@ def test_energy_routing_snapshot():
 
 
 def test_colon_scfa_units_walk():
-    from kibo_core.laws import walk_pathway
-    from kibo_core.pathways import COLON_SCFA_PATHWAY, colon_scfa_context_from_engine
+    from engine.laws import walk_pathway
+    from engine.pathways import COLON_SCFA_PATHWAY, colon_scfa_context_from_engine
 
     ctx = colon_scfa_context_from_engine(
         fermentable_fraction=0.8, microbiome_diversity=0.9
@@ -283,7 +283,7 @@ def test_additive_effect_hooks():
 
 
 def test_engine_energy_routing_keys():
-    from kibo_engine import KIBOEngine, FoodPayload
+    from meal_engine import MealEngine, FoodPayload
     import digestion_flow_simulator as dfs
 
     _orig = dfs.DigestiveFlowSimulator.simulate_full_transit
@@ -295,7 +295,7 @@ def test_engine_energy_routing_keys():
 
     dfs.DigestiveFlowSimulator.simulate_full_transit = quiet
     try:
-        eng = KIBOEngine()
+        eng = MealEngine()
         r = eng.simulate_payload(
             FoodPayload(
                 name="routing test",
@@ -318,7 +318,7 @@ def test_engine_energy_routing_keys():
 
 def run_all_tests() -> bool:
     print("=" * 60)
-    print("KIBO PATHWAY MODEL VERIFICATION TESTS")
+    print("PATHWAY MODEL VERIFICATION TESTS")
     print("=" * 60)
     tests: List[Callable[[], None]] = [
         test_glycolysis_energy_balance,

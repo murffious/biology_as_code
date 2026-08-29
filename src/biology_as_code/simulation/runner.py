@@ -1,7 +1,7 @@
 """
-High-level meal run API — wraps KIBOEngine without renaming it.
+High-level meal run API — wraps MealEngine without renaming it.
 
-Product meal score stays off unless enable_product_score=True and private plugin present.
+Product meal score stays off unless enable_external_score=True and private plugin present.
 """
 
 from __future__ import annotations
@@ -19,7 +19,7 @@ class MealRunResult:
     absorbed_macros_g: dict[str, float] = field(default_factory=dict)
     residual_macros_g: dict[str, float] = field(default_factory=dict)
     pathway_regulation: dict[str, float] = field(default_factory=dict)
-    product_score_available: bool = False
+    external_scorer_available: bool = False
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -27,7 +27,7 @@ class MealRunResult:
             "absorbed_macros_g": self.absorbed_macros_g,
             "residual_macros_g": self.residual_macros_g,
             "pathway_regulation": self.pathway_regulation,
-            "product_score_available": self.product_score_available,
+            "external_scorer_available": self.external_scorer_available,
             "report": self.report,
         }
 
@@ -41,7 +41,7 @@ def simulate_meal(
     fats_g: float = 0.0,
     fiber_g: float = 0.0,
     quality_score: float = 0.7,
-    enable_product_score: bool = False,
+    enable_external_score: bool = False,
     engine: Any = None,
 ) -> MealRunResult:
     """
@@ -51,10 +51,10 @@ def simulate_meal(
     ----------
     payload : FoodPayload, optional
         If omitted, build from macro kwargs.
-    enable_product_score : bool
+    enable_external_score : bool
         Patent-pending plugin; default False.
     """
-    from biology_as_code.simulation.kibo_engine import FoodPayload, KIBOEngine
+    from biology_as_code.simulation.meal_engine import FoodPayload, MealEngine
 
     if payload is None:
         # Clamp degenerate input: negative/NaN grams are not physical. Treat
@@ -76,16 +76,16 @@ def simulate_meal(
             fiber_g=_clean(fiber_g),
             quality_score=quality_score,
         )
-    eng = engine or KIBOEngine()
+    eng = engine or MealEngine()
     report = eng.simulate_payload(
-        payload, enable_product_score=enable_product_score
+        payload, enable_external_score=enable_external_score
     )
-    psa = report.get("product_score_analysis") or {}
+    psa = report.get("external_score_analysis") or {}
     return MealRunResult(
         report=report,
         payload_name=getattr(payload, "name", name),
         absorbed_macros_g=dict(report.get("absorbed_macros_g") or {}),
         residual_macros_g=dict(report.get("residual_macros_g") or {}),
         pathway_regulation=dict(report.get("pathway_regulation") or {}),
-        product_score_available=bool(psa.get("available")),
+        external_scorer_available=bool(psa.get("available")),
     )

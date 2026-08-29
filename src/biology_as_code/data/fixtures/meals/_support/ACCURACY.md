@@ -1,6 +1,6 @@
 # meals-50 — accuracy & honesty for SIM use
 
-**Status:** solid enough to drive the Kibo simulator and PacketLoad demos  
+**Status:** solid enough to drive the reference simulator and PacketLoad demos  
 **Not:** clinical nutrition software, lab assays, or locked UNITS magnitudes  
 **Date:** 2026-07-23  
 
@@ -11,7 +11,7 @@ This seed is **close to real** (real barcodes, USDA rows, computed portions) and
 ## What we did
 
 ### 1. Base meals (already real-sourced)
-- Every ingredient points at `mealcoach-foods-dev` via `source.pk` (`FOOD#…` or `BARCODE#…`).
+- Every ingredient points at `curated-foods-dev` via `source.pk` (`FOOD#…` or `BARCODE#…`).
 - Portion nutrition = `per_100g × grams / 100` (QA: scale math FAIL=0).
 - Meal totals = sum of ingredients.
 - Branded lines carry FDC/OFF-style label text + avoid_flags where present.
@@ -118,7 +118,7 @@ python3 meals_to_sim.py --list
 # Show FoodPayload + PacketLoad
 python3 meals_to_sim.py --meal raw_01_chicken_quinoa_broccoli_bowl --show
 
-# Run Kibo bridge sim on a meal
+# Run bridge sim on a meal
 python3 meals_to_sim.py --meal upf_01_instant_ramen --simulate
 
 # Export all packets / payloads for app fixtures

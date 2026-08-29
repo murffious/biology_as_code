@@ -6,7 +6,7 @@ Based on Technical Effects of Food Additives tables
 (from the Non-nutritive components of food chapter)
 =================================================================
 
-This models the Input Layer of the KIBO machine for substances that
+This models the Input Layer of the host machine for substances that
 enter the digestive system but are not classical essential nutrients.
 """
 

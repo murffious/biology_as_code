@@ -12,7 +12,7 @@ PYTHONPATH=src python3 tests/test_pathway_packs.py
 PYTHONPATH=src python3 scripts/check_pathway_integration.py
 
 echo "== proprietary guard =="
-if git ls-files | grep -E 'product_score/proprietary/engine|kiboScoreModel\.private'; then
+if git ls-files | grep -E 'proprietary/|scoreModel\.private|_product_score_engine'; then
   echo "FAIL: proprietary files tracked"
   exit 1
 fi
@@ -35,7 +35,7 @@ assert __version__ == "0.1.0"
 assert len(list_pathways()) >= 10
 assert list_meal_ids()
 m = load_meal(list_meal_ids()[0])
-assert m and "kibo_score" not in str(m)
+assert m and "flow_score" not in str(m)
 r = simulate_meal(carbs_g=40, protein_g=20, fats_g=12, fiber_g=10)
 assert r.absorbed_macros_g
 print("wheel smoke OK", __version__, "pathways", len(list_pathways()), "meals", len(list_meal_ids()))

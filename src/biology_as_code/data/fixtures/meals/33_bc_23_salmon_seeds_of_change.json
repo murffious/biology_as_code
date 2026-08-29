@@ -24,7 +24,7 @@
       "grams": 150,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_salmon_atlantic_baked",
         "nutrition_source": "usda_fdc"
       },
@@ -254,7 +254,7 @@
       "grams": 120,
       "source": {
         "type": "barcode_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "BARCODE#00748404420221",
         "barcode_gtin14": "00748404420221",
         "serving_size_g": 153,
@@ -561,7 +561,7 @@
       "grams": 90,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_asparagus_steamed",
         "nutrition_source": "usda_fdc"
       },
@@ -882,7 +882,7 @@
       "grams": 15,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_lemon",
         "nutrition_source": "usda_fdc"
       },
@@ -1595,7 +1595,7 @@
       "OpenFoodFacts (fallback macros)",
       "USDA FDC gold (branded/SR Legacy/Foundation)",
       "hydration enrich 2026-07-23 (corpus + OFF + USDA class)",
-      "mealcoach-foods-dev (DynamoDB)"
+      "curated-foods-dev (DynamoDB)"
     ],
     "macros_coverage": "all_ingredients",
     "full_panel_coverage_pct": 100.0,

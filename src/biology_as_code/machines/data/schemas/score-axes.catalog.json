@@ -1,5 +1,5 @@
 {
-  "schema": "kibo.ScoreAxes.catalog/v1",
+  "schema": "bac.ScoreAxes.catalog/v1",
   "honesty": "FLOW",
   "note": "Generalized terms for the four process measurements. Not constitutional LAW ids. Implements product law_calculator axes.",
   "axes": [

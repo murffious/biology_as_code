@@ -1,5 +1,5 @@
 {
-  "schema": "kibo.DataSourceCatalog/v1",
+  "schema": "bac.DataSourceCatalog/v1",
   "version": "1.0.0",
   "title": "Real-world data source catalog for user profile mocks",
   "description": "Maps book Part 0 (IoB telemetry, data-sourcing map, lifestyle modifiers, genetics ROM, deep diagnostics) to categories a user could actually connect. Brands are examples only — perishable. Prefer category + maturity.",
@@ -234,7 +234,7 @@
     {
       "category": "food_log",
       "provider_class": "meal_logging_app",
-      "provider_examples": ["MealCoach", "Cronometer", "MyFitnessPal", "Lose It!", "photo AI log"],
+      "provider_examples": ["tracking app", "Cronometer", "MyFitnessPal", "Lose It!", "photo AI log"],
       "maturity": "EMERGING",
       "telemetry_tier": "declared_input",
       "book_layer": "L2_food",
@@ -274,7 +274,7 @@
     {
       "category": "self_report_lifestyle",
       "provider_class": "onboarding_questionnaire",
-      "provider_examples": ["MealCoach onboarding", "PHQ-style stress item", "social support scale"],
+      "provider_examples": ["App onboarding", "PHQ-style stress item", "social support scale"],
       "maturity": "MANUAL",
       "telemetry_tier": "declared_input",
       "book_layer": "L1_host",

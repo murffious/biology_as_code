@@ -24,7 +24,7 @@
       "grams": 355,
       "source": {
         "type": "barcode_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "BARCODE#00851373005082",
         "barcode_gtin14": "00851373005082",
         "serving_size_g": 507,
@@ -440,7 +440,7 @@
       "grams": 52,
       "source": {
         "type": "barcode_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "BARCODE#00859162007248",
         "barcode_gtin14": "00859162007248",
         "serving_size_g": 52,
@@ -829,7 +829,7 @@
       "grams": 14,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_almonds_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -1109,7 +1109,7 @@
   "nutrition_provenance": {
     "method": "computed_from_per_100g",
     "sources": [
-      "mealcoach-foods-dev (DynamoDB)",
+      "curated-foods-dev (DynamoDB)",
       "USDA FDC gold (branded/SR Legacy/Foundation)",
       "OpenFoodFacts (fallback macros)"
     ],

@@ -1,9 +1,9 @@
 {
-  "schema": "kibo.DigestRun/v1",
+  "schema": "bac.DigestRun/v1",
   "id": "example.salad_with_oil",
   "process_id": "process.full-digest",
   "host": {
-    "schema": "kibo.HostState/v1",
+    "schema": "bac.HostState/v1",
     "ready": 1,
     "lifecycle": "adult",
     "sex": "unspecified",
@@ -13,7 +13,7 @@
     "alcohol_with_meal": 0
   },
   "packet": {
-    "schema": "kibo.PacketLoad/v1",
+    "schema": "bac.PacketLoad/v1",
     "id": "salad_with_oil",
     "name": "Spinach salad with olive oil",
     "intake": { "food": 1, "hydration": 1, "supplement": 0 },
@@ -29,7 +29,7 @@
     }
   },
   "ingestion": {
-    "schema": "kibo.IngestionEvent/v1",
+    "schema": "bac.IngestionEvent/v1",
     "packet_id": "salad_with_oil",
     "meal_duration_minutes": 18,
     "eating_speed": 0.35,

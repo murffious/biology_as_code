@@ -23,7 +23,7 @@ from biology_as_code.machines.loader import get_machine, load_registry, machine_
 _ENVELOPE = ("kind", "id", "version", "revision", "title", "status", "startAt", "states")
 # Anything score-shaped must never appear in an open machine.
 _FORBIDDEN_KEYS = ("penalties", "penalty", "deduct", "score", "weight")
-_FORBIDDEN_SUBSTR = ("biosolvency", "kibo_vars", "product_score", "score_axes")
+_FORBIDDEN_SUBSTR = ("biosolvency", "vendor_vars", "product_score", "score_axes")
 
 
 def content_hash(machine: dict[str, Any]) -> str:

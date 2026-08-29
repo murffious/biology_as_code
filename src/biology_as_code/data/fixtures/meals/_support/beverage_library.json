@@ -1,5 +1,5 @@
 {
-  "schema": "kibo.BeverageLibrary/v1",
+  "schema": "bac.BeverageLibrary/v1",
   "version": "1.0.0",
   "as_of": "2026-07-23",
   "honesty": "OPEN",
@@ -24,7 +24,7 @@
         "grams": 360,
         "source": {
           "type": "fdc_food",
-          "table": "mealcoach-foods-dev",
+          "table": "curated-foods-dev",
           "pk": "FOOD#174158",
           "nutrition_source": "usda_fdc_sr_legacy",
           "fdcId": 174158
@@ -139,7 +139,7 @@
         "grams": 240,
         "source": {
           "type": "fdc_food",
-          "table": "mealcoach-foods-dev",
+          "table": "curated-foods-dev",
           "pk": "FOOD#171890",
           "nutrition_source": "usda_fdc_sr_legacy",
           "fdcId": 171890
@@ -254,7 +254,7 @@
         "grams": 240,
         "source": {
           "type": "fdc_food",
-          "table": "mealcoach-foods-dev",
+          "table": "curated-foods-dev",
           "pk": "FOOD#171265",
           "nutrition_source": "usda_fdc_sr_legacy",
           "fdcId": 171265
@@ -369,7 +369,7 @@
         "grams": 240,
         "source": {
           "type": "curated_food",
-          "table": "mealcoach-foods-dev",
+          "table": "curated-foods-dev",
           "pk": "FOOD#food_almond_milk_unsweet",
           "nutrition_source": "usda_fdc"
         },
@@ -476,7 +476,7 @@
         "grams": 360,
         "source": {
           "type": "curated_food",
-          "table": "mealcoach-foods-dev",
+          "table": "curated-foods-dev",
           "pk": "FOOD#mcai-lemon-water",
           "nutrition_source": "usda_fdc"
         },
@@ -581,7 +581,7 @@
         "grams": 355,
         "source": {
           "type": "barcode_food",
-          "table": "mealcoach-foods-dev",
+          "table": "curated-foods-dev",
           "pk": "BARCODE#00851373005082",
           "barcode_gtin14": "00851373005082",
           "serving_size_g": 507,
@@ -701,7 +701,7 @@
         "grams": 355,
         "source": {
           "type": "barcode_food",
-          "table": "mealcoach-foods-dev",
+          "table": "curated-foods-dev",
           "pk": "BARCODE#00074390000308",
           "barcode_gtin14": "00074390000308",
           "serving_size_g": 355,
@@ -852,7 +852,7 @@
         "grams": 355,
         "source": {
           "type": "barcode_food",
-          "table": "mealcoach-foods-dev",
+          "table": "curated-foods-dev",
           "pk": "BARCODE#00000004978903",
           "barcode_gtin14": "00000004978903",
           "serving_size_g": 360,

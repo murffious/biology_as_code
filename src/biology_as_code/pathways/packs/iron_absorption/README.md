@@ -7,4 +7,4 @@ Iron absorption teaching path with parallel non-haem and haem branches. Non-haem
 - **Tests:** `tests.md` + `tests/test_pathway_packs.py`
 - **Gold template:** `packs/glycolysis/glycolysis_extra/`
 
-Tier: FLOW teaching. Not product meal score / Kibo-vars product scorer.
+Tier: FLOW teaching. Not an external product score.

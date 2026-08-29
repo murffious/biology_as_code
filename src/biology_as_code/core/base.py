@@ -67,7 +67,7 @@ class GraphPathwayLike(Protocol):
 @runtime_checkable
 class MealSimulatorLike(Protocol):
     """
-    Meal compile surface — KIBOEngine / UnifiedKIBOFacade style.
+    Meal compile surface — MealEngine / UnifiedFacade style.
 
     Not a continuous-time ODE runner.
     """

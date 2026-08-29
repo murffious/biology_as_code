@@ -1,21 +1,21 @@
 {
-  "schema": "kibo.ContrastRun/v1",
+  "schema": "bac.ContrastRun/v1",
   "honesty": "OPEN",
   "ssot": {
-    "personas": "/Users/morf/Downloads/morf-engineering/mealcoachai/dev/NUTRI-COLLECTIVE_0/nutri-collective/machines/schemas/fixtures/user-personas.json",
-    "meals": "/Users/morf/Downloads/morf-engineering/mealcoachai/dev/NUTRI-COLLECTIVE_0/nutri-collective/machines/schemas/fixtures/meals"
+    "personas": "<private-workspace>/nutri-collective/machines/schemas/fixtures/user-personas.json",
+    "meals": "<private-workspace>/nutri-collective/machines/schemas/fixtures/meals"
   },
   "user": {
     "slug": "alex",
     "display_name": "Alex Rivera",
     "goal": "weight_loss",
-    "app_kibo_score": 72
+    "app_vendor_score": 72
   },
   "run_a": {
     "meal_id": "raw_01_chicken_quinoa_broccoli_bowl",
     "meal_name": "Grilled Chicken, Quinoa & Broccoli Bowl",
     "meal_file": "01_raw_01_chicken_quinoa_broccoli_bowl.json",
-    "source_dir": "/Users/morf/Downloads/morf-engineering/mealcoachai/dev/NUTRI-COLLECTIVE_0/nutri-collective/machines/schemas/fixtures/meals",
+    "source_dir": "<private-workspace>/nutri-collective/machines/schemas/fixtures/meals",
     "plate": {
       "calories": 641.81,
       "protein_g": 52.27,
@@ -86,7 +86,7 @@
         "iron: anti-nutrient proxy narrowed absorption"
       ],
       "core_sim": {
-        "kibo_score": 75.0,
+        "flow_score": 75.0,
         "atp_units": 812.6,
         "absorbed_protein": 48.09,
         "absorbed_carb": 52.94,
@@ -171,7 +171,7 @@
         "answer": "Teaching ATP units \u2248 812.6; energy_charge \u2248 0.955; absorbed macros P/C/F \u2248 48.1/52.9/21.0 g (from plate macros with soft absorption fractions). The engine explicitly refuses locked \u20183.5 ATP factor as law\u2019 \u2014 magnitudes stay OPEN.",
         "verdict": "context",
         "science": [
-          "Energy FLOW in kibo_core compartmental sim (open tier)",
+          "Energy FLOW in engine compartmental sim (open tier)",
           "Refuse list includes locked ATP conversion factors as constitutional honesty",
           "Not BMR/TDEE validation; not wearable energy expenditure"
         ],
@@ -247,19 +247,19 @@
         "id": "q_goal_alignment",
         "claim_frame": "Meals should be judged against operator goals (soft)",
         "question": "Given goal=weight_loss, is this plate directionally aligned in the teaching frame?",
-        "answer": "User goal=weight_loss, energy_bias=deficit, plate\u2248642 kcal, protein\u224852 g, quality=0.82. For weight_loss, high protein + reasonable quality is a common teaching pattern; the bridge does not prescribe a calorie budget or guarantee fat loss. Persona app_kibo_score=72 is fixture telemetry, not this meal\u2019s engine score (75.0).",
+        "answer": "User goal=weight_loss, energy_bias=deficit, plate\u2248642 kcal, protein\u224852 g, quality=0.82. For weight_loss, high protein + reasonable quality is a common teaching pattern; the bridge does not prescribe a calorie budget or guarantee fat loss. Persona app_vendor_score=72 is fixture telemetry, not this meal\u2019s engine score (75.0).",
         "verdict": "partial",
         "science": [
           "UserGoals schema \u2014 operator intent, not diagnosis",
-          "Engine meal kibo_score \u2260 persona app.kibo_score (different layers)"
+          "Engine meal flow_score \u2260 persona app.flow_score (different layers)"
         ],
         "evidence": {
           "goal": "weight_loss",
           "energy_bias": "deficit",
           "plate_kcal": 641.81,
           "protein_g": 52.27,
-          "app_kibo_score": 72,
-          "meal_engine_kibo_score": 75.0,
+          "app_vendor_score": 72,
+          "meal_engine_flow_score": 75.0,
           "insulin_resistance_flag": 0.45
         },
         "honesty": "OPEN"
@@ -399,7 +399,7 @@
     "meal_id": "upf_01_instant_ramen",
     "meal_name": "Instant Ramen Lunch",
     "meal_file": "58_upf_01_instant_ramen.json",
-    "source_dir": "/Users/morf/Downloads/morf-engineering/mealcoachai/dev/NUTRI-COLLECTIVE_0/nutri-collective/machines/schemas/fixtures/meals",
+    "source_dir": "<private-workspace>/nutri-collective/machines/schemas/fixtures/meals",
     "plate": {
       "calories": 375.7,
       "protein_g": 9.89,
@@ -470,7 +470,7 @@
         "iron: anti-nutrient proxy narrowed absorption"
       ],
       "core_sim": {
-        "kibo_score": 70.0,
+        "flow_score": 70.0,
         "atp_units": 702.8,
         "absorbed_protein": 9.1,
         "absorbed_carb": 46.26,
@@ -554,7 +554,7 @@
         "answer": "Teaching ATP units \u2248 702.8; energy_charge \u2248 0.930; absorbed macros P/C/F \u2248 9.1/46.3/13.2 g (from plate macros with soft absorption fractions). The engine explicitly refuses locked \u20183.5 ATP factor as law\u2019 \u2014 magnitudes stay OPEN.",
         "verdict": "context",
         "science": [
-          "Energy FLOW in kibo_core compartmental sim (open tier)",
+          "Energy FLOW in engine compartmental sim (open tier)",
           "Refuse list includes locked ATP conversion factors as constitutional honesty",
           "Not BMR/TDEE validation; not wearable energy expenditure"
         ],
@@ -630,19 +630,19 @@
         "id": "q_goal_alignment",
         "claim_frame": "Meals should be judged against operator goals (soft)",
         "question": "Given goal=weight_loss, is this plate directionally aligned in the teaching frame?",
-        "answer": "User goal=weight_loss, energy_bias=deficit, plate\u2248376 kcal, protein\u224810 g, quality=0.20. For weight_loss, high protein + reasonable quality is a common teaching pattern; the bridge does not prescribe a calorie budget or guarantee fat loss. Persona app_kibo_score=72 is fixture telemetry, not this meal\u2019s engine score (70.0).",
+        "answer": "User goal=weight_loss, energy_bias=deficit, plate\u2248376 kcal, protein\u224810 g, quality=0.20. For weight_loss, high protein + reasonable quality is a common teaching pattern; the bridge does not prescribe a calorie budget or guarantee fat loss. Persona app_vendor_score=72 is fixture telemetry, not this meal\u2019s engine score (70.0).",
         "verdict": "partial",
         "science": [
           "UserGoals schema \u2014 operator intent, not diagnosis",
-          "Engine meal kibo_score \u2260 persona app.kibo_score (different layers)"
+          "Engine meal flow_score \u2260 persona app.flow_score (different layers)"
         ],
         "evidence": {
           "goal": "weight_loss",
           "energy_bias": "deficit",
           "plate_kcal": 375.7,
           "protein_g": 9.89,
-          "app_kibo_score": 72,
-          "meal_engine_kibo_score": 70.0,
+          "app_vendor_score": 72,
+          "meal_engine_flow_score": 70.0,
           "insulin_resistance_flag": 0.45
         },
         "honesty": "OPEN"
@@ -817,7 +817,7 @@
         "note": "lower often less UPF"
       },
       {
-        "metric": "kibo_score",
+        "metric": "flow_score",
         "meal_a": 75.0,
         "meal_b": 70.0,
         "delta_a_minus_b": 5.0,

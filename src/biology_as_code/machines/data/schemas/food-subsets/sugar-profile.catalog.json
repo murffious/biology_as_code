@@ -1,5 +1,5 @@
 {
-  "schema": "kibo.SugarProfile.catalog/v1",
+  "schema": "bac.SugarProfile.catalog/v1",
   "version": "1.0.0",
   "honesty": "OPEN",
   "title": "Sugar / sweetener type taxonomy",

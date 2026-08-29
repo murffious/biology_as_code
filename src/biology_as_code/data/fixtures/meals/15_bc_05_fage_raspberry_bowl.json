@@ -24,7 +24,7 @@
       "grams": 170,
       "source": {
         "type": "barcode_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "BARCODE#00689544083078",
         "barcode_gtin14": "00689544083078",
         "serving_size_g": 227,
@@ -429,7 +429,7 @@
       "grams": 92,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_raspberries_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -768,7 +768,7 @@
       "grams": 14,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_walnuts_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -1044,7 +1044,7 @@
       "grams": 1.3,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_cinnamon_ground",
         "nutrition_source": "usda_fdc"
       },
@@ -1401,7 +1401,7 @@
       "grams": 240,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_almond_milk_unsweet",
         "nutrition_source": "usda_fdc"
       },
@@ -1838,7 +1838,7 @@
       "OpenFoodFacts (fallback macros)",
       "USDA FDC gold (branded/SR Legacy/Foundation)",
       "hydration enrich 2026-07-23 (corpus + OFF + USDA class)",
-      "mealcoach-foods-dev (DynamoDB)"
+      "curated-foods-dev (DynamoDB)"
     ],
     "macros_coverage": "all_ingredients",
     "full_panel_coverage_pct": 100.0,

@@ -87,7 +87,7 @@ These are the brand, enforced by tests — a PR that breaks one turns CI red:
 
 ### The product boundary
 
-The open package is the teaching/auditing engine. The patent-pending **Kibo meal
+The open package is the teaching/auditing engine. The patent-pending **product meal
 score and its variables are not part of this repo** — they live behind the gated
-`product_score/` hook. Do not add scoring weights, Kibo-variable formulas, or a
+`scoring/` hook. Do not add scoring weights, vendor-variable formulas, or a
 meal-score implementation here; contributions that do will be declined.

@@ -23,7 +23,7 @@
       "grams": 110,
       "source": {
         "type": "barcode_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "BARCODE#00859977005026",
         "barcode_gtin14": "00859977005026",
         "serving_size_g": 150,
@@ -342,7 +342,7 @@
       "grams": 57,
       "source": {
         "type": "barcode_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "BARCODE#00000000218009",
         "barcode_gtin14": "00000000218009",
         "serving_size_g": 57,
@@ -536,7 +536,7 @@
       "grams": 50,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_cucumber_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -884,7 +884,7 @@
       "grams": 45,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_tomato_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -1212,7 +1212,7 @@
   "nutrition_provenance": {
     "method": "computed_from_per_100g",
     "sources": [
-      "mealcoach-foods-dev (DynamoDB)",
+      "curated-foods-dev (DynamoDB)",
       "USDA FDC gold (branded/SR Legacy/Foundation)",
       "OpenFoodFacts (fallback macros)"
     ],

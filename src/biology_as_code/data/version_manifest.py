@@ -53,8 +53,8 @@ def report_version_block() -> dict[str, Any]:
     return {
         "package_version": m.get("package_version"),
         "released": m.get("released"),
+        "meal_engine_component": (m.get("components") or {}).get("meal_engine", {}).get("version"),
         "engine_component": (m.get("components") or {}).get("engine", {}).get("version"),
-        "kibo_core_component": (m.get("components") or {}).get("kibo_core", {}).get("version"),
         "colon_fermentation_unit": (m.get("data_artifacts") or {})
         .get("base_unit_colon_fermentation", {})
         .get("version"),

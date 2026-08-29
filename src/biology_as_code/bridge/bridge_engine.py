@@ -1,17 +1,17 @@
 """
 bridge_engine.py
 ================
-Product-facing KIBO simulator **bridged to kibo_core**.
+Product-facing simulator **bridged to engine**.
 
 - FoodPayload / lifecycle / lifestyle (product API)
 - Digestive narrative segments (mouth→rectum) with **LAW-###** ids
 - **L-FAT-1** micelle gate (no fat → no ADEK bump)
-- kibo_core.sim compartmental FLOW (open tier)
+- engine.sim compartmental FLOW (open tier)
 - Iron walk (LAW-004 family) when C / tannin / phytate context present
 - vitamins.json load + topics registry
 - Cascades soft priors (not diagnoses)
 
-Honesty: claim_tier open unless kibo_core marks otherwise. Not clinical advice.
+Honesty: claim_tier open unless engine marks otherwise. Not clinical advice.
 """
 
 from __future__ import annotations
@@ -22,7 +22,7 @@ from enum import StrEnum
 from pathlib import Path
 from typing import Any
 
-from biology_as_code.data.kibo_core import (
+from biology_as_code.engine import (
     KINGDOMS,
     NONHAEM_IRON_PATHWAY,
     SEVEN_SYSTEMS,
@@ -31,11 +31,11 @@ from biology_as_code.data.kibo_core import (
     load_topics,
     walk_pathway,
 )
-from biology_as_code.data.kibo_core import (
+from biology_as_code.engine import (
     MetabolicState as CoreState,
 )
-from biology_as_code.data.kibo_core.pathways import propagate_cascades
-from biology_as_code.data.kibo_core.topics import build_sim_context_template
+from biology_as_code.engine.pathways import propagate_cascades
+from biology_as_code.engine.topics import build_sim_context_template
 
 PKG = Path(__file__).resolve().parent
 # Teaching vitamin registry (fixture data — not product score IP)
@@ -239,12 +239,12 @@ def _map_systems_from_affected(names: list[str]) -> list[str]:
     return out or ["Assimilation"]
 
 
-class BridgedKIBOEngine:
+class BridgedMealEngine:
     """
-    Product API over kibo_core.
+    Product API over engine.
 
     Uses:
-      - kibo_core.sim for compartmental FLOW
+      - engine.sim for compartmental FLOW
       - iron pathway walk when micronutrient context present
       - law registry + topics for vocabulary
       - vitamins.json for deficiency reporting
@@ -408,14 +408,14 @@ class BridgedKIBOEngine:
         self, payload: FoodPayload, verbose: bool = True
     ) -> dict[str, Any]:
         if verbose:
-            print(f"\n=== Bridged KIBO: {payload.name} ===")
+            print(f"\n=== Bridged run: {payload.name} ===")
             print(
                 f"  density={payload.nutrient_density_score:.2f} "
                 f"quality={payload.quality_score:.2f} fiber={payload.fiber_g}g"
             )
 
         core_in = self._payload_to_core(payload)
-        # run kibo_core compartmental sim
+        # run engine compartmental sim
         core_out = self.core_sim.run(core_in)
         self.last_core_state = core_out
 
@@ -442,7 +442,7 @@ class BridgedKIBOEngine:
 
         # energy charge from core (soft)
         self.energy_charge = min(
-            1.0, 0.5 + core_out.kibo_score / 200.0 + self.microbiome.diversity_score * 0.1
+            1.0, 0.5 + core_out.flow_score / 200.0 + self.microbiome.diversity_score * 0.1
         )
 
         # topic context template (available for extension)
@@ -569,7 +569,7 @@ class BridgedKIBOEngine:
         L = self.law_registry.get(law_id)
         return {
             "id": L.id,
-            "system": L.kibo_system,
+            "system": L.system_name,
             "organ": L.organ,
             "statement": L.law_statement,
             "gate": L.gate_text,
@@ -579,11 +579,11 @@ class BridgedKIBOEngine:
 
 
 # Back-compat alias
-KIBOEngine = BridgedKIBOEngine
+MealEngine = BridgedMealEngine
 
 
 def demo() -> None:
-    engine = BridgedKIBOEngine()
+    engine = BridgedMealEngine()
     engine.apply_profile(
         LifecycleStage.ATHLETE,
         LifestyleFactors(activity_level=1.7, stress_level=0.4),

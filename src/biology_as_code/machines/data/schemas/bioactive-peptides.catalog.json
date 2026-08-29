@@ -1,5 +1,5 @@
 {
-  "schema": "kibo.BioactivePeptideCatalog/v1",
+  "schema": "bac.BioactivePeptideCatalog/v1",
   "version": "1.0.0",
   "honesty": "OPEN",
   "note": "Peptide / collagen / bacteriocin home. Provenance tiers fix mis-filing under collagen bioactive or postbiotic. Wired into food_health_claims_500 bioactive_taxonomy (peptide_provenance_v1).",

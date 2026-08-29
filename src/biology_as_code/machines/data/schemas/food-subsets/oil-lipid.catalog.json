@@ -1,5 +1,5 @@
 {
-  "schema": "kibo.OilLipid.catalog/v1",
+  "schema": "bac.OilLipid.catalog/v1",
   "version": "1.0.0",
   "honesty": "OPEN",
   "title": "Oil / fat type taxonomy",

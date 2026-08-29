@@ -1,7 +1,7 @@
 {
   "schema": "biology_as_code.fixtures.meals/v1",
   "count": 67,
-  "note": "SSOT meal fixtures for dig (pip package). Do not duplicate under examples/meals/. Bulk OFF/export snapshots excluded. No product kibo_score.",
+  "note": "SSOT meal fixtures for dig (pip package). Do not duplicate under examples/meals/. Bulk OFF/export snapshots excluded. No product flow_score.",
   "files": [
     "01_raw_01_chicken_quinoa_broccoli_bowl.json",
     "02_raw_02_salmon_sweet_potato_asparagus.json",

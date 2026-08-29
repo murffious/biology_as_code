@@ -50,7 +50,7 @@ _Teaching answers from this run only. Not medical advice._
 **Answer:** Teaching ATP units ≈ 812.6; energy_charge ≈ 0.955; absorbed macros P/C/F ≈ 48.1/52.9/21.0 g (from plate macros with soft absorption fractions). The engine explicitly refuses locked ‘3.5 ATP factor as law’ — magnitudes stay OPEN.
 
 **Science / law hooks:**
-- Energy FLOW in kibo_core compartmental sim (open tier)
+- Energy FLOW in engine compartmental sim (open tier)
 - Refuse list includes locked ATP conversion factors as constitutional honesty
 - Not BMR/TDEE validation; not wearable energy expenditure
 
@@ -97,11 +97,11 @@ _Teaching answers from this run only. Not medical advice._
 
 **Verdict:** `partial` · honesty `OPEN`
 
-**Answer:** User goal=weight_loss, energy_bias=deficit, plate≈642 kcal, protein≈52 g, quality=0.82. For weight_loss, high protein + reasonable quality is a common teaching pattern; the bridge does not prescribe a calorie budget or guarantee fat loss. Persona app_kibo_score=72 is fixture telemetry, not this meal’s engine score (75.0).
+**Answer:** User goal=weight_loss, energy_bias=deficit, plate≈642 kcal, protein≈52 g, quality=0.82. For weight_loss, high protein + reasonable quality is a common teaching pattern; the bridge does not prescribe a calorie budget or guarantee fat loss. Persona app_vendor_score=72 is fixture telemetry, not this meal’s engine score (75.0).
 
 **Science / law hooks:**
 - UserGoals schema — operator intent, not diagnosis
-- Engine meal kibo_score ≠ persona app.kibo_score (different layers)
+- Engine meal flow_score ≠ persona app.flow_score (different layers)
 
 ### 9. Can we claim this meal is ‘low glycemic’ from this run?
 
@@ -143,7 +143,7 @@ _Teaching answers from this run only. Not medical advice._
 - Distinct from endogenous L-cell GLP-1 after nutrients (digestion map)
 - medications.catalog.json class glp1_ra
 
-### 12. Can food quality or a Kibo score replace / stop a GLP-1 RA prescription?
+### 12. Can food quality or a product score replace / stop a GLP-1 RA prescription?
 
 **Claim frame:** This meal score means you can stop GLP-1 medication
 

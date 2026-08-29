@@ -41,4 +41,4 @@ ls src/biology_as_code/data/fixtures/meals/
 | `src/.../fixtures/meals/` | Full **meal** fixtures for dig (macros, ingredients, nutrition) |
 | `examples/claims/` | Claim audit fixtures |
 
-No product meal score / `kibo_score` in public meal fixtures.
+No product meal score / `flow_score` in public meal fixtures.

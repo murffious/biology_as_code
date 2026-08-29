@@ -8,7 +8,7 @@
 
 ## Status: fixes applied & verified (2026-07-23)
 
-**The blocker, all three HIGH items, every MEDIUM, and the low/defensive items below are now fixed and re-verified.** After the changes: `import biology_as_code` + `simulate_meal` work on Python **3.11 / 3.12 / 3.13** (3.10 was **dropped** — it's EOL Oct 2026 — so `requires-python` is now `>=3.11` and pip refuses to install on 3.10); the dig stomach-pH bug and the organ-capacity drift are gone (verified by re-running the exact repros); the wheel no longer ships the dead duplicate or the broken test; ruff is clean; `twine check` passes; 15/15 public tests pass and the kibo_core `gleaned/` tests now **skip** instead of failing. Consciously deferred (with rationale) at the end: M4, L3, L4, L5. See the checklist for the per-item state.
+**The blocker, all three HIGH items, every MEDIUM, and the low/defensive items below are now fixed and re-verified.** After the changes: `import biology_as_code` + `simulate_meal` work on Python **3.11 / 3.12 / 3.13** (3.10 was **dropped** — it's EOL Oct 2026 — so `requires-python` is now `>=3.11` and pip refuses to install on 3.10); the dig stomach-pH bug and the organ-capacity drift are gone (verified by re-running the exact repros); the wheel no longer ships the dead duplicate or the broken test; ruff is clean; `twine check` passes; 15/15 public tests pass and the engine `gleaned/` tests now **skip** instead of failing. Consciously deferred (with rationale) at the end: M4, L3, L4, L5. See the checklist for the per-item state.
 
 ---
 
@@ -30,14 +30,14 @@
 
 ## IP / Proprietary boundary — PASS (this is the thing you asked me to double-check)
 
-The patent-pending **product MEAL score** / **Kibo-vars product scorer** is correctly kept out, gitignored, and optional. Every check passed:
+The patent-pending **product MEAL score** / **vendor-variable product scorer** is correctly kept out, gitignored, and optional. Every check passed:
 
-- **Nothing private on disk or staged.** The only files under `product_score/proprietary/` are the stubs `__init__.py`, `README.md`, `.gitignore`. No `engine.py` / private scorer exists in the tree.
-- **The ignore actually resolves.** `git check-ignore` confirms a dropped `product_score/proprietary/engine.py` (and `engine.secret.py`) **is** ignored — the `*` rule in `proprietary/.gitignore` catches it, with explicit un-ignores only for the three stubs.
+- **Nothing private on disk or staged.** The only files under `scoring/plugin/` are the stubs `__init__.py`, `README.md`, `.gitignore`. No `engine.py` / private scorer exists in the tree.
+- **The ignore actually resolves.** `git check-ignore` confirms a dropped `scoring/plugin/engine.py` (and `engine.secret.py`) **is** ignored — the `*` rule in `proprietary/.gitignore` catches it, with explicit un-ignores only for the three stubs.
 - **The built wheel carries no algorithm.** `dist/…​.whl` ships only `product_score/{interface,loader,__init__}.py` + `proprietary/{__init__,README}` — a Protocol and an "unavailable" stub. No weights, tier cutoffs, or composite formula anywhere in the wheel.
-- **No score fields in data.** 0 occurrences of `kibo_score`, `meal_score`, `product_score`, `kibo_vars` (etc.) across all **206** committed JSON files. `data/fixtures/user_personas.py` recursively `_scrub`s ten proprietary keys through every public accessor.
-- **Off by default, and fail-closed at runtime.** `KIBOEngine.enable_product_score = False` by default; and even forcing `run_product_score_analysis(enabled=True)` returns `available: False` with no plugin installed — I confirmed this in a clean install. The test suite pins this (`test_product_score_hook_unavailable`, and `"kibo_score" not in blob`).
-- **Belt-and-suspenders.** `scripts/release_check.sh` fails the build if any `product_score/proprietary/engine*` is ever tracked.
+- **No score fields in data.** 0 occurrences of `flow_score`, `meal_score`, `product_score`, `vendor_vars` (etc.) across all **206** committed JSON files. `data/fixtures/user_personas.py` recursively `_scrub`s ten proprietary keys through every public accessor.
+- **Off by default, and fail-closed at runtime.** `MealEngine.enable_external_score = False` by default; and even forcing `run_external_score_analysis(enabled=True)` returns `available: False` with no plugin installed — I confirmed this in a clean install. The test suite pins this (`test_external_scorer_hook_unavailable`, and `"flow_score" not in blob`).
+- **Belt-and-suspenders.** `scripts/release_check.sh` fails the build if any `scoring/plugin/engine*` is ever tracked.
 
 **One defensive gap (not a leak):** `user_personas.load_inventory()` returns raw JSON **without** `_scrub`, and `list_personas()` merges it in. No inventory file ships today, so nothing leaks — but if a `user-persona-data-inventory.json` with proprietary keys is ever dropped beside the seed, it would bypass the scrubber. Route `load_inventory` through `_scrub` too.
 
@@ -47,8 +47,8 @@ The patent-pending **product MEAL score** / **Kibo-vars product scorer** is corr
 
 ### B1. Package can't be imported on Python 3.10 (`StrEnum`)
 `from enum import StrEnum` is used in four modules, and `StrEnum` only exists in **Python 3.11+**:
-- `simulation/kibo_engine.py:27` ← on the top-level import path, so **`import biology_as_code` itself fails**
-- `bridge/bridge_engine.py:22`, `models/kibo_nutrition_ontology.py:13`, `simulation/organ_pathway_network.py:9`
+- `simulation/meal_engine.py:27` ← on the top-level import path, so **`import biology_as_code` itself fails**
+- `bridge/bridge_engine.py:22`, `models/nutrition_ontology.py:13`, `simulation/organ_pathway_network.py:9`
 
 But `pyproject.toml` declares `requires-python = ">=3.10"`, ships a `Programming Language :: Python :: 3.10` classifier, and the CI matrix lists `"3.10"`. **Reproduced** in a clean 3.10 venv:
 
@@ -88,11 +88,11 @@ gut capacity across 3 identical simulate_meal() calls: [0.947, 0.896, 0.849]   #
 In a server or batch job this drifts indefinitely. **Fix:** deep-copy (or rebuild) the `OrganLaw` objects per `OrganPathwayNetwork` instance. (`life_stage_dri.py:286`'s shared `LIFE_STAGE_REGISTRY` is the same pattern, currently read-only — harden it the same way.)
 
 ### H3. A broken test ships inside the wheel, keyed to your laptop's path
-`data/kibo_core/tests/test_kibo_core.py` is present in the built wheel (`unzip -l` shows it; it's importable from `site-packages` after install). It asserts on `PRINT_DIR = …/src/biology_as_code/gleaned/registers/reformulations/print` (`:207`, `:362`) — a `gleaned/` tree that isn't in the package at all — so it **fails everywhere**. CI never catches it because CI only runs three named test files. **Fix:** exclude tests from packaging and stop shipping dev-only paths:
+`engine/tests/test_engine.py` is present in the built wheel (`unzip -l` shows it; it's importable from `site-packages` after install). It asserts on `PRINT_DIR = …/src/biology_as_code/gleaned/registers/reformulations/print` (`:207`, `:362`) — a `gleaned/` tree that isn't in the package at all — so it **fails everywhere**. CI never catches it because CI only runs three named test files. **Fix:** exclude tests from packaging and stop shipping dev-only paths:
 ```toml
 [tool.setuptools.packages.find]
 where = ["src"]
-exclude = ["*.tests", "*.tests.*", "*.kibo_core.tests*"]
+exclude = ["*.tests", "*.tests.*", "*.engine.tests*"]
 ```
 (Also relocate or delete the stale build scripts noted in M4.)
 
@@ -103,10 +103,10 @@ exclude = ["*.tests", "*.tests.*", "*.kibo_core.tests*"]
 - **M1. No input validation on the public API.** `simulate_meal(carbs_g=-10, …)` returns `residual_macros_g={'carbs':-10,…}` — negative "grams" flow through the whole report (glycemic load, etc.). Clamp negatives/NaN to 0 (or raise `ValueError`) in `runner.simulate_meal` / `FoodPayload`.
 - **M2. Dead duplicate module ships: `pathways/metabolic_pathway2.py`.** Byte-identical to `metabolic_pathways.py` except it's the *older* copy missing the `mechanism_id` edge links; imported by nothing, but a user importing it silently gets the inferior model. **Delete it.**
 - **M3. `bridge/bridge_engine.py:26-31` inserts the package's own dirs onto `sys.path`.** This makes generic internal names (`core`, `utils`, `models`, `data`, `dig`, …) importable as *top-level* modules that can shadow other packages in the same env. It's also unnecessary — the following imports are fully-qualified. Delete lines 26-31 and the `E402` per-file ignore with them.
-- **M4. Stale build scripts ship and can clobber package data.** `data/kibo_core/topics/build_from_list.py` / `_classify_topics_impl.py` are dev tools whose `main()` reads an absent sibling file and would `write_text` over the installed 624 KB `topics_ontology.json`. Exclude/relocate them (they also carry the `F401,F841` ruff waivers).
+- **M4. Stale build scripts ship and can clobber package data.** `engine/topics/build_from_list.py` / `_classify_topics_impl.py` are dev tools whose `main()` reads an absent sibling file and would `write_text` over the installed 624 KB `topics_ontology.json`. Exclude/relocate them (they also carry the `F401,F841` ruff waivers).
 - **M5. `get_pathway(None)` raises `AttributeError`** (`pathways/registry.py:59`, `name.strip()`), where every other bad input returns `None`. Add `if not name: return None`.
 - **M6. `DigestiveFlowSimulator` dereferences optional `metabolic_state` attributes unguarded** (`digestion_flow_simulator.py:189-253`: `.vitamin_pool`, `.energy_charge`, `.hormonal_profile`). A state object missing one aborts transit mid-run with `AttributeError`. `hasattr`-guard like the vitamin path already does.
-- **M7. Silent `except Exception: pass`** at `kibo_engine.py:800` (`_apply_regulation_to_pathway_net`) discards all errors, so a future API change silently turns regulation into a no-op. Log it (the siblings at `:327`/`:718` at least record into the report).
+- **M7. Silent `except Exception: pass`** at `meal_engine.py:800` (`_apply_regulation_to_pathway_net`) discards all errors, so a future API change silently turns regulation into a no-op. Log it (the siblings at `:327`/`:718` at least record into the report).
 
 ---
 
@@ -117,9 +117,9 @@ exclude = ["*.tests", "*.tests.*", "*.kibo_core.tests*"]
 - **L3.** `digestive_definition_layer.py:713-1138` — ~420 lines of bare `Structure(...)` expressions + an unused `EXTRA_MOLECULAR` list that construct-and-discard duplicates on every import. Prune.
 - **L4.** `digestive_mechanism_layer.py` redefines `get_digestive_mechanism_registry` three times via `_prev_get` closures — works but order-fragile. Collapse into one builder.
 - **L5.** `metabolic_state.apply_vitamin_modifiers` never recomputes `coenzyme_factor`, so meal vitamin adequacy multiplies `energy_charge` by 1.0 — an effective no-op.
-- **L6.** `product_score/loader.run_product_score_analysis` defaults `enabled=True` (fail-open). Not a leak (callers pass the flag; no plugin ships), but flipping the default to `False` matches the fail-closed ethos.
+- **L6.** `scoring/loader.run_external_score_analysis` defaults `enabled=True` (fail-open). Not a leak (callers pass the flag; no plugin ships), but flipping the default to `False` matches the fail-closed ethos.
 - **L7.** `bridge_engine.py:399-403` self-cancelling iron-bump math (`bump *= factor/max(factor,1.0)`), and `:449-452` a dead `… and False: pass` branch — almost certainly not intended.
-- **L8.** `models/kibo_nutrition_ontology.py` runs `load_master()` at import over shared mutable class dicts and hands back live lists (no copy); it's off the top-level import path, so low impact.
+- **L8.** `models/nutrition_ontology.py` runs `load_master()` at import over shared mutable class dicts and hands back live lists (no copy); it's off the top-level import path, so low impact.
 - **L9.** `pathways/registry.py` rebuilds every pathway graph on each `get_pathway`/`list_pathways` call — add `functools.lru_cache`.
 - **L10.** `protein_quality.ProteinSource.limiting_amino_acid` treats a missing AA as score 0 (reports it as "limiting"); latent since bundled proteins are complete.
 - **L11.** Doc nits: `product_score/__init__.py` docstring references a non-existent `book/IP_BOUNDARY.md`; `user_personas.py:5` cites the wrong fixtures path; README says configure Pages as "Deploy from branch `/docs`" while `pages.yml` uses the GitHub-Actions Pages source — pick one so the site doesn't double-deploy.
@@ -130,7 +130,7 @@ exclude = ["*.tests", "*.tests.*", "*.kibo_core.tests*"]
 
 - **Clean, quiet, fast public surface** — `import biology_as_code` ≈ 80 ms with no stderr noise; the 624 KB `topics_ontology.json` is lazy-loaded, not eager. 19 curated `__all__` symbols; `get_pathway("missing")` returns `None`.
 - **Publish safety** — OIDC Trusted Publisher, intent-gated (`confirm=PUBLISH` / `v*` release tag), least-privilege perms, TestPyPI dry-run path, wheel size guard (2.5 MiB), import smoke test. `PUBLISHING.md` is thorough and accurate.
-- **Install-safe data loading** — kibo_core anchors every read to `Path(__file__).parent`; no CWD/absolute-path reliance in runtime code; no mutable default args; no bare `except:` in the reviewed runtime paths.
+- **Install-safe data loading** — engine anchors every read to `Path(__file__).parent`; no CWD/absolute-path reliance in runtime code; no mutable default args; no bare `except:` in the reviewed runtime paths.
 - **Honest licensing** — MIT for code, attribution license for samples, all-rights-reserved for the book, patent-pending scoring explicitly excluded; consistent across `LICENSE`, `LICENSE-SAMPLES.md`, `pyproject.toml`, and `PROPRIETARY_IP.md`. `twine check` passes both artifacts; all 206 JSON parse; both schemas are valid draft 2020-12.
 
 ---
@@ -146,10 +146,10 @@ exclude = ["*.tests", "*.tests.*", "*.kibo_core.tests*"]
 - [x] **M3** — Removed the `sys.path.insert` hack + `import sys` + the `E402` waiver.
 - [x] **M5** — `get_pathway(None)`/`("")` return `None`; registry graphs now built once (`lru_cache`).
 - [x] **M6** — Flow simulator `getattr`/`hasattr`-guards optional `metabolic_state` attributes.
-- [x] **M7** — The swallowed `except` in `kibo_engine._apply_regulation_to_pathway_net` now `log.debug`s.
+- [x] **M7** — The swallowed `except` in `meal_engine._apply_regulation_to_pathway_net` now `log.debug`s.
 - [x] **L1** — `build-system` floor bumped to `setuptools>=77`.
 - [x] **L2** — `RespiratoryQuotient.calculate` guards divide-by-zero.
-- [x] **L6** — `run_product_score_analysis` default is now `enabled=False` (fail-closed).
+- [x] **L6** — `run_external_score_analysis` default is now `enabled=False` (fail-closed).
 - [x] **L7** — Removed the self-cancelling iron-bump line and the dead `… and False: pass` branch.
 - [x] **L10** — `limiting_amino_acid` returns `("unknown", 0.0)` when there's no AA data.
 - [x] **L11** — Fixed the `book/IP_BOUNDARY.md` + wrong-SSOT-path docstrings and the README Pages instruction.

@@ -1,9 +1,9 @@
 """
 Public LAW-SPEC "law cards" — inspect the constitution as data.
 
-Each law is a card in the KIBO LAW-SPEC shape: **System · Organ · Gate · Bound ·
+Each law is a card in the LAW-SPEC shape: **System · Organ · Gate · Bound ·
 Conditions · typed relation**. The underlying register (47 system-bound laws)
-ships under ``data.kibo_core``; this module is the small, stable public surface
+ships under ``engine``; this module is the small, stable public surface
 over it — the same "biology as code" move the digestion machines made, applied
 to the laws themselves.
 
@@ -22,7 +22,7 @@ from __future__ import annotations
 from functools import lru_cache
 from typing import Any
 
-from biology_as_code.data.kibo_core.laws.registry import (
+from biology_as_code.engine.laws.registry import (
     LawRecord,
     load_system_bound_registry,
 )
@@ -49,8 +49,8 @@ def list_laws() -> list[str]:
 
 
 def list_systems() -> list[str]:
-    """The seven KIBO systems present in the register."""
-    return sorted({law.kibo_system for law in _registry().all()})
+    """The seven functional systems present in the register."""
+    return sorted({law.system_name for law in _registry().all()})
 
 
 def get_law(law_id: str | int) -> LawRecord | None:
@@ -61,9 +61,9 @@ def get_law(law_id: str | int) -> LawRecord | None:
 
 
 def laws_by_system(system: str) -> list[LawRecord]:
-    """All laws seated in a given KIBO system (case-insensitive)."""
+    """All laws seated in a given functional system (case-insensitive)."""
     target = system.strip().lower()
-    return [law for law in _registry().all() if law.kibo_system.lower() == target]
+    return [law for law in _registry().all() if law.system_name.lower() == target]
 
 
 def law_card(law_id: str | int) -> dict[str, Any] | None:
@@ -73,7 +73,7 @@ def law_card(law_id: str | int) -> dict[str, Any] | None:
         return None
     return {
         "id": law.id,
-        "system": law.kibo_system,
+        "system": law.system_name,
         "organ": law.organ,
         "subsystem": law.subsystem,
         "statement": law.law_statement,

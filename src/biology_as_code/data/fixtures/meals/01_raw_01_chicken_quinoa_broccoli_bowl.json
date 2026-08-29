@@ -24,7 +24,7 @@
       "grams": 140,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_chicken_breast_grilled",
         "nutrition_source": "usda_fdc"
       },
@@ -254,7 +254,7 @@
       "grams": 140,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_quinoa_cooked",
         "nutrition_source": "usda_fdc"
       },
@@ -530,7 +530,7 @@
       "grams": 90,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_broccoli_raw",
         "nutrition_source": "usda_fdc"
       },
@@ -760,7 +760,7 @@
       "grams": 14,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_olive_oil_evoo",
         "nutrition_source": "usda_fdc"
       },
@@ -1054,7 +1054,7 @@
       "grams": 15,
       "source": {
         "type": "curated_food",
-        "table": "mealcoach-foods-dev",
+        "table": "curated-foods-dev",
         "pk": "FOOD#food_lemon",
         "nutrition_source": "usda_fdc"
       },
@@ -1791,7 +1791,7 @@
       "OpenFoodFacts (fallback macros)",
       "USDA FDC gold (branded/SR Legacy/Foundation)",
       "hydration enrich 2026-07-23 (corpus + OFF + USDA class)",
-      "mealcoach-foods-dev (DynamoDB)"
+      "curated-foods-dev (DynamoDB)"
     ],
     "macros_coverage": "all_ingredients",
     "full_panel_coverage_pct": 100.0,
