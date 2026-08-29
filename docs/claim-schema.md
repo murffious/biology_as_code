@@ -137,8 +137,12 @@ named graphs.
       "scoped_restatement": "Antioxidant-rich; protects organs from metal damage in animals; one arsenic+zinc extract trial in humans. No evidence it clears metals from a healthy brain."
     },
     "sepio:hasEvidenceLine": [
-      { "eco:evidenceType": "ECO:0000180",       // in-vitro / animal model evidence (illustrative)
-        "obi:studyDesign": "OBI:0000471", "direction": "weak-support" }
+      { "eco:evidenceType": "ECO:0000179",       // animal model system study evidence (illustrative)
+        // ECO:0000180 is "clinical study evidence" and ECO:0000181 is "in vitro
+        // assay evidence" — the three are adjacent and easy to transpose.
+        // OBI:0500000 is the generic "study design"; OBI has no animal-study-design
+        // term, and OBI:0000471 is "study design execution", a process, not a design.
+        "obi:studyDesign": "OBI:0500000", "direction": "weak-support" }
     ]
   },
 

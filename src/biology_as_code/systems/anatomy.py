@@ -39,7 +39,7 @@ BODY_SYSTEMS: tuple[SystemSpec, ...] = (
     SystemSpec(
         id="muscular",
         name="Muscular",
-        uberion_hint="UBERON:0000062",
+        uberion_hint="UBERON:0000383",  # musculature of body; altLabel "muscular system"
         shipped=False,
         default_gates=(),
         why="Parked. Protein-quality + load interaction is host+clock, not meal-only.",
