@@ -22,7 +22,27 @@ RelationType = Literal[
     "STATE_FUNCTION",
     "FRAMEWORK",
     "MIXED",
+    # --- added: two relations the original seven could not express -----------
+    # CONSERVES: the law asserts a quantity is neither created nor destroyed
+    # across a step — mass, nitrogen, carbon, electrons. Every balance model in
+    # the engine relies on such an assertion, but none of them could state it:
+    # forced to choose, a conservation law had to be filed as FRAMEWORK, which
+    # says "not executable", or as STATE_FUNCTION, which says something else
+    # entirely. A CONSERVES law is executable and it is checkable — you verify
+    # it by summing the fluxes and asking whether the residual is zero.
+    "CONSERVES",
+    # IDENTITY: the law asserts that two descriptions denote the same thing, or
+    # that a transformation leaves identity unchanged. Whole almonds and almond
+    # flour share an identity and differ in method identity; a law that says so
+    # is not opening a gate or moving a bound, it is fixing what counts as the
+    # same substance. Needed before any statement about processing can be
+    # written down precisely.
+    "IDENTITY",
 ]
+
+#: Relation types that assert a conserved quantity. Kept as a set so balance
+#: models can ask the question without string-matching.
+CONSERVING_RELATIONS: frozenset[str] = frozenset({"CONSERVES"})
 
 SevenSystem = Literal[
     "Assimilation",

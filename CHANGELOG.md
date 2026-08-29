@@ -4,6 +4,129 @@ All notable changes to the **biology-as-code** Python package are documented her
 
 ## [Unreleased]
 
+### Separation audit, type catalog, HostState v2, ward conformance
+
+Four related pieces of work: the repository stops carrying product identifiers,
+the ten VHM kinds get types, host state is restratified by rate of change, and
+the ward literature enters as a frozen conformance suite.
+
+#### Changed — BREAKING: package layout and public names
+
+The repository is the open commons — the specification and its reference
+implementation — and the project owner operates no commercial implementation of
+it. Product identifiers are gone from `src/` and `tests/`, and CI job
+`separation` fails the build if one comes back.
+
+| Before | After |
+|---|---|
+| `biology_as_code.data.kibo_core` | `biology_as_code.engine` |
+| `simulation/kibo_engine.py`, `KIBOEngine` | `simulation/meal_engine.py`, `MealEngine` |
+| `UnifiedKIBOFacade` | `UnifiedFacade` |
+| `models/kibo_nutrition_ontology.py` | `models/nutrition_ontology.py` |
+| `biology_as_code.product_score` | `biology_as_code.scoring` |
+| `run_product_score_analysis(...)` | `run_external_score_analysis(...)` |
+| `product_score_available()` | `external_scorer_available()` |
+| `enable_product_score=` | `enable_external_score=` |
+| env `KIBO_PRODUCT_SCORE_MODULE` | env `BAC_SCORER_MODULE` |
+| result field `kibo_vars_score` | result field `vendor_scores` |
+| law field `LawRecord.kibo_system` | `LawRecord.functional_system` |
+| schema ids `kibo.*` | schema ids `bac.*` |
+
+No compatibility shims: an alias would put the identifier back in `src/`, which
+is exactly what the gate forbids. `product_score/proprietary/` is removed from
+the package entirely — an external scorer is resolved only from
+`BAC_SCORER_MODULE`, so private code has no in-package directory to land in by
+accident.
+
+Root-level IP documents (`PATENTS.md`, `PROPRIETARY_IP.md`,
+`LICENSE-SAMPLES.md`) are **retained verbatim** with an under-review header.
+Patent disposition is a pending legal decision; they are annotated, not
+rewritten and not deleted.
+
+#### Added — the ten kinds (`engine/`, `responses/`)
+
+- `engine/clocks.py` — six-clock enum (fixed / adaptation / diurnal / meal /
+  bite / event). `EVENT` is aperiodic and raises if ordered against a periodic
+  clock rather than silently comparing as slowest.
+- `engine/signals.py` — the eight endogenous signals, typed once with aliases
+  and clocks. Medications enter as `ExogenousSignal` off the existing
+  `MedicationProfile` and are kept out of the catalog: an agonist shares a
+  receptor, not a clock, a source or a degradation route.
+- `engine/compartments.py` — `accept` / `transform` / `emit` protocol, defaults
+  derived from `ORGAN_BOUNDS`. `post_surgical` states are `ExoticCompartment`,
+  which can change an organ's bounds *and* remove a segment from the path.
+- `engine/processes.py` — the single signature
+  `(PacketState, HostState, Context) -> (PacketState', Signals, Fluxes)`.
+- `engine/fluxes.py` — rate-typed flows; amounts only via `amount_over()`.
+- `engine/modifiers.py` — `ModifierBinding` with `effect_direction`,
+  `effect_magnitude`, `evidence_state`, `binding_site`. Direction-only is a
+  legitimate state, and contested/candidate magnitudes do not reach a
+  computation without an explicit opt-in.
+- `engine/parameters.py` — the bindable parameter space, introspected from the
+  live engine rather than hand-listed.
+- `responses/` — `GlycemicResponse/1.0` executable (iAUC, trapezoidal,
+  below-baseline discarded, `t=0` baseline required rather than guessed);
+  `SatietyResponse` and `LipemicResponse` declared as stubs that raise.
+- `method_identity` on the food-packet schema and `FoodPacket`: the ordered
+  process operations that separate whole almonds from almond flour.
+
+`RelationType` gains **`CONSERVES`** and **`IDENTITY`**. LAW-039 (bile-acid pool
+conserved by enterohepatic recycling) is retyped from `EXPANDS_BOUND`, which it
+carried only because no conservation relation existed.
+
+`LawRecord` gains `evidence_state` and `review_by`, defaulting to `candidate`
+and unset so introducing the fields does not read as promoting the registry.
+
+#### Fixed — a balance check that could not fail
+
+`FluxSet.balance_report` summed net rates across all compartments. That sum is
+identically zero for any set of fluxes, because each flux contributes `+r` to
+its sink and `-r` to its source, so the closure check passed for a model that
+pumped a substance into a dead end. Closure now means every internal
+compartment is at steady state, with the two reserved external endpoints
+excluded, and a regression test pins that the old formulation cannot return.
+
+#### Added — HostState v2 (migration note)
+
+`HostState.v2.schema.json` sits **alongside** `HostState.schema.json`. v1 is
+unchanged and still valid; nothing that reads it needs to move.
+
+- v2 groups the same properties into five strata by rate of change:
+  `constants` / `slow_state` / `fast_state` / `context_stream` /
+  `response_history`. Every v1 property lands in one of them, and a test fails
+  if one is dropped.
+- Every field carries four mandatory facets: `x-binding_site` (engine parameter
+  path, or an explicit `null`), `x-clock`, `x-tier` (T0–T4) and
+  `x-evidence_state`. An omitted facet is a defect; an explicit `null` is a
+  declaration.
+- Genome enters **only** as `ModifierBinding` instances under
+  `constants.genome`. There is no genotype field.
+- `post_surgical` binds to a compartment, not a scalar.
+
+**Migrating a v1 document.** Set `schema` to `bac.HostState/v2` and move each
+property into its stratum: `sex`, `age_years`, `lifecycle` to `constants`;
+`body_fat_percent`, `muscle_mass_kg`, `acid_capacity`, `bile_capacity`,
+`insulin_resistance`, `post_surgical` to `slow_state`; everything else that was
+a scalar to `fast_state`. Same-meal modifiers that were carried alongside host
+state (`ascorbate_same_meal`, `tannin_same_meal`, `phytate_matrix`) belong in
+`context_stream` — they are circumstances, not properties of the host.
+
+`tools/resolve_bindings.py` checks that every non-null `x-binding_site`
+resolves against the engine, and runs in CI. Writing the genome seed registry
+was its first real test: of six candidate variants, three (MTHFR, CYP1A2,
+APOE) had no engine parameter to act on. They are recorded in an
+`unmodellable` section naming the parameter that would have to exist, rather
+than bound to the nearest plausible path — a wrong binding resolves and then
+moves something the variant does not move.
+
+#### Added — ward conformance suite (`tests/conformance/`)
+
+Five integration tests encoding published human results, each with a stated
+tolerance and its citation, all `xfail` until the mechanism they need exists.
+They are the specification's acceptance criteria, not unit tests: a tolerance
+may be changed only with a cited justification in the commit that changes it.
+
+
 ### Nutrient nodes, absorption bounds & the nutrient-requirement edge
 
 Four loose drafts sat in the repo root describing work the package could not

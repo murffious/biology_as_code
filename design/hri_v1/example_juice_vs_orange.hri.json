@@ -1,0 +1,95 @@
+{
+  "hri_version": "1.0-draft",
+  "packet_ref": "ex.juice_drink.fortified_c",
+  "host_class": "adult_ir_intermediate",
+  "context_ref": "standard_morning_solo",
+  "matrix": {
+    "Assimilation": {
+      "acute": {
+        "class": "neutral",
+        "method": "modeled",
+        "response_refs": [
+          "MicronutrientRepletion/0.1#vitC-svct-saturation"
+        ],
+        "evidence_state": "supported",
+        "host_conditional_note": "Vitamin C absorbed via saturable transporters; fractional absorption falls with dose. Beneficial in deplete hosts; ~neutral marginal benefit in replete hosts. The one genuine service this packet performs \u2014 credited, not erased."
+      }
+    },
+    "Energy": {
+      "acute": {
+        "class": "adverse",
+        "method": "modeled",
+        "subscore": 18,
+        "response_refs": [
+          "GlycemicResponse/1.0#pred-liquid-sucrose-bolus"
+        ],
+        "evidence_state": "verified",
+        "bounds": "narrow \u2014 liquid free-sugar bolus, no matrix; high-confidence prediction in IR-intermediate class"
+      },
+      "adaptive": {
+        "class": "adverse",
+        "method": "modeled",
+        "response_refs": [
+          "GlycemicResponse/1.0#drift-model"
+        ],
+        "evidence_state": "supported",
+        "bounds": "wide \u2014 repeated-exposure drift modeled, not measured"
+      }
+    },
+    "Communication": {
+      "acute": {
+        "class": "adverse",
+        "method": "modeled",
+        "subscore": 22,
+        "response_refs": [
+          "SatietyResponse/1.0#pred-liquid-calories"
+        ],
+        "evidence_state": "verified",
+        "bounds": "narrow \u2014 liquid calories, near-zero satiation per calorie; eating-rate class: drinkable"
+      }
+    },
+    "Biotransformation": {
+      "acute": {
+        "class": "unknown",
+        "method": "prior",
+        "evidence_state": "candidate",
+        "bounds": "fructose share -> hepatic handling; unmeasured, bounds wide, fail-closed"
+      }
+    },
+    "Defense": {
+      "adaptive": {
+        "class": "unknown",
+        "method": "prior",
+        "evidence_state": "candidate",
+        "bounds": "unmeasured \u2014 stays unknown, never quietly neutral"
+      }
+    }
+  },
+  "critical_staves": [
+    {
+      "system": "Energy",
+      "clock": "acute"
+    },
+    {
+      "system": "Communication",
+      "clock": "acute"
+    }
+  ],
+  "coverage_tier": 1,
+  "score_band": "low",
+  "floor_cell": {
+    "system": "Energy",
+    "clock": "acute"
+  },
+  "bounds": {
+    "lower_band": "adverse",
+    "upper_band": "low",
+    "note": "Tier 1 (modeled): critical acute cells covered by conformance-green model; adaptive and parameter clocks modeled/unmeasured \u2014 bounds widened accordingly."
+  },
+  "model_version": "vhm-0.x-draft",
+  "conformance_ref": "PENDING \u2014 Tier-1 license requires ward-suite green (work-order Phase 4)",
+  "tempering_alpha": 0.0,
+  "evidence_summary": "RDA verdict: adequate (100% DV vitamin C). HRI verdict: floored at Energy.acute in this host class \u2014 the delivery vehicle degrades systems the nutrient checklist never watched, while the repletion cell is credited and visible. Counterpart packet ex.orange_whole floors high on the same host class: identical vitamin C cell, fiber matrix, Energy.acute neutral, Communication.acute beneficial. The pair is the 1941 error rendered as two instances of one nutrient.",
+  "generated_at": "2026-08-11T00:00:00Z",
+  "review_by": "2027-02-01"
+}

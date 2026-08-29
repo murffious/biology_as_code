@@ -6,8 +6,19 @@
     "form": "raw_whole",
     "family_hint": "Rosaceae"
   },
+  "method_identity": [
+    {
+      "op": "harvest",
+      "severity": "light",
+      "matrix_effect": "preserves",
+      "note": "raw kernel; cotyledon cell walls intact"
+    }
+  ],
   "cargo": [
-    { "nutrient": "lipid", "label_amount": "open" }
+    {
+      "nutrient": "lipid",
+      "label_amount": "open"
+    }
   ],
   "matrix": {
     "integrity": "intact",
