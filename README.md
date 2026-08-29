@@ -18,9 +18,17 @@
 </p>
 
 ---
+> **Engineering Considerations** (we found this quote that supports what we are trying to do from an total expert in the field.)
+>
+> Given the functions of the gastrointestinal system discussed earlier, we turn now to a consideration of anatomic features needed to support these functions. In this discussion, the gastrointestinal system can be thought of as a **machine** (Figure 1–1) in which distinct portions conduct the various processes needed for assimilation of a meal without uptake of significant quantities of harmful substances or microorganisms.
+>
+> — Barrett, K. E. (2014). *Gastrointestinal physiology* (2nd ed.). McGraw-Hill Education, p. 3.
+
 
 **`biology-as-code` models what happens to a meal — digestion, absorption, and the
 metabolic pathways it drives — as inspectable, versioned, provenance-tracked code.**
+
+meal → digestion → pathway claims, fail-closed
 
 Nutrition data loses its origins as it travels. A number measured once in one lab
 becomes a label value, becomes a database entry, becomes an input to a score, and by
