@@ -144,7 +144,8 @@ class PeripheralTissuesPhase(Phase):
         state.note(
             f"Energy FLOW: atp_units={state.atp_units} (teaching; refuse locked 3.5 factor)"
         )
-        # soft kibo: reward micelle open + reasonable macros
+        # Soft FLOW teaching meter: reward micelle open + reasonable macros.
+        # Five rules, open tier. Not the product meal score.
         score = 50.0
         if state.micelle_gate_open:
             score += 15
@@ -154,7 +155,7 @@ class PeripheralTissuesPhase(Phase):
             score += 5
         if state.beta_hb_mmol > 0.5:
             score += 5
-        state.kibo_score = min(100.0, score)
+        state.flow_score = min(100.0, score)
         return state
 
 

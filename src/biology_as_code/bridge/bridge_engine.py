@@ -442,7 +442,7 @@ class BridgedKIBOEngine:
 
         # energy charge from core (soft)
         self.energy_charge = min(
-            1.0, 0.5 + core_out.kibo_score / 200.0 + self.microbiome.diversity_score * 0.1
+            1.0, 0.5 + core_out.flow_score / 200.0 + self.microbiome.diversity_score * 0.1
         )
 
         # topic context template (available for extension)
