@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0.0",
+  "register": "third-party-data",
+  "as_of": "2026-08-29",
+  "what_this_is": "Every dataset this repository REDISTRIBUTES that it did not author. Redistribution is the trigger, not use: reading a source at build time is not covered here, shipping its rows is. The repository's own code is Apache-2.0 (see LICENSE); that licence does not and cannot extend to the rows below.",
+  "why_it_exists": "biology_as_code/NOTICE had no third-party section while MASTER_CROSSWALK.tsv shipped 2,797 rows derived from a source this project's own notes assess as non-commercial. The gap was not that the licence was unknown — working_map_nutrition/VMH_REFERENCE.md had the analysis since July. It was that the analysis never reached the published repository.",
+  "not_legal_advice": "Engineering hygiene, assembled from the sources' own statements and this project's prior assessment. Confirm with the rights holder and with counsel before any commercial use or relicensing.",
+  "entries": [
+    {
+      "id": "vmh-recon3d",
+      "file": "MASTER_CROSSWALK.tsv",
+      "source": "Virtual Metabolic Human (VMH) / Recon3D",
+      "source_url": "https://www.vmh.life",
+      "upstream_file": "vmh_snapshots/recon-store-metabolites-full.tsv",
+      "attribution": "Noronha A, et al. The Virtual Metabolic Human database. Nucleic Acids Research 47(D1):D614-D624, 2019. doi:10.1093/nar/gky992. Recon3D: Brunk E, et al. Nature Biotechnology 36:272-281, 2018. doi:10.1038/nbt.4072. Thiele/Fleming group.",
+      "declared_licence": "CC BY-NC 2.0",
+      "licence_confidence": "OPEN",
+      "licence_note": "OPEN, not asserted. This project's own working_map_nutrition/VMH_REFERENCE.md records CC BY-NC 2.0 for Recon3D and CC BY-NC-ND 4.0 for ReconMap. The VMH database paper (NAR 2019) states only that the data are 'freely available' and names no licence; vmh.life returns 403 to automated retrieval. Verified 2026-08-29 that the paper is silent. The operative terms MUST be confirmed with VMH directly before any commercial use.",
+      "what_is_redistributed": {
+        "rows": 2797,
+        "columns_from_this_source": ["vmh", "name", "formula", "inchiKey", "hmdb", "kegg", "chebi", "pubchem"],
+        "columns_not_from_this_source": ["seed", "modeled_pathway", "term_id", "systems"],
+        "note": "8 of 12 columns. The individual cells are largely facts — chemical formulae and registry identifiers are not creative expression. The exposure is the COMPILATION: 2,797 curated rows extracted wholesale, and in particular the cross-reference mapping between VMH, HMDB, KEGG, ChEBI and PubChem, which is the curatorial work that gives the table its value. VMH is maintained in the EU, where the sui generis database right restricts substantial extraction independently of copyright."
+      },
+      "conflict": "This repository is Apache-2.0, which permits commercial use. A CC BY-NC source cannot be redistributed under those terms. Until resolved, the crosswalk should be treated as non-commercial regardless of the repository licence, and MASTER_CROSSWALK.NOTICE.md says so next to the file.",
+      "remedies_available": [
+        "Confirm the operative licence with VMH directly. The declared value above is OPEN.",
+        "Swap the backend to Human-GEM (CC BY 4.0) and regenerate — the path this project's own VMH_REFERENCE.md already identified for a commercial build.",
+        "Reduce to identifiers only: drop `name` (VMH's fullName labels) and rebuild the cross-references from each registry directly rather than from VMH's mapping. This removes the compilation exposure but discards the curatorial join that is the table's value.",
+        "Obtain a licence from the rights holder."
+      ],
+      "blocks": ["commercial use", "relicensing under Apache-2.0", "any claim of first-party authorship"]
+    },
+    {
+      "id": "fda-fdcc",
+      "file": "FDA_ingredients/",
+      "source": "US FDA Food Data and Chemistry Collaborative inventories (Substances Added to Food, GRAS Notices, Food Contact Notifications, Indirect Additives)",
+      "source_url": "https://www.fda.gov",
+      "attribution": "US Food and Drug Administration. Retrieved 2026-08-02.",
+      "declared_licence": "US public domain",
+      "licence_confidence": "high",
+      "licence_note": "Work of the US federal government, 17 U.S.C. 105. Attribution is courtesy, not obligation. No commercial restriction.",
+      "what_is_redistributed": {"note": "Raw inventories plus cleaned derivatives under clean/."},
+      "conflict": "NONE",
+      "remedies_available": [],
+      "blocks": []
+    }
+  ],
+  "first_party": [
+    {"file": "examples/claims/food_health_claims_500.json", "note": "Authored here, generated 2026-07-23."},
+    {"file": "src/biology_as_code/data/kibo_core/data/topics_ontology.json", "note": "Authored here, frozen from list.topics.md."},
+    {"file": "FDP-1 specification and validator", "note": "Authored here. Apache-2.0. See PATENTS.md."}
+  ]
+}

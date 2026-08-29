@@ -10,7 +10,10 @@ abstract: >-
   Provenance Declaration — a minimal specification for declaring the provenance of a
   nutrient value and the validation status of any score computed from it — which is
   published separately as its own citable standard at github.com/murffious/fdp-1. This
-  record covers the Python package and the MASTER_CROSSWALK nutrient-to-metabolite join.
+  record covers the Python package. It does NOT claim authorship of the data in
+  MASTER_CROSSWALK.tsv: eight of that table's twelve columns derive from a Virtual
+  Metabolic Human / Recon3D export and must be cited to VMH (doi:10.1093/nar/gky992,
+  doi:10.1038/nbt.4072). See NOTICE and THIRD-PARTY-DATA.json.
   Built to be fail-closed with no fabricated data. Teaching / research software;
   not medical advice.
 type: software

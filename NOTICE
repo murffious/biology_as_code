@@ -13,3 +13,42 @@ License at:
 A patent non-assertion covenant applies to the open layer published here. See
 PATENTS.md. The patent-pending KIBO product/meal-scoring engine is not included
 in this repository; see PROPRIETARY_IP.md.
+
+---
+
+THIRD-PARTY DATA
+
+This repository redistributes data it did not author. The Apache-2.0 licence above
+governs the code; it does not and cannot extend to the rows below. The machine-
+readable register is THIRD-PARTY-DATA.json.
+
+1. Virtual Metabolic Human (VMH) / Recon3D  --  MASTER_CROSSWALK.tsv
+
+   Noronha A, et al. The Virtual Metabolic Human database: integrating human and
+   gut microbiome metabolism with nutrition and disease. Nucleic Acids Research
+   47(D1):D614-D624, 2019. doi:10.1093/nar/gky992
+   Brunk E, et al. Recon3D enables a three-dimensional view of gene variation in
+   human metabolism. Nature Biotechnology 36:272-281, 2018. doi:10.1038/nbt.4072
+   https://www.vmh.life
+
+   Eight of the twelve columns in MASTER_CROSSWALK.tsv are derived from a VMH
+   Recon3D metabolite export: vmh, name, formula, inchiKey, hmdb, kegg, chebi,
+   pubchem. The remaining four (seed, modeled_pathway, term_id, systems) are not.
+
+   LICENCE STATUS: OPEN -- declared, not asserted. This project's own notes
+   (working_map_nutrition/VMH_REFERENCE.md) record CC BY-NC 2.0 for Recon3D. The
+   VMH database paper names no licence and says only that the data are "freely
+   available". The operative terms have NOT been confirmed with the rights holder.
+
+   Until they are, treat MASTER_CROSSWALK.tsv as NON-COMMERCIAL and as carrying a
+   third-party attribution requirement, regardless of this repository's Apache-2.0
+   licence. See MASTER_CROSSWALK.NOTICE.md.
+
+2. US FDA food-substance inventories  --  FDA_ingredients/
+
+   US Food and Drug Administration, retrieved 2026-08-02. Work of the US federal
+   government (17 U.S.C. 105); public domain. No restriction on commercial use.
+
+Nothing else in this repository is third-party. See THIRD-PARTY-DATA.json for the
+first-party list and the remedies available for item 1.
+
