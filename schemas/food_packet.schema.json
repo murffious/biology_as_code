@@ -2,40 +2,156 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/murffious/biology_as_code/schemas/food_packet.schema.json",
   "title": "FoodPacket",
-  "description": "Typed food packet for Biology as Code companion examples. Teaching shape — not a full product ontology.",
+  "description": "Typed food packet for Biology as Code companion examples. Teaching shape \u2014 not a full product ontology.",
   "type": "object",
-  "required": ["id", "identity"],
+  "required": [
+    "id",
+    "identity"
+  ],
   "properties": {
-    "id": { "type": "string", "pattern": "^ex\\.[a-z0-9_.-]+$" },
+    "id": {
+      "type": "string",
+      "pattern": "^ex\\.[a-z0-9_.-]+$"
+    },
     "identity": {
       "type": "object",
-      "required": ["common_name"],
+      "required": [
+        "common_name"
+      ],
       "properties": {
-        "common_name": { "type": "string" },
+        "common_name": {
+          "type": "string"
+        },
         "form": {
           "type": "string",
           "enum": [
-            "raw_whole", "cut", "pureed", "juiced", "flour", "oil",
-            "cooked", "canned", "frozen", "ultra_processed", "unknown"
+            "raw_whole",
+            "cut",
+            "pureed",
+            "juiced",
+            "flour",
+            "oil",
+            "cooked",
+            "canned",
+            "frozen",
+            "ultra_processed",
+            "unknown"
           ]
         },
-        "family_hint": { "type": "string" },
-        "commercial_class": { "type": "string" }
+        "family_hint": {
+          "type": "string"
+        },
+        "commercial_class": {
+          "type": "string"
+        }
+      }
+    },
+    "method_identity": {
+      "type": "array",
+      "description": "Ordered process operations already applied to this food, oldest first. Identity says what the food is; method identity says what was done to it. Whole almonds and almond flour share an identity, a species and an analyte panel, and differ only here \u2014 which is why the panel cannot predict their metabolizable energy. Order is significant: milled-then-cooked and cooked-then-milled are different programs. An empty array asserts no processing; omit the field entirely when processing is unknown.",
+      "items": {
+        "type": "object",
+        "required": [
+          "op"
+        ],
+        "properties": {
+          "op": {
+            "type": "string",
+            "description": "Process operation applied.",
+            "enum": [
+              "harvest",
+              "clean",
+              "peel",
+              "cut",
+              "mill",
+              "grind",
+              "flake",
+              "puree",
+              "juice",
+              "extrude",
+              "press",
+              "refine",
+              "ferment",
+              "germinate",
+              "soak",
+              "dry",
+              "freeze",
+              "thaw",
+              "heat_dry",
+              "heat_moist",
+              "fry",
+              "bake",
+              "extrusion_cook",
+              "emulsify",
+              "homogenise",
+              "hydrolyse",
+              "fortify",
+              "additive_addition",
+              "package",
+              "reheat",
+              "chew",
+              "unknown"
+            ]
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "light",
+              "moderate",
+              "severe",
+              "unknown"
+            ],
+            "description": "Coarse intensity. Ordinal on purpose: a milling that leaves cell walls largely intact and one that destroys them are different operations in effect, and no scalar is defensible across foods.",
+            "default": "unknown"
+          },
+          "target": {
+            "type": "string",
+            "description": "What the operation acted on, e.g. 'cell_wall', 'starch', 'protein'."
+          },
+          "matrix_effect": {
+            "type": "string",
+            "enum": [
+              "preserves",
+              "partially_disrupts",
+              "destroys",
+              "unknown"
+            ],
+            "description": "Effect on the food matrix. This is the field that carries bioaccessibility consequences into the engine.",
+            "default": "unknown"
+          },
+          "note": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": true
       }
     },
     "cargo": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["nutrient"],
+        "required": [
+          "nutrient"
+        ],
         "properties": {
-          "nutrient": { "type": "string" },
+          "nutrient": {
+            "type": "string"
+          },
           "label_amount": {
             "oneOf": [
-              { "type": "string", "const": "open" },
-              { "type": "object", "properties": {
-                  "value": { "type": "number" },
-                  "unit": { "type": "string" }
+              {
+                "type": "string",
+                "const": "open"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "value": {
+                    "type": "number"
+                  },
+                  "unit": {
+                    "type": "string"
+                  }
                 }
               }
             ]
@@ -47,13 +163,21 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["field"],
+        "required": [
+          "field"
+        ],
         "properties": {
-          "field": { "type": "string" },
+          "field": {
+            "type": "string"
+          },
           "value": {},
           "concurrency": {
             "type": "string",
-            "enum": ["same_meal", "same_day", "unknown"],
+            "enum": [
+              "same_meal",
+              "same_day",
+              "unknown"
+            ],
             "default": "same_meal"
           }
         }
@@ -61,30 +185,54 @@
     },
     "injection_zone": {
       "type": "string",
-      "enum": ["zone1_matrix", "zone2_cargo", "zone3_actuator", "unknown"]
+      "enum": [
+        "zone1_matrix",
+        "zone2_cargo",
+        "zone3_actuator",
+        "unknown"
+      ]
     },
     "matrix": {
       "type": "object",
       "properties": {
         "integrity": {
           "type": "string",
-          "enum": ["intact", "partial", "destroyed", "unknown"]
+          "enum": [
+            "intact",
+            "partial",
+            "destroyed",
+            "unknown"
+          ]
         },
-        "notes": { "type": "string" }
+        "notes": {
+          "type": "string"
+        }
       }
     },
     "teaching": {
       "type": "object",
       "properties": {
-        "point": { "type": "string" },
-        "gate": { "type": "string" },
-        "bound": { "type": "string" },
-        "book_ref": { "type": "string" }
+        "point": {
+          "type": "string"
+        },
+        "gate": {
+          "type": "string"
+        },
+        "bound": {
+          "type": "string"
+        },
+        "book_ref": {
+          "type": "string"
+        }
       }
     },
     "status": {
       "type": "string",
-      "enum": ["stub", "filled", "open"],
+      "enum": [
+        "stub",
+        "filled",
+        "open"
+      ],
       "default": "stub"
     }
   },

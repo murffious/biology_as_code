@@ -19,7 +19,7 @@ jobs:
         # scope -- their patent disposition is a pending legal decision and they
         # are annotated, not rewritten. See design/BASELINE.md.
         run: |
-          if grep -rniE "kibo|mealcoach|morf" src/ tests/; then
+          if grep -rniE --exclude-dir="*.egg-info" --exclude-dir=__pycache__ "kibo|mealcoach|morf" src/ tests/; then
             echo "::error::product identifier found in src/ or tests/ (see PROPRIETARY_IP.md)"
             exit 1
           fi
@@ -42,6 +42,11 @@ jobs:
           pip install -e ".[dev]"
       - name: Ruff (lint)
         run: ruff check src tests --exclude tests/_legacy_test_pathways_source.py
+      - name: Binding resolver (no dangling x-binding_site)
+        # Every x-binding_site in the host-state schemas and the genome seed
+        # registry must resolve to a parameter introspected from the live
+        # engine. A binding annotation that cannot be checked is decoration.
+        run: python tools/resolve_bindings.py
       - name: Pytest (full suite)
         # Was four hand-picked files; the rest of tests/ was green but unguarded,
         # so regressions in it could land unnoticed.

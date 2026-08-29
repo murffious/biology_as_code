@@ -6,6 +6,27 @@
     "form": "cooked",
     "family_hint": "Poaceae"
   },
+  "method_identity": [
+    {
+      "op": "mill",
+      "severity": "moderate",
+      "target": "cell_wall",
+      "matrix_effect": "partially_disrupts",
+      "note": "wholemeal: bran and germ retained"
+    },
+    {
+      "op": "ferment",
+      "severity": "moderate",
+      "target": "starch",
+      "matrix_effect": "preserves"
+    },
+    {
+      "op": "bake",
+      "severity": "moderate",
+      "target": "starch",
+      "matrix_effect": "destroys"
+    }
+  ],
   "cargo": [],
   "partners": [],
   "injection_zone": "zone1_matrix",

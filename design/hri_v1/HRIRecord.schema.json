@@ -1,0 +1,241 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://biology-as-code.org/schemas/HRIRecord.schema.json",
+  "title": "HRIRecord",
+  "description": "Host Response Index record: the aggregation of typed Response results for one (packet, host_class, context) into a floored, fail-closed, matrix-attached score. HRI/1.0 Editor's Draft.",
+  "type": "object",
+  "required": [
+    "hri_version",
+    "packet_ref",
+    "host_class",
+    "matrix",
+    "coverage_tier",
+    "score_band",
+    "floor_cell",
+    "generated_at",
+    "review_by"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "packet_ref": {
+      "type": "string",
+      "description": "Food packet id (FDP FoodPacketID or examples/foods id)"
+    },
+    "host_class": {
+      "type": "string",
+      "description": "Reference host class, e.g. adult_ir_intermediate. BPS is a function of host class; never omit.",
+      "minLength": 1
+    },
+    "context_ref": {
+      "type": "string",
+      "description": "Optional context (meal timing, prior meal, activity window)"
+    },
+    "matrix": {
+      "type": "object",
+      "description": "7 systems x 3 clocks. Systems mirror the engine SevenSystem enum.",
+      "additionalProperties": false,
+      "propertyNames": {
+        "enum": [
+          "Assimilation",
+          "Transport",
+          "Communication",
+          "Defense",
+          "Biotransformation",
+          "Energy",
+          "Structure"
+        ]
+      },
+      "patternProperties": {
+        ".*": {
+          "type": "object",
+          "additionalProperties": false,
+          "propertyNames": {
+            "enum": [
+              "acute",
+              "adaptive",
+              "parameter"
+            ]
+          },
+          "patternProperties": {
+            ".*": {
+              "$ref": "#/$defs/CellResult"
+            }
+          }
+        }
+      }
+    },
+    "critical_staves": {
+      "type": "array",
+      "description": "Cells marked critical for this host_class by the versioned criticality registry.",
+      "items": {
+        "$ref": "#/$defs/CellRef"
+      }
+    },
+    "coverage_tier": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3,
+      "description": "0 provisional (input-axis prior only) | 1 modeled (VHM, conformance-green) | 2 measured-acute | 3 measured-longitudinal. Fail-closed: unmeasured critical cells cap the tier."
+    },
+    "score_band": {
+      "type": "string",
+      "enum": [
+        "adverse",
+        "low",
+        "provisional",
+        "moderate",
+        "high"
+      ],
+      "description": "Floor-aggregated band. Tier 0 may not exceed 'provisional'. Top band requires Tier >= 2 on Energy.acute and Communication.acute."
+    },
+    "floor_cell": {
+      "$ref": "#/$defs/CellRef",
+      "description": "The binding constraint \u2014 the cell that set the score. The matrix always ships with the number; this names why."
+    },
+    "bounds": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lower_band": {
+          "type": "string",
+          "enum": [
+            "adverse",
+            "low",
+            "provisional",
+            "moderate",
+            "high"
+          ]
+        },
+        "upper_band": {
+          "type": "string",
+          "enum": [
+            "adverse",
+            "low",
+            "provisional",
+            "moderate",
+            "high"
+          ]
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "description": "Uncertainty as first-class: widens with missing tiers and contested evidence."
+    },
+    "model_version": {
+      "type": "string",
+      "description": "Required when any cell method = modeled: the VHM version used."
+    },
+    "conformance_ref": {
+      "type": "string",
+      "description": "Required when model_version present: CI run id showing the model green on the ward-literature suite. Calibration is a license, not a suggestion."
+    },
+    "tempering_alpha": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 0.3,
+      "description": "Published non-critical uplift constant. v1 proposal 0.25, evidence_state contested; 0 = pure floor."
+    },
+    "evidence_summary": {
+      "type": "string"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "review_by": {
+      "type": "string",
+      "format": "date",
+      "description": "Nothing persists silently \u2014 the anti-1941 field."
+    },
+    "hri_version": {
+      "type": "string",
+      "const": "1.0-draft"
+    }
+  },
+  "$defs": {
+    "CellRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "system",
+        "clock"
+      ],
+      "properties": {
+        "system": {
+          "enum": [
+            "Assimilation",
+            "Transport",
+            "Communication",
+            "Defense",
+            "Biotransformation",
+            "Energy",
+            "Structure"
+          ]
+        },
+        "clock": {
+          "enum": [
+            "acute",
+            "adaptive",
+            "parameter"
+          ]
+        }
+      }
+    },
+    "CellResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "class",
+        "method",
+        "evidence_state"
+      ],
+      "properties": {
+        "class": {
+          "enum": [
+            "beneficial",
+            "neutral",
+            "adverse",
+            "unknown"
+          ],
+          "description": "Consumed from the pinned Response spec's classification bounds \u2014 BPS never reinterprets raw units."
+        },
+        "subscore": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "method": {
+          "enum": [
+            "measured",
+            "modeled",
+            "prior"
+          ]
+        },
+        "response_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "ResponseRecord ids with pinned spec versions, e.g. GlycemicResponse/1.0#rec-\u2026"
+        },
+        "evidence_state": {
+          "enum": [
+            "verified",
+            "supported",
+            "contested",
+            "candidate"
+          ]
+        },
+        "bounds": {
+          "type": "string",
+          "description": "Cell-level uncertainty note"
+        },
+        "host_conditional_note": {
+          "type": "string",
+          "description": "e.g. 'pass only in deplete hosts \u2014 transporter saturation'"
+        }
+      }
+    }
+  }
+}

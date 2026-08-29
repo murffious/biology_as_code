@@ -555,8 +555,12 @@
       "gate": "Ileal BA reuptake path (clinical interruption = resin/surgery/disease)",
       "bound": "~98–99% reabsorbed; recycle 6–10×/day (with LAW-021); interruption ↑ BA synthesis from cholesterol.",
       "conditions": "Intact ileal transport; interruption is the clinical lever.",
-      "relation": "ileal_reuptake EXPANDS_BOUND conserved_BA_pool; interrupt_reuptake EXPANDS_BOUND chol_to_BA_synthesis",
-      "note": "Strong Vol-I link via ileal Assimilation + hepatic Biotransformation."
+      "relation": "enterohepatic_loop CONSERVES bile_acid_pool; interrupt_reuptake EXPANDS_BOUND chol_to_BA_synthesis",
+      "note": "Strong Vol-I link via ileal Assimilation + hepatic Biotransformation. Typed CONSERVES: the primary assertion is that the pool is conserved across the loop, checkable by summing ileal reuptake and faecal loss against hepatic synthesis. It was filed EXPANDS_BOUND only because no conservation relation existed.",
+      "relation_type": "CONSERVES",
+      "conserved_quantity": "bile_acid_pool",
+      "evidence_state": "supported",
+      "review_by": "2028-01-01"
     },
     {
       "id": "LAW-040",

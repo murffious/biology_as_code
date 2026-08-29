@@ -83,8 +83,12 @@ biology_as_code = [
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["src"]
+pythonpath = ["src", "."]
 addopts = "-q"
+markers = [
+  "conformance: a ward-literature acceptance criterion (see tests/conformance/README.md)",
+  "conformance_guard: guards a conformance test against being satisfied the wrong way",
+]
 
 [tool.ruff]
 line-length = 100
