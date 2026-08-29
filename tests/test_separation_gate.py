@@ -37,6 +37,15 @@ _PATTERN = re.compile("|".join(FORBIDDEN), re.IGNORECASE)
 _SKIP_DIRS = {"__pycache__", ".pytest_cache", ".git", ".ruff_cache"}
 _SKIP_SUFFIXES = {".pyc", ".pyo", ".png", ".jpg", ".jpeg", ".JPG"}
 
+# Build metadata is generated, gitignored, and not shipped source. It also
+# *must* carry the maintainer's email address, and that address contains one of
+# the forbidden fragments as a substring — so a generated PKG-INFO trips a gate
+# about *product* identifiers on the strength of a *person's* name. That is the
+# gate matching a mention rather than a use, and scanning generated metadata can
+# only ever produce false positives. (Written without spelling the address, per
+# this module's docstring: a test that spells the terms is found by its own search.)
+_SKIP_DIR_SUFFIXES = (".egg-info", ".dist-info")
+
 
 def _scanned_files() -> list[Path]:
     out: list[Path] = []
@@ -45,6 +54,8 @@ def _scanned_files() -> list[Path]:
             if not path.is_file():
                 continue
             if _SKIP_DIRS & set(path.parts):
+                continue
+            if any(part.endswith(_SKIP_DIR_SUFFIXES) for part in path.parts):
                 continue
             if path.suffix in _SKIP_SUFFIXES:
                 continue
@@ -59,6 +70,15 @@ def test_the_gate_can_actually_find_something():
     assert _PATTERN.search("a " + FORBIDDEN[0] + " reference")
     assert _PATTERN.search("A " + FORBIDDEN[1].upper() + " reference")
     assert not _PATTERN.search("morphology and biology of the gut")
+
+
+def test_generated_build_metadata_is_not_scanned():
+    """Regression: CI went red on generated `*.egg-info/PKG-INFO`, whose
+    `Author-email` legitimately contains the maintainer's name — which happens to
+    contain a forbidden fragment. Build metadata is generated and gitignored; a
+    gate over shipped code must not read it."""
+    scanned = {str(p.relative_to(REPO_ROOT)) for p in _scanned_files()}
+    assert not [s for s in scanned if ".egg-info" in s or ".dist-info" in s]
 
 
 def test_no_product_identifiers_in_shipped_code():
