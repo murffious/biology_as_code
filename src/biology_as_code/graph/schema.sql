@@ -18,7 +18,17 @@ CREATE TABLE IF NOT EXISTS node (
     id     TEXT PRIMARY KEY,
     label  TEXT NOT NULL CHECK (label IN (
         'Law',          -- LAW-001 … LAW-047, the register
-        'System',       -- the seven functional systems
+        -- Two disjoint system vocabularies. One label each, never a shared one:
+        -- a query that spans both is asking a question with no answer.
+        'FunctionalSystem',  -- the SEVEN: Assimilation, Biotransformation,
+                             -- Communication, Defense, Energy, Structure,
+                             -- Transport. What the body is DOING. Local
+                             -- vocabulary; no OBO term exists for these.
+        'OrganSystem',       -- the ELEVEN: cardiovascular, digestive, endocrine,
+                             -- immune, integumentary, muscular, nervous,
+                             -- reproductive, respiratory, skeletal, urinary.
+                             -- Which body PART. UBERON-backed. Reserved; not
+                             -- yet emitted by the builder.
         'Organ',
         'Subsystem',
         'Nutrient',

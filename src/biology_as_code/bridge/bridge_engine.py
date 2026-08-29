@@ -569,7 +569,7 @@ class BridgedMealEngine:
         L = self.law_registry.get(law_id)
         return {
             "id": L.id,
-            "system": L.system_name,
+            "functional_system": L.functional_system,
             "organ": L.organ,
             "statement": L.law_statement,
             "gate": L.gate_text,

@@ -50,7 +50,7 @@ def list_laws() -> list[str]:
 
 def list_systems() -> list[str]:
     """The seven functional systems present in the register."""
-    return sorted({law.system_name for law in _registry().all()})
+    return sorted({law.functional_system for law in _registry().all()})
 
 
 def get_law(law_id: str | int) -> LawRecord | None:
@@ -63,7 +63,7 @@ def get_law(law_id: str | int) -> LawRecord | None:
 def laws_by_system(system: str) -> list[LawRecord]:
     """All laws seated in a given functional system (case-insensitive)."""
     target = system.strip().lower()
-    return [law for law in _registry().all() if law.system_name.lower() == target]
+    return [law for law in _registry().all() if law.functional_system.lower() == target]
 
 
 def law_card(law_id: str | int) -> dict[str, Any] | None:
@@ -73,7 +73,7 @@ def law_card(law_id: str | int) -> dict[str, Any] | None:
         return None
     return {
         "id": law.id,
-        "system": law.system_name,
+        "functional_system": law.functional_system,
         "organ": law.organ,
         "subsystem": law.subsystem,
         "statement": law.law_statement,

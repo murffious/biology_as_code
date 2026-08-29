@@ -31,7 +31,7 @@ def court(graph):
 def test_register_loads_completely(graph):
     laws = list(graph.nodes("Law"))
     assert len(laws) == 47
-    assert {n.id for n in graph.nodes("System")}  # seats exist
+    assert {n.id for n in graph.nodes("FunctionalSystem")}  # seats exist
     assert all(law.props.get("statement") is None for law in laws[:1])  # name holds it
 
 

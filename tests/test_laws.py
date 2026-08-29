@@ -32,7 +32,7 @@ def test_law_card_shape_is_law_spec():
     card = law_card("LAW-004")
     assert card is not None
     # LAW-SPEC fields present
-    for key in ("id", "system", "organ", "subsystem", "statement", "gate", "bound",
+    for key in ("id", "functional_system", "organ", "subsystem", "statement", "gate", "bound",
                 "conditions", "relation", "executable"):
         assert key in card, f"missing card field {key}"
     assert card["id"] == "LAW-004"
@@ -47,7 +47,7 @@ def test_laws_by_system():
 
     assim = laws_by_system("assimilation")  # case-insensitive
     assert assim
-    assert all(law.system_name.lower() == "assimilation" for law in assim)
+    assert all(law.functional_system.lower() == "assimilation" for law in assim)
 
 
 def test_bhb_signaling_pathway_registered():

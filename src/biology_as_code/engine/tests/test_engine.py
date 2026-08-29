@@ -123,7 +123,7 @@ class TestPromotedLaws043_047(unittest.TestCase):
         for lid, expect in self.PROMOTED.items():
             with self.subTest(lid=lid):
                 L = self.reg.get(lid)
-                self.assertEqual(L.system_name, expect["system"])
+                self.assertEqual(L.functional_system, expect["system"])
                 self.assertEqual(L.gate_present, expect["gate_present"], msg=L.gate_text)
                 self.assertIn(expect["subsystem_has"].lower(), L.subsystem.lower())
                 self.assertTrue(L.law_statement.strip())

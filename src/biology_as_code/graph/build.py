@@ -67,7 +67,7 @@ def load_laws(g: GraphStore) -> int:
             law_id,
             "Law",
             rec.get("law_statement") or law_id,
-            system=rec.get("system_name"),
+            functional_system=rec.get("functional_system"),
             organ=rec.get("organ"),
             subsystem=rec.get("subsystem"),
             status=rec.get("status"),
@@ -82,10 +82,14 @@ def load_laws(g: GraphStore) -> int:
         )
         n += 1
 
-        # seat: system and organ
-        if sys_name := (rec.get("system_name") or "").strip():
-            sid = f"system:{_slug(sys_name)}"
-            g.add_node(sid, "System", sys_name)
+        # Seat: functional system and organ.
+        # Label is FunctionalSystem, not System: the eleven anatomical organ
+        # systems (UBERON-backed) are a different set and get OrganSystem when
+        # they land. One label per vocabulary, so a graph query can never
+        # silently span both.
+        if sys_name := (rec.get("functional_system") or "").strip():
+            sid = f"functional_system:{_slug(sys_name)}"
+            g.add_node(sid, "FunctionalSystem", sys_name)
             g.add_edge(law_id, "SEATED_IN", sid)
 
         if organ := (rec.get("organ") or "").strip():

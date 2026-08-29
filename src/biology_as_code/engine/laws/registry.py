@@ -30,7 +30,12 @@ _DEFAULT_SB = data_file("all_laws_system_bound.json")
 @dataclass(frozen=True)
 class LawRecord:
     id: str
-    system_name: str
+    # One of the SEVEN functional systems (Assimilation, Biotransformation,
+    # Communication, Defense, Energy, Structure, Transport) — what the body is
+    # DOING. Not one of the eleven anatomical organ systems, which are
+    # `organ_system` in biology_as_code.systems. The two sets are disjoint and
+    # must never share a field name; they did, and nothing could tell them apart.
+    functional_system: str
     organ: str
     subsystem: str
     law_statement: str
@@ -48,7 +53,7 @@ class LawRecord:
 
     @property
     def address(self) -> str:
-        return f"{self.system_name}.{self.subsystem}"
+        return f"{self.functional_system}.{self.subsystem}"
 
 
 class LawRegistry:
@@ -71,7 +76,7 @@ class LawRegistry:
         return [self._by_id[k] for k in sorted(self._by_id)]
 
     def by_system(self, system: str) -> list[LawRecord]:
-        return [L for L in self.all() if L.system_name == system]
+        return [L for L in self.all() if L.functional_system == system]
 
     def executable(self) -> list[LawRecord]:
         return [L for L in self.all() if L.executable]
@@ -88,8 +93,8 @@ class LawRegistry:
             if e not in self._by_id:
                 errors.append(f"missing {e}")
         for L in self.all():
-            if L.system_name not in SEVEN:
-                errors.append(f"{L.id} bad system {L.system_name}")
+            if L.functional_system not in SEVEN:
+                errors.append(f"{L.id} bad functional system {L.functional_system}")
             if not L.subsystem:
                 errors.append(f"{L.id} empty subsystem")
             if not L.law_statement:
@@ -119,7 +124,7 @@ def _from_tc_law(raw: dict[str, Any]) -> LawRecord:
     ch = raw.get("code_hooks") or {}
     return LawRecord(
         id=raw["id"],
-        system_name=raw["system_name"],
+        functional_system=raw["system_name"],   # data key unchanged
         organ=raw.get("organ") or "",
         subsystem=raw.get("subsystem") or "",
         law_statement=raw.get("law_statement") or raw.get("name") or "",
@@ -172,7 +177,7 @@ def _from_sb_law(raw: dict[str, Any]) -> LawRecord:
             break
     return LawRecord(
         id=raw["id"],
-        system_name=raw.get("system") or "",
+        functional_system=raw.get("system") or "",   # data key unchanged
         organ=raw.get("organ") or "",
         subsystem=raw.get("subsystem") or "",
         law_statement=raw.get("law") or "",

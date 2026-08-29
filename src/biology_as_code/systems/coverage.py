@@ -13,8 +13,12 @@ from biology_as_code.systems.states import EvalState, WalkResult
 
 @dataclass(frozen=True)
 class SystemCoverageRow:
+    # One of the ELEVEN anatomical organ systems (cardiovascular, digestive,
+    # endocrine, immune, integumentary, muscular, nervous, reproductive,
+    # respiratory, skeletal, urinary) — which body PART. Not one of the seven
+    # functional systems on the law register, which are `functional_system`.
     system_id: str
-    system_name: str
+    organ_system: str
     shipped: bool
     result: WalkResult
 
@@ -49,7 +53,7 @@ class SystemCoverageTable:
         return [
             {
                 "system_id": r.system_id,
-                "system": r.system_name,
+                "organ_system": r.organ_system,
                 "shipped": r.shipped,
                 "state": r.state.value,
                 "gate": r.result.gate_id,
@@ -70,7 +74,7 @@ def cover_meal(data: Mapping[str, Any] | MealObservation | None) -> SystemCovera
         rows.append(
             SystemCoverageRow(
                 system_id=spec.id,
-                system_name=spec.name,
+                organ_system=spec.name,
                 shipped=spec.shipped,
                 result=result,
             )
@@ -90,6 +94,6 @@ def render_table(table: SystemCoverageTable) -> str:
         gate = row.result.gate_id or "—"
         flag = "" if row.shipped else " [parked]"
         lines.append(
-            f"{row.system_name + flag:<22} {row.state.value:<14} {gate:<24} {row.result.reason}"
+            f"{row.organ_system + flag:<22} {row.state.value:<14} {gate:<24} {row.result.reason}"
         )
     return "\n".join(lines)
