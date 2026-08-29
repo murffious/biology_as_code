@@ -171,7 +171,7 @@ class UnifiedKIBOFacade:
         # Label teaching meter from core_sim (not product score)
         flow_meter = None
         if bridge_report and isinstance(bridge_report.get("core_sim"), dict):
-            flow_meter = bridge_report["core_sim"].get("flow_score")
+            flow_meter = bridge_report["core_sim"].get("kibo_score")
 
         product_score_analysis = run_product_score_analysis(
             payload=payload,
@@ -201,7 +201,7 @@ class UnifiedKIBOFacade:
             "notes": (
                 "depth = enzyme plan + residual + pathway_regulation + minerals/DRI; "
                 "bridge = LAW-tagged GI narrative + kibo_core.sim + iron walk; "
-                "flow_teaching_meter = open-tier core_sim.flow_score (NOT product meal score); "
+                "flow_teaching_meter = open-tier core_sim.kibo_score (NOT product meal score); "
                 "product_score_analysis = optional patent-pending plugin; "
                 "merged = selected join fields for product consumers."
             ),
@@ -237,8 +237,8 @@ class UnifiedKIBOFacade:
             out["core_sim"] = bridge.get("core_sim")
             # Explicit rename: teaching meter ≠ product score
             cs = bridge.get("core_sim") or {}
-            if isinstance(cs, dict) and "flow_score" in cs:
-                out["flow_teaching_meter"] = cs.get("flow_score")
+            if isinstance(cs, dict) and "kibo_score" in cs:
+                out["flow_teaching_meter"] = cs.get("kibo_score")
             out["bridge_energy_charge"] = bridge.get("energy_charge")
             out["refuse"] = bridge.get("refuse")
         return out

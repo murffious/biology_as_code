@@ -37,7 +37,7 @@ class MetabolicSimulator:
             "scfa_mmol": state.scfa_mmol,
             "beta_hb_mmol": state.beta_hb_mmol,
             "atp_units": state.atp_units,
-            "flow_score": state.flow_score,
+            "kibo_score": state.kibo_score,
             "laws_cited": list(state.laws_cited),
             "refuse": list(state.refuse),
             "messages": list(state.messages),

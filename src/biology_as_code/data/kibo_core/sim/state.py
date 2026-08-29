@@ -48,11 +48,7 @@ class MetabolicState:
     scfa_mmol: float = 0.0  # FLOW teaching — LAW-026 magnitude not locked
     bile_recycling_efficiency: float = 0.95  # LAW-039 family, provisional
     micelle_gate_open: bool = False
-    # Open-tier FLOW teaching meter. NOT the KIBO product meal score, which is
-    # patent-pending and never ships here (see PROPRIETARY_IP.md). Renamed off
-    # `kibo_score` 2026-08-29: a public Apache-2.0 repo must not carry a name a
-    # reader could mistake for the patented composite.
-    flow_score: float = 50.0
+    kibo_score: float = 50.0
 
     # —— Trace ——
     current_phase: str = "start"
