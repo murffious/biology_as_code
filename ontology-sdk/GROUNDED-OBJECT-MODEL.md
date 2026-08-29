@@ -201,13 +201,27 @@ Deliberately excluded for lack of backing: `Outcome` as an ontology-keyed type (
 
 ## 8. Blockers, ordered
 
+> **Status 2026-08-29: blockers 1 and 2 are LANDED.** The spine is named
+> (`spine:food … spine:outcome`, plus off-ladder `spine:anatomy`), the field is
+> `spine_stage`, and `nutri-collective/scripts/migrate_spine_naming.py --check`
+> gates it. 51 spine terms, 94 embedded principle terms, 160 SQLite rows, both
+> TypeScript apps typechecking clean, both Python suites green.
+> **Blocker 3 is half done** — RO now carries `role: "predicate"` and
+> `spine_stage: "NONE"`, and the file declares a `relations` block; the DB
+> predicate column is still missing.
+> **One exception is declared, not fixed:** the claim auditor's `l1_to_l5` still
+> uses causal L-numbers across 6 files. Renaming it reaches the audit engine, its
+> tests and notebooks, and terminology already printed in the book draft — that is
+> an editorial call, so it is ratcheted at 6 files rather than done silently.
+
+
 Each names the file that has to change. Blockers 1–4 must clear before a manifest can be *generated*; 5–8 before it can be *published*.
 
-**1 · The layer naming collision.** Nothing can be typed while `L3` means two things. → `nutri-collective/backend/bfo_stack_ontology.json` (adopt §2's `spine:` names in `layers` and all 51 `terms[].obo_layer`). Cascades that must land in the same change: `nutri-collective/backend/principles.json` (94 embedded terms), `nutri-collective/scripts/seed_mechanism_ontology_db.py`, `nutri-collective/benchmark/evidence.py:44-46`, `biology_as_code/schemas/claim_audit.schema.json:21-34`, `nutri-collective/fim-evidence-tool/src/lib/ontology.ts`.
+**1 · ~~The layer naming collision.~~ LANDED 2026-08-29.** Nothing can be typed while `L3` means two things. → `nutri-collective/backend/bfo_stack_ontology.json` (adopt §2's `spine:` names in `layers` and all 51 `terms[].obo_layer`). Cascades that must land in the same change: `nutri-collective/backend/principles.json` (94 embedded terms), `nutri-collective/scripts/seed_mechanism_ontology_db.py`, `nutri-collective/benchmark/evidence.py:44-46`, `biology_as_code/schemas/claim_audit.schema.json:21-34`, `nutri-collective/fim-evidence-tool/src/lib/ontology.ts`.
 
-**2 · `ANATOMY` is an undeclared layer value.** Three of 51 terms carry it; the `layers` map has no key for it, so the file cannot validate against itself. → `nutri-collective/backend/bfo_stack_ontology.json` (add the entry, or retire the value onto the three UBERON/GO:CC terms as a separate `context` property — the `fim-evidence-tool` fork already promoted it to a real layer, so downstream has already voted).
+**2 · ~~`ANATOMY` is an undeclared layer value.~~ LANDED — it is now `spine:anatomy`, a declared peer with a title, ontologies and a note.** Three of 51 terms carry it; the `layers` map has no key for it, so the file cannot validate against itself. → `nutri-collective/backend/bfo_stack_ontology.json` (add the entry, or retire the value onto the three UBERON/GO:CC terms as a separate `context` property — the `fim-evidence-tool` fork already promoted it to a real layer, so downstream has already voted).
 
-**3 · RO is stored as terms, not as predicates.** Until the 8 relation rows leave `terms[]`, "predicate" and "class" are one type and no link accessor can be generated. → `nutri-collective/backend/bfo_stack_ontology.json` (lift the 8 RO rows into a sibling `relations` block with domain/range), and `nutri-collective/scripts/seed_mechanism_ontology_db.py` + the `principle_mechanism` DDL (add a predicate column).
+**3 · RO is stored as terms, not as predicates.** *(Half done: `role`/`spine_stage:NONE` and a `relations` block landed; the DB predicate column has not.)* Until the 8 relation rows leave `terms[]`, "predicate" and "class" are one type and no link accessor can be generated. → `nutri-collective/backend/bfo_stack_ontology.json` (lift the 8 RO rows into a sibling `relations` block with domain/range), and `nutri-collective/scripts/seed_mechanism_ontology_db.py` + the `principle_mechanism` DDL (add a predicate column).
 
 **4 · Pick one predicate vocabulary.** Five candidates, none a subset of another: `book/claim-language/claim_verbs.json` (15 RelationTypes with RO mappings), `book/nutrient-taxonomy/v2/nutrient-edge.v2.json` (16 with conditional payloads), `nutri-collective/evidence-platform/src/mechanism_schema.py` (11 with an **executed** domain/range matrix), `id-crosswalk` kinds (4, identity only), `biology_as_code/schemas/relation_enums.subset.json` (8, self-declared as a public subset). Plus two undeclared sets in `book/taxonomies/joins/*` that already drifted between sibling files. → The decision belongs in `biology_as_code/schemas/relation_enums.subset.json`'s upstream (the full list its header points to). Recommendation: `mechanism_schema.py` is the only one with an enforced domain/range and should be the base; `claim_verbs.json` maps onto it as the claim-language projection. **Uncertain** whether `nutrient-edge.v2`'s 16 can be expressed in 11 — that needs a mapping pass, not an assertion.
 

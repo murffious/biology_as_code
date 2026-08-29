@@ -171,18 +171,74 @@ def check_provenance_fields_survive():
     return OK, "method / source_ref / retrieved all still required"
 
 
+# The one causal-L user still standing. `l1_to_l5` in the claim auditor uses
+# L1-L5 for the same ladder the spine used, but renaming it reaches the audit
+# engine, its tests and notebooks, AND terminology already printed in the book
+# draft — an editorial decision, not a mechanical one. Ratcheted at 1 so it
+# cannot quietly become two.
+USE = re.compile(
+    r'"(?:obo_layer|l1_to_l5)"\s*:'          # JSON key
+    r'|\bobo_layer\s*='                      # assignment / kwarg
+    r'|\.(?:obo_layer|l1_to_l5)\b'           # attribute access
+    r'|\[["\'](?:obo_layer|l1_to_l5)["\']\]'  # subscript
+    r'|get\(["\'](?:obo_layer|l1_to_l5)["\']'  # dict get
+    r'|\bobo_layer\s+TEXT'                   # SQL DDL
+)
+
+KNOWN_CAUSAL_L = {
+    "biology_as_code/schemas/claim_audit.schema.json",
+    "biology_as_code/src/biology_as_code/audit/auditor.py",
+    "biology_as_code/src/biology_as_code/graph/build.py",
+    "biology_as_code/tests/test_claim_audit.py",
+    "biology_as_code/examples/claims/claim_spinach_prevents_disease_no_fat.json",
+    "biology_as_code/site/search/search_index.json",     # generated from the docs
+}
+
+
 def check_layer_misnomer():
-    """The Misnomer. Both senses of 'layer' are in use; this is expected to FAIL
-    until the collision is resolved. A green here would be the lie."""
-    causal = len(re.findall(r"\bL[1-5]\b", _read("book/ONTOLOGY-CONSOLIDATION.md")
-                            + _read("biology_as_code/ontology-sdk/WHERE-THIS-FITS.md")))
-    stack = len(re.findall(r"\bL[06-9]\b", _read("book/ONTOLOGY-CONSOLIDATION.md")
-                           + _read("biology_as_code/ontology-sdk/WHERE-THIS-FITS.md")))
-    if causal and stack:
-        return FAIL, (f"'layer' carries two numbering systems in the same docs "
-                      f"(causal-spine refs {causal}, nine-layer refs {stack}) — "
-                      f"open naming blocker, qualify both")
-    return OK, "one 'layer' sense in use"
+    """The Misnomer: L1-L5 must not mean a causal stage anywhere the machine reads.
+
+    Data-level, not doc-level. The nine-layer standardization stack keeps L0-L9;
+    the causal spine is named (`spine:food` … `spine:outcome`). This asserts the
+    spine carries no L-number and that the one remaining exception has not grown.
+    """
+    spine = ROOT / "nutri-collective/backend/bfo_stack_ontology.json"
+    if not spine.is_file():
+        return FAIL, "bfo_stack_ontology.json missing"
+    d = json.loads(spine.read_text(encoding="utf-8"))
+    if "layers" in d:
+        return FAIL, "spine still has a `layers` key with L-numbers"
+    stages = set(d.get("stages", {}))
+    if not stages or any(not k.startswith("spine:") for k in stages):
+        return FAIL, f"spine stages are not all named: {sorted(stages)}"
+    stray = sorted({t.get("spine_stage") for t in d.get("terms", [])}
+                   - stages - {"NONE"})
+    if stray:
+        return FAIL, f"terms carry stage values with no `stages` entry: {stray}"
+
+    # No live file may still key a causal stage off an L-number.
+    skip = {".venv", "node_modules", "__pycache__", ".git", "_to_delete", "archive"}
+    offenders = set()
+    for pat in ("**/*.py", "**/*.ts", "**/*.tsx", "**/*.json"):
+        for f in ROOT.glob(pat):
+            if set(f.parts) & skip or f.name == Path(__file__).name:
+                continue
+            try:
+                txt = f.read_text(encoding="utf-8", errors="replace")
+            except OSError:
+                continue
+            # A USE, not a mention. The token has to sit in a key or
+            # attribute position; prose that merely names the old field —
+            # a migration note, a registered claim describing the exception —
+            # is not a violation. Matching bare occurrences flags the very
+            # records that document the fix.
+            if USE.search(txt):
+                offenders.add(str(f.relative_to(ROOT)))
+    new = sorted(o for o in offenders if o not in KNOWN_CAUSAL_L)
+    if new:
+        return FAIL, f"causal L-numbering in live files: {new[:6]}"
+    return OK, (f"spine is named ({len(stages)} stages); 1 declared exception "
+                f"remains: claim_audit `l1_to_l5`, 6 files, editorial")
 
 
 def check_dependents_are_generated():
