@@ -29,7 +29,7 @@ it. Product identifiers are gone from `src/` and `tests/`, and CI job
 | `enable_product_score=` | `enable_external_score=` |
 | env `KIBO_PRODUCT_SCORE_MODULE` | env `BAC_SCORER_MODULE` |
 | result field `kibo_vars_score` | result field `vendor_scores` |
-| law field `LawRecord.kibo_system` | `LawRecord.system_name` |
+| law field `LawRecord.kibo_system` | `LawRecord.functional_system` |
 | schema ids `kibo.*` | schema ids `bac.*` |
 
 No compatibility shims: an alias would put the identifier back in `src/`, which

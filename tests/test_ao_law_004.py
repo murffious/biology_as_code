@@ -209,7 +209,7 @@ def test_the_ao_form_matches_the_registry_record():
     from biology_as_code.engine.laws.registry import load_system_bound_registry
 
     law = load_system_bound_registry().get("LAW-004")
-    assert law.system_name == "Assimilation"
+    assert law.functional_system == "Assimilation"
     assert "EXPANDS_BOUND" in law.relation_type
     assert "ascorbic acid" in law.law_statement.lower()
     # The bound text is where the fold interval comes from.
