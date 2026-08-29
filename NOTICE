@@ -49,6 +49,25 @@ readable register is THIRD-PARTY-DATA.json.
    US Food and Drug Administration, retrieved 2026-08-02. Work of the US federal
    government (17 U.S.C. 105); public domain. No restriction on commercial use.
 
+3. Open Food Facts  --  src/biology_as_code/data/fixtures/
+
+   Open Food Facts contributors. https://world.openfoodfacts.org
+   Data licensed under the Open Database License (ODbL) v1.0.
+
+   67 meal fixtures declare `OpenFoodFacts (fallback macros)` in their own
+   nutrition_provenance, supplying macro values where USDA FoodData Central had
+   none. ODbL requires attribution in all cases and is SHARE-ALIKE for a publicly
+   used derived database. Whether this fixture set is a derived database under
+   ODbL, or a produced work using insubstantial extracts, is unresolved. The
+   attribution above is required either way.
+
+4. USDA FoodData Central  --  src/biology_as_code/data/
+
+   US Department of Agriculture, Agricultural Research Service. FoodData Central
+   (Branded, SR Legacy, Foundation). https://fdc.nal.usda.gov
+   Work of the US federal government (17 U.S.C. 105); public domain. Attribution
+   is courtesy. Not to be used to imply USDA endorsement.
+
 Nothing else in this repository is third-party. See THIRD-PARTY-DATA.json for the
 first-party list and the remedies available for item 1.
 

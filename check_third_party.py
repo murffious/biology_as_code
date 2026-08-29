@@ -64,7 +64,7 @@ def main(argv: list[str]) -> int:
     for e in m["entries"]:
         if not e.get("blocks"):
             continue
-        notice = HERE / (Path(e["file"]).name + ".NOTICE.md")
+        notice = HERE / (Path(e["file"]).stem + ".NOTICE.md")
         if e["file"].endswith("/"):
             notice = HERE / e["file"] / "NOTICE.md"
         if not notice.is_file():

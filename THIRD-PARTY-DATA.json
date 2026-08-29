@@ -18,8 +18,22 @@
       "licence_note": "OPEN, not asserted. This project's own working_map_nutrition/VMH_REFERENCE.md records CC BY-NC 2.0 for Recon3D and CC BY-NC-ND 4.0 for ReconMap. The VMH database paper (NAR 2019) states only that the data are 'freely available' and names no licence; vmh.life returns 403 to automated retrieval. Verified 2026-08-29 that the paper is silent. The operative terms MUST be confirmed with VMH directly before any commercial use.",
       "what_is_redistributed": {
         "rows": 2797,
-        "columns_from_this_source": ["vmh", "name", "formula", "inchiKey", "hmdb", "kegg", "chebi", "pubchem"],
-        "columns_not_from_this_source": ["seed", "modeled_pathway", "term_id", "systems"],
+        "columns_from_this_source": [
+          "vmh",
+          "name",
+          "formula",
+          "inchiKey",
+          "hmdb",
+          "kegg",
+          "chebi",
+          "pubchem"
+        ],
+        "columns_not_from_this_source": [
+          "seed",
+          "modeled_pathway",
+          "term_id",
+          "systems"
+        ],
         "note": "8 of 12 columns. The individual cells are largely facts — chemical formulae and registry identifiers are not creative expression. The exposure is the COMPILATION: 2,797 curated rows extracted wholesale, and in particular the cross-reference mapping between VMH, HMDB, KEGG, ChEBI and PubChem, which is the curatorial work that gives the table its value. VMH is maintained in the EU, where the sui generis database right restricts substantial extraction independently of copyright."
       },
       "conflict": "This repository is Apache-2.0, which permits commercial use. A CC BY-NC source cannot be redistributed under those terms. Until resolved, the crosswalk should be treated as non-commercial regardless of the repository licence, and MASTER_CROSSWALK.NOTICE.md says so next to the file.",
@@ -29,7 +43,11 @@
         "Reduce to identifiers only: drop `name` (VMH's fullName labels) and rebuild the cross-references from each registry directly rather than from VMH's mapping. This removes the compilation exposure but discards the curatorial join that is the table's value.",
         "Obtain a licence from the rights holder."
       ],
-      "blocks": ["commercial use", "relicensing under Apache-2.0", "any claim of first-party authorship"]
+      "blocks": [
+        "commercial use",
+        "relicensing under Apache-2.0",
+        "any claim of first-party authorship"
+      ]
     },
     {
       "id": "fda-fdcc",
@@ -40,15 +58,82 @@
       "declared_licence": "US public domain",
       "licence_confidence": "high",
       "licence_note": "Work of the US federal government, 17 U.S.C. 105. Attribution is courtesy, not obligation. No commercial restriction.",
-      "what_is_redistributed": {"note": "Raw inventories plus cleaned derivatives under clean/."},
+      "what_is_redistributed": {
+        "note": "Raw inventories plus cleaned derivatives under clean/."
+      },
+      "conflict": "NONE",
+      "remedies_available": [],
+      "blocks": []
+    },
+    {
+      "id": "openfoodfacts",
+      "file": "src/biology_as_code/data/fixtures/",
+      "source": "Open Food Facts",
+      "source_url": "https://world.openfoodfacts.org",
+      "attribution": "Open Food Facts contributors. https://world.openfoodfacts.org — data under the Open Database License (ODbL) v1.0.",
+      "declared_licence": "ODbL 1.0",
+      "licence_confidence": "high",
+      "licence_note": "Open Food Facts publishes its database under ODbL 1.0. ODbL is SHARE-ALIKE: publicly using a derived database obliges you to offer that derived database under ODbL, and attribution is required in all cases. This is a real obligation, not a courtesy, and it is not satisfied by the repository's Apache-2.0 licence.",
+      "what_is_redistributed": {
+        "files": 67,
+        "note": "67 meal fixtures declare `OpenFoodFacts (fallback macros)` in their own nutrition_provenance block, alongside USDA FDC. OFF supplied macro values where USDA had none. Whether 67 fixtures constitute a 'derived database' under ODbL or merely a produced work using insubstantial extracts is a genuine open question; attribution is required either way and is the cheap half."
+      },
+      "conflict": "Attribution was absent from NOTICE until 2026-08-29 while the repo was public. Share-alike status is unresolved.",
+      "remedies_available": [
+        "Attribute Open Food Facts in NOTICE and in the fixtures' own provenance (the provenance block already names it — it simply never propagated to NOTICE).",
+        "Determine whether the fixture set is a derived database under ODbL. If it is, offer it under ODbL rather than Apache-2.0.",
+        "Regenerate the affected macros from USDA FDC alone (public domain) and drop the OFF fallback, removing the obligation entirely."
+      ],
+      "blocks": [
+        "silent relicensing under Apache-2.0"
+      ],
+      "found_by": "check_third_party.py, on its first run. The fixtures had recorded their own sources since July; nothing had ever read them."
+    },
+    {
+      "id": "usda-fdc",
+      "file": "src/biology_as_code/data/",
+      "source": "USDA FoodData Central",
+      "source_url": "https://fdc.nal.usda.gov",
+      "attribution": "US Department of Agriculture, Agricultural Research Service. FoodData Central (Branded, SR Legacy, Foundation).",
+      "declared_licence": "US public domain",
+      "licence_confidence": "high",
+      "licence_note": "Work of the US federal government (17 U.S.C. 105). Attribution is courtesy, not obligation. USDA asks that FDC not be used to imply endorsement.",
+      "what_is_redistributed": {
+        "note": "Per-100g nutrient values embedded in meal fixtures and the claims reference."
+      },
       "conflict": "NONE",
       "remedies_available": [],
       "blocks": []
     }
   ],
   "first_party": [
-    {"file": "examples/claims/food_health_claims_500.json", "note": "Authored here, generated 2026-07-23."},
-    {"file": "src/biology_as_code/data/kibo_core/data/topics_ontology.json", "note": "Authored here, frozen from list.topics.md."},
-    {"file": "FDP-1 specification and validator", "note": "Authored here. Apache-2.0. See PATENTS.md."}
+    {
+      "file": "examples/claims/food_health_claims_500.json",
+      "note": "Authored here, generated 2026-07-23."
+    },
+    {
+      "file": "FDP-1 specification and validator",
+      "note": "Authored here. Apache-2.0. See PATENTS.md."
+    },
+    {
+      "file": "src/biology_as_code/data/kibo_core/",
+      "note": "Authored here. Contains no third-party rows."
+    },
+    {
+      "file": "MASTER_CROSSWALK.NOTICE.md",
+      "note": "This project's attribution for the crosswalk."
+    },
+    {
+      "file": "THIRD-PARTY-DATA.json",
+      "note": "This register."
+    },
+    {
+      "file": "src/biology_as_code/machines/data/",
+      "note": "Authored here — machine schemas, persona fixtures, score axes."
+    },
+    {
+      "file": "src/biology_as_code/pathways/",
+      "note": "Authored here — pathway packs and the generated graph index."
+    }
   ]
 }
