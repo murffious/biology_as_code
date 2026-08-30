@@ -23,6 +23,17 @@ and three of them were found the hard way.
    green was to exclude the files where the real product names would also hide.
    Product names and author names are now separate patterns with separate rules.
 
+4a. **The gate failed on its own allowlist, in CI, after passing locally.** A reason
+   in `separation.allow` says *"Records renames such as KIBO_PRODUCT_SCORE_MODULE ->
+   BAC_SCORER_MODULE"*, and the scan read it as a leak. Two lessons. The small one:
+   the local mutation test ran while `separation.allow` was still UNTRACKED, so
+   `git ls-files` never handed it to the scanner — a gate keyed on tracked files must
+   be tested after `git add`, not before. The real one: this is mention-vs-use inside
+   the gate itself, the same error `check_no_human_rows.py` exists to avoid. The fix
+   is not to exempt the file — that would make it the one place a leak could hide.
+   In `separation.allow` alone, the PATH column is scanned and the reason text after
+   `#` is not, because a reason that cannot name what it excepts is not a reason.
+
 4. **`--exclude-dir="*.egg-info"` hid a real hit.** `src/biology_as_code.egg-info/PKG-INFO`
    carries `Keywords: ...,kibo,...` from an older `pyproject.toml`. It is untracked, so
    it never shipped from git — but the exclusion is why nobody noticed the stale
@@ -93,6 +104,12 @@ def main() -> int:
             text = p.read_text(errors="replace")
         except Exception:                                        # noqa: BLE001
             continue
+        if p == ALLOW:
+            # Mention vs use. The allowlist's PATH column is real content and stays
+            # under the gate; its reason text is prose ABOUT the product names and
+            # must be free to say them. Blanking the comments rather than skipping
+            # the file keeps a product-named path from ever being smuggled in here.
+            text = "\n".join(ln.partition("#")[0] for ln in text.splitlines())
         scanned += 1
         for m in PRODUCT.finditer(text):
             ln = text[:m.start()].count("\n") + 1
