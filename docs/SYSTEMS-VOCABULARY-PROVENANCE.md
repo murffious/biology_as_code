@@ -11,7 +11,7 @@ before commercial release.*
 
 ## The seven, as they appear in `laws.py`
 
-`kibo_system` on the 47 frozen laws: **Assimilation** (21) · **Biotransformation** (5)
+`system` on the 47 frozen laws: **Assimilation** (21) · **Biotransformation** (5)
 · **Structure** (5) · **Communication** (5) · **Defense** (4) · **Energy** (4) ·
 **Transport** (3).
 

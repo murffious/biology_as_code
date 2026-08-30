@@ -59,7 +59,7 @@ exposure.
 
 ## What this is not
 
-- Not a Kibo score
+- Not a product score
 - Not 11 green checkmarks
 - Not medical advice
 - Not a replacement for `biology_as_code.audit.audit_claim` (that module

@@ -119,8 +119,8 @@
       "note": "Authored here. Apache-2.0. See PATENTS.md."
     },
     {
-      "file": "src/biology_as_code/data/kibo_core/",
-      "note": "Authored here. Contains no third-party rows."
+      "file": "src/biology_as_code/engine/data/",
+      "note": "Authored here. Contains no third-party rows. (Path corrected 2026-08-30: the previous entry named a local, untracked directory.)"
     },
     {
       "file": "MASTER_CROSSWALK.NOTICE.md",
