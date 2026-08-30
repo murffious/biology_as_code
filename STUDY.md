@@ -8,7 +8,6 @@ schema_ref:
   food:       fdp-1@v0.1.0
   packet:     biology_as_code/schemas@v0.1.0
   study:      MI-Nutrition@v0.1
-              https://nutri-collective.mealcoach.ai/mi-nutrition-v0.1.schema.json
 rule:         a row OR a study record that does not validate is not study data
 split:        food deposits are public; person-level rows stay in body;
               research export only via ResearchRelease + DUO
@@ -20,9 +19,12 @@ paper:        producer keeps first analysis
   on a food, the packet that carries it, and the study record itself. The pin used to
   name the first two and behave as though that covered the third. **The same block is in
   `fdp-1/STUDY.md`.** If they diverge, the pin is broken.
-  **Honest status of the third:** the MI-Nutrition *schema* is public at the URL above;
-  its *validator* is not yet, so `study:` is today a contract you can read but not run.
-  `food:` and `packet:` you can clone and watch refuse. That gap is the next thing to close.
+  **Honest status of the third:** `food:` and `packet:` resolve to public repositories
+  you can clone and watch refuse a bad row. `study:` names a version and nothing else,
+  because MI-Nutrition has no neutral public home yet — its schema is served, but from a
+  product-branded host this repository is not permitted to name, and its validator is not
+  published at all. **The pin therefore names a contract a stranger cannot yet fetch or
+  run.** That is stated rather than papered over, and closing it is the next task.
 - `rule` is refusal. Enforced today: the FDP-1 validator in `murffious/fdp-1`, pinned above.
 - `split` is what stops a `human_id` landing in a public remote. Enforced today:
   `tools/check_no_human_rows.py`, which runs **first** in CI — every other failure here
