@@ -408,3 +408,159 @@ conflict and remedy, in
 [`THIRD-PARTY-DATA.json`](https://github.com/murffious/biology_as_code/blob/main/THIRD-PARTY-DATA.json),
 and `check_third_party.py` fails the build if that register drifts. No project on
 this page is vendored, and none should be.
+
+
+
+This video is **"PTFI Science Symposium: Molecules to Meaning with PTFI's First 500 Foods,"** published by the Food EDU channel.
+
+While the full transcript isn't currently available to extract specific quotes, the presentation centers on the **Periodic Table of Food Initiative (PTFI)** and their milestone of mapping their first 500 foods. Based on the symposium's broader context, here is an overview of the core concepts covered:
+
+* **Foodomics and Molecular Diversity:** The initiative moves beyond traditional macronutrient tracking to map the "dark matter" of nutrition. PTFI uses high-resolution untargeted metabolomics and glycomics to capture a vastly broader array of small molecules, carbohydrates, and proteins across diverse food sources.
+* **Contextual Metadata:** The project integrates molecular data with environmental, agricultural, and cultural contexts, treating a food's nutritional profile as something dynamically linked to its ecosystem rather than a static metric.
+* **Standardized Data Architectures:** A major focus of PTFI is establishing standardized analytical protocols so that global researchers can contribute to and leverage a unified, comprehensive database.
+
+The PTFI's approach represents a significant step forward in computational nutrition science. By establishing comprehensive, machine-readable schemas that account for deeper molecular profiles and environmental metadata, their work aligns closely with the goal of transforming biological and nutritional evidence into structured, AI-ready data ecosystems—moving beyond the constraints of traditional, flat databases like USDA FoodData Central or Open Food Facts.
+
+Both inventories exist for the same job — “what is in food?” — and they sit at different layers of that job.
+
+**PTFI 1,650** is a *priority specimen list*: foods the field decided are worth measuring next.  
+**FAO INFOODS** is a *standards-and-tables network*: how nations compile, name, and share the ~150 nutrient values we already use for guidelines and surveys.
+
+PTFI checked its list against INFOODS and USDA and found most of it missing. That is the relationship.
+
+---
+
+## 1. The 1,650 priority foods
+
+Published March 2024 with the *Nature Food* comment. Dataset: [doi:10.7910/DVN/M9TA1H](https://doi.org/10.7910/DVN/M9TA1H) (Harvard Dataverse; guestbook required to download). Compilation: ~40 regional experts + existing lists, then de-duplicated. Critically endangered / endangered / vulnerable wild taxa were dropped unless already domesticated.
+
+**How the list was built (the interesting part)**  
+Not “top calories.” Facets used to nominate:
+
+- biology (plants, animals, fungi, bacteria, algae, insects, one lichen)
+- tissue (leaf, root, seed, fruit, muscle, egg…)
+- geography (origin vs where it is eaten)
+- domestication vs wild / underutilized
+- processing (raw → fermented → cooked)
+- whether it is a meal center or a garnish
+- staple vs festive
+- affordability
+
+About **one-third (542)** were nominated by more than one source — those are the consensus foods.
+
+**Shape of the 1,650**
+
+| Slice | Count (approx.) |
+|---|---|
+| Plants | ~1,260 |
+| Animals | ~376 |
+| Vegetables (broad) | 417 |
+| Leafy vegetables | 175 |
+| Roots & tubers | 108 |
+| Nuts & seeds | 125 |
+| Herbs & spices | 63 |
+| Aquatic plants | 10 |
+| Land animals | 126 |
+| Aquatic animals | 115 |
+| Insects | 73 |
+| Invertebrates | 114 |
+| Vertebrates | 262 |
+
+**By region of importance**
+
+| Scope | Foods |
+|---|---|
+| Global (widely cultivated/consumed) | 476 |
+| Asia | 355 |
+| Pacific | 311 |
+| Americas | 290 |
+| Africa | 176 |
+| Europe | 42 |
+
+Fruits ~30%, vegetables ~25%, nuts/seeds ~8%, land animal products ~8%, aquatic ~7%. Half of world calories still come from wheat, maize, and rice; this list is the opposite bet.
+
+**Coverage against existing tables (the finding that launched the project)**
+
+- **~22% (362)** appear in USDA FoodData Central  
+- **~25% (405)** appear in at least one of the three major FAO/INFOODS nutrient databases they checked  
+- **~62%** are absent from those global public tables  
+
+So the 1,650 is not “foods we already have rows for.” It is a gap map. Over 1,000 of the world’s culturally important foods have no internationally comparable nutrient profile, let alone a metabolome.
+
+**What the list is not**  
+It is not composition data. No protein, no lycopene, no dark-matter features. It is a queue. The first measured slice (500 foods / ~250 species, ~24k metabolomic features) is a different product, sitting on MarkerLab and the AHA Precision Medicine Platform.
+
+Dataverse package (if you fill the guestbook): codebook, food-product table, category table, IUCN-excluded foods, references.
+
+---
+
+## 2. FAO INFOODS
+
+**INFOODS** = International Network of Food Data Systems. Founded 1984 under FAO / UNU. It is not one database. It is the operating system national food-composition tables are supposed to plug into.
+
+**What it actually is**
+
+1. **Standards**
+   - Food description guidelines (single vs mixed foods, facet strings)
+   - **Tagnames** — unique IDs for components so `VITA` and “vitamin A” and “retinol equivalents” do not collide
+   - Data interchange format
+   - Food-matching guidelines (how to map a survey item onto a table row)
+   - Unit / denominator conversion guidelines
+   - Pre-publication data-check guidelines
+   - Evaluation framework for published tables
+
+2. **A global directory** of national and regional food composition tables (started 1988, still updated). FAO’s current catalogue lists tables country-by-country — Albania 2022, Angola 2025, AUSNUT, ÖNWT, Bangladesh, Vietnam, Zambia, etc. Inclusion is not endorsement.
+
+3. **FAO/INFOODS’s own compiled databases** (Excel + user guides, free):
+
+| Database | Role |
+|---|---|
+| **AnFooD 2.0** | Archival *analytical-only* values. ~1,940 foods, ~364 components. No imputed gaps. |
+| **BioFoodComp 4.0** | Biodiversity: cultivars, landraces, wild foods. Earlier versions compiled thousands of biodiverse entries and hundreds of components. Closest INFOODS cousin to PTFI’s mandate. |
+| **WAFCT 2019** | West Africa regional user table (update of 2012). |
+| **uPulses / PulsesDM** | Pulses, including dry-matter basis for standards work. |
+| **uFiSh 1.0** | Fish and shellfish, raw/cooked/processed. |
+| **PhyFoodComp 1.0** | Phytate + Fe/Zn/Ca + molar ratios. ~3,377 entries. |
+| Density DB, supplement DB | Utility tables. |
+
+4. **Compilation Tool** — an Excel system with tagnames, recipe calculation, yield and retention factors. Built so countries without custom software can still compile to INFOODS rules.
+
+5. **Regional centres** — AFROFOODS, LATINFOODS, EUROFOODS, etc. — the human network that actually updates national tables.
+
+**What a typical INFOODS-shaped table contains**  
+Proximates, minerals, vitamins, sometimes amino acids and fatty acids. On the order of **50–150 named nutrients**, occasionally a few hundred if a specialist table (phytate, biodiversity). Values are per 100 g edible portion, documented by method and source. Recipes are calculated from ingredients + retention factors. That is the data behind dietary guidelines, food-balance sheets, and most intake surveys.
+
+**Hard limits (why PTFI exists next to it)**
+
+- Components stop at the nutrient panel. No untargeted metabolome, no 20k unnamed features.
+- Most national tables average a commodity (“tomato, raw”), not cultivar × soil × process.
+- Coverage is uneven: staples and European/US commodities are dense; orphan crops, insects, fermented regional foods, and wild foods are thin — which is exactly what BioFoodComp tried to patch and what the 1,650 list still found missing.
+- Harmonization is tagname-level, not instrument-level. Two labs can both report `FE` and still not be comparable the way PTFI’s 33-compound retention standard is designed to be.
+
+Portal: [fao.org/infoods](https://www.fao.org/infoods/infoods/en/)  
+FAO-built DBs: [fao.org/infoods/.../faoinfoods-databases](https://www.fao.org/infoods/infoods/tables-and-databases/faoinfoods-databases/en/)
+
+---
+
+## How they fit together
+
+```
+INFOODS / national FCDBs     PTFI
+─────────────────────────    ─────────────────────────
+Policy + survey layer        Measurement + discovery layer
+~150 nutrients               20k+ features + proteome/lipidome
+Country tables, recipes      Standardized multi-omics specimens
+Tagnames, food matching      Internal standards, MarkerLab
+“Tomato, raw, 100 g”         “This tomato, this farm, this assay”
+1984–ongoing                 2021–, first 500 foods public
+```
+
+PTFI’s own overlap check is the punchline: of 1,650 foods chosen as globally or regionally important, only about a quarter have an INFOODS-class nutrient row. BioFoodComp is the INFOODS attempt to close the biodiversity gap with the old analyte list. PTFI is the attempt to change the analyte list.
+
+For a master nutrition schema that is the clean split:
+
+- **INFOODS tagnames + national table rows** → `NutrientAmount` (energy, Fe, folate, phytate…) with method and denominator.
+- **PTFI specimen + feature** → `MolecularFeature` (annotated or dark) with assay, abundance, and production metadata.
+- **The 1,650 list** → coverage backlog: foods that should exist as `FoodConcept` objects even before they have either a tagname row or a metabolome.
+
+If you want a next concrete step: download AnFooD 2.0 and BioFoodComp from FAO (no guestbook), pull the 1,650 table after filling Dataverse’s form, and join on scientific name. The non-matches *are* the food-genome gap.
