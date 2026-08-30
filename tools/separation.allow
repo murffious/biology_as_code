@@ -16,3 +16,4 @@ CHANGELOG.md            # Records the separation audit — what was removed, and
 design/BASELINE.md      # The separation-audit starting position, including the baseline grep command and its hit counts. This is the evidence the audit happened.
 design/DIVERGENCES.md   # Records renames such as KIBO_PRODUCT_SCORE_MODULE -> BAC_SCORER_MODULE. The before-column is the point.
 tools/check_separation.py  # This gate. It must contain the patterns it searches for; a gate that cannot name its target cannot run.
+tests/test_gates_can_fail.py  # Mutation tests for this gate. A test that cannot name the target cannot prove the gate refuses it — the same reason the gate itself is on this list. Fixtures only; no shipped code.

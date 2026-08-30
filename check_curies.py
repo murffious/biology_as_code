@@ -136,16 +136,33 @@ def resolve(curie: str, offline: bool = False) -> dict | None:
                    "obsolete": False}
         else:
             ont = OLS_ONTOLOGIES[prefix]
-            iri = f"http://purl.obolibrary.org/obo/{prefix}_{local}"
-            url = ("https://www.ebi.ac.uk/ols4/api/ontologies/"
-                   f"{ont}/terms?iri={urllib.parse.quote(iri, safe='')}")
-            with urllib.request.urlopen(url, timeout=30) as r:
-                d = json.load(r)
-            terms = d.get("_embedded", {}).get("terms") or []
-            if not terms:
+            iri = urllib.parse.quote(f"http://purl.obolibrary.org/obo/{prefix}_{local}",
+                                     safe="")
+            # Classes live at /terms; OBJECT PROPERTIES live at /properties, and
+            # asking the wrong endpoint returns HTTP 404, which this function used to
+            # swallow as {"_error": True} — an id that was neither a problem nor
+            # counted as checked. Every RO relation in the corpus was skipped that
+            # way, silently, because RO ids are relations: RO:0002212 is
+            # "negatively regulates" and 404s at /terms. Relations are exactly the
+            # identifiers a graph asserts most and the ones a label diff most needs
+            # to see. Try both, in the order that costs one request for the common case.
+            t = None
+            for kind in ("terms", "properties"):
+                url = (f"https://www.ebi.ac.uk/ols4/api/ontologies/{ont}/{kind}?iri={iri}")
+                try:
+                    with urllib.request.urlopen(url, timeout=30) as r:
+                        d = json.load(r)
+                except urllib.error.HTTPError as e:
+                    if e.code == 404:
+                        continue
+                    raise
+                items = (d.get("_embedded") or {}).get(kind) or []
+                if items:
+                    t = items[0]
+                    break
+            if t is None:
                 out = None
             else:
-                t = terms[0]
                 out = {"label": t.get("label") or "",
                        "synonyms": t.get("synonyms") or [],
                        "obsolete": bool(t.get("is_obsolete"))}
@@ -193,8 +210,18 @@ def harvest(root: pathlib.Path) -> dict[tuple[str, str], set[str]]:
     return found
 
 
-def audit(root: pathlib.Path, offline: bool = False) -> list[dict]:
-    problems = []
+def audit(root: pathlib.Path, offline: bool = False) -> tuple[list[dict], list[str]]:
+    """Return (problems, unresolved). The second value is the important one.
+
+    An id that could not be resolved — no cache entry, or the lookup errored —
+    contributes nothing to `problems`, and a caller that looks only at the first
+    return value reads that silence as "clean". With an EMPTY cache and --offline
+    this file reported `0 problem(s); baseline 22` and printed
+    `IMPROVED by 22 — lower count to 0`, i.e. it instructed the operator to ratchet
+    the debt to zero on the strength of having checked nothing at all. Same failure
+    as the COVERAGE note below, one layer down: an unrun check is not a pass.
+    """
+    problems, unresolved = [], []
     pairs = harvest(root)
     for (curie, label), files in sorted(pairs.items()):
         r = resolve(curie, offline=offline)
@@ -203,7 +230,8 @@ def audit(root: pathlib.Path, offline: bool = False) -> list[dict]:
                              "actual": None, "files": sorted(files)})
             continue
         if not r or r.get("_error") or r.get("_uncached"):
-            continue                                  # unknown, not a finding
+            unresolved.append(curie)                  # unknown, not a finding
+            continue
         names = [r["label"]] + list(r.get("synonyms") or [])
         want = _norm(label)
         if not want:
@@ -216,7 +244,7 @@ def audit(root: pathlib.Path, offline: bool = False) -> list[dict]:
         elif r.get("obsolete"):
             problems.append({"curie": curie, "declared": label, "kind": "OBSOLETE",
                              "actual": r["label"], "files": sorted(files)})
-    return problems
+    return problems, unresolved
 
 
 def main() -> int:
@@ -241,7 +269,7 @@ def main() -> int:
             except OSError:
                 pass
     checked = {k[0] for k in pairs}
-    problems = audit(root, offline=a.offline)
+    problems, unresolved = audit(root, offline=a.offline)
     by_kind: dict[str, list[dict]] = {}
     for p in problems:
         by_kind.setdefault(p["kind"], []).append(p)
@@ -268,6 +296,18 @@ def main() -> int:
               f"checked for them — not a pass, an unknown.")
         print(f"          e.g. {', '.join(unpaired[:6])}")
 
+    # An id that resolved to nothing was NOT checked, and a comparison against the
+    # baseline that includes it is a comparison against a smaller corpus. Report it
+    # before the count, so the count is never read on its own.
+    if unresolved:
+        u = sorted(set(unresolved))
+        print(f"\nUNRESOLVED  {len(u)} id(s) could not be looked up"
+              + (" — the cache has no entry and --offline forbids the network"
+                 if a.offline else " — the lookup errored"))
+        print(f"            e.g. {', '.join(u[:6])}")
+        print("            These were NOT checked. The problem count below is over "
+              "a smaller corpus than the baseline.")
+
     total = len(problems)
     if a.update_baseline:
         BASELINE.write_text(json.dumps({
@@ -283,13 +323,23 @@ def main() -> int:
 
     prior = json.loads(BASELINE.read_text())["count"] if BASELINE.exists() else None
     print(f"\n{total} problem(s)" + (f"; baseline {prior}" if prior is not None else ""))
-    if prior is not None and total < prior:
+    if prior is not None and total < prior and not unresolved:
         print(f"IMPROVED by {prior - total} — lower 'count' in {BASELINE.name} to {total}.")
+    elif prior is not None and total < prior:
+        print(f"count is {prior - total} lower than baseline, and {len(set(unresolved))} "
+              f"id(s) were never looked up. Do NOT lower the baseline on this run — "
+              f"restore the cache (or drop --offline) and re-run.")
     if a.strict and prior is not None and total > prior:
         print(f"FAIL  debt grew by {total - prior}")
         return 1
     if a.strict and prior is None:
         print("FAIL  no baseline; run --update-baseline")
+        return 1
+    # A strict run that skipped lookups has not verified anything. Refusing here is
+    # what makes this safe to put in CI: a missing or partial cache fails loudly
+    # instead of passing quietly.
+    if a.strict and unresolved:
+        print(f"FAIL  {len(set(unresolved))} id(s) unchecked — an unrun check is not a pass")
         return 1
     print("advisory — not failing the build" if not a.strict else "OK")
     return 0

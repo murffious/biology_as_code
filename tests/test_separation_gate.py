@@ -1,105 +1,57 @@
 """
-The separation gate, as a test.
+The separation gate, as a test — by RUNNING the gate, not by re-deriving it.
 
 This repository is the open commons: the Biology as Code specification and its
-reference implementation. It carries no product. CI enforces that with a grep
-job (``.github/workflows/ci.yml``, job ``separation``); this test runs the same
-check locally so a reintroduced product identifier fails at ``pytest`` time
-rather than at push time.
+reference implementation. It carries no product. ``tools/check_separation.py`` is
+the definition of that rule and CI runs it; this file makes it fail at ``pytest``
+time too, so a reintroduced product identifier is caught before push.
 
-Root-level IP documents (``PATENTS.md``, ``PROPRIETARY_IP.md``,
-``LICENSE-SAMPLES.md``) are deliberately **out of scope**. Their patent
-disposition is a pending legal decision; they are annotated as under review, not
-rewritten.
+WHY THIS FILE SHRANK ON 2026-08-30
+----------------------------------
+It used to re-implement the scan: its own pattern, its own file walk, its own skip
+list. That copy was written against the ORIGINAL inline grep, and when the grep was
+replaced it silently kept all four of the holes the replacement exists to close —
 
-Note the terms are assembled from fragments rather than written out. A test that
-spelled them would be found by its own search.
+  1. it scanned an explicit directory list, ``("src", "tests")``, which is exactly
+     how ``ontology-sdk/`` accumulated ten references while CI stayed green;
+  2. it matched file CONTENTS only, so a directory named for the product was
+     invisible to it;
+  3. it treated the author's name as a product identifier, which is what forced
+     the documents that RESERVE the claims to be excluded wholesale;
+  4. it carried its own ``.egg-info`` skip rule, the exclusion that hid a stale
+     ``PKG-INFO``.
+
+So the repository held two definitions of one rule, and the older, weaker one was
+the one running under ``pytest``. That is the same mistake as re-writing a
+validator that already exists: the duplicate does not disagree loudly, it disagrees
+quietly and in the permissive direction.
+
+What is left here are the two assertions that are NOT about the scan and therefore
+are not duplicates: there is no in-package slot for private code, and the IP
+documents survive. Mutation coverage for the gate itself — can it refuse a product
+name in a path, in contents, in its own allowlist — lives in
+``tests/test_gates_can_fail.py``, which runs the real script against throwaway
+fixture repositories.
 """
 
 from __future__ import annotations
 
-import re
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-SCANNED = ("src", "tests")
-
-# Reversed, and reversed back through a function call at import time, so this
-# file does not match itself. Note the round trip has to be a *call*: the first
-# version of this used "ki" + "bo", and CPython constant-folds adjacent string
-# literals at compile time, so the term reappeared intact inside the compiled
-# .pyc and the gate matched its own bytecode cache.
-FORBIDDEN = tuple(
-    "".join(reversed(term)) for term in ("obik", "hcaoclaem", "from")
-)
-_PATTERN = re.compile("|".join(FORBIDDEN), re.IGNORECASE)
-
-_SKIP_DIRS = {"__pycache__", ".pytest_cache", ".git", ".ruff_cache"}
-_SKIP_SUFFIXES = {".pyc", ".pyo", ".png", ".jpg", ".jpeg", ".JPG"}
-
-# Build metadata is generated, gitignored, and not shipped source. It also
-# *must* carry the maintainer's email address, and that address contains one of
-# the forbidden fragments as a substring — so a generated PKG-INFO trips a gate
-# about *product* identifiers on the strength of a *person's* name. That is the
-# gate matching a mention rather than a use, and scanning generated metadata can
-# only ever produce false positives. (Written without spelling the address, per
-# this module's docstring: a test that spells the terms is found by its own search.)
-_SKIP_DIR_SUFFIXES = (".egg-info", ".dist-info")
+GATE = REPO_ROOT / "tools" / "check_separation.py"
 
 
-def _scanned_files() -> list[Path]:
-    out: list[Path] = []
-    for root in SCANNED:
-        for path in sorted((REPO_ROOT / root).rglob("*")):
-            if not path.is_file():
-                continue
-            if _SKIP_DIRS & set(path.parts):
-                continue
-            if any(part.endswith(_SKIP_DIR_SUFFIXES) for part in path.parts):
-                continue
-            if path.suffix in _SKIP_SUFFIXES:
-                continue
-            if path.resolve() == Path(__file__).resolve():
-                continue
-            out.append(path)
-    return out
-
-
-def test_the_gate_can_actually_find_something():
-    """A gate that cannot fail is not a gate."""
-    assert _PATTERN.search("a " + FORBIDDEN[0] + " reference")
-    assert _PATTERN.search("A " + FORBIDDEN[1].upper() + " reference")
-    assert not _PATTERN.search("morphology and biology of the gut")
-
-
-def test_generated_build_metadata_is_not_scanned():
-    """Regression: CI went red on generated `*.egg-info/PKG-INFO`, whose
-    `Author-email` legitimately contains the maintainer's name — which happens to
-    contain a forbidden fragment. Build metadata is generated and gitignored; a
-    gate over shipped code must not read it."""
-    scanned = {str(p.relative_to(REPO_ROOT)) for p in _scanned_files()}
-    assert not [s for s in scanned if ".egg-info" in s or ".dist-info" in s]
-
-
-def test_no_product_identifiers_in_shipped_code():
-    offenders: list[str] = []
-    for path in _scanned_files():
-        try:
-            text = path.read_text(encoding="utf-8")
-        except (UnicodeDecodeError, OSError):
-            continue
-        for lineno, line in enumerate(text.splitlines(), start=1):
-            if _PATTERN.search(line):
-                rel = path.relative_to(REPO_ROOT)
-                offenders.append(f"{rel}:{lineno}: {line.strip()[:120]}")
-
-    assert not offenders, (
-        "product identifiers found in shipped code — this repository is the open "
-        "commons and carries no product (see PROPRIETARY_IP.md):\n  "
-        + "\n  ".join(offenders[:40])
-    )
+def test_the_separation_gate_passes_on_this_repository():
+    """One definition of the rule, invoked. If this fails, read the gate's output:
+    it names the file, the line, and whether the hit was a path or contents."""
+    r = subprocess.run([sys.executable, str(GATE)], cwd=REPO_ROOT,
+                       capture_output=True, text=True, timeout=300)
+    assert r.returncode == 0, r.stdout + r.stderr
 
 
 def test_no_in_package_proprietary_slot():
