@@ -49,7 +49,8 @@
         "any claim of first-party authorship"
       ],
       "licence_url": "https://delta.vmh.life/resources/faq/faq26.html",
-      "columns_derived": "9 of 12, not 8: vmh, name, formula, hmdb, kegg, chebi, pubchem, seed (VMH's own SEED2VMH_translation.csv), and inchiKey. NOTE inchiKey is OPEN in all 2,797 rows — the upstream VMH export shipped none, so it is an empty column inherited, not a processing defect. Any plan treating InChIKey as an available join key is building on nothing."
+      "columns_derived": "9 of 12, not 8: vmh, name, formula, hmdb, kegg, chebi, pubchem, seed (VMH's own SEED2VMH_translation.csv), and inchiKey. NOTE inchiKey is OPEN in all 2,797 rows — the upstream VMH export shipped none, so it is an empty column inherited, not a processing defect. Any plan treating InChIKey as an available join key is building on nothing.",
+      "alternative_sources_checked": "BiGG Models (bigg.ucsd.edu/models/Recon3D) also distributes Recon3D and is NOT an escape hatch: BiGG is freely available for non-commercial use, and its model page carries 'Copyright (c) 2019 The Regents of the University of California'. Checked 2026-08-29. Note the trap: secondary sources describe BiGG content as CC-BY-like 'unrestricted reuse if cited' — that is the open-access licence of the BiGG PAPERS, not of the models. bigg.ucsd.edu/license was not fetched directly, so this remains OPEN pending that read. Evidence saved privately in nutri-collective/docs/licence-evidence/."
     },
     {
       "id": "fda-fdcc",

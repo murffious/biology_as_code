@@ -165,7 +165,7 @@ _OUTCOMES: dict[str, EntityHit] = {
         "type 2 diabetes", "Type 2 diabetes mellitus", "MONDO:0005148", "outcome"
     ),
     "neural tube defects": EntityHit(
-        "neural tube defects", "Neural tube defects", "MONDO:0019300", "outcome"
+        "neural tube defects", "Neural tube defects", "MONDO:0018075", "outcome"
     ),
 }
 
