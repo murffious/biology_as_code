@@ -1,7 +1,7 @@
 {
  "what_this_is": "Ontology ids whose declared label does not match the term they resolve to. RATCHET: `count` may only go DOWN. Fixing one means lowering it in the same commit.",
  "as_of": "2026-08-29",
- "count": 23,
+ "count": 22,
  "problems": [
   {
    "curie": "CHEBI:30411",
@@ -172,15 +172,6 @@
    "actual": "endemic goiter",
    "files": [
     "src/biology_as_code/simulation/health_outcomes.py"
-   ]
-  },
-  {
-   "curie": "MONDO:0019300",
-   "declared": "Neural tube defects",
-   "kind": "WRONG_CONCEPT",
-   "actual": "obsolete rare skin tumor or hamartoma",
-   "files": [
-    "src/biology_as_code/agents/assay/ontology_stub.py"
    ]
   },
   {
