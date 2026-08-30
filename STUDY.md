@@ -4,16 +4,25 @@
 
 ```text
 study_id:     NUTR-PUBLIC-001
-schema_ref:   fdp-1@v0.1.0 + biology_as_code/schemas@v0.1.0
-rule:         a row that does not validate is not study data
+schema_ref:
+  food:       fdp-1@v0.1.0
+  packet:     biology_as_code/schemas@v0.1.0
+  study:      MI-Nutrition@v0.1
+              https://nutri-collective.mealcoach.ai/mi-nutrition-v0.1.schema.json
+rule:         a row OR a study record that does not validate is not study data
 split:        food deposits are public; person-level rows stay in body;
               research export only via ResearchRelease + DUO
 paper:        producer keeps first analysis
 ```
 
 - `study_id` names the pin, so the adoption tracker has something to count.
-- `schema_ref` is the tag CI actually checks. **The same string is in
+- `schema_ref` names **three** contracts, because a study is three things: the number
+  on a food, the packet that carries it, and the study record itself. The pin used to
+  name the first two and behave as though that covered the third. **The same block is in
   `fdp-1/STUDY.md`.** If they diverge, the pin is broken.
+  **Honest status of the third:** the MI-Nutrition *schema* is public at the URL above;
+  its *validator* is not yet, so `study:` is today a contract you can read but not run.
+  `food:` and `packet:` you can clone and watch refuse. That gap is the next thing to close.
 - `rule` is refusal. Enforced today: the FDP-1 validator in `murffious/fdp-1`, pinned above.
 - `split` is what stops a `human_id` landing in a public remote. Enforced today:
   `tools/check_no_human_rows.py`, which runs **first** in CI — every other failure here
