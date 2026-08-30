@@ -136,6 +136,22 @@
     {
       "file": "src/biology_as_code/pathways/",
       "note": "Authored here — pathway packs and the generated graph index."
+    },
+    {
+      "file": "src/biology_as_code/engine/data/all_laws_system_bound.json",
+      "note": "Authored here. Reformulation of gleaned/registers/laws.md (first-party law register); original intact."
+    },
+    {
+      "file": "src/biology_as_code/engine/data/textbook_to_code_laws.json",
+      "note": "Authored here. Shaped by meta/LAW-SPEC.md and the first-party law extraction; no third-party rows."
+    },
+    {
+      "file": "src/biology_as_code/engine/data/path_nonhaem_iron.atomic.json",
+      "note": "Authored here. Carries ChEBI/FOODON CURIE REFERENCES only — citing a term id is not redistributing the ontology, and no ontology rows are copied in."
+    },
+    {
+      "file": "src/biology_as_code/engine/data/topics_ontology.json",
+      "note": "Authored here. Auto-classified from the first-party frozen topic list; vocabulary for sim representation, not a law set."
     }
   ]
 }
