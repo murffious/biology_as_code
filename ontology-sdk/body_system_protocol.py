@@ -1,4 +1,27 @@
-"""BodySystem protocol — biology-as-code side of the nutrition ontology.
+"""BodySystem protocol — an EXPLORATORY reference sketch, not a product.
+
+NOT THE PRODUCT MEAL SCORE. NOT A FITTED MODEL.
+-----------------------------------------------
+This file exists to show that "need" and "system load" can be expressed as
+FUNCTIONS OVER AN INTERFACE rather than as stored tables. That is the whole point
+of it. It is a second perspective on the problem, written to be read and argued
+with, and it is explicitly outside the NUTR-PUBLIC-001 pin (see ../STUDY.md).
+
+`WEIGHTS` below is an ILLUSTRATIVE PLACEHOLDER chosen to make the arithmetic
+legible. It is not fitted, not validated, and not the product composite. A second
+draft of this same sketch elsewhere uses a different set entirely
+(gi 0.40 / endocrine 0.25 / hepatic 0.20 / renal 0.15), which is the clearest
+evidence available that these numbers carry no meaning: a fitted weight does not
+change because someone rewrote the paragraph around it.
+
+Per PROPRIETARY_IP.md, teaching meters are permitted in this public repository
+**when labelled as not the product meal score**. This is that label. The product
+meal score, the private weighted composite, their weights and their tier cutoffs
+are not here and must never be committed here — see PATENTS.md, which reserves those
+claims out of the Apache-2.0 grant.
+
+If you are looking for what this project actually asserts, read the specification
+and the register. Not this file.
 
 Need and System Load Index are functions over implementers.
 Missing systems lower confidence; they do not raise exceptions.
@@ -204,6 +227,8 @@ class RenalHandling:
         return SystemLoad("renal", score, ("nitrogen_load",) if p else (), self.confidence)
 
 
+# ILLUSTRATIVE PLACEHOLDER — not fitted, not validated, not the product composite.
+# See the module docstring. Chosen so the worked arithmetic is legible, nothing more.
 WEIGHTS = {"gi": 0.45, "endocrine": 0.30, "renal": 0.25}
 
 

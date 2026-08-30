@@ -95,7 +95,7 @@ Render hints matter: making `confidence` searchable on every type will tax index
 |---|---|---|
 | Shared property | field metadata | the values |
 | Interface | shape + methods (`absorb`, `load`) | implementation |
-| Shared ontology | whole ontology across orgs | n/a for Kibo until farms/labs are separate orgs |
+| Shared ontology | whole ontology across orgs | n/a for a single-org deployment until farms/labs are separate orgs |
 | Link type | relationship schema | the edges |
 
 `NutrientSource` says “this type has a nutrient_vector.”

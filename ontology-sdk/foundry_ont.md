@@ -86,7 +86,7 @@ An action is a governed write: create/edit objects and links in one submission, 
 | `GenerateNutritionPlan` | create `NutritionPlan`, link foods | notify client / coach |
 | `AcceptRecommendation` | set plan status = accepted | freeze targets for the week |
 
-If Kibo cannot *do* these writes, you do not have an ontology. You have a slide.
+If the implementing application cannot *do* these writes, you do not have an ontology. You have a slide.
 
 ### Functions (where “need” actually lives)
 
@@ -133,7 +133,7 @@ That is the “digital twin of the client,” which is Foundry’s actual claim,
 
 ### Hurts
 
-1. **Modeling tax.** Every new concept wants a type, keys, links, actions, and permissions. Early Kibo does not need `FarmContext` as a first-class object if you never have farm assays.
+1. **Modeling tax.** Every new concept wants a type, keys, links, actions, and permissions. An early implementation does not need `FarmContext` as a first-class object if you never have farm assays.
 2. **Empty objects.** Most users will not have transit time, phytochemical load, or plot-level NPK. If those properties are required, the ontology is fiction.
 3. **Reifying Need.** A `NutritionalNeed` object will be wrong after the next banana. Compute it.
 4. **High-dimensional nutrients.** 40+ micros × units × bioavailability is a bad “one property per nutrient” design. Use an array of `{nutrientId, amount, unit}` or a linked `NutrientMeasurement` type. Wide sparse columns will hurt.
@@ -143,7 +143,7 @@ That is the “digital twin of the client,” which is Foundry’s actual claim,
 
 ---
 
-## Verdict for Kibo
+## Verdict for an implementing application
 
 | Layer | Apply now? |
 |---|---|
@@ -159,7 +159,7 @@ So: **apply the concepts. Do not clone the platform until the objects are real a
 
 The first chart showed *relationships*. Foundry adds the sentence you actually need:
 
-**Objects remember the world. Actions change it. Functions compute need. Views let a coach (or Kibo) work.**
+**Objects remember the world. Actions change it. Functions compute need. Views let a coach (or the app) work.**
 
 If you want a next artifact, I can turn this into a one-page ontology spec: object types with keys, link cardinalities, action preconditions, and the three functions that calculate “need.”
 

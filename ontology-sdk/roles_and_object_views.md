@@ -14,7 +14,7 @@ Grant at two levels:
 | Role | Who | Scope |
 |---|---|---|
 | `client` | The person whose twin this is | objects linked to their `human_id` |
-| `coach` | Kibo or a human clinician | assigned Human set only |
+| `coach` | A coaching application or a human clinician | assigned Human set only |
 | `lab_writer` | Lab, CGM vendor, assay pipeline | create `AssayLike` for a consented human |
 | `catalog_editor` | USDA sync, farm, public food schema | `FoodBatch`, `FarmContext` only |
 | `pipeline` | Nightly jobs | no PHI writes except via action types |
