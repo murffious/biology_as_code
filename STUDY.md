@@ -18,8 +18,8 @@ A rule that cannot refuse a row is a harmonisation paper.
 study_id:     NUTR-PUBLIC-001
 schema_ref:   fdp-1@v0.1.0 + biology_as_code/schemas@v0.1.0
 rule:         a row that does not validate is not study data
-split:        food deposits are public; person-level rows never enter this repository
-paper:        the producer keeps first analysis (Fort Lauderdale 2003)
+split:        food public; person in body; export only with DUO
+paper:        producer keeps first analysis
 ```
 
 The `schema_ref` string is identical in `fdp-1/STUDY.md` and
