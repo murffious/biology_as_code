@@ -1,0 +1,214 @@
+{
+ "what_this_is": "Ontology ids whose declared label does not match the term they resolve to. RATCHET: `count` may only go DOWN. Fixing one means lowering it in the same commit.",
+ "as_of": "2026-08-29",
+ "count": 23,
+ "problems": [
+  {
+   "curie": "CHEBI:30411",
+   "declared": "Vitamin B12",
+   "kind": "WRONG_CONCEPT",
+   "actual": "cobalamin",
+   "files": [
+    "src/biology_as_code/models/nutrient_compound.py"
+   ]
+  },
+  {
+   "curie": "FOODON:03411347",
+   "declared": "illustrative \u2014 resolve via OLS",
+   "kind": "WRONG_CONCEPT",
+   "actual": "obsolete: plant",
+   "files": [
+    "docs/claim-schema.md"
+   ]
+  },
+  {
+   "curie": "GO:0000287",
+   "declared": "Thiamine diphosphate as cofactor",
+   "kind": "WRONG_CONCEPT",
+   "actual": "magnesium ion binding",
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py"
+   ]
+  },
+  {
+   "curie": "GO:0006412",
+   "declared": "Muscle protein synthesis (anabolic)",
+   "kind": "WRONG_CONCEPT",
+   "actual": "translation",
+   "files": [
+    "src/biology_as_code/simulation/physiological_effects.py"
+   ]
+  },
+  {
+   "curie": "GO:0006471",
+   "declared": "Vitamin K\u2013dependent gamma-carboxylation",
+   "kind": "WRONG_CONCEPT",
+   "actual": "obsolete protein ADP-ribosylation",
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py"
+   ]
+  },
+  {
+   "curie": "GO:0006805",
+   "declared": "Hepatic first-pass processing of portal nutrients",
+   "kind": "WRONG_CONCEPT",
+   "actual": "xenobiotic metabolic process",
+   "files": [
+    "src/biology_as_code/simulation/physiological_effects.py"
+   ]
+  },
+  {
+   "curie": "GO:0006826",
+   "declared": "Divalent metal ion transport (DMT1)",
+   "kind": "WRONG_CONCEPT",
+   "actual": "iron ion transport",
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py"
+   ]
+  },
+  {
+   "curie": "GO:0008270",
+   "declared": "Vitamin D receptor ligand binding",
+   "kind": "WRONG_CONCEPT",
+   "actual": "zinc ion binding",
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py"
+   ]
+  },
+  {
+   "curie": "GO:0015198",
+   "declared": "Proton-coupled oligopeptide transport (PepT1)",
+   "kind": "WRONG_CONCEPT",
+   "actual": "GO_0015198",
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py"
+   ]
+  },
+  {
+   "curie": "GO:0015889",
+   "declared": "Intrinsic factor\u2013cobalamin complex formation and cubam uptake",
+   "kind": "WRONG_CONCEPT",
+   "actual": "cobalamin transport",
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py"
+   ]
+  },
+  {
+   "curie": "GO:0016706",
+   "declared": "Ascorbate as cofactor for 2-oxoglutarate-dependent dioxygenases",
+   "kind": "WRONG_CONCEPT",
+   "actual": "2-oxoglutarate-dependent dioxygenase activity",
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py"
+   ]
+  },
+  {
+   "curie": "GO:0030300",
+   "declared": "Intestinal lipid absorption",
+   "kind": "WRONG_CONCEPT",
+   "actual": "regulation of intestinal cholesterol absorption",
+   "files": [
+    "src/biology_as_code/simulation/physiological_effects.py"
+   ]
+  },
+  {
+   "curie": "GO:0033212",
+   "declared": "Hepcidin regulation of ferroportin",
+   "kind": "WRONG_CONCEPT",
+   "actual": "iron import into cell",
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py"
+   ]
+  },
+  {
+   "curie": "GO:0034197",
+   "declared": "Partition into mixed micelles (fat-soluble cargo)",
+   "kind": "WRONG_CONCEPT",
+   "actual": "triglyceride transport",
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py"
+   ]
+  },
+  {
+   "curie": "GO:0038202",
+   "declared": "Leucine sensing / mTORC1 activation (molecular)",
+   "kind": "WRONG_CONCEPT",
+   "actual": "TORC1 signaling",
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py"
+   ]
+  },
+  {
+   "curie": "GO:0055128",
+   "declared": "Intestinal absorption",
+   "kind": "WRONG_CONCEPT",
+   "actual": "GO_0055128",
+   "files": [
+    "src/biology_as_code/simulation/physiological_effects.py"
+   ]
+  },
+  {
+   "curie": "GO:0061436",
+   "declared": "Epithelial barrier integrity",
+   "kind": "WRONG_CONCEPT",
+   "actual": "establishment of skin barrier",
+   "files": [
+    "src/biology_as_code/simulation/physiological_effects.py"
+   ]
+  },
+  {
+   "curie": "HP:0031831",
+   "declared": "Zinc deficiency (status / serum)",
+   "kind": "WRONG_CONCEPT",
+   "actual": "Decreased serum zinc",
+   "files": [
+    "src/biology_as_code/simulation/health_outcomes.py"
+   ]
+  },
+  {
+   "curie": "MONDO:0006742",
+   "declared": "Iodine deficiency\u2013related goiter",
+   "kind": "WRONG_CONCEPT",
+   "actual": "endemic goiter",
+   "files": [
+    "src/biology_as_code/simulation/health_outcomes.py"
+   ]
+  },
+  {
+   "curie": "MONDO:0019300",
+   "declared": "Neural tube defects",
+   "kind": "WRONG_CONCEPT",
+   "actual": "obsolete rare skin tumor or hamartoma",
+   "files": [
+    "src/biology_as_code/agents/assay/ontology_stub.py"
+   ]
+  },
+  {
+   "curie": "NCBITaxon:1126",
+   "declared": "Arthrospira platensis",
+   "kind": "WRONG_CONCEPT",
+   "actual": "Microcystis aeruginosa",
+   "files": [
+    "docs/claim-schema.md"
+   ]
+  },
+  {
+   "curie": "UBERON:0002193",
+   "declared": "Lymphatic / immune",
+   "kind": "WRONG_CONCEPT",
+   "actual": "hemolymphoid system",
+   "files": [
+    "src/biology_as_code/systems/anatomy.py"
+   ]
+  },
+  {
+   "curie": "UBERON:0002620",
+   "declared": "Blood\u2013brain barrier permeability",
+   "kind": "WRONG_CONCEPT",
+   "actual": "tuber cinereum",
+   "files": [
+    "src/biology_as_code/agents/assay/ontology_stub.py"
+   ]
+  }
+ ]
+}

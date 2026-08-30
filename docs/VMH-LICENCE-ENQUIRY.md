@@ -4,11 +4,21 @@ ines.thiele@universityofgalway.ie.
 
 ## Where to send it
 
-`vmh.life` and `delta.vmh.life` both return **403** to us, so the site's own contact
-route is unusable and its Citation page offers only a LinkedIn message. Use the
-**published corresponding-author addresses** from the VMH database paper instead —
-these are peer-reviewed contact details, not scraped, and correspondence about the
-resource is exactly what they are published for:
+**Correction, 2026-08-29:** an earlier version of this file said `vmh.life` returns
+**403** to automated retrieval. That was false. One fetching tool was blocked; plain
+`curl` gets **HTTP 200** on the site, the FAQ and every `/_api/` endpoint. The error
+mattered, because it is why nobody read VMH's terms — **which exist**, at
+<https://delta.vmh.life/resources/faq/faq26.html>:
+
+> VMH content is freely available for academic and research use; please cite the
+> appropriate resources. Several data sources integrated into VMH carry their own
+> licences, some of which restrict commercial use – please check the terms of the
+> original source for such data. For commercial-licensing questions, please contact
+> ines.thiele [at] universityofgalway [dot] ie
+
+That answers most of the original letter, so the letter below is now **one question,
+not four**. It also confirms the contact address independently — the FAQ's own
+obfuscated address resolves to the same mailbox found from the NAR paper:
 
 | | |
 |---|---|
@@ -53,22 +63,28 @@ question, clearly bounded, with the answer they can give in two sentences.
 > research software, not a clinical or commercial product.
 >
 > The project publishes a metabolite crosswalk table, `MASTER_CROSSWALK.tsv`, with
-> **2,797 rows**. Eight of its twelve columns are derived from a VMH Recon3D
-> metabolite export: the VMH abbreviation, full name, charged formula, InChIKey,
-> and the HMDB / KEGG / ChEBI / PubChem cross-references. The remaining four
-> columns are our own.
+> **2,797 rows**. Nine of its twelve columns are derived from a VMH Recon3D
+> metabolite export: the VMH abbreviation, full name, charged formula, the HMDB /
+> KEGG / ChEBI / PubChem cross-references, the ModelSEED id (via your
+> `SEED2VMH_translation.csv`), and an InChIKey column — which is empty in every row,
+> as the export we took carried none. The remaining three columns are our own.
 >
-> I want to make sure we are using and citing this correctly, and I could not find
-> a definitive statement of the terms. The VMH database paper (Noronha et al., *NAR*
-> 2019) says the data are "freely available" but does not name a licence. Separately
-> I have seen ReconMap described as CC BY-NC-ND 4.0, and my own notes record
-> Recon3D as CC BY-NC 2.0 — but I would rather ask than assume.
+> I have read the terms on your FAQ: academic and research use is free with
+> citation, several integrated sources carry their own restrictions, and commercial
+> licensing goes through you. That is clear, and we are non-commercial research
+> software, so I believe we are inside it.
 >
-> **My question:** what licence governs reuse and redistribution of the VMH
-> metabolite table (the `recon-store-metabolites` export) — in particular, may a
-> derived identifier crosswalk like ours be redistributed, and under what
-> conditions? If there is a non-commercial restriction, I would like to record it
-> accurately rather than infer it.
+> **My one question is about redistribution rather than use.** We do not only *use*
+> the export — we publish a derived table containing those columns, in a public
+> GitHub repository under Apache-2.0. Does the academic-and-research grant extend to
+> redistributing a derived compilation that way, and if so is there wording you would
+> like us to carry? I would rather ask than assume, because "freely available for
+> academic and research use" is a grant to a *user*, and I cannot tell from it
+> whether it also runs to that user's downstream readers.
+>
+> A smaller second question if it is easy: we may swap the metabolite backend to
+> Human-GEM (CC BY 4.0). 819 of the rows we would take are marked `metFrom: Recon3D`.
+> Would those remain under VMH's terms, or does Human-GEM's licence govern them?
 >
 > In the meantime we have taken the conservative reading. The table now ships with
 > explicit VMH attribution (citing both Noronha et al. 2019 and Brunk et al. 2018),

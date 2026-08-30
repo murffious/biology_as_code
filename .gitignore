@@ -74,3 +74,7 @@ vendor/private/
 
 # MkDocs build output
 site/
+
+# Resolved ontology-term cache for check_curies.py. Machine-local and
+# re-derivable; the durable artifact is curie_baseline.json.
+.curie_cache/

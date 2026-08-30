@@ -13,9 +13,9 @@
       "source_url": "https://www.vmh.life",
       "upstream_file": "vmh_snapshots/recon-store-metabolites-full.tsv",
       "attribution": "Noronha A, et al. The Virtual Metabolic Human database. Nucleic Acids Research 47(D1):D614-D624, 2019. doi:10.1093/nar/gky992. Recon3D: Brunk E, et al. Nature Biotechnology 36:272-281, 2018. doi:10.1038/nbt.4072. Thiele/Fleming group.",
-      "declared_licence": "CC BY-NC 2.0",
+      "declared_licence": "Academic and research use with citation; commercial use restricted (VMH FAQ 26)",
       "licence_confidence": "OPEN",
-      "licence_note": "OPEN, not asserted. This project's own working_map_nutrition/VMH_REFERENCE.md records CC BY-NC 2.0 for Recon3D and CC BY-NC-ND 4.0 for ReconMap. The VMH database paper (NAR 2019) states only that the data are 'freely available' and names no licence; vmh.life returns 403 to automated retrieval. Verified 2026-08-29 that the paper is silent. The operative terms MUST be confirmed with VMH directly before any commercial use.",
+      "licence_note": "VMH DOES state terms, found 2026-08-29 at the licence_url above, verbatim: \"VMH content is freely available for academic and research use; please cite the appropriate resources. Several data sources integrated into VMH carry their own licences, some of which restrict commercial use – please check the terms of the original source for such data. For commercial-licensing questions, please contact ines.thiele [at] universityofgalway [dot] ie\". Two corrections to what this entry said before. (1) The previous 'CC BY-NC 2.0' came from this project's own working_map_nutrition/VMH_REFERENCE.md and is supported by no VMH source; do not restate it. (2) The claim that vmh.life returns HTTP 403 to automated retrieval was FALSE and was load-bearing — it is why these terms went unread for a month. One fetching tool was blocked; plain curl gets 200 on the site, the FAQ and every /_api/ endpoint. A tool being blocked is not a source being silent. Still OPEN, and narrowly so: the granted use is academic and research with citation, and the FAQ does not address redistributing a DERIVED COMPILATION in a public Apache-2.0 repository, which is exactly what MASTER_CROSSWALK.tsv is. Confirm before any commercial use.",
       "what_is_redistributed": {
         "rows": 2797,
         "columns_from_this_source": [
@@ -47,7 +47,9 @@
         "commercial use",
         "relicensing under Apache-2.0",
         "any claim of first-party authorship"
-      ]
+      ],
+      "licence_url": "https://delta.vmh.life/resources/faq/faq26.html",
+      "columns_derived": "9 of 12, not 8: vmh, name, formula, hmdb, kegg, chebi, pubchem, seed (VMH's own SEED2VMH_translation.csv), and inchiKey. NOTE inchiKey is OPEN in all 2,797 rows — the upstream VMH export shipped none, so it is an empty column inherited, not a processing defect. Any plan treating InChIKey as an available join key is building on nothing."
     },
     {
       "id": "fda-fdcc",

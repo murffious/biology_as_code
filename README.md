@@ -194,15 +194,33 @@ separate concept in `examples/foods/` — teaching packets, not meals.
 - [Add a pathway](docs/python/ADD_PATHWAY.md) — template, checklist, and integration check
 - [GEM primer](docs/gem-primer.md) — genome-scale metabolic models, and how this differs
 - [A note on the name](docs/naming.md) — why this is unrelated to Barbieri's *Code Biology*
+- [Related projects](docs/related-projects.md) — what this is, what it is not, and what we consume
 - [Contributing](CONTRIBUTING.md) · [Roadmap](ROADMAP.md) · [Changelog](CHANGELOG.md)
 
-## Related project
+## Related projects
 
-This repo models what a body *does* with a meal. The sensors and apps that measure the
-body itself are the companion piece:
+Seventeen neighbouring projects — ontologies, metabolic modelling stacks, food-composition
+initiatives, and health schemas — are assessed in
+[**docs/related-projects.md**](docs/related-projects.md), each with a verified licence and a
+stated position: *upstream* (we consume it), *adjacent* (cite, don't vendor), *watch*, or
+*unrelated*. The short version:
+
+| Layer | Position |
+|-------|----------|
+| **FoodOn, CDNO, FOBI, CompTox** | Upstream. Already named by the [claim schema](docs/claim-schema.md) — we resolve to them, we do not rebuild them. |
+| **COBRApy, Tellurium, libSBML, PySB** | Adjacent. Different altitude, and COBRApy is GPL-2.0 — a dependency this Apache-2.0 package cannot take. |
+| **PTFI** | Watch. Molecular characterisation is a layer below claims; the open question is whose identifiers everyone joins on. |
+| **Bioregistry** | Upstream — and it has no prefix for FoodData Central or INFOODS, two namespaces FDP-1 already accepts. |
+
+That page also records two verified findings worth knowing outside this repo: FoodOn ships
+**no FoodData Central mapping** (its USDA cross-references are to PLANTS, a taxonomy), and
+CDNO's licence is **CC BY 3.0 in the ontology header** while its GitHub `LICENSE` file says
+CC0. The licence of an artefact is what the artefact declares.
+
+Closest sibling: this repo models what a body *does* with a meal, while
 [**Awesome Internet of the Body**](https://github.com/murffious/awesome-internet-of-the-body)
-is a curated, privacy-first list of open-source and standards-based apps, wearables, and
-platforms for gathering human data — CGMs, wearables, FHIR, Open Humans, and others.
+is the companion list of sensors and apps that measure the body itself — CGMs, wearables,
+FHIR, Open Humans, and others.
 
 ## The book
 

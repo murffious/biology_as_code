@@ -27,9 +27,26 @@ Declared, not asserted — the same convention this table uses for its own cells
   for Recon3D and CC BY-NC-ND 4.0 for ReconMap.
 - The VMH database paper (NAR 2019) names **no licence**; it says only that the data
   are "freely available".
-- `vmh.life` returns HTTP 403 to automated retrieval, so the site's terms have not
-  been read programmatically.
-- **The operative terms have not been confirmed with the rights holder.**
+- **VMH does publish terms, and they were found on 2026-08-29** at
+  <https://delta.vmh.life/resources/faq/faq26.html>:
+
+  > VMH content is freely available for academic and research use; please cite the
+  > appropriate resources. Several data sources integrated into VMH carry their own
+  > licences, some of which restrict commercial use – please check the terms of the
+  > original source for such data. For commercial-licensing questions, please contact
+  > ines.thiele [at] universityofgalway [dot] ie
+
+  That is a statement of terms, not an SPDX licence, and it does **not** address
+  redistributing a *derived compilation* in a public repository. So: academic and
+  research use is granted with citation, commercial use is restricted, and our
+  specific question remains open.
+- A previous version of this file said `vmh.life` returns **HTTP 403 to automated
+  retrieval**. That was wrong and it was load-bearing: it is why the terms above went
+  unread for a month. The 403 came from one fetching tool being blocked, not from the
+  site — plain `curl` gets HTTP 200 on the site, the FAQ and the `/_api/` endpoints.
+  **A tool being blocked is not a source being silent**, and the two must never again
+  be recorded as the same thing.
+- **The redistribution question has not been confirmed with the rights holder.**
 
 **Until they are: treat this file as non-commercial, and as carrying an attribution
 requirement, regardless of the Apache-2.0 licence on the rest of this repository.**
