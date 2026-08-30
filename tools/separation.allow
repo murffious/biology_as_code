@@ -1,0 +1,18 @@
+# Files permitted to name the product. Format: path  # reason
+#
+# There are exactly two legitimate reasons to name it in this repository:
+#   (a) the document RESERVES the claims — naming them is what the file is for;
+#   (b) the document RECORDS the separation itself, and a record that cannot say
+#       what was removed is not a record.
+#
+# Anything else is a leak. When this list grows, ask which of the two it is; if the
+# answer takes more than a sentence, it is neither.
+
+PATENTS.md              # Reserves the product meal score and the private weighted composite OUT of the Apache-2.0 §3 patent grant. It has to name them to except them.
+PROPRIETARY_IP.md       # The forbidden/allowed list itself. Naming the artefacts is the entire function of the document.
+NOTICE                  # Legal notice accompanying the licence; carries the same reservation.
+LICENSE-SAMPLES.md      # Sample-data licence carve-out, same reservation.
+CHANGELOG.md            # Records the separation audit — what was removed, and when. A changelog that cannot name what it removed is useless.
+design/BASELINE.md      # The separation-audit starting position, including the baseline grep command and its hit counts. This is the evidence the audit happened.
+design/DIVERGENCES.md   # Records renames such as KIBO_PRODUCT_SCORE_MODULE -> BAC_SCORER_MODULE. The before-column is the point.
+tools/check_separation.py  # This gate. It must contain the patterns it searches for; a gate that cannot name its target cannot run.

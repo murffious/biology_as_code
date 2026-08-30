@@ -16,22 +16,15 @@ jobs:
       # Both are unrecoverable once pushed, so both run before anything expensive.
       - name: No human rows in a public repository
         run: python tools/check_no_human_rows.py
-      - name: No product identifiers in src/ or tests/
-        # This repository is the open commons: the specification and its
-        # reference implementation. No product name may appear in the shipped
-        # package or its tests. Root-level IP documents are deliberately out of
-        # scope -- their patent disposition is a pending legal decision and they
-        # are annotated, not rewritten. See design/BASELINE.md.
-        #
-        # ontology-sdk/ added 2026-08-30. It was outside the scan and had accumulated
-        # ten product-name references, including four that also leaked private repo
-        # paths. A gate that cannot see a directory is not protecting it.
-        run: |
-          if grep -rniE --exclude-dir="*.egg-info" --exclude-dir=__pycache__ "kibo|mealcoach|morf" src/ tests/ ontology-sdk/; then
-            echo "::error::product identifier found in src/ or tests/ (see PROPRIETARY_IP.md)"
-            exit 1
-          fi
-          echo "OK: no product identifiers in src/ or tests/"
+      - name: Separation gate (no product identifiers)
+        # Replaced the inline grep 2026-08-30. That version scanned an explicit
+        # directory list, so ontology-sdk/ accumulated ten references while CI stayed
+        # green; it matched contents but never PATH names; and it conflated the product
+        # name with the author name, which forced the files that reserve the claims to
+        # be excluded wholesale. The script scans every TRACKED file, checks paths too,
+        # separates product from authorship, and requires a written reason for each
+        # exception in tools/separation.allow.
+        run: python tools/check_separation.py
 
   test:
     runs-on: ubuntu-latest
