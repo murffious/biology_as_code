@@ -1,0 +1,8 @@
+# Declared exceptions to the no-human-rows rule. Format: path  # reason
+#
+# An entry here is a decision someone has to defend. Keep it short and keep it
+# reviewed. If this list grows past a handful, the rule is being routed around
+# rather than followed.
+
+src/biology_as_code/data/fixtures/user-personas.json  # 8 synthetic playground personas. Emails are *.mock@nutricollective.local — .local is a reserved TLD and cannot route. No real person, verified 2026-08-29.
+src/biology_as_code/machines/data/schemas/UserPersona.schema.json  # A SCHEMA, not a record: it declares that an email property may exist, and carries no value. bac must be able to type a person it never stores.

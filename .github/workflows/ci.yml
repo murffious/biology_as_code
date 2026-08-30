@@ -12,6 +12,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # Rule E. The separation gate keeps product IP out; this keeps PEOPLE out.
+      # Both are unrecoverable once pushed, so both run before anything expensive.
+      - name: No human rows in a public repository
+        run: python tools/check_no_human_rows.py
       - name: No product identifiers in src/ or tests/
         # This repository is the open commons: the specification and its
         # reference implementation. No product name may appear in the shipped

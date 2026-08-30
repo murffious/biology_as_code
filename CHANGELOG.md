@@ -4,6 +4,24 @@ All notable changes to the **biology-as-code** Python package are documented her
 
 ## [Unreleased]
 
+### Study pin — NUTR-PUBLIC-001
+
+`STUDY.md` records the participation rule: a row that does not validate is not study
+data. The `schema_ref` string is identical here and in `murffious/fdp-1`, and `v0.1.0`
+is the tag it pins.
+
+`tools/check_no_human_rows.py` is Rule E — no person in a public repository. It matches
+forbidden field names in KEY position in structured data only, because `STUDY.md` itself
+contains the sentence "no `human_id`", and a guard that flags its own documentation gets
+switched off in a week. Two exceptions are declared with reasons in
+`tools/human-rows.allow`: the synthetic playground personas (`*.mock@…​.local`, a
+reserved TLD that cannot route) and the `UserPersona` schema, which declares that an
+email property may exist and carries no value. An allowlist entry without a stated
+reason is itself a failure.
+
+Rule E runs before the separation gate in CI. Both keep something out of a public
+history that cannot be taken back out later — one product IP, the other people.
+
 ### Separation audit, type catalog, HostState v2, ward conformance
 
 Four related pieces of work: the repository stops carrying product identifiers,
