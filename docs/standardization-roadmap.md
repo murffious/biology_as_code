@@ -2,6 +2,42 @@
 and a study record that fails on a real NIH trial in a way you can reproduce from a browser.
 
 
+They aren't three peers, and that's the first thing worth saying.
+
+One organisation, its standard, and an unrelated checklist
+EuroFIR is an organisation — a Brussels AISBL. It doesn't compare to the other two; it made one of them. Working through CEN/TC 387 (launched 2008, led by the Swedish Standards Institute), it produced EN 16104:2012. It also maintains the value thesauri, LanguaL, FoodEXplorer and eBASIS.
+
+STROBE-nut comes from a different community entirely — nutritional epidemiologists, Lachat et al. 2016 in PLoS Med. No relationship to either.
+
+STROBE-nut	EN 16104:2012	EuroFIR
+What it is	Reporting checklist, 24 items	Formal European Standard	The organisation
+Governs	A paper about a study	A data file about foods	Compilers, thesauri, tooling
+Layer	L5 Reporting (score 40)	L3/L4 (45/30)	L1–L4
+Machine-checkable	No — prose	Yes — XML encoding, controlled vocabularies	Yes, via the above
+Can reject	Nothing	An undocumented food value	An undocumented value
+Enforced by	Journals that ask	Contracts, compiler culture	Membership
+Access	Free	Paid CEN document	Membership + pay-per-view
+They never touch
+STROBE-nut asks whether you told the reader how diet was measured. EN 16104 governs whether a number in a table carries its component, value, method and reference.
+
+A trial can satisfy both and still have no machine-readable study record, because neither is one. That's not a gap either of them failed to fill — it's outside both scopes. Which is exactly the space MI-Nutrition claims, and why the honest framing is neighbours, never competitors.
+
+Note also: the only one of the three that can mechanically reject anything rejects a food value, not a study.
+
+Two corrections to my own work from this
+Four entities or five? EuroFIR's thesauri documentation says "The four main entities (Food, Component, Value, Reference) are mandatory." The standard summary says five, adding Method. The disputed entity is precisely the field this project argues hardest for. I've marked it unresolved in ch34 rather than picking one — and noted that if method is optional there, requiring it (or an explicit declaration of its absence) is a real divergence, not a restatement. Reading the CEN text settles it; it costs money.
+
+I was wrong to flag trend: flat on STROBE-nut. Our register measures title-or-abstract presence in a 2.0M-article slice: 14 mentions. My Europe PMC pull measures full text across all of PMC: 374. A 27× gap, both honest.
+
+adoption-trends.v1.json already says the careful thing: "a floor on use, not a measure of adoption: CONSORT, required by hundreds of journals, reaches 260 of those two million abstracts." Its trend runs on the rate — sparse: true, peak 0.31 per thousand, latest 0.20. Flat is correct. I've fixed STANDARDS-BY-LAYER.md so two of our own artifacts don't contradict each other.
+
+That's the same trap as MIAME's falling curve, from the other side: a mention count is defined by its corpus and its field, and neither number is adoption.
+
+What this settles for the pin
+EN 16104 is the food-number neighbour of FDP-1 — arguably its predecessor, and the convergence is worth publishing as such. STROBE-nut is the prose neighbour of MI-Nutrition, already correctly filed as E05 in the tracker.
+
+Neither goes in schema_ref. Catalog both, map fields with closeMatch, and don't let a checklist attached to a PDF count as conformance.
+
 
 The difference: one names, the other constrains
 STUDY.md is the pin — 36 lines, no fields. It says which contracts this study submits to, plus the three rules that aren't schemas (refusal, the split, Fort Lauderdale). It's a declaration of allegiance. It validates nothing itself.
