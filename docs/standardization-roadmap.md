@@ -1,4 +1,51 @@
 # Standardization Roadmap — owning food *judgment*
+and a study record that fails on a real NIH trial in a way you can reproduce from a browser.
+
+
+
+The difference: one names, the other constrains
+STUDY.md is the pin — 36 lines, no fields. It says which contracts this study submits to, plus the three rules that aren't schemas (refusal, the split, Fort Lauderdale). It's a declaration of allegiance. It validates nothing itself.
+
+MI-Nutrition is one of the three things it names — 17.9 KB, 18 fields, and a validator that computes conformance and refuses its own template.
+
+Nearest analogy: STUDY.md is a dependency block; MI-Nutrition is a dependency. You could delete every field from the schema and STUDY.md would still parse — it would just be pointing at nothing. That's exactly why it lists three refs now: it was pointing at food and packet and behaving as if that covered studies.
+
+What's actually novel — the schema answers this itself
+Every MI-Nutrition field carries x-covered-by-strobe-nut. Four required fields are marked False — meaning nothing in STROBE-nut covers them:
+
+#	Field	What it forces
+1	intent.value_lane	prevention / risk_association / treatment — the lane that stops an association becoming advice
+2	intent.study_value_hypothesis	what the study claims is worth knowing, stated
+5	population_fence.fence_summary	who this does not apply to
+12	food_composition.imputation	was any number borrowed rather than measured
+That's the honest size of it: four fields, not eighteen. The other fourteen are STROBE-nut's topics rendered as typed slots.
+
+And two of those four — value_lane and population_fence — are the only rows anywhere on our tracker mapped to L7 Translation/scope, nutrition's lowest score at 20. Nothing in CONSORT, SPIRIT, STROBE-nut, DID-METAB or EN 16104 operates there. That's consistent across every check this week, and it's the strongest claim available.
+
+After the survey, here's the honest ledger
+Not novel:
+
+FDP-1's field list. EN 16104 got there in 2012 — same five entities. Convergence, and I'd publish it as convergence.
+MI-Nutrition's coverage. Mostly STROBE-nut, retyped.
+The nine-layer stack shape. That's an ordinary maturity model.
+Novel, with evidence:
+
+The four fields above, and their L7 occupancy.
+Conformance computed, never asserted — the validator returns none (required 12/14) on our own template and names the missing fields. STROBE-nut is a PDF; nobody's PDF can fail.
+ref_level, where the unit is the assignment (id × record × field), not the identifier. The same UBERON term is correct on one law and wrong on another. I haven't seen that modelled anywhere else.
+Three-state absence — omitted / OPEN / NONE.
+The declared↔observed join. Newest and least built, and the MiNT case proves it catches something no checklist can see.
+The uncomfortable part: most of that list is unadopted, not unprecedented. Zero external users, and MI-Nutrition can't even be cloned yet — schema public, validator not.
+
+What I'd actually claim
+Novelty isn't the asset here, and the survey is what showed that. EN 16104 converged on the right decomposition in 2012 and changed little — because it was gated and sat in one layer.
+
+What's distinctive isn't a field list. It's that the whole stack is public, executable, and refuses — a spec, a validator, negative fixtures, a gate that keeps people out of a food repo, and a study record that fails on a real NIH trial in a way you can reproduce from a browser.
+
+EuroFIR had the better standard and a members-only corpus. We have a weaker standard and no members. The four fields are worth defending on the merits; the rest of the claim should be executable and open, not first.
+
+
+
 
 > Strategic direction for *Biology as Code*. Written in advisor voice: where the
 > leverage actually is, what to build in what order, and what to refuse. It sits
