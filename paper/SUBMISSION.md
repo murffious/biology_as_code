@@ -4,8 +4,8 @@ Draft only. Do not submit until the items below are resolved.
 
 ## Blocking
 
-- [ ] **ORCID.** `paper.md` has a placeholder. JOSS requires a real ORCID for the
-      corresponding author.
+- [x] **ORCID.** 0009-0008-4321-0223 — filled 2026-09-01, matching
+      `CITATION.cff` and `.zenodo.json`.
 - [ ] **Author list on `dooley2018`.** Reconstructed from the paper's author block;
       confirm order and initials against the publisher record before submission.
 - [ ] **`griffiths2024` volume/issue/pages.** The DOI resolves; the bibliographic

@@ -9,7 +9,7 @@ tags:
   - reproducibility
 authors:
   - name: Paul Murff
-    orcid: 0000-0000-0000-0000 # TODO: required by JOSS — see paper/SUBMISSION.md
+    orcid: 0009-0008-4321-0223
     affiliation: 1
 affiliations:
   - name: Morf Engineering, Salt Lake City, Utah, United States
