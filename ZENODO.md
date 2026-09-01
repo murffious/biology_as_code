@@ -54,7 +54,7 @@ pip install biology-as-code
 |-------|-------|
 | **Upload type** | Software |
 | **Title** | Biology as Code: an open, provenance-tracked toolkit for meal digestion and metabolic-pathway modeling |
-| **Authors** | Murff, Paul (Morf Engineering) |
+| **Authors** | Murff, Paul (Morf Engineering Inc.; ORCID 0009-0008-4321-0223) |
 | **Version** | 0.2.0 |
 | **License** | Apache-2.0 (patent non-assertion covenant — see PATENTS.md) |
 | **Keywords** | nutrition, digestion, metabolism, metabolic pathways, systems biology, bioinformatics, teaching, provenance, reproducibility, Python |
