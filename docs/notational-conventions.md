@@ -307,3 +307,20 @@ Effect:       Flux(nonhaem_Fe, %Duodenum% → portal) at the resolved yield
 Uncertainty:  a contested [[yield]] emits a contested flux; the state is carried,
               never dropped at the boundary
 ```
+
+## Two system lenses, one renaming rule
+
+Every law answers through two classifications at once, and they are different
+axes on purpose: **functional** (the seven systems — Assimilation,
+Biotransformation, Structure, Communication, Defense, Energy, Transport:
+*what the body is doing*) and **anatomical** (`organ` on a law card;
+`BodySystem` instances in the ontology: *where it happens*). Food interacts
+across anatomy — a single meal spans mouth to colon — so process and place
+must not be collapsed into one field.
+
+The naming convention: **raw data keeps the short key `system`; every serving
+boundary renames to the explicit lens name.** The law registry emits
+`functional_system` (see `engine/laws/registry.py` — "data key unchanged");
+claim-card servers emit `body_system` for the anatomical lens. A new payload
+that carries both lenses must use the explicit names — a bare `system` field
+in a cross-lens payload is a bug, not a style choice.
