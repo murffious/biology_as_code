@@ -157,4 +157,4 @@ Classic human energy-recovery citations often used in textbooks (e.g. SCFA contr
 4. Keep FLOW SCFA kcal; keep `magnitude_locked: false` until a dedicated energy-yield paper is attached.
 ---
 
-*Copyright 2026 Paul Murff and Biology as Code contributors (Morf Engineering Inc.). Licensed under Apache-2.0 — see repository `LICENSE` and `NOTICE`.*
+*Copyright 2026 Paul Murff (Morf Engineering Inc.). Licensed under Apache-2.0 — see repository `LICENSE` and `NOTICE`.*

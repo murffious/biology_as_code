@@ -152,4 +152,4 @@ You are **fully there for honesty** when:
 You are **not** fully there when a single demo coefficient is treated as LAW-SPEC truth — and under this decision, you **choose not to go there**. That is a feature.
 ---
 
-*Copyright 2026 Paul Murff and Biology as Code contributors (Morf Engineering Inc.). Licensed under Apache-2.0 — see repository `LICENSE` and `NOTICE`.*
+*Copyright 2026 Paul Murff (Morf Engineering Inc.). Licensed under Apache-2.0 — see repository `LICENSE` and `NOTICE`.*
