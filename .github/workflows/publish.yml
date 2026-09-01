@@ -213,6 +213,15 @@ jobs:
           DRAFT_ID=$(echo "$DRAFT" | python3 -c "import json,sys; print(json.load(sys.stdin)['id'])")
           BUCKET=$(echo "$DRAFT" | python3 -c "import json,sys; print(json.load(sys.stdin)['links']['bucket'])")
 
+          # Refuse to publish into any chain but ours. A stray deposit under a
+          # fresh concept is what the GitHub-Zenodo sync once produced (22228075);
+          # this job must never be able to do the same.
+          DRAFT_CONCEPT=$(echo "$DRAFT" | python3 -c "import json,sys; print(json.load(sys.stdin).get('conceptrecid',''))")
+          if [ "$DRAFT_CONCEPT" != "$CONCEPT_RECID" ]; then
+            echo "::error::draft concept ${DRAFT_CONCEPT} != ${CONCEPT_RECID} — aborting before publish"
+            exit 1
+          fi
+
           # Drop the files inherited from the previous version; this deposit is
           # exactly the tagged source archive.
           echo "$DRAFT" | python3 -c "import json,sys; [print(f['id']) for f in json.load(sys.stdin).get('files',[])]" |
