@@ -65,7 +65,9 @@ button:focus-visible{outline:2px solid var(--sel);outline-offset:2px}
 .sn2 .o{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);display:block;margin-top:3px}
 .edge{flex:0 0 34px;height:1px;background:#333A44;position:relative;margin-top:-34px}
 .edge::after{content:"";position:absolute;right:-1px;top:-3px;border-left:5px solid #333A44;border-top:3.5px solid transparent;border-bottom:3.5px solid transparent}
-.verd{border-top:1px solid var(--rule-soft);padding:15px 18px;background:var(--panel);min-height:76px}
+.verd{border-top:1px solid var(--rule-soft);padding:15px 18px;background:var(--panel);display:grid}
+.verd > .vslot{grid-area:1/1;opacity:0;transition:opacity .3s}
+.verd > .vslot.on{opacity:1}
 .verd .vt{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px}
 .verd .vb{font-size:14px;color:var(--ink-soft);max-width:78ch}
 .verd b{color:var(--ink)}
@@ -89,7 +91,7 @@ footer a{color:var(--ink-soft)}
     </div>
     <div class="chain" id="chainA"></div>
     <div class="scoreout" id="chipsA"></div>
-    <div class="verd"><div class="vt" id="vtA">&nbsp;</div><div class="vb" id="vbA">&nbsp;</div></div>
+    <div class="verd" id="verdA"></div>
     <figcaption><b>Each stage builds the next, and each is independently usable.</b>
     Skipping stage one is the common failure — and it is the one this project made.</figcaption>
   </figure>
@@ -101,7 +103,7 @@ footer a{color:var(--ink-soft)}
       <div class="tk"><i id="tB"></i></div><span class="cnt" id="cB">1/6</span>
     </div>
     <div class="spine" id="spineB"></div>
-    <div class="verd"><div class="vt" id="vtB">&nbsp;</div><div class="vb" id="vbB">&nbsp;</div></div>
+    <div class="verd" id="verdB"></div>
     <figcaption><b>Good work at the wrong altitude.</b> The chain is well formed and typed.
     Its terms still map string&nbsp;&rarr;&nbsp;string, so nothing in it resolves.</figcaption>
   </figure>
@@ -157,6 +159,16 @@ footer a{color:var(--ink-soft)}
     {on:5, weak:[0,1], vt:"Where it actually breaks", vb:"<b>Food and Compound are the weak links.</b> A generic unbranded food has no stable identifier the way a packaged good has a GTIN, and an ingredient string is not a ChEBI concept until something maps it. The typed relations above are intact; what enters them is not."}
   ];
 
+  function slots(hostId, steps){
+    var host = document.getElementById(hostId);
+    return steps.map(function(s){
+      var d = document.createElement("div");
+      d.className = "vslot";
+      d.innerHTML = '<div class="vt">' + s.vt + '</div><div class="vb">' + s.vb + '</div>';
+      host.appendChild(d); return d;
+    });
+  }
+
   function mk(tag, cls, html){ var e=document.createElement(tag); if(cls)e.className=cls; if(html!=null)e.innerHTML=html; return e; }
 
   var chainA=document.getElementById("chainA"), chipsA=document.getElementById("chipsA");
@@ -197,6 +209,8 @@ footer a{color:var(--ink-soft)}
     }
   }
 
+  var slotsA = slots("verdA", A_STEPS), slotsB = slots("verdB", B_STEPS);
+
   player({btn:"pA", tk:"tA", cnt:"cA", n:A_STEPS.length, render:function(i){
     var nodes=chainA.querySelectorAll(".node");
     nodes.forEach(function(n,k){
@@ -208,8 +222,7 @@ footer a{color:var(--ink-soft)}
       else if(i>=1) n.classList.add(n.dataset.cls);
     });
     chipsA.querySelectorAll(".chip").forEach(function(c,k){ c.classList.toggle("on", reduce||i>=k+2); });
-    document.getElementById("vtA").textContent=A_STEPS[i].vt;
-    document.getElementById("vbA").innerHTML=A_STEPS[i].vb;
+    slotsA.forEach(function(d,k){ d.classList.toggle("on", k===i); });
   }});
 
   player({btn:"pB", tk:"tB", cnt:"cB", n:B_STEPS.length, render:function(i){
@@ -220,8 +233,7 @@ footer a{color:var(--ink-soft)}
       if((reduce||i>=4)&&!(st.weak&&st.weak.indexOf(k)>-1)) n.classList.add("ok");
       if(st.weak&&st.weak.indexOf(k)>-1) n.classList.add("weak");
     });
-    document.getElementById("vtB").textContent=st.vt;
-    document.getElementById("vbB").innerHTML=st.vb;
+    slotsB.forEach(function(d,k){ d.classList.toggle("on", k===i); });
   }});
 })();
 </script>
