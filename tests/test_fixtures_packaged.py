@@ -8,6 +8,7 @@ def test_version_matches_pyproject():
     # version fails on every release and its failure carries no information —
     # the invariant is that the two declarations agree.
     import tomllib
+
     from biology_as_code import __version__
 
     with open("pyproject.toml", "rb") as f:

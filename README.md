@@ -71,13 +71,7 @@ of it.
 pip install biology-as-code
 ```
 
-> **Note:** the first release is not on PyPI yet. Until it lands, install from source:
->
-> ```bash
-> git clone https://github.com/murffious/biology_as_code.git
-> cd biology_as_code
-> pip install -e ".[dev]"
-> ```
+Or from source: `git clone` this repo and `pip install -e ".[dev]"`.
 
 ## Quick start
 
@@ -256,8 +250,9 @@ works as well.
 
 ---
 
-<p align="center">
-  <img src="docs/assets/biology-as-code-cover.jpg" alt="Biology as Code — Standardizing Nutrition Science for Preventive Medicine, by Paul Murff" width="380" />
-</p>
+**The book** — *Biology as Code: Standardizing Nutrition Science for Preventive
+Medicine* — is a separate, related work, coming soon:
+[the book page](https://murffious.github.io/biology_as_code/book/) has the cover
+and the pitch.
 
 <p align="center"><sub>Cover art is a draft. The glucose chemistry shown on it is not yet corrected.</sub></p>
