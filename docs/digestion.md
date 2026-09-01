@@ -4,7 +4,7 @@
 started from: **once a food is standardized, how does the body handle it, and under
 what conditions?**
 
-It is the [claim auditor](claim-auditor.md)'s sibling. The auditor answers *is a
+It is the claim auditor's sibling ([cookbook 4](cookbook/04-claim-audit.md) shows the auditor at work). The auditor answers *is a
 claim true*; `digest` answers *what does the body do*. Both walk the same
 gate/bound physiology.
 

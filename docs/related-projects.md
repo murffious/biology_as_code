@@ -48,13 +48,13 @@ find a licence, this page says `OPEN` and stops — the same rule
 ## The ontology layer — the one that matters
 
 The issue said these are *"higher leverage than any repo in the screenshot."*
-That is correct, and the reason is narrow: [the claim schema](claim-schema.md)
+That is correct, and the reason is narrow: [the claim vocabulary, `schemas/aca.ttl`](https://github.com/murffious/biology_as_code/blob/main/schemas/aca.ttl)
 already names FoodOn, CDNO, FOBI, ChEBI, MONDO, UBERON and NCBITaxon as the
 normalisation targets for claim subjects and objects. They are not candidates.
 They are the vocabulary this repository has already committed to.
 
 The work left is not *choosing* them. It is resolving every accession before
-shipping it — the rule [claim-schema.md](claim-schema.md) already states as
+shipping it — the rule the claim shapes ([`schemas/claim-shape.ttl`](https://github.com/murffious/biology_as_code/blob/main/schemas/claim-shape.ttl)) already state as
 *never ship a guessed accession*.
 
 ### FoodOn

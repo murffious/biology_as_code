@@ -73,7 +73,18 @@ jobs:
       - name: Wheel import smoke
         run: |
           pip install dist/*.whl --force-reinstall
-          python -c "from biology_as_code import simulate_meal, __version__; from biology_as_code.data.fixtures import list_meal_ids; r=simulate_meal(carbs_g=30,protein_g=15,fats_g=10,fiber_g=8); assert __version__=='0.1.0'; assert r.absorbed_macros_g; assert list_meal_ids()"
+          python - <<'PY'
+          import tomllib
+          from biology_as_code import simulate_meal, __version__
+          from biology_as_code.data.fixtures import list_meal_ids
+          with open("pyproject.toml", "rb") as f:
+              declared = tomllib.load(f)["project"]["version"]
+          # agreement, not a pinned number: a hardcoded version fails every release
+          assert __version__ == declared, (__version__, declared)
+          r = simulate_meal(carbs_g=30, protein_g=15, fats_g=10, fiber_g=8)
+          assert r.absorbed_macros_g
+          assert list_meal_ids()
+          PY
 
   coverage:
     name: Coverage

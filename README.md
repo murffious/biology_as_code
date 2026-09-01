@@ -202,7 +202,7 @@ stated position: *upstream* (we consume it), *adjacent* (cite, don't vendor), *w
 
 | Layer | Position |
 |-------|----------|
-| **FoodOn, CDNO, FOBI, CompTox** | Upstream. Already named by the [claim schema](docs/claim-schema.md) — we resolve to them, we do not rebuild them. |
+| **FoodOn, CDNO, FOBI, CompTox** | Upstream. Already named by the [claim vocabulary](schemas/aca.ttl) — we resolve to them, we do not rebuild them. |
 | **COBRApy, Tellurium, libSBML, PySB** | Adjacent. Different altitude, and COBRApy is GPL-2.0 — a dependency this Apache-2.0 package cannot take. |
 | **PTFI** | Watch. Molecular characterisation is a layer below claims; the open question is whose identifiers everyone joins on. |
 | **Bioregistry** | Upstream — and it has no prefix for FoodData Central or INFOODS, two namespaces FDP-1 already accepts. |
