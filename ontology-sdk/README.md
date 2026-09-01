@@ -38,7 +38,7 @@ no-human-rows guard both cover this folder, which they did not before.
 | `GROUNDED-OBJECT-MODEL.md` | The object model, grounded against what the repo actually ships |
 | `DESIGN.md` · `ONTOLOGY-PIPELINE.md` · `ONTOLOGY-MANAGER.md` | How the model would be built and maintained |
 | `PALANTIR-PRINCIPLES.md` · `foundry_ont.md` · `COMPARABLES.md` | The borrowed vocabulary, attributed, and how it maps |
-| `docs/nutrition_ontology_spec.md` · `shared_properties.md` · `roles_and_object_views.md` | Object types, the shared-property catalogue, and the roles matrix |
+| `../docs/nutrition_ontology_spec.md` · `shared_properties.md` · `roles_and_object_views.md` | Object types, the shared-property catalogue, and the roles matrix. The `nutrition_ontology_spec.md` in this folder is an earlier draft — a strict prefix of the `docs/` copy, which adds §9 (BodySystem mapped onto biology-as-code models) |
 | `body_system_mapping.md` · `body_system_protocol.py` | The interface sketch — read the docstring first |
 | `principles.v1.json` · `check_principles.py` · `declared.py` | The principles register and its checker |
 | `WHERE-THIS-FITS.md` | How this sits next to the specification |

@@ -116,8 +116,10 @@ pip-installable, Apache-2.0, zero runtime dependencies — the SDK depends on it
    SDK can ship an identity layer that declares it.
 2. **MI-Nutrition is fluid.** Codegen against a moving schema produces types that
    churn. Either pin a version for v0 or leave `Study` out of the first release.
-3. **EDP-1 has no DOI and is undeposited.** `Exposure` cannot be a public object
-   type until it is.
+3. ~~**EDP-1 has no DOI and is undeposited.**~~ **Cleared 2026-08-30.** EDP-1 is
+   deposited — concept DOI `10.5281/zenodo.22168822` (cite the concept, never the
+   version record 22168823). `Exposure` is no longer blocked on a deposit; what keeps
+   it and `Study` out of v0 is `GROUNDED-OBJECT-MODEL.md` §8 blocker 11.
 4. **Imported vocabularies are not yours to relicense.** FoodOn, ChEBI, CDNO, VMH
    have their own terms. Reference and attribute; do not vendor wholesale. Only ACA
    is authored, per the claims-agent standard — the SDK must make that split visible.

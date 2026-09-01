@@ -1,3 +1,11 @@
+> **Raw conversation output — not reviewed, not normative.** Pasted 2026-08-29 as the working
+> notes behind `body_system_protocol.py`, `shared_properties.md` and `roles_and_object_views.md`;
+> where it disagrees with those files or with FDP-1, they win (this is Tier E in
+> nutri-collective's rigor tiers: never cite directly). The SLI weights quoted below are the
+> illustrative placeholder the README describes, not a fitted or product value. The image links
+> point at screenshots kept in this folder; the spec it names is `../docs/nutrition_ontology_spec.md`,
+> of which this folder's `nutrition_ontology_spec.md` is an earlier, shorter draft.
+
 `BodySystem` is the interface. Digestive, endocrine, and renal are the models. Need and System Load Index both call those models; they do not live as stored properties.
 
 
@@ -42,7 +50,7 @@ Files:
 
 
 
-`docs/nutrition_ontology_spec.md` now treats BodySystem as an interface with those three implementers.
+`../docs/nutrition_ontology_spec.md` now treats BodySystem as an interface with those three implementers.
 ![alt text](image.png)
 ![alt text](image-1.png)
 Minimum to code: GI with three coefficients (matrix, hydrolyze, uptake), endocrine `target_adjust` for energy/D/iron, renal as pass-through, SLI averaging whatever is present. Same rule as the ontology — no object without rows.

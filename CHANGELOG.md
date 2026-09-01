@@ -4,6 +4,37 @@ All notable changes to the **biology-as-code** Python package are documented her
 
 ## [Unreleased]
 
+### Changed
+
+- **Zenodo job refuses to publish outside our concept chain** (`publish.yml`): the
+  release deposit now checks that the target record belongs to concept
+  `10.5281/zenodo.21536448` before it uploads, so a mis-set token or a fresh deposit
+  can no longer start a parallel DOI lineage.
+- **Claims and product docs moved out to `nutri-collective`** — `docs/claim-auditor.md`,
+  `claim-schema.md`, `claim-sources.md`, `claims-agent.md` and two photographs leave
+  this repository. The claims agent is *consumed* by this package, not housed in it.
+  CI version census fixed in the same change.
+- **Notational convention recorded** (`docs/notational-conventions.md`): the two
+  system lenses are `functional_system` and `body_system` at boundaries; raw keys
+  keep their names.
+- **Licence annotation in every schema and spec JSON** — 34 files under `schemas/`,
+  `design/hri_v1/` and `machines/data/schemas/` carry the SPDX block; `examples/` is
+  covered at directory level in its README.
+- **JOSS paper**: ORCID placeholder filled (`0009-0008-4321-0223`) in `paper/paper.md`
+  and `paper/SUBMISSION.md` — the first blocking submission item.
+
+### Fixed
+
+- `ontology-sdk/DESIGN.md` blocker 3 and `GROUNDED-OBJECT-MODEL.md` §8.11 no longer
+  say EDP-1 is undeposited; it has carried concept DOI `10.5281/zenodo.22168822`
+  since 2026-08-30.
+- `ontology-sdk/README.md` and `ontology_apply2.md` pointed at
+  `docs/nutrition_ontology_spec.md`, a path that does not exist relative to that
+  folder. Both now point at `../docs/nutrition_ontology_spec.md` (389 lines), of
+  which the folder's own `nutrition_ontology_spec.md` (188 lines) is a strict prefix.
+  `ontology_apply2.md` is bannered as raw conversation output — not normative, and
+  the SLI weights it quotes are the README's illustrative placeholder.
+
 ## [0.2.1] — 2026-09-01
 
 - Root tidied: gates (`check_curies.py`, `check_third_party.py`, baseline) into
