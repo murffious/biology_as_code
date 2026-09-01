@@ -211,7 +211,7 @@ def test_human_guard_is_silent_when_the_name_is_only_prose(tmp_path):
 def _curie_repo(tmp_path: pathlib.Path, baseline: int) -> pathlib.Path:
     root = tmp_path / "curie"
     root.mkdir()
-    gate = _plant("check_curies.py", root, subdir="")
+    gate = _plant("check_curies.py", root)
     # The identifier is ASSEMBLED, never written as a literal. `check_curies.py`
     # scans this repository including tests/, so a spelled-out id with a
     # deliberately wrong adjacent label would be harvested from this very file and
@@ -222,7 +222,7 @@ def _curie_repo(tmp_path: pathlib.Path, baseline: int) -> pathlib.Path:
     fake = "CHEBI" + ":" + str(15377)
     (root / "terms.json").write_text(json.dumps(
         {"id": fake, "label": "definitely not water"}))
-    (root / "curie_baseline.json").write_text(
+    (root / "tools" / "curie_baseline.json").write_text(
         json.dumps({"count": baseline, "problems": []}))
     return gate
 
@@ -256,7 +256,7 @@ def test_curies_resolves_object_properties_and_not_only_classes(tmp_path):
     finding nor counted as checked."""
     root = tmp_path / "props"
     root.mkdir()
-    gate = _plant("check_curies.py", root, subdir="")
+    gate = _plant("check_curies.py", root)
     prop = "RO" + ":" + str(2212).zfill(7)          # assembled, see _curie_repo
     (root / "graph.json").write_text(json.dumps(
         {"predicate": prop, "label": "negatively regulates"}))
@@ -273,7 +273,7 @@ def test_curies_resolves_object_properties_and_not_only_classes(tmp_path):
 def _tp_repo(tmp_path: pathlib.Path, entries: list[dict]) -> pathlib.Path:
     root = tmp_path / "tp"
     root.mkdir()
-    gate = _plant("check_third_party.py", root, subdir="")
+    gate = _plant("check_third_party.py", root)
     (root / "THIRD-PARTY-DATA.json").write_text(json.dumps({"entries": entries}))
     (root / "NOTICE").write_text("Third-party data notices.\n")
     _git_repo(root)

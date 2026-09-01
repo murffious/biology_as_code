@@ -78,3 +78,6 @@ site/
 # Resolved ontology-term cache for check_curies.py. Machine-local and
 # re-derivable; the durable artifact is curie_baseline.json.
 .curie_cache/
+
+# scripts/zenodo_new_version.sh build artifact
+biology_as_code-v*.tar.gz

@@ -43,10 +43,10 @@ Responses are cached under .curie_cache/ so a second run is offline and instant.
 Networked gates do not belong in CI unprimed; run this locally, commit the
 baseline, and let CI compare against the cache.
 
-    python3 check_curies.py                  # advisory, prints a report
-    python3 check_curies.py --strict         # exit 1 if debt exceeds the baseline
-    python3 check_curies.py --update-baseline
-    python3 check_curies.py --offline        # cache only, no network
+    python3 tools/check_curies.py                  # advisory, prints a report
+    python3 tools/check_curies.py --strict         # exit 1 if debt exceeds the baseline
+    python3 tools/check_curies.py --update-baseline
+    python3 tools/check_curies.py --offline        # cache only, no network
 """
 from __future__ import annotations
 
@@ -59,9 +59,10 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-ROOT = pathlib.Path(__file__).resolve().parent
-CACHE = ROOT / ".curie_cache"
-BASELINE = ROOT / "curie_baseline.json"
+HERE = pathlib.Path(__file__).resolve().parent   # tools/
+ROOT = HERE.parent                                   # repo root — the scan target
+CACHE = HERE / ".curie_cache"
+BASELINE = HERE / "curie_baseline.json"
 
 SKIP_DIRS = {".git", ".venv", "node_modules", "__pycache__", ".curie_cache",
              "archive", "site-packages"}

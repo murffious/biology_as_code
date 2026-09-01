@@ -16,6 +16,11 @@ jobs:
       # Both are unrecoverable once pushed, so both run before anything expensive.
       - name: No human rows in a public repository
         run: python tools/check_no_human_rows.py
+      - name: Third-party data accounted for
+        # Every sizeable tracked data file must be declared in THIRD-PARTY-DATA.json.
+        # (check_curies is deliberately NOT here: --offline needs the machine-local
+        # cache, and an unrun check is not a pass.)
+        run: python tools/check_third_party.py --strict
       - name: Separation gate (no product identifiers)
         # Replaced the inline grep 2026-08-30. That version scanned an explicit
         # directory list, so ontology-sdk/ accumulated ten references while CI stayed

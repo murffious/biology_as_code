@@ -44,6 +44,7 @@ ARCHIVE="biology_as_code-${TAG}.tar.gz"
 git archive --format=tar.gz --prefix="biology_as_code-${TAG}/" -o "$ARCHIVE" "$TAG"
 curl -sf -X PUT -H "$AUTH" --upload-file "$ARCHIVE" "${BUCKET}/${ARCHIVE}" >/dev/null
 echo "uploaded ${ARCHIVE} ($(du -h "$ARCHIVE" | cut -f1))"
+rm -f "$ARCHIVE"
 
 # metadata: take .zenodo.json as source of truth, set version + today's date
 python3 - "$VERSION" > metadata.json <<'PYEOF'

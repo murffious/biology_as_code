@@ -42,7 +42,7 @@ Files:
 
 
 
-`nutrition_ontology_spec.md` now treats BodySystem as an interface with those three implementers.
+`docs/nutrition_ontology_spec.md` now treats BodySystem as an interface with those three implementers.
 ![alt text](image.png)
 ![alt text](image-1.png)
 Minimum to code: GI with three coefficients (matrix, hydrolyze, uptake), endocrine `target_adjust` for energy/D/iron, renal as pass-through, SLI averaging whatever is present. Same rule as the ontology — no object without rows.

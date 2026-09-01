@@ -3,10 +3,16 @@
 from __future__ import annotations
 
 
-def test_version_is_010():
+def test_version_matches_pyproject():
+    # Compare against pyproject rather than a literal: a census test named for a
+    # version fails on every release and its failure carries no information —
+    # the invariant is that the two declarations agree.
+    import tomllib
     from biology_as_code import __version__
 
-    assert __version__ == "0.1.0"
+    with open("pyproject.toml", "rb") as f:
+        declared = tomllib.load(f)["project"]["version"]
+    assert __version__ == declared
 
 
 def test_meals_and_vitamins():
