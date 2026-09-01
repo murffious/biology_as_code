@@ -21,8 +21,8 @@ authors:
   - family-names: Murff
     given-names: Paul
     affiliation: "Morf Engineering"
-version: "0.1.0"
-date-released: "2026-07-26"
+version: "0.2.0"
+date-released: "2026-09-01"
 license: Apache-2.0
 # Existing Zenodo DOI for the current record. After the v0.1.0 GitHub release is
 # published, repoint this to the concept DOI the GitHub–Zenodo integration mints.

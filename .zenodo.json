@@ -44,5 +44,5 @@
       "scheme": "doi"
     }
   ],
-  "notes": "Licence note: this record's `license` field (Apache-2.0) applies to the source code. Redistributed third-party data carries its own terms — see THIRD-PARTY-DATA.json. The published v1 record (10.5281/zenodo.21536449) carries CC BY-4.0; that mismatch with the repository's Apache-2.0 LICENSE is a metadata defect to correct at next deposit."
+  "notes": "Licence note: this record's `license` field (Apache-2.0) applies to the source code. Redistributed third-party data carries its own terms — see THIRD-PARTY-DATA.json. The v1 record's licence field was corrected to Apache-2.0 by metadata edit on 2026-09-01. The single file deposited with v1 (ZENODO.md) still states MIT on its licence row; files on a published version are immutable, and it is superseded by this version's source archive."
 }

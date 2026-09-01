@@ -4,6 +4,33 @@ All notable changes to the **biology-as-code** Python package are documented her
 
 ## [Unreleased]
 
+## [0.2.0] — 2026-09-01
+
+### Licensing made explicit, everywhere it travels
+
+- Per-file `licence` blocks (SPDX Apache-2.0, copyright, scope) stamped into all
+  15 `engine/data/` law files — the licence now rides in the artefact, not just
+  the repository root.
+- `LICENSE` appendix boilerplate filled (was the stock `[yyyy] [name]` template);
+  `NOTICE` and all copyright lines read `Copyright 2026 Paul Murff (Morf
+  Engineering Inc.)` (sole author).
+- `PROPRIETARY_IP.md`: opening clarified — owner named, exclusion from both
+  repository licences explicit, filing details deliberately withheld until
+  publication; stale inline-grep gate description replaced with
+  `tools/check_separation.py`.
+- `ZENODO.md`: licence row corrected (the v0.1.0 deposit's copy said MIT);
+  citation now uses the concept DOI.
+- Zenodo v1 record licence field corrected to Apache-2.0 by metadata edit.
+
+### Release automation
+
+- `publish.yml`: new `zenodo` job — on each published release, deposits the
+  tagged source archive as a new version of the SAME concept DOI
+  (10.5281/zenodo.21536448), with token-missing and same-version guards.
+- Separation gate + human-rows gate now also run at the publish boundary;
+  PyPI upload skips already-published versions instead of failing.
+- README: latest-release badge; DOI badge moved to the concept DOI.
+
 ### Study pin — NUTR-PUBLIC-001
 
 `STUDY.md` records the participation rule: a row that does not validate is not study
