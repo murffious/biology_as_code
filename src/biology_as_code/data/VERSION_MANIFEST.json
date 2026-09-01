@@ -1,11 +1,11 @@
 {
   "schema": "bac.version_manifest/v1",
   "package": "biology-as-code",
-  "package_version": "0.2.0",
+  "package_version": "0.2.1",
   "semver": {
     "major": 0,
     "minor": 2,
-    "patch": 0,
+    "patch": 1,
     "pre": null
   },
   "released": "2026-07-24",

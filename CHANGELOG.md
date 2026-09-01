@@ -4,6 +4,18 @@ All notable changes to the **biology-as-code** Python package are documented her
 
 ## [Unreleased]
 
+## [0.2.1] — 2026-09-01
+
+- Root tidied: gates (`check_curies.py`, `check_third_party.py`, baseline) into
+  `tools/`; docs and design assets filed; third-party gate wired into CI.
+- `VERSION_MANIFEST.json` caught up with the 0.2.0 bump (the one declaration it
+  missed — `test_one_version_everywhere` flagged it); version census test is now
+  an invariant against pyproject.
+- Author identity normalized everywhere: affiliation **Morf Engineering Inc.**,
+  ORCID 0009-0008-4321-0223 in `.zenodo.json`, `CITATION.cff`, `ZENODO.md` —
+  and corrected by metadata edit on both published Zenodo records.
+- First release published via the same-concept Zenodo automation end to end.
+
 ## [0.2.0] — 2026-09-01
 
 ### Licensing made explicit, everywhere it travels

@@ -22,7 +22,7 @@ authors:
     given-names: Paul
     affiliation: "Morf Engineering Inc."
     orcid: "https://orcid.org/0009-0008-4321-0223"
-version: "0.2.0"
+version: "0.2.1"
 date-released: "2026-09-01"
 license: Apache-2.0
 # Existing Zenodo DOI for the current record. After the v0.1.0 GitHub release is
