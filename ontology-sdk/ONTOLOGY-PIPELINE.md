@@ -8,6 +8,9 @@ semantic expressiveness. It reframes the plan in `DESIGN.md` and
 controlled vocabulary → metadata schemas → taxonomy → ontology → RDF knowledge graph
 ```
 
+> **Two animated figures for this document:** [`pipeline-visuals.html`](../docs/pipeline-visuals.html)
+> — the pipeline against where this project started, and the causal spine it built there.
+
 Two properties of the framework matter more than the stages themselves:
 
 1. **Each stage builds the next.** You cannot model what you have not defined.
@@ -86,14 +89,21 @@ concepts, generated from the tables above and gated to reproduce them exactly.
 ## Why this explains L3 = 45
 
 The nine-layer stack's failing layer is named, in its own words,
-**"Vocabulary & reference data."** It scores **45** against a floor of 60, while
-Identity above it scores 70.
+**"Vocabulary & reference data."** It scores **45** against a threshold of 60 — and
+Identity below it scores **33**.
+
+*(This paragraph said "Identity above it scores 70" until 2026-08-31. Working paper
+v1.4 corrected L2 to 33. The correction makes the argument below stronger, so it is
+restated here rather than removed.)*
 
 Read through the pipeline, that is not a mysterious institutional failure. It is a
-**stage-one gap being measured at stage four**. The field has identifiers — that is
-L2 Identity at 70, and it is why L2 passes. What it lacks is the controlled
-vocabulary that makes those identifiers resolve, disambiguate, and carry their
-alternates. Physics steps 90 → 92 across the same boundary because SI units and
+**stage-one gap being measured at stage four** — and the corrected scores show the
+gap is worse the further down you look, which is what "each stage builds the next"
+predicts. The field's identifiers are not sound either: v1.4 dropped L2 because
+identifiers exist for branded, packaged goods and nothing plays that role for a
+generic unbranded food. You cannot mint a stable identifier for a concept nobody has
+defined. What is missing at both layers is the same thing — the controlled vocabulary
+that makes an identifier resolve, disambiguate, and carry its alternates. Physics steps 90 → 92 across the same boundary because SI units and
 CODATA reference values *are* the same artifact as the naming.
 
 **So the highest-value next move is not the manifest. It is a controlled

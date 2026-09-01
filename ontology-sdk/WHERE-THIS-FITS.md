@@ -9,25 +9,45 @@ Two questions, answered from the registers rather than from enthusiasm:
 ## Part 1 — It is an L2/L3/L9 intervention, and the numbers say so
 
 The nine-layer stack already scores the thing an ontology would fix.
-From `standardization-chart.v1.json` (as_of 2026-08-27), floor = 60:
+From `standardization-chart.v1.json` (as_of 2026-08-31), threshold = 60:
 
-| Layer | Nutrition | Physics | vs floor |
+| Layer | Nutrition | Physics | vs threshold |
 |---|---:|---:|---:|
-| L2 Identity | **70** | 90 | **+10** |
+| L2 Identity | **33** | 90 | **−27** |
 | L3 Vocabulary & reference data | **45** | 92 | **−15** |
 | L9 Traceability | **30** | 88 | **−30** |
 
+> **Corrected 2026-08-31, and it inverts what this file used to say.** L2 Identity
+> read **70** through working paper v1.3 and was corrected to **33** in v1.4. This
+> section previously ran: *"Nutrition L2 → L3: 70 → 45. A 25-point fall. Physics L2 →
+> L3: 90 → 92. Level."* At the corrected score nutrition goes **33 → 45**, which is a
+> 12-point **rise**, and the cliff this file was built around does not exist.
+
 Now the step between the first two:
 
-> **Nutrition L2 → L3: 70 → 45. A 25-point fall.**
+> **Nutrition L2 → L3: 33 → 45.** Identity is *worse* than vocabulary.
 > **Physics L2 → L3: 90 → 92. Level.**
 
-That gap is the finding, and it has a name. The distinction the field keeps
-blurring — taxonomy versus ontology — maps exactly onto those two layers:
+**The finding survives the correction and gets stronger, which is why the argument is
+restated rather than withdrawn.** The old reading had to explain why L2 passed while
+L3 failed — a field with good identifiers and bad vocabulary. The correction removes
+that puzzle. The reason v1.4 gave for dropping L2 is that identifiers exist for
+branded, packaged, barcoded goods and **nothing plays that role for a generic
+unbranded food**. That is not an identity failure that happens to sit next to a
+vocabulary failure. It is a stage-one gap surfacing at the identity layer: *you
+cannot mint a stable identifier for a concept nobody has defined.*
+
+Talisman's first property — each stage builds the next — predicts exactly this. If
+stage one was never built, stage three cannot be sound, and the corrected scores show
+the damage is **lowest in the stack**, not at L3. The pipeline reading now explains
+both numbers instead of one.
+
+The distinction the field keeps blurring — taxonomy versus ontology — still maps onto
+those two layers:
 
 | Concept | What it is | Our layer | Score |
 |---|---|---|---|
-| **Taxonomy** | hierarchy, classification, identifiers | **L2 Identity** | 70 — passing |
+| **Taxonomy** | hierarchy, classification, identifiers | **L2 Identity** | 33 — failing |
 | **Ontology** | *typed relations between the identified things* | **L3 Vocabulary & reference data** | 45 — failing |
 | **Knowledge graph** | the populated instances | the registers + the corpus | — |
 | **Semantics** | data plus the understanding to act on it | what the SDK exposes | — |

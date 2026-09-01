@@ -1,0 +1,227 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The stage we skipped — ontology pipeline visuals</title>
+<meta name="description" content="Two animated figures: Talisman's ontology pipeline against where this project actually started, and the OBO causal spine it built there.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Serif:wght@500;600&display=swap">
+<style>
+:root{
+  --ground:#08090B;--panel:#0E1013;--card:#14161A;--rule:#24282F;--rule-soft:#1B1E24;
+  --ink:#E8EAEE;--ink-soft:#98A0AC;--ink-faint:#69707C;
+  --sel:#2D6DF6;--sel-soft:rgba(45,109,246,.14);--ok:#3FB884;--stop:#E2574C;--warm:#E0A84A;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;--sans:"IBM Plex Sans",Arial,sans-serif;
+  --serif:"IBM Plex Serif",Georgia,serif;
+}
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);margin:0;line-height:1.6}
+.wrap{max-width:1000px;margin:0 auto;padding:40px 24px 80px}
+h1{font-family:var(--serif);font-size:clamp(27px,4vw,40px);line-height:1.12;margin:0 0 12px;font-weight:600;letter-spacing:-.015em}
+h2{font-family:var(--serif);font-size:20px;margin:0 0 8px;font-weight:600}
+p{margin:0 0 14px}.lede{color:var(--ink-soft);max-width:64ch}
+.lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+.crumb{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:20px}
+figure{margin:26px 0 0;background:#000;border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+figcaption{border-top:1px solid var(--rule-soft);background:var(--panel);padding:14px 18px;font-size:14px;color:var(--ink-soft)}
+figcaption b{color:var(--ink)}
+.bar{display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--rule);padding:12px 16px;background:#15181D;flex-wrap:wrap}
+button{background:#1E222A;border:1px solid #39414D;color:var(--ink);border-radius:6px;font:inherit;font-size:12px;
+  font-family:var(--mono);padding:6px 12px;cursor:pointer;transition:background .15s,border-color .15s}
+button:hover{background:#272C35;border-color:#5A6472}
+button:focus-visible{outline:2px solid var(--sel);outline-offset:2px}
+.pb{width:46px;height:32px;padding:0;display:inline-flex;align-items:center;justify-content:center;
+  background:var(--sel);border-color:var(--sel);color:#fff;font-size:14px}
+.pb:hover{background:#1F5BE0;border-color:#1F5BE0}
+.tk{flex:1;height:4px;background:#39414D;border-radius:3px;overflow:hidden;min-width:110px}
+.tk i{display:block;height:100%;background:var(--sel);width:0;transition:width .35s}
+.cnt{font-family:var(--mono);font-size:12px;color:var(--ink);min-width:48px;text-align:right;font-variant-numeric:tabular-nums}
+
+/* ---- figure A: linear pipeline ---- */
+.chain{display:flex;align-items:stretch;gap:0;padding:30px 18px 24px;overflow-x:auto}
+.node{flex:1 1 0;min-width:132px;background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:12px 12px 13px;
+  opacity:.26;transition:opacity .5s,border-color .5s,background .5s,transform .5s;transform:translateY(5px)}
+.node.on{opacity:1;transform:none}
+.node.built{border-color:var(--ok);background:rgba(63,184,132,.06)}
+.node.missing{border-color:var(--stop);background:rgba(226,87,76,.07);border-style:dashed}
+.node.here{border-color:var(--sel);background:var(--sel-soft)}
+.node .sn{font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;color:var(--ink-faint);display:block;margin-bottom:6px}
+.node .nm{font-size:13.5px;font-weight:500;line-height:1.28;display:block}
+.node .st{font-family:var(--mono);font-size:10px;margin-top:8px;display:block;letter-spacing:.06em}
+.node.built .st{color:var(--ok)} .node.missing .st{color:var(--stop)} .node.here .st{color:var(--sel)}
+.link{flex:0 0 26px;display:grid;place-items:center;color:#333A44;font-size:15px;padding-top:26px}
+.scoreout{display:flex;gap:10px;align-items:center;padding:0 18px 22px;flex-wrap:wrap}
+.chip{background:var(--card);border:1px solid var(--rule);border-radius:7px;padding:9px 12px;font-family:var(--mono);font-size:12px;
+  color:var(--ink-soft);opacity:0;transform:translateY(4px);transition:opacity .5s,transform .5s}
+.chip.on{opacity:1;transform:none}
+.chip b{color:var(--ink)} .chip .r{color:var(--stop)} .chip .g{color:var(--ok)}
+
+/* ---- figure B: spine walk ---- */
+.spine{display:flex;align-items:center;padding:34px 18px;gap:0;overflow-x:auto}
+.sn2{flex:1 1 0;min-width:120px;text-align:center;opacity:.24;transition:opacity .5s,transform .5s;transform:translateY(6px)}
+.sn2.on{opacity:1;transform:none}
+.ring{width:52px;height:52px;border-radius:50%;border:1.5px solid var(--rule);margin:0 auto 9px;display:grid;place-items:center;
+  font-family:var(--mono);font-size:11px;color:var(--ink-faint);transition:border-color .5s,color .5s,box-shadow .5s}
+.sn2.ok .ring{border-color:var(--ok);color:var(--ok)}
+.sn2.weak .ring{border-color:var(--stop);color:var(--stop);box-shadow:0 0 0 4px rgba(226,87,76,.12)}
+.sn2 .t{font-size:13px;font-weight:500;display:block;line-height:1.3}
+.sn2 .o{font-family:var(--mono);font-size:10.5px;color:var(--ink-faint);display:block;margin-top:3px}
+.edge{flex:0 0 34px;height:1px;background:#333A44;position:relative;margin-top:-34px}
+.edge::after{content:"";position:absolute;right:-1px;top:-3px;border-left:5px solid #333A44;border-top:3.5px solid transparent;border-bottom:3.5px solid transparent}
+.verd{border-top:1px solid var(--rule-soft);padding:15px 18px;background:var(--panel);min-height:76px}
+.verd .vt{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px}
+.verd .vb{font-size:14px;color:var(--ink-soft);max-width:78ch}
+.verd b{color:var(--ink)}
+footer{margin-top:46px;padding-top:18px;border-top:1px solid var(--rule-soft);font-size:12.5px;color:var(--ink-faint)}
+footer a{color:var(--ink-soft)}
+@media (prefers-reduced-motion:reduce){.node,.sn2,.chip,.tk i{transition:none}}
+</style>
+
+<div class="wrap">
+  <div class="crumb">Biology as Code &middot; ontology SDK</div>
+  <h1>The stage we skipped</h1>
+  <p class="lede">Two figures for <code>ONTOLOGY-PIPELINE.md</code>. The first is Jessica
+  Talisman's ontology pipeline against where this project actually started. The second is the
+  artifact it built there. Every number is from the repository, not illustrative.</p>
+
+  <figure>
+    <div class="bar">
+      <button class="pb" id="pA" type="button" aria-label="Pause">&#9646;&#9646;</button>
+      <span class="lbl">Ontology pipeline</span>
+      <div class="tk"><i id="tA"></i></div><span class="cnt" id="cA">1/5</span>
+    </div>
+    <div class="chain" id="chainA"></div>
+    <div class="scoreout" id="chipsA"></div>
+    <div class="verd"><div class="vt" id="vtA">&nbsp;</div><div class="vb" id="vbA">&nbsp;</div></div>
+    <figcaption><b>Each stage builds the next, and each is independently usable.</b>
+    Skipping stage one is the common failure — and it is the one this project made.</figcaption>
+  </figure>
+
+  <figure>
+    <div class="bar">
+      <button class="pb" id="pB" type="button" aria-label="Pause">&#9646;&#9646;</button>
+      <span class="lbl">OBO causal spine &middot; a stage-four artifact</span>
+      <div class="tk"><i id="tB"></i></div><span class="cnt" id="cB">1/6</span>
+    </div>
+    <div class="spine" id="spineB"></div>
+    <div class="verd"><div class="vt" id="vtB">&nbsp;</div><div class="vb" id="vbB">&nbsp;</div></div>
+    <figcaption><b>Good work at the wrong altitude.</b> The chain is well formed and typed.
+    Its terms still map string&nbsp;&rarr;&nbsp;string, so nothing in it resolves.</figcaption>
+  </figure>
+
+  <footer>
+    Sources: <code>ontology-sdk/ONTOLOGY-PIPELINE.md</code>,
+    <code>WHERE-THIS-FITS.md</code>, and <code>standardization-chart.v1.json</code>
+    (as_of 2026-08-31). Layer scores are calibrated ordinal expert judgments, not
+    measurements. L2 Identity read 70 until working paper v1.4 corrected it to 33.
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------------- Figure A ---------------- */
+  var STAGES = [
+    {n:"1", nm:"Controlled vocabulary", st:"NEVER BUILT", cls:"missing"},
+    {n:"2", nm:"Metadata schemas",      st:"partial",     cls:"missing"},
+    {n:"3", nm:"Taxonomy",              st:"L2 = 33",     cls:"missing"},
+    {n:"4", nm:"Ontology",              st:"WE STARTED HERE", cls:"here"},
+    {n:"5", nm:"RDF knowledge graph",   st:"not reached", cls:"missing"}
+  ];
+  var CHIPS = [
+    '4 tables handle synonyms &middot; <b>~1,490</b> distinct strings',
+    'exactly <b>14</b> appear in more than one &mdash; <span class="g">not duplication</span>',
+    'every table maps <b>string &rarr; string</b>. <span class="r">None maps string &rarr; concept.</span>'
+  ];
+  var A_STEPS = [
+    {vt:"Where we started", vb:"The OBO causal spine is a <b>stage-four artifact</b>. It declares typed relations between concepts, and it is good work."},
+    {vt:"What it stands on", vb:"Stage one was never built. There was no single place where a nutrition term had one preferred label, its alternates, its hidden labels, and a source."},
+    {vt:"The defect is not duplication", vb:"Across four synonym tables and ~1,490 distinct strings, <b>exactly 14</b> appear in more than one. They barely overlap."},
+    {vt:"The defect is the mapping", vb:"Every one of those tables maps <b>string &rarr; string</b>. Not one maps string &rarr; concept. Nothing has an identifier, so nothing can notice that <code>cognition</code> and <code>cognitive</code> are one idea."},
+    {vt:"Which is what the scores say", vb:"L3 Vocabulary sits at <b>45</b>; L2 Identity, below it, at <b>33</b>. The damage is worst lowest in the stack &mdash; exactly what <b>each stage builds the next</b> predicts. You cannot mint a stable identifier for a concept nobody has defined."}
+  ];
+
+  /* ---------------- Figure B ---------------- */
+  var SPINE = [
+    {t:"Food",       o:"FOODON",   s:"L1"},
+    {t:"Compound",   o:"ChEBI",    s:"L2"},
+    {t:"Mechanism",  o:"Reactome", s:"L3"},
+    {t:"Physiology", o:"GO",       s:"L4"},
+    {t:"Outcome",    o:"MONDO",    s:"L5"}
+  ];
+  var B_STEPS = [
+    {on:1, vt:"A well-formed chain", vb:"Five stages, each keyed to a maintained OBO ontology, with <b>RO</b> supplying the relations. As a stage-four artifact this is sound."},
+    {on:2, vt:"Each node names a real vocabulary", vb:"FOODON, ChEBI, Reactome, GO, MONDO. None of these is invented here, and none of them is the problem."},
+    {on:3, vt:"", vb:""},
+    {on:4, vt:"", vb:""},
+    {on:5, vt:"The chain is only as good as its terms", vb:"Every node resolves <em>if</em> the term arriving at it is already a concept. Ours arrive as strings."},
+    {on:5, weak:[0,1], vt:"Where it actually breaks", vb:"<b>Food and Compound are the weak links.</b> A generic unbranded food has no stable identifier the way a packaged good has a GTIN, and an ingredient string is not a ChEBI concept until something maps it. The typed relations above are intact; what enters them is not."}
+  ];
+
+  function mk(tag, cls, html){ var e=document.createElement(tag); if(cls)e.className=cls; if(html!=null)e.innerHTML=html; return e; }
+
+  var chainA=document.getElementById("chainA"), chipsA=document.getElementById("chipsA");
+  STAGES.forEach(function(s,i){
+    if(i) chainA.appendChild(mk("div","link","&rarr;"));
+    var n=mk("div","node");
+    n.innerHTML='<span class="sn">STAGE '+s.n+'</span><span class="nm">'+s.nm+'</span><span class="st">'+s.st+'</span>';
+    n.dataset.cls=s.cls; chainA.appendChild(n);
+  });
+  CHIPS.forEach(function(c){ chipsA.appendChild(mk("div","chip",c)); });
+
+  var spineB=document.getElementById("spineB");
+  SPINE.forEach(function(s,i){
+    if(i) spineB.appendChild(mk("div","edge"));
+    var n=mk("div","sn2");
+    n.innerHTML='<div class="ring">'+s.s+'</div><span class="t">'+s.t+'</span><span class="o">'+s.o+'</span>';
+    spineB.appendChild(n);
+  });
+
+  function player(opts){
+    var i=0, playing=!reduce, timer=null;
+    var btn=document.getElementById(opts.btn), tk=document.getElementById(opts.tk), cnt=document.getElementById(opts.cnt);
+    function draw(){
+      opts.render(i);
+      tk.style.width=((i+1)/opts.n*100)+"%";
+      cnt.textContent=(i+1)+"/"+opts.n;
+    }
+    function tick(){ i=(i+1)%opts.n; draw(); }
+    function loop(){ clearInterval(timer); if(playing&&!reduce) timer=setInterval(tick, opts.ms||2100); }
+    function paint(){ btn.innerHTML=playing?"&#9646;&#9646;":"&#9654;"; btn.setAttribute("aria-label",playing?"Pause":"Play"); loop(); }
+    btn.addEventListener("click",function(){ playing=!playing; paint(); });
+    if(reduce) i=opts.n-1;
+    draw(); paint();
+    if(window.IntersectionObserver){
+      new IntersectionObserver(function(es){ es.forEach(function(e){
+        if(!e.isIntersecting) clearInterval(timer); else if(playing) loop();
+      }); },{threshold:.2}).observe(btn.closest("figure"));
+    }
+  }
+
+  player({btn:"pA", tk:"tA", cnt:"cA", n:A_STEPS.length, render:function(i){
+    var nodes=chainA.querySelectorAll(".node");
+    nodes.forEach(function(n,k){
+      n.className="node";
+      var show = reduce || (i===0 ? k===3 : true);
+      if(show) n.classList.add("on");
+      if(i===0){ if(k===3) n.classList.add("here"); }
+      else if(k===3) n.classList.add("here");
+      else if(i>=1) n.classList.add(n.dataset.cls);
+    });
+    chipsA.querySelectorAll(".chip").forEach(function(c,k){ c.classList.toggle("on", reduce||i>=k+2); });
+    document.getElementById("vtA").textContent=A_STEPS[i].vt;
+    document.getElementById("vbA").innerHTML=A_STEPS[i].vb;
+  }});
+
+  player({btn:"pB", tk:"tB", cnt:"cB", n:B_STEPS.length, render:function(i){
+    var st=B_STEPS[i], nodes=spineB.querySelectorAll(".sn2");
+    nodes.forEach(function(n,k){
+      n.className="sn2";
+      if(reduce||k<st.on) n.classList.add("on");
+      if((reduce||i>=4)&&!(st.weak&&st.weak.indexOf(k)>-1)) n.classList.add("ok");
+      if(st.weak&&st.weak.indexOf(k)>-1) n.classList.add("weak");
+    });
+    document.getElementById("vtB").textContent=st.vt;
+    document.getElementById("vbB").innerHTML=st.vb;
+  }});
+})();
+</script>
