@@ -33,7 +33,9 @@ All notable changes to the **biology-as-code** Python package are documented her
   folder. Both now point at `../docs/nutrition_ontology_spec.md` (389 lines), of
   which the folder's own `nutrition_ontology_spec.md` (188 lines) is a strict prefix.
   `ontology_apply2.md` is bannered as raw conversation output — not normative, and
-  the SLI weights it quotes are the README's illustrative placeholder.
+  the SLI weights it quotes are the README's illustrative placeholder. The banner also
+  records that the BodySystem-as-interface revision the note describes has not been
+  merged into either copy of the spec in this repository.
 
 ## [0.2.1] — 2026-09-01
 

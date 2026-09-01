@@ -61,6 +61,7 @@ nav:
   - Constitution: constitution.md
   - Note on the title: naming.md
   - "The book (coming soon)": book.md
+  - "Nutrition map (interactive)": https://murffious.github.io/biology_as_code/nutrition-map/
   - "Primer: genome-scale metabolic models": gem-primer.md
   - Digestion engine: digestion.md
   - Digestion process (A-Z stages): digestion-process.md

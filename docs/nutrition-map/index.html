@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+  GENERATED FILE — do not edit here. Built 2026-09-01 by build.sh from the nutrition-map source;
+  the next build overwrites it. BiologyAsCode · Nutrition Map: one self-contained page,
+  three views (metabolic cascade · nutrient function · macros & fiber) plus an Ask bar.
+-->
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BiologyAsCode — Nutrition Map · Metabolic Cascade · Function · Macros</title>
+<meta name="description" content="Combined BiologyAsCode dashboards: Metabolic Cascade propagator, Nutrient Function map, and Macros &amp; Fiber breakdown." />
+<style>
+
+:root {
+  color-scheme: dark;
+  --bg: #080b13;
+  --panel: #0b111d;
+  --panel-2: #0c1320;
+  --ink: #e9eef8;
+  --ink-2: #9fb0cd;
+  --ink-3: #61728f;
+  --border: rgba(110,140,190,0.16);
+  --accent: #4f9dff;
+  --accent-2: #6fb0ff;
+  --good: #3ddc84;
+  --amber: #f0a03c;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", "Roboto Mono", Menlo, Consolas, monospace;
+  --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; min-height: 100%; }
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background:
+    radial-gradient(1100px 560px at 22% -10%, rgba(40,84,170,0.16), transparent 58%),
+    radial-gradient(900px 520px at 96% 6%, rgba(150,48,96,0.09), transparent 54%),
+    var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── shared shell ── */
+.shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.shell-top {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(14px);
+  background: rgba(8,11,19,0.82);
+  border-bottom: 1px solid var(--border);
+}
+.shell-top-inner {
+  max-width: 1560px;
+  margin: 0 auto;
+  padding: 12px 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.shell-brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 4px;
+}
+.shell-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.shell-logo {
+  width: 28px; height: 28px;
+  filter: drop-shadow(0 0 9px rgba(80,150,255,.5));
+}
+.shell-wordmark {
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: .04em;
+  color: #f2f6ff;
+}
+.shell-wordmark b { color: var(--accent-2); }
+.shell-chip {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 10px;
+  background: rgba(79,157,255,.06);
+}
+/* ── Ask bar (header) ── */
+.shell-ask {
+  display: flex; align-items: center; flex: 1; min-width: 0; max-width: 640px;
+  background: var(--panel-2); border: 1px solid var(--border); border-radius: 11px;
+  padding: 3px 3px 3px 12px; transition: border-color .15s, box-shadow .15s;
+}
+.shell-ask:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79,157,255,.16); }
+.ask-k { font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-2); margin-right: 10px; white-space: nowrap; }
+.ask-in { flex: 1; min-width: 0; background: transparent; border: 0; outline: 0; color: var(--ink); font-family: var(--sans); font-size: 14px; padding: 8px 6px; }
+.ask-in::placeholder { color: var(--ink-3); }
+.ask-go { width: 36px; height: 36px; flex: none; border-radius: 9px; border: 1px solid var(--accent); background: var(--accent); color: #04101f; font-size: 17px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; }
+.ask-go:hover { background: var(--accent-2); border-color: var(--accent-2); }
+.ask-clear { width: 30px; height: 30px; flex: none; border: 0; border-radius: 8px; background: transparent; color: var(--ink-3); font-size: 19px; line-height: 1; cursor: pointer; }
+.ask-clear:hover { color: var(--ink); }
+.ask-clear[hidden] { display: none; }
+.ask-ans { display: flex; align-items: flex-start; gap: 12px; font-size: 13px; line-height: 1.5; color: var(--ink-2);
+  background: rgba(79,157,255,.07); border: 1px solid rgba(79,157,255,.35); border-radius: 10px; padding: 9px 13px; }
+.ask-ans[hidden] { display: none; }
+.ask-ans .aa-tag { font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent-2); white-space: nowrap; padding-top: 3px; }
+.ask-ans .aa-t { flex: 1; min-width: 0; }
+.ask-ans .aa-t b { color: var(--ink); font-weight: 600; }
+.ask-ans .aa-t i { color: var(--ink-3); font-style: normal; }
+.ask-ans .aa-x { flex: none; font-family: var(--mono); font-size: 11px; color: var(--ink-3); background: transparent; border: 1px solid var(--border); border-radius: 7px; padding: 4px 9px; cursor: pointer; }
+.ask-ans .aa-x:hover { color: var(--ink); border-color: var(--accent); }
+.ask-ans.miss { background: rgba(255,90,134,.07); border-color: rgba(255,90,134,.4); }
+.ask-ans.miss .aa-tag { color: #ff8fae; }
+.ask-sug { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.ask-sug .sug-k { font-family: var(--mono); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin-right: 4px; }
+.ask-sug button { font-family: var(--sans); font-size: 12px; color: var(--ink-2); background: rgba(120,150,200,.06); border: 1px solid var(--border); border-radius: 999px; padding: 4px 11px; cursor: pointer; white-space: nowrap; transition: color .15s, border-color .15s, background .15s; }
+.ask-sug button .v { font-family: var(--mono); font-size: 9.5px; color: var(--ink-3); margin-left: 7px; }
+.ask-sug button:hover { color: var(--ink); border-color: var(--accent); }
+.ask-sug button.on { color: #04101f; background: var(--accent); border-color: var(--accent); }
+.ask-sug button.on .v { color: #04101f; opacity: .7; }
+.ask-sug button.more { font-family: var(--mono); font-size: 11px; color: var(--ink-3); background: transparent; border-style: dashed; }
+.ask-sug button.more:hover { color: var(--ink); }
+
+.shell-tabs {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  padding-bottom: 0;
+  scrollbar-width: none;
+}
+.shell-tabs::-webkit-scrollbar { display: none; }
+.shell-tab {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--ink-3);
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 10px 16px 12px;
+  border-radius: 12px 12px 0 0;
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+  transition: color .15s, background .15s, border-color .15s;
+}
+.shell-tab:hover { color: var(--ink); background: rgba(255,255,255,.03); }
+.shell-tab[aria-selected="true"] {
+  color: var(--ink);
+  background: rgba(79,157,255,.08);
+  border-color: var(--border);
+  border-bottom-color: transparent;
+}
+.shell-tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  left: 14px; right: 14px; bottom: 0;
+  height: 2px;
+  border-radius: 2px 2px 0 0;
+  background: linear-gradient(90deg, var(--good), var(--accent));
+}
+.shell-tab .tab-kicker {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 2px;
+}
+.shell-tab[aria-selected="true"] .tab-kicker { color: var(--accent-2); }
+
+.shell-panels { flex: 1; }
+.view-panel { display: none; }
+.view-panel.is-active { display: block; }
+
+/* When cascade is active, hide shell top brand duplication a bit — cascade has its own topbar */
+#panel-cascade .topbar { display: none; }
+
+@media (max-width: 720px) {
+  .shell-top-inner { padding: 10px 12px 0; }
+  .shell-brand-row { flex-wrap: wrap; }
+  .shell-ask { max-width: none; flex-basis: 100%; }
+  .shell-tab { padding: 8px 12px 10px; font-size: 12.5px; }
+}
+
+
+/* ═══════ Metabolic Cascade ═══════ */
+#panel-cascade{
+    --bg:#080b13;--panel:#0b111d;--panel-2:#0c1320;--node-fill:#0c1526;
+    --border:rgba(110,140,190,0.16);--border-2:rgba(110,140,190,0.09);
+    --ink:#e9eef8;--ink-2:#9fb0cd;--ink-3:#61728f;--ink-4:#48576f;
+    --accent:#4f9dff;--accent-2:#6fb0ff;--cyan:#54d0ff;
+    --amber:#f0a03c;--amber-2:#ffc074;--sig:#5a9bef;
+    --pink:#ff5a86;--pink-2:#ff86a6;--good:#3ddc84;--good-2:#5ce89a;
+    --gradeA:#3ddc84;--gradeB:#f0a03c;--gradeC:#ff5a72;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono","Roboto Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --r:14px;--gap:14px;
+  }
+  #panel-cascade *{box-sizing:border-box}
+  #panel-cascade{margin:0;font-family:var(--sans);color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+  #panel-cascade .app{min-height:100vh;padding:20px;
+    background:
+      radial-gradient(1100px 560px at 22% -10%, rgba(40,84,170,0.16), transparent 58%),
+      radial-gradient(900px 520px at 96% 6%, rgba(150,48,96,0.09), transparent 54%),
+      var(--bg);}
+  #panel-cascade .wrap{max-width:1560px;margin:0 auto;display:flex;flex-direction:column;gap:var(--gap)}
+
+  /* topbar */
+  #panel-cascade .topbar{display:flex;align-items:center;justify-content:space-between;padding:2px 4px 4px}
+  #panel-cascade .brand{display:flex;align-items:center;gap:12px}
+  #panel-cascade .logo-mark{width:28px;height:28px;filter:drop-shadow(0 0 9px rgba(80,150,255,.5))}
+  #panel-cascade .wordmark{font-weight:800;font-size:20px;letter-spacing:.22em;color:#f2f6ff}
+  #panel-cascade .wordmark b{color:var(--accent-2)}
+  #panel-cascade .chip{font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:var(--accent-2);background:rgba(79,157,255,.1);border:1px solid rgba(79,157,255,.28);padding:3px 8px;border-radius:6px}
+  #panel-cascade .sys-time{text-align:right;line-height:1.25}
+  #panel-cascade .sys-time .lbl{font-size:9.5px;letter-spacing:.2em;color:var(--ink-3);text-transform:uppercase}
+  #panel-cascade .sys-time .val{font-family:var(--mono);font-size:15px;color:var(--ink);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+
+  #panel-cascade .panel{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0) 42%),var(--panel);border:1px solid var(--border);border-radius:var(--r);position:relative}
+  #panel-cascade .p-pad{padding:15px 16px}
+  #panel-cascade .p-head{display:flex;align-items:center;justify-content:space-between}
+  #panel-cascade .p-title{font-size:11px;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-2);font-weight:700}
+  #panel-cascade .p-sub{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3)}
+
+  /* band-top: rail | (stats + map) */
+  #panel-cascade .band-top{display:grid;grid-template-columns:290px 1fr;gap:var(--gap);align-items:stretch}
+  #panel-cascade .rail{display:flex;flex-direction:column;gap:var(--gap)}
+  #panel-cascade .rail-head{padding:2px 2px 0}
+  #panel-cascade .rail-head h1{margin:0;font-size:19px;font-weight:750;letter-spacing:.01em;color:#f1f5ff}
+  #panel-cascade .rail-head p{margin:3px 0 0;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  #panel-cascade .main-top{display:flex;flex-direction:column;gap:var(--gap)}
+  #panel-cascade .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--gap)}
+  #panel-cascade .stat{padding:14px 15px}
+  #panel-cascade .stat .k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+  #panel-cascade .stat .v{font-family:var(--mono);font-size:27px;font-weight:600;margin-top:9px;font-variant-numeric:tabular-nums;line-height:1}
+  #panel-cascade .stat .v small{font-size:16px;color:var(--ink-3)}
+  #panel-cascade .stat .s{font-size:10.5px;color:var(--ink-3);margin-top:8px}
+  #panel-cascade .stat .v.good{color:var(--good-2)} #panel-cascade .stat .v.warn{color:var(--gradeC)}
+
+  /* config panel (rail) */
+  #panel-cascade .config-panel{flex:1;display:flex;flex-direction:column;gap:15px;padding:15px 16px}
+  #panel-cascade .cfg-section{display:flex;flex-direction:column;gap:9px}
+  #panel-cascade .cfg-lab{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  #panel-cascade .seg{display:inline-flex;background:var(--panel-2);border:1px solid var(--border);border-radius:9px;padding:3px;gap:3px}
+  #panel-cascade .seg button{font-family:inherit;font-size:12px;color:var(--ink-2);background:transparent;border:0;padding:7px 10px;border-radius:6px;cursor:pointer;transition:all .15s;white-space:nowrap}
+  #panel-cascade .seg button:hover{color:var(--ink)}
+  #panel-cascade .seg button.on{background:rgba(79,157,255,.16);color:#cfe2ff;box-shadow:inset 0 0 0 1px rgba(79,157,255,.4)}
+  #panel-cascade .fullseg{display:flex}#panel-cascade .fullseg button{flex:1;text-align:center}
+  #panel-cascade .configbox{border:1px solid var(--border);border-radius:10px;padding:11px 12px;background:var(--panel-2);display:flex;flex-direction:column;gap:9px}
+  #panel-cascade .configbox .hd{font-family:var(--mono);font-size:10px;color:var(--ink-4);letter-spacing:.04em}
+  #panel-cascade .cfg-row{display:flex;align-items:center;gap:10px}
+  #panel-cascade .cfg-key{font-family:var(--mono);font-size:12px;color:var(--ink-2);width:56px;flex:none}
+  #panel-cascade .cfg-key .cl{color:var(--ink-4)}
+  #panel-cascade .cfg-row .seg{flex:1}#panel-cascade .cfg-row .seg button{flex:1;padding:6px 6px;text-align:center}
+  #panel-cascade .tgcol{display:flex;flex-direction:column;gap:11px}
+  #panel-cascade .tg{display:flex;align-items:center;gap:9px;cursor:pointer;font-size:13px;color:var(--ink-2)}
+  #panel-cascade .tg .sw{width:34px;height:19px;border-radius:11px;background:rgba(120,150,200,.2);position:relative;transition:background .18s;flex:none}
+  #panel-cascade .tg .sw::after{content:"";position:absolute;top:2px;left:2px;width:15px;height:15px;border-radius:50%;background:#c3cfe0;transition:transform .18s}
+  #panel-cascade .tg.on .sw{background:var(--accent)}#panel-cascade .tg.on .sw::after{transform:translateX(15px);background:#fff}
+  #panel-cascade .tg.on{color:var(--ink)}
+  #panel-cascade .chips{display:flex;gap:8px}
+  #panel-cascade .chip2{font-size:12.5px;color:var(--ink-2);background:var(--panel-2);border:1px solid var(--border);padding:7px 16px;border-radius:8px;cursor:pointer;transition:all .15s}
+  #panel-cascade .chip2.on{color:#cfe2ff;background:rgba(79,157,255,.14);border-color:rgba(79,157,255,.4)}
+
+  /* map panel */
+  #panel-cascade .map-panel{flex:1;display:flex;flex-direction:column;min-height:508px;overflow:hidden}
+  #panel-cascade .map-panel .p-head{padding:14px 16px 10px}
+  #panel-cascade .stage{flex:1;position:relative;margin:0 12px;border-radius:10px;border:1px solid var(--border-2);overflow:hidden;min-height:392px;
+    background:
+      linear-gradient(rgba(110,140,190,.045) 1px,transparent 1px) 0 0/32px 32px,
+      linear-gradient(90deg,rgba(110,140,190,.045) 1px,transparent 1px) 0 0/32px 32px,
+      radial-gradient(120% 90% at 50% 42%,rgba(18,36,80,.30),transparent 72%);}
+  #panel-cascade .stage svg{position:absolute;inset:0;width:100%;height:100%}
+
+  /* graph elements */
+  #panel-cascade .cbox{fill:rgba(120,150,200,.028);stroke:var(--border);stroke-width:1}
+  #panel-cascade .cbox-t{fill:var(--ink-3);font-size:10.5px;font-family:var(--sans);font-weight:600;letter-spacing:.12em}
+  #panel-cascade .cbox-s{fill:var(--ink-4);font-size:9px;font-family:var(--sans);letter-spacing:.05em}
+  #panel-cascade .cbox-min{fill:var(--ink-4);font-family:var(--mono);font-size:13px}
+  #panel-cascade .edge{fill:none;stroke-width:1.6}
+  #panel-cascade .edge.mass{stroke:var(--amber)}
+  #panel-cascade .edge.signal{stroke:var(--sig);stroke-dasharray:5 5}
+  #panel-cascade .edge.disease{stroke:var(--pink);stroke-dasharray:7 5}
+  #panel-cascade .edge.future{opacity:.20}#panel-cascade .edge.done{opacity:.82}#panel-cascade .edge.off{opacity:.05}
+  #panel-cascade .edge.weak{opacity:.30;stroke-dasharray:2 6}
+  #panel-cascade .flow{fill:none;stroke-width:2;stroke-dasharray:1.5 10;stroke-linecap:round;opacity:.95;animation:flow 1s linear infinite}
+  #panel-cascade .flow.mass{stroke:#ffce8a}#panel-cascade .flow.signal{stroke:#bcdcff}#panel-cascade .flow.disease{stroke:#ffb0c6}
+  @keyframes flow{to{stroke-dashoffset:-23}}
+  #panel-cascade .node{cursor:pointer}
+  #panel-cascade .nd{fill:var(--node-fill);stroke-width:1.7}
+  #panel-cascade .species .nd{stroke:var(--sig)}#panel-cascade .reaction .nd{stroke:#7ea6d6}
+  #panel-cascade .input .nd{stroke:var(--sig);stroke-dasharray:4 4;fill:rgba(80,140,230,.06)}
+  #panel-cascade .pole .nd{stroke:var(--pink)}
+  #panel-cascade .n-idle .nd{opacity:.45}#panel-cascade .n-idle .nlab, #panel-cascade .n-idle .nsub{opacity:.5}
+  #panel-cascade .n-fired .nd{stroke:var(--amber-2)}
+  #panel-cascade .n-firing .nd{stroke:var(--cyan);filter:drop-shadow(0 0 6px rgba(84,208,255,.7))}
+  #panel-cascade .n-pop .nd{stroke:#eaf4ff;stroke-width:2.2;filter:drop-shadow(0 0 9px rgba(120,200,255,.85))}
+  #panel-cascade .n-uneval .nd{stroke:var(--gradeC);stroke-dasharray:3 3}
+  #panel-cascade .n-pole .nd{stroke:var(--pink);opacity:.95;filter:drop-shadow(0 0 8px rgba(255,90,134,.55))}
+  #panel-cascade .n-pole .nlab{fill:var(--pink-2)}
+  #panel-cascade .node.sel .nd{stroke:#fff;stroke-width:2.4;filter:drop-shadow(0 0 9px rgba(255,255,255,.5))}
+  #panel-cascade .firing-ring{fill:none;stroke:var(--cyan);stroke-width:1.4;transform-origin:center;transform-box:fill-box;animation:ping 2.6s ease-out infinite}
+  @keyframes ping{0%{opacity:.5;transform:scale(1)}70%,100%{opacity:0;transform:scale(1.6)}}
+  #panel-cascade .nlab{fill:var(--ink);font-size:10px;font-family:var(--sans);font-weight:600;text-anchor:middle}
+  #panel-cascade .nsub{fill:var(--ink-3);font-size:8.5px;font-family:var(--mono);text-anchor:middle;letter-spacing:.02em}
+  #panel-cascade .badge circle{stroke:var(--node-fill);stroke-width:1.4}
+  #panel-cascade .badge text{font-size:8px;font-family:var(--mono);font-weight:700;text-anchor:middle;fill:#0a0f1a}
+  #panel-cascade .cofb circle{stroke:var(--node-fill);stroke-width:1.4}
+  #panel-cascade .cofb text{font-size:8px;font-family:var(--mono);font-weight:700;text-anchor:middle;fill:#0a0f1a}
+  #panel-cascade .cofrow{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}
+  #panel-cascade .cofchip{font-family:var(--mono);font-size:10.5px;color:var(--cyan);
+    border:1px solid color-mix(in srgb, var(--cyan) 40%, transparent);border-radius:5px;padding:2px 6px}
+
+  /* playback */
+  #panel-cascade .foot{padding:11px 16px 14px;display:flex;flex-direction:column;gap:10px}
+  #panel-cascade .pbar{display:flex;align-items:center;gap:10px}
+  #panel-cascade .pbtn{width:38px;height:38px;border-radius:9px;border:1px solid var(--border);background:var(--panel-2);color:var(--ink);font-size:13px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:all .15s}
+  #panel-cascade .pbtn:hover{border-color:var(--accent);color:var(--accent-2)}
+  #panel-cascade .range{flex:1;-webkit-appearance:none;appearance:none;height:5px;border-radius:4px;background:linear-gradient(90deg,var(--accent) var(--pct,0%),rgba(120,150,200,.16) var(--pct,0%));outline:none}
+  #panel-cascade .range::-webkit-slider-thumb{-webkit-appearance:none;width:15px;height:15px;border-radius:50%;background:#eaf2ff;cursor:pointer;box-shadow:0 0 0 3px rgba(79,157,255,.3)}
+  #panel-cascade .range::-moz-range-thumb{width:15px;height:15px;border:0;border-radius:50%;background:#eaf2ff;cursor:pointer}
+  #panel-cascade .stepnum{font-family:var(--mono);font-size:12.5px;color:var(--ink-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+  #panel-cascade .stepnum b{color:var(--ink)}
+  #panel-cascade .prop{font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+  #panel-cascade .prop b{color:var(--amber-2)}
+
+  /* band-mid + band-bottom */
+  #panel-cascade .band-mid{display:grid;grid-template-columns:1.3fr 1fr;gap:var(--gap)}
+  #panel-cascade .band-bottom{display:grid;grid-template-columns:1.15fr 1.15fr .9fr;gap:var(--gap)}
+
+  /* inspector */
+  #panel-cascade .insp-head{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-bottom:1px solid var(--border-2)}
+  #panel-cascade .insp-head .id{font-family:var(--mono);font-size:14px;letter-spacing:.06em}
+  #panel-cascade .kindtag{font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);border:1px solid var(--border);padding:4px 9px;border-radius:6px}
+  #panel-cascade .code{padding:14px 16px;font-family:var(--mono);font-size:12.5px;line-height:1.8;overflow-x:auto}
+  #panel-cascade .code .ln{white-space:pre}
+  #panel-cascade .c-key{color:var(--ink-2)}#panel-cascade .c-str{color:var(--amber-2)}#panel-cascade .c-kw{color:var(--good-2)}
+  #panel-cascade .c-num{color:var(--amber)}#panel-cascade .c-null{color:var(--pink-2)}#panel-cascade .c-punc{color:var(--ink-3)}#panel-cascade .c-com{color:var(--ink-4);font-style:italic}
+  #panel-cascade .happening{padding:0 16px 16px}
+  #panel-cascade .happening .h{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:9px}
+  #panel-cascade .happening .sent{font-size:13.5px;color:var(--ink);line-height:1.5;margin-bottom:13px}
+  #panel-cascade .meta{display:flex;flex-direction:column;gap:8px}
+  #panel-cascade .meta .row{display:flex;gap:12px;font-size:12.5px}
+  #panel-cascade .meta .row .mk{width:64px;flex:none;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);padding-top:2px}
+  #panel-cascade .meta .row .mv{color:var(--ink)}
+
+  /* compartment activity */
+  #panel-cascade .calist{display:flex;flex-direction:column;gap:12px;margin-top:13px}
+  #panel-cascade .ca{display:flex;flex-direction:column;gap:6px}
+  #panel-cascade .ca .catop{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  #panel-cascade .ca .canm{font-size:12.5px;color:var(--ink);font-weight:600}
+  #panel-cascade .ca .canm span{color:var(--ink-4);font-weight:400;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;margin-left:7px}
+  #panel-cascade .ca .caval{font-family:var(--mono);font-size:11px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+  #panel-cascade .ca .bar{height:5px;border-radius:3px;background:rgba(120,150,200,.12);overflow:hidden}
+  #panel-cascade .ca .bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--amber),var(--amber-2));transition:width .4s}
+  #panel-cascade .ca.done .bar i{background:linear-gradient(90deg,var(--good),var(--good-2))}
+  #panel-cascade .ca.blocked .bar i{background:linear-gradient(90deg,var(--pink),var(--pink-2))}
+
+  /* logs */
+  #panel-cascade .logs{display:flex;flex-direction:column;margin-top:2px}
+  #panel-cascade .logrow{display:flex;gap:10px;padding:8px 2px;border-bottom:1px solid var(--border-2);align-items:baseline;font-size:12px}
+  #panel-cascade .logrow:last-child{border-bottom:0}
+  #panel-cascade .logrow .st{font-family:var(--mono);color:var(--ink-4);font-size:11px;flex:none}
+  #panel-cascade .logrow .lx{color:var(--ink-2);font-family:var(--mono)}
+  #panel-cascade .logrow .nx{color:var(--amber-2);font-weight:600}
+  #panel-cascade .logrow.cur .st{color:var(--cyan)}
+
+  /* queue */
+  #panel-cascade .qlist{display:flex;flex-direction:column;gap:12px;margin-top:2px}
+  #panel-cascade .qi{display:flex;flex-direction:column;gap:7px}
+  #panel-cascade .qi .qt{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  #panel-cascade .qi .ql{display:flex;align-items:center;gap:9px}
+  #panel-cascade .qi .qn{font-size:12.5px;color:var(--ink);font-weight:600}
+  #panel-cascade .qi .qc{font-size:10px;color:var(--ink-3);letter-spacing:.05em;text-transform:uppercase;margin-top:2px}
+  #panel-cascade .qi .qs{font-size:9px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;padding:3px 7px;border-radius:5px;flex:none}
+  #panel-cascade .qs.firing{color:var(--cyan);background:rgba(84,208,255,.12);border:1px solid rgba(84,208,255,.4)}
+  #panel-cascade .qs.queued{color:var(--ink-2);background:rgba(120,150,200,.1);border:1px solid var(--border)}
+  #panel-cascade .gbadge{width:16px;height:16px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:8px;font-weight:700;color:#0a0f1a;flex:none}
+  #panel-cascade .qbar{height:4px;border-radius:3px;background:rgba(120,150,200,.12);overflow:hidden}
+  #panel-cascade .qbar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,var(--cyan),#9be3ff);animation:load 2.4s ease-in-out infinite}
+  @keyframes load{0%{width:10%}50%{width:70%}100%{width:10%}}
+
+  /* health */
+  #panel-cascade .health{display:flex;flex-direction:column;margin-top:2px}
+  #panel-cascade .hrow{display:flex;align-items:center;justify-content:space-between;padding:9px 2px;border-bottom:1px solid var(--border-2)}
+  #panel-cascade .hrow:last-child{border-bottom:0}
+  #panel-cascade .hrow .hn{font-size:12.5px;color:var(--ink)}
+  #panel-cascade .hrow .hn span{color:var(--ink-4);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;margin-left:8px}
+  #panel-cascade .hrow .hs{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:600}
+  #panel-cascade .hrow .hs i{width:7px;height:7px;border-radius:50%}
+  #panel-cascade .hs.ok{color:var(--good-2)}#panel-cascade .hs.ok i{background:var(--good);box-shadow:0 0 8px var(--good)}
+  #panel-cascade .hs.bad{color:var(--pink-2)}#panel-cascade .hs.bad i{background:var(--pink);box-shadow:0 0 8px var(--pink)}
+
+  /* legend */
+  #panel-cascade .keybtn{font-size:12px;color:var(--ink-2);border:1px solid var(--border);background:var(--panel-2);padding:7px 13px;border-radius:8px;cursor:pointer}
+  #panel-cascade .keybtn:hover{border-color:var(--accent)}
+  #panel-cascade .legend{position:absolute;right:20px;bottom:20px;width:250px;background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:14px 15px;box-shadow:0 16px 40px rgba(0,0,0,.5);display:none;z-index:5}
+  #panel-cascade .legend.show{display:block}
+  #panel-cascade .legend h4{margin:0 0 10px;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-3)}
+  #panel-cascade .legend .li{display:flex;align-items:center;gap:10px;font-size:11.5px;color:var(--ink-2);margin:7px 0}
+  #panel-cascade .legend .sw2{width:26px;height:0;border-top:2px solid;flex:none}
+  #panel-cascade .legend .shp{width:15px;height:15px;flex:none;border:1.6px solid var(--sig);border-radius:50%}
+  #panel-cascade .legend .shp.rx{border-radius:4px;border-color:#7ea6d6}#panel-cascade .legend .shp.po{border-color:var(--pink)}
+  #panel-cascade .legend .gd{width:15px;height:15px;border-radius:50%;flex:none;display:inline-flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:8px;font-weight:700;color:#0a0f1a}
+
+  /* graph mode toggle */
+  #panel-cascade .ghead-right{display:flex;align-items:center;gap:12px}
+  #panel-cascade #gmode-seg button{font-size:11px;padding:6px 12px}
+  #panel-cascade .absq, #panel-cascade .gtoggle{cursor:pointer}
+
+  /* absorption bounds panel */
+  #panel-cascade .btable{margin-top:11px;overflow-x:auto}
+  #panel-cascade .brow{display:grid;grid-template-columns:1.5fr .8fr .7fr 1.1fr .5fr 1.7fr;gap:12px;align-items:start;padding:9px 4px;border-bottom:1px solid var(--border-2);font-size:12.5px;min-width:820px}
+  #panel-cascade .brow.head{font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);border-bottom:1px solid var(--border);align-items:center}
+  #panel-cascade .brow .bn{color:var(--ink);font-weight:600}
+  #panel-cascade .brow .bflag{font-size:10px;color:var(--ink-4);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+  #panel-cascade .brow .bf{font-family:var(--mono);color:var(--amber-2);font-variant-numeric:tabular-nums;padding-top:1px}
+  #panel-cascade .brow .bp{font-size:11px;color:var(--ink-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding-top:1px}
+  #panel-cascade .brow .bp a{font-family:var(--mono);color:var(--accent-2);text-decoration:none}
+  #panel-cascade .brow .bp a:hover{text-decoration:underline}
+  #panel-cascade .brow .bp .none{color:var(--ink-4)}
+  #panel-cascade .bcert, #panel-cascade .bsup{font-size:9px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:3px 7px;border-radius:5px;justify-self:start;white-space:nowrap}
+  #panel-cascade .bcert.gate{color:var(--amber-2);background:rgba(240,160,60,.12);border:1px solid rgba(240,160,60,.32)}
+  #panel-cascade .bcert.rej{color:var(--pink-2);background:rgba(255,90,134,.12);border:1px solid rgba(255,90,134,.4)}
+  #panel-cascade .bcert.ok{color:var(--good-2);background:rgba(61,220,132,.12);border:1px solid rgba(61,220,132,.35)}
+  #panel-cascade .bsup{border:1px solid var(--border);background:rgba(120,150,200,.06)}
+  #panel-cascade .bsup.good{color:var(--good-2)}#panel-cascade .bsup.warn{color:var(--amber-2)}#panel-cascade .bsup.bad{color:var(--pink-2)}#panel-cascade .bsup.muted{color:var(--ink-3)}
+  #panel-cascade .bconf{font-family:var(--mono);font-size:10px;color:var(--ink-3);font-weight:600;padding-top:3px}
+  #panel-cascade .brow.dim{opacity:.4}
+
+  /* claim ⇄ mechanism resolver */
+  #panel-cascade .claim-sel{width:100%;font-family:var(--mono);font-size:12px;color:var(--ink);background:var(--panel-2);border:1px solid var(--border);border-radius:8px;padding:8px 9px;cursor:pointer}
+  #panel-cascade .claim-sel:hover{border-color:var(--accent)}
+  #panel-cascade .node.claimlit .nd{stroke:var(--accent-2)!important;stroke-width:2.6!important;filter:drop-shadow(0 0 10px rgba(90,162,255,.85))!important}
+  #panel-cascade .node.claimlit .nlab{fill:#eaf2ff}
+  #panel-cascade .node.claim-dim{opacity:.13}
+  #panel-cascade .edge.claimlit{stroke:var(--accent-2)!important;stroke-width:2.6!important;opacity:1!important;filter:drop-shadow(0 0 5px rgba(90,162,255,.6))}
+  #panel-cascade .edge.claim-dim{opacity:.05!important}
+  #panel-cascade .claimcard{border-bottom:1px solid var(--border-2);padding:13px 16px;background:var(--panel-2);display:flex;flex-direction:column;gap:9px}
+  #panel-cascade .cc-claim{font-size:13.5px;font-style:italic;color:var(--ink);line-height:1.42}
+  #panel-cascade .cc-verdict{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  #panel-cascade .vpill{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:20px;text-transform:uppercase}
+  #panel-cascade .vp-plausible{background:rgba(79,157,255,.14);color:var(--accent-2);border:1px solid rgba(79,157,255,.5)}
+  #panel-cascade .vp-refuse{background:rgba(255,90,134,.14);color:var(--pink-2);border:1px solid var(--pink)}
+  #panel-cascade .vp-uneval{background:rgba(120,150,200,.12);color:var(--ink-3);border:1px dashed var(--ink-3)}
+  #panel-cascade .cc-rel{font-family:var(--mono);font-size:9.5px;color:var(--ink-3)}
+  #panel-cascade .cc-grade{font-family:var(--mono);font-size:9.5px;color:var(--ink-3);margin-left:auto}
+  #panel-cascade .ccdl{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;margin:0;font-family:var(--mono);font-size:11px}
+  #panel-cascade .ccdl dt{color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em;font-size:9.5px;padding-top:1.5px}
+  #panel-cascade .ccdl dd{margin:0;color:var(--ink);word-break:break-word}
+  #panel-cascade .ccdl dd.warnc{color:var(--pink-2);font-weight:600}
+  #panel-cascade .cc-why{font-size:12px;line-height:1.5;color:var(--ink)}
+  #panel-cascade .cc-why b{color:var(--accent-2)} #panel-cascade .cc-why code{font-family:var(--mono);color:var(--amber-2);font-size:.92em}
+  #panel-cascade .cc-note{font-size:11.5px;line-height:1.5;color:var(--ink-3);border-left:2px solid var(--border);padding-left:9px}
+  #panel-cascade .cc-note b{color:var(--ink)}
+
+  @media (max-width:1160px){
+#panel-cascade .band-top{grid-template-columns:1fr}#panel-cascade .band-mid{grid-template-columns:1fr}#panel-cascade .band-bottom{grid-template-columns:1fr}
+    #panel-cascade .stats{grid-template-columns:repeat(3,1fr)}
+}
+
+  @media (max-width:560px){
+#panel-cascade .stats{grid-template-columns:repeat(2,1fr)}
+}
+
+  @media (prefers-reduced-motion:reduce){
+#panel-cascade .flow, #panel-cascade .firing-ring, #panel-cascade .qbar i{animation:none!important}
+}
+
+
+/* ═══════ Nutrient Function ═══════ */
+#panel-function{
+    --bg:#0a0f17; --panel:#0e1723; --panel-2:#0b131d; --ink:#dbe5f2; --muted:#6b7d95; --faint:#46566d;
+    --line:rgba(120,150,200,.14); --line-2:rgba(120,150,200,.09);
+    --mono:ui-monospace,"JetBrains Mono","SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  #panel-function *{box-sizing:border-box}
+  #panel-function{margin:0;background:
+      radial-gradient(1200px 560px at 74% -8%, rgba(59,160,255,.07), transparent 60%),
+      radial-gradient(900px 520px at 8% 108%, rgba(139,124,246,.06), transparent 60%),
+      var(--bg);
+    color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  #panel-function .wrap{max-width:1320px;margin:0 auto;padding:14px 16px 26px}
+  #panel-function .board{background:linear-gradient(180deg,rgba(255,255,255,.015),transparent 40%),var(--panel-2);
+    border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+  #panel-function svg{display:block;width:100%;height:auto}
+  #panel-function .cap{font-family:var(--mono);font-size:12px;color:var(--muted);padding:12px 6px 2px;line-height:1.6}
+  #panel-function .cap b{color:var(--ink)} #panel-function .cap code{color:#79beff}
+  #panel-function .fgrp{transition:opacity .25s}
+  #panel-function .fgrp.dim{opacity:.16}
+  #panel-function .fpanel.hit>rect:first-child{stroke:#79beff;stroke-width:1.6}
+  #panel-function .fchip.lit rect{stroke-width:2.4;fill:#17273f}
+  #panel-function .fchip.lit text{fill:#ffffff}
+  @media (prefers-reduced-motion:reduce){
+#panel-function .flowdot{display:none}
+}
+
+
+/* ═══════ Macros & Fiber ═══════ */
+#panel-macros{
+    --bg:#0a0f17; --panel:#0e1723; --panel-2:#0b131d; --ink:#dbe5f2; --muted:#6b7d95; --faint:#46566d;
+    --line:rgba(120,150,200,.14); --line-2:rgba(120,150,200,.09);
+    --mono:ui-monospace,"JetBrains Mono","SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  #panel-macros *{box-sizing:border-box}
+  #panel-macros{margin:0;background:
+      radial-gradient(1200px 560px at 74% -8%, rgba(59,160,255,.06), transparent 60%),
+      radial-gradient(900px 520px at 8% 108%, rgba(139,124,246,.05), transparent 60%),
+      var(--bg);
+    color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  #panel-macros .wrap{max-width:1320px;margin:0 auto;padding:16px 16px 26px}
+  #panel-macros .toggle{display:flex;gap:7px;margin:0 0 12px;flex-wrap:wrap}
+  #panel-macros .toggle button{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--muted);
+    background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 18px;cursor:pointer;transition:all .16s}
+  #panel-macros .toggle button:hover{color:var(--ink);border-color:var(--faint)}
+  #panel-macros .toggle button.on{color:#08101a}
+  #panel-macros .toggle button:focus-visible{outline:2px solid #3ba0ff;outline-offset:2px}
+  #panel-macros .board{background:linear-gradient(180deg,rgba(255,255,255,.015),transparent 40%),var(--panel-2);
+    border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+  #panel-macros svg{display:block;width:100%;height:auto}
+  #panel-macros .cap{font-family:var(--mono);font-size:12px;color:var(--muted);padding:12px 6px 2px;line-height:1.6}
+  #panel-macros .cap b{color:var(--ink)} #panel-macros .cap code{color:#79beff}
+  #panel-macros .mgrp{transition:opacity .25s}
+  #panel-macros .mgrp.dim{opacity:.16}
+  #panel-macros .mpanel.hit>rect:first-child{stroke:#79beff;stroke-width:1.6}
+  @media (prefers-reduced-motion:reduce){
+#panel-macros .flowdot{display:none}
+}
+
+
+/* shell overrides (must win over scoped panel CSS) */
+#panel-cascade > .app > .wrap > .topbar,
+#panel-cascade .app .topbar { display: none !important; }
+#panel-cascade .app { min-height: auto; padding-top: 12px; }
+#panel-function, #panel-macros { min-height: calc(100vh - 110px); }
+
+</style>
+</head>
+<body>
+<div class="shell">
+  <header class="shell-top">
+    <div class="shell-top-inner">
+      <div class="shell-brand-row">
+        <div class="shell-brand">
+          <svg class="shell-logo" viewBox="0 0 32 32" aria-hidden="true">
+            <defs>
+              <linearGradient id="shell-lg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#3ddc84"/>
+                <stop offset="1" stop-color="#4f9dff"/>
+              </linearGradient>
+            </defs>
+            <circle cx="16" cy="16" r="6" fill="none" stroke="url(#shell-lg)" stroke-width="2.4"/>
+            <circle cx="16" cy="6" r="2.4" fill="url(#shell-lg)"/>
+            <circle cx="7" cy="22" r="2.4" fill="url(#shell-lg)"/>
+            <circle cx="25" cy="22" r="2.4" fill="url(#shell-lg)"/>
+            <path d="M16 12V8 M13.4 18.5l-3.4 2 M18.6 18.5l3.4 2" stroke="url(#shell-lg)" stroke-width="1.6"/>
+          </svg>
+          <div class="shell-wordmark">Biology<b>AsCode</b></div>
+          <span class="shell-chip">FDP-1 · combined map</span>
+        </div>
+        <form class="shell-ask" id="askForm" role="search" autocomplete="off">
+          <label class="ask-k" for="askIn">Ask</label>
+          <input id="askIn" class="ask-in" type="text" placeholder="Ask the map what to show — “what happens to fiber?”" aria-label="Ask the map which part to show" autocomplete="off" spellcheck="false">
+          <button class="ask-clear" id="askClear" type="button" aria-label="Clear question" hidden>×</button>
+          <button class="ask-go" type="submit" aria-label="Ask">→</button>
+        </form>
+      </div>
+      <div class="ask-ans" id="askAns" hidden></div>
+      <div class="ask-sug" id="askSug" aria-label="Suggested questions"></div>
+      <nav class="shell-tabs" role="tablist" aria-label="BiologyAsCode views">
+        <button class="shell-tab" role="tab" data-panel="cascade" aria-controls="panel-cascade" aria-selected="true" id="tab-cascade">
+          <span class="tab-kicker">01 · Propagator</span>
+          Metabolic Cascade
+        </button>
+        <button class="shell-tab" role="tab" data-panel="function" aria-controls="panel-function" aria-selected="false" id="tab-function" tabindex="-1">
+          <span class="tab-kicker">02 · Roles</span>
+          Nutrient Function
+        </button>
+        <button class="shell-tab" role="tab" data-panel="macros" aria-controls="panel-macros" aria-selected="false" id="tab-macros" tabindex="-1">
+          <span class="tab-kicker">03 · Breakdown</span>
+          Macros &amp; Fiber
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell-panels">
+    <section class="view-panel is-active" id="panel-cascade" role="tabpanel" aria-labelledby="tab-cascade">
+<div class="app">
+  <div class="wrap">
+
+    <header class="topbar">
+      <div class="brand">
+        <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><defs><lineargradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3ddc84"></stop><stop offset="1" stop-color="#4f9dff"></stop></lineargradient></defs><circle cx="16" cy="16" r="6" fill="none" stroke="url(#lg)" stroke-width="2.4"></circle><circle cx="16" cy="6" r="2.4" fill="url(#lg)"></circle><circle cx="7" cy="22" r="2.4" fill="url(#lg)"></circle><circle cx="25" cy="22" r="2.4" fill="url(#lg)"></circle><path d="M16 12V8 M13.4 18.5l-3.4 2 M18.6 18.5l3.4 2" stroke="url(#lg)" stroke-width="1.6"></path></svg>
+        <div class="wordmark">Biology<b>AsCode</b></div>
+        <span class="chip">FDP-1 · v3</span>
+      </div>
+      <div class="sys-time"><div class="lbl">System Time</div><div class="val"><span id="clock">22:19:19</span> UTC</div></div>
+    </header>
+
+    <section class="band-top">
+      <aside class="rail">
+        <div class="rail-head"><h1>Metabolic Cascade</h1><p>Signed propagator model</p></div>
+        <div class="panel config-panel" id="config"><div class="p-head"><div class="p-title">Config</div><div class="p-sub">propagator</div></div><div class="cfg-section"><div class="cfg-lab">View</div><div class="seg fullseg"><button data-act="view-graph" class="">Graph</button><button data-act="view-library" class="on">Library</button></div></div><div class="cfg-section"><div class="cfg-lab">Query gate</div><div class="seg fullseg"><button data-act="gate-mechanism" class="on">Mech</button><button data-act="gate-human" class="">Human</button><button data-act="gate-bound" class="">Bound</button></div></div><div class="cfg-section"><div class="cfg-lab">User state</div><div class="configbox"><div class="hd">// inputs</div><div class="cfg-row"><span class="cfg-key">fed<span class="cl">:</span></span><div class="seg"><button data-act="set-fed" class="on">Fed</button><button data-act="set-fasted" class="">Fasted</button></div></div><div class="cfg-row"><span class="cfg-key">activity<span class="cl">:</span></span><div class="seg"><button data-act="set-rested" class="">Rested</button><button data-act="set-active" class="on">Active</button></div></div><div class="cfg-row"><span class="cfg-key">insulin<span class="cl">:</span></span><div class="seg"><button data-act="set-sensitive" class="">Sensitive</button><button data-act="set-resistant" class="on">Resistant</button></div></div></div></div><div class="cfg-section"><div class="cfg-lab">Evidence</div><div class="tgcol"><span class="tg on" data-act="tg-glp1"><span class="sw"></span>GLP-1 evidence</span><span class="tg on" data-act="tg-tier"><span class="sw"></span>Evidence tier</span><span class="tg " data-act="tg-flow"><span class="sw"></span>Flow</span></div></div><div class="cfg-section"><div class="cfg-lab">Food data</div><div class="chips"><span class="chip2 on" data-act="chip-fiber">Fiber</span><span class="chip2 " data-act="chip-fat">Fat</span></div></div><div class="cfg-section"><div class="cfg-lab">Claim audit</div><select id="claimSel" class="claim-sel"><option value="">— none · explore freely —</option><option value="fiber_spike">Fiber blunts the glucose spike</option><option value="carbs_energy" selected="">Carbs fuel your cells (→ ATP)</option><option value="oyster_test">Oysters boost testosterone</option><option value="blueberry_cog">Blueberries improve cognition</option><option value="zinc_sperm">Zinc supports sperm count</option></select></div></div>
+      </aside>
+
+      <div class="main-top">
+        <div class="stats" id="stats"><div class="stat panel"><div class="k">Nodes</div><div class="v">32</div><div class="s">in this model</div></div><div class="stat panel"><div class="k">Step</div><div class="v">26 <small>/ 30</small></div><div class="s">of the cascade</div></div><div class="stat panel"><div class="k">Active</div><div class="v good">30</div><div class="s">cells firing</div></div><div class="stat panel"><div class="k">Unevaluable</div><div class="v">0</div><div class="s">none open</div></div><div class="stat panel"><div class="k">State</div><div class="v good"><span style="font-size:22px">FED</span></div><div class="s">v3 · resistant</div></div></div>
+        <div class="panel map-panel">
+          <div class="p-head"><div class="p-title" id="gtitle">Cascade Graph</div><div class="ghead-right"><div class="seg" id="gmode-seg"><button data-act="gmode-cascade" class="on">Cascade</button><button data-act="gmode-absorption" class="">Absorption</button></div><div class="p-sub" id="ghead-sub">Library · 8 compartments</div></div></div>
+          <div class="stage">
+            <svg id="graph" viewBox="22 184 1122 510" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Metabolic cascade graph across organ compartments"><defs><marker id="ah-mass" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 Z" fill="#f0a03c"></path></marker><marker id="ah-signal" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 Z" fill="#5a9bef"></path></marker><marker id="ah-disease" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 Z" fill="#ff5a86"></path></marker><marker id="ah-dim" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 Z" fill="#3a4a63"></path></marker></defs><rect class="cbox" x="330" y="205" width="255" height="205" rx="12"></rect><circle cx="344" cy="223" r="3" fill="var(--accent)" opacity=".8"></circle><text class="cbox-t" x="354" y="227">GUT</text><text class="cbox-s" x="354" y="239">· Assimilation</text><text class="cbox-min" x="569" y="227">–</text><rect class="cbox" x="330" y="432" width="255" height="120" rx="12"></rect><circle cx="344" cy="450" r="3" fill="var(--accent)" opacity=".8"></circle><text class="cbox-t" x="354" y="454">PANCREAS</text><text class="cbox-s" x="354" y="466">· Communication</text><text class="cbox-min" x="569" y="454">–</text><rect class="cbox" x="330" y="574" width="255" height="112" rx="12"></rect><circle cx="344" cy="592" r="3" fill="var(--accent)" opacity=".8"></circle><text class="cbox-t" x="354" y="596">COLON</text><text class="cbox-s" x="354" y="608">· Microbiome</text><text class="cbox-min" x="569" y="596">–</text><rect class="cbox" x="615" y="193" width="300" height="227" rx="12"></rect><circle cx="629" cy="211" r="3" fill="var(--accent)" opacity=".8"></circle><text class="cbox-t" x="639" y="215">LIVER</text><text class="cbox-s" x="639" y="227">· Energy</text><text class="cbox-min" x="899" y="215">–</text><rect class="cbox" x="615" y="445" width="300" height="150" rx="12"></rect><circle cx="629" cy="463" r="3" fill="var(--accent)" opacity=".8"></circle><text class="cbox-t" x="639" y="467">MUSCLE</text><text class="cbox-s" x="639" y="479">· Energy</text><text class="cbox-min" x="899" y="467">–</text><rect class="cbox" x="945" y="298" width="205" height="192" rx="12"></rect><circle cx="959" cy="316" r="3" fill="var(--accent)" opacity=".8"></circle><text class="cbox-t" x="969" y="320">MITOCHONDRIA</text><text class="cbox-s" x="969" y="332">· Oxidation</text><text class="cbox-min" x="1134" y="320">–</text><rect class="cbox" x="945" y="510" width="96" height="96" rx="12"></rect><circle cx="959" cy="528" r="3" fill="var(--accent)" opacity=".8"></circle><text class="cbox-t" x="969" y="532">LUNGS</text><text class="cbox-s" x="969" y="544">· Exhaust</text><text class="cbox-min" x="1025" y="532">–</text><rect class="cbox" x="1054" y="510" width="96" height="96" rx="12"></rect><circle cx="1068" cy="528" r="3" fill="var(--accent)" opacity=".8"></circle><text class="cbox-t" x="1078" y="532">KIDNEYS</text><text class="cbox-s" x="1078" y="544">· Excretion</text><text class="cbox-min" x="1134" y="532">–</text><path class="edge mass done claimlit" d="M 88.0 300.0 Q 109.0 311.4 130.0 300.0" marker-end="url(#ah-mass)"></path><path class="edge mass done claimlit" d="M 175.0 300.0 Q 205.0 312.6 235.0 300.0" marker-end="url(#ah-mass)"></path><path class="edge mass done claimlit" d="M 279.3 294.8 Q 333.1 298.2 377.8 268.0" marker-end="url(#ah-mass)"></path><path class="edge mass done claim-dim" d="M 279.6 303.8 Q 376.0 349.2 482.4 343.6" marker-end="url(#ah-mass)"></path><path class="edge mass done claimlit" d="M 418.0 261.3 Q 447.0 272.1 475.0 259.0" marker-end="url(#ah-mass)"></path><path class="edge mass done claimlit" d="M 515.5 270.6 Q 522.2 287.5 540.1 290.5" marker-end="url(#ah-mass)"></path><path class="edge mass done claimlit" d="M 573.9 296.6 Q 614.4 291.1 641.7 260.8" marker-end="url(#ah-mass)"></path><path class="edge mass done claimlit" d="M 680.0 249.2 Q 702.0 258.5 723.0 247.2" marker-end="url(#ah-mass)"></path><path class="edge mass done claimlit" d="M 768.0 247.0 Q 788.0 258.0 809.0 248.9" marker-end="url(#ah-mass)"></path><path class="edge mass done claim-dim" d="M 846.0 261.3 Q 851.0 275.7 866.1 277.5" marker-end="url(#ah-mass)"></path><path class="edge mass done claimlit" d="M 819.7 263.2 Q 784.1 280.8 769.0 317.7" marker-end="url(#ah-mass)"></path><path class="edge mass done claimlit" d="M 772.0 336.5 Q 792.3 347.0 813.0 337.5" marker-end="url(#ah-mass)"></path><path class="edge mass done claimlit" d="M 823.3 350.7 Q 803.0 357.5 796.3 377.7" marker-end="url(#ah-mass)"></path><path class="edge mass done claimlit" d="M 797.6 390.4 Q 886.6 398.5 965.5 356.6" marker-end="url(#ah-mass)"></path><path class="edge mass done claimlit" d="M 1005.0 357.8 Q 1019.6 373.0 1040.3 369.9" marker-end="url(#ah-mass)"></path><path class="edge mass future claimlit" d="M 1071.9 396.4 Q 1070.5 417.5 1086.9 430.9" marker-end="url(#ah-dim)"></path><path class="flow mass" d="M 1071.9 396.4 Q 1070.5 417.5 1086.9 430.9"></path><path class="edge mass done claim-dim" d="M 1046.0 386.8 Q 1017.3 388.0 998.7 409.9" marker-end="url(#ah-mass)"></path><path class="edge mass future claim-dim" d="M 1052.1 394.1 Q 1023.8 411.4 1015.7 443.5" marker-end="url(#ah-dim)"></path><path class="edge mass future claim-dim" d="M 979.9 437.9 Q 968.5 486.7 989.6 532.1" marker-end="url(#ah-dim)"></path><path class="edge mass future claim-dim" d="M 1015.1 474.4 Q 1037.3 517.9 1081.9 537.8" marker-end="url(#ah-dim)"></path><path class="edge mass done weak claim-dim" d="M 566.8 320.7 Q 591.6 418.2 661.8 490.2" marker-end="url(#ah-mass)"></path><path class="edge mass done claim-dim" d="M 694.0 512.4 Q 722.3 525.2 751.0 513.5" marker-end="url(#ah-mass)"></path><path class="edge mass done claim-dim" d="M 694.0 511.6 Q 768.0 532.8 841.0 508.5" marker-end="url(#ah-mass)"></path><path class="edge mass done claim-dim" d="M 498.5 364.8 Q 428.5 474.4 407.0 602.7" marker-end="url(#ah-mass)"></path><path class="edge mass done claim-dim" d="M 418.0 625.4 Q 446.9 636.5 475.0 623.7" marker-end="url(#ah-mass)"></path><path class="edge mass done claim-dim" d="M 417.7 629.2 Q 476.8 659.3 542.3 649.3" marker-end="url(#ah-mass)"></path><path class="edge mass done claim-dim" d="M 505.2 606.5 Q 602.8 449.3 652.7 271.1" marker-end="url(#ah-mass)"></path><path class="edge mass off claim-dim" d="M 866.3 288.7 Q 780.3 245.9 684.6 254.3"></path><path class="edge signal done claim-dim" d="M 400.4 280.0 Q 390.1 303.7 401.4 327.0" marker-end="url(#ah-signal)"></path><path class="edge signal done claim-dim" d="M 402.4 372.0 Q 385.9 422.9 404.5 473.0" marker-end="url(#ah-signal)"></path><path class="edge signal done claim-dim" d="M 546.8 319.1 Q 463.3 382.6 420.5 478.4" marker-end="url(#ah-signal)"></path><path class="edge signal done claim-dim" d="M 425.0 499.0 Q 535.7 530.8 649.0 510.7" marker-end="url(#ah-signal)"></path><path class="edge signal done claim-dim" d="M 421.1 486.2 Q 589.9 394.4 727.9 260.8" marker-end="url(#ah-signal)"></path><path class="edge signal off claim-dim" d="M 522.5 494.2 Q 705.9 421.4 863.9 303.2"></path><path class="edge signal future claim-dim" d="M 682.0 340.8 Q 705.2 349.8 727.1 337.7" marker-end="url(#ah-dim)"></path><path class="edge disease future claim-dim" d="M 680.0 250.0 Q 828.5 276.0 977.0 250.0" marker-end="url(#ah-dim)"></path><g class="node input n-fired claimlit" data-node="carbmeal" transform="translate(60,300)"><rect class="nd" x="-30" y="-15" width="60" height="30" rx="15"></rect><text class="nlab" y="39">Carb meal</text><text class="nsub" y="49">diet</text></g><g class="node reaction n-fired claimlit" data-node="mouth" transform="translate(155,300)"><rect class="nd" x="-20" y="-13" width="40" height="26" rx="7"></rect><g class="badge"><circle cx="14.76" cy="-14.76" r="6.5" fill="var(--gradeA)"></circle><text x="14.76" y="-12.059999999999999">A</text></g><text class="nlab" y="31">MOUTH</text><text class="nsub" y="41">1 in · 1 rxn</text></g><g class="node reaction n-fired claimlit" data-node="stomach" transform="translate(260,300)"><rect class="nd" x="-20" y="-13" width="40" height="26" rx="7"></rect><g class="badge"><circle cx="14.76" cy="-14.76" r="6.5" fill="var(--gradeA)"></circle><text x="14.76" y="-12.059999999999999">A</text></g><text class="nlab" y="31">STOMACH</text><text class="nsub" y="41">1 in · 1 rxn</text></g><g class="node species n-fired claimlit" data-node="glucose_lumen" transform="translate(400,262)"><circle class="nd" r="16"></circle><g class="badge"><circle cx="13.12" cy="-13.12" r="6.5" fill="var(--gradeA)"></circle><text x="13.12" y="-10.419999999999998">A</text></g><text class="nlab" y="29">Glucose</text><text class="nsub" y="39">lumen</text></g><g class="node reaction n-fired claimlit" data-node="sglt1" transform="translate(500,258)"><rect class="nd" x="-20" y="-13" width="40" height="26" rx="7"></rect><g class="badge"><circle cx="14.76" cy="-14.76" r="6.5" fill="var(--gradeB)"></circle><text x="14.76" y="-12.059999999999999">B</text></g><text class="nlab" y="31">SGLT1</text><text class="nsub" y="41">[0,6]</text></g><g class="node reaction n-fired claim-dim" data-node="glp1" transform="translate(402,352)"><rect class="nd" x="-20" y="-13" width="40" height="26" rx="7"></rect><g class="badge"><circle cx="14.76" cy="-14.76" r="6.5" fill="var(--gradeB)"></circle><text x="14.76" y="-12.059999999999999">B</text></g><text class="nlab" y="31">GLP-1</text><text class="nsub" y="41">L-cell</text></g><g class="node species n-fired claim-dim" data-node="fiber" transform="translate(505,348)"><circle class="nd" r="16"></circle><g class="badge"><circle cx="13.12" cy="-13.12" r="6.5" fill="var(--gradeA)"></circle><text x="13.12" y="-10.419999999999998">A</text></g><text class="nlab" y="29">Fiber</text><text class="nsub" y="39">non-dig.</text></g><g class="node species n-fired claimlit" data-node="glucose_portal" transform="translate(558,305)"><circle class="nd" r="16"></circle><g class="badge"><circle cx="13.12" cy="-13.12" r="6.5" fill="var(--gradeA)"></circle><text x="13.12" y="-10.419999999999998">A</text></g><text class="nlab" y="29">Glucose</text><text class="nsub" y="39">portal</text></g><g class="node reaction n-fired claim-dim" data-node="insulin" transform="translate(405,498)"><rect class="nd" x="-20" y="-13" width="40" height="26" rx="7"></rect><g class="badge"><circle cx="14.76" cy="-14.76" r="6.5" fill="var(--gradeA)"></circle><text x="14.76" y="-12.059999999999999">A</text></g><text class="nlab" y="31">Insulin</text><text class="nsub" y="41">β-cell</text></g><g class="node reaction n-fired claim-dim" data-node="glucagon" transform="translate(505,504)"><rect class="nd" x="-20" y="-13" width="40" height="26" rx="7"></rect><g class="badge"><circle cx="14.76" cy="-14.76" r="6.5" fill="var(--gradeB)"></circle><text x="14.76" y="-12.059999999999999">B</text></g><text class="nlab" y="31">Glucagon</text><text class="nsub" y="41">α-cell</text></g><g class="node reaction n-fired claim-dim" data-node="fermentation" transform="translate(398,626)"><rect class="nd" x="-20" y="-13" width="40" height="26" rx="7"></rect><g class="badge"><circle cx="14.76" cy="-14.76" r="6.5" fill="var(--gradeB)"></circle><text x="14.76" y="-12.059999999999999">B</text></g><text class="nlab" y="31">Fermentation</text></g><g class="node species n-fired claim-dim" data-node="scfa" transform="translate(498,623)"><circle class="nd" r="16"></circle><g class="badge"><circle cx="13.12" cy="-13.12" r="6.5" fill="var(--gradeA)"></circle><text x="13.12" y="-10.419999999999998">A</text></g><text class="nlab" y="29">SCFA</text><text class="nsub" y="39">liver fuel</text></g><g class="node species n-fired claim-dim" data-node="feces" transform="translate(565,653)"><circle class="nd" r="16"></circle><g class="badge"><circle cx="13.12" cy="-13.12" r="6.5" fill="var(--gradeA)"></circle><text x="13.12" y="-10.419999999999998">A</text></g><text class="nlab" y="29">Feces</text><text class="nsub" y="39">waste sink</text></g><g class="node species n-fired claimlit" data-node="glucose_hepatic" transform="translate(662,250)"><circle class="nd" r="16"></circle><g class="badge"><circle cx="13.12" cy="-13.12" r="6.5" fill="var(--gradeA)"></circle><text x="13.12" y="-10.419999999999998">A</text></g><text class="nlab" y="29">Glucose</text><text class="nsub" y="39">hepatic</text></g><g class="node reaction n-fired claimlit" data-node="glucokinase" transform="translate(748,246)"><rect class="nd" x="-20" y="-13" width="40" height="26" rx="7"></rect><g class="badge"><circle cx="14.76" cy="-14.76" r="6.5" fill="var(--gradeB)"></circle><text x="14.76" y="-12.059999999999999">B</text></g><text class="nlab" y="31">Glucokinase</text><text class="nsub" y="41">[8,3]</text></g><g class="node species n-fired claimlit" data-node="g6p" transform="translate(832,250)"><circle class="nd" r="16"></circle><g class="badge"><circle cx="13.12" cy="-13.12" r="6.5" fill="var(--gradeA)"></circle><text x="13.12" y="-10.419999999999998">A</text></g><text class="nlab" y="29">G6P</text></g><g class="node species n-idle claim-dim" data-node="atp_mod" transform="translate(664,342)"><circle class="nd" r="16"></circle><g class="badge"><circle cx="13.12" cy="-13.12" r="6.5" fill="var(--gradeB)"></circle><text x="13.12" y="-10.419999999999998">B</text></g><text class="nlab" y="29">ATP</text><text class="nsub" y="39">modifier</text></g><g class="node reaction n-fired claimlit" data-node="pfk1" transform="translate(752,336)"><rect class="nd" x="-20" y="-13" width="40" height="26" rx="7"></rect><g class="badge"><circle cx="14.76" cy="-14.76" r="6.5" fill="var(--gradeB)"></circle><text x="14.76" y="-12.059999999999999">B</text></g><text class="nlab" y="31">PFK-1</text><text class="nsub" y="41">[0,4]</text></g><g class="node species n-fired claimlit" data-node="f16bp" transform="translate(836,338)"><circle class="nd" r="16"></circle><g class="badge"><circle cx="13.12" cy="-13.12" r="6.5" fill="var(--gradeA)"></circle><text x="13.12" y="-10.419999999999998">A</text></g><text class="nlab" y="29">F1,6BP</text></g><g class="node species n-fired sel claim-dim" data-node="glycogen_hepatic" transform="translate(884,292)"><circle class="nd" r="16"></circle><g class="badge"><circle cx="13.12" cy="-13.12" r="6.5" fill="var(--gradeB)"></circle><text x="13.12" y="-10.419999999999998">B</text></g><text class="nlab" y="29">Glycogen</text><text class="nsub" y="39">hepatic</text></g><g class="node species n-fired claimlit" data-node="pyruvate" transform="translate(780,394)"><circle class="nd" r="16"></circle><g class="badge"><circle cx="13.12" cy="-13.12" r="6.5" fill="var(--gradeA)"></circle><text x="13.12" y="-10.419999999999998">A</text></g><text class="nlab" y="29">Pyruvate</text></g><g class="node pole n-pole claim-dim" data-node="hyperglycemia" transform="translate(1000,250)"><circle class="nd" r="16"></circle><text class="nlab" y="29">Hyperglycemia</text><text class="nsub" y="39">disease pole</text></g><g class="node reaction n-fired claim-dim" data-node="glut4" transform="translate(674,512)"><rect class="nd" x="-20" y="-13" width="40" height="26" rx="7"></rect><g class="badge"><circle cx="14.76" cy="-14.76" r="6.5" fill="var(--gradeB)"></circle><text x="14.76" y="-12.059999999999999">B</text></g><text class="nlab" y="31">GLUT4</text><text class="nsub" y="41">[0,2]</text></g><g class="node reaction n-fired claim-dim" data-node="glycolysis_atp" transform="translate(776,514)"><rect class="nd" x="-20" y="-13" width="40" height="26" rx="7"></rect><g class="badge"><circle cx="14.76" cy="-14.76" r="6.5" fill="var(--gradeB)"></circle><text x="14.76" y="-12.059999999999999">B</text></g><text class="nlab" y="31">Glycolysis</text><text class="nsub" y="41">ATP</text></g><g class="node species n-fired claim-dim" data-node="glycogen_store" transform="translate(864,508)"><circle class="nd" r="16"></circle><g class="badge"><circle cx="13.12" cy="-13.12" r="6.5" fill="var(--gradeA)"></circle><text x="13.12" y="-10.419999999999998">A</text></g><text class="nlab" y="29">Glycogen</text><text class="nsub" y="39">store</text></g><g class="node species n-fired claimlit" data-node="acetyl_coa" transform="translate(988,352)"><circle class="nd" r="16"></circle><g class="badge"><circle cx="13.12" cy="-13.12" r="6.5" fill="var(--gradeA)"></circle><text x="13.12" y="-10.419999999999998">A</text></g><text class="nlab" y="29">Acetyl-CoA</text></g><g class="node reaction n-fired claimlit" data-node="krebs_etc" transform="translate(1064,378)"><rect class="nd" x="-20" y="-13" width="40" height="26" rx="7"></rect><g class="badge"><circle cx="14.76" cy="-14.76" r="6.5" fill="var(--gradeA)"></circle><text x="14.76" y="-12.059999999999999">A</text></g><text class="nlab" y="31">Krebs / ETC</text></g><g class="node species n-pop claim-dim" data-node="co2" transform="translate(978,420)"><circle class="firing-ring" r="19"></circle><circle class="nd" r="16"></circle><g class="badge"><circle cx="13.12" cy="-13.12" r="6.5" fill="var(--gradeA)"></circle><text x="13.12" y="-10.419999999999998">A</text></g><text class="nlab" y="29">CO₂</text></g><g class="node species n-firing claim-dim" data-node="h2o" transform="translate(1002,462)"><circle class="firing-ring" r="19"></circle><circle class="nd" r="16"></circle><g class="badge"><circle cx="13.12" cy="-13.12" r="6.5" fill="var(--gradeA)"></circle><text x="13.12" y="-10.419999999999998">A</text></g><text class="nlab" y="29">H₂O</text><text class="nsub" y="39">kidneys</text></g><g class="node species n-firing claimlit" data-node="atp_energy" transform="translate(1096,452)"><circle class="firing-ring" r="19"></circle><circle class="nd" r="16"></circle><g class="badge"><circle cx="13.12" cy="-13.12" r="6.5" fill="var(--gradeA)"></circle><text x="13.12" y="-10.419999999999998">A</text></g><text class="nlab" y="29">ATP</text><text class="nsub" y="39">energy</text></g><g class="node species n-firing claim-dim" data-node="co2_exhaled" transform="translate(992,555)"><circle class="firing-ring" r="19"></circle><circle class="nd" r="16"></circle><g class="badge"><circle cx="13.12" cy="-13.12" r="6.5" fill="var(--gradeA)"></circle><text x="13.12" y="-10.419999999999998">A</text></g><text class="nlab" y="29">CO₂ exhaled</text><text class="nsub" y="39">breath</text></g><g class="node reaction n-idle claim-dim" data-node="kidneys" transform="translate(1100,555)"><rect class="nd" x="-20" y="-13" width="40" height="26" rx="7"></rect><g class="badge"><circle cx="14.76" cy="-14.76" r="6.5" fill="var(--gradeA)"></circle><text x="14.76" y="-12.059999999999999">A</text></g><text class="nlab" y="31">KIDNEYS</text><text class="nsub" y="41">0 rxn</text></g></svg>
+            <div class="legend" id="legend"><h4>Key</h4><div class="li"><span class="sw2" style="border-color:var(--amber)"></span>Mass / reaction flux</div><div class="li"><span class="sw2" style="border-color:var(--sig);border-top-style:dashed"></span>Signal / regulation</div><div class="li"><span class="sw2" style="border-color:var(--pink);border-top-style:dashed"></span>Disease path</div><div class="li"><span class="shp"></span>Species &nbsp; <span class="shp rx" style="margin:0 4px"></span>Reaction &nbsp; <span class="shp po" style="margin-left:4px"></span>Pole</div><div class="li"><span class="gd" style="background:var(--gradeA)">A</span><span class="gd" style="background:var(--gradeB)">B</span><span class="gd" style="background:var(--gradeC)">C</span>&nbsp;Evidence grade</div></div>
+          </div>
+          <div class="foot">
+            <div class="pbar">
+              <button class="pbtn" data-act="prev" aria-label="previous">⟨</button>
+              <button class="pbtn" data-act="next" aria-label="next">⟩</button>
+              <button class="pbtn" data-act="reset" aria-label="reset">↺</button>
+              <input class="range" id="range" type="range" min="1" max="30" value="26" aria-label="cascade step" style="--pct: 86.2%;">
+              <span class="stepnum">step <b id="stepA">26</b> / <span id="stepB">30</span></span>
+              <button class="keybtn" data-act="key">▤ Key</button>
+            </div>
+            <div class="prop" id="prop">pop <b>CO₂</b> → propagate to <b>CO₂ exhaled</b></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band-mid">
+      <div class="panel insp">
+        <div class="claimcard" id="claimcard" style=""><div class="cc-claim">“Carbs fuel your cells (→ ATP)”</div><div class="cc-verdict"><span class="vpill vp-plausible">Plausible</span><span class="cc-rel">EXPANDS_BOUND</span><span class="cc-grade">grade B</span></div><dl class="ccdl"><dt>food</dt><dd>Carbohydrate meal</dd><dt>driver</dt><dd>glucose</dd><dt>verb → class</dt><dd>“fuel” → bound_increase</dd><dt>on the map</dt><dd>mechanism runs — 15 nodes lit</dd></dl><div class="cc-why">typed as glucose → glycolysis → Krebs/ETC → ATP. Every hop is a LAW-backed reaction that <b>exists on this map</b>, so the mechanism walks end-to-end to the ATP node.</div><div class="cc-note">endpoint = <b>ATP</b> (cellular energy) — the real referent of “gives energy”. The one claim the map walks mouth-to-fuel.</div></div>
+        <div class="insp-head"><span class="id" id="insp-id">LIVGLY</span><span class="kindtag" id="insp-kind">SPECIES</span></div>
+        <div class="code" id="insp-code"><div class="ln"><span class="c-kw">Node</span> <span class="c-punc">{</span></div><div class="ln">  <span class="c-key">id</span><span class="c-punc">:</span>       <span class="c-str">"met.glycogenhepatic"</span></div><div class="ln">  <span class="c-key">kind</span><span class="c-punc">:</span>     <span class="c-kw">species</span></div><div class="ln">  <span class="c-key">label</span><span class="c-punc">:</span>    <span class="c-str">"Glycogen · hepatic"</span></div><div class="ln">  <span class="c-key">part_of</span><span class="c-punc">:</span>  <span class="c-str">"liver"</span>   <span class="c-com">// containment</span></div><div class="ln">  <span class="c-key">grade</span><span class="c-punc">:</span>    <span class="c-num">B</span></div><div class="ln">  <span class="c-com">// — identity (digestive · taxonomy · status)</span></div><div class="ln">  <span class="c-key">map_status</span><span class="c-punc">:</span> <span class="c-kw">mapped</span></div><div class="ln">  <span class="c-key">digestive</span><span class="c-punc">:</span>  <span class="c-null">null</span></div><div class="ln">  <span class="c-key">iri</span><span class="c-punc">:</span>        <span class="c-str">"CHEBI:28087"</span></div><div class="ln">  <span class="c-key">taxonomy</span><span class="c-punc">:</span>   <span class="c-str">["Glycogen", "Glycogenesis"]</span></div><div class="ln"><span class="c-punc">}</span></div></div>
+        <div class="happening">
+          <div class="h">What's happening</div>
+          <div class="sent" id="insp-sent">Liver glycogen — glucose put into storage.</div>
+          <div class="meta" id="insp-meta"><div class="row"><div class="mk">System</div><div class="mv">Energy</div></div><div class="row"><div class="mk">Role</div><div class="mv">species</div></div><div class="row"><div class="mk">Packet</div><div class="mv">Glycogen · hepatic · grade B</div></div></div>
+        </div>
+      </div>
+      <div class="panel p-pad">
+        <div class="p-head"><div class="p-title">Compartment Activity</div><div class="p-sub">fired / total</div></div>
+        <div class="calist" id="calist"><div class="ca done"><div class="catop"><div class="canm">Ingestion<span>Assimilation</span></div><div class="caval">3/3</div></div><div class="bar"><i style="width:100%"></i></div></div><div class="ca done"><div class="catop"><div class="canm">Gut<span>Assimilation</span></div><div class="caval">5/5</div></div><div class="bar"><i style="width:100%"></i></div></div><div class="ca done"><div class="catop"><div class="canm">Pancreas<span>Communication</span></div><div class="caval">2/2</div></div><div class="bar"><i style="width:100%"></i></div></div><div class="ca done"><div class="catop"><div class="canm">Colon<span>Microbiome</span></div><div class="caval">3/3</div></div><div class="bar"><i style="width:100%"></i></div></div><div class="ca "><div class="catop"><div class="canm">Liver<span>Energy</span></div><div class="caval">7/9</div></div><div class="bar"><i style="width:78%"></i></div></div><div class="ca done"><div class="catop"><div class="canm">Muscle<span>Energy</span></div><div class="caval">3/3</div></div><div class="bar"><i style="width:100%"></i></div></div><div class="ca "><div class="catop"><div class="canm">Mitochondria<span>Oxidation</span></div><div class="caval">3/5</div></div><div class="bar"><i style="width:60%"></i></div></div><div class="ca "><div class="catop"><div class="canm">Lungs<span>Exhaust</span></div><div class="caval">0/1</div></div><div class="bar"><i style="width:0%"></i></div></div><div class="ca "><div class="catop"><div class="canm">Kidneys<span>Excretion</span></div><div class="caval">0/1</div></div><div class="bar"><i style="width:0%"></i></div></div></div>
+      </div>
+    </section>
+
+    <section class="band-bottom">
+      <div class="panel p-pad">
+        <div class="p-head"><div class="p-title">Cascade Log</div><div class="p-sub">worklist trace</div></div>
+        <div class="logs" id="logs"><div class="logrow cur"><span class="st">[26]</span><span class="lx">pop <span class="nx">CO₂</span> → <span class="nx">CO₂ exhaled</span></span></div><div class="logrow"><span class="st">[25]</span><span class="lx">pop <span class="nx">Krebs / ETC</span> → <span class="nx">ATP</span></span></div><div class="logrow"><span class="st">[24]</span><span class="lx">pop <span class="nx">Acetyl-CoA</span> → <span class="nx">Krebs / ETC</span></span></div><div class="logrow"><span class="st">[23]</span><span class="lx">pop <span class="nx">Pyruvate</span> → <span class="nx">Acetyl-CoA</span></span></div><div class="logrow"><span class="st">[22]</span><span class="lx">pop <span class="nx">F1,6BP</span> → <span class="nx">Pyruvate</span></span></div><div class="logrow"><span class="st">[21]</span><span class="lx">pop <span class="nx">PFK-1</span> → <span class="nx">F1,6BP</span></span></div><div class="logrow"><span class="st">[20]</span><span class="lx">pop <span class="nx">Glycogen</span> · leaf</span></div></div>
+      </div>
+      <div class="panel p-pad">
+        <div class="p-head"><div class="p-title">Propagation Queue</div><div class="p-sub" id="q-sub">4 in flight</div></div>
+        <div class="qlist" id="qlist"><div class="qi"><div class="qt"><div class="ql"><span class="gbadge" style="background:var(--gradeA)">A</span><div><div class="qn">CO₂</div><div class="qc">MITOCHONDRIA · Oxidation</div></div></div><span class="qs firing">Firing</span></div><div class="qbar"><i></i></div></div><div class="qi"><div class="qt"><div class="ql"><span class="gbadge" style="background:var(--gradeA)">A</span><div><div class="qn">H₂O · kidneys</div><div class="qc">MITOCHONDRIA · Oxidation</div></div></div><span class="qs queued">Queued</span></div></div><div class="qi"><div class="qt"><div class="ql"><span class="gbadge" style="background:var(--gradeA)">A</span><div><div class="qn">CO₂ exhaled · breath</div><div class="qc">LUNGS · Exhaust</div></div></div><span class="qs queued">Queued</span></div></div><div class="qi"><div class="qt"><div class="ql"><span class="gbadge" style="background:var(--gradeA)">A</span><div><div class="qn">ATP · energy</div><div class="qc">MITOCHONDRIA · Oxidation</div></div></div><span class="qs queued">Queued</span></div></div></div>
+      </div>
+      <div class="panel p-pad">
+        <div class="p-head"><div class="p-title">System Health</div><div class="p-sub">functional systems</div></div>
+        <div class="health" id="health"><div class="hrow"><span class="hn">Assimilation<span>8/8</span></span><span class="hs ok"><i></i>mapped</span></div><div class="hrow"><span class="hn">Communication<span>2/2</span></span><span class="hs ok"><i></i>mapped</span></div><div class="hrow"><span class="hn">Microbiome<span>3/3</span></span><span class="hs ok"><i></i>mapped</span></div><div class="hrow"><span class="hn">Energy<span>10/12</span></span><span class="hs ok"><i></i>mapped</span></div><div class="hrow"><span class="hn">Oxidation<span>3/5</span></span><span class="hs ok"><i></i>mapped</span></div><div class="hrow"><span class="hn">Exhaust<span>0/1</span></span><span class="hs ok"><i></i>idle</span></div><div class="hrow"><span class="hn">Excretion<span>0/1</span></span><span class="hs ok"><i></i>idle</span></div></div>
+      </div>
+    </section>
+
+    <section class="band-bounds">
+      <div class="panel p-pad">
+        <div class="p-head"><div class="p-title">Absorption Bounds · Assimilation</div><div class="p-sub" id="bounds-sub">gate: mechanism · 19 gate · 2 rejected · 0 bound</div></div>
+        <div class="btable" id="btable"><div class="brow head"><span>Analyte</span><span>Fraction</span><span>Cert</span><span>Support</span><span>Conf</span><span>Provenance</span></div><div class="brow"><span class="bn">Zinc<div class="bflag" title="70%/3 mg not in abstract — may be synthesis">70%/3 mg not in abstract — may be synthesis</div></span><span class="bf">0.70 @3mg</span><span class="bcert gate">gate</span><span class="bsup muted">CANNOT VERIFY</span><span class="bconf">MED</span><span class="bp"><a href="https://doi.org/10.1093/jn/130.5.1378S" target="_blank" rel="noopener">Lönnerdal 2000 · 10.1093/jn/130.5.1378S</a></span></div><div class="brow"><span class="bn">Copper<div class="bflag" title="MISMATCH — Wapnir headline 30–40%, needs dose qualifier">MISMATCH — Wapnir headline 30–40%, needs dose qualifier</div></span><span class="bf">&gt;0.50 low</span><span class="bcert gate">gate</span><span class="bsup warn">PARTIAL</span><span class="bconf">HIGH</span><span class="bp"><a href="https://doi.org/10.1093/ajcn/67.5.1054S" target="_blank" rel="noopener">Wapnir 1998 · 10.1093/ajcn/67.5.1054S</a></span></div><div class="brow"><span class="bn">Copper<div class="bflag" title="threshold value not in parent abstract">threshold value not in parent abstract</div></span><span class="bf">&lt;0.15 &gt;6–7mg</span><span class="bcert gate">gate</span><span class="bsup muted">CANNOT VERIFY</span><span class="bconf">MED</span><span class="bp"><a href="https://doi.org/10.1093/ajcn/67.5.1054S" target="_blank" rel="noopener">Wapnir 1998 · 10.1093/ajcn/67.5.1054S</a></span></div><div class="brow"><span class="bn">Magnesium<div class="bflag" title="SCOPE — mineral water, n=10 women, not food matrix">SCOPE — mineral water, n=10 women, not food matrix</div></span><span class="bf">0.30–0.60</span><span class="bcert gate">gate</span><span class="bsup warn">PARTIAL</span><span class="bconf">HIGH</span><span class="bp"><a href="https://doi.org/10.1093/ajcn/75.1.65" target="_blank" rel="noopener">Sabatier 2002 · 10.1093/ajcn/75.1.65</a></span></div><div class="brow"><span class="bn">Selenium<div class="bflag" title="SPECIES — rat ligated-loop, not a human figure">SPECIES — rat ligated-loop, not a human figure</div></span><span class="bf">&gt;0.90</span><span class="bcert gate">gate</span><span class="bsup warn">PARTIAL</span><span class="bconf">HIGH</span><span class="bp"><a href="https://doi.org/10.1016/0955-2863(92)90028-H" target="_blank" rel="noopener">Vendeland 1992 · 10.1016/0955-2863(92)90028-H</a></span></div><div class="brow"><span class="bn">Manganese<div class="bflag" title="unsourced textbook assertion">unsourced textbook assertion</div></span><span class="bf">&lt;0.02</span><span class="bcert gate">gate</span><span class="bsup muted">CANNOT VERIFY</span><span class="bconf">LOW</span><span class="bp"><span class="none">no named parent</span></span></div><div class="brow"><span class="bn">Chromium<div class="bflag" title="unsourced; picolinate-specific">unsourced; picolinate-specific</div></span><span class="bf">0.005–0.02</span><span class="bcert gate">gate</span><span class="bsup muted">CANNOT VERIFY</span><span class="bconf">LOW</span><span class="bp"><span class="none">no named parent</span></span></div><div class="brow"><span class="bn">Fluoride</span><span class="bf">0.50</span><span class="bcert gate">gate</span><span class="bsup muted">CANNOT VERIFY</span><span class="bconf">LOW</span><span class="bp"><span class="none">no named parent</span></span></div><div class="brow"><span class="bn">Nickel</span><span class="bf">0.01</span><span class="bcert gate">gate</span><span class="bsup muted">CANNOT VERIFY</span><span class="bconf">LOW</span><span class="bp"><span class="none">no named parent</span></span></div><div class="brow"><span class="bn">Vanadium</span><span class="bf">0.01–0.05</span><span class="bcert gate">gate</span><span class="bsup muted">CANNOT VERIFY</span><span class="bconf">LOW</span><span class="bp"><span class="none">no named parent</span></span></div><div class="brow"><span class="bn">Iodine</span><span class="bf">&gt;0.90</span><span class="bcert gate">gate</span><span class="bsup muted">CANNOT VERIFY</span><span class="bconf">LOW</span><span class="bp"><span class="none">no named parent</span></span></div><div class="brow"><span class="bn">Molybdenum<div class="bflag" title="sulfate inhibits — see transporter edges">sulfate inhibits — see transporter edges</div></span><span class="bf">&gt;0.90</span><span class="bcert gate">gate</span><span class="bsup muted">CANNOT VERIFY</span><span class="bconf">LOW</span><span class="bp"><span class="none">no named parent</span></span></div><div class="brow"><span class="bn">Calcium<div class="bflag" title="REJECTED — high for adults; re-anchor IOM 2011">REJECTED — high for adults; re-anchor IOM 2011</div></span><span class="bf">&gt;0.40 young</span><span class="bcert rej">rejected</span><span class="bsup muted">CANNOT VERIFY</span><span class="bconf">NONE</span><span class="bp"><span class="none">no named parent</span></span></div><div class="brow"><span class="bn">Calcium<div class="bflag" title="value unsourced; age-direction uncontroversial">value unsourced; age-direction uncontroversial</div></span><span class="bf">0.20 older</span><span class="bcert gate">gate</span><span class="bsup muted">CANNOT VERIFY</span><span class="bconf">LOW</span><span class="bp"><span class="none">no named parent</span></span></div><div class="brow"><span class="bn">Ascorbate (C)<div class="bflag" title="SATURABLE — monotonic scoring wrong above elbow">SATURABLE — monotonic scoring wrong above elbow</div></span><span class="bf">0.75</span><span class="bcert gate">gate</span><span class="bsup muted">CANNOT VERIFY</span><span class="bconf">LOW</span><span class="bp"><span class="none">no named parent</span></span></div><div class="brow"><span class="bn">Folate (synth)<div class="bflag" title="food folate ≈ half — distinct analyte">food folate ≈ half — distinct analyte</div></span><span class="bf">0.85</span><span class="bcert gate">gate</span><span class="bsup muted">CANNOT VERIFY</span><span class="bconf">LOW</span><span class="bp"><span class="none">no named parent</span></span></div><div class="brow"><span class="bn">Retinol</span><span class="bf">0.70–0.90</span><span class="bcert gate">gate</span><span class="bsup muted">CANNOT VERIFY</span><span class="bconf">LOW</span><span class="bp"><span class="none">no named parent</span></span></div><div class="brow"><span class="bn">Provit-A carotenoids<div class="bflag" title="fat-dependent — requires mixed micelles">fat-dependent — requires mixed micelles</div></span><span class="bf">&lt;0.03</span><span class="bcert gate">gate</span><span class="bsup muted">CANNOT VERIFY</span><span class="bconf">LOW</span><span class="bp"><span class="none">no named parent</span></span></div><div class="brow"><span class="bn">β-carotene cleavage<div class="bflag" title="REJECTED — superseded by IOM 2001 RAE 12:1/24:1">REJECTED — superseded by IOM 2001 RAE 12:1/24:1</div></span><span class="bf">0.15</span><span class="bcert rej">rejected</span><span class="bsup muted">CANNOT VERIFY</span><span class="bconf">NONE</span><span class="bp"><span class="none">no named parent</span></span></div><div class="brow"><span class="bn">Vitamin K (greens)<div class="bflag" title="matrix-dependent — needs form + matrix scoping">matrix-dependent — needs form + matrix scoping</div></span><span class="bf">&lt;0.20</span><span class="bcert gate">gate</span><span class="bsup muted">CANNOT VERIFY</span><span class="bconf">LOW</span><span class="bp"><span class="none">no named parent</span></span></div><div class="brow"><span class="bn">Dietary fat<div class="bflag" title="lipolysis-stage share; not in abstract — read full text">lipolysis-stage share; not in abstract — read full text</div></span><span class="bf">0.10–0.20</span><span class="bcert gate">gate</span><span class="bsup muted">CANNOT VERIFY</span><span class="bconf">MED</span><span class="bp"><a href="https://doi.org/10.1016/0016-5085(93)90908-U" target="_blank" rel="noopener">Carrière 1993 · 10.1016/0016-5085(93)90908-U</a></span></div></div>
+      </div>
+    </section>
+
+  </div>
+</div>
+    </section>
+
+    <section class="view-panel" id="panel-function" role="tabpanel" aria-labelledby="tab-function">
+
+  <div class="wrap">
+    <div class="board"><svg id="nutrient-map" viewBox="0 0 1280 772" role="img" aria-label="Nutrient function map"></svg></div>
+    <div class="cap">A <b>governance-diagram</b> read of the nutrient model — one governed gut, routing each nutrient to the <b>jobs it does</b>. A nutrient in several panels (Fe, Zn, Cu, Mg…) is the <b>multi-membership</b>; the <code>Governed by FDP-1</code> strip is the same law-lattice that grades every value.</div>
+  </div>
+
+    </section>
+
+    <section class="view-panel" id="panel-macros" role="tabpanel" aria-labelledby="tab-macros">
+
+  <div class="wrap">
+    <div class="toggle" id="macros-toggle" role="group" aria-label="Macronutrient"></div>
+    <div class="board"><svg id="macros-map" viewBox="0 0 1280 700" role="img" aria-label="Macronutrient breakdown and function map"></svg></div>
+    <div class="cap" id="macros-cap"></div>
+  </div>
+
+    </section>
+  </main>
+</div>
+
+<script>
+/* one shared namespace: each view registers what the Ask bar may drive */
+window.BiologyAsCode = {};
+
+/* ── shell tabs ── */
+
+(function(){
+  "use strict";
+  var BAC = window.BiologyAsCode;
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.shell-tab'));
+  var panels = {
+    cascade: document.getElementById('panel-cascade'),
+    function: document.getElementById('panel-function'),
+    macros: document.getElementById('panel-macros')
+  };
+  function activate(id){
+    tabs.forEach(function(t){
+      var on = t.getAttribute('data-panel') === id;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+    });
+    Object.keys(panels).forEach(function(k){
+      if (!panels[k]) return;
+      panels[k].classList.toggle('is-active', k === id);
+    });
+    try { history.replaceState(null, '', '#' + id); } catch(e) {}
+  }
+  BAC.showTab = activate;
+  tabs.forEach(function(t){
+    t.addEventListener('click', function(){ activate(t.getAttribute('data-panel')); });
+    t.addEventListener('keydown', function(ev){
+      var i = tabs.indexOf(t);
+      if (ev.key === 'ArrowRight') { ev.preventDefault(); tabs[(i+1)%tabs.length].focus(); tabs[(i+1)%tabs.length].click(); }
+      if (ev.key === 'ArrowLeft')  { ev.preventDefault(); tabs[(i-1+tabs.length)%tabs.length].focus(); tabs[(i-1+tabs.length)%tabs.length].click(); }
+    });
+  });
+  var hash = (location.hash || '').replace(/^#/, '');
+  if (hash && panels[hash]) activate(hash);
+  else activate('cascade');
+})();
+
+
+/* ── Metabolic Cascade ── */
+
+(function(){
+  "use strict";
+  var BAC=window.BiologyAsCode;
+  var RM = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function $(id){return document.getElementById(id);}
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  function pad(n){return (n<10?'0':'')+n;}
+  function cap(s){return s.charAt(0).toUpperCase()+s.slice(1).toLowerCase();}
+
+  /* clock */
+  function tick(){var d=new Date();$('clock').textContent=pad(d.getUTCHours())+':'+pad(d.getUTCMinutes())+':'+pad(d.getUTCSeconds());}
+  tick(); setInterval(tick,1000);
+
+  /* compartments */
+  var COMPS=[
+    {id:'gut',t:'GUT',sys:'Assimilation',x:330,y:205,w:255,h:205},
+    {id:'pancreas',t:'PANCREAS',sys:'Communication',x:330,y:432,w:255,h:120},
+    {id:'colon',t:'COLON',sys:'Microbiome',x:330,y:574,w:255,h:112},
+    {id:'liver',t:'LIVER',sys:'Energy',x:615,y:193,w:300,h:227},
+    {id:'muscle',t:'MUSCLE',sys:'Energy',x:615,y:445,w:300,h:150},
+    {id:'mito',t:'MITOCHONDRIA',sys:'Oxidation',x:945,y:298,w:205,h:192},
+    {id:'lungs',t:'LUNGS',sys:'Exhaust',x:945,y:510,w:96,h:96},
+    {id:'kidneys',t:'KIDNEYS',sys:'Excretion',x:1054,y:510,w:96,h:96}
+  ];
+  var CMAP={}; COMPS.forEach(function(c){CMAP[c.id]=c;});
+  var ORGAN={gut:'gut',pancreas:'pancreas',colon:'colon',liver:'liver',muscle:'muscle',mito:'mitochondria',lungs:'lungs',kidneys:'kidneys',in:'diet'};
+  var SYSOF={gut:'Assimilation',pancreas:'Communication',colon:'Microbiome',liver:'Energy',muscle:'Energy',mito:'Oxidation',lungs:'Exhaust',kidneys:'Excretion',in:'Assimilation'};
+  var CTITLE={gut:'GUT',pancreas:'PANCREAS',colon:'COLON',liver:'LIVER',muscle:'MUSCLE',mito:'MITOCHONDRIA',lungs:'LUNGS',kidneys:'KIDNEYS',in:'INGESTION'};
+
+  var NODES=[
+    {id:'carbmeal', s:'DIET',   k:'input',    l:'Carb meal', sub:'diet',        c:'in',  g:'A', x:60,  y:300, src:1, w:'A dietary carbohydrate bolus enters the model.'},
+    {id:'mouth',    s:'MOUTH',  k:'reaction', l:'MOUTH',     sub:'1 in · 1 rxn',c:'in',  g:'A', x:155, y:300, w:'Mechanical + amylase breakdown begins in the mouth.'},
+    {id:'stomach',  s:'STMCH',  k:'reaction', l:'STOMACH',   sub:'1 in · 1 rxn',c:'in',  g:'A', x:260, y:300, w:'Acid hydrolysis continues; chyme passes to the gut.'},
+    {id:'glucose_lumen', s:'GLULUM', k:'species',  l:'Glucose', sub:'lumen',   c:'gut', g:'A', x:400, y:262, w:'Free glucose in the gut lumen, ready for uptake.'},
+    {id:'sglt1',   s:'SGLT1',  k:'reaction', l:'SGLT1',   sub:'[0,6]',        c:'gut', g:'B', x:500, y:258, w:'Sodium-glucose cotransporter pulls glucose across the epithelium.'},
+    {id:'glp1',    s:'GLP1',   k:'reaction', l:'GLP-1',   sub:'L-cell',       c:'gut', g:'B', x:402, y:352, w:'Incretin GLP-1 secreted by L-cells; primes insulin release.'},
+    {id:'fiber',   s:'FIBER',  k:'species',  l:'Fiber',   sub:'non-dig.',     c:'gut', g:'A', x:505, y:348, w:'Non-digestible fiber passes through to the colon.'},
+    {id:'glucose_portal', s:'GLUPOR', k:'species', l:'Glucose', sub:'portal', c:'gut', g:'A', x:558, y:305, w:'Absorbed glucose in the portal vein heading to the liver.'},
+    {id:'insulin', s:'INS',    k:'reaction', l:'Insulin', sub:'β-cell',       c:'pancreas', g:'A', x:405, y:498, src:1, w:'β-cells release insulin, the fed-state uptake signal.'},
+    {id:'glucagon',s:'GCG',    k:'reaction', l:'Glucagon',sub:'α-cell',       c:'pancreas', g:'B', x:505, y:504, src:1, w:'α-cells release glucagon, the fasted-state mobilization signal.'},
+    {id:'fermentation', s:'FERM', k:'reaction', l:'Fermentation', sub:'',     c:'colon', g:'B', x:398, y:626, w:'Microbiome ferments fiber into short-chain fatty acids.'},
+    {id:'scfa',    s:'SCFA',   k:'species',  l:'SCFA',    sub:'liver fuel',   c:'colon', g:'A', x:498, y:623, w:'Short-chain fatty acids returned to the liver as fuel.'},
+    {id:'feces',   s:'FECES',  k:'species',  l:'Feces',   sub:'waste sink',   c:'colon', g:'A', x:565, y:653, w:'Undigested residue exits as waste.'},
+    {id:'glucose_hepatic', s:'GLUHEP', k:'species', l:'Glucose', sub:'hepatic', c:'liver', g:'A', x:662, y:250, w:'Hepatic glucose pool — the liver’s central junction.'},
+    {id:'glucokinase', s:'GCK', k:'reaction', l:'Glucokinase', sub:'[8,3]',    c:'liver', g:'B', x:748, y:246, cof:['magnesium · Mg²⁺ (MgATP is the substrate)'], w:'Glucokinase traps glucose as G6P inside the hepatocyte.'},
+    {id:'g6p',     s:'G6P',    k:'species',  l:'G6P',     sub:'',             c:'liver', g:'A', x:832, y:250, w:'Glucose-6-phosphate — branch point for storage vs. burn.'},
+    {id:'atp_mod', s:'ATPMOD', k:'species',  l:'ATP',     sub:'modifier',     c:'liver', g:'B', x:664, y:342, src:1, w:'ATP allosterically inhibits PFK-1 when energy is plentiful.'},
+    {id:'pfk1',    s:'PFK1',   k:'reaction', l:'PFK-1',   sub:'[0,4]',        c:'liver', g:'B', x:752, y:336, cof:['magnesium · Mg²⁺ (MgATP is the substrate)'], w:'Phosphofructokinase — the committed, rate-limiting glycolysis step.'},
+    {id:'f16bp',   s:'F16BP',  k:'species',  l:'F1,6BP',  sub:'',             c:'liver', g:'A', x:836, y:338, w:'Fructose-1,6-bisphosphate commits carbon to glycolysis.'},
+    {id:'glycogen_hepatic', s:'LIVGLY', k:'species', l:'Glycogen', sub:'hepatic', c:'liver', g:'B', x:884, y:292, ir:'CHEBI:28087', tx:['Glycogen','Glycogenesis'], w:'Liver glycogen — glucose put into storage.'},
+    {id:'pyruvate',s:'PYR',    k:'species',  l:'Pyruvate',sub:'',             c:'liver', g:'A', x:780, y:394, w:'Pyruvate — end of glycolysis, gateway to the mitochondrion.'},
+    {id:'hyperglycemia', s:'HYPERG', k:'pole', l:'Hyperglycemia', sub:'disease pole', c:'liver', g:'', x:1000, y:250, w:'Disease pole: glucose fails to normalize and accumulates.'},
+    {id:'glut4',   s:'GLUT4',  k:'reaction', l:'GLUT4',   sub:'[0,2]',        c:'muscle', g:'B', x:674, y:512, w:'Muscle glucose transporter. TWO independent signals recruit it to the sarcolemma: insulin (via PI3K/Akt) and contraction (via AMPK/Ca²⁺/Rac1). Insulin resistance impairs the first and leaves the second working — which is why exercise still moves glucose in a resistant state. The arms converge on TBC1D1/TBC1D4 and partly shared vesicle pools, and their effects are additive.'},
+    {id:'glycolysis_atp', s:'GLYATP', k:'reaction', l:'Glycolysis', sub:'ATP', c:'muscle', g:'B', x:776, y:514, cof:['niacin (B3) · NAD⁺ at GAPDH','magnesium · Mg²⁺ at four kinase steps'], w:'Muscle glycolysis draws down glucose for contraction fuel.'},
+    {id:'glycogen_store', s:'MUSGLY', k:'species', l:'Glycogen', sub:'store', c:'muscle', g:'A', x:864, y:508, w:'Muscle glycogen store, local to the myocyte.'},
+    {id:'acetyl_coa', s:'ACOA', k:'species', l:'Acetyl-CoA', sub:'',          c:'mito', g:'A', x:988, y:352, w:'Acetyl-CoA feeds the Krebs cycle.'},
+    {id:'krebs_etc', s:'KREBS', k:'reaction', l:'Krebs / ETC', sub:'',        c:'mito', g:'A', x:1064, y:378, cof:['thiamin (B1) · TPP at α-KGDH','riboflavin (B2) · FAD/FMN','niacin (B3) · NAD⁺','pantothenate (B5) · CoA','iron · Fe–S clusters and haem','copper · CuA and CuB','magnesium · Mg²⁺'], w:'Krebs cycle + electron transport chain oxidize fuel to energy. This node is a LUMP — one box holding the whole cycle and five respiratory complexes — which is why its cofactor list is long. Iron and copper sit specifically in the ETC half: CuA accepts electrons from cytochrome c, and the haem a3–CuB centre is where O₂ is reduced to water.'},
+    {id:'co2',     s:'CO2',    k:'species',  l:'CO₂', sub:'',            c:'mito', g:'A', x:978, y:420, w:'Carbon dioxide — a terminal oxidation product.'},
+    {id:'h2o',     s:'H2O',    k:'species',  l:'H₂O', sub:'kidneys',     c:'mito', g:'A', x:1002, y:462, w:'Metabolic water routed to the kidneys.'},
+    {id:'atp_energy', s:'ATPE', k:'species', l:'ATP',     sub:'energy',       c:'mito', g:'A', x:1096, y:452, w:'ATP — the usable energy currency the cascade produces.'},
+    {id:'co2_exhaled', s:'CO2EX', k:'species', l:'CO₂ exhaled', sub:'breath', c:'lungs', g:'A', x:992, y:555, w:'CO₂ leaves the body on the breath.'},
+    {id:'pdh',      s:'PDH',    k:'reaction', l:'PDH',       sub:'E1·E2·E3',    c:'mito', g:'B', x:930, y:372, bnd:1, cof:['thiamin (B1) · TPP','riboflavin (B2) · FAD','niacin (B3) · NAD⁺','pantothenate (B5) · CoA','lipoamide · not a vitamin','magnesium · Mg²⁺'], w:'Pyruvate dehydrogenase complex — the irreversible gate from glycolysis into the Krebs cycle. Five coenzymes on one enzyme: FOUR B vitamins (B1, B2, B3, B5) plus lipoamide, which humans synthesise and do not eat. TPP and FAD are prosthetic; CoA and NAD⁺ are co-substrates that diffuse in and out each turn.'},
+    {id:'ampk',     s:'AMPK',   k:'reaction', l:'Contraction', sub:'AMPK·Ca²⁺·Rac1', c:'muscle', g:'B', x:716, y:568, src:1, w:'Muscle contraction recruits GLUT4 by a route that does not run through the insulin receptor — wortmannin blocks the insulin arm and leaves this one intact. Multi-arm and partly redundant: AMPK, Ca²⁺/CaMKII and Rac1 all contribute and no single one is required, which is why this is graded B.'},
+    {id:'fatmeal',  s:'FATDIET',k:'input',    l:'Fat meal',  sub:'diet',        c:'in',  g:'A', x:60,  y:400, w:'A dietary fat bolus. Toggle Fat in Food data to run this lane.'},
+    {id:'ffa_lumen',s:'FFALUM', k:'species',  l:'Fatty acids', sub:'LC · micelle', c:'gut', g:'A', x:455, y:300, cof:['bile salts · mixed micelle','pancreatic lipase + colipase'], w:'Long-chain fatty acids and 2-monoacylglycerol carried in mixed micelles — the same vehicle that carries vitamins A, D, E and K. Medium- and short-chain fatty acids skip this and take the portal route instead.'},
+    {id:'ffa_muscle',s:'FFAMUS',k:'species',  l:'Fatty acids', sub:'plasma',     c:'muscle', g:'A', x:640, y:558, w:'Long-chain fatty acids reach the myocyte via lymph and chylomicrons, not the portal vein — the fat lane never passes through the liver box. Uptake is CD36/FABPpm-mediated, not free diffusion, but unlike GLUT4 it is not insulin-gated.'},
+    {id:'beta_ox',  s:'BOX',    k:'reaction', l:'β-ox',      sub:'LCFA',        c:'mito', g:'A', x:1114, y:344, cof:['carnitine · long-chain only','riboflavin (B2) · FAD','niacin (B3) · NAD⁺'], w:'β-oxidation chops the chain into two-carbon acetyl-CoA units. LONG-chain fatty acids cannot cross the inner membrane without the carnitine shuttle (CPT-1/CACT/CPT-2); short- and medium-chain species enter freely. Carnitine itself needs iron, vitamin C, B6, niacin and SAM to be made. Runs here only when Active: postprandial insulin suppresses fat oxidation. Note the one-way sign — acetyl-CoA cannot go back to glucose, because the cycle loses two carbons as CO₂ for every two that enter.'},
+    {id:'kidneys', s:'KIDNEY', k:'reaction', l:'KIDNEYS', sub:'0 rxn',        c:'kidneys', g:'A', x:1100, y:555, w:'Kidneys clear metabolic water and solutes.'}
+  ];
+  var NMAP={}; NODES.forEach(function(n){NMAP[n.id]=n; n.r=n.k==='input'?26:(n.k==='reaction'?18:16);});
+
+  var EDGES=[
+    ['carbmeal','mouth','mass',{cond:'fed'}],['mouth','stomach','mass'],['stomach','glucose_lumen','mass'],
+    ['stomach','fiber','mass'],['glucose_lumen','sglt1','mass'],['sglt1','glucose_portal','mass',{bound:'prior'}],
+    ['glucose_portal','glucose_hepatic','mass'],['glucose_hepatic','glucokinase','mass'],['glucokinase','g6p','mass'],
+    ['g6p','glycogen_hepatic','mass',{cond:'fed'}],['g6p','pfk1','mass'],['pfk1','f16bp','mass'],['f16bp','pyruvate','mass'],
+    ['pyruvate','pdh','mass'],['pdh','acetyl_coa','mass'],['acetyl_coa','krebs_etc','mass'],['krebs_etc','atp_energy','mass'],
+    ['krebs_etc','co2','mass'],['krebs_etc','h2o','mass'],['co2','co2_exhaled','mass'],['h2o','kidneys','mass'],
+    ['glucose_portal','glut4','mass',{weak:1}],['glut4','glycolysis_atp','mass'],['glut4','glycogen_store','mass',{cond:'fed'}],
+    ['fiber','fermentation','mass',{cond:'fiber'}],['fermentation','scfa','mass'],['fermentation','feces','mass'],
+    ['scfa','glucose_hepatic','mass'],['glycogen_hepatic','glucose_hepatic','mass',{cond:'fasted'}],
+    ['glucose_lumen','glp1','signal',{grp:'glp1'}],['glp1','insulin','signal',{grp:'glp1'}],['glucose_portal','insulin','signal'],
+    ['insulin','glut4','signal',{cond:'fed'}],['insulin','glucokinase','signal',{cond:'fed'}],
+    ['glucagon','glycogen_hepatic','signal',{cond:'fasted'}],['atp_mod','pfk1','signal'],
+    ['ampk','glut4','signal',{cond:'active'}],
+    ['fatmeal','stomach','mass',{cond:['fed','fat']}],['stomach','ffa_lumen','mass',{cond:['fed','fat']}],
+    ['ffa_lumen','ffa_muscle','mass',{cond:['fed','fat']}],['ffa_lumen','glp1','signal',{cond:['fed','fat']}],
+    ['ffa_muscle','beta_ox','mass',{cond:['fat','active']}],['beta_ox','acetyl_coa','mass',{cond:['fat','active']}],
+    ['glucose_hepatic','hyperglycemia','disease',{cond:'resistant'}]
+  ].map(function(e){var o=e[3]||{};return {from:e[0],to:e[1],t:e[2],cond:o.cond,grp:o.grp,weak:o.weak,bound:o.bound};});
+
+  var ORDER=['carbmeal','fatmeal','mouth','stomach','glucose_lumen','ffa_lumen','fiber','sglt1','glp1','fermentation','glucose_portal','scfa','feces','insulin','glucose_hepatic','glucagon','ampk','glut4','ffa_muscle','glucokinase','glycolysis_atp','glycogen_store','g6p','glycogen_hepatic','pfk1','f16bp','pyruvate','pdh','acetyl_coa','beta_ox','krebs_etc','co2','h2o','co2_exhaled','atp_energy','kidneys'];
+  var TOTAL=ORDER.length;
+
+  var STATE={step:32, cof:true, view:'library', gmode:'cascade', absSel:null, absGroups:{macro:1,fiber:1,fatsol:1,watersol:1,mineral:1,electrolyte:1,trace:1,cofactor:1}, fed:true, active:true, resistant:true, glp1:true, tier:true, flow:false, gate:'mechanism', claim:null, food:{fiber:true,fat:false}, sel:'glycogen_hepatic', ask:null};
+
+  /* One condition token -> is it currently satisfied.
+     Kept as a lookup rather than an if-chain so adding a state costs one line and
+     cannot silently do nothing -- the previous version declared STATE.active and
+     STATE.food.fat and never read either, so both toggles rendered and did nothing. */
+  function condOK(tok){
+    switch(tok){
+      case 'fed':       return !!STATE.fed;
+      case 'fasted':    return !STATE.fed;
+      case 'active':    return !!STATE.active;
+      case 'rested':    return !STATE.active;
+      case 'resistant': return !!STATE.resistant;
+      case 'sensitive': return !STATE.resistant;
+      case 'fiber':     return !!STATE.food.fiber;
+      case 'fat':       return !!STATE.food.fat;
+      default:          return true;
+    }
+  }
+  function eligible(e){
+    if(e.grp==='glp1' && !STATE.glp1) return false;
+    if(e.cond){
+      var toks = (typeof e.cond==='string') ? [e.cond] : e.cond, i;
+      for(i=0;i<toks.length;i++){ if(!condOK(toks[i])) return false; }
+    }
+    if(e.bound && STATE.gate==='bound' && e.bound!=='verified') return false;
+    return true;
+  }
+  function reachable(){
+    var seen={}, q=[]; NODES.forEach(function(n){if(n.k==='input'||n.src){seen[n.id]=1;q.push(n.id);}});
+    var adj={}; EDGES.forEach(function(e){if(eligible(e)){(adj[e.from]=adj[e.from]||[]).push(e.to);}});
+    while(q.length){var id=q.shift();(adj[id]||[]).forEach(function(t){if(!seen[t]){seen[t]=1;q.push(t);}});}
+    return seen;
+  }
+  function propOf(id){
+    var e,j; for(j=0;j<EDGES.length;j++){e=EDGES[j];if(e.from===id&&e.t==='mass'&&eligible(e))return e.to;}
+    for(j=0;j<EDGES.length;j++){e=EDGES[j];if(e.from===id&&eligible(e))return e.to;} return null;
+  }
+  function cascade(){
+    var cur=STATE.step, fired={}, i;
+    for(i=0;i<cur;i++) fired[ORDER[i]]=1;
+    var frontier={}; EDGES.forEach(function(e){if(eligible(e)&&fired[e.from]&&!fired[e.to]) frontier[e.to]=1;});
+    var reach=reachable(), uneval={};
+    NODES.forEach(function(n){if(n.k!=='input'&&n.k!=='pole'&&!reach[n.id]) uneval[n.id]=1;});
+    var pop=ORDER[cur-1], queue=[]; for(i=cur;i<Math.min(cur+3,TOTAL);i++) queue.push(ORDER[i]);
+    var active={}; for(var a in fired) active[a]=1; for(var b in frontier) active[b]=1;
+    return {fired:fired,frontier:frontier,pop:pop,queue:queue,prop:propOf(pop),uneval:uneval,reach:reach,activeCount:Object.keys(active).length};
+  }
+
+  /* geometry */
+  function ends(a,b){var dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy)||1,ux=dx/d,uy=dy/d;
+    return {x1:a.x+ux*(a.r+2),y1:a.y+uy*(a.r+2),x2:b.x-ux*(b.r+7),y2:b.y-uy*(b.r+7),d:d,nx:-uy,ny:ux};}
+  function epath(a,b){var e=ends(a,b),cv=Math.min(e.d*0.12,26),mx=(e.x1+e.x2)/2+e.nx*cv,my=(e.y1+e.y2)/2+e.ny*cv;
+    return 'M '+e.x1.toFixed(1)+' '+e.y1.toFixed(1)+' Q '+mx.toFixed(1)+' '+my.toFixed(1)+' '+e.x2.toFixed(1)+' '+e.y2.toFixed(1);}
+  function gradeColor(g){return g==='A'?'var(--gradeA)':g==='B'?'var(--gradeB)':g==='C'?'var(--gradeC)':'var(--ink-3)';}
+
+  /* What the graph is focused on: the audited claim's path, else the asked question's
+     path, else nothing. null = no focus (everything at full strength);
+     [] = focus with nothing lit (a REFUSEd claim). */
+  function focusPath(){
+    if(STATE.claim&&CLAIM_BY[STATE.claim]) return CLAIM_BY[STATE.claim].path||[];
+    if(STATE.ask&&STATE.ask.path) return STATE.ask.path;
+    return null;
+  }
+
+  function renderGraph(c){
+    var svg=$('graph');
+    if(STATE.gmode==='absorption'){ svg.setAttribute('viewBox','0 0 1160 590'); renderAbsorption(); return; }
+    svg.setAttribute('viewBox','22 184 1122 510');
+    var focusIds=focusPath(), focusOn=focusIds!==null, claimP={};
+    if(focusIds) focusIds.forEach(function(id){claimP[id]=1;});
+    var defs='<defs>'+['mass','#f0a03c','signal','#5a9bef','disease','#ff5a86','dim','#3a4a63'].reduce(function(acc,_,i,arr){
+      if(i%2)return acc;var nm=arr[i],col=arr[i+1];
+      return acc+'<marker id="ah-'+nm+'" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L9 5 L0 9 Z" fill="'+col+'"/></marker>';
+    },'')+'</defs>';
+    var boxes='';
+    if(STATE.view==='library'){COMPS.forEach(function(cb){
+      boxes+='<rect class="cbox" x="'+cb.x+'" y="'+cb.y+'" width="'+cb.w+'" height="'+cb.h+'" rx="12"/>'+
+        '<circle cx="'+(cb.x+14)+'" cy="'+(cb.y+18)+'" r="3" fill="var(--accent)" opacity=".8"/>'+
+        '<text class="cbox-t" x="'+(cb.x+24)+'" y="'+(cb.y+22)+'">'+cb.t+'</text>'+
+        '<text class="cbox-s" x="'+(cb.x+24)+'" y="'+(cb.y+34)+'">· '+cb.sys+'</text>'+
+        '<text class="cbox-min" x="'+(cb.x+cb.w-16)+'" y="'+(cb.y+22)+'">–</text>';
+    });}
+    var edges='';
+    EDGES.forEach(function(e){
+      var a=NMAP[e.from],b=NMAP[e.to];if(!a||!b)return;
+      var d=epath(a,b),el=eligible(e),both=c.fired[e.from]&&c.fired[e.to],flowing=el&&c.fired[e.from]&&c.frontier[e.to],state;
+      if(!el)state='off';else if(both)state='done';else state='future';
+      var weak=(el&&e.weak&&STATE.resistant)?' weak':'';
+      var mk=state==='off'?'':(' marker-end="url(#ah-'+(state==='done'?e.t:'dim')+')"');
+      var ccl=focusOn?((claimP[e.from]&&claimP[e.to]&&el)?' claimlit':' claim-dim'):'';
+      edges+='<path class="edge '+e.t+' '+state+weak+ccl+'" d="'+d+'"'+mk+'/>';
+      if((flowing||(STATE.flow&&el&&!both))&&!RM&&ccl!==' claim-dim') edges+='<path class="flow '+e.t+'" d="'+d+'"/>';
+    });
+    var nodes='';
+    NODES.forEach(function(n){
+      var cls='node '+n.k, ns;
+      if(n.k==='pole') ns=(c.reach[n.id]?'n-pole':'n-idle');
+      else if(c.uneval[n.id]) ns='n-uneval';
+      else if(c.pop===n.id) ns='n-pop';
+      else if(c.frontier[n.id]) ns='n-firing';
+      else if(c.fired[n.id]) ns='n-fired';
+      else ns='n-idle';
+      cls+=' '+ns+(STATE.sel===n.id?' sel':'')+(focusOn?(claimP[n.id]?' claimlit':' claim-dim'):'');
+      var shape;
+      if(n.k==='species'||n.k==='pole') shape='<circle class="nd" r="'+n.r+'"/>';
+      else if(n.k==='reaction') shape='<rect class="nd" x="-20" y="-13" width="40" height="26" rx="7"/>';
+      else shape='<rect class="nd" x="-30" y="-15" width="60" height="30" rx="15"/>';
+      var ring=(ns==='n-firing'||ns==='n-pop')&&!RM?'<circle class="firing-ring" r="'+(n.r+3)+'"/>':'';
+      var cofb='';
+      if(STATE.cof&&n.cof&&n.cof.length&&n.k!=='pole')
+        cofb='<g class="cofb"><circle cx="'+(-n.r*0.82)+'" cy="'+(-n.r*0.82)+'" r="6.5" fill="var(--cyan)"/>'+
+             '<text x="'+(-n.r*0.82)+'" y="'+(-n.r*0.82+2.7)+'">'+n.cof.length+'</text></g>';
+      var badge='';
+      if(STATE.tier&&n.g&&n.k!=='input'&&n.k!=='pole')
+        badge='<g class="badge"><circle cx="'+(n.r*0.82)+'" cy="'+(-n.r*0.82)+'" r="6.5" fill="'+gradeColor(n.g)+'"/><text x="'+(n.r*0.82)+'" y="'+(-n.r*0.82+2.7)+'">'+n.g+'</text></g>';
+      nodes+='<g class="'+cls+'" data-node="'+n.id+'" transform="translate('+n.x+','+n.y+')">'+ring+shape+badge+cofb+
+        '<text class="nlab" y="'+(n.r+13)+'">'+esc(n.l)+'</text>'+
+        (n.sub?'<text class="nsub" y="'+(n.r+23)+'">'+esc(n.sub)+'</text>':'')+'</g>';
+    });
+    $('graph').innerHTML=defs+boxes+edges+nodes;
+  }
+
+  function renderStats(c){
+    var uev=Object.keys(c.uneval).length;
+    var cards=[
+      {k:'Nodes', v:NODES.length, s:'in this model'},
+      {k:'Step', v:STATE.step+' <small>/ '+TOTAL+'</small>', s:'of the cascade'},
+      {k:'Active', v:c.activeCount, s:'cells firing', good:1},
+      {k:'Unevaluable', v:uev, s:uev?'open — blocked':'none open', warn:uev>0},
+      {k:'State', v:'<span style="font-size:22px">'+(STATE.fed?'FED':'FASTED')+'</span>', s:'v3 · '+(STATE.resistant?'resistant':'sensitive'), good:1}
+    ];
+    $('stats').innerHTML=cards.map(function(x){
+      var vc=x.warn?' warn':(x.good?' good':'');
+      return '<div class="stat panel"><div class="k">'+x.k+'</div><div class="v'+vc+'">'+x.v+'</div><div class="s">'+x.s+'</div></div>';
+    }).join('');
+  }
+
+  function seg(opts){return '<div class="seg">'+opts.map(function(o){return '<button data-act="'+o.act+'" class="'+(o.on?'on':'')+'">'+o.label+'</button>';}).join('')+'</div>';}
+  function tg(act,label,on){return '<span class="tg '+(on?'on':'')+'" data-act="'+act+'"><span class="sw"></span>'+label+'</span>';}
+  function renderConfig(){
+    var view=seg([{act:'view-graph',label:'Graph',on:STATE.view==='graph'},{act:'view-library',label:'Library',on:STATE.view==='library'}]).replace('class="seg"','class="seg fullseg"');
+    var gate=seg([{act:'gate-mechanism',label:'Mech',on:STATE.gate==='mechanism'},{act:'gate-human',label:'Human',on:STATE.gate==='human'},{act:'gate-bound',label:'Bound',on:STATE.gate==='bound'}]).replace('class="seg"','class="seg fullseg"');
+    var us1=seg([{act:'set-fed',label:'Fed',on:STATE.fed},{act:'set-fasted',label:'Fasted',on:!STATE.fed}]);
+    var us2=seg([{act:'set-rested',label:'Rested',on:!STATE.active},{act:'set-active',label:'Active',on:STATE.active}]);
+    var us3=seg([{act:'set-sensitive',label:'Sensitive',on:!STATE.resistant},{act:'set-resistant',label:'Resistant',on:STATE.resistant}]);
+    $('config').innerHTML=
+      '<div class="p-head"><div class="p-title">Config</div><div class="p-sub">propagator</div></div>'+
+      '<div class="cfg-section"><div class="cfg-lab">View</div>'+view+'</div>'+
+      '<div class="cfg-section"><div class="cfg-lab">Query gate</div>'+gate+'</div>'+
+      '<div class="cfg-section"><div class="cfg-lab">User state</div>'+
+        '<div class="configbox"><div class="hd">// inputs</div>'+
+          '<div class="cfg-row"><span class="cfg-key">fed<span class="cl">:</span></span>'+us1+'</div>'+
+          '<div class="cfg-row"><span class="cfg-key">activity<span class="cl">:</span></span>'+us2+'</div>'+
+          '<div class="cfg-row"><span class="cfg-key">insulin<span class="cl">:</span></span>'+us3+'</div>'+
+        '</div></div>'+
+      '<div class="cfg-section"><div class="cfg-lab">Evidence</div><div class="tgcol">'+
+        tg('tg-glp1','GLP-1 evidence',STATE.glp1)+tg('tg-tier','Evidence tier',STATE.tier)+tg('tg-cof','Cofactors',STATE.cof)+tg('tg-flow','Flow',STATE.flow)+'</div></div>'+
+      '<div class="cfg-section"><div class="cfg-lab">Food data</div><div class="chips">'+
+        '<span class="chip2 '+(STATE.food.fiber?'on':'')+'" data-act="chip-fiber">Fiber</span>'+
+        '<span class="chip2 '+(STATE.food.fat?'on':'')+'" data-act="chip-fat">Fat</span></div></div>'+
+      '<div class="cfg-section"><div class="cfg-lab">Claim audit</div><select id="claimSel" class="claim-sel"><option value="">— none · explore freely —</option>'+CLAIMS.map(function(cc){return '<option value="'+cc.id+'"'+(STATE.claim===cc.id?' selected':'')+'>'+esc(cc.text)+'</option>';}).join('')+'</select></div>';
+  }
+
+  function renderFoot(c){
+    $('stepA').textContent=STATE.step; $('stepB').textContent=TOTAL;
+    var r=$('range'); r.max=TOTAL; r.value=STATE.step;
+    r.style.setProperty('--pct',((STATE.step-1)/(TOTAL-1)*100).toFixed(1)+'%');
+    if(STATE.gmode==='absorption'){
+      $('gtitle').textContent='Absorption Net';
+      $('ghead-sub').textContent='breakdown → uptake · synergy / antagonism';
+      $('prop').innerHTML=ABS_E.length+' signed edges · '+(STATE.absSel?('tracing <b>'+esc(STATE.absSel)+'</b> · click again to clear'):'click a nutrient square to trace its synergies');
+    } else {
+      $('gtitle').textContent='Cascade Graph';
+      $('ghead-sub').textContent=(STATE.view==='library'?'Library · 8 compartments':'Graph · free layout');
+      $('prop').innerHTML='pop <b>'+esc(NMAP[c.pop].l)+'</b> → '+(c.prop?('propagate to <b>'+esc(NMAP[c.prop].l)+'</b>'):'no eligible successor · leaf');
+    }
+  }
+
+  /* inspector */
+  function Lln(html){return '<div class="ln">'+html+'</div>';}
+  function renderInspector(){
+    var n=NMAP[STATE.sel]||NMAP.glycogen_hepatic;
+    var prefix=n.k==='reaction'?'rxn.':(n.k==='species'?'met.':(n.k==='pole'?'pole.':'in.'));
+    var fid=prefix+n.id.replace(/_/g,'');
+    var organ=ORGAN[n.c]||'null', sys=SYSOF[n.c]||'—';
+    var digestive=(n.c==='gut'||n.c==='colon'||n.c==='in')?'"'+(n.c==='colon'?'microbiome':'lumen')+'"':'null';
+    var iri=n.ir?('"'+n.ir+'"'):'null';
+    var tax=n.tx?('['+n.tx.map(function(t){return '"'+t+'"';}).join(', ')+']'):'["'+n.l.replace(/₂/g,'2')+'"]';
+    $('insp-id').textContent=n.s;
+    $('insp-kind').textContent=(n.k==='pole'?'DISEASE':n.k).toUpperCase();
+    $('insp-code').innerHTML=
+      Lln('<span class="c-kw">Node</span> <span class="c-punc">{</span>')+
+      Lln('  <span class="c-key">id</span><span class="c-punc">:</span>       <span class="c-str">"'+fid+'"</span>')+
+      Lln('  <span class="c-key">kind</span><span class="c-punc">:</span>     <span class="c-kw">'+n.k+'</span>')+
+      Lln('  <span class="c-key">label</span><span class="c-punc">:</span>    <span class="c-str">"'+esc(n.l)+(n.sub?' · '+esc(n.sub):'')+'"</span>')+
+      Lln('  <span class="c-key">part_of</span><span class="c-punc">:</span>  <span class="c-str">"'+organ+'"</span>   <span class="c-com">// containment</span>')+
+      Lln('  <span class="c-key">grade</span><span class="c-punc">:</span>    '+(n.g?'<span class="c-num">'+n.g+'</span>':'<span class="c-null">null</span>'))+
+      Lln('  <span class="c-com">// — identity (digestive · taxonomy · status)</span>')+
+      Lln('  <span class="c-key">map_status</span><span class="c-punc">:</span> <span class="c-kw">mapped</span>')+
+      Lln('  <span class="c-key">digestive</span><span class="c-punc">:</span>  '+(digestive==='null'?'<span class="c-null">null</span>':'<span class="c-str">'+digestive+'</span>'))+
+      Lln('  <span class="c-key">iri</span><span class="c-punc">:</span>        '+(iri==='null'?'<span class="c-null">null</span>':'<span class="c-str">'+iri+'</span>'))+
+      Lln('  <span class="c-key">taxonomy</span><span class="c-punc">:</span>   <span class="c-str">'+tax+'</span>')+
+      Lln('<span class="c-punc">}</span>');
+    $('insp-sent').textContent=n.w||(n.l+' — '+n.k+' in '+sys+'.');
+    $('insp-meta').innerHTML=
+      '<div class="row"><div class="mk">System</div><div class="mv">'+sys+'</div></div>'+
+      '<div class="row"><div class="mk">Role</div><div class="mv">'+(n.k==='pole'?'disease pole':n.k)+'</div></div>'+
+      '<div class="row"><div class="mk">Packet</div><div class="mv">'+esc(n.l)+(n.sub?' · '+esc(n.sub):'')+(n.g?' · grade '+n.g:'')+'</div></div>'+
+      (n.cof&&n.cof.length
+        ? '<div class="row"><div class="mk">Cofactors</div><div class="mv">'+n.cof.length+' required</div></div>'+
+          '<div class="cofrow">'+n.cof.map(function(cf){return '<span class="cofchip">'+esc(cf)+'</span>';}).join('')+'</div>'
+        : '');
+  }
+
+  /* compartment activity */
+  var GROUPS=[{id:'in'}].concat(COMPS.map(function(c){return {id:c.id};}));
+  function renderCompartments(c){
+    $('calist').innerHTML=GROUPS.map(function(g){
+      var ns=NODES.filter(function(n){return n.c===g.id;});
+      var tot=ns.length, fr=ns.filter(function(n){return c.fired[n.id];}).length, uv=ns.filter(function(n){return c.uneval[n.id];}).length;
+      var pctv=tot?Math.round(fr/tot*100):0, cls=uv?'blocked':(fr===tot?'done':'');
+      return '<div class="ca '+cls+'"><div class="catop"><div class="canm">'+cap(CTITLE[g.id])+'<span>'+SYSOF[g.id]+'</span></div>'+
+        '<div class="caval">'+fr+'/'+tot+'</div></div><div class="bar"><i style="width:'+pctv+'%"></i></div></div>';
+    }).join('');
+  }
+
+  /* cascade log */
+  function renderLog(){
+    var rows=[], i;
+    for(i=STATE.step;i>=1&&rows.length<7;i--){
+      var popId=ORDER[i-1], pr=propOf(popId);
+      rows.push('<div class="logrow'+(i===STATE.step?' cur':'')+'"><span class="st">['+pad(i)+']</span>'+
+        '<span class="lx">pop <span class="nx">'+esc(NMAP[popId].l)+'</span>'+(pr?' → <span class="nx">'+esc(NMAP[pr].l)+'</span>':' · leaf')+'</span></div>');
+    }
+    $('logs').innerHTML=rows.join('');
+  }
+
+  /* propagation queue */
+  function renderQueue(c){
+    var items=[{id:c.pop,st:'firing'}]; c.queue.forEach(function(id){items.push({id:id,st:'queued'});});
+    $('q-sub').textContent=(c.queue.length+1)+' in flight';
+    $('qlist').innerHTML=items.map(function(it){
+      var n=NMAP[it.id], firing=it.st==='firing';
+      var badge=n.g?'<span class="gbadge" style="background:'+gradeColor(n.g)+'">'+n.g+'</span>':'';
+      return '<div class="qi"><div class="qt"><div class="ql">'+badge+'<div><div class="qn">'+esc(n.l)+(n.sub?' · '+esc(n.sub):'')+'</div>'+
+        '<div class="qc">'+CTITLE[n.c]+' · '+SYSOF[n.c]+'</div></div></div>'+
+        '<span class="qs '+it.st+'">'+(firing?'Firing':'Queued')+'</span></div>'+
+        (firing?'<div class="qbar"><i></i></div>':'')+'</div>';
+    }).join('');
+  }
+
+  /* system health */
+  var SYSTEMS=['Assimilation','Communication','Microbiome','Energy','Oxidation','Exhaust','Excretion'];
+  function renderHealth(c){
+    $('health').innerHTML=SYSTEMS.map(function(sy){
+      var ns=NODES.filter(function(n){return SYSOF[n.c]===sy;});
+      var blocked=ns.some(function(n){return c.uneval[n.id];});
+      var fired=ns.filter(function(n){return c.fired[n.id];}).length;
+      var st=blocked?'bad':'ok', lbl=blocked?'blocked':(fired?'mapped':'idle');
+      return '<div class="hrow"><span class="hn">'+sy+'<span>'+fired+'/'+ns.length+'</span></span>'+
+        '<span class="hs '+st+'"><i></i>'+lbl+'</span></div>';
+    }).join('');
+  }
+
+  $('legend').innerHTML='<h4>Key</h4>'+
+    '<div class="li"><span class="sw2" style="border-color:var(--amber)"></span>Mass / reaction flux</div>'+
+    '<div class="li"><span class="sw2" style="border-color:var(--sig);border-top-style:dashed"></span>Signal / regulation</div>'+
+    '<div class="li"><span class="sw2" style="border-color:var(--pink);border-top-style:dashed"></span>Disease path</div>'+
+    '<div class="li"><span class="shp"></span>Species &nbsp; <span class="shp rx" style="margin:0 4px"></span>Reaction &nbsp; <span class="shp po" style="margin-left:4px"></span>Pole</div>'+
+    '<div class="li"><span class="gd" style="background:var(--gradeA)">A</span><span class="gd" style="background:var(--gradeB)">B</span><span class="gd" style="background:var(--gradeC)">C</span>&nbsp;Evidence grade</div>';
+
+  /* ---- graph mode toggle ---- */
+  function renderMode(){
+    var opts=[{act:'gmode-cascade',label:'Cascade',on:STATE.gmode==='cascade'},{act:'gmode-absorption',label:'Absorption',on:STATE.gmode==='absorption'}];
+    $('gmode-seg').innerHTML=opts.map(function(o){return '<button data-act="'+o.act+'" class="'+(o.on?'on':'')+'">'+o.label+'</button>';}).join('');
+  }
+
+  /* ---- absorption net: nutrients broken down -> absorbed, with synergy(+)/antagonism(-) ----
+     each input carries a class (grp); group chips beside the column toggle each class on/off */
+  var ABS_IN=[
+    {id:'fat',l:'Fat',grps:['macro'],c1:'#eab06a',c2:'#d98c4a',rdi:0.9},
+    {id:'cho',l:'CHO',grps:['macro'],c1:'#e79aa8',c2:'#d97b8e',rdi:1.15},
+    {id:'n3', l:'n-3',grps:['macro'],c1:'#82abe2',c2:'#5f8fd0',rdi:0.85},
+    {id:'fib',l:'Fib',grps:['fiber'],c1:'#84c99b',c2:'#5fae7f',rdi:0.7},
+    {id:'vd', l:'D',  grps:['fatsol'],c1:'#e79a6a',c2:'#d97b52',rdi:0.6},
+    {id:'va', l:'A',  grps:['fatsol'],c1:'#e6c06a',c2:'#d9a84a',rdi:0.95},
+    {id:'vk', l:'K',  grps:['fatsol'],c1:'#8fd0a8',c2:'#63b487',rdi:0.8},
+    {id:'vc', l:'C',  grps:['watersol','cofactor'],c1:'#8fc9e6',c2:'#5fa8cf',rdi:1.05},
+    {id:'ca', l:'Ca', grps:['mineral','electrolyte'],c1:'#a2b2c6',c2:'#7f93ab',rdi:1.3},
+    {id:'mg', l:'Mg', grps:['mineral','electrolyte','cofactor'],c1:'#b0bdcc',c2:'#8b9bad',rdi:0.75},
+    {id:'fe', l:'Fe', grps:['trace','cofactor'],c1:'#d5aa7a',c2:'#b98a5a',rdi:0.5},
+    {id:'zn', l:'Zn', grps:['trace','cofactor'],c1:'#9d92e2',c2:'#7b6fd0',rdi:0.8},
+    {id:'cu', l:'Cu', grps:['trace','cofactor'],c1:'#d99a86',c2:'#c47a63',rdi:0.9}
+  ];
+  var ABS_MID=[{id:'h1',l:'Fat gate'},{id:'h2',l:'Phytate'},{id:'h3',l:'DMT1'}];
+  var ABS_OUT=[{id:'ofe',l:'Fe',sub:'absorbed'},{id:'oca',l:'Ca',sub:'absorbed'},{id:'ozn',l:'Zn',sub:'absorbed'},{id:'ovd',l:'Vit D',sub:'absorbed'},{id:'ocu',l:'Cu',sub:'absorbed'}];
+  var ABS_E=[
+    ['fat','h1',0.9],['n3','h1',0.4],['vd','h1',0.5],['va','h1',0.5],['vk','h1',0.5],
+    ['fib','h2',0.8],['ca','h3',0.7],['mg','h3',0.5],['fe','h3',0.4],['zn','h3',0.4],
+    ['h1','ovd',1.0],
+    ['h2','ozn',-0.7],['h2','ofe',-0.6],['h2','oca',-0.4],
+    ['h3','ofe',-0.7],['h3','ozn',-0.3],['h3','ocu',-0.5],
+    ['zn','ozn',0.6],['fe','ofe',0.5],['ca','oca',0.5],['cu','ocu',0.6],
+    ['vd','oca',0.5],['vc','ofe',0.6],['vc','ocu',-0.5]
+  ];
+  var ABS_GROUPS=[
+    {id:'macro',l:'Macros',col:'#e2a25a'},
+    {id:'fiber',l:'Fiber',col:'#6fbf90'},
+    {id:'fatsol',l:'Fat-sol vit',col:'#e08a5a'},
+    {id:'watersol',l:'Water-sol vit',col:'#6fb0d8'},
+    {id:'mineral',l:'Minerals',col:'#93a4ba'},
+    {id:'electrolyte',l:'Electrolytes',col:'#5cc8c0'},
+    {id:'trace',l:'Traces',col:'#9184db'},
+    {id:'cofactor',l:'Cofactor',col:'#d0a24e'}
+  ];
+  function absHalf(t){return t==='in'?26:(t==='mid'?39:34);}
+  function absSub(i){return i===0?'X':'X'+String.fromCharCode(0x2080+i+1);}
+  function renderAbsorption(){
+    var G=STATE.absGroups, sel=STATE.absSel, conn={};
+    if(sel){conn[sel]=1;ABS_E.forEach(function(e){if(e[0]===sel)conn[e[1]]=1;if(e[1]===sel)conn[e[0]]=1;});}
+    var vis=ABS_IN.filter(function(n){return n.grps.some(function(g){return G[g];});});
+    var pos={}, top=48, bot=556, n=vis.length;
+    vis.forEach(function(nn,i){pos[nn.id]={x:250,y:(n<2?(top+bot)/2:top+(bot-top)*i/(n-1)),type:'in'};});
+    ABS_MID.forEach(function(m,i){pos[m.id]={x:590,y:160+i*150,type:'mid'};});
+    ABS_OUT.forEach(function(o,i){pos[o.id]={x:952,y:90+i*100,type:'out'};});
+    var defs='<defs>';
+    ABS_IN.forEach(function(nn){defs+='<linearGradient id="ag-'+nn.id+'" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="'+nn.c1+'"/><stop offset="1" stop-color="'+nn.c2+'"/></linearGradient>';});
+    defs+='</defs>';
+    var edges='';
+    ABS_E.forEach(function(e){
+      var a=pos[e[0]],b=pos[e[1]];if(!a||!b)return;
+      var w=e[2],syn=w>0,x1=a.x+absHalf(a.type),y1=a.y,x2=b.x-absHalf(b.type),y2=b.y,mx=(x1+x2)/2;
+      var d='M '+x1+' '+y1+' C '+mx+' '+y1+', '+mx+' '+y2+', '+x2+' '+y2;
+      var hot=!sel||(conn[e[0]]&&conn[e[1]]&&(e[0]===sel||e[1]===sel));
+      var col=syn?'#4fd6a0':'#ff6b8a',wd=(0.8+Math.abs(w)*3).toFixed(1),op=hot?(0.3+Math.abs(w)*0.45):0.06;
+      edges+='<path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="'+wd+'" opacity="'+op.toFixed(2)+'" stroke-linecap="round"/>';
+      if(hot&&!RM) edges+='<path d="'+d+'" fill="none" stroke="'+(syn?'#a8f0d4':'#ffc7d3')+'" stroke-width="'+wd+'" stroke-dasharray="1.5 12" stroke-linecap="round" opacity="0.9"><animate attributeName="stroke-dashoffset" from="0" to="-27" dur="'+(syn?'1.0':'1.25')+'s" repeatCount="indefinite"/></path>';
+    });
+    var mids='';
+    ABS_MID.forEach(function(nn){var p=pos[nn.id],dim=sel&&!conn[nn.id];
+      mids+='<g opacity="'+(dim?'0.3':'1')+'"><rect x="'+(p.x-39)+'" y="'+(p.y-17)+'" width="78" height="34" rx="9" fill="var(--node-fill)" stroke="#7ea6d6" stroke-width="1.5"/>'+
+        '<text x="'+p.x+'" y="'+(p.y-1)+'" text-anchor="middle" font-size="10.5" font-family="var(--sans)" font-weight="600" fill="var(--ink-2)">'+nn.l+'</text>'+
+        '<text x="'+p.x+'" y="'+(p.y+11)+'" text-anchor="middle" font-size="7.5" font-family="var(--mono)" fill="var(--ink-4)">mechanism</text></g>';
+    });
+    var outs='';
+    ABS_OUT.forEach(function(nn){var p=pos[nn.id],dim=sel&&!conn[nn.id];
+      outs+='<g opacity="'+(dim?'0.3':'1')+'"><rect x="'+(p.x-34)+'" y="'+(p.y-22)+'" width="68" height="44" rx="10" fill="var(--node-fill)" stroke="var(--good)" stroke-width="1.6"/>'+
+        '<text x="'+p.x+'" y="'+(p.y-1)+'" text-anchor="middle" font-size="12" font-family="var(--sans)" font-weight="700" fill="var(--ink)">'+nn.l+'</text>'+
+        '<text x="'+p.x+'" y="'+(p.y+12)+'" text-anchor="middle" font-size="8" font-family="var(--mono)" fill="var(--ink-3)">'+nn.sub+'</text></g>';
+    });
+    var ins='';
+    vis.forEach(function(nn,i){var p=pos[nn.id],dim=sel&&!conn[nn.id],r=nn.rdi;
+      var band=r<0.7?'#e6a23c':(r>1.2?'#ff5a72':'#3ddc84'),dw=Math.min(r,1.4)/1.4*44;
+      ins+='<g class="absq" data-abs="'+nn.id+'" opacity="'+(dim?'0.32':'1')+'">'+
+        '<text x="'+(p.x-46)+'" y="'+(p.y+4)+'" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="var(--ink-3)">'+absSub(i)+'</text>'+
+        '<rect x="'+(p.x-26)+'" y="'+(p.y-19)+'" width="52" height="40" rx="9" fill="url(#ag-'+nn.id+')" stroke="'+(sel===nn.id?'#fff':'rgba(255,255,255,.25)')+'" stroke-width="'+(sel===nn.id?'2':'1')+'"/>'+
+        '<text x="'+p.x+'" y="'+(p.y-1)+'" text-anchor="middle" font-size="12.5" font-family="var(--sans)" font-weight="700" fill="#1a2230">'+nn.l+'</text>'+
+        '<rect x="'+(p.x-22)+'" y="'+(p.y+10)+'" width="44" height="3.5" rx="2" fill="rgba(18,28,42,.28)"/>'+
+        '<rect x="'+(p.x-22)+'" y="'+(p.y+10)+'" width="'+dw.toFixed(0)+'" height="3.5" rx="2" fill="'+band+'"/></g>';
+    });
+    var chips='<text x="99" y="40" text-anchor="middle" font-size="9" font-family="var(--sans)" letter-spacing=".12em" fill="var(--ink-3)">GROUPS</text>';
+    ABS_GROUPS.forEach(function(gp,i){var on=G[gp.id],y=54+i*40;
+      chips+='<g data-act="grp-'+gp.id+'" class="gtoggle" opacity="'+(on?'1':'0.55')+'">'+
+        '<rect x="24" y="'+y+'" width="150" height="32" rx="8" fill="rgba(12,20,34,.85)" stroke="'+(on?gp.col:'var(--border-2)')+'" stroke-width="'+(on?'1.5':'1')+'"/>'+
+        '<rect x="37" y="'+(y+11)+'" width="10" height="10" rx="2.5" fill="'+(on?gp.col:'transparent')+'" stroke="'+gp.col+'" stroke-width="1.4"/>'+
+        '<text x="57" y="'+(y+20)+'" font-size="10.5" font-family="var(--sans)" font-weight="600" fill="'+(on?'var(--ink)':'var(--ink-4)')+'">'+gp.l+'</text></g>';
+    });
+    var labels='<text x="250" y="30" text-anchor="middle" font-size="9" font-family="var(--sans)" letter-spacing=".14em" fill="var(--ink-3)">NUTRIENTS IN</text>'+
+      '<text x="590" y="30" text-anchor="middle" font-size="9" font-family="var(--sans)" letter-spacing=".14em" fill="var(--ink-3)">BREAKDOWN</text>'+
+      '<text x="952" y="30" text-anchor="middle" font-size="9" font-family="var(--sans)" letter-spacing=".14em" fill="var(--ink-3)">ABSORBED</text>';
+    var callout='<g transform="translate(300,506)"><rect width="446" height="74" rx="10" fill="rgba(12,20,34,.9)" stroke="var(--border)"/>'+
+      '<text x="14" y="20" font-size="10" font-family="var(--sans)" font-weight="700" fill="var(--ink-3)" letter-spacing=".1em">REAL INTERACTIONS &#183; from the graph store</text>'+
+      '<text x="14" y="38" font-size="10.5" font-family="var(--sans)" fill="#4fd6a0">Vit&#160;C: +Fe / &#8722;Cu &#8212; same meal, opposite sign</text>'+
+      '<text x="14" y="53" font-size="10.5" font-family="var(--sans)" fill="var(--ink-2)">DMT1 (SLC11A2): Fe&#183;Zn&#183;Mn&#183;Cu share one carrier</text>'+
+      '<text x="14" y="68" font-size="10.5" font-family="var(--sans)" fill="var(--ink-2)">Phytate &#8867; Zn&#183;Fe&#183;Ca &#183; fat gates D&#183;A&#183;K</text></g>';
+    var leg='<g transform="translate(762,516)"><rect width="250" height="54" rx="10" fill="rgba(12,20,34,.85)" stroke="var(--border)"/>'+
+      '<line x1="14" y1="19" x2="38" y2="19" stroke="#4fd6a0" stroke-width="2.5"/><text x="46" y="23" font-size="10" font-family="var(--sans)" fill="var(--ink-2)">enhances (+)</text>'+
+      '<line x1="138" y1="19" x2="162" y2="19" stroke="#ff6b8a" stroke-width="2.5"/><text x="170" y="23" font-size="10" font-family="var(--sans)" fill="var(--ink-2)">inhibits (&#8722;)</text>'+
+      '<rect x="14" y="34" width="24" height="5" rx="2" fill="#3ddc84"/><text x="46" y="42" font-size="9" font-family="var(--sans)" fill="var(--ink-3)">dose bar &#183; under / ok / excess</text></g>';
+    $('graph').innerHTML=defs+labels+chips+edges+mids+outs+ins+callout+leg;
+  }
+
+  /* ---- absorption bounds (parameterize gut edges; gate greys unverified priors) ---- */
+  // real bounds (kohlmeier2003_absorption_bounds.yaml) — certification + fact-check verdicts
+  var BOUNDS=[
+    {nut:'Zinc',frac:'0.70 @3mg',cert:'gate',sup:'CANNOT_VERIFY',conf:'MED',parent:'Lönnerdal 2000',doi:'10.1093/jn/130.5.1378S',flag:'70%/3 mg not in abstract — may be synthesis'},
+    {nut:'Copper',frac:'>0.50 low',cert:'gate',sup:'PARTIAL',conf:'HIGH',parent:'Wapnir 1998',doi:'10.1093/ajcn/67.5.1054S',flag:'MISMATCH — Wapnir headline 30–40%, needs dose qualifier'},
+    {nut:'Copper',frac:'<0.15 >6–7mg',cert:'gate',sup:'CANNOT_VERIFY',conf:'MED',parent:'Wapnir 1998',doi:'10.1093/ajcn/67.5.1054S',flag:'threshold value not in parent abstract'},
+    {nut:'Magnesium',frac:'0.30–0.60',cert:'gate',sup:'PARTIAL',conf:'HIGH',parent:'Sabatier 2002',doi:'10.1093/ajcn/75.1.65',flag:'SCOPE — mineral water, n=10 women, not food matrix'},
+    {nut:'Selenium',frac:'>0.90',cert:'gate',sup:'PARTIAL',conf:'HIGH',parent:'Vendeland 1992',doi:'10.1016/0955-2863(92)90028-H',flag:'SPECIES — rat ligated-loop, not a human figure'},
+    {nut:'Manganese',frac:'<0.02',cert:'gate',sup:'CANNOT_VERIFY',conf:'LOW',parent:null,doi:null,flag:'unsourced textbook assertion'},
+    {nut:'Chromium',frac:'0.005–0.02',cert:'gate',sup:'CANNOT_VERIFY',conf:'LOW',parent:null,doi:null,flag:'unsourced; picolinate-specific'},
+    {nut:'Fluoride',frac:'0.50',cert:'gate',sup:'CANNOT_VERIFY',conf:'LOW',parent:null,doi:null,flag:''},
+    {nut:'Nickel',frac:'0.01',cert:'gate',sup:'CANNOT_VERIFY',conf:'LOW',parent:null,doi:null,flag:''},
+    {nut:'Vanadium',frac:'0.01–0.05',cert:'gate',sup:'CANNOT_VERIFY',conf:'LOW',parent:null,doi:null,flag:''},
+    {nut:'Iodine',frac:'>0.90',cert:'gate',sup:'CANNOT_VERIFY',conf:'LOW',parent:null,doi:null,flag:''},
+    {nut:'Molybdenum',frac:'>0.90',cert:'gate',sup:'CANNOT_VERIFY',conf:'LOW',parent:null,doi:null,flag:'sulfate inhibits — see transporter edges'},
+    {nut:'Calcium',frac:'>0.40 young',cert:'rejected',sup:'CANNOT_VERIFY',conf:'NONE',parent:null,doi:null,flag:'REJECTED — high for adults; re-anchor IOM 2011'},
+    {nut:'Calcium',frac:'0.20 older',cert:'gate',sup:'CANNOT_VERIFY',conf:'LOW',parent:null,doi:null,flag:'value unsourced; age-direction uncontroversial'},
+    {nut:'Ascorbate (C)',frac:'0.75',cert:'gate',sup:'CANNOT_VERIFY',conf:'LOW',parent:null,doi:null,flag:'SATURABLE — monotonic scoring wrong above elbow'},
+    {nut:'Folate (synth)',frac:'0.85',cert:'gate',sup:'CANNOT_VERIFY',conf:'LOW',parent:null,doi:null,flag:'food folate ≈ half — distinct analyte'},
+    {nut:'Retinol',frac:'0.70–0.90',cert:'gate',sup:'CANNOT_VERIFY',conf:'LOW',parent:null,doi:null,flag:''},
+    {nut:'Provit-A carotenoids',frac:'<0.03',cert:'gate',sup:'CANNOT_VERIFY',conf:'LOW',parent:null,doi:null,flag:'fat-dependent — requires mixed micelles'},
+    {nut:'β-carotene cleavage',frac:'0.15',cert:'rejected',sup:'CANNOT_VERIFY',conf:'NONE',parent:null,doi:null,flag:'REJECTED — superseded by IOM 2001 RAE 12:1/24:1'},
+    {nut:'Vitamin K (greens)',frac:'<0.20',cert:'gate',sup:'CANNOT_VERIFY',conf:'LOW',parent:null,doi:null,flag:'matrix-dependent — needs form + matrix scoping'},
+    {nut:'Dietary fat',frac:'0.10–0.20',cert:'gate',sup:'CANNOT_VERIFY',conf:'MED',parent:'Carrière 1993',doi:'10.1016/0016-5085(93)90908-U',flag:'lipolysis-stage share; not in abstract — read full text'}
+  ];
+  function renderBounds(){
+    var bt=STATE.gate==='bound';
+    var cv={SUPPORTS:'good',PARTIAL:'warn',CANNOT_VERIFY:'muted',DOES_NOT_SUPPORT:'bad',CONTRADICTS:'bad',WRONG_SOURCE:'bad'};
+    var rej=BOUNDS.filter(function(b){return b.cert==='rejected';}).length;
+    $('bounds-sub').textContent=bt
+      ?('gate: bound · admissible 0/'+BOUNDS.length+' — all secondary (gate ceiling)')
+      :('gate: '+STATE.gate+' · '+(BOUNDS.length-rej)+' gate · '+rej+' rejected · 0 bound');
+    var head='<div class="brow head"><span>Analyte</span><span>Fraction</span><span>Cert</span><span>Support</span><span>Conf</span><span>Provenance</span></div>';
+    $('btable').innerHTML=head+BOUNDS.map(function(b){
+      var rejected=b.cert==='rejected', dim=bt&&!rejected;
+      var certc=rejected?'rej':(b.cert==='bound'?'ok':'gate');
+      var prov=b.doi?('<a href="https://doi.org/'+b.doi+'" target="_blank" rel="noopener">'+b.parent+' · '+b.doi+'</a>'):(b.parent?b.parent:'<span class="none">no named parent</span>');
+      var flag=b.flag?('<div class="bflag" title="'+esc(b.flag)+'">'+esc(b.flag)+'</div>'):'';
+      return '<div class="brow'+(dim?' dim':'')+'">'+
+        '<span class="bn">'+b.nut+flag+'</span>'+
+        '<span class="bf">'+b.frac+'</span>'+
+        '<span class="bcert '+certc+'">'+b.cert+'</span>'+
+        '<span class="bsup '+(cv[b.sup]||'muted')+'">'+b.sup.replace(/_/g,' ')+'</span>'+
+        '<span class="bconf">'+b.conf+'</span>'+
+        '<span class="bp">'+prov+'</span></div>';
+    }).join('');
+  }
+
+  /* ---- claim ⇄ mechanism resolver (ported from physiome.propagate) ----
+     a claim RUNS (path lights) only if its verb is a typed, LAW-backed mechanism;
+     marketing / soft verbs REFUSE at step 1 → nothing lights, the claim flushes. */
+  var CLAIMS=[
+    {id:'fiber_spike',text:'Fiber blunts the glucose spike',food:'Fiber / whole grains',driver:'fiber (non-digestible)',
+     verb:'blunts',verbClass:'bound_decrease',verdict:'Plausible',relation:'NARROWS_BOUND',grade:'B',
+     path:['stomach','fiber','fermentation'],
+     why:'<b>“blunts”</b> is a typed <code>bound_decrease</code> on a LAW-backed step. Fiber slows gastric emptying — it tightens the delivery-rate ceiling, so the mechanism runs and earns a real relation.',
+     note:'endpoint = slower glucose delivery (a flux bound), <b>not</b> a disease claim. Toggle <b>Fiber</b> in Food data and the gut path responds.'},
+    {id:'carbs_energy',text:'Carbs fuel your cells (→ ATP)',food:'Carbohydrate meal',driver:'glucose',
+     verb:'fuel',verbClass:'bound_increase',verdict:'Plausible',relation:'EXPANDS_BOUND',grade:'B',
+     path:['carbmeal','mouth','stomach','glucose_lumen','sglt1','glucose_portal','glucose_hepatic','glucokinase','g6p','pfk1','f16bp','pyruvate','pdh','acetyl_coa','krebs_etc','atp_energy'],
+     why:'typed as glucose → glycolysis → Krebs/ETC → ATP. Every hop is a LAW-backed reaction that <b>exists on this map</b>, so the mechanism walks end-to-end to the ATP node.',
+     note:'endpoint = <b>ATP</b> (cellular energy) — the real referent of “gives energy”. The one claim the map walks mouth-to-fuel.'},
+    {id:'oyster_test',text:'Oysters boost testosterone',food:'Oysters (zinc)',driver:'zinc',
+     verb:'boost',verbClass:'marketing',verdict:'REFUSE',relation:'MALFORMED_MECHANISM',grade:'—',path:[],
+     why:'<b>“boost”</b> is a marketing verb — no typed mechanism, no signed bound. The auditor <b>REFUSEs at step 1, before any food packet is read</b>.',
+     note:'even typed, zinc→testosterone is <b>deficiency-only</b>, and no steroidogenesis or gonad exists in the model. Nothing to draw — the claim flushes.'},
+    {id:'blueberry_cog',text:'Blueberries improve cognition',food:'Blueberries (anthocyanins)',driver:'anthocyanins',
+     verb:'improve',verbClass:'soft',verdict:'REFUSE',relation:'MALFORMED_MECHANISM',grade:'—',path:[],
+     why:'<b>“improve”</b> is a soft / associational verb → REFUSE. The corpus has this as a graded claim, but <b>no cognitive-outcome LAW</b> backs it.',
+     note:'no “Nervous” system in the register and no cognition endpoint on the map. Flushed.'},
+    {id:'zinc_sperm',text:'Zinc supports sperm count',food:'Zinc',driver:'zinc',
+     verb:'supports',verbClass:'soft',verdict:'REFUSE',relation:'MALFORMED_MECHANISM',grade:'—',path:[],
+     why:'<b>“supports”</b> is the archetypal hedged / associational verb → REFUSE.',
+     note:'zero reproductive law, zero gonad organ, zero pathway in the register. Flushed.'}
+  ];
+  var CLAIM_BY={}; CLAIMS.forEach(function(c){CLAIM_BY[c.id]=c;});
+  function renderClaim(){
+    var box=$('claimcard'); if(!box) return;
+    var c=STATE.claim?CLAIM_BY[STATE.claim]:null;
+    if(!c){ box.style.display='none'; box.innerHTML=''; return; }
+    box.style.display='';
+    var vcls=c.verdict==='Plausible'?'vp-plausible':(c.verdict==='UNEVALUABLE'?'vp-uneval':'vp-refuse');
+    var runs=c.path&&c.path.length>0, drawn=runs?c.path.filter(function(id){return NMAP[id];}).length:0;
+    var onmap=runs?('mechanism runs — '+drawn+' node'+(drawn===1?'':'s')+' lit'):'nothing to draw — flushed';
+    box.innerHTML=
+      '<div class="cc-claim">“'+esc(c.text)+'”</div>'+
+      '<div class="cc-verdict"><span class="vpill '+vcls+'">'+c.verdict+'</span><span class="cc-rel">'+c.relation+'</span><span class="cc-grade">grade '+c.grade+'</span></div>'+
+      '<dl class="ccdl"><dt>food</dt><dd>'+esc(c.food)+'</dd><dt>driver</dt><dd>'+esc(c.driver)+'</dd>'+
+      '<dt>verb → class</dt><dd>“'+esc(c.verb)+'” → '+esc(c.verbClass)+'</dd>'+
+      '<dt>on the map</dt><dd'+(runs?'':' class="warnc"')+'>'+onmap+'</dd></dl>'+
+      '<div class="cc-why">'+c.why+'</div><div class="cc-note">'+c.note+'</div>';
+  }
+
+  function renderAll(){
+    var c=cascade();
+    renderStats(c); renderGraph(c); renderFoot(c); renderConfig(); renderMode();
+    renderCompartments(c); renderLog(); renderQueue(c); renderHealth(c); renderBounds(); renderClaim();
+    return c;
+  }
+
+  /* interactions */
+  /* There is no play button: the cascade walks itself only when asked to
+     ("walk the whole cascade" in the Ask bar). Every manual step control stops it. */
+  var walkTimer=null;
+  function setStep(v){STATE.step=Math.max(1,Math.min(TOTAL,v|0)); renderAll();}
+  function stopWalk(){if(walkTimer){clearInterval(walkTimer);walkTimer=null;}}
+  function walk(){
+    stopWalk(); STATE.step=1; renderAll();
+    walkTimer=setInterval(function(){if(STATE.step>=TOTAL){stopWalk();return;} STATE.step++; renderAll();},900);
+  }
+  var ACT={
+    'view-graph':function(){STATE.view='graph';},'view-library':function(){STATE.view='library';},
+    'set-fed':function(){STATE.fed=true;},'set-fasted':function(){STATE.fed=false;},
+    'set-rested':function(){STATE.active=false;},'set-active':function(){STATE.active=true;},
+    'set-sensitive':function(){STATE.resistant=false;},'set-resistant':function(){STATE.resistant=true;},
+    'tg-glp1':function(){STATE.glp1=!STATE.glp1;},'tg-tier':function(){STATE.tier=!STATE.tier;},'tg-flow':function(){STATE.flow=!STATE.flow;},
+    'gmode-cascade':function(){STATE.gmode='cascade';},'gmode-absorption':function(){STATE.gmode='absorption';},
+    'gate-mechanism':function(){STATE.gate='mechanism';},'gate-human':function(){STATE.gate='human';},'gate-bound':function(){STATE.gate='bound';},
+    'grp-macro':function(){STATE.absGroups.macro=!STATE.absGroups.macro;},'grp-fiber':function(){STATE.absGroups.fiber=!STATE.absGroups.fiber;},
+    'grp-fatsol':function(){STATE.absGroups.fatsol=!STATE.absGroups.fatsol;},'grp-watersol':function(){STATE.absGroups.watersol=!STATE.absGroups.watersol;},
+    'grp-mineral':function(){STATE.absGroups.mineral=!STATE.absGroups.mineral;},'grp-electrolyte':function(){STATE.absGroups.electrolyte=!STATE.absGroups.electrolyte;},
+    'grp-trace':function(){STATE.absGroups.trace=!STATE.absGroups.trace;},'grp-cofactor':function(){STATE.absGroups.cofactor=!STATE.absGroups.cofactor;},
+    'tg-cof':function(){STATE.cof=!STATE.cof;},
+    'chip-fiber':function(){STATE.food.fiber=!STATE.food.fiber;},'chip-fat':function(){STATE.food.fat=!STATE.food.fat;},
+    'prev':function(){stopWalk();STATE.step=Math.max(1,STATE.step-1);},
+    'next':function(){stopWalk();STATE.step=Math.min(TOTAL,STATE.step+1);},
+    'reset':function(){stopWalk();STATE.step=1;},
+    'key':function(){$('legend').classList.toggle('show');return true;}
+  };
+  document.querySelector('#panel-cascade .app').addEventListener('click',function(ev){
+    var absEl=ev.target.closest('[data-abs]');
+    if(absEl){var a=absEl.getAttribute('data-abs');STATE.absSel=(STATE.absSel===a?null:a);renderGraph(cascade());renderFoot(cascade());return;}
+    var nodeEl=ev.target.closest('[data-node]');
+    if(nodeEl){STATE.sel=nodeEl.getAttribute('data-node'); renderGraph(cascade()); renderInspector(); return;}
+    var t=ev.target.closest('[data-act]'); if(!t) return;
+    var fn=ACT[t.getAttribute('data-act')]; if(!fn) return;
+    if(!fn()) renderAll();
+  });
+  $('range').addEventListener('input',function(e){stopWalk(); setStep(+e.target.value);});
+  document.querySelector('#panel-cascade .app').addEventListener('change',function(ev){
+    if(ev.target&&ev.target.id==='claimSel'){ STATE.claim=ev.target.value||null; STATE.ask=null; if(STATE.claim) STATE.gmode='cascade'; renderAll(); if(BAC.onManual) BAC.onManual(); }
+  });
+
+  /* ── Ask-bar entry points (the Ask block at the end of this file drives these) ── */
+  function fireStep(ids){var s=1;(ids||[]).forEach(function(id){var i=ORDER.indexOf(id);if(i+1>s)s=i+1;});return Math.min(TOTAL,s);}
+  BAC.cascade={
+    total:TOTAL,
+    nodes:NODES.map(function(n){return {id:n.id,l:n.l,sub:n.sub||'',w:n.w||'',c:CTITLE[n.c]||n.c,k:n.k};}),
+    neighbors:function(id){var out=[id];EDGES.forEach(function(e){if(e.from===id&&out.indexOf(e.to)<0)out.push(e.to);if(e.to===id&&out.indexOf(e.from)<0)out.push(e.from);});return out;},
+    apply:function(spec){
+      stopWalk();
+      if(spec.set){Object.keys(spec.set).forEach(function(k){
+        if(k==='food'){Object.keys(spec.set.food).forEach(function(f){STATE.food[f]=!!spec.set.food[f];});}
+        else STATE[k]=spec.set[k];
+      });}
+      STATE.claim=spec.claim||null;
+      STATE.ask={path:spec.path||null};
+      STATE.gmode=spec.gmode||'cascade';
+      STATE.absSel=spec.absSel||null;
+      if(spec.sel&&NMAP[spec.sel]) STATE.sel=spec.sel;
+      var ids=(spec.claim&&CLAIM_BY[spec.claim])?CLAIM_BY[spec.claim].path:spec.path;
+      if(spec.step) STATE.step=spec.step; else if(ids&&ids.length) STATE.step=fireStep(ids);
+      renderAll(); renderInspector();
+    },
+    clear:function(){stopWalk(); STATE.ask=null; STATE.claim=null; STATE.absSel=null; renderAll();},
+    walk:function(){STATE.ask=null; STATE.claim=null; STATE.gmode='cascade'; walk();}
+  };
+
+  renderAll(); renderInspector();
+})();
+
+
+/* ── Nutrient Function ── */
+
+(function(){
+  "use strict";
+  var BAC=window.BiologyAsCode;
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion:reduce)").matches;
+  var S="", ids=0;
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+  function rr(x,y,w,h,r,fill,stroke,sw){ return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="'+r+'" fill="'+(fill||"none")+'"'+(stroke?' stroke="'+stroke+'" stroke-width="'+(sw||1)+'"':'')+'/>'; }
+  function tx(x,y,s,o){ o=o||{}; return '<text x="'+x+'" y="'+y+'" font-family="'+(o.mono?'var(--mono)':'var(--sans)')+'" font-size="'+(o.fs||11)+'" font-weight="'+(o.fw||400)+'" fill="'+(o.fill||'var(--ink)')+'"'+(o.anchor?' text-anchor="'+o.anchor+'"':'')+(o.ls?' letter-spacing="'+o.ls+'"':'')+'>'+esc(s)+'</text>'; }
+  function pillW(t,fs){ return t.length*(fs*0.62)+22; }
+  // colored pill label
+  function pill(cx,cy,t,color,dark){ var fs=11,w=pillW(t,fs); var x=cx-w/2,y=cy-11;
+    return rr(x,y,w,22,11,color)+tx(cx,cy+4,t,{fs:fs,fw:700,fill:dark?'#08101a':'#fff',anchor:'middle',ls:'.02em'}); }
+  function chip(x,y,t,color){ var fs=11,w=t.length*(fs*0.62)+18,h=22;
+    var g=rr(x,y,w,h,7,'#0f1926',color,1.2)+tx(x+w/2,y+15,t,{fs:fs,fw:600,fill:'#cdd9ea',anchor:'middle'});
+    return {svg:g,w:w}; }
+  // cubic bezier point
+  function bez(p0,p1,p2,p3,t){ var u=1-t; return {
+    x:u*u*u*p0.x+3*u*u*t*p1.x+3*u*t*t*p2.x+t*t*t*p3.x,
+    y:u*u*u*p0.y+3*u*u*t*p1.y+3*u*t*t*p2.y+t*t*t*p3.y }; }
+
+  // ---------- data ----------
+  var FUN=[
+    {n:"1",flow:"Fuel the cell",   title:"Energy",           color:"#f0a83c",
+      desc:"carbon fuel + the B-vitamin spark plugs that burn it",
+      chips:["Glucose","Fat","B1","B2","B3","Mg"]},
+    {n:"2",flow:"Build & repair",  title:"Structure",        color:"#22d39a",
+      desc:"bone mineral · collagen cross-linking · the scaffold",
+      chips:["Ca","P","Vit D","Vit K","Vit C","Cu"]},
+    {n:"3",flow:"Carry oxygen",    title:"Oxygen & blood",   color:"#ff6b6b",
+      desc:"haem · red-cell synthesis · clotting",
+      chips:["Fe","B12","Folate","Cu","Vit K"]},
+    {n:"4",flow:"Run enzymes",     title:"Enzyme cofactors", color:"#8b7cf6",
+      desc:"metal ions & coenzymes at the active site (+ Mo, B6)",
+      chips:["Zn","Mg","Fe","Cu","Se","Mn"]},
+    {n:"5",flow:"Defend",          title:"Defense",          color:"#3ba0ff",
+      desc:"quench radicals · arm the immune response",
+      chips:["Vit C","Vit E","Se","Zn","Vit A","Cu"]},
+    {n:"6",flow:"Balance & signal",title:"Fluid & nerve",    color:"#2dd4bf",
+      desc:"membrane potential · hydration · nerve & muscle firing",
+      chips:["Na","K","Cl","Ca","Mg"]}
+  ];
+  var LEFT=["Macronutrients","Minerals","Vitamins","Electrolytes","Phytochemicals"];
+  var GOV=["Bounds","Evidence grades","Provenance","Gates","Interactions","Scoring guards"];
+
+  // ---------- geometry ----------
+  var PX=780, PW=462, PH=104, TOP=70, DY=114;
+  function panelTop(i){ return TOP+i*DY; }
+  function panelYc(i){ return panelTop(i)+PH/2; }
+  var HUB={x:372,y:262,w:210,h:140}; var HC={x:HUB.x+HUB.w/2,y:HUB.y+HUB.h/2}; // (477,332)
+  var HUBR={x:HUB.x+HUB.w,y:HC.y};
+
+  // ---------- title ----------
+  S+=tx(640,40,"Nutrient Function",{fs:27,fw:800,anchor:"middle",fill:"#f2f6fc"});
+  S+=rr(600,52,80,3,2,"#3ba0ff");
+  S+=tx(640,74,"what nutrients do — unpacked by the job they do",{fs:13,fill:"var(--muted)",anchor:"middle"});
+
+  // ---------- connectors hub -> panels ----------
+  var conns="";
+  FUN.forEach(function(f,i){
+    var p0=HUBR, p3={x:PX,y:panelYc(i)};
+    var p1={x:p0.x+130,y:p0.y}, p2={x:p3.x-170,y:p3.y};
+    var d="M"+p0.x+","+p0.y+" C"+p1.x+","+p1.y+" "+p2.x+","+p2.y+" "+p3.x+","+p3.y;
+    var pid="c"+i;
+    conns+='<g class="fgrp" data-fun="'+i+'">';
+    conns+='<path id="'+pid+'" d="'+d+'" fill="none" stroke="'+f.color+'" stroke-width="2" opacity="0.72"/>';
+    // dots along the curve
+    [0.3,0.62].forEach(function(t){ var pt=bez(p0,p1,p2,p3,t); conns+='<circle cx="'+pt.x.toFixed(1)+'" cy="'+pt.y.toFixed(1)+'" r="2.4" fill="'+f.color+'"/>'; });
+    if(!reduce) conns+='<circle class="flowdot" r="2.6" fill="#fff" opacity="0.9"><animateMotion dur="'+(2.8+i*0.25).toFixed(2)+'s" repeatCount="indefinite" begin="'+(-i*0.5).toFixed(2)+'s"><mpath href="#'+pid+'" xlink:href="#'+pid+'"/></animateMotion></circle>';
+    conns+='</g>';
+    // numbered flow pill at t=0.44
+    var wp=bez(p0,p1,p2,p3,0.44);
+    f._wp=wp;
+  });
+  S+=conns;
+
+  // ---------- left: what enters ----------
+  var Lx=46,Ly=250,Lw=186,Lh=182;
+  S+=rr(Lx,Ly,Lw,Lh,13,"var(--panel)","var(--line)",1);
+  S+=rr(Lx+Lw/2-52,Ly-11,104,22,11,"#141d2b","var(--line)",1)+tx(Lx+Lw/2,Ly+4,"What enters",{fs:11,fw:700,anchor:"middle",fill:"#cbd6e6"});
+  LEFT.forEach(function(t,i){ var ry=Ly+34+i*29;
+    S+=rr(Lx+13,ry,Lw-26,23,7,"#0f1926","var(--line-2)",1)+tx(Lx+24,ry+15,t,{fs:11.5,fill:"#c3cfe0"}); });
+
+  // left -> hub dotted (ingest & absorb)
+  S+='<path d="M'+(Lx+Lw)+','+(Ly+Lh/2)+' C'+(Lx+Lw+40)+','+(Ly+Lh/2)+' '+(HUB.x-40)+','+HC.y+' '+HUB.x+','+HC.y+'" fill="none" stroke="#ff6b6b" stroke-width="1.6" stroke-dasharray="2 5" opacity="0.6"/>';
+  var midX=(Lx+Lw+HUB.x)/2, midY=(Ly+Lh/2+HC.y)/2;
+  S+=rr(midX-13,midY-13,26,26,8,"#101a26","#ff6b6b",1.4)+tx(midX,midY+3.5,"⤵",{fs:12,anchor:"middle",fill:"#ff8a8a"});
+  S+=tx(midX,midY+26,"digest & absorb",{fs:9,mono:true,anchor:"middle",fill:"var(--muted)"});
+
+  // ---------- center hub ----------
+  S+=pill(HC.x,HUB.y-12,"Assimilation plane","#ff5a4d",false);
+  S+=rr(HUB.x,HUB.y,HUB.w,HUB.h,14,"var(--panel)","var(--line)",1);
+  S+=rr(HUB.x+16,HUB.y+16,32,32,9,"#141d2b","#3ba0ff",1.4);
+  S+=tx(HUB.x+32,HUB.y+37,"⌘",{fs:16,anchor:"middle",fill:"#79beff"});
+  S+=tx(HUB.x+58,HUB.y+30,"Gut gateway",{fs:14,fw:700,fill:"#eaf1fb"});
+  S+=tx(HUB.x+58,HUB.y+46,"one lumen · governed routing",{fs:10,mono:true,fill:"var(--muted)"});
+  S+=rr(HUB.x+16,HUB.y+62,HUB.w-32,1,0,"var(--line)");
+  S+=tx(HUB.x+16,HUB.y+82,"staged pipeline · every value",{fs:10.5,fill:"#b8c4d6"});
+  S+=tx(HUB.x+16,HUB.y+98,"carries a bound + a grade",{fs:10.5,fill:"#b8c4d6"});
+  S+=tx(HUB.x+16,HUB.y+118,"lumen → absorb → transport → tissue",{fs:9,mono:true,fill:"var(--faint)"});
+
+  // hub -> governance dotted
+  S+='<path d="M'+HC.x+','+(HUB.y+HUB.h)+' L'+HC.x+',454" fill="none" stroke="#ff5a4d" stroke-width="1.6" stroke-dasharray="2 5" opacity="0.6"/>';
+
+  // ---------- governance strip (FDP-1) ----------
+  var Gx=332,Gy=456,Gw=290,Gh=118;
+  S+=rr(Gx,Gy,Gw,Gh,13,"var(--panel)","rgba(255,90,77,.4)",1);
+  S+=pill(HC.x,Gy,"Governed by FDP-1","#ff5a4d",false);
+  var gcx=Gx+16, gcy=Gy+30, gcol=(Gw-32)/2;
+  GOV.forEach(function(t,i){ var col=i%2, row=(i-col)/2; var x=gcx+col*gcol, y=gcy+row*28;
+    S+=rr(x,y,gcol-8,22,7,"#0f1926","var(--line)",1)+tx(x+(gcol-8)/2,y+15,t,{fs:10.5,fw:600,anchor:"middle",fill:"#c9d4e5"}); });
+
+  // ---------- numbered flow pills (on the curves) ----------
+  FUN.forEach(function(f,i){ var wp=f._wp; var t=f.n+"  "+f.flow; var w=t.length*6.4+30; var x=wp.x-w/2,y=wp.y-13;
+    S+='<g class="fgrp" data-fun="'+i+'">';
+    S+=rr(x,y,w,26,13,"#0d1521","var(--line)",1);
+    S+='<circle cx="'+(x+15)+'" cy="'+(y+13)+'" r="9" fill="'+f.color+'"/>'+tx(x+15,y+17,f.n,{fs:11,fw:800,anchor:"middle",fill:"#08101a"});
+    S+=tx(x+29,y+17,f.flow,{fs:11,fw:600,fill:"#c7d3e4"});
+    S+='</g>';
+  });
+
+  // ---------- right: function panels ----------
+  FUN.forEach(function(f,i){ var y=panelTop(i);
+    S+='<g class="fgrp fpanel" data-fun="'+i+'">';
+    S+=rr(PX,y,PW,PH,13,"var(--panel)","var(--line)",1);
+    S+='<rect x="'+PX+'" y="'+y+'" width="4" height="'+PH+'" rx="2" fill="'+f.color+'" opacity="0.85"/>';
+    // header pill (title) + flow sub
+    var hp=f.title, hw=hp.length*6.9+22;
+    S+=rr(PX+18,y+14,hw,22,7,f.color)+tx(PX+18+hw/2,y+29,hp,{fs:11.5,fw:800,anchor:"middle",fill:"#08101a"});
+    S+=tx(PX+18+hw+12,y+29,"· "+f.flow,{fs:10.5,mono:true,fill:"var(--muted)"});
+    S+=tx(PX+18,y+50,f.desc,{fs:10.5,fill:"#aab7ca"});
+    // chips row
+    var cx=PX+18, cy=y+60;
+    f.chips.forEach(function(c){ var ch=chip(cx,cy,c,f.color); S+='<g class="fchip" data-nut="'+esc(c)+'">'+ch.svg+'</g>'; cx+=ch.w+7; });
+    S+='</g>';
+  });
+  S+=tx(PX+PW,TOP-14,"one nutrient, many jobs →",{fs:10,mono:true,anchor:"end",fill:"var(--faint)"});
+
+  // ---------- wordmark ----------
+  S+='<circle cx="52" cy="744" r="6" fill="none" stroke="#22d39a" stroke-width="2"/><circle cx="52" cy="738" r="2" fill="#3ba0ff"/>';
+  S+=tx(66,748,"BiologyAsCode",{fs:14,fw:700,fill:"#aeb9c9",ls:".02em"});
+  S+=tx(1234,748,"FDP-1 · function map",{fs:10,mono:true,anchor:"end",fill:"var(--faint)"});
+
+  document.getElementById("nutrient-map").innerHTML=S;
+
+  /* ── Ask-bar entry points ── */
+  function fnFocus(panels,nuts){
+    var svg=document.getElementById('nutrient-map'), hit={}, nl={};
+    (nuts||[]).forEach(function(n){nl[n]=1;});
+    (panels||[]).forEach(function(i){hit[i]=1;});
+    FUN.forEach(function(f,i){ if(f.chips.some(function(c){return nl[c];})) hit[i]=1; });
+    var any=Object.keys(hit).length>0;
+    Array.prototype.forEach.call(svg.querySelectorAll('.fgrp'),function(g){var i=+g.getAttribute('data-fun');g.classList.toggle('dim',any&&!hit[i]);g.classList.toggle('hit',!!hit[i]);});
+    Array.prototype.forEach.call(svg.querySelectorAll('.fchip'),function(g){g.classList.toggle('lit',!!nl[g.getAttribute('data-nut')]);});
+    return Object.keys(hit).map(Number).sort(function(a,b){return a-b;});
+  }
+  BAC.fn={
+    jobs:FUN.map(function(f,i){return {i:i,n:f.n,flow:f.flow,title:f.title,desc:f.desc,chips:f.chips.slice()};}),
+    focus:fnFocus,
+    clear:function(){fnFocus([],[]);}
+  };
+})();
+
+
+/* ── Macros & Fiber ── */
+
+(function(){
+  "use strict";
+  var BAC=window.BiologyAsCode;
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion:reduce)").matches;
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+  function rr(x,y,w,h,r,fill,stroke,sw){ return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" rx="'+r+'" fill="'+(fill||"none")+'"'+(stroke?' stroke="'+stroke+'" stroke-width="'+(sw||1)+'"':'')+'/>'; }
+  function tx(x,y,s,o){ o=o||{}; return '<text x="'+x+'" y="'+y+'" font-family="'+(o.mono?'var(--mono)':'var(--sans)')+'" font-size="'+(o.fs||11)+'" font-weight="'+(o.fw||400)+'" fill="'+(o.fill||'var(--ink)')+'"'+(o.anchor?' text-anchor="'+o.anchor+'"':'')+(o.ls?' letter-spacing="'+o.ls+'"':'')+'>'+esc(s)+'</text>'; }
+  function pill(cx,cy,t,color,dark){ var fs=11,w=t.length*(fs*0.62)+22; var x=cx-w/2,y=cy-11;
+    return rr(x,y,w,22,11,color)+tx(cx,cy+4,t,{fs:fs,fw:700,fill:dark?'#08101a':'#08101a',anchor:'middle',ls:'.02em'}); }
+  function chip(x,y,t,color){ var fs=11,w=t.length*(fs*0.6)+18,h=22;
+    return {svg:rr(x,y,w,h,7,'#0f1926',color,1.2)+tx(x+w/2,y+15,t,{fs:fs,fw:600,fill:'#cdd9ea',anchor:'middle'}),w:w}; }
+  function bez(p0,p1,p2,p3,t){ var u=1-t; return {
+    x:u*u*u*p0.x+3*u*u*t*p1.x+3*u*t*t*p2.x+t*t*t*p3.x,
+    y:u*u*u*p0.y+3*u*u*t*p1.y+3*u*t*t*p2.y+t*t*t*p3.y }; }
+
+  // ---------- data: 4 macros ----------
+  var MACROS={
+    carb:{ name:"Carbohydrate", color:"#f0a83c",
+      enters:["Starch","Sugars","Sucrose","Lactose","Fruit sugar"],
+      steps:["mouth · salivary amylase","gut · pancreatic amylase","brush-border · disaccharidases"],
+      unit:"→ Glucose · Fructose · Galactose",
+      absorb:"SGLT1 · GLUT2/5 → portal blood",
+      fates:[
+        {n:"1",flow:"Burn now",     title:"Energy",         desc:"glycolysis → Krebs / ETC → ATP",                chips:["Glycolysis","Pyruvate","Krebs","ATP"]},
+        {n:"2",flow:"Bank it",      title:"Glycogen store", desc:"liver + muscle · ~500 g ceiling",               chips:["G6P","Glycogen","Liver","Muscle"]},
+        {n:"3",flow:"Feed brain",   title:"Blood glucose",  desc:"~130 g/day obligatory for the CNS",             chips:["Portal","GLUT1","Ketone alt"]},
+        {n:"4",flow:"Overflow",     title:"→ Fat",          desc:"surplus → de-novo lipogenesis",                 chips:["Excess","DNL","Triglyceride"]},
+        {n:"5",flow:"Spare protein",title:"Anti-catabolic", desc:"carbs present → protein isn't burned for fuel", chips:["Protein-sparing"]}
+      ],
+      cap:"Carbohydrate — one absorbed unit (glucose), five fates. The <b>overflow → fat</b> edge and the <b>~500 g glycogen ceiling</b> are why more carbs isn't linearly more energy." },
+    protein:{ name:"Protein", color:"#22d39a",
+      enters:["Meat","Egg","Dairy","Legumes","Whey"],
+      steps:["stomach · pepsin (HCl)","gut · trypsin · chymotrypsin","brush-border · peptidases"],
+      unit:"→ Amino acids · di / tri-peptides",
+      absorb:"PepT1 · AA transporters → portal",
+      fates:[
+        {n:"1",flow:"Build",    title:"Tissue & muscle",   desc:"muscle protein synthesis · collagen",      chips:["Muscle","Collagen","MPS"]},
+        {n:"2",flow:"Machinery",title:"Enzymes & hormones",desc:"every enzyme · insulin · peptide hormones", chips:["Enzymes","Insulin","Hormones"]},
+        {n:"3",flow:"Defend",   title:"Immune",            desc:"antibodies + acute-phase proteins",        chips:["Antibodies","Acute-phase"]},
+        {n:"4",flow:"Fuel",     title:"Gluconeogenesis",   desc:"glucogenic AA → glucose · N → urea",        chips:["Alanine","→ Glucose","Urea"]},
+        {n:"5",flow:"Signal",   title:"Precursors",        desc:"amino acids → neurotransmitters",          chips:["Trp→5-HT","Tyr→DA"]}
+      ],
+      cap:"Protein — the only macro with a <b>structural</b> job. Nitrogen has no store: unused amino acids are deaminated, the carbon burned or stored, the <b>N excreted as urea</b>. Essential AAs must arrive from the meal." },
+    fat:{ name:"Fat", color:"#ff8a5b",
+      enters:["Triglycerides","Oils","Butter","Nuts","Phospholipids"],
+      steps:["stomach · gastric lipase","gut · pancreatic lipase + colipase","bile · mixed micelles"],
+      unit:"→ Free fatty acids + 2-monoglycerides",
+      absorb:"Micelle → enterocyte → chylomicron → lymph",
+      fates:[
+        {n:"1",flow:"Burn",       title:"Energy",          desc:"β-oxidation → ATP · 9 kcal/g, dense",  chips:["β-oxidation","Acetyl-CoA","Ketones"]},
+        {n:"2",flow:"Store",      title:"Adipose",         desc:"triglyceride reserve · the main tank", chips:["Adipocyte","Triglyceride"]},
+        {n:"3",flow:"Wrap cells", title:"Membranes",       desc:"phospholipid bilayer + cholesterol",   chips:["Bilayer","Cholesterol"]},
+        {n:"4",flow:"Signal",     title:"Eicosanoids",     desc:"from PUFA · inflammation control",      chips:["ω-3","ω-6","Eicosanoids"]},
+        {n:"5",flow:"Carry",      title:"Vitamin vehicle", desc:"fat-soluble A · D · E · K need fat",    chips:["Vit A","Vit D","Vit E","Vit K"]}
+      ],
+      cap:"Fat — absorbed the odd way out: <b>micelle → chylomicron → lymph</b>, not portal blood. It's the vehicle for A·D·E·K, so <b>no dietary fat → no fat-soluble uptake</b> (the L-FAT-1 precondition)." },
+    fiber:{ name:"Fiber", color:"#6fbf90",
+      enters:["Whole grains","Legumes","Vegetables","Fruit skins","Resistant starch"],
+      steps:["mouth → stomach → gut","human enzymes: none","→ passes to the colon"],
+      unit:"→ NOT absorbed (acts in the tube)",
+      absorb:"Only SCFA (from fermentation) reach the blood",
+      fates:[
+        {n:"1",flow:"Blunt spike", title:"Slow delivery",   desc:"slows gastric emptying → flatter glucose", chips:["Gastric ⊣","Spike ↓"]},
+        {n:"2",flow:"Bind & lower",title:"Bile & LDL",      desc:"binds bile acids → lowers cholesterol",    chips:["Bile binding","LDL ↓"]},
+        {n:"3",flow:"Feed microbes",title:"Prebiotic → SCFA",desc:"fermented to butyrate · colonocyte fuel",  chips:["Fermentation","Butyrate","Acetate"]},
+        {n:"4",flow:"Add bulk",    title:"Laxation",        desc:"insoluble fiber · transit + stool bulk",   chips:["Bulk","Transit","Stool"]},
+        {n:"5",flow:"Fill up",     title:"Satiety",         desc:"viscosity + distension → appetite ↓",      chips:["Fullness","Appetite ↓"]}
+      ],
+      cap:"Fiber — the one “nutrient” that works by <b>not being absorbed</b>. Its endpoints are <b>flux bounds in the tube</b> (emptying rate, bile binding, SCFA yield), never a systemic dose — which is exactly how the model types it." }
+  };
+  var ORDER=["carb","protein","fat","fiber"];
+  var GOV=["Bounds","Evidence grades","Provenance","Gates","Interactions","Scoring guards"];
+
+  // ---------- layout ----------
+  var PX=780, PW=462, PH=108, TOP=72, DY=120;
+  function pTop(i){return TOP+i*DY;} function pYc(i){return pTop(i)+PH/2;}
+  var HUB={x:372,y:252,w:210,h:162}; var HC={x:HUB.x+HUB.w/2,y:HUB.y+HUB.h/2}; var HUBR={x:HUB.x+HUB.w,y:HC.y};
+
+  function render(key){
+    var M=MACROS[key], C=M.color, S="";
+    // title
+    S+=tx(640,40,M.name+"  —  broken down & put to work",{fs:24,fw:800,anchor:"middle",fill:"#f2f6fc"});
+    S+=rr(596,52,88,3,2,C);
+    S+=tx(640,74,"how "+M.name.toLowerCase()+" is digested, and the jobs the pieces do",{fs:12.5,fill:"var(--muted)",anchor:"middle"});
+    S+=tx(PX+PW,TOP-14,"one macro, many fates →",{fs:10,mono:true,anchor:"end",fill:"var(--faint)"});
+
+    // connectors
+    var conns="";
+    M.fates.forEach(function(f,i){
+      var p0=HUBR,p3={x:PX,y:pYc(i)},p1={x:p0.x+130,y:p0.y},p2={x:p3.x-170,y:p3.y};
+      var d="M"+p0.x+","+p0.y+" C"+p1.x+","+p1.y+" "+p2.x+","+p2.y+" "+p3.x+","+p3.y;
+      var pid="mc"+i;
+      conns+='<g class="mgrp" data-fate="'+i+'">';
+      conns+='<path id="'+pid+'" d="'+d+'" fill="none" stroke="'+C+'" stroke-width="2" opacity="0.72"/>';
+      [0.32,0.64].forEach(function(t){var pt=bez(p0,p1,p2,p3,t);conns+='<circle cx="'+pt.x.toFixed(1)+'" cy="'+pt.y.toFixed(1)+'" r="2.4" fill="'+C+'"/>';});
+      if(!reduce) conns+='<circle class="flowdot" r="2.6" fill="#fff" opacity="0.9"><animateMotion dur="'+(2.8+i*0.25).toFixed(2)+'s" repeatCount="indefinite" begin="'+(-i*0.5).toFixed(2)+'s"><mpath href="#'+pid+'" xlink:href="#'+pid+'"/></animateMotion></circle>';
+      conns+='</g>';
+      f._wp=bez(p0,p1,p2,p3,0.44);
+    });
+    S+=conns;
+
+    // left: food forms
+    var Lx=46,Ly=246,Lw=186,Lh=182;
+    S+=rr(Lx,Ly,Lw,Lh,13,"var(--panel)","var(--line)",1);
+    S+=rr(Lx+Lw/2-48,Ly-11,96,22,11,"#141d2b","var(--line)",1)+tx(Lx+Lw/2,Ly+4,"Food forms",{fs:11,fw:700,anchor:"middle",fill:"#cbd6e6"});
+    M.enters.forEach(function(t,i){var ry=Ly+34+i*29;
+      S+=rr(Lx+13,ry,Lw-26,23,7,"#0f1926","var(--line-2)",1)+tx(Lx+24,ry+15,t,{fs:11.5,fill:"#c3cfe0"});});
+
+    // left -> hub dotted
+    S+='<path d="M'+(Lx+Lw)+','+(Ly+Lh/2)+' C'+(Lx+Lw+40)+','+(Ly+Lh/2)+' '+(HUB.x-40)+','+HC.y+' '+HUB.x+','+HC.y+'" fill="none" stroke="'+C+'" stroke-width="1.6" stroke-dasharray="2 5" opacity="0.55"/>';
+    var mX=(Lx+Lw+HUB.x)/2,mY=(Ly+Lh/2+HC.y)/2;
+    S+=rr(mX-13,mY-13,26,26,8,"#101a26",C,1.4)+tx(mX,mY+4,"⤵",{fs:12,anchor:"middle",fill:C});
+    S+=tx(mX,mY+26,"digest",{fs:9,mono:true,anchor:"middle",fill:"var(--muted)"});
+
+    // hub: broken down to
+    S+=pill(HC.x,HUB.y-12,M.name,C,true);
+    S+=rr(HUB.x,HUB.y,HUB.w,HUB.h,14,"var(--panel)","var(--line)",1);
+    S+=tx(HUB.x+16,HUB.y+26,"Broken down to",{fs:13,fw:700,fill:"#eaf1fb"});
+    M.steps.forEach(function(s,i){var yy=HUB.y+46+i*17;
+      S+='<circle cx="'+(HUB.x+22)+'" cy="'+(yy-3.5)+'" r="7" fill="none" stroke="'+C+'" stroke-width="1.3"/>'+tx(HUB.x+22,yy,String(i+1),{fs:9,fw:700,anchor:"middle",fill:C});
+      S+=tx(HUB.x+36,yy,s,{fs:9.5,mono:true,fill:"#aeb9cb"});});
+    S+=rr(HUB.x+16,HUB.y+102,HUB.w-32,1,0,"var(--line)");
+    S+=tx(HUB.x+16,HUB.y+122,M.unit,{fs:11,fw:700,fill:C});
+    S+=tx(HUB.x+16,HUB.y+140,M.absorb,{fs:9,mono:true,fill:"var(--faint)"});
+
+    // hub -> governance dotted
+    S+='<path d="M'+HC.x+','+(HUB.y+HUB.h)+' L'+HC.x+',454" fill="none" stroke="#ff5a4d" stroke-width="1.6" stroke-dasharray="2 5" opacity="0.55"/>';
+
+    // governance strip
+    var Gx=332,Gy=456,Gw=290,Gh=118;
+    S+=rr(Gx,Gy,Gw,Gh,13,"var(--panel)","rgba(255,90,77,.4)",1);
+    S+=pill(HC.x,Gy,"Governed by FDP-1","#ff5a4d",true);
+    var gcx=Gx+16,gcy=Gy+30,gcol=(Gw-32)/2;
+    GOV.forEach(function(t,i){var col=i%2,row=(i-col)/2,x=gcx+col*gcol,y=gcy+row*28;
+      S+=rr(x,y,gcol-8,22,7,"#0f1926","var(--line)",1)+tx(x+(gcol-8)/2,y+15,t,{fs:10.5,fw:600,anchor:"middle",fill:"#c9d4e5"});});
+
+    // numbered flow pills on curves
+    M.fates.forEach(function(f,i){var wp=f._wp,w=(f.n+"  "+f.flow).length*6.4+30,x=wp.x-w/2,y=wp.y-13;
+      S+='<g class="mgrp" data-fate="'+i+'">';
+      S+=rr(x,y,w,26,13,"#0d1521","var(--line)",1);
+      S+='<circle cx="'+(x+15)+'" cy="'+(y+13)+'" r="9" fill="'+C+'"/>'+tx(x+15,y+17,f.n,{fs:11,fw:800,anchor:"middle",fill:"#08101a"});
+      S+=tx(x+29,y+17,f.flow,{fs:11,fw:600,fill:"#c7d3e4"});
+      S+='</g>';});
+
+    // right: fate panels
+    M.fates.forEach(function(f,i){var y=pTop(i);
+      S+='<g class="mgrp mpanel" data-fate="'+i+'">';
+      S+=rr(PX,y,PW,PH,13,"var(--panel)","var(--line)",1);
+      S+='<rect x="'+PX+'" y="'+y+'" width="4" height="'+PH+'" rx="2" fill="'+C+'" opacity="0.85"/>';
+      var hw=f.title.length*6.9+22;
+      S+=rr(PX+18,y+15,hw,22,7,C)+tx(PX+18+hw/2,y+30,f.title,{fs:11.5,fw:800,anchor:"middle",fill:"#08101a"});
+      S+=tx(PX+18+hw+12,y+30,"· "+f.flow,{fs:10.5,mono:true,fill:"var(--muted)"});
+      S+=tx(PX+18,y+52,f.desc,{fs:10.5,fill:"#aab7ca"});
+      var cx=PX+18,cy=y+64;
+      f.chips.forEach(function(c){var ch=chip(cx,cy,c,C);S+=ch.svg;cx+=ch.w+7;});
+      S+='</g>';
+    });
+
+    // wordmark
+    S+='<circle cx="52" cy="672" r="6" fill="none" stroke="#22d39a" stroke-width="2"/><circle cx="52" cy="666" r="2" fill="#3ba0ff"/>';
+    S+=tx(66,676,"BiologyAsCode",{fs:14,fw:700,fill:"#aeb9c9",ls:".02em"});
+    S+=tx(1234,676,"FDP-1 · macro map",{fs:10,mono:true,anchor:"end",fill:"var(--faint)"});
+
+    document.getElementById("macros-map").innerHTML=S;
+    document.getElementById("macros-cap").innerHTML=M.cap;
+    applyFocus();
+    // toggle active states
+    ORDER.forEach(function(k){var b=document.getElementById("tg-"+k);
+      if(k===key){ b.className="on"; b.style.background=MACROS[k].color; b.style.borderColor=MACROS[k].color; }
+      else { b.className=""; b.style.background=""; b.style.borderColor=""; }
+    });
+  }
+
+  // build toggle
+  var tg=document.getElementById("macros-toggle");
+  tg.innerHTML="";
+  ORDER.forEach(function(k){var b=document.createElement("button");b.id="tg-"+k;b.type="button";
+    b.textContent=MACROS[k].name;b.addEventListener("click",function(){focus(null);render(k);if(BAC.onManual)BAC.onManual();});tg.appendChild(b);});
+
+  /* ── Ask-bar entry points ── */
+  var FOCUS=null; /* {fates:[i], hub:bool} while a question is showing */
+  function applyFocus(){
+    var svg=document.getElementById('macros-map'), hit={}, on=!!FOCUS;
+    if(FOCUS) FOCUS.fates.forEach(function(i){hit[i]=1;});
+    Array.prototype.forEach.call(svg.querySelectorAll('.mgrp'),function(g){var i=+g.getAttribute('data-fate');g.classList.toggle('dim',on&&!hit[i]);g.classList.toggle('hit',on&&!!hit[i]);});
+  }
+  function focus(spec){FOCUS=(spec&&(spec.hub||(spec.fates&&spec.fates.length)))?{fates:spec.fates||[],hub:!!spec.hub}:null;applyFocus();}
+  BAC.macros={
+    keys:ORDER.slice(),
+    names:ORDER.map(function(k){return MACROS[k].name;}),
+    fates:function(k){return MACROS[k].fates.map(function(f){return {n:f.n,flow:f.flow,title:f.title,desc:f.desc};});},
+    show:function(key,spec){render(key);focus(spec);},
+    clear:function(){focus(null);}
+  };
+  render("carb");
+})();
+
+/* ── Ask the map ──
+   A question picks the part of the map to show. There is no backend: the question is
+   scored against a curated list of intents (each names a view and what to light), then
+   against the nutrient chips of the Function view, then against the cascade's own nodes.
+   No match → the map is left exactly as it was and the strip says so. */
+
+(function(){
+  "use strict";
+  var BAC=window.BiologyAsCode;
+  function $(id){return document.getElementById(id);}
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+  function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+  var VIEW={cascade:'01 · Metabolic Cascade',function:'02 · Nutrient Function',macros:'03 · Macros & Fiber'};
+  var VNUM={cascade:'01',function:'02',macros:'03'};
+  var MISS='Nothing on this map answers that. It covers one carb meal and one fat meal from mouth to mitochondria, six nutrient jobs, and four macro breakdowns — try a suggestion below.';
+
+  /* ---- text normalisation: lowercase, ascii, light stemming, space-padded ---- */
+  function stem(w){
+    if(w.length>4&&/ies$/.test(w)) return w.slice(0,-3)+'y';
+    if(w.length>3&&/[^s]s$/.test(w)) return w.slice(0,-1);
+    return w;
+  }
+  function norm(s){
+    s=String(s).toLowerCase().replace(/₂/g,'2').replace(/β/g,'beta').replace(/ω/g,'omega').replace(/[’']/g,'');
+    var toks=s.replace(/[^a-z0-9]+/g,' ').trim().split(' ').filter(Boolean).map(stem);
+    return ' '+toks.join(' ')+' ';
+  }
+  /* a phrase hit is worth more the longer the phrase; an intent's bonus only breaks ties */
+  function score(nq,it){
+    var s=0,i,ph,seen={};
+    for(i=0;i<it.kw.length;i++){
+      ph=norm(it.kw[i]); if(!ph.trim()||seen[ph]) continue; seen[ph]=1;
+      if(nq.indexOf(ph)>=0) s+=ph.trim().split(' ').length*2+1;
+    }
+    return s?s+(it.bonus||0):0;
+  }
+
+  /* ---- curated intents: v = view, spec = what to light there, a = the one-line answer.
+     Answers only say what the map itself draws; nothing is claimed that is not on it. ---- */
+  var DIGEST=['digest','digested','digestion','digesting','broken down','break down','breakdown','broken'];
+  var CURATED=[
+    /* ── 01 · cascade ── */
+    {id:'walk',v:'cascade',sug:1,q:'Walk the whole cascade step by step',
+     kw:['walk','play','animate','animation','run the cascade','step by step','whole cascade','from the beginning','start over','all steps','show everything','show me everything'],
+     spec:{walk:true},
+     a:function(){return 'Walking all <b>'+BAC.cascade.total+' steps</b> of the propagator, carb meal to kidneys. Use ⟨ ⟩ or the slider to stop on a step; click any node to inspect it.';}},
+    {id:'fiber_path',v:'cascade',sug:1,q:'What happens to fiber?',
+     kw:['fiber','fibre','whole grain','whole grains','bran','roughage','what happens to fiber','scfa','short chain'],
+     spec:{set:{food:{fiber:true}},path:['stomach','fiber','fermentation','scfa','feces','glucose_hepatic'],sel:'fermentation'},
+     a:'Fiber is not digested by human enzymes — it passes the gut and the <b>colon microbiome ferments it</b>. Short-chain fatty acids return to the liver as fuel; the residue leaves as waste.'},
+    {id:'fiber_spike',v:'cascade',q:'Does fiber blunt the glucose spike?',
+     kw:['spike','blunt','blunts','glucose spike','sugar spike','flatten','slow glucose','slows glucose','glycemic','glycaemic'],
+     spec:{claim:'fiber_spike',set:{food:{fiber:true}},sel:'fiber'},
+     a:'Audited as a claim: <b>“blunts” is a typed bound_decrease</b> on a LAW-backed step (fiber slows gastric emptying), so the mechanism runs. Verdict <b>Plausible · NARROWS_BOUND</b> — a flux bound, not a disease claim.'},
+    {id:'carbs_energy',v:'cascade',sug:1,q:'Do carbs really give you energy?',
+     kw:['energy','fuel','atp','carbs fuel','give energy','gives energy','give you energy','gives you energy','fuel your cells','cellular energy'],
+     spec:{claim:'carbs_energy',sel:'atp_energy'},
+     a:'The one claim the map walks mouth-to-fuel: <b>glucose → glycolysis → Krebs/ETC → ATP</b>, every hop a LAW-backed reaction that exists on this map. Verdict <b>Plausible · EXPANDS_BOUND</b>.'},
+    {id:'oyster_test',v:'cascade',sug:1,q:'Do oysters boost testosterone?',
+     kw:['oyster','oysters','testosterone','boost','boosts','libido'],
+     spec:{claim:'oyster_test'},
+     a:'<b>REFUSE</b> — “boost” is a marketing verb with no typed mechanism and no signed bound, and no gonad or steroidogenesis exists on this map. <b>Nothing lights</b>; the claim flushes before any food packet is read.'},
+    {id:'blueberry_cog',v:'cascade',q:'Do blueberries improve cognition?',
+     kw:['blueberry','blueberries','cognition','cognitive','memory','anthocyanin','anthocyanins'],
+     spec:{claim:'blueberry_cog'},
+     a:'<b>REFUSE</b> — “improve” is a soft, associational verb and no cognitive-outcome LAW backs it. No Nervous system in the register, no cognition endpoint on the map. Flushed.'},
+    {id:'zinc_sperm',v:'cascade',q:'Does zinc support sperm count?',
+     kw:['sperm','fertility','zinc support','zinc supports','reproductive'],
+     spec:{claim:'zinc_sperm'},
+     a:'<b>REFUSE</b> — “supports” is the archetypal hedged verb. Zero reproductive law, zero gonad organ, zero pathway in the register. Flushed.'},
+    {id:'glucose_absorb',v:'cascade',q:'How is glucose absorbed?',
+     kw:['glucose absorbed','absorb glucose','glucose absorption','sugar absorbed','how is glucose','sglt1','cotransporter','into the blood','gut wall','epithelium','uptake'],
+     spec:{path:['stomach','glucose_lumen','sglt1','glucose_portal','glucose_hepatic'],sel:'sglt1'},
+     a:'Free glucose in the lumen is pulled across the epithelium by <b>SGLT1</b>, the sodium-glucose cotransporter, into the portal vein and on to the liver. That edge carries a <i>prior</i> bound — set the query gate to Bound and it greys out as unverified.'},
+    {id:'liver',v:'cascade',q:'What does the liver do with glucose?',
+     kw:['liver','hepatic','hepatocyte','glucokinase','g6p','glucose 6 phosphate','glycogen','bank','banked','storage','store glucose','stored'],
+     spec:{path:['glucose_portal','glucose_hepatic','glucokinase','g6p','glycogen_hepatic','pfk1','f16bp','pyruvate'],sel:'g6p'},
+     a:'<b>Glucokinase traps glucose as G6P</b> inside the hepatocyte. G6P is the branch point: in the fed state it is banked as liver glycogen, otherwise PFK-1 commits it to glycolysis toward pyruvate.'},
+    {id:'fasted',v:'cascade',sug:1,q:'What changes when I’m fasted?',
+     kw:['fasted','fasting','fast','skip breakfast','skipping breakfast','between meals','glucagon','hungry','hunger','overnight','no food','not eating'],
+     spec:{set:{fed:false},path:['glucagon','glycogen_hepatic','glucose_hepatic','glucokinase','g6p','pfk1','f16bp','pyruvate'],sel:'glucagon'},
+     a:'Fasted flips the signals: the meal edge goes dark, <b>α-cell glucagon fires</b>, and liver glycogen is mobilised back into the hepatic glucose pool. The fed-only edges — insulin → GLUT4, insulin → glucokinase, G6P → glycogen — switch off.'},
+    {id:'insulin',v:'cascade',q:'What does insulin do here?',
+     kw:['insulin','beta cell','β cell','fed state','after a meal','after eating','postprandial'],
+     spec:{set:{fed:true},path:['glucose_lumen','glp1','glucose_portal','insulin','glut4','glucokinase'],sel:'insulin'},
+     a:'Portal glucose and gut GLP-1 both signal the β-cell. <b>Insulin is the fed-state uptake signal</b>: it recruits GLUT4 in muscle and pushes hepatic glucokinase. Turn GLP-1 evidence off and the incretin arm disappears.'},
+    {id:'glp1',v:'cascade',q:'How does GLP-1 prime insulin?',
+     kw:['glp 1','glp1','l cell','l cells','incretin','incretins'],
+     spec:{set:{glp1:true},path:['glucose_lumen','glp1','insulin'],sel:'glp1'},
+     a:'Lumen glucose triggers <b>L-cells to secrete GLP-1</b>, which primes β-cell insulin release ahead of the portal signal. The arm is drawn only while GLP-1 evidence is on.'},
+    {id:'exercise_resist',v:'cascade',sug:1,q:'Why does exercise still lower glucose with insulin resistance?',
+     kw:['exercise','exercising','contraction','contract','ampk','insulin resistance','insulin resistant','resistant','workout','training','muscle glucose','glut4','type 2','prediabetes','prediabetic'],
+     spec:{set:{active:true,resistant:true},path:['ampk','glut4','glucose_portal','glycolysis_atp','glycogen_store'],sel:'glut4'},
+     a:'<b>GLUT4 has two independent recruiters</b>: insulin (PI3K/Akt) and contraction (AMPK / Ca²⁺ / Rac1). Insulin resistance weakens the first and leaves the second intact — the insulin → GLUT4 edge draws thin, the contraction edge stays solid.'},
+    {id:'hyperglycemia',v:'cascade',q:'Where does hyperglycemia come from?',
+     kw:['hyperglycemia','hyperglycaemia','high blood sugar','blood sugar','blood glucose','diabetes','diabetic','disease','disease pole'],
+     spec:{set:{resistant:true},path:['glucose_portal','glucose_hepatic','hyperglycemia'],sel:'hyperglycemia'},
+     a:'The disease pole: with insulin resistance the hepatic glucose pool fails to normalise and the dashed <b>disease edge to Hyperglycemia</b> becomes reachable. Set insulin to Sensitive and the edge switches off.'},
+    {id:'fat',v:'cascade',q:'What happens to fat I eat?',
+     kw:['fat','fats','fatty acid','fatty acids','lipid','lipids','oil','oils','butter','beta ox','beta oxidation','ketone','ketones','carnitine','chylomicron','chylomicrons','what happens to fat','eat fat','fat i eat'],
+     spec:{set:{food:{fat:true},fed:true,active:true},path:['fatmeal','stomach','ffa_lumen','ffa_muscle','beta_ox','acetyl_coa','krebs_etc'],sel:'ffa_lumen'},
+     a:'Fat runs its own lane: long-chain fatty acids ride <b>mixed micelles</b> (the same vehicle as vitamins A, D, E, K), reach muscle by lymph rather than the portal vein, and <b>β-oxidation</b> chops them into acetyl-CoA for the Krebs cycle — long chains only with the carnitine shuttle.'},
+    {id:'mito',v:'cascade',q:'How does the mitochondrion make ATP?',
+     kw:['mitochondria','mitochondrion','mitochondrial','krebs','citric acid','tca','electron transport','oxidation','oxidative','oxidise','oxidize','make atp','makes atp','pdh','pyruvate dehydrogenase','acetyl coa','acetyl','respiration'],
+     spec:{path:['pyruvate','pdh','acetyl_coa','krebs_etc','atp_energy','co2','h2o'],sel:'krebs_etc'},
+     a:'Pyruvate crosses the <b>PDH gate</b> to acetyl-CoA; the Krebs cycle and electron transport chain oxidise it, and <b>ATP, CO₂ and metabolic water</b> come out. Krebs/ETC is a lump — one box standing in for dozens of reactions.'},
+    {id:'bvit_cofactors',v:'cascade',q:'Which B vitamins does burning glucose need?',
+     kw:['b vitamin','b vitamins','vitamin b','b complex','cofactor','cofactors','coenzyme','coenzymes','spark plug','spark plugs','nad','fad','tpp','lipoamide','pantothenate','active site'],
+     spec:{set:{cof:true},path:['glucokinase','pfk1','glycolysis_atp','pdh','krebs_etc','beta_ox'],sel:'pdh'},
+     a:'Cyan <b>cofactor badges</b> mark where a vitamin or mineral sits at the active site: Mg²⁺ at glucokinase and PFK-1, NAD⁺ (niacin) at GAPDH, and <b>five coenzymes on PDH alone</b> — thiamin, riboflavin, niacin, pantothenate, lipoamide. Krebs/ETC adds iron and copper.'},
+    {id:'pfk1',v:'cascade',q:'What is the rate-limiting step of glycolysis?',
+     kw:['rate limiting','committed step','pfk','pfk 1','pfk1','phosphofructokinase','glycolysis','allosteric','f1 6bp','fructose 1 6','bottleneck','throttle'],
+     spec:{path:['g6p','pfk1','f16bp','pyruvate','atp_mod'],sel:'pfk1'},
+     a:'<b>PFK-1 — phosphofructokinase</b> — is the committed, rate-limiting step. ATP feeds back as an allosteric inhibitor (the ATP modifier node), so glycolysis throttles itself when energy is plentiful.'},
+    {id:'co2',v:'cascade',q:'Where does the CO₂ I breathe out come from?',
+     kw:['co2','carbon dioxide','breath','breathe','breathe out','exhale','exhaled','lungs','lung','carbon'],
+     spec:{path:['krebs_etc','co2','co2_exhaled'],sel:'co2_exhaled'},
+     a:'Carbon dioxide is a terminal product of <b>Krebs/ETC oxidation</b>; it leaves the mitochondrion and exits on the breath. The carbon you exhale was the meal’s carbon.'},
+    {id:'kidneys',v:'cascade',q:'What do the kidneys get?',
+     kw:['kidney','kidneys','renal','water','h2o','urine','excretion','excrete','pee'],
+     spec:{path:['krebs_etc','h2o','kidneys'],sel:'kidneys'},
+     a:'<b>Metabolic water</b> from oxidation is routed to the kidneys, which clear water and solutes. On this map the kidneys are a sink — zero reactions modelled.'},
+    {id:'absorption_ironC',v:'cascade',sug:1,q:'Does vitamin C help iron absorption?',
+     kw:['iron absorption','absorb iron','absorbing iron','vitamin c','vit c','ascorbate','ascorbic','heme','haem','non heme','dmt1','enhance absorption','enhances absorption','together','pair','pairing','synergy','synergies'],
+     spec:{gmode:'absorption',absSel:'vc'},
+     a:'In the absorption net <b>vitamin C enhances iron uptake (+) but inhibits copper (−)</b> in the same meal — opposite signs from one nutrient. Fe, Zn, Mn and Cu all share the DMT1 carrier.'},
+    {id:'absorption_zinc',v:'cascade',q:'What blocks zinc absorption?',
+     kw:['phytate','phytic','block','blocks','blocked','inhibit','inhibits','zinc absorption','absorb zinc','absorbing zinc','antinutrient','antinutrients','anti nutrient','compete','competes','competition','legume','legumes'],
+     spec:{gmode:'absorption',absSel:'zn'},
+     a:'<b>Phytate</b> binds zinc, iron and calcium in the lumen (−), and zinc competes with iron, manganese and copper for the <b>DMT1 carrier</b>. Each signed edge is drawn; click a nutrient square to trace it.'},
+    {id:'absorption_fatsol',v:'cascade',q:'Why do vitamins A, D, E, K need fat?',
+     kw:['fat soluble','fat gate','need fat','needs fat','without fat','no fat','a d e k','adek','micelle','micelles','vitamin d absorption','vitamin a absorption','vitamin k absorption','vitamin e absorption','absorb vitamin d','low fat'],
+     spec:{gmode:'absorption',absSel:'fat'},
+     a:'Fat-soluble vitamins ride the <b>mixed micelle</b> with dietary fat — no fat, no fat gate, no uptake. That is the L-FAT-1 precondition the absorption net draws as the <b>Fat gate</b> mechanism.'},
+    {id:'absorption_verified',v:'cascade',q:'Which absorption values are actually verified?',
+     kw:['verified','verify','verification','bound','bounds','provenance','evidence','gate','certified','certification','kohlmeier','doi','how sure','confidence','trust','trustworthy','citation','citations','source','sources','reliable','textbook'],
+     spec:{set:{gate:'bound'},gmode:'cascade',path:['glucose_lumen','sglt1','glucose_portal'],sel:'sglt1'},
+     a:'<b>None yet.</b> Every absorption bound in the table under the map sits at the gate ceiling — secondary sources, several CANNOT VERIFY, two rejected. With the query gate on Bound, admissible bounds are 0 and the SGLT1 prior greys out.'},
+    {id:'carb_path',v:'cascade',q:'What happens to a carb meal?',bonus:0.5,
+     kw:['carb','carbs','carbohydrate','carbohydrates','carb meal','starch','bread','rice','pasta','sugar','sugars','glucose','what happens to carbs','eat carbs','meal'],
+     spec:{set:{fed:true},path:['carbmeal','mouth','stomach','glucose_lumen','sglt1','glucose_portal','glucose_hepatic','glucokinase','g6p','glycogen_hepatic','pfk1','f16bp','pyruvate','pdh','acetyl_coa','krebs_etc','atp_energy','co2','h2o'],sel:'glucose_portal'},
+     a:'Mouth and stomach break the bolus down, <b>SGLT1</b> pulls free glucose into the portal vein, the liver traps it as G6P, and from there it is either banked as glycogen or burned through glycolysis, PDH and Krebs/ETC to <b>ATP, CO₂ and water</b>.'},
+
+    /* ── 02 · nutrient function ── */
+    {id:'fn_fuel',v:'function',q:'What fuels the cell?',
+     kw:['fuel the cell','fuels the cell','burn','burns','burning','job 1','first job'],
+     spec:{panels:[0]},
+     a:'<b>Job 1 · Fuel the cell</b> — carbon fuel plus the B-vitamin spark plugs that burn it: Glucose, Fat, B1, B2, B3, Mg. The cascade view walks this one reaction by reaction.'},
+    {id:'fn_bone',v:'function',q:'What builds bone and collagen?',
+     kw:['bone','bones','collagen','structure','structural','scaffold','skeleton','skeletal','build','builds','repair','repairs','teeth','osteoporosis'],
+     spec:{panels:[1]},
+     a:'<b>Job 2 · Build &amp; repair</b> — bone mineral, collagen cross-linking, the scaffold: Ca, P, Vit D, Vit K, Vit C, Cu.'},
+    {id:'fn_oxygen',v:'function',sug:1,q:'Which nutrients carry oxygen?',
+     kw:['oxygen','carry oxygen','carries oxygen','blood','haem','heme','hemoglobin','haemoglobin','red cell','red cells','red blood','anemia','anaemia','anemic','clotting','clot','clots','bleeding'],
+     spec:{panels:[2]},
+     a:'<b>Job 3 · Carry oxygen</b> — haem, red-cell synthesis and clotting: Fe, B12, Folate, Cu, Vit K.'},
+    {id:'fn_enzymes',v:'function',q:'Which minerals run enzymes?',
+     kw:['enzyme','enzymes','run enzymes','runs enzymes','metalloenzyme','catalyst','catalyse','catalyze','catalysis','metal ion','metal ions'],
+     spec:{panels:[3]},
+     a:'<b>Job 4 · Run enzymes</b> — metal ions and coenzymes at the active site: Zn, Mg, Fe, Cu, Se, Mn (plus Mo and B6).'},
+    {id:'fn_defend',v:'function',q:'What defends against radicals and infection?',
+     kw:['defend','defends','defense','defence','immune','immunity','antioxidant','antioxidants','radical','radicals','free radical','infection','infections','oxidative stress','cold','colds','sick'],
+     spec:{panels:[4]},
+     a:'<b>Job 5 · Defend</b> — quench radicals, arm the immune response: Vit C, Vit E, Se, Zn, Vit A, Cu.'},
+    {id:'fn_fluid',v:'function',q:'Which electrolytes run nerves and muscles?',
+     kw:['electrolyte','electrolytes','nerve','nerves','hydration','hydrate','fluid','fluids','membrane potential','cramp','cramps','signal','signalling','signaling','sodium','potassium','chloride','salt','firing'],
+     spec:{panels:[5]},
+     a:'<b>Job 6 · Balance &amp; signal</b> — membrane potential, hydration, nerve and muscle firing: Na, K, Cl, Ca, Mg.'},
+    {id:'fn_multi',v:'function',sug:1,q:'Which nutrients do several jobs?',
+     kw:['several jobs','many jobs','multi','multiple','more than one','most jobs','versatile','overlap','overlapping','multi membership','one nutrient many jobs','busiest'],
+     spec:function(){return {nuts:multiNuts()};},
+     a:function(){var m=multiNuts(true);return '<b>One nutrient, many jobs.</b> '+m.map(function(x){return '<b>'+esc(x.chip)+'</b> ×'+x.n;}).join(' · ')+' — every lit chip sits in more than one panel; panels with none are dimmed.';}},
+    {id:'fn_enters',v:'function',q:'What enters the body, and through what?',
+     kw:['what enters','enters','entering','intake','what goes in','goes in','assimilation plane','gut gateway','gateway','governed','phytochemical','phytochemicals','classes','five classes'],
+     spec:{panels:[]},
+     a:'Five classes enter — <b>macronutrients, minerals, vitamins, electrolytes, phytochemicals</b> — through one governed gut gateway: lumen → absorb → transport → tissue, every value carrying a bound and a grade under FDP-1.'},
+
+    /* ── 03 · macros & fiber ── */
+    {id:'m_carb',v:'macros',q:'How is carbohydrate broken down?',
+     kw:DIGEST.concat(['carbohydrate','carbohydrates','carb','carbs','amylase','disaccharidase','disaccharidases','starch','lactose','sucrose','fructose','galactose','maltose']),
+     spec:{key:'carb',hub:true},
+     a:'Carbohydrate is cut by <b>salivary amylase, pancreatic amylase and the brush-border disaccharidases</b> to glucose, fructose and galactose, then absorbed by SGLT1 and GLUT2/5 into portal blood — one absorbed unit, five fates.'},
+    {id:'m_carb_overflow',v:'macros',sug:1,q:'What happens to excess carbs?',
+     kw:['excess','surplus','excess carbs','too many carbs','too much sugar','extra carbs','overflow','de novo','lipogenesis','turn to fat','turns to fat','turn into fat','stored as fat','become fat','glycogen ceiling','500 g','ceiling'],
+     spec:{key:'carb',fates:[1,3]},
+     a:'Glycogen banks about <b>500 g across liver and muscle</b>; past that ceiling surplus glucose overflows into <b>de-novo lipogenesis</b> — which is why more carbs is not linearly more energy.'},
+    {id:'m_brain',v:'macros',q:'How much glucose does the brain need?',
+     kw:['brain','brain need','brain needs','feed brain','feed the brain','cns','central nervous','nervous system','130 g','obligatory','glucose does the brain','brain glucose'],
+     spec:{key:'carb',fates:[2]},
+     a:'<b>Fate 3 · Feed brain</b> — about 130 g/day of glucose is obligatory for the central nervous system, delivered from the portal pool via GLUT1; ketones are the fasting alternative.'},
+    {id:'m_protein',v:'macros',q:'How is protein digested?',
+     kw:DIGEST.concat(['protein','proteins','amino','amino acid','amino acids','pepsin','trypsin','chymotrypsin','peptide','peptides','peptidase','pept1','whey','meat','egg','eggs']),
+     spec:{key:'protein',hub:true},
+     a:'<b>Pepsin</b> in the stomach, then <b>trypsin and chymotrypsin</b>, then brush-border peptidases cut protein to amino acids and di/tri-peptides, absorbed by PepT1 and amino-acid transporters into the portal vein.'},
+    {id:'m_protein_n',v:'macros',q:'Where does unused protein go?',
+     kw:['urea','nitrogen','unused protein','extra protein','excess protein','too much protein','protein store','gluconeogenesis','deaminate','deaminated','deamination','protein to glucose'],
+     spec:{key:'protein',fates:[3]},
+     a:'<b>Nitrogen has no store</b>: unused amino acids are deaminated, the carbon is burned or stored, and the nitrogen leaves as <b>urea</b>. Glucogenic amino acids can become glucose.'},
+    {id:'m_fat',v:'macros',sug:1,q:'How is fat digested?',
+     kw:DIGEST.concat(['fat','fats','lipase','colipase','bile','bile salts','micelle','micelles','triglyceride','triglycerides','chylomicron','chylomicrons','lymph','monoglyceride']),
+     spec:{key:'fat',hub:true},
+     a:'Gastric then pancreatic <b>lipase</b> with colipase, bile-salt <b>mixed micelles</b>, free fatty acids and 2-monoglycerides — absorbed the odd way out: micelle → enterocyte → <b>chylomicron → lymph</b>, not portal blood.'},
+    {id:'m_membranes',v:'macros',q:'What does fat do besides store energy?',
+     kw:['membrane','membranes','bilayer','cholesterol membrane','eicosanoid','eicosanoids','omega 3','omega 6','n 3','pufa','inflammation','adipose','adipocyte','besides','other than energy'],
+     spec:{key:'fat',fates:[1,2,3,4]},
+     a:'Beyond fuel, fat is the <b>adipose reserve</b>, the <b>phospholipid bilayer</b> of every membrane, the PUFA source for <b>eicosanoid signalling</b>, and the <b>vehicle for vitamins A, D, E, K</b>.'},
+    {id:'m_fiber',v:'macros',q:'Why isn’t fiber absorbed?',
+     kw:['not absorbed','isnt absorbed','fiber absorbed','fibre absorbed','fiber digested','fibre digested','digest fiber','satiety','satiating','full','fullness','filling','appetite','laxation','stool','bulk','transit','constipation','constipated','regular','butyrate','prebiotic','microbiome','microbes','gut bacteria'],
+     spec:{key:'fiber',hub:true},
+     a:'Fiber works by <b>not being absorbed</b>: no human enzyme cuts it, so its endpoints are flux bounds in the tube — slower gastric emptying, bile-acid binding, SCFA yield, bulk, satiety. Only fermentation products reach the blood.'},
+    {id:'m_fiber_ldl',v:'macros',q:'Does fiber lower cholesterol?',
+     kw:['cholesterol','ldl','bile acid','bile acids','bind bile','binds bile','lower cholesterol','lowers cholesterol','heart','cardiovascular','lipids down'],
+     spec:{key:'fiber',fates:[1]},
+     a:'<b>Fate 2 · Bind &amp; lower</b> — fiber binds bile acids in the tube and <b>LDL falls</b>. Typed as a flux bound in the gut, never a systemic dose.'}
+  ];
+
+  /* ---- nutrient chips of the Function view become intents of their own ---- */
+  var SYN={
+    Glucose:['glucose'],Fat:['fat','fats'],
+    B1:['b1','thiamin','thiamine'],B2:['b2','riboflavin'],B3:['b3','niacin','nicotinamide'],B12:['b12','cobalamin'],Folate:['folate','folic acid','folic','b9'],
+    Mg:['magnesium'],Ca:['ca','calcium'],P:['phosphorus','phosphate','phosphorous'],Fe:['fe','iron'],Zn:['zn','zinc'],Cu:['cu','copper'],Se:['selenium'],Mn:['mn','manganese'],
+    Na:['na','sodium'],K:['potassium'],Cl:['cl','chloride'],
+    'Vit A':['vit a','vitamin a','retinol','carotene','beta carotene'],'Vit C':['vit c','vitamin c','ascorbate','ascorbic acid'],'Vit D':['vit d','vitamin d','cholecalciferol','d3'],
+    'Vit E':['vit e','vitamin e','tocopherol'],'Vit K':['vit k','vitamin k','phylloquinone','k2']
+  };
+  var NAME={Glucose:'glucose',Fat:'fat',B1:'thiamin (B1)',B2:'riboflavin (B2)',B3:'niacin (B3)',B12:'vitamin B12',Folate:'folate',Mg:'magnesium',Ca:'calcium',P:'phosphorus',Fe:'iron',Zn:'zinc',Cu:'copper',Se:'selenium',Mn:'manganese',Na:'sodium',K:'potassium',Cl:'chloride','Vit A':'vitamin A','Vit C':'vitamin C','Vit D':'vitamin D','Vit E':'vitamin E','Vit K':'vitamin K'};
+  var NUTS=Object.keys(SYN).map(function(chip){
+    return {id:'nut:'+chip,v:'function',q:'What does '+NAME[chip]+' do?',kw:SYN[chip],bonus:0.5,
+      spec:{nuts:[chip]},a:function(){return nutAnswer(chip);}};
+  });
+  function nutAnswer(chip){
+    var jobs=BAC.fn.jobs.filter(function(j){return j.chips.indexOf(chip)>=0;});
+    if(!jobs.length) return '<b>'+esc(cap(NAME[chip]))+'</b> is not on the function map.';
+    return '<b>'+esc(cap(NAME[chip]))+'</b> ('+esc(chip)+') does <b>'+jobs.length+' job'+(jobs.length>1?'s':'')+'</b> on this map: '+
+      jobs.map(function(j){return '<b>'+j.n+' · '+esc(j.flow)+'</b> <i>('+esc(j.desc)+')</i>';}).join(' · ')+'.';
+  }
+  function multiNuts(withCounts){
+    var cnt={};BAC.fn.jobs.forEach(function(j){j.chips.forEach(function(c){cnt[c]=(cnt[c]||0)+1;});});
+    var m=Object.keys(cnt).filter(function(c){return cnt[c]>1;}).sort(function(a,b){return cnt[b]-cnt[a]||a.localeCompare(b);});
+    return withCounts?m.map(function(c){return {chip:c,n:cnt[c]};}):m;
+  }
+
+  /* ---- last resort: the cascade's own nodes, lit with their immediate neighbours ---- */
+  function nodeIntent(n){
+    return {id:'node:'+n.id,v:'cascade',q:n.l+(n.sub?' · '+n.sub:''),kw:[],
+      spec:{sel:n.id,path:BAC.cascade.neighbors(n.id)},
+      a:'<b>'+esc(n.l)+(n.sub?' · '+esc(n.sub):'')+'</b> <i>('+esc(n.c)+')</i> — '+esc(n.w||(n.l+' is a '+n.k+' on this map.'))+' Lit with its immediate neighbours.'};
+  }
+  var ALL=CURATED.concat(NUTS);
+  function byId(id){var i;for(i=0;i<ALL.length;i++){if(ALL[i].id===id)return ALL[i];}return null;}
+  function resolve(q){
+    var nq=norm(q),best=null,bs=0,i,n,nodes,keys;
+    ALL.forEach(function(it){var s=score(nq,it);if(s>bs){bs=s;best=it;}});
+    if(best) return best;
+    nodes=BAC.cascade.nodes;
+    for(i=0;i<nodes.length;i++){n=nodes[i];keys=[n.l,n.id.replace(/_/g,' ')];
+      if(keys.some(function(k){var ph=norm(k);return ph.trim().length>2&&nq.indexOf(ph)>=0;})) return nodeIntent(n);
+    }
+    return null;
+  }
+
+  /* ---- the bar ---- */
+  var expanded=false, activeId=null;
+  function chipHtml(it){return '<button type="button" data-ask="'+esc(it.id)+'"'+(it.id===activeId?' class="on"':'')+'>'+esc(it.q)+'<span class="v">'+VNUM[it.v]+'</span></button>';}
+  function renderSug(filter){
+    var box=$('askSug'),list,nq,extra='',hidden;
+    if(filter){
+      nq=norm(filter);
+      list=ALL.map(function(it){return {it:it,s:score(nq,it)};}).filter(function(x){return x.s>0;})
+        .sort(function(a,b){return b.s-a.s;}).slice(0,8).map(function(x){return x.it;});
+      if(!list.length){box.innerHTML='<span class="sug-k">No suggestion matches — press Enter to ask anyway</span>';return;}
+      box.innerHTML='<span class="sug-k">Related</span>'+list.map(chipHtml).join('');
+      return;
+    }
+    list=expanded?CURATED:CURATED.filter(function(it){return it.sug;});
+    hidden=CURATED.length-list.length;
+    if(hidden>0) extra='<button type="button" class="more" data-more="1">+ '+hidden+' more</button>';
+    else if(expanded) extra='<button type="button" class="more" data-more="0">fewer</button>';
+    box.innerHTML='<span class="sug-k">Try</span>'+list.map(chipHtml).join('')+extra;
+  }
+  function showAns(it,html){
+    var box=$('askAns');box.hidden=false;box.classList.toggle('miss',!it);
+    box.innerHTML='<span class="aa-tag">'+(it?('→ '+esc(VIEW[it.v])):'no match')+'</span>'+
+      '<span class="aa-t">'+(it?html:MISS)+'</span>'+
+      '<button type="button" class="aa-x" id="askX">clear ×</button>';
+  }
+  function hideAns(){var box=$('askAns');box.hidden=true;box.innerHTML='';box.classList.remove('miss');}
+  function setUrl(q){try{history.replaceState(null,'',location.pathname+(q?('?ask='+encodeURIComponent(q)):'')+location.hash);}catch(e){}}
+  function clearViews(){BAC.cascade.clear();BAC.fn.clear();BAC.macros.clear();}
+  function syncClear(){$('askClear').hidden=!($('askIn').value||activeId);}
+  function apply(it){
+    var spec=typeof it.spec==='function'?it.spec():it.spec;
+    clearViews();
+    if(it.v==='cascade'){if(spec.walk)BAC.cascade.walk();else BAC.cascade.apply(spec);}
+    else if(it.v==='function'){BAC.fn.focus(spec.panels||[],spec.nuts||[]);}
+    else if(it.v==='macros'){BAC.macros.show(spec.key,spec);}
+    BAC.showTab(it.v);
+  }
+  function ask(q){
+    q=String(q||'').trim();if(!q)return null;
+    var it=resolve(q);
+    $('askIn').value=q;
+    if(!it){activeId=null;showAns(null,'');renderSug(q);syncClear();return null;}
+    activeId=it.id;
+    apply(it);
+    showAns(it,typeof it.a==='function'?it.a():it.a);
+    renderSug(q);syncClear();setUrl(q);
+    return it.id;
+  }
+  function clearAll(){activeId=null;$('askIn').value='';hideAns();clearViews();renderSug('');syncClear();setUrl('');}
+  /* a manual override inside a view (claim picker, macro toggle) ends the question but keeps the view as the user set it */
+  BAC.onManual=function(){activeId=null;hideAns();renderSug($('askIn').value.trim());syncClear();setUrl('');};
+  BAC.ask=ask; BAC.resolve=function(q){var it=resolve(q);return it?it.id:null;}; BAC.intents=CURATED.map(function(it){return {id:it.id,q:it.q,v:it.v};});
+
+  $('askForm').addEventListener('submit',function(ev){ev.preventDefault();ask($('askIn').value);});
+  $('askIn').addEventListener('input',function(){renderSug(this.value.trim());syncClear();});
+  $('askIn').addEventListener('keydown',function(ev){if(ev.key==='Escape'){clearAll();this.blur();}});
+  $('askClear').addEventListener('click',clearAll);
+  $('askAns').addEventListener('click',function(ev){if(ev.target.closest('#askX'))clearAll();});
+  $('askSug').addEventListener('click',function(ev){
+    var m=ev.target.closest('[data-more]');if(m){expanded=m.getAttribute('data-more')==='1';renderSug('');return;}
+    var b=ev.target.closest('[data-ask]');if(!b)return;
+    var it=byId(b.getAttribute('data-ask'));if(it)ask(it.q);
+  });
+  renderSug('');
+  var q0=null;try{q0=new URLSearchParams(location.search).get('ask');}catch(e){}
+  if(q0)ask(q0);
+})();
+
+</script>
+</body>
+</html>

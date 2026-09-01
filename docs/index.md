@@ -4,7 +4,7 @@
 
 Public companion site — **not the full book**.
 
-[Constitution (short)](constitution.md) · [Cookbook](cookbook/index.md) · [Schemas](https://github.com/murffious/biology_as_code/tree/main/schemas) · [Example foods](https://github.com/murffious/biology_as_code/tree/main/examples/foods) · [GitHub](https://github.com/murffious/biology_as_code)
+[Constitution (short)](constitution.md) · [Nutrition map (interactive)](nutrition-map/index.html) · [Cookbook](cookbook/index.md) · [Schemas](https://github.com/murffious/biology_as_code/tree/main/schemas) · [Example foods](https://github.com/murffious/biology_as_code/tree/main/examples/foods) · [GitHub](https://github.com/murffious/biology_as_code)
 
 ---
 

@@ -3,8 +3,10 @@
 > where it disagrees with those files or with FDP-1, they win (this is Tier E in
 > nutri-collective's rigor tiers: never cite directly). The SLI weights quoted below are the
 > illustrative placeholder the README describes, not a fitted or product value. The image links
-> point at screenshots kept in this folder; the spec it names is `../docs/nutrition_ontology_spec.md`,
-> of which this folder's `nutrition_ontology_spec.md` is an earlier, shorter draft.
+> point at screenshots kept in this folder. The spec it names is `../docs/nutrition_ontology_spec.md`;
+> this folder's `nutrition_ontology_spec.md` is an earlier, shorter draft of it, and the revision
+> that actually makes BodySystem an interface with the three implementers described below has
+> not yet been merged into either copy.
 
 `BodySystem` is the interface. Digestive, endocrine, and renal are the models. Need and System Load Index both call those models; they do not live as stored properties.
 
