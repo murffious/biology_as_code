@@ -1,6 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/murffious/biology_as_code/schemas/HostState.v2.schema.json",
+  "licence": {
+    "spdx": "Apache-2.0",
+    "copyright": "Copyright 2026 Paul Murff (Morf Engineering Inc.)",
+    "url": "https://www.apache.org/licenses/LICENSE-2.0",
+    "scope": "Original authored schema/spec of the biology_as_code project. Underlying scientific facts are not claimed; third-party data is inventoried in THIRD-PARTY-DATA.json."
+  },
   "title": "HostState v2",
   "description": "Host state in five strata, each field carrying four mandatory facets. v1 was a good flat fast-state/context layer and remains valid; v2 groups the same properties by rate of change and annotates each with where it reaches the engine (x-binding_site), how fast it moves (x-clock), how deep in the stack it sits (x-tier T0-T4) and how well established it is (x-evidence_state). Genome enters only as ModifierBinding instances under constants.genome. post_surgical selects an ExoticCompartment rather than scaling a default organ. Every non-null x-binding_site is checked by tools/resolve_bindings.py in CI.",
   "type": "object",

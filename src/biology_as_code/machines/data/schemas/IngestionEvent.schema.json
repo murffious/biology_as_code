@@ -1,6 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://nutricollective.local/machines/schemas/IngestionEvent.schema.json",
+  "licence": {
+    "spdx": "Apache-2.0",
+    "copyright": "Copyright 2026 Paul Murff (Morf Engineering Inc.)",
+    "url": "https://www.apache.org/licenses/LICENSE-2.0",
+    "scope": "Original authored schema/spec of the biology_as_code project. Underlying scientific facts are not claimed; third-party data is inventoried in THIRD-PARTY-DATA.json."
+  },
   "title": "IngestionEvent",
   "description": "L3 how food enters the mouth — chew time, order/sequence, pace. Extends Python IngestionContext with explicit sequence[]. Not host; not static plate composition (PacketLoad).",
   "type": "object",

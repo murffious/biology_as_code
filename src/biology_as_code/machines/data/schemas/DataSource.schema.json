@@ -1,6 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://nutricollective.local/machines/schemas/DataSource.schema.json",
+  "licence": {
+    "spdx": "Apache-2.0",
+    "copyright": "Copyright 2026 Paul Murff (Morf Engineering Inc.)",
+    "url": "https://www.apache.org/licenses/LICENSE-2.0",
+    "scope": "Original authored schema/spec of the biology_as_code project. Underlying scientific facts are not claimed; third-party data is inventoried in THIRD-PARTY-DATA.json."
+  },
   "title": "DataSource",
   "description": "Provenance for one connected (or declared) input stream. Aligns with book Part 0.6 data-sourcing map: maturity MATURE|EMERGING|RESEARCH|MANUAL. Example providers are perishable — prefer category. Not clinical software.",
   "type": "object",

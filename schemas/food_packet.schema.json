@@ -1,6 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/murffious/biology_as_code/schemas/food_packet.schema.json",
+  "licence": {
+    "spdx": "LicenseRef-BAC-Samples-Attribution",
+    "copyright": "Copyright 2026 Paul Murff (Morf Engineering Inc.)",
+    "terms": "LICENSE-SAMPLES.md \u2014 free reuse with attribution to the repository and the book",
+    "scope": "Original authored schema of the biology_as_code project. Underlying scientific facts are not claimed."
+  },
   "title": "FoodPacket",
   "description": "Typed food packet for Biology as Code companion examples. Teaching shape \u2014 not a full product ontology.",
   "type": "object",

@@ -1,6 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://nutricollective.local/machines/schemas/MedicationProfile.schema.json",
+  "licence": {
+    "spdx": "Apache-2.0",
+    "copyright": "Copyright 2026 Paul Murff (Morf Engineering Inc.)",
+    "url": "https://www.apache.org/licenses/LICENSE-2.0",
+    "scope": "Original authored schema/spec of the biology_as_code project. Underlying scientific facts are not claimed; third-party data is inventoried in THIRD-PARTY-DATA.json."
+  },
   "title": "MedicationProfile",
   "description": "Host L4 medications — structured self-report / pharmacy import. Delivery/route uses delivery-modality.catalog.json (same as supplements/hormones). Prefer HostExogenousProfile for unified lists. NOT CDSS. GLP-1 RA first ready class.",
   "type": "object",

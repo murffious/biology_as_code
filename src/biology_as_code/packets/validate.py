@@ -83,6 +83,13 @@ class _Ctx:
 # in the document as unsupported.
 _NAME_MAPS = frozenset({"properties", "$defs", "definitions", "patternProperties"})
 
+# Annotation subtrees: document metadata riding inside the artefact, not
+# validation vocabulary. The licence block (stamped 2026-09-01 across schemas
+# and law data — see NOTICE) is prose; its keys are never keywords and its
+# subtree is not walked. JSON Schema itself treats unknown keywords as
+# annotations; this names the one we ship deliberately.
+_ANNOTATION_SUBTREES = frozenset({"licence"})
+
 
 def unsupported_keywords(schema: dict[str, Any]) -> list[str]:
     """Keywords present in ``schema`` that this validator does not check."""
@@ -91,6 +98,8 @@ def unsupported_keywords(schema: dict[str, Any]) -> list[str]:
     def walk(node: Any) -> None:
         if isinstance(node, dict):
             for key, value in node.items():
+                if key in _ANNOTATION_SUBTREES:
+                    continue
                 if key in _NAME_MAPS:
                     # Skip the names; still inspect each subschema.
                     if isinstance(value, dict):

@@ -1,4 +1,10 @@
 {
+    "licence": {
+        "spdx": "Apache-2.0",
+        "copyright": "Copyright 2026 Paul Murff (Morf Engineering Inc.)",
+        "url": "https://www.apache.org/licenses/LICENSE-2.0",
+        "scope": "Original authored schema/spec of the biology_as_code project. Underlying scientific facts are not claimed; third-party data is inventoried in THIRD-PARTY-DATA.json."
+    },
   "schema": "bac.DigestRun/v1",
   "id": "example.salad_with_oil",
   "process_id": "process.full-digest",

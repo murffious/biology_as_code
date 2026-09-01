@@ -1,6 +1,12 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://github.com/murffious/biology_as_code/schemas/nutrient-node.schema.json",
+  "licence": {
+    "spdx": "LicenseRef-BAC-Samples-Attribution",
+    "copyright": "Copyright 2026 Paul Murff (Morf Engineering Inc.)",
+    "terms": "LICENSE-SAMPLES.md \u2014 free reuse with attribution to the repository and the book",
+    "scope": "Original authored schema of the biology_as_code project. Underlying scientific facts are not claimed."
+  },
   "title": "Nutrient node v1",
   "description": "One nutrient modelled as a pipeline: intake -> luminal -> absorption -> circulation -> tissue gates -> storage -> excretion, with a provenance record on every quantitative claim. Reference instances: nodes/data/zinc.node.yaml (element) and nodes/data/glucose.node.yaml (compound). Energy deliberately does NOT fit this shape - see simulation/energy_accounting.py.",
   "type": "object",

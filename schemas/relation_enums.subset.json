@@ -1,4 +1,10 @@
 {
+    "licence": {
+        "spdx": "LicenseRef-BAC-Samples-Attribution",
+        "copyright": "Copyright 2026 Paul Murff (Morf Engineering Inc.)",
+        "terms": "LICENSE-SAMPLES.md \u2014 free reuse with attribution to the repository and the book",
+        "scope": "Original authored schema of the biology_as_code project. Underlying scientific facts are not claimed."
+    },
   "description": "Subset of Biology as Code RelationType ENUMs for public companion use. Full list in book / claim-language.",
   "RelationType": [
     "OPENS_GATE",

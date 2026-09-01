@@ -1,6 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/murffious/biology_as_code/schemas/claim_audit.schema.json",
+  "licence": {
+    "spdx": "LicenseRef-BAC-Samples-Attribution",
+    "copyright": "Copyright 2026 Paul Murff (Morf Engineering Inc.)",
+    "terms": "LICENSE-SAMPLES.md \u2014 free reuse with attribution to the repository and the book",
+    "scope": "Original authored schema of the biology_as_code project. Underlying scientific facts are not claimed."
+  },
   "title": "ClaimAudit",
   "description": "Minimal Court / claim-audit fixture for companion examples.",
   "type": "object",

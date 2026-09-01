@@ -1,6 +1,12 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/murffious/biology_as_code/schemas/contribution.schema.json",
+  "licence": {
+    "spdx": "LicenseRef-BAC-Samples-Attribution",
+    "copyright": "Copyright 2026 Paul Murff (Morf Engineering Inc.)",
+    "terms": "LICENSE-SAMPLES.md \u2014 free reuse with attribution to the repository and the book",
+    "scope": "Original authored schema of the biology_as_code project. Underlying scientific facts are not claimed."
+  },
   "title": "Contribution",
   "description": "A crowd-sourced proposal to strengthen the register: evidence, a packet fill, a claim for the corpus, or a gate/bound rule. This schema declares the STRUCTURAL shape only. The fail-closed policy — a magnitude needs primary evidence, a target must resolve, unsourced stays OPEN — is enforced by biology_as_code.contrib.validate_contribution, not here, because the repo's zero-dependency validator intentionally does not implement conditional schema keywords.",
   "type": "object",
