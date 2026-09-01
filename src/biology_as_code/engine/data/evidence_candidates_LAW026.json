@@ -1,4 +1,10 @@
 {
+    "licence": {
+        "spdx": "Apache-2.0",
+        "copyright": "Copyright 2026 Paul Murff and Biology as Code contributors (Morf Engineering Inc.)",
+        "url": "https://www.apache.org/licenses/LICENSE-2.0",
+        "scope": "The law encodings, gates, bounds, and notes in this file are original authored content of the biology_as_code project (internal provenance in this file's own source fields). Underlying scientific findings are facts and are not claimed. Third-party data shipped by this repository is inventoried in THIRD-PARTY-DATA.json; see also NOTICE and PATENTS.md."
+    },
   "law_id": "LAW-026",
   "queries": [
     "short-chain fatty acids colonic fermentation",

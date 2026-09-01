@@ -155,3 +155,6 @@ Classic human energy-recovery citations often used in textbooks (e.g. SCFA contr
 2. Append EV-039+ to `gleaned/registers/evidence.md` when SSI reviewed.  
 3. Link PMIDs on `colon.fermentation` base unit `sources[]`.  
 4. Keep FLOW SCFA kcal; keep `magnitude_locked: false` until a dedicated energy-yield paper is attached.
+---
+
+*Copyright 2026 Paul Murff and Biology as Code contributors (Morf Engineering Inc.). Licensed under Apache-2.0 — see repository `LICENSE` and `NOTICE`.*
