@@ -8,10 +8,21 @@
 > decision — it is not evidence of an active commercial program, and nothing
 > here should be read as having been withdrawn. Paths named below that pointed
 > into the package were updated where the code moved; the substantive terms are
-> untouched.
+> untouched. 2026-09-01: the opening paragraph was clarified — owner named,
+> exclusion from both repository licences made explicit, filing details
+> deliberately withheld until publication. The set of reserved products is
+> unchanged.
 
-**Product MEAL score** and **Kibo-vars product scorer** are patent-pending.  
-They must **never** be committed to this public companion repository.
+**Product MEAL score** and **Kibo-vars product scorer** are proprietary
+technologies of **Morf Engineering Inc.**, protected as trade secrets and as the
+subject of one or more pending United States patent applications assigned to
+Morf Engineering Inc. They are outside the scope of every licence in this
+repository — including `LICENSE` (Apache-2.0) and `LICENSE-SAMPLES.md` — and
+must **never** be committed to this public companion repository.
+
+Application serial numbers and titles are deliberately not stated here while the
+applications are unpublished; they will be cited in `PATENTS.md` if and when the
+applications publish or issue.
 
 ## Allowed in git (open)
 
@@ -57,10 +68,17 @@ run_external_score_analysis(enabled=False)  # dig still runs
 ```bash
 # should print nothing dangerous
 git status
-# the separation gate must return nothing:
-grep -riE "kibo|mealcoach|morf" src/ tests/ && echo FAIL || echo OK clean
+# the separation gate — scans every TRACKED file, path names included,
+# separates product identifiers from the author's name, and requires a
+# written reason for each exception (tools/separation.allow):
+python tools/check_separation.py
 ```
 
-CI runs that same gate on every push (`.github/workflows/ci.yml`, job
-`separation`), and `scripts/release_check.sh` fails the build if a private
-scorer is ever tracked.
+(The old inline `grep -riE "kibo|mealcoach|morf"` was replaced 2026-08-30: it
+scanned a fixed directory list, missed path names, and conflated the product
+name with the author's. Do not resurrect it.)
+
+CI runs the same gate on every push (`.github/workflows/ci.yml`, job
+`separation`) and again at the publish boundary (`publish.yml`, `build` job),
+and `scripts/release_check.sh` fails the build if a private scorer is ever
+tracked.

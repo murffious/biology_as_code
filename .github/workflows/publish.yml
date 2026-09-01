@@ -74,6 +74,15 @@ jobs:
             *) echo "Aborted: release tag must start with v (e.g. v0.1.0)"; exit 1 ;;
           esac
 
+      # Same gates ci.yml runs on every push, repeated at the publish boundary:
+      # nothing reaches PyPI or Zenodo that the separation audit has not passed.
+      # The canonical gate is tools/check_separation.py — not an inline grep.
+      - name: Separation gate (no product identifiers)
+        run: python tools/check_separation.py
+
+      - name: No human rows in a public repository
+        run: python tools/check_no_human_rows.py
+
       - name: Test
         run: pytest tests/test_public_api.py tests/test_quiet.py tests/test_fixtures_packaged.py -q
 
@@ -114,6 +123,10 @@ jobs:
           path: dist/
       - name: Publish to PyPI (OIDC)
         uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          # A re-published release of a version PyPI already has must no-op,
+          # not paint the run red (0.1.0 is already up).
+          skip-existing: true
 
   # ---------------------------------------------------------------------------
   # TestPyPI — only dispatch target=testpypi + PUBLISH
@@ -141,3 +154,92 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
+
+  # ---------------------------------------------------------------------------
+  # Zenodo — new version of the SAME concept DOI (10.5281/zenodo.21536448).
+  #
+  # The GitHub↔Zenodo webhook was never enabled for this repo, and enabling it
+  # now would start a second concept DOI that can never be merged with the one
+  # the book and papers already cite. So this job versions the existing concept
+  # through the REST API instead.
+  #
+  # Runs only on a published release. Skips itself cleanly when:
+  #   - ZENODO_TOKEN is not configured (secret: Settings → Secrets → Actions;
+  #     token needs scopes deposit:write + deposit:actions), or
+  #   - Zenodo's latest version for the concept already equals this tag
+  #     (idempotence: re-publishing v0.1.0 will not double-deposit it).
+  # ---------------------------------------------------------------------------
+  zenodo:
+    name: Zenodo new version (same concept DOI)
+    needs: build
+    if: github.event_name == 'release'
+    runs-on: ubuntu-latest
+    env:
+      CONCEPT_RECID: "21536448"
+      ZENODO_TOKEN: ${{ secrets.ZENODO_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Deposit
+        run: |
+          set -euo pipefail
+          TAG="${{ github.event.release.tag_name }}"
+          VERSION="${TAG#v}"
+          AUTH="Authorization: Bearer ${ZENODO_TOKEN}"
+
+          if [ -z "${ZENODO_TOKEN}" ]; then
+            echo "::notice::ZENODO_TOKEN not set — skipping Zenodo deposit."
+            exit 0
+          fi
+
+          # Latest record of the concept, and its version string.
+          LATEST=$(curl -sf "https://zenodo.org/api/records/${CONCEPT_RECID}" )
+          LATEST_ID=$(echo "$LATEST" | python3 -c "import json,sys; print(json.load(sys.stdin)['id'])")
+          LATEST_VER=$(echo "$LATEST" | python3 -c "import json,sys; print(json.load(sys.stdin)['metadata'].get('version',''))")
+          echo "concept ${CONCEPT_RECID}: latest record ${LATEST_ID}, version '${LATEST_VER}'"
+
+          if [ "${LATEST_VER}" = "${VERSION}" ]; then
+            echo "::notice::Zenodo already at ${VERSION} — nothing to deposit."
+            exit 0
+          fi
+
+          # Open a new-version draft on the concept's chain.
+          NEWV=$(curl -sf -X POST -H "$AUTH" \
+            "https://zenodo.org/api/deposit/depositions/${LATEST_ID}/actions/newversion")
+          DRAFT_URL=$(echo "$NEWV" | python3 -c "import json,sys; print(json.load(sys.stdin)['links']['latest_draft'])")
+          DRAFT=$(curl -sf -H "$AUTH" "$DRAFT_URL")
+          DRAFT_ID=$(echo "$DRAFT" | python3 -c "import json,sys; print(json.load(sys.stdin)['id'])")
+          BUCKET=$(echo "$DRAFT" | python3 -c "import json,sys; print(json.load(sys.stdin)['links']['bucket'])")
+
+          # Drop the files inherited from the previous version; this deposit is
+          # exactly the tagged source archive.
+          echo "$DRAFT" | python3 -c "import json,sys; [print(f['id']) for f in json.load(sys.stdin).get('files',[])]" |
+          while read -r FID; do
+            curl -sf -X DELETE -H "$AUTH" \
+              "https://zenodo.org/api/deposit/depositions/${DRAFT_ID}/files/${FID}" || true
+          done
+
+          ARCHIVE="biology_as_code-${TAG}.tar.gz"
+          git archive --format=tar.gz --prefix="biology_as_code-${TAG}/" -o "$ARCHIVE" "$TAG"
+          curl -sf -X PUT -H "$AUTH" --upload-file "$ARCHIVE" "${BUCKET}/${ARCHIVE}" > /dev/null
+          echo "uploaded ${ARCHIVE}"
+
+          # Metadata rides over from the previous version (incl. the licence);
+          # update only version and publication date.
+          echo "$DRAFT" > draft.json
+          python3 - "$VERSION" > metadata.json <<'PYEOF'
+          import json, sys, datetime
+          d = json.load(open("draft.json"))["metadata"]
+          d["version"] = sys.argv[1]
+          d["publication_date"] = datetime.date.today().isoformat()
+          print(json.dumps({"metadata": d}))
+          PYEOF
+          curl -sf -X PUT -H "$AUTH" -H "Content-Type: application/json" \
+            -d @metadata.json "https://zenodo.org/api/deposit/depositions/${DRAFT_ID}" > /dev/null
+
+          PUB=$(curl -sf -X POST -H "$AUTH" \
+            "https://zenodo.org/api/deposit/depositions/${DRAFT_ID}/actions/publish")
+          DOI=$(echo "$PUB" | python3 -c "import json,sys; print(json.load(sys.stdin)['doi'])")
+          echo "::notice::Published ${VERSION} → https://doi.org/${DOI} (concept 10.5281/zenodo.${CONCEPT_RECID})"

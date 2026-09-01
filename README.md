@@ -5,7 +5,8 @@
 <p align="center">
   <a href="https://github.com/murffious/biology_as_code/actions/workflows/ci.yml"><img src="https://github.com/murffious/biology_as_code/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
   <a href="https://github.com/murffious/biology_as_code/actions/workflows/docs.yml"><img src="https://github.com/murffious/biology_as_code/actions/workflows/docs.yml/badge.svg" alt="Docs"></a>
-  <a href="https://doi.org/10.5281/zenodo.21536449"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.21536449.svg" alt="DOI"></a>
+  <a href="https://github.com/murffious/biology_as_code/releases/latest"><img src="https://img.shields.io/github/v/release/murffious/biology_as_code?display_name=tag&color=blue" alt="Latest release"></a>
+  <a href="https://doi.org/10.5281/zenodo.21536448"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.21536448.svg" alt="DOI"></a>
   <a href="https://github.com/murffious/biology_as_code/blob/main/pyproject.toml"><img src="https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13-blue" alt="Python"></a>
   <a href="https://github.com/murffious/biology_as_code/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-Apache--2.0-green" alt="License"></a>
   <a href="https://github.com/murffious/fdp-1"><img src="https://img.shields.io/badge/implements-FDP--1-blue" alt="Implements FDP-1"></a>
