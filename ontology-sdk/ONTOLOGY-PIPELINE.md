@@ -8,7 +8,7 @@ semantic expressiveness. It reframes the plan in `DESIGN.md` and
 controlled vocabulary → metadata schemas → taxonomy → ontology → RDF knowledge graph
 ```
 
-> **Two animated figures for this document:** [`pipeline-visuals.html`](../docs/pipeline-visuals.html)
+> **Two animated figures for this document:** [`pipeline-visuals.html`](pipeline-visuals.html)
 > — the pipeline against where this project started, and the causal spine it built there.
 
 Two properties of the framework matter more than the stages themselves:
