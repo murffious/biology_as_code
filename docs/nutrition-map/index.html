@@ -3,13 +3,13 @@
 <!--
   GENERATED FILE — do not edit here. Built 2026-09-01 by build.sh from the nutrition-map source;
   the next build overwrites it. BiologyAsCode · Nutrition Map: one self-contained page,
-  three views (metabolic cascade · nutrient function · macros & fiber) plus an Ask bar.
+  four views (cascade · nutrient function · macros & fiber · propagation run) plus an Ask bar.
 -->
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BiologyAsCode — Nutrition Map · Metabolic Cascade · Function · Macros</title>
-<meta name="description" content="Combined BiologyAsCode dashboards: Metabolic Cascade propagator, Nutrient Function map, and Macros &amp; Fiber breakdown." />
+<title>BiologyAsCode — Nutrition Map · Cascade · Function · Macros · Run</title>
+<meta name="description" content="Combined BiologyAsCode dashboards: Metabolic Cascade propagator, Nutrient Function map, Macros &amp; Fiber breakdown, and the Propagation Run." />
 <style>
 
 :root {
@@ -181,6 +181,7 @@ body {
 .shell-tab[aria-selected="true"] .tab-kicker { color: var(--accent-2); }
 
 .shell-panels { flex: 1; }
+.shell-foot { font-family: var(--mono); font-size: 11px; letter-spacing: .04em; color: var(--ink-3); text-align: center; padding: 18px 16px 26px; border-top: 1px solid var(--border); }
 .view-panel { display: none; }
 .view-panel.is-active { display: block; }
 
@@ -189,8 +190,11 @@ body {
 
 @media (max-width: 720px) {
   .shell-top-inner { padding: 10px 12px 0; }
+  .shell-top { position: static; }
   .shell-brand-row { flex-wrap: wrap; }
   .shell-ask { max-width: none; flex-basis: 100%; }
+  .ask-sug { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+  .ask-sug::-webkit-scrollbar { display: none; }
   .shell-tab { padding: 8px 12px 10px; font-size: 12.5px; }
 }
 
@@ -473,6 +477,13 @@ body {
 
   @media (max-width:560px){
 #panel-cascade .stats{grid-template-columns:repeat(2,1fr)}
+    /* phones: let the stacked columns shrink below their content's natural width, and let
+       the two rows that cannot wrap by default (playback bar, graph header) wrap instead */
+    #panel-cascade .app{padding:12px}
+    #panel-cascade .band-top>*,#panel-cascade .band-mid>*,#panel-cascade .band-bottom>*,#panel-cascade .main-top>*{min-width:0}
+    #panel-cascade .pbar{flex-wrap:wrap}
+    #panel-cascade .range{flex-basis:100%;order:9}
+    #panel-cascade .map-panel .p-head,#panel-cascade .ghead-right{flex-wrap:wrap}
 }
 
   @media (prefers-reduced-motion:reduce){
@@ -542,11 +553,73 @@ body {
 }
 
 
+/* ═══════ Propagation Run ═══════ */
+#panel-run{
+    --bg:#0a0f17; --panel:#0e1723; --ink:#dbe5f2; --muted:#6b7d95; --faint:#46566d;
+    --line:rgba(120,150,200,.14);
+    --mono:ui-monospace,"JetBrains Mono","SF Mono",Menlo,Consolas,monospace;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  #panel-run *{box-sizing:border-box}
+  #panel-run{margin:0;background:radial-gradient(1200px 560px at 70% -8%, rgba(59,160,255,.07), transparent 60%),var(--bg);
+    color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  #panel-run .wrap{max-width:1320px;margin:0 auto;padding:14px 16px 30px;display:flex;flex-direction:column;gap:14px}
+  #panel-run .run-status{display:flex;align-items:center;gap:12px;font-size:12.5px;color:var(--muted)}
+  #panel-run .run-pill{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--ink);
+    background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:6px 14px}
+  #panel-run .run-pill i{width:8px;height:8px;border-radius:50%;background:#ff5a5a;box-shadow:0 0 0 3px rgba(255,90,90,.18)}
+  #panel-run .run-pill.live i{background:#3ddc84;box-shadow:0 0 0 3px rgba(61,220,132,.18)}
+  #panel-run .run-card{background:linear-gradient(180deg,#0f1a33,#0b1428);border:1px solid rgba(120,150,220,.18);border-radius:18px;
+    padding:20px 24px 22px;box-shadow:0 20px 60px rgba(0,0,0,.45);display:flex;flex-direction:column;gap:14px}
+  #panel-run .run-k{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#7f93b8}
+  #panel-run .run-head{display:flex;justify-content:space-between;gap:12px}
+  #panel-run .run-sub{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  #panel-run .run-note{font-size:12.5px;color:#9fb0cd}
+  #panel-run .run-legend{margin-left:auto;font-size:12px;color:#9fb0cd;display:flex;gap:12px;align-items:center}
+  #panel-run .run-legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+  #panel-run .l-mech{background:#5a9bef} #panel-run .l-bound{background:#f0a03c}
+  #panel-run .run-chart{width:100%;min-height:300px}
+  #panel-run .run-chart svg{display:block;width:100%;height:300px;overflow:visible}
+  #panel-run .run-stats{display:flex;align-items:flex-end;flex-wrap:wrap;gap:10px 0;border-top:1px solid rgba(120,150,220,.12);padding-top:14px}
+  #panel-run .rs{padding-right:22px;margin-right:22px;border-right:1px solid rgba(120,150,220,.14)}
+  #panel-run .rs .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:#7f93b8;text-transform:uppercase}
+  #panel-run .rs .v{font-size:24px;font-weight:700;letter-spacing:-.01em;margin-top:3px;font-variant-numeric:tabular-nums}
+  #panel-run .rs .v.blue{color:#5a9bef} #panel-run .rs .v.amber{color:#f0a03c}
+  #panel-run .run-btn{margin-left:auto;font-family:var(--sans);font-size:15px;font-weight:700;color:#fff;background:#2f7ff5;border:0;border-radius:11px;
+    padding:11px 20px;cursor:pointer;box-shadow:0 8px 24px rgba(47,127,245,.35);transition:background .15s}
+  #panel-run .run-btn:hover{background:#4a90ff}
+  #panel-run .run-prog{height:6px;border-radius:4px;background:rgba(120,150,220,.16);overflow:hidden}
+  #panel-run .run-prog i{display:block;height:100%;width:0;background:#5a9bef;border-radius:4px;transition:width .3s}
+  #panel-run .run-line{font-family:var(--mono);font-size:12.5px;color:#9fb0cd}
+  #panel-run .run-line b{color:var(--ink);font-weight:600}
+  #panel-run .run-cfg{display:flex;flex-wrap:wrap;gap:10px 0;border-top:1px solid rgba(120,150,220,.12);padding-top:14px}
+  #panel-run .rc{padding-right:22px;margin-right:22px;border-right:1px solid rgba(120,150,220,.14)}
+  #panel-run .rc:last-child{border-right:0;margin-right:0}
+  #panel-run .rc .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:#7f93b8;text-transform:uppercase}
+  #panel-run .rc .v{font-size:17px;font-weight:700;margin-top:3px}
+  #panel-run .run-tl-head{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:6px 4px 0}
+  #panel-run .run-nav{margin-left:auto;display:flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;color:#9fb0cd}
+  #panel-run .run-nav button{width:28px;height:28px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);cursor:pointer}
+  #panel-run .run-nav button:hover{border-color:#5a9bef}
+  #panel-run .run-tl-dots{display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding:2px 4px;min-height:18px}
+  #panel-run .dot{width:10px;height:10px;border-radius:50%;border:0;padding:0;background:rgba(90,155,239,.35);cursor:pointer;transition:transform .12s}
+  #panel-run .dot:hover{transform:scale(1.35)}
+  #panel-run .dot.last{background:#5a9bef;box-shadow:0 0 0 3px rgba(90,155,239,.25)}
+  #panel-run .dot.cur{background:#fff}
+  #panel-run .run-sample{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  #panel-run .run-sample-h{display:flex;align-items:center;gap:10px;font-size:15px;margin-bottom:8px}
+  #panel-run .run-latest{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;color:#7f93b8}
+  #panel-run .run-sample-t{margin:0;font-family:var(--mono);font-size:13px;line-height:1.7;color:#c9d4e5;white-space:pre-wrap;overflow-wrap:anywhere}
+  #panel-run .run-sample-t b{color:#fff}
+  @media (max-width:720px){
+#panel-run .rs .v{font-size:19px} #panel-run .rs,#panel-run .rc{padding-right:12px;margin-right:12px} #panel-run .run-card{padding:16px 14px}
+}
+
 /* shell overrides (must win over scoped panel CSS) */
 #panel-cascade > .app > .wrap > .topbar,
 #panel-cascade .app .topbar { display: none !important; }
 #panel-cascade .app { min-height: auto; padding-top: 12px; }
-#panel-function, #panel-macros { min-height: calc(100vh - 110px); }
+#panel-function, #panel-macros, #panel-run { min-height: calc(100vh - 110px); }
 
 </style>
 </head>
@@ -593,6 +666,10 @@ body {
         <button class="shell-tab" role="tab" data-panel="macros" aria-controls="panel-macros" aria-selected="false" id="tab-macros" tabindex="-1">
           <span class="tab-kicker">03 · Breakdown</span>
           Macros &amp; Fiber
+        </button>
+        <button class="shell-tab" role="tab" data-panel="run" aria-controls="panel-run" aria-selected="false" id="tab-run" tabindex="-1">
+          <span class="tab-kicker">04 · Run</span>
+          Propagation Run
         </button>
       </nav>
     </div>
@@ -702,7 +779,29 @@ body {
   </div>
 
     </section>
+
+    <section class="view-panel" id="panel-run" role="tabpanel" aria-labelledby="tab-run">
+
+  <div class="wrap">
+    <div class="run-status"><span class="run-pill" id="run-pill"><i></i>PROPAGATION</span><span id="run-msg">Propagator is ready.</span></div>
+    <div class="run-card">
+      <div class="run-head"><span class="run-k">Propagation run</span><span class="run-k">Demo · FDP-1 v3</span></div>
+      <div class="run-sub"><span class="run-k">Open curve</span><span class="run-note">Lower is better; the bound curve walks nothing past a bound that is not verified.</span><span class="run-legend"><span><i class="l-mech"></i>mech</span><span><i class="l-bound"></i>bound</span></span></div>
+      <div class="run-chart" id="run-chart"><svg id="run-svg" viewBox="0 0 1000 300" role="img" aria-label="Open edges per step under the mechanism gate and the bound gate"></svg></div>
+      <div class="run-stats" id="run-stats"></div>
+      <div class="run-prog"><i id="run-bar"></i></div>
+      <div class="run-line" id="run-line1"></div>
+      <div class="run-line" id="run-line2"></div>
+      <div class="run-cfg" id="run-cfg"></div>
+    </div>
+    <div class="run-tl-head"><span class="run-k">Sample timeline</span><span class="run-note">Watch the meal move through the body, checkpoint by checkpoint.</span><span class="run-nav"><button type="button" data-run="tl-prev" aria-label="previous checkpoint">‹</button><span id="run-tl-n">0 of 0</span><button type="button" data-run="tl-next" aria-label="next checkpoint">›</button></span></div>
+    <div class="run-tl-dots" id="run-dots"></div>
+    <div class="run-sample"><div class="run-sample-h"><b id="run-sample-step">Step 0</b><span class="run-latest" id="run-latest"></span></div><pre class="run-sample-t" id="run-sample-t"></pre></div>
+  </div>
+
+    </section>
   </main>
+  <footer class="shell-foot">© 2026 Paul Murff · Morf Engineering Inc. · Biology as Code · Nutrition Map</footer>
 </div>
 
 <script>
@@ -718,7 +817,8 @@ window.BiologyAsCode = {};
   var panels = {
     cascade: document.getElementById('panel-cascade'),
     function: document.getElementById('panel-function'),
-    macros: document.getElementById('panel-macros')
+    macros: document.getElementById('panel-macros'),
+    run: document.getElementById('panel-run')
   };
   function activate(id){
     tabs.forEach(function(t){
@@ -731,6 +831,7 @@ window.BiologyAsCode = {};
       panels[k].classList.toggle('is-active', k === id);
     });
     try { history.replaceState(null, '', '#' + id); } catch(e) {}
+    if (BAC.onTab) BAC.onTab(id);
   }
   BAC.showTab = activate;
   tabs.forEach(function(t){
@@ -862,18 +963,19 @@ window.BiologyAsCode = {};
       default:          return true;
     }
   }
-  function eligible(e){
+  function eligible(e,gate){
+    gate=gate||STATE.gate;
     if(e.grp==='glp1' && !STATE.glp1) return false;
     if(e.cond){
       var toks = (typeof e.cond==='string') ? [e.cond] : e.cond, i;
       for(i=0;i<toks.length;i++){ if(!condOK(toks[i])) return false; }
     }
-    if(e.bound && STATE.gate==='bound' && e.bound!=='verified') return false;
+    if(e.bound && gate==='bound' && e.bound!=='verified') return false;
     return true;
   }
-  function reachable(){
+  function reachable(gate){
     var seen={}, q=[]; NODES.forEach(function(n){if(n.k==='input'||n.src){seen[n.id]=1;q.push(n.id);}});
-    var adj={}; EDGES.forEach(function(e){if(eligible(e)){(adj[e.from]=adj[e.from]||[]).push(e.to);}});
+    var adj={}; EDGES.forEach(function(e){if(eligible(e,gate)){(adj[e.from]=adj[e.from]||[]).push(e.to);}});
     while(q.length){var id=q.shift();(adj[id]||[]).forEach(function(t){if(!seen[t]){seen[t]=1;q.push(t);}});}
     return seen;
   }
@@ -1371,8 +1473,37 @@ window.BiologyAsCode = {};
 
   /* ── Ask-bar entry points (the Ask block at the end of this file drives these) ── */
   function fireStep(ids){var s=1;(ids||[]).forEach(function(id){var i=ORDER.indexOf(id);if(i+1>s)s=i+1;});return Math.min(TOTAL,s);}
+  /* The Run tab's trace: per step, how many walkable edges are still open under a gate.
+     Walkable = eligible under the mechanism gate with both ends in the firing ORDER
+     (modifiers and disease poles are never fired, so they are never in the denominator).
+     An edge is walked only when both ends have fired AND both are reachable under that
+     gate — nothing propagates through a node the gate left unevaluable. */
+  function walkable(){return EDGES.filter(function(e){return eligible(e,'mechanism')&&ORDER.indexOf(e.from)>=0&&ORDER.indexOf(e.to)>=0;});}
+  function series(gate){
+    var reach=reachable(gate), W=walkable(), fired={}, out=[], i;
+    for(i=1;i<=TOTAL;i++){
+      fired[ORDER[i-1]]=1;
+      var walked=0, comps={}, id;
+      W.forEach(function(e){if(eligible(e,gate)&&fired[e.from]&&fired[e.to]&&reach[e.from]&&reach[e.to]) walked++;});
+      for(id in fired){if(reach[id]) comps[NMAP[id].c]=1;}
+      out.push({step:i,open:W.length-walked,walked:walked,fired:Object.keys(fired).length,comps:Object.keys(comps).length});
+    }
+    return out;
+  }
+  function meta(){
+    var dois={}; BOUNDS.forEach(function(b){if(b.doi) dois[b.doi]=1;});
+    return {nodes:TOTAL, edges:EDGES.length, eligible:walkable().length, comps:GROUPS.length,
+      data:(STATE.food.fat?'Carb + fat meal':'Carb meal')+' · fiber '+(STATE.food.fiber?'on':'off'),
+      state:(STATE.fed?'fed':'fasted')+' · '+(STATE.active?'active':'rested')+' · '+(STATE.resistant?'resistant':'sensitive'),
+      gate:STATE.gate, sources:Object.keys(dois).length};
+  }
+  function narrate(step){
+    var id=ORDER[step-1], n=NMAP[id], pr=propOf(id), p=pr?NMAP[pr]:null;
+    function nm(x){var sub=x.sub&&!/rxn|^\[/.test(x.sub)?' · '+x.sub:'';return x.l+sub;}
+    return {step:step, pop:nm(n), prop:p?nm(p):null, w:n.w||'', comp:CTITLE[n.c], sys:SYSOF[n.c], g:n.g||'—'};
+  }
   BAC.cascade={
-    total:TOTAL,
+    total:TOTAL, series:series, meta:meta, narrate:narrate,
     nodes:NODES.map(function(n){return {id:n.id,l:n.l,sub:n.sub||'',w:n.w||'',c:CTITLE[n.c]||n.c,k:n.k};}),
     neighbors:function(id){var out=[id];EDGES.forEach(function(e){if(e.from===id&&out.indexOf(e.to)<0)out.push(e.to);if(e.to===id&&out.indexOf(e.from)<0)out.push(e.from);});return out;},
     apply:function(spec){
@@ -1762,6 +1893,109 @@ window.BiologyAsCode = {};
   render("carb");
 })();
 
+/* ── Propagation Run ──
+   The training-run dashboard, for a lattice instead of a language model. The propagator
+   fires one node a step; the curve is the count of eligible edges not yet walked.
+   Solid = the mechanism gate (every LAW-backed edge counts); dashed = the bound gate,
+   the held-out check: nothing propagates past a bound that has not been verified, so it
+   stops short — that gap is the fail-closed rule, drawn. Every number is computed from
+   the same NODES / EDGES the cascade view draws, under the state set in its Config. */
+
+(function(){
+  "use strict";
+  var BAC=window.BiologyAsCode;
+  function $(id){return document.getElementById(id);}
+  function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  function pad(n){return (n<10?'0':'')+n;}
+  var PERIOD=900, N=BAC.cascade.total, RM=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var R={step:0,running:false,timer:null,t0:0,elapsed:0,view:null,series:null,meta:null};
+  function compute(){R.meta=BAC.cascade.meta();R.series={mech:BAC.cascade.series('mechanism'),bound:BAC.cascade.series('bound')};}
+  function active(){return $('panel-run').classList.contains('is-active');}
+  function zero(){return {open:R.meta.eligible,walked:0,fired:0,comps:0};}
+  function cur(){return R.step>0?{m:R.series.mech[R.step-1],b:R.series.bound[R.step-1]}:{m:zero(),b:zero()};}
+  function elapsed(){return R.running?(R.elapsed+(Date.now()-R.t0)):R.elapsed;}
+  function clock(ms){var s=Math.round(ms/1000);return Math.floor(s/60)+'m '+pad(s%60)+'s';}
+
+  function renderChart(){
+    var box=$('run-chart'), W=Math.max(360,box.clientWidth||0), H=300, pl=42, pr=44, pt=14, pb=34;
+    var denom=R.meta.eligible, maxY=Math.max(10,Math.ceil(denom/10)*10), i, g='';
+    function X(s){return pl+(W-pl-pr)*s/N;} function Y(v){return pt+(H-pt-pb)*(1-v/maxY);}
+    for(i=0;i<=4;i++){var yv=maxY*i/4;
+      g+='<line x1="'+pl+'" x2="'+(W-pr)+'" y1="'+Y(yv)+'" y2="'+Y(yv)+'" stroke="rgba(120,150,220,.12)"/>'+
+         '<text x="'+(pl-8)+'" y="'+(Y(yv)+4)+'" text-anchor="end" font-size="11" font-family="var(--mono)" fill="#7f93b8">'+yv+'</text>';}
+    for(i=0;i<=N;i+=5){
+      g+='<line y1="'+pt+'" y2="'+(H-pb)+'" x1="'+X(i)+'" x2="'+X(i)+'" stroke="rgba(120,150,220,.08)"/>'+
+         '<text x="'+X(i)+'" y="'+(H-pb+18)+'" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="#7f93b8">'+i+'</text>';}
+    g+='<line x1="'+pl+'" x2="'+pl+'" y1="'+pt+'" y2="'+(H-pb)+'" stroke="rgba(120,150,220,.35)"/>'+
+       '<line x1="'+pl+'" x2="'+(W-pr)+'" y1="'+(H-pb)+'" y2="'+(H-pb)+'" stroke="rgba(120,150,220,.35)"/>'+
+       '<text x="'+(W-pr)+'" y="'+(H-pb+30)+'" text-anchor="end" font-size="10" font-family="var(--mono)" fill="#5c6f8f">STEP</text>'+
+       '<text x="'+pl+'" y="'+(pt-3)+'" font-size="10" font-family="var(--mono)" fill="#5c6f8f">OPEN EDGES</text>';
+    function path(ser){var d='M '+X(0).toFixed(1)+' '+Y(denom).toFixed(1),k;for(k=0;k<R.step;k++)d+=' L '+X(k+1).toFixed(1)+' '+Y(ser[k].open).toFixed(1);return d;}
+    if(R.step>0){
+      var c=cur(), cx=X(R.step), my=Y(c.m.open), by=Y(c.b.open);
+      g+='<path d="'+path(R.series.bound)+'" fill="none" stroke="#f0a03c" stroke-width="2" stroke-dasharray="6 5" opacity=".9"/>'+
+         '<path d="'+path(R.series.mech)+'" fill="none" stroke="#5a9bef" stroke-width="2.2"/>'+
+         '<line x1="'+cx+'" x2="'+cx+'" y1="'+pt+'" y2="'+(H-pb)+'" stroke="rgba(255,255,255,.18)" stroke-dasharray="2 4"/>'+
+         '<circle cx="'+cx+'" cy="'+by+'" r="4" fill="#f0a03c"/>'+
+         '<circle cx="'+cx+'" cy="'+my+'" r="4.5" fill="#5a9bef" stroke="#fff" stroke-width="1.2"/>'+
+         '<rect x="'+(cx+8)+'" y="'+(my-11)+'" width="34" height="20" rx="5" fill="#101c38" stroke="rgba(120,150,220,.3)"/>'+
+         '<text x="'+(cx+25)+'" y="'+(my+3)+'" text-anchor="middle" font-size="11" font-family="var(--mono)" fill="#fff">'+c.m.open+'</text>';
+    }
+    var svg=$('run-svg'); svg.setAttribute('viewBox','0 0 '+W+' '+H); svg.innerHTML=g;
+  }
+  function renderStats(){
+    var c=cur();
+    var cells=[['Step',R.step,''],['Open',c.m.open,'blue'],['Bound',c.b.open,'amber'],['Fired',c.m.fired,''],['Steps/s',(1000/PERIOD).toFixed(1),''],['Time',clock(elapsed()),'']];
+    $('run-stats').innerHTML=cells.map(function(x){return '<div class="rs"><div class="k">'+x[0]+'</div><div class="v '+x[2]+'">'+x[1]+'</div></div>';}).join('')+
+      '<button type="button" class="run-btn" data-run="toggle">'+(R.running?'❚❚ Pause':(R.step>=N?'↺ Restart':'▶ Run'))+'</button>';
+  }
+  function renderProgress(){
+    var c=cur(), left=Math.round((N-R.step)*PERIOD/1000);
+    $('run-bar').style.width=(R.step/N*100).toFixed(1)+'%';
+    $('run-line1').innerHTML='<b>'+R.step+'</b> / '+N+' steps · '+(R.step>=N?'run complete':(R.running?('about '+left+'s left at this pace'):(R.step?'paused':'not started')));
+    $('run-line2').innerHTML='Σ <b>'+c.m.walked+'</b> of '+R.meta.eligible+' eligible edges walked · <b>'+c.m.comps+'</b> of '+R.meta.comps+' compartments touched · under the bound gate <b>'+c.b.walked+'</b> walked';
+  }
+  function renderCfg(){
+    var m=R.meta;
+    var cells=[['Data',m.data],['State',m.state],['Gate',m.gate],['Model','FDP-1 lattice · '+m.nodes+' nodes'],['Edges',m.edges+' · '+m.eligible+' eligible'],['Sources',m.sources+' DOIs']];
+    $('run-cfg').innerHTML=cells.map(function(x){return '<div class="rc"><div class="k">'+x[0]+'</div><div class="v">'+esc(x[1])+'</div></div>';}).join('');
+  }
+  function renderTimeline(){
+    var v=R.view||R.step, i, d='';
+    for(i=1;i<=R.step;i++) d+='<button type="button" class="dot'+(i===v?' cur':'')+(i===R.step?' last':'')+'" data-tl="'+i+'" aria-label="step '+i+'"></button>';
+    $('run-dots').innerHTML=d||'<span class="run-note">Checkpoints appear as the run walks.</span>';
+    $('run-tl-n').textContent=(R.step?v:0)+' of '+R.step;
+    var box=$('run-sample-t');
+    if(!R.step){$('run-sample-step').textContent='Step 0';$('run-latest').textContent='';
+      box.innerHTML='Press Run. Each checkpoint is the propagator’s own narration of a step: what fired, where it propagates next, and what is happening in the body.';return;}
+    var n=BAC.cascade.narrate(v);
+    $('run-sample-step').textContent='Step '+v; $('run-latest').textContent=(v===R.step?'LATEST':'');
+    box.innerHTML='pop <b>'+esc(n.pop)+'</b>'+(n.prop?' → propagate to <b>'+esc(n.prop)+'</b>':' · leaf, no eligible successor')+'\n'+esc(n.w)+'\n'+esc(n.comp+' · '+n.sys+' · grade '+n.g);
+  }
+  function renderStatus(){
+    var c=cur();
+    $('run-pill').classList.toggle('live',R.running);
+    $('run-msg').textContent=R.running?'Walking the lattice…':(R.step>=N?('Run complete — '+N+' steps · '+c.m.open+' open under the mechanism gate, '+c.b.open+' under bound.'):(R.step?('Paused at step '+R.step+'.'):'Propagator is ready.'));
+  }
+  function render(){compute();renderStats();renderProgress();renderCfg();renderTimeline();renderStatus();if(active())renderChart();}
+  function pause(){if(!R.running){render();return;}R.running=false;R.elapsed+=Date.now()-R.t0;clearInterval(R.timer);R.timer=null;render();}
+  function tick(){if(R.step>=N){pause();return;}R.step++;if(R.step>=N){R.running=false;R.elapsed+=Date.now()-R.t0;clearInterval(R.timer);R.timer=null;}render();}
+  function start(){if(R.running)return;if(R.step>=N){R.step=0;R.elapsed=0;R.view=null;}R.running=true;R.t0=Date.now();R.timer=setInterval(tick,PERIOD);render();}
+
+  $('panel-run').addEventListener('click',function(ev){
+    var t=ev.target.closest('[data-run],[data-tl]'); if(!t) return;
+    if(t.hasAttribute('data-tl')){var i=+t.getAttribute('data-tl');R.view=(i===R.step)?null:i;renderTimeline();return;}
+    var a=t.getAttribute('data-run');
+    if(a==='toggle'){if(R.running)pause();else start();}
+    else if(a==='tl-prev'||a==='tl-next'){var v=(R.view||R.step)+(a==='tl-prev'?-1:1);v=Math.max(1,Math.min(R.step,v));R.view=(v===R.step)?null:v;renderTimeline();}
+  });
+  window.addEventListener('resize',function(){if(active()&&R.series)renderChart();});
+  BAC.onTab=function(id){if(id!=='run')return;render();if(!R.step&&!R.running&&!RM)start();};
+  BAC.run={start:start,pause:pause,clear:pause,render:render,state:function(){return {step:R.step,running:R.running,cur:cur()};}};
+  render();
+})();
+
+
 /* ── Ask the map ──
    A question picks the part of the map to show. There is no backend: the question is
    scored against a curated list of intents (each names a view and what to light), then
@@ -1774,9 +2008,9 @@ window.BiologyAsCode = {};
   function $(id){return document.getElementById(id);}
   function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
   function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
-  var VIEW={cascade:'01 · Metabolic Cascade',function:'02 · Nutrient Function',macros:'03 · Macros & Fiber'};
-  var VNUM={cascade:'01',function:'02',macros:'03'};
-  var MISS='Nothing on this map answers that. It covers one carb meal and one fat meal from mouth to mitochondria, six nutrient jobs, and four macro breakdowns — try a suggestion below.';
+  var VIEW={cascade:'01 · Metabolic Cascade',function:'02 · Nutrient Function',macros:'03 · Macros & Fiber',run:'04 · Propagation Run'};
+  var VNUM={cascade:'01',function:'02',macros:'03',run:'04'};
+  var MISS='Nothing on this map answers that. It covers one carb meal and one fat meal from mouth to mitochondria, six nutrient jobs, four macro breakdowns and a propagation run — try a suggestion below.';
 
   /* ---- text normalisation: lowercase, ascii, light stemming, space-padded ---- */
   function stem(w){
@@ -1796,7 +2030,7 @@ window.BiologyAsCode = {};
       ph=norm(it.kw[i]); if(!ph.trim()||seen[ph]) continue; seen[ph]=1;
       if(nq.indexOf(ph)>=0) s+=ph.trim().split(' ').length*2+1;
     }
-    return s?s+(it.bonus||0):0;
+    return s?s+(it.bonus!==undefined?it.bonus:1):0;
   }
 
   /* ---- curated intents: v = view, spec = what to light there, a = the one-line answer.
@@ -1840,7 +2074,7 @@ window.BiologyAsCode = {};
      kw:['liver','hepatic','hepatocyte','glucokinase','g6p','glucose 6 phosphate','glycogen','bank','banked','storage','store glucose','stored'],
      spec:{path:['glucose_portal','glucose_hepatic','glucokinase','g6p','glycogen_hepatic','pfk1','f16bp','pyruvate'],sel:'g6p'},
      a:'<b>Glucokinase traps glucose as G6P</b> inside the hepatocyte. G6P is the branch point: in the fed state it is banked as liver glycogen, otherwise PFK-1 commits it to glycolysis toward pyruvate.'},
-    {id:'fasted',v:'cascade',sug:1,q:'What changes when I’m fasted?',
+    {id:'fasted',v:'cascade',q:'What changes when I’m fasted?',
      kw:['fasted','fasting','fast','skip breakfast','skipping breakfast','between meals','glucagon','hungry','hunger','overnight','no food','not eating'],
      spec:{set:{fed:false},path:['glucagon','glycogen_hepatic','glucose_hepatic','glucokinase','g6p','pfk1','f16bp','pyruvate'],sel:'glucagon'},
      a:'Fasted flips the signals: the meal edge goes dark, <b>α-cell glucagon fires</b>, and liver glycogen is mobilised back into the hepatic glucose pool. The fed-only edges — insulin → GLUT4, insulin → glucokinase, G6P → glycogen — switch off.'},
@@ -1930,7 +2164,7 @@ window.BiologyAsCode = {};
      kw:['electrolyte','electrolytes','nerve','nerves','hydration','hydrate','fluid','fluids','membrane potential','cramp','cramps','signal','signalling','signaling','sodium','potassium','chloride','salt','firing'],
      spec:{panels:[5]},
      a:'<b>Job 6 · Balance &amp; signal</b> — membrane potential, hydration, nerve and muscle firing: Na, K, Cl, Ca, Mg.'},
-    {id:'fn_multi',v:'function',sug:1,q:'Which nutrients do several jobs?',
+    {id:'fn_multi',v:'function',q:'Which nutrients do several jobs?',
      kw:['several jobs','many jobs','multi','multiple','more than one','most jobs','versatile','overlap','overlapping','multi membership','one nutrient many jobs','busiest'],
      spec:function(){return {nuts:multiNuts()};},
      a:function(){var m=multiNuts(true);return '<b>One nutrient, many jobs.</b> '+m.map(function(x){return '<b>'+esc(x.chip)+'</b> ×'+x.n;}).join(' · ')+' — every lit chip sits in more than one panel; panels with none are dimmed.';}},
@@ -1960,12 +2194,12 @@ window.BiologyAsCode = {};
      kw:['urea','nitrogen','unused protein','extra protein','excess protein','too much protein','protein store','gluconeogenesis','deaminate','deaminated','deamination','protein to glucose'],
      spec:{key:'protein',fates:[3]},
      a:'<b>Nitrogen has no store</b>: unused amino acids are deaminated, the carbon is burned or stored, and the nitrogen leaves as <b>urea</b>. Glucogenic amino acids can become glucose.'},
-    {id:'m_fat',v:'macros',sug:1,q:'How is fat digested?',
+    {id:'m_fat',v:'macros',q:'How is fat digested?',
      kw:DIGEST.concat(['fat','fats','lipase','colipase','bile','bile salts','micelle','micelles','triglyceride','triglycerides','chylomicron','chylomicrons','lymph','monoglyceride']),
      spec:{key:'fat',hub:true},
      a:'Gastric then pancreatic <b>lipase</b> with colipase, bile-salt <b>mixed micelles</b>, free fatty acids and 2-monoglycerides — absorbed the odd way out: micelle → enterocyte → <b>chylomicron → lymph</b>, not portal blood.'},
     {id:'m_membranes',v:'macros',q:'What does fat do besides store energy?',
-     kw:['membrane','membranes','bilayer','cholesterol membrane','eicosanoid','eicosanoids','omega 3','omega 6','n 3','pufa','inflammation','adipose','adipocyte','besides','other than energy'],
+     kw:['membrane','membranes','bilayer','cholesterol membrane','eicosanoid','eicosanoids','omega 3','omega 6','n 3','pufa','inflammation','adipose','adipocyte','besides','apart from','other than','store energy','storing energy'],
      spec:{key:'fat',fates:[1,2,3,4]},
      a:'Beyond fuel, fat is the <b>adipose reserve</b>, the <b>phospholipid bilayer</b> of every membrane, the PUFA source for <b>eicosanoid signalling</b>, and the <b>vehicle for vitamins A, D, E, K</b>.'},
     {id:'m_fiber',v:'macros',q:'Why isn’t fiber absorbed?',
@@ -1975,7 +2209,13 @@ window.BiologyAsCode = {};
     {id:'m_fiber_ldl',v:'macros',q:'Does fiber lower cholesterol?',
      kw:['cholesterol','ldl','bile acid','bile acids','bind bile','binds bile','lower cholesterol','lowers cholesterol','heart','cardiovascular','lipids down'],
      spec:{key:'fiber',fates:[1]},
-     a:'<b>Fate 2 · Bind &amp; lower</b> — fiber binds bile acids in the tube and <b>LDL falls</b>. Typed as a flux bound in the gut, never a systemic dose.'}
+     a:'<b>Fate 2 · Bind &amp; lower</b> — fiber binds bile acids in the tube and <b>LDL falls</b>. Typed as a flux bound in the gut, never a systemic dose.'},
+
+    /* ── 04 · propagation run ── */
+    {id:'run',v:'run',sug:1,q:'Run the propagator and watch the open curve fall',
+     kw:['run','runs','running','converge','convergence','loss','loss curve','curve','training','train','trained','progress','how far','pace','checkpoint','checkpoints','open edges','watch it','timeline','dashboard','fail closed','held out'],
+     spec:{},
+     a:'The run fires one node a step. <b>Open edges</b> fall as the mechanism gate walks them; the dashed <b>bound</b> curve stops short because nothing propagates past a bound that is not verified — the fail-closed gap, drawn.'}
   ];
 
   /* ---- nutrient chips of the Function view become intents of their own ---- */
@@ -2050,7 +2290,7 @@ window.BiologyAsCode = {};
   }
   function hideAns(){var box=$('askAns');box.hidden=true;box.innerHTML='';box.classList.remove('miss');}
   function setUrl(q){try{history.replaceState(null,'',location.pathname+(q?('?ask='+encodeURIComponent(q)):'')+location.hash);}catch(e){}}
-  function clearViews(){BAC.cascade.clear();BAC.fn.clear();BAC.macros.clear();}
+  function clearViews(){BAC.cascade.clear();BAC.fn.clear();BAC.macros.clear();BAC.run.clear();}
   function syncClear(){$('askClear').hidden=!($('askIn').value||activeId);}
   function apply(it){
     var spec=typeof it.spec==='function'?it.spec():it.spec;
@@ -2059,21 +2299,22 @@ window.BiologyAsCode = {};
     else if(it.v==='function'){BAC.fn.focus(spec.panels||[],spec.nuts||[]);}
     else if(it.v==='macros'){BAC.macros.show(spec.key,spec);}
     BAC.showTab(it.v);
+    if(it.v==='run') BAC.run.start();
   }
   function ask(q){
     q=String(q||'').trim();if(!q)return null;
     var it=resolve(q);
     $('askIn').value=q;
-    if(!it){activeId=null;showAns(null,'');renderSug(q);syncClear();return null;}
+    if(!it){activeId=null;showAns(null,'');renderSug('');syncClear();return null;}
     activeId=it.id;
     apply(it);
     showAns(it,typeof it.a==='function'?it.a():it.a);
-    renderSug(q);syncClear();setUrl(q);
+    renderSug('');syncClear();setUrl(q);
     return it.id;
   }
   function clearAll(){activeId=null;$('askIn').value='';hideAns();clearViews();renderSug('');syncClear();setUrl('');}
   /* a manual override inside a view (claim picker, macro toggle) ends the question but keeps the view as the user set it */
-  BAC.onManual=function(){activeId=null;hideAns();renderSug($('askIn').value.trim());syncClear();setUrl('');};
+  BAC.onManual=function(){activeId=null;hideAns();renderSug('');syncClear();setUrl('');};
   BAC.ask=ask; BAC.resolve=function(q){var it=resolve(q);return it?it.id:null;}; BAC.intents=CURATED.map(function(it){return {id:it.id,q:it.q,v:it.v};});
 
   $('askForm').addEventListener('submit',function(ev){ev.preventDefault();ask($('askIn').value);});
