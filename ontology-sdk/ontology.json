@@ -1,0 +1,171 @@
+{
+  "ontology": {
+    "name": "nutrition_ontology_sdk",
+    "version": "1.0.0",
+    "description": "Canonical manifest for the nutrition ontology as code."
+  },
+  "interfaces": {
+    "Validatable": {
+      "description": "An object that can assert its conformance against a schema or law.",
+      "required_methods": ["validate", "is_valid"]
+    },
+    "Citable": {
+      "description": "An object that requires provenance data to be considered valid.",
+      "required_properties": ["evidence_span", "method_ref"]
+    },
+    "Gradeable": {
+      "description": "An object whose strength of evidence is graded.",
+      "required_properties": ["grade"],
+      "required_methods": ["weakest_link"]
+    }
+  },
+  "predicates": {
+    "CONTAINS": {
+      "description": "food → compound/nutrient",
+      "domain": ["food"],
+      "range": ["compound", "nutrient"]
+    },
+    "CONVERTS_TO": {
+      "description": "metabolism",
+      "domain": ["compound", "nutrient"],
+      "range": ["compound", "nutrient"]
+    },
+    "INCREASES": {
+      "description": "Directional positive effect",
+      "domain": ["food", "compound", "nutrient", "process", "microbe", "gene_enzyme", "biomarker"],
+      "range": ["biomarker", "process", "microbe", "gene_enzyme", "disease"]
+    },
+    "DECREASES": {
+      "description": "Directional negative effect",
+      "domain": ["food", "compound", "nutrient", "process", "microbe", "gene_enzyme", "biomarker"],
+      "range": ["biomarker", "process", "microbe", "gene_enzyme", "disease"]
+    },
+    "NO_CHANGE": {
+      "description": "measured null — first-class, not absence",
+      "domain": ["food", "compound", "nutrient", "process", "microbe", "gene_enzyme", "biomarker"],
+      "range": ["biomarker", "process", "microbe", "gene_enzyme", "disease"]
+    },
+    "MEDIATES": {
+      "description": "sits on the causal path to a disease",
+      "domain": ["biomarker", "process"],
+      "range": ["disease"]
+    },
+    "ACTIVATES": {
+      "description": "activates a gene, enzyme or process",
+      "domain": ["compound", "nutrient", "microbe"],
+      "range": ["gene_enzyme", "process"]
+    },
+    "INHIBITS": {
+      "description": "inhibits a gene, enzyme or process",
+      "domain": ["compound", "nutrient", "microbe"],
+      "range": ["gene_enzyme", "process"]
+    },
+    "ASSOCIATED_WITH": {
+      "description": "weak; excluded from causal paths",
+      "domain": ["any"],
+      "range": ["any"]
+    },
+    "CONSERVES": {
+      "description": "homeostatic hold within bounds",
+      "domain": ["process", "organ_system"],
+      "range": ["biomarker", "nutrient"]
+    },
+    "IDENTITY": {
+      "description": "alias/equivalence",
+      "domain": ["any"],
+      "range": ["any"]
+    }
+  },
+  "object_types": {
+    "OntologyTerm": {
+      "spine_stage": "spine:catalogue",
+      "properties": ["curie", "label", "source", "spine_stage", "iri"]
+    },
+    "Concept": {
+      "spine_stage": "controlled_vocabulary",
+      "properties": ["pref_label", "alt_labels", "hidden_labels", "broader", "source", "scheme"]
+    },
+    "Food": {
+      "spine_stage": "spine:food",
+      "properties": ["commonName", "taxonomy", "map_status", "fdc_id", "foodon_id", "ncbi_taxid", "composition"]
+    },
+    "Nutrient": {
+      "spine_stage": "spine:compound",
+      "properties": ["node_kind", "invariants", "dri_key", "ontology_primary", "essentiality"]
+    },
+    "Metabolite": {
+      "spine_stage": "spine:compound",
+      "properties": ["vmh", "name", "formula", "hmdb", "kegg", "chebi", "pubchem", "seed", "term_id"]
+    },
+    "DigestiveNode": {
+      "spine_stage": "spine:anatomy",
+      "properties": ["ontology_primary", "within", "parent_id", "cargo"]
+    },
+    "Principle": {
+      "spine_stage": "mechanism_chain",
+      "properties": ["pathway", "statement", "systems", "nutrient_ids", "law_ids", "pillars", "kind", "ontology"]
+    },
+    "Claim": {
+      "spine_stage": "not_on_spine",
+      "properties": ["factor", "outcome", "direction", "grade", "verdict", "system", "pillars"]
+    },
+    "Value": {
+      "spine_stage": "spine:compound",
+      "implements": ["Gradeable", "Citable", "Validatable"],
+      "properties": ["nutrient_ref", "value", "unit", "source", "source_ref", "method", "retrieved"]
+    },
+    "Law": {
+      "spine_stage": "not_on_spine",
+      "properties": ["system", "law", "gate", "bound", "relation", "related"]
+    },
+    "CrosswalkNode": {
+      "spine_stage": "spine:compound",
+      "properties": ["id", "namespace", "curie"]
+    }
+  },
+  "actions": {
+    "declare_value": {
+      "description": "Appends a validated declaration of a Value.",
+      "inputs": {
+        "value": "Value"
+      },
+      "returns": "ActionResponse<Value>",
+      "fail_closed": true
+    },
+    "assert_claim": {
+      "description": "Asserts a Claim against evidence.",
+      "inputs": {
+        "claim": "Claim"
+      },
+      "returns": "ActionResponse<Claim>",
+      "fail_closed": true
+    },
+    "record_layer_pass": {
+      "description": "Records the passage of an object through an ontology layer check.",
+      "inputs": {
+        "object": "Any",
+        "layer": "string"
+      },
+      "returns": "ActionResponse<boolean>",
+      "fail_closed": true
+    }
+  },
+  "types": {
+    "ActionResponse": {
+      "description": "A wrapper containing either the successful data or a structured refusal.",
+      "properties": {
+        "success": "boolean",
+        "data": "T",
+        "refusal": "Refusal"
+      }
+    },
+    "Refusal": {
+      "description": "Structured reason for an action failing its validation gates.",
+      "properties": {
+        "reason": "string",
+        "gate_failed": "string",
+        "context": "object"
+      }
+    }
+  }
+}
