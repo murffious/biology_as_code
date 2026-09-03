@@ -1,0 +1,82 @@
+Body only. **3,000 characters.** No links.
+
+---
+
+Most agent failures aren’t model failures. They’re missing-world failures.
+
+Berkeley, the Ontology Pipeline, PwC/Infosys, and Palantir’s docs make the same argument — now with an operating system attached.
+
+LLMs guess the next token. Agents add loops. Loops make the system powerful and able to drift, loop forever, and burn tokens. An ontology is the shared map of your domain sitting outside the model so the loop has something solid to bounce against.
+
+Takeaways:
+
+1. Hallucination is a feature of probabilistic systems. Don’t prompt it out of existence. Bound it. Neural inside, symbolic outside.
+
+2. An ontology is not a fancy graph database.
+• Ontology = meaning and rules
+• Knowledge graph = those rules filled with instances
+• Graph DB = the storage engine
+You can have a graph DB and still have no meaning.
+
+3. Don’t start by “building an OWL file.” Pipeline: controlled vocabulary → metadata → taxonomy → ontology → knowledge graph. Each layer is usable on its own.
+
+4. Reuse before you invent. schema.org, FOAF, Dublin Core, SNOMED already exist. Your unique branches are the IP.
+
+5. Constraints beat paragraphs of instructions. They catch what English can’t: duplicate refunds, wrong entity types, illegal statuses.
+
+6. Make it living. Capture the decision, the context, the action, and whether it worked. Failures belong in the model. That’s traceability.
+
+What Palantir’s docs add:
+
+The Ontology represents the decisions of an enterprise, not simply the data. Traditional stacks store values. They do not store the reasoning, the options, or the action that followed — so agents have nothing durable to learn from.
+
+Two layers:
+• Semantic (“nouns”): objects, properties, links — a digital twin of the real world, not of your tables.
+• Kinetic (“verbs”): actions, functions, security — the allowed ways the world may change.
+
+Every decision binds data + logic + action + security. Agents should not write rows. They should propose governed actions that already carry permissions, validation, and a decision log.
+
+Briefing notes:
+• Interfaces, not 12 near-duplicate object types
+• Functions are first-class logic
+• Security is not a wrapper — no object access, no tool
+• Writeback is the product
+• Decision lineage is training data
+• Agents should consume the same ontology as people
+
+Principles: domain-driven, don’t repeat yourself, open for extension / closed for modification.
+
+Why give this to your AI?
+
+Default assistants say “add RAG, add tools, lengthen the prompt.” This changes the first question to: what shared conceptualization is this agent allowed to act inside — and which verbs are legal?
+
+Expect questions about entities, links, actions, and constraints — not prompt tone. Expect propose / validate / commit as separate layers. Expect vocab before classes, and checks before side effects.
+
+Don’t expect a production ontology from a chat. Or zero hallucinations. The win is bounded action with a trail back to source.
+
+Build the map. Then let the agent walk it — and only let it change the world through verbs you already defined.
+
+---
+
+**Comment block (paste separately):**
+
+Sources  
+Frank Coyle — Why Agentic Systems Need Ontologies  
+https://www.youtube.com/watch?v=Sir59K8ZDPU  
+
+Jessica Talisman — Ontology Pipeline  
+https://www.youtube.com/watch?v=aZTJKupi28w  
+https://jessicatalisman.substack.com/p/the-ontology-pipeline  
+
+TalkIT / Infosys / PwC — Ontology vs. Graph DB  
+https://www.youtube.com/watch?v=U_YyqxUBNiQ  
+
+Palantir DevCon 5 — Advanced Ontology  
+https://www.youtube.com/watch?v=_b2qsKz_Ifk  
+
+Palantir docs  
+https://palantir.com/docs/foundry/ontology/overview/  
+https://palantir.com/docs/foundry/ontology/core-concepts/  
+https://www.palantir.com/docs/foundry/ontology/why-ontology  
+https://palantir.com/docs/foundry/architecture-center/ontology-system/  
+https://palantir.com/docs/foundry/architecture-center/aip-architecture/
