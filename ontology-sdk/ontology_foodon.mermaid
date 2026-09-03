@@ -1,0 +1,73 @@
+mermaid
+graph TD
+    %% Nodes
+    Tree["apple tree<br>FOODON_03411245"]
+    PomePlant["pome fruit plant<br>FOODON_03411245"]
+    Malus["Malus pumila<br>NCBITaxon_283210"]
+    AppleRaw["apple (whole, raw)<br>FOODON_03301710"]
+    PomeFruit["pome fruit<br>PO_0030110"]
+    PomaciousFood["pomacious fruit food product<br>FOODON_00001158"]
+    AppleFood["apple food product<br>FOODON_00001611"]
+
+    CaramelApple["apple (caramel-coated)<br>FOODON_03301956"]
+    Caramel["caramel<br>FOODON_03317034"]
+    CoatingProcess["food coating or covering process<br>FOODON_03460353"]
+
+    AppleWholeOrParts["apple (whole or parts)<br>FOODON_03310788"]
+    AppleSliced["apple (sliced)<br>FOODON_00002482"]
+    SlicedQuality["sliced<br>FOODON_03307595"]
+    AppleCanned["apple (canned)<br>FOODON_03301920"]
+    AppleSlicedCanned["apple (sliced, canned)<br>FOODON_03307595"]
+    FruitCanned["fruit (canned)<br>FOODON_03301920"]
+    FoodCanned["food (canned)<br>FOODON_00002418"]
+    CanningProcess["food canning process<br>FOODON_00002416"]
+    CanBottleJar["can, bottle or jar<br>FOODON_03490194"]
+
+    ApplePie["apple pie<br>FOODON_00002476"]
+    ApplePieBaked["apple pie (baked)<br>FOODON_03306761"]
+    ApplePieFilling["apple pie filling<br>FOODON_03305680"]
+    BakedPie["baked pie<br>FOODON_03317288"]
+    BakingProcess["food baking process<br>FOODON_03450005"]
+    PieFoodProduct["pie food product<br>FOODON_00002114"]
+    PieCrust["pie crust<br>FOODON_03306773"]
+    PieFillingProduct["pie filling product<br>FOODON_03306766"]
+    FillingProcess["food filling process<br>FOODON_03460207"]
+
+    %% Edges
+    Tree -- "is a" --> PomePlant
+    Tree -- "in taxon" --> Malus
+    AppleRaw -- "derives from" --> Tree
+    AppleRaw -- "has part" --> PomeFruit
+    PomeFruit -- "derives from" --> PomePlant
+    PomaciousFood -- "derives from" --> PomeFruit
+    AppleRaw -- "is a" --> PomaciousFood
+    AppleFood -- "derives from" --> AppleRaw
+    AppleFood -- "is a" --> PomaciousFood
+
+    CaramelApple -- "has part" --> AppleRaw
+    CaramelApple -- "is a" --> AppleFood
+    CaramelApple -- "has part" --> Caramel
+    CaramelApple -- "output of" --> CoatingProcess
+
+    AppleWholeOrParts -- "is a" --> AppleFood
+    AppleSliced -- "is a" --> AppleWholeOrParts
+    AppleCanned -- "is a" --> AppleWholeOrParts
+    AppleSliced -- "has quality" --> SlicedQuality
+    AppleSlicedCanned -- "is a" --> AppleSliced
+    AppleSlicedCanned -- "is a" --> AppleCanned
+    FruitCanned -- "is a" --> FoodCanned
+    AppleCanned -- "is a" --> FruitCanned
+    FoodCanned -- "output of" --> CanningProcess
+    FoodCanned -- "surrounded by" --> CanBottleJar
+
+    ApplePie -- "is a" --> AppleFood
+    ApplePieBaked -- "is a" --> ApplePie
+    ApplePieBaked -- "is a" --> BakedPie
+    ApplePieBaked -- "has part" --> ApplePieFilling
+    BakedPie -- "output of" --> BakingProcess
+    BakedPie -- "is a" --> PieFoodProduct
+    PieFoodProduct -- "has part" --> PieCrust
+    PieFoodProduct -- "has part" --> PieFillingProduct
+    PieFoodProduct -- "output of" --> FillingProcess
+    PieCrust -- "input of" --> FillingProcess
+    PieFillingProduct -- "input of" --> FillingProcess
