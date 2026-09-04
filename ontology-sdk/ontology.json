@@ -11,7 +11,7 @@
       "predicates": "nutri-collective/evidence-platform/src/mechanism_schema.py — Relation and COMPAT, the one candidate vocabulary with an executed domain/range matrix; copied by hand, re-derived by check_manifest.py when that checkout sits beside this repo",
       "entity_kinds": "nutri-collective/evidence-platform/src/mechanism_schema.py — EntityKind",
       "spine_stages": "nutri-collective/scripts/migrate_spine_naming.py — the six declared stages (GROUNDED-OBJECT-MODEL.md §2, blockers 1 and 2)",
-      "object_types": "GROUNDED-OBJECT-MODEL.md §3 — properties are the fields each register actually carries, not a wish list",
+      "object_types": "GROUNDED-OBJECT-MODEL.md §3 and §3a — properties are the fields each register actually carries, not a wish list",
       "interfaces": "fdp-1/validator/validate_fdp.py VALUE_FIELDS and SOURCE_TO_GRADE; ontology-sdk/declared.py Declared",
       "actions": "DESIGN.md — declared, not implemented"
     },
@@ -51,6 +51,10 @@
       "description": "Carries provenance: where the number came from (source_ref) and how it was obtained (method). FDP-1 §2 enforces source, source_ref, method and retrieved as a unit; source_ref and method are the two that make a value citable.",
       "required_properties": ["source_ref", "method"],
       "aliases": {"method": ["method_ref"]}
+    },
+    "Falsifiable": {
+      "description": "A dated claim that names what would show it wrong and when it resolves. Scored by reading a register on that date, never by recollection; the score is kept whichever way it went.",
+      "required_properties": ["claim", "falsifies_if", "resolves_by", "made_on"]
     },
     "Gradeable": {
       "description": "Carries a provenance grade (A|B|C|D|—) and folds by weakest link: a derived value's grade is the grade of its lowest-graded input (FDP-1 §3.1).",
@@ -179,6 +183,49 @@
       "note": "spine:compound holds for the cdno, fdc and infoods namespaces only; the other six namespaces are identity rows off the spine",
       "register": "nutri-collective/evidence-platform/site/id-crosswalk.v1.json",
       "properties": ["id", "namespace", "curie"]
+    },
+    "Standard": {
+      "spine_stage": null,
+      "note": "governance object: a schema, ontology or checklist a study can be structured with; four rows are this project's own proposals, flagged by origin",
+      "register": "nutri-collective/evidence-platform/site/standards-catalog.v1.json entries[]",
+      "properties": ["id", "name", "kind", "origin", "status", "what_it_covers", "id_format", "license", "access", "crosswalks", "how_to_adopt"]
+    },
+    "Organization": {
+      "spine_stage": null,
+      "note": "governance object: an adopter, observed only through the tracker rows that name it — the tracker has no organization table and the manifest does not invent one",
+      "register": "nutri-collective/evidence-platform/site/adoption-tracker.v1.json rows[].adopter",
+      "properties": ["name", "type", "is_target"]
+    },
+    "AdoptionEvent": {
+      "spine_stage": null,
+      "note": "governance object: one dated stage change on one tracker row; the tracker's rule is that every change is appended when it happens",
+      "register": "nutri-collective/evidence-platform/site/adoption-tracker.v1.json rows[].history[]",
+      "properties": ["stage", "date", "note"]
+    },
+    "TrackedSubject": {
+      "spine_stage": null,
+      "note": "governance object: a thing the standardization ledger watches — an adoption row, an organization, a layer score, a trend series, a disclosure floor — by a ref that must resolve to a register row on disk",
+      "register": "nutri-collective/predictor_ledger/standardization-ledger.v1.json tracked[]",
+      "properties": ["id", "kind", "ref", "label", "why"]
+    },
+    "CapturedEvent": {
+      "spine_stage": null,
+      "note": "governance object: something this project captured about standardization or adoption, dated twice (when it happened, when it was written down), evidenced, and tied to the register field it moved; append-only",
+      "register": "nutri-collective/predictor_ledger/standardization-ledger.v1.json events[]",
+      "properties": ["id", "on", "captured_on", "captured_by", "kind", "organization", "subjects", "what", "evidence", "effect", "resolves_predictions"]
+    },
+    "Prediction": {
+      "spine_stage": null,
+      "implements": ["Falsifiable"],
+      "note": "governance object: a pre-registered claim about what a register will record — never a person, a prize or a judgment score; drafts are unsigned, open rows are signed or derived from a field the author owns, resolved rows point at an artifact",
+      "register": "nutri-collective/predictor_ledger/standardization-ledger.v1.json predictions[]",
+      "properties": ["id", "subject", "type", "status", "made_on", "proposed_by", "signed_on", "claim", "metric", "baseline", "expected", "resolves_by", "resolves_when", "falsifies_if", "probability", "condition", "derived_from", "public_record", "resolved"]
+    },
+    "Decision": {
+      "spine_stage": null,
+      "note": "governance object: one knob moved by hand in a tuned loop, with what was held fixed, what was observed, what was predicted, what was measured and the verdict; the memory of a closed control loop run by hand",
+      "register": "nutri-collective/decisions/decision-ledger.v1.json decisions[]",
+      "properties": ["id", "lane", "date", "status", "knob", "knob_kind", "held_fixed", "observation", "predicted", "measured", "assessment", "verdict", "checks"]
     }
   },
   "actions": {

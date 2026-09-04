@@ -20,6 +20,7 @@ Current version: **1.1.0**, as of 2026-09-03. Checked by `check_manifest.py`
 | `interfaces` | FDP-1 §2 `VALUE_FIELDS` and `SOURCE_TO_GRADE`; `declared.py` | an `implements` claim fails unless the required properties are present |
 | `actions` | DESIGN.md's kinetic verbs | each carries `implemented: false`; none has code behind it |
 | `types` | `declared.py` (`Declared`), DESIGN.md (`ActionResponse`, `Refusal`) | `Declared` is the one implementer of `Gradeable` |
+| `object_types` (governance, §3a) | the standards catalog, the adoption tracker's adopters and history, the decision ledger, and the standardization ledger's subjects, events and predictions | each names its register; `Prediction` implements `Falsifiable` |
 | `relation-crosswalk.v1.json` (beside the manifest) | six relation vocabularies, read from their source files | every member has a row, shared names map identically, counts are recomputed, sources are re-read when reachable |
 
 ## What 1.1.0 corrected in 1.0.0

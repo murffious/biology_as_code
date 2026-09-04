@@ -108,6 +108,22 @@ Deliberately excluded for lack of backing: `Outcome` as an ontology-keyed type (
 
 ---
 
+### 3a. Governance objects (added 2026-09-03)
+
+The spine types above are what the biology is *about*. These are the objects the project uses to govern its own claims about standardization: what is adopted, by whom, what was captured, what was predicted, what was decided. Each is grounded the same way — the properties are the fields the register carries — and none is on the spine.
+
+| Object type | Identity | Register | Properties on disk | Note |
+|---|---|---|---|---|
+| `Standard` | catalog slug | `nutri-collective/evidence-platform/site/standards-catalog.v1.json` `entries[]` | `id, name, kind, origin, status, what_it_covers, id_format, license, access, crosswalks, how_to_adopt` | four rows are this project's own proposals, flagged by `origin` |
+| `Organization` | the adopter name, verbatim | `adoption-tracker.v1.json` `rows[].adopter` | `name, type, is_target` | observed only through the rows that name it; there is no organization table and the manifest does not invent one |
+| `AdoptionEvent` | (row, date) | `adoption-tracker.v1.json` `rows[].history[]` | `stage, date, note` | one dated stage change; the tracker's rule is that every change is appended when it happens — three rows (R03–R05) predate that rule and have none |
+| `TrackedSubject` | `kind.key` slug | `nutri-collective/predictor_ledger/standardization-ledger.v1.json` `tracked[]` | `id, kind, ref, label, why` | a ref that must resolve to a register row on disk — 72 subjects on 2026-09-03 |
+| `CapturedEvent` | `ev-<date>-<slug>` | same file, `events[]` | `id, on, captured_on, captured_by, kind, organization, subjects, what, evidence, effect, resolves_predictions` | dated twice, evidenced, append-only; an effect on a tracker row must match a `history[]` entry there |
+| `Prediction` | `P-<date>-<slug>` | same file, `predictions[]` | `id, subject, type, status, made_on, proposed_by, signed_on, claim, metric, baseline, expected, resolves_by / resolves_when, falsifies_if, probability, condition, derived_from, public_record, resolved` | implements `Falsifiable`; never a person, a prize or a judgment score; an open row past its date fails the build |
+| `Decision` | `<lane>-<slug>` | `nutri-collective/decisions/decision-ledger.v1.json` `decisions[]` | `id, lane, date, status, knob, knob_kind, held_fixed, observation, predicted, measured, assessment, verdict, checks` | one knob per row; the memory of a control loop run by hand |
+
+`Falsifiable` is the one new interface: `claim`, `falsifies_if`, `resolves_by`, `made_on`. `Decision.predicted` is prose and does not implement it; that is a fact about the decision ledger, not a defect to fix here.
+
 ## 4. Link types
 
 | From | To | Via (file) | Object-backed? | Why |
