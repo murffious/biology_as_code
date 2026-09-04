@@ -1,30 +1,64 @@
-# Ontology SDK Implementation Walkthrough
+# ontology.json — what the manifest is, and is not
 
-I have successfully created the `ontology.json` manifest. This serves as the foundational artifact for your SDK generator to consume.
+`ontology.json` is the one-file declaration DESIGN.md §1 asks for: object types,
+interfaces, predicates, entity kinds, spine stages, actions and response types in a
+shape a generator can read. It is exploratory, like everything in this folder
+(README.md): nothing in it is normative, and where it disagrees with FDP-1, FDP-1 wins.
 
-## What was built
+Current version: **1.1.0**, as of 2026-09-03. Checked by `check_manifest.py`
+(`python3 ontology-sdk/check_manifest.py --strict`), which the test suite runs through
+`tests/test_ontology_manifest.py`.
 
-#### [NEW] [ontology.json](file:///Users/morf/Downloads/morf-engineering/mealcoachai/dev/NUTRI-COLLECTIVE_0/biology_as_code_PUBLIC/ontology-sdk/ontology.json)
-This JSON file now explicitly defines the semantic and kinetic architecture that the rest of the SDK will build upon. 
+## Where each block comes from
 
-### Key Design Implementations
+| Block | Derived from | Kept honest by |
+|---|---|---|
+| `spine_stages` | the six stages `migrate_spine_naming.py` declares (blockers 1 and 2) | every `spine_stage` must be one of them or `null`, and a `null` must say why |
+| `entity_kinds` | `mechanism_schema.EntityKind` | each kind names the object type that realises it, or `null` |
+| `predicates` | `mechanism_schema.COMPAT`, copied by hand | re-derived from the executed matrix whenever a nutri-collective checkout sits beside this repo |
+| `object_types` | the object table in GROUNDED-OBJECT-MODEL.md §3 | properties are the fields each register carries, with the register named |
+| `interfaces` | FDP-1 §2 `VALUE_FIELDS` and `SOURCE_TO_GRADE`; `declared.py` | an `implements` claim fails unless the required properties are present |
+| `actions` | DESIGN.md's kinetic verbs | each carries `implemented: false`; none has code behind it |
+| `types` | `declared.py` (`Declared`), DESIGN.md (`ActionResponse`, `Refusal`) | `Declared` is the one implementer of `Gradeable` |
+| `relation-crosswalk.v1.json` (beside the manifest) | six relation vocabularies, read from their source files | every member has a row, shared names map identically, counts are recomputed, sources are re-read when reachable |
 
-> [!TIP]
-> **Unified Kinetic Verbs**
-> The `predicates` block was populated by mapping `mechanism_schema.py`'s 11 core relations directly into the manifest, assigning explicit domains and ranges. This solves Blocker 4 (picking one predicate vocabulary) and gives agents a concrete list of legal verbs.
+## What 1.1.0 corrected in 1.0.0
 
-> [!IMPORTANT]
-> **Explicit Interfaces**
-> The `interfaces` block formally defines `Gradeable`, `Citable`, and `Validatable`. Previously, these were just Python duck typing assumptions. Now, they are explicitly declared, forcing the code generator to apply them structurally.
+- `Value` claimed `Gradeable` and `Citable` without carrying `grade`, `evidence_span` or
+  `method_ref`. `evidence_span` exists nowhere in the SDK. `Citable` now requires what
+  FDP-1 enforces (`source_ref`, `method`, with `method_ref` recorded as `Declared`'s alias),
+  and `Gradeable` is implemented by `Declared`, because an FDP-1 value derives its grade
+  from `source` rather than storing one.
+- `spine:catalogue`, `controlled_vocabulary`, `mechanism_chain` and `not_on_spine` were
+  invented stage values. Off-spine types now carry `null` plus a note; `Principle` carries
+  `spine_span` because it is a chain.
+- Predicates were typed over kinds (`biomarker`, `process`, `disease`, …) that no block
+  declared. `entity_kinds` now declares them and says which have an object type.
+- The `types` block existed but the MCP surface could not reach it.
 
-> [!NOTE]
-> **Structured Action Refusals**
-> In the `actions` and `types` blocks, we abandoned the model of throwing exceptions. The kinetic verbs (`declare_value`, `assert_claim`) now return an `ActionResponse` struct that includes a `Refusal` reason if they fail. This honors your learning that "Failures belong in the model" and that decision lineage is training data.
+## What it settles, and what it does not
 
-### Validation
+- **Blocker 4 is cleared.** The base is `mechanism_schema.py`'s eleven relations. Every other
+  vocabulary — the law model (9), the graph (10), the claim-language lexicon (15),
+  nutrient-edge.v2 (16), the id-crosswalk kinds (5), the taxonomy joins (8) — is mapped onto it
+  verb by verb in `relation-crosswalk.v1.json`, with a rule for what counts as a mapping and a
+  `gaps` block listing what the base cannot carry. nutrient-edge.v2's sixteen come out as six
+  direct, eight by expansion over a reified node, two not expressible. Nothing is retired.
+- **Blockers 5 and 6 are visible, not solved.** `Claim.verdict` and `Claim.grade` are two
+  fields by design; `method` / `method_ref` is one recorded alias. Namespacing the other
+  collisions is still the manifest's job.
+- **Actions are declared, not implemented.** A tool that serves this file must never offer
+  `declare_value`, `assert_claim` or `record_layer_pass` as callable.
 
-The JSON structure has been validated.
+## How it is served
 
-## Next Steps
+nutri-collective's MCP server serves the file through its existing `get_standard` tool
+(`name="ontology-manifest"` or `"ontology.json"`, `section=<block>`), with a reporting rule
+that says the manifest is a sketch of the object model and not the project's standard. It is
+not a tool of its own: sixteen is that server's declared ceiling, and the decision ledger
+row that set it says future asks fold into existing tools.
 
-With `ontology.json` complete, the next phase is to write the Python SDK Generator that reads this manifest and produces the typed dataclasses, complete with the `Declared[T]` primitive.
+## Next
+
+The generator that reads this file and emits typed dataclasses around the `Declared[T]`
+primitive has not been started. The blockers above gate what it may generate.

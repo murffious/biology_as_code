@@ -5,7 +5,8 @@
         "terms": "LICENSE-SAMPLES.md \u2014 free reuse with attribution to the repository and the book",
         "scope": "Original authored schema of the biology_as_code project. Underlying scientific facts are not claimed."
     },
-  "description": "Subset of Biology as Code RelationType ENUMs for public companion use. Full list in book / claim-language.",
+  "description": "The graph's closed relation vocabulary (graph/build._REL_ALIASES, enforced by graph/schema.sql): the six structural members of engine.laws.models.RelationType plus four edge kinds the law model has no use for. The claim-language lexicon (book/claim-language/claim_verbs.json) carries a different 15-member list that does not contain CONSERVES or IDENTITY. Both are mapped onto the mechanism_schema base, verb by verb, in the crosswalk named below.",
+  "crosswalk": "ontology-sdk/relation-crosswalk.v1.json",
   "RelationType": [
     "OPENS_GATE",
     "CLOSES_GATE",

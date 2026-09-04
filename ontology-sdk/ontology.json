@@ -1,20 +1,59 @@
 {
   "ontology": {
     "name": "nutrition_ontology_sdk",
-    "version": "1.0.0",
-    "description": "Canonical manifest for the nutrition ontology as code."
+    "version": "1.1.0",
+    "as_of": "2026-09-03",
+    "status": "exploratory",
+    "description": "Manifest for the nutrition ontology as code: object types, interfaces, predicates, entity kinds, spine stages, actions and response types in one file a generator can read. Exploratory — nothing in ontology-sdk/ is normative, and where this disagrees with FDP-1, FDP-1 wins (README.md).",
+    "checked_by": "ontology-sdk/check_manifest.py",
+    "crosswalk": "ontology-sdk/relation-crosswalk.v1.json",
+    "sources": {
+      "predicates": "nutri-collective/evidence-platform/src/mechanism_schema.py — Relation and COMPAT, the one candidate vocabulary with an executed domain/range matrix; copied by hand, re-derived by check_manifest.py when that checkout sits beside this repo",
+      "entity_kinds": "nutri-collective/evidence-platform/src/mechanism_schema.py — EntityKind",
+      "spine_stages": "nutri-collective/scripts/migrate_spine_naming.py — the six declared stages (GROUNDED-OBJECT-MODEL.md §2, blockers 1 and 2)",
+      "object_types": "GROUNDED-OBJECT-MODEL.md §3 — properties are the fields each register actually carries, not a wish list",
+      "interfaces": "fdp-1/validator/validate_fdp.py VALUE_FIELDS and SOURCE_TO_GRADE; ontology-sdk/declared.py Declared",
+      "actions": "DESIGN.md — declared, not implemented"
+    },
+    "notes": {
+      "spine_stages": "An object type's spine_stage is one of the six declared stages or null. null means the type is not on the spine (a catalogue, a vocabulary layer, a product record) and the type's note says why. Principle is a chain, so it carries spine_span instead.",
+      "entity_kinds": "What predicates are typed over. object_type is the manifest type that realises the kind, or null — a predicate may be typed over a kind no object type yet realises (blockers 3 and 4).",
+      "predicates": "A hand copy of mechanism_schema.COMPAT, and the settled base (blocker 4, landed 2026-09-03). Every other relation vocabulary this project carries — the law model, the graph, the claim-language lexicon, nutrient-edge.v2, the id-crosswalk kinds, the taxonomy joins — is mapped onto these eleven, verb by verb, in relation-crosswalk.v1.json, which also lists what the base cannot carry (modality, bounds, symmetric interaction, binding, saturation, membership). Extending the base is a decision-ledger row, never an edit in place.",
+      "interfaces": "Citable is what FDP-1 §2 enforces as a unit; Declared spells method as method_ref, an alias recorded here rather than a second field (blocker 5). Gradeable is implemented by Declared, the SDK wrapper — an FDP-1 Value does not store a grade, it derives one from source.",
+      "actions": "Declared, not implemented. They name the kinetic verbs DESIGN.md wants; none has code behind it, and a tool must never offer them as callable."
+    }
+  },
+  "spine_stages": {
+    "spine:food": {"rank": 1},
+    "spine:compound": {"rank": 2},
+    "spine:mechanism": {"rank": 3},
+    "spine:physiology": {"rank": 4},
+    "spine:outcome": {"rank": 5},
+    "spine:anatomy": {"rank": null, "note": "off-ladder peer: compartments, enzymes, transporters, hormones"}
+  },
+  "entity_kinds": {
+    "food": {"object_type": "Food"},
+    "compound": {"object_type": "Metabolite"},
+    "nutrient": {"object_type": "Nutrient"},
+    "biomarker": {"object_type": null},
+    "process": {"object_type": null},
+    "organ_system": {"object_type": null},
+    "microbe": {"object_type": null},
+    "gene_enzyme": {"object_type": null},
+    "disease": {"object_type": null}
   },
   "interfaces": {
     "Validatable": {
-      "description": "An object that can assert its conformance against a schema or law.",
+      "description": "Can assert its conformance against a schema or law.",
       "required_methods": ["validate", "is_valid"]
     },
     "Citable": {
-      "description": "An object that requires provenance data to be considered valid.",
-      "required_properties": ["evidence_span", "method_ref"]
+      "description": "Carries provenance: where the number came from (source_ref) and how it was obtained (method). FDP-1 §2 enforces source, source_ref, method and retrieved as a unit; source_ref and method are the two that make a value citable.",
+      "required_properties": ["source_ref", "method"],
+      "aliases": {"method": ["method_ref"]}
     },
     "Gradeable": {
-      "description": "An object whose strength of evidence is graded.",
+      "description": "Carries a provenance grade (A|B|C|D|—) and folds by weakest link: a derived value's grade is the grade of its lowest-graded input (FDP-1 §3.1).",
       "required_properties": ["grade"],
       "required_methods": ["weakest_link"]
     }
@@ -78,79 +117,104 @@
   },
   "object_types": {
     "OntologyTerm": {
-      "spine_stage": "spine:catalogue",
+      "spine_stage": null,
+      "note": "the spine catalogue itself (bfo_stack_ontology.json terms[]); each term carries its own spine_stage",
+      "register": "nutri-collective/backend/bfo_stack_ontology.json",
       "properties": ["curie", "label", "source", "spine_stage", "iri"]
     },
     "Concept": {
-      "spine_stage": "controlled_vocabulary",
+      "spine_stage": null,
+      "note": "controlled vocabulary — the layer beneath the spine",
+      "register": "nutri-collective/evidence-platform/site/nutrition-vocab.v1.json",
       "properties": ["pref_label", "alt_labels", "hidden_labels", "broader", "source", "scheme"]
     },
     "Food": {
       "spine_stage": "spine:food",
+      "register": "book/food-taxonomy/out/atlas_all_named.jsonl",
       "properties": ["commonName", "taxonomy", "map_status", "fdc_id", "foodon_id", "ncbi_taxid", "composition"]
     },
     "Nutrient": {
       "spine_stage": "spine:compound",
+      "register": "book/nutrient-taxonomy/v2/nutrient-node.v2.json",
       "properties": ["node_kind", "invariants", "dri_key", "ontology_primary", "essentiality"]
     },
     "Metabolite": {
       "spine_stage": "spine:compound",
+      "register": "MASTER_CROSSWALK.tsv",
       "properties": ["vmh", "name", "formula", "hmdb", "kegg", "chebi", "pubchem", "seed", "term_id"]
     },
     "DigestiveNode": {
       "spine_stage": "spine:anatomy",
+      "register": "book/digestive-taxonomy/out/digestive_atlas.jsonl",
       "properties": ["ontology_primary", "within", "parent_id", "cargo"]
     },
     "Principle": {
-      "spine_stage": "mechanism_chain",
+      "spine_stage": null,
+      "spine_span": ["spine:compound", "spine:mechanism", "spine:physiology"],
+      "note": "a mechanism chain, not a stage — it spans three",
+      "register": "nutri-collective/backend/principles.json",
       "properties": ["pathway", "statement", "systems", "nutrient_ids", "law_ids", "pillars", "kind", "ontology"]
     },
     "Claim": {
-      "spine_stage": "not_on_spine",
+      "spine_stage": null,
+      "note": "product record; verdict here is the prose sentence and grade the machine grade — two fields, never one",
+      "register": "nutri-collective/backend/claims.json",
       "properties": ["factor", "outcome", "direction", "grade", "verdict", "system", "pillars"]
     },
     "Value": {
       "spine_stage": "spine:compound",
-      "implements": ["Gradeable", "Citable", "Validatable"],
+      "implements": ["Citable", "Validatable"],
+      "note": "an FDP-1 value declaration; all seven fields are enforced as a unit. Its grade is derived from source by SOURCE_TO_GRADE, not stored, so Gradeable is implemented by the Declared wrapper, not by the record",
+      "register": "fdp-1/validator/validate_fdp.py VALUE_FIELDS",
       "properties": ["nutrient_ref", "value", "unit", "source", "source_ref", "method", "retrieved"]
     },
     "Law": {
-      "spine_stage": "not_on_spine",
+      "spine_stage": null,
+      "note": "two registers, one id space, different field vocabularies",
+      "register": "src/biology_as_code/engine/data/all_laws_system_bound.json",
       "properties": ["system", "law", "gate", "bound", "relation", "related"]
     },
     "CrosswalkNode": {
       "spine_stage": "spine:compound",
+      "note": "spine:compound holds for the cdno, fdc and infoods namespaces only; the other six namespaces are identity rows off the spine",
+      "register": "nutri-collective/evidence-platform/site/id-crosswalk.v1.json",
       "properties": ["id", "namespace", "curie"]
     }
   },
   "actions": {
     "declare_value": {
       "description": "Appends a validated declaration of a Value.",
-      "inputs": {
-        "value": "Value"
-      },
+      "inputs": {"value": "Value"},
       "returns": "ActionResponse<Value>",
-      "fail_closed": true
+      "fail_closed": true,
+      "implemented": false
     },
     "assert_claim": {
       "description": "Asserts a Claim against evidence.",
-      "inputs": {
-        "claim": "Claim"
-      },
+      "inputs": {"claim": "Claim"},
       "returns": "ActionResponse<Claim>",
-      "fail_closed": true
+      "fail_closed": true,
+      "implemented": false
     },
     "record_layer_pass": {
       "description": "Records the passage of an object through an ontology layer check.",
-      "inputs": {
-        "object": "Any",
-        "layer": "string"
-      },
+      "inputs": {"object": "Any", "layer": "string"},
       "returns": "ActionResponse<boolean>",
-      "fail_closed": true
+      "fail_closed": true,
+      "implemented": false
     }
   },
   "types": {
+    "Declared": {
+      "description": "The SDK primitive (ontology-sdk/declared.py): a state that is a T, OPEN or NONE — null is not a state — plus grade, method_ref and source_ref.",
+      "implements": ["Gradeable", "Citable"],
+      "properties": {
+        "state": "T | OPEN | NONE",
+        "grade": "A | B | C | D | —",
+        "method_ref": "string | null",
+        "source_ref": "string | null"
+      }
+    },
     "ActionResponse": {
       "description": "A wrapper containing either the successful data or a structured refusal.",
       "properties": {

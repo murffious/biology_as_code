@@ -153,6 +153,10 @@
     {
       "file": "src/biology_as_code/engine/data/topics_ontology.json",
       "note": "Authored here. Auto-classified from the first-party frozen topic list; vocabulary for sim representation, not a law set."
+    },
+    {
+      "file": "ontology-sdk/relation-crosswalk.v1.json",
+      "note": "Authored here 2026-09-03. Maps six relation vocabularies (two in this repo, three in the book, one in nutri-collective) onto the mechanism_schema base; the six RO ids it carries are OBO Relation Ontology identifiers quoted from the claim-language lexicon's class table, not RO content."
     }
   ]
 }

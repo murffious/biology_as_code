@@ -81,3 +81,10 @@ site/
 
 # scripts/zenodo_new_version.sh build artifact
 biology_as_code-v*.tar.gz
+
+# ontology-sdk/learning-ont: the third-party talks and screenshots are reading
+# material, not content this repository may redistribute. The notes (.md,
+# .mermaid) written from them stay tracked. Untracked 2026-09-03.
+ontology-sdk/learning-ont/*.pdf
+ontology-sdk/learning-ont/*.png
+ontology-sdk/learning-ont/*.jpg
