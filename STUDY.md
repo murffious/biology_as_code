@@ -19,12 +19,17 @@ paper:        producer keeps first analysis
   on a food, the packet that carries it, and the study record itself. The pin used to
   name the first two and behave as though that covered the third. **The same block is in
   `fdp-1/STUDY.md`.** If they diverge, the pin is broken.
-  **Honest status of the third:** `food:` and `packet:` resolve to public repositories
-  you can clone and watch refuse a bad row. `study:` names a version and nothing else,
-  because MI-Nutrition has no neutral public home yet — its schema is served, but from a
-  product-branded host this repository is not permitted to name, and its validator is not
-  published at all. **The pin therefore names a contract a stranger cannot yet fetch or
-  run.** That is stated rather than papered over, and closing it is the next task.
+  **Honest status of the third, updated 2026-09-05:** `food:` and `packet:` resolve to
+  public repositories you can clone and watch refuse a bad row. `study:` now resolves the
+  same way for the schema — MI-Nutrition has a neutral public home
+  (`github.com/murffious/mi-nutrition`, CC BY 4.0), and the file there is the real
+  annotated schema (`$defs`, `x-crosswalk` to EN 16104/EuroFIR and STROBE), not the stub
+  that used to sit behind that name. What is still missing is a validator: the repo ships
+  a JSON Schema 2020-12 document, not a reference implementation that runs it, so a
+  stranger can fetch the contract but not yet run it without writing their own validation
+  call — the FDP-1 validator pinned above only checks `food:` and `packet:`. **The pin
+  therefore names a contract a stranger can fetch but not yet run.** That is stated
+  rather than papered over, and shipping a `study:` validator is the next task.
 - `rule` is refusal. Enforced today: the FDP-1 validator in `murffious/fdp-1`, pinned above.
 - `split` is what stops a `human_id` landing in a public remote. Enforced today:
   `tools/check_no_human_rows.py`, which runs **first** in CI — every other failure here
