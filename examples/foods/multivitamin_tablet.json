@@ -1,21 +1,40 @@
 {
   "id": "ex.multivitamin.tablet",
-  "status": "stub",
+  "status": "filled",
   "identity": {
-    "common_name": "multivitamin tablet",
-    "form": "unknown",
+    "common_name": "dry multivitamin tablet, swallowed with water",
+    "form": "tablet",
     "family_hint": "supplement"
   },
-  "cargo": [],
-  "partners": [],
+  "cargo": [
+    { "nutrient": "vitamin_a", "label_amount": "open" },
+    { "nutrient": "vitamin_d", "label_amount": "open" },
+    { "nutrient": "vitamin_e", "label_amount": "open" },
+    { "nutrient": "vitamin_k", "label_amount": "open" },
+    { "nutrient": "ascorbate", "label_amount": "open" }
+  ],
+  "partners": [
+    {
+      "field": "dietary_lipid_g",
+      "value": 0,
+      "concurrency": "same_meal",
+      "notes": "water only; no oil fill, no meal fat declared"
+    },
+    {
+      "field": "lipid_phase_present",
+      "value": false,
+      "concurrency": "same_meal"
+    }
+  ],
   "injection_zone": "zone2_cargo",
   "matrix": {
-    "integrity": "unknown"
+    "integrity": "destroyed",
+    "notes": "compressed powder; water-soluble and fat-soluble cargo share one swallow"
   },
   "teaching": {
-    "point": "stub: zone2 cargo isolate",
-    "gate": "open",
+    "point": "A panel with A/D/E/K does not open micelles. Ascorbate on the same tablet is a different path and is not rescued by this gate.",
+    "gate": "fat-soluble cargo CLOSED; ascorbate has no fat-vehicle gate",
     "bound": "open",
-    "book_ref": "open"
+    "book_ref": "Combs: fat-soluble vs water-soluble absorption seats"
   }
 }
