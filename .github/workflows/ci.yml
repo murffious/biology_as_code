@@ -37,6 +37,12 @@ jobs:
         # check is not a pass. Add one with `python3 tools/check_pmids.py --strict`
         # and commit the refreshed tools/pmid_cache.json.
         run: python tools/check_pmids.py --offline --strict
+      - name: Every shipped number names its source
+        # check_pmids proves a citation resolves; this proves the *numbers* have
+        # one. Seven constants in dig/ were bare literals emitted in to_dict()
+        # payloads with nothing attached. Reads the same pmid cache, so the two
+        # gates cannot drift apart.
+        run: python tools/check_constants.py --strict
 
   test:
     runs-on: ubuntu-latest
