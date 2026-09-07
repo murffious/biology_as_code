@@ -1,0 +1,31 @@
+{
+  "id": "ex.vitamin.d.dry_tablet",
+  "status": "filled",
+  "identity": {
+    "common_name": "vitamin D3 dry tablet, no oil, no meal fat",
+    "form": "tablet",
+    "family_hint": "supplement"
+  },
+  "cargo": [
+    { "nutrient": "cholecalciferol", "label_amount": "open" }
+  ],
+  "partners": [
+    {
+      "field": "dietary_lipid_g",
+      "value": 0,
+      "concurrency": "same_meal",
+      "notes": "declared zero lipid in the swallowing event"
+    }
+  ],
+  "injection_zone": "zone2_cargo",
+  "matrix": {
+    "integrity": "disrupted",
+    "notes": "compressed powder; no oil phase"
+  },
+  "teaching": {
+    "point": "Same cargo as the softgel. Zero co-present lipid closes the micelle path. Absorption is absent as a gate, not 'a bit less'.",
+    "gate": "gate-dietary-lipid CLOSED → fat-soluble cargo absorption absent (not reduced)",
+    "bound": "dose of oil would move magnitude only after the gate opens",
+    "book_ref": "Combs The Vitamins; L-FAT-1 / LAW-020; same cliff as spinach zero-fat"
+  }
+}
