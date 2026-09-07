@@ -121,44 +121,60 @@ to that declaration*, not a default. Silence stays UNEVALUABLE.
 
 ## Verification status
 
-**The PMIDs below are recorded as supplied and have _not_ been resolved against
-PubMed.** Network egress to PubMed was unavailable when this page was written, so
-every identifier here is unverified.
+**Every PMID on this page and in `src/biology_as_code/dig/` was resolved against
+PubMed on 2026-09-07** and diffed against the claim it is attached to. The page
+previously recorded them as unverified; that pass has now been run.
 
-This matters because this repository has already been bitten by it.
-`tools/check_curies.py` exists because a resolve-and-diff pass found **23 of 79
-place ids (29%)** in the digestive atlas naming a different body part — every one
-of which passed a regex. An identifier that has not been resolved is decoration.
+It found what the ontology pass found. **Twelve of seventeen identifiers named a
+different paper.** They were not near-misses — the id attached to *Regulation of
+short-chain fatty acid production* resolved to a paper on transducing cells on
+solid surfaces, and the id attached to Murphy's ROS review resolved to a case
+report on non-Hodgkin lymphoma. Every one passed a regex. `tools/check_pmids.py`
+now runs this diff as a gate, for the same reason `tools/check_curies.py` exists:
+an identifier that has not been resolved is decoration.
 
-| Source | PMID as supplied | Status |
-|---|---|---|
-| Miller & Wolin 1996 | 8962261 | unresolved |
-| den Besten et al. 2013 | **conflict — see below** | unresolved |
-| Hinkle 1991 | 1939103 | unresolved |
-| Hinkle 2005 | 15639704 | unresolved |
-| Boveris & Chance 1973 | 4749271 | unresolved |
-| St-Pierre et al. 2002 | 12417066 | unresolved |
-| Lu 2013 | 22995213 | unresolved |
-| Brand 2010 | 20463404 | unresolved, currently shipped in `dig/mitochondrial_routes.py` |
+### Corrected — code (`src/biology_as_code/dig/`)
 
-### Open conflict: den Besten et al. 2013
+| Source | Was | Resolved to | Now |
+|---|---|---|---|
+| Macfarlane & Macfarlane 2003 | `12740047` | *In situ transduction of target cells…* | **`12740060`** |
+| den Besten et al. 2013 | `24347302` | *Modulatory effects of L-carnitine on tamoxifen…* | **`23821742`** |
+| Stilling et al. 2016 | `26859755` | *Tree Age Effects on Fine Root Biomass…* | **`27346602`** |
+| Lubos et al. 2011 | `21924744` | *Novel laparoscopic hernia of Morgagni repair…* | **`21087145`** |
+| Rich 2003 | `14668792` | *no PubMed record* | **`14641005`** |
+| Brand 2010 | `20463404` | *Mitochondrial amyloid-beta levels…* | **`20064600`** |
+| Deponte 2013 | `23380711` | *Anaerobic co-digestion of grease sludge…* | **`23036594`** |
+| Murphy 2009 | `19052988` | *Synchronous presentation of systemic and brain NHL* | **`19061483`** |
 
-Three different PMIDs have been offered for the same review across three sources:
+### Corrected — this page
 
-| Value | Origin |
+| Source | Was | Resolved to | Now |
+|---|---|---|---|
+| Miller & Wolin 1996 | `8962261` | *Differential effects of interleukin-10…* | **`8633856`** |
+| Hinkle 1991 | `1939103` | *Covalent linkage between nucleotides and PD-ECGF* | **`2012815`** |
+| Hinkle 2005 | `15639704` | *Cost-utility analysis of imatinib mesylate…* | **`15620362`** |
+| St-Pierre et al. 2002 | `12417066` | *[Changes of inflammatory factors…]* | **`12237311`** |
+
+### Confirmed as supplied
+
+| Source | PMID |
 |---|---|
-| `24023713` | an earlier draft; already rejected in-tree |
-| `24347302` | currently shipped in `dig/hepatic_routes.py` |
-| `23985657` | the constants review this page was built from |
+| McCord & Fridovich 1969 | `5389100` |
+| Stanton 2012 | `22431005` |
+| Mitchell 1961 | `13771349` |
+| Boveris & Chance 1973 | `4749271` |
+| Lu 2013 | `22995213` |
 
-At most one is right. Until someone resolves it, the citation attached to SCFA
-route identity is **`candidate`, not `verified`** — and this conflict is a
-worked example of why the tier table above refuses to let an unresolved number
-drive a computation.
+### Closed conflict: den Besten et al. 2013
 
-Resolving these is a good first contribution: fetch each record, diff the title
-against the claim it is attached to, and open a PR that either confirms the id or
-replaces it.
+Three ids had been offered for this review — `24023713`, `24347302` and
+`23985657`. The page said at most one could be right. **None of them is.** All
+three resolve to unrelated papers; the J Lipid Res review is **`23821742`**.
+
+That outcome is the argument for the tier table above. Three independent sources
+agreed on the *shape* of a citation and every one of them was wrong, which is
+exactly the failure mode a number cannot survive if it is allowed to drive a
+computation.
 
 ---
 

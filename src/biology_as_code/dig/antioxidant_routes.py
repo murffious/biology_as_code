@@ -41,19 +41,26 @@ TEACHING_SOURCES = {
     "mccord_fridovich_1969": {
         "citation": (
             "McCord JM, Fridovich I. Superoxide dismutase. An enzymic function "
-            "for erythrocuprein (hemocuprein)."
+            "for erythrocuprein (hemocuprein). J Biol Chem. 1969;244(22):6049-55."
         ),
         "pmid": "5389100",
         "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/5389100/",
         "supports": "SOD converts superoxide to hydrogen peroxide",
         "does_not_support": "a superoxide ledger derived from a meal fiber field",
+        "verified": "2026-09-07",
     },
     "lubos_2011": {
-        "citation": "Lubos E, Loscalzo J, Handy DE. Glutathione peroxidase-1 in health and disease.",
-        "pmid": "21924744",
-        "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/21924744/",
+        "citation": (
+            "Lubos E, Loscalzo J, Handy DE. Glutathione peroxidase-1 in health and "
+            "disease: from molecular mechanisms to therapeutic opportunities. "
+            "Antioxid Redox Signal. 2011;15(7):1957-97."
+        ),
+        "pmid": "21087145",
+        "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/21087145/",
         "supports": "GPx reduces H2O2 with GSH",
         "does_not_support": "a pasted spillover ledger as a damage score",
+        "verified": "2026-09-07",
+        "note": "The pasted card used 21924744, which names an unrelated surgical paper.",
     },
 }
 

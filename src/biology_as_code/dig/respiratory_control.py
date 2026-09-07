@@ -28,20 +28,28 @@ TEACHING_SOURCES = {
     "mitchell_1961": {
         "citation": (
             "Mitchell P. Coupling of phosphorylation to electron and hydrogen "
-            "transfer by a chemi-osmotic type of mechanism."
+            "transfer by a chemi-osmotic type of mechanism. Nature. 1961;191:144-8."
         ),
         "pmid": "13771349",
         "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/13771349/",
         "supports": "ADP phosphorylation is coupled to electron transfer",
         "does_not_support": "an ADP-capped ATP ledger as a meal law",
+        "verified": "2026-09-07",
     },
     "murphy_2009": {
-        "citation": "Murphy MP. How mitochondria produce reactive oxygen species.",
-        "pmid": "19052988",
-        "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/19052988/",
+        "citation": (
+            "Murphy MP. How mitochondria produce reactive oxygen species. "
+            "Biochem J. 2009;417(1):1-13."
+        ),
+        "pmid": "19061483",
+        "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/19061483/",
         "supports": "ROS rise when the chain is reduced / potential is high",
-        "does_not_support": "0.5% State 3 + 4% unmatched flux",
-        "note": "Pasted PMID 19028888; Murphy 2009 Biochem J is 19052988.",
+        "does_not_support": "a leak percentage attached to a meal field",
+        "verified": "2026-09-07",
+        "note": (
+            "The pasted card used 19028888 and an earlier fix used 19052988; both "
+            "name unrelated papers. The Biochem J review is 19061483."
+        ),
     },
 }
 

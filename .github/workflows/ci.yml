@@ -30,6 +30,13 @@ jobs:
         # separates product from authorship, and requires a written reason for each
         # exception in tools/separation.allow.
         run: python tools/check_separation.py
+      - name: PMIDs resolve to the paper we cited
+        # Offline against the committed cache, so this is deterministic and needs
+        # no egress. It fails on a cache miss: a citation added without being
+        # resolved is exactly the defect the gate exists to catch, and an unrun
+        # check is not a pass. Add one with `python3 tools/check_pmids.py --strict`
+        # and commit the refreshed tools/pmid_cache.json.
+        run: python tools/check_pmids.py --offline --strict
 
   test:
     runs-on: ubuntu-latest

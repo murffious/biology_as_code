@@ -62,4 +62,4 @@ def test_no_invented_law_id():
     result = process_fiber(8, FiberType.SOLUBLE)
     blob = str(result.to_dict())
     assert "LAW-048" not in blob
-    assert result.provenance["pmid"] == "12740047"
+    assert result.provenance["pmid"] == "12740060"
