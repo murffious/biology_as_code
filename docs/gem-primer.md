@@ -55,3 +55,7 @@ mechanistic ceiling; the contribution here is the provenance discipline describe
 in [FDP-1](https://github.com/murffious/fdp-1) and the
 [constitution](constitution.md), so that a number's origin and evidence grade
 travel with it instead of being lost on the way into a model.
+
+A 2005 source map for the reconstruction-database generation (EcoCyc, MetaCyc,
+KEGG, and which printed URLs are dead) is in
+[david-nielsen-2005.md](david-nielsen-2005.md).
