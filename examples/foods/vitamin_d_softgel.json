@@ -1,21 +1,43 @@
 {
   "id": "ex.vitamin.d.softgel",
-  "status": "stub",
+  "status": "filled",
   "identity": {
-    "common_name": "vitamin D softgel",
+    "common_name": "vitamin D3 softgel in oil",
     "form": "oil",
     "family_hint": "supplement"
   },
-  "cargo": [],
-  "partners": [],
+  "cargo": [
+    {
+      "nutrient": "cholecalciferol",
+      "label_amount": "open",
+      "derivation": "structural",
+      "rationale": "cholecalciferol is the declared cargo of the dosage form; label IU is not delivered dose"
+    }
+  ],
+  "partners": [
+    {
+      "field": "lipid_phase_present",
+      "value": true,
+      "concurrency": "same_meal",
+      "derivation": "structural",
+      "rationale": "the capsule oil fill is a lipid phase by construction; grams stay OPEN"
+    },
+    {
+      "field": "dietary_lipid_g",
+      "value": 1,
+      "concurrency": "same_meal",
+      "notes": "oil fill is the vehicle; magnitude is bound not lawhood"
+    }
+  ],
   "injection_zone": "zone2_cargo",
   "matrix": {
-    "integrity": "unknown"
+    "integrity": "destroyed",
+    "notes": "no food matrix; lipid phase is the capsule fill"
   },
   "teaching": {
-    "point": "stub: zone2 + oil vehicle open",
-    "gate": "open",
-    "bound": "open",
-    "book_ref": "open"
+    "point": "Oil-filled softgel opens the micelle path for cholecalciferol. Panel IU is still not delivered dose.",
+    "gate": "gate-dietary-lipid OPEN (co-present lipid phase)",
+    "bound": "how much is absorbed remains OPEN — host stores, dose, and meal fat are evidence, not invented %",
+    "book_ref": "Combs The Vitamins — fat-soluble absorption requires bile/micelles; L-FAT-1 / LAW-020 class"
   }
 }

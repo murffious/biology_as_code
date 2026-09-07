@@ -73,6 +73,36 @@ and the engine; we need the rest.
 
 ---
 
+## Adoption plan (PM filter, 2026-09-07)
+
+A product note proposed five adoption bets. They enter *this* roadmap only after the constitution
+filter. Scientists and app developers are both users; neither gets a twin that invents pools.
+
+### Do next (highest leverage)
+
+1. **LAW / pathway issue form** — starting substrate, product, *gate vs bound*, PMID, honesty tier.
+   Not a kcat or rate-limit field that becomes fake kinetics. Engineering still lands the card.
+2. **Document `DigestRun` as the meal API** — food packet + four seats (host, partner, stage, clock).
+   No second `SimulationRequest` schema. No default "Stressed" twin with undeclared GSH/ATP mmol.
+
+### Do after that
+
+3. **Ontology ids on packets, not a private map** — FDC / FoodOn / CDNO / OFF as *optional identifiers*
+   on `FoodPacket`. Photo-to-apple and USDA lookup live in a downstream app, not in this kernel.
+4. **Provenance UX spec** — click a named state → law card + PubMed. The spike is a *state*, not a
+   computed superoxide gram.
+5. **Biological CI as identity + coverage** — pin textbook stoichiometry (already started: P/O 2.5/1.5).
+   Grow `trial_coverage` / next-study ledger. Do **not** fail the build because a 75 g OGTT did not
+   match ATP/ROS curves within 5%.
+
+### Explicitly out of this package
+
+- Mutable mmol ledgers (`ATPPool`, `GlutathionePool`, `NADPHPool`) as required simulation state
+- `min(potential, adp)` / `0.5% + 4% leak` as product logic
+- Vision → FDC → `NutrientState` inside `biology_as_code`
+
+---
+
 ## Do these three first (highest leverage, this week)
 
 1. **Full-suite CI + coverage badge** — proves it works, on every push.

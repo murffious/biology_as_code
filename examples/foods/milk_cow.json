@@ -1,21 +1,43 @@
 {
   "id": "ex.milk.cow",
-  "status": "stub",
+  "status": "filled",
   "identity": {
-    "common_name": "cow milk",
+    "common_name": "whole cow milk",
     "form": "unknown",
     "family_hint": "dairy"
   },
-  "cargo": [],
-  "partners": [],
+  "cargo": [
+    {
+      "nutrient": "vitamin_d",
+      "label_amount": "open",
+      "derivation": "structural",
+      "rationale": "fortified and native cholecalciferol occur in whole milk; amount stays OPEN"
+    },
+    {
+      "nutrient": "calcium",
+      "label_amount": "open",
+      "derivation": "structural",
+      "rationale": "casein micelle calcium is present; not used as a DRI"
+    }
+  ],
+  "partners": [
+    {
+      "field": "lipid_phase_present",
+      "value": true,
+      "concurrency": "same_meal",
+      "derivation": "structural",
+      "rationale": "whole milk contains a milk-fat globule phase by construction; grams stay OPEN"
+    }
+  ],
   "injection_zone": "zone1_matrix",
   "matrix": {
-    "integrity": "unknown"
+    "integrity": "intact",
+    "notes": "emulsion; fat globule membrane still present"
   },
   "teaching": {
-    "point": "stub: calcium / casein partners open",
-    "gate": "open",
-    "bound": "open",
-    "book_ref": "open"
+    "point": "Intrinsic milk fat is a lipid phase. Vitamin D cargo can meet LAW-020 without an added oil.",
+    "gate": "gate-dietary-lipid OPEN via lipid_phase_present (not invented grams)",
+    "bound": "how much 25(OH)D moves is evidence, not this packet",
+    "book_ref": "Combs fat-soluble absorption; Unlu 2005 class: intrinsic lipid opens the same gate as added oil"
   }
 }

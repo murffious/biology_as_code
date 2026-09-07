@@ -1,0 +1,49 @@
+{
+  "id": "ex.milk.cow.skim",
+  "status": "filled",
+  "identity": {
+    "common_name": "skim cow milk",
+    "form": "unknown",
+    "family_hint": "dairy"
+  },
+  "cargo": [
+    {
+      "nutrient": "vitamin_d",
+      "label_amount": "open",
+      "derivation": "structural",
+      "rationale": "US skim milk is commonly fortified; label IU is not delivered dose"
+    },
+    {
+      "nutrient": "calcium",
+      "label_amount": "open",
+      "derivation": "structural",
+      "rationale": "calcium remains after skimming"
+    }
+  ],
+  "partners": [
+    {
+      "field": "lipid_phase_present",
+      "value": false,
+      "concurrency": "same_meal",
+      "derivation": "structural",
+      "rationale": "cream removed; remaining fat is below a declared lipid phase"
+    },
+    {
+      "field": "dietary_lipid_g",
+      "value": 0,
+      "concurrency": "same_meal",
+      "notes": "declared zero lipid phase for the teaching contrast"
+    }
+  ],
+  "injection_zone": "zone1_matrix",
+  "matrix": {
+    "integrity": "destroyed",
+    "notes": "fat globules removed"
+  },
+  "teaching": {
+    "point": "Same named vitamin D cargo as whole milk. Skimming closes the micelle path. Fortification on the carton does not reopen it.",
+    "gate": "gate-dietary-lipid CLOSED",
+    "bound": "adding a meal fat later is a different partner seat, not a smaller number on this packet",
+    "book_ref": "L-FAT-1 / LAW-020; same cliff as fat-free spinach salad"
+  }
+}
