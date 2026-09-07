@@ -23,12 +23,27 @@ from enum import StrEnum
 from typing import Literal
 
 from biology_as_code.dig.hepatic_routes import RouteResult, RouteSink
+from biology_as_code.grounding import grounded
 
 ConstitutionState = Literal["HOLDS", "UNEVALUABLE", "REFUTED", "OPEN", "REFUSE"]
 
-# Teaching P/O identity (not applied to meal grams).
-PO_NADH = 2.5
-PO_FADH2 = 1.5
+# Tier 2. Named, never multiplied by a meal field. These are not identities:
+# the accepted 2.5 / 1.5 sit below the mechanistic ceilings (~2.72 / ~1.63)
+# because basal proton leak dissipates part of the gradient, and leak competes
+# with phosphorylation for the protonmotive force. That makes the effective
+# ratio state-dependent, which is exactly what tier 2 means.
+PO_NADH = grounded(
+    2.5,
+    tier="teaching",
+    pmid="15620362",
+    supports="accepted NADH-linked P/O ratio, below the ~2.72 mechanistic ceiling",
+)
+PO_FADH2 = grounded(
+    1.5,
+    tier="teaching",
+    pmid="15620362",
+    supports="accepted FADH2-linked P/O ratio, below the ~1.63 mechanistic ceiling",
+)
 
 
 class MitoSink(StrEnum):

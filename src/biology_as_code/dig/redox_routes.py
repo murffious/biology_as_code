@@ -18,12 +18,28 @@ from enum import StrEnum
 from typing import Literal
 
 from biology_as_code.dig.antioxidant_routes import DefenseResult
+from biology_as_code.grounding import grounded
 
 ConstitutionState = Literal["HOLDS", "UNEVALUABLE", "REFUTED", "OPEN", "REFUSE"]
 
-PPP_NADPH_PER_G6P = 2
-GR_GSH_PER_GSSG = 2
-GR_NADPH_PER_GSSG = 1
+PPP_NADPH_PER_G6P = grounded(
+    2,
+    tier="identity",
+    pmid="22431005",
+    supports="the oxidative PPP yields two NADPH per glucose-6-phosphate",
+)
+GR_GSH_PER_GSSG = grounded(
+    2,
+    tier="identity",
+    pmid="23036594",
+    supports="glutathione reductase returns two GSH per GSSG",
+)
+GR_NADPH_PER_GSSG = grounded(
+    1,
+    tier="identity",
+    pmid="23036594",
+    supports="glutathione reductase consumes one NADPH per GSSG",
+)
 
 
 class RedoxSink(StrEnum):

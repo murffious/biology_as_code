@@ -18,12 +18,23 @@ from enum import StrEnum
 from typing import Literal
 
 from biology_as_code.dig.mitochondrial_routes import MitoResult
+from biology_as_code.grounding import grounded
 
 ConstitutionState = Literal["HOLDS", "UNEVALUABLE", "REFUTED", "OPEN", "REFUSE"]
 
 # Identity only — never multiplied by a meal mass.
-SOD_O2_PER_H2O2 = 2
-GPX_GSH_PER_H2O2 = 2
+SOD_O2_PER_H2O2 = grounded(
+    2,
+    tier="identity",
+    pmid="5389100",
+    supports="SOD dismutates two superoxide anions per hydrogen peroxide",
+)
+GPX_GSH_PER_H2O2 = grounded(
+    2,
+    tier="identity",
+    pmid="21087145",
+    supports="GPx oxidises two GSH per hydrogen peroxide reduced",
+)
 
 
 class DefenseSink(StrEnum):

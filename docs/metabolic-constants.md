@@ -119,6 +119,36 @@ to that declaration*, not a default. Silence stays UNEVALUABLE.
 
 ---
 
+## The tiers are enforced, not described
+
+This page used to be the only place the tier of a constant was recorded. That
+made it unenforceable: `SOD_O2_PER_H2O2 = 2` and `PO_NADH = 2.5` sat in `dig/` as
+bare literals, emitted in `to_dict()` payloads, with nothing in the tree saying
+which paper backed them or whether the engine could multiply by them.
+
+Each now carries its own warrant:
+
+```python
+SOD_O2_PER_H2O2 = grounded(
+    2,
+    tier="identity",
+    pmid="5389100",
+    supports="SOD dismutates two superoxide anions per hydrogen peroxide",
+)
+```
+
+`grounded()` returns an `int` or `float` subclass, so arithmetic, equality and
+JSON serialisation are unchanged and the emitted payload keeps its shape. What
+changed is that the number cannot exist without a tier and a resolved PMID.
+
+Two gates hold it. `tools/check_constants.py` refuses a bare literal at module
+level in `dig/` and refuses a PMID that is not in the resolved cache;
+`tools/check_pmids.py` proves that cache still names the right papers. Tier 3 is
+refused at construction — a population statistic does not become encodable by
+acquiring a citation, and annotating one would make it look as though it had.
+
+---
+
 ## Verification status
 
 **Every PMID on this page and in `src/biology_as_code/dig/` was resolved against
