@@ -42,19 +42,30 @@ class RedoxSink(StrEnum):
 
 TEACHING_SOURCES = {
     "stanton_2012": {
-        "citation": "Stanton RC. Glucose-6-phosphate dehydrogenase, NADPH, and cell survival.",
+        "citation": (
+            "Stanton RC. Glucose-6-phosphate dehydrogenase, NADPH, and cell survival. "
+            "IUBMB Life. 2012;64(5):362-9."
+        ),
         "pmid": "22431005",
         "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/22431005/",
         "supports": "G6PD / PPP as a source of NADPH",
         "does_not_support": "a hexose-pool ledger or RER from a meal fiber field",
+        "verified": "2026-09-07",
     },
     "deponte_2013": {
-        "citation": "Deponte M. Glutathione catalysis and glutathione-dependent enzymes.",
-        "pmid": "23380711",
-        "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/23380711/",
+        "citation": (
+            "Deponte M. Glutathione catalysis and the reaction mechanisms of "
+            "glutathione-dependent enzymes. Biochim Biophys Acta. 2013;1830(5):3217-66."
+        ),
+        "pmid": "23036594",
+        "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/23036594/",
         "supports": "GR reduces GSSG with NADPH; 1 GSSG → 2 GSH",
         "does_not_support": "pasted ledger math",
-        "note": "Pasted PMID 23380721; Deponte review is 23380711.",
+        "verified": "2026-09-07",
+        "note": (
+            "The pasted card used 23380721 and an earlier fix used 23380711; both "
+            "name unrelated papers. The Deponte review is 23036594."
+        ),
     },
 }
 

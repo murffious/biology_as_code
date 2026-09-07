@@ -56,28 +56,37 @@ ROUTES: dict[SCFAType, tuple[RouteSink, ...]] = {
 TEACHING_SOURCES = {
     "den_besten_2013": {
         "citation": (
-            "den Besten G, et al. The role of short-chain fatty acids in the "
-            "interplay between diet, gut microbiota, and host energy metabolism."
+            "den Besten G, van Eunen K, Groen AK, Venema K, Reijngoud DJ, Bakker BM. "
+            "The role of short-chain fatty acids in the interplay between diet, gut "
+            "microbiota, and host energy metabolism. J Lipid Res. 2013;54(9):2325-40."
         ),
-        "pmid": "24347302",
-        "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/24347302/",
+        "pmid": "23821742",
+        "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/23821742/",
         "supports": "distinct SCFA fates (acetate/propionate/butyrate)",
         "does_not_support": "fixed first-pass clearance fractions as law",
+        "verified": "2026-09-07",
         "note": (
-            "The pasted card pointed at PMID 24023713; den Besten energy-metabolism "
-            "review is 24347302. Identity citation only until a card exists."
+            "Three ids had been offered for this review — 24023713, 24347302 and "
+            "23985657. A resolve-and-diff pass found all three name unrelated papers; "
+            "the J Lipid Res review is 23821742. Identity citation only until a card "
+            "exists."
         ),
     },
     "stilling_2016": {
         "citation": (
-            "Stilling RM, et al. The neuropharmacology of butyrate: "
-            "The bread and butter of the microbiota-gut-brain axis?"
+            "Stilling RM, van de Wouw M, Clarke G, Stanton C, Dinan TG, Cryan JF. "
+            "The neuropharmacology of butyrate: The bread and butter of the "
+            "microbiota-gut-brain axis? Neurochem Int. 2016;99:110-132."
         ),
-        "pmid": "26859755",
-        "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/26859755/",
+        "pmid": "27346602",
+        "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/27346602/",
         "supports": "butyrate as a biologically active colon-derived SCFA",
         "does_not_support": "a fixed butyrate-to-BHB molar conversion as law",
-        "note": "The pasted card used PMID 26859528; Stilling butyrate review is 26859755.",
+        "verified": "2026-09-07",
+        "note": (
+            "The pasted card used 26859528 and an earlier fix used 26859755; both "
+            "name unrelated papers. The Neurochem Int review is 27346602."
+        ),
     },
 }
 

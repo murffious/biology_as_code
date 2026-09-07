@@ -43,20 +43,28 @@ class MitoSink(StrEnum):
 
 TEACHING_SOURCES = {
     "rich_2003": {
-        "citation": "Rich PR. The molecular machinery of Keilin's respiratory chain.",
-        "pmid": "14668792",
-        "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/14668792/",
+        "citation": (
+            "Rich PR. The molecular machinery of Keilin's respiratory chain. "
+            "Biochem Soc Trans. 2003;31(Pt 6):1095-105."
+        ),
+        "pmid": "14641005",
+        "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/14641005/",
         "supports": "ETC as the respiratory chain that oxidizes NADH/FADH2",
         "does_not_support": "10 ATP per incoming mass unit of a NutrientState",
+        "verified": "2026-09-07",
+        "note": "The pasted card used 14668792, which resolves to no PubMed record.",
     },
     "brand_2010": {
         "citation": (
-            "Brand MD. The sites and topology of mitochondrial superoxide production."
+            "Brand MD. The sites and topology of mitochondrial superoxide production. "
+            "Exp Gerontol. 2010;45(7-8):466-72."
         ),
-        "pmid": "20463404",
-        "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/20463404/",
+        "pmid": "20064600",
+        "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/20064600/",
         "supports": "superoxide can form at defined ETC sites (incl. I and III)",
         "does_not_support": "a fixed base-leak constant or an exponential load term as law",
+        "verified": "2026-09-07",
+        "note": "The pasted card used 20463404, which names an unrelated Alzheimer paper.",
     },
 }
 

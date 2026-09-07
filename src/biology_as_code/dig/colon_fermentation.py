@@ -21,7 +21,7 @@ What it does not do:
 
 Teaching source for product identity, not for yields:
 Macfarlane S, Macfarlane GT. Regulation of short-chain fatty acid production.
-Proc Nutr Soc. 2003;62(1):67-72. PMID 12740047.
+Proc Nutr Soc. 2003;62(1):67-72. PMID 12740060.
 """
 
 from __future__ import annotations
@@ -37,10 +37,11 @@ MACFARLANE_2003 = {
         "Macfarlane S, Macfarlane GT. Regulation of short-chain fatty acid "
         "production. Proc Nutr Soc. 2003;62(1):67-72."
     ),
-    "pmid": "12740047",
-    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/12740047/",
+    "pmid": "12740060",
+    "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/12740060/",
     "supports": "SCFA product identity (acetate, propionate, butyrate)",
     "does_not_support": "fixed mass-conversion yields or a universal molar ratio",
+    "verified": "2026-09-07",
 }
 
 
