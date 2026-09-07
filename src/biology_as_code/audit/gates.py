@@ -107,6 +107,10 @@ class BoundRule:
 # significantly raises carotenoid absorption (Unlu et al. 2005, J Nutr 135:431-436,
 # PMID 15735074). LAW-020 is the load-bearing citation here; LAW-045 is the
 # downstream chylomicron-export step that dietary lipid feeds as TAG substrate.
+#
+# Vitamin D aliases: packets and Combs-style teaching use the chemical names
+# (cholecalciferol / ergocalciferol). Those are the same LAW-020 cargo as
+# ``vitamin_d`` — not a new mechanism and not a % absorbed table.
 
 _FAT_VEHICLE_NOTE = (
     "dietary lipid co-present required for micellar presentation of hydrophobic cargo"
@@ -121,6 +125,9 @@ _FAT_VEHICLE_CARGO = (
     "retinol",
     "vitamin_a",
     "vitamin_d",
+    "cholecalciferol",
+    "ergocalciferol",
+    "calciferol",
     "vitamin_e",
     "vitamin_k",
 )
