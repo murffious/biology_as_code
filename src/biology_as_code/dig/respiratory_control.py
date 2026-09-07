@@ -33,7 +33,7 @@ TEACHING_SOURCES = {
         "pmid": "13771349",
         "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/13771349/",
         "supports": "ADP phosphorylation is coupled to electron transfer",
-        "does_not_support": "min(potential_ATP, adp_mmol) as a meal law",
+        "does_not_support": "an ADP-capped ATP ledger as a meal law",
     },
     "murphy_2009": {
         "citation": "Murphy MP. How mitochondria produce reactive oxygen species.",

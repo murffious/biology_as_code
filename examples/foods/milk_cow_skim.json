@@ -3,7 +3,7 @@
   "status": "filled",
   "identity": {
     "common_name": "skim cow milk",
-    "form": "liquid",
+    "form": "unknown",
     "family_hint": "dairy"
   },
   "cargo": [

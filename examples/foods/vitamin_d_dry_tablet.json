@@ -3,13 +3,25 @@
   "status": "filled",
   "identity": {
     "common_name": "vitamin D3 dry tablet, no oil, no meal fat",
-    "form": "tablet",
+    "form": "unknown",
     "family_hint": "supplement"
   },
   "cargo": [
-    { "nutrient": "cholecalciferol", "label_amount": "open" }
+    {
+      "nutrient": "cholecalciferol",
+      "label_amount": "open",
+      "derivation": "structural",
+      "rationale": "same declared cargo as the softgel; only the vehicle differs"
+    }
   ],
   "partners": [
+    {
+      "field": "lipid_phase_present",
+      "value": false,
+      "concurrency": "same_meal",
+      "derivation": "structural",
+      "rationale": "compressed powder carries no oil phase; absence follows from the tablet form"
+    },
     {
       "field": "dietary_lipid_g",
       "value": 0,
@@ -19,7 +31,7 @@
   ],
   "injection_zone": "zone2_cargo",
   "matrix": {
-    "integrity": "disrupted",
+    "integrity": "destroyed",
     "notes": "compressed powder; no oil phase"
   },
   "teaching": {

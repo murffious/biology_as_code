@@ -46,14 +46,14 @@ TEACHING_SOURCES = {
         "pmid": "5389100",
         "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/5389100/",
         "supports": "SOD converts superoxide to hydrogen peroxide",
-        "does_not_support": "mmol superoxide from a meal fiber field",
+        "does_not_support": "a superoxide ledger derived from a meal fiber field",
     },
     "lubos_2011": {
         "citation": "Lubos E, Loscalzo J, Handy DE. Glutathione peroxidase-1 in health and disease.",
         "pmid": "21924744",
         "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/21924744/",
         "supports": "GPx reduces H2O2 with GSH",
-        "does_not_support": "LAW-082 spillover mmol as a damage score",
+        "does_not_support": "a pasted spillover ledger as a damage score",
     },
 }
 

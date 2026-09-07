@@ -88,7 +88,7 @@ filter. Scientists and app developers are both users; neither gets a twin that i
 ### Do after that
 
 3. **Ontology ids on packets, not a private map** — FDC / FoodOn / CDNO / OFF as *optional identifiers*
-   on `FoodPacket`. Photo-to-apple and USDA lookup live in an app (MealCoach), not in this kernel.
+   on `FoodPacket`. Photo-to-apple and USDA lookup live in a downstream app, not in this kernel.
 4. **Provenance UX spec** — click a named state → law card + PubMed. The spike is a *state*, not a
    computed superoxide gram.
 5. **Biological CI as identity + coverage** — pin textbook stoichiometry (already started: P/O 2.5/1.5).

@@ -169,7 +169,7 @@ def process_fiber(
         amounts={p.value: None for p in SCFA_PRODUCTS},
         note=(
             "substrate present; acetate/propionate/butyrate paths exist; "
-            "mass conversion stays OPEN (no 0.40/0.35 table)"
+            "mass conversion stays OPEN (no fixed yield table)"
         ),
         provenance=provenance,
     )

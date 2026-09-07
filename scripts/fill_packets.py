@@ -118,9 +118,20 @@ CARGO: dict[str, tuple[tuple[str, ...], str]] = {
     "tofu_firm": (("nonhaem_iron",), "non-haem iron occurrence in soy curd is undisputed"),
 }
 
+# Resolved and removed from SKIPPED. Kept here so the reversal stays reviewable:
+# each was skipped for an ambiguity that a hand-authored packet has since
+# declared outright, using a boolean lipid_phase_present seat rather than
+# invented grams.
+#
+#   milk_cow            — "whole/semi/skim not stated" resolved by splitting the
+#                         packet: ex.milk.cow is now explicitly whole, and
+#                         ex.milk.cow.skim carries the fat-free contrast.
+#   vitamin_d_softgel   — "needs a supplement policy": the policy is to declare
+#   multivitamin_tablet   the dosage form's own lipid phase as a structural
+#                         boolean and leave every magnitude OPEN.
+#
 # Deliberately not filled. Kept as a list so the reasoning is reviewable.
 SKIPPED: dict[str, str] = {
-    "milk_cow": "fat content depends on whether whole/semi/skim; packet does not say",
     "yogurt_plain": "plain does not imply full-fat; ambiguous",
     "rice_white_cooked": "degree of starch-granule survival after cooking is a judgement call",
     "rice_brown_cooked": "as above, plus bran layer effects; needs a sourced position",
@@ -128,8 +139,6 @@ SKIPPED: dict[str, str] = {
     "potato_boiled": "cooked starch matrix state is contested; retrogradation depends on cooling",
     "chicken_breast": "no gate or bound rule in the table applies; nothing to declare",
     "beef_ground": "haem iron is out of scope of the current rule table",
-    "multivitamin_tablet": "an isolated-dose form; needs a policy on supplement packets first",
-    "vitamin_d_softgel": "softgel carries its own lipid vehicle; needs a supplement policy",
     "iv_ascorbate_clinical": "parenteral route bypasses the gut entirely; out of scope",
     "lemon_wedge": "ascorbate partner fields describe a meal, not a standalone item",
 }

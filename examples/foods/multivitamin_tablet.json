@@ -3,7 +3,7 @@
   "status": "filled",
   "identity": {
     "common_name": "dry multivitamin tablet, swallowed with water",
-    "form": "tablet",
+    "form": "unknown",
     "family_hint": "supplement"
   },
   "cargo": [
@@ -23,7 +23,9 @@
     {
       "field": "lipid_phase_present",
       "value": false,
-      "concurrency": "same_meal"
+      "concurrency": "same_meal",
+      "derivation": "structural",
+      "rationale": "a dry tablet swallowed with water carries no lipid phase; absence follows from the dosage form, not from a measured meal"
     }
   ],
   "injection_zone": "zone2_cargo",

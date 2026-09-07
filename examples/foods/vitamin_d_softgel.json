@@ -7,9 +7,21 @@
     "family_hint": "supplement"
   },
   "cargo": [
-    { "nutrient": "cholecalciferol", "label_amount": "open" }
+    {
+      "nutrient": "cholecalciferol",
+      "label_amount": "open",
+      "derivation": "structural",
+      "rationale": "cholecalciferol is the declared cargo of the dosage form; label IU is not delivered dose"
+    }
   ],
   "partners": [
+    {
+      "field": "lipid_phase_present",
+      "value": true,
+      "concurrency": "same_meal",
+      "derivation": "structural",
+      "rationale": "the capsule oil fill is a lipid phase by construction; grams stay OPEN"
+    },
     {
       "field": "dietary_lipid_g",
       "value": 1,
@@ -19,7 +31,7 @@
   ],
   "injection_zone": "zone2_cargo",
   "matrix": {
-    "integrity": "disrupted",
+    "integrity": "destroyed",
     "notes": "no food matrix; lipid phase is the capsule fill"
   },
   "teaching": {

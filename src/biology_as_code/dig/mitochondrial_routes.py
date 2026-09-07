@@ -56,7 +56,7 @@ TEACHING_SOURCES = {
         "pmid": "20463404",
         "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/20463404/",
         "supports": "superoxide can form at defined ETC sites (incl. I and III)",
-        "does_not_support": "base_leakage = 0.02 or load_ratio ** 1.5 as law",
+        "does_not_support": "a fixed base-leak constant or an exponential load term as law",
     },
 }
 

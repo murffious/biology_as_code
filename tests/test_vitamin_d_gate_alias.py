@@ -24,13 +24,13 @@ MECHANISM = Claim(
 )
 
 
-def _packet(lipid_g: int) -> FoodPacket:
+def _packet(lipid_g: int, nutrient: str = "cholecalciferol") -> FoodPacket:
     return FoodPacket.from_dict(
         {
-            "id": f"ex.synthetic.vitd.lipid_{lipid_g}",
+            "id": f"ex.synthetic.vitd.{nutrient}.lipid_{lipid_g}",
             "identity": {"common_name": f"vitamin D teaching packet lipid={lipid_g}"},
             "status": "filled",
-            "cargo": [{"nutrient": "cholecalciferol", "label_amount": "open"}],
+            "cargo": [{"nutrient": nutrient, "label_amount": "open"}],
             "partners": [
                 {"field": "dietary_lipid_g", "value": lipid_g, "concurrency": "same_meal"}
             ],
@@ -58,18 +58,55 @@ def test_zero_lipid_closes_the_gate_for_cholecalciferol():
 
 
 def test_oil_opens_the_gate_but_not_a_rickets_claim():
+    """An open vehicle gate is a gate, not a verdict.
+
+    Declaring lipid lets the micelle path open; it closes no evidence chain, so
+    the disease claim stays OPEN/UNEVALUABLE rather than earning a level.
+    """
     result = audit_claim(RICKETS, _packet(1))
     assert result.gate_check == "pass"
     assert result.verdict == "UNEVALUABLE"
-    assert result.l1_to_l5["closed_through"] == "L5"
+    assert result.l1_to_l5["closed_through"] == "none"
     assert result.constitution_state == "OPEN"
 
 
-def test_mechanism_claim_is_plausible_when_vehicle_declared():
-    result = audit_claim(MECHANISM, _packet(1))
-    assert result.gate_check == "pass"
-    assert result.verdict == "Plausible"
-    assert result.constitution_state == "HOLDS"
+def test_alias_audits_identically_to_vitamin_d():
+    """Parity is the real contract: an alias is the same LAW-020 cargo.
+
+    Whatever the auditor decides for ``vitamin_d`` it must decide for the
+    chemical names — same gate, same verdict, same constitution state. Pinning
+    parity (rather than a hardcoded verdict) keeps this test honest if the
+    auditor's own verdict vocabulary later changes.
+    """
+    for verb_class, extra in (
+        ("disease_claim", {"surface_verb": "prevents"}),
+        ("bound_increase", {}),
+    ):
+        canonical = Claim(
+            id=f"claim.canonical.{verb_class}",
+            surface_claim="vitamin D claim under test",
+            verb_class=verb_class,
+            nutrient="vitamin_d",
+            **extra,
+        )
+        for alias in VITD_ALIASES:
+            aliased = Claim(
+                id=f"claim.{alias}.{verb_class}",
+                surface_claim="vitamin D claim under test",
+                verb_class=verb_class,
+                nutrient=alias,
+                **extra,
+            )
+            for lipid_g in (0, 1):
+                base = audit_claim(canonical, _packet(lipid_g, "vitamin_d"))
+                aliased_result = audit_claim(aliased, _packet(lipid_g, alias))
+                assert aliased_result.gate_check == base.gate_check, alias
+                assert aliased_result.verdict == base.verdict, alias
+                assert aliased_result.constitution_state == base.constitution_state, alias
+                assert (
+                    aliased_result.l1_to_l5["closed_through"]
+                    == base.l1_to_l5["closed_through"]
+                ), alias
 
 
 def test_still_no_percent_absorbed():

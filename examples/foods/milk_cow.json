@@ -3,7 +3,7 @@
   "status": "filled",
   "identity": {
     "common_name": "whole cow milk",
-    "form": "liquid",
+    "form": "unknown",
     "family_hint": "dairy"
   },
   "cargo": [

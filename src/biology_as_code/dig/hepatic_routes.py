@@ -62,9 +62,9 @@ TEACHING_SOURCES = {
         "pmid": "24347302",
         "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/24347302/",
         "supports": "distinct SCFA fates (acetate/propionate/butyrate)",
-        "does_not_support": "0.70/0.90/0.85 clearance fractions as law",
+        "does_not_support": "fixed first-pass clearance fractions as law",
         "note": (
-            "Pasted LAW-062 pointed at PMID 24023713; den Besten energy-metabolism "
+            "The pasted card pointed at PMID 24023713; den Besten energy-metabolism "
             "review is 24347302. Identity citation only until a card exists."
         ),
     },
@@ -76,8 +76,8 @@ TEACHING_SOURCES = {
         "pmid": "26859755",
         "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/26859755/",
         "supports": "butyrate as a biologically active colon-derived SCFA",
-        "does_not_support": "1 mol butyrate → 0.85 mol BHB as law",
-        "note": "Pasted LAW-063 used PMID 26859528; Stilling butyrate review is 26859755.",
+        "does_not_support": "a fixed butyrate-to-BHB molar conversion as law",
+        "note": "The pasted card used PMID 26859528; Stilling butyrate review is 26859755.",
     },
 }
 

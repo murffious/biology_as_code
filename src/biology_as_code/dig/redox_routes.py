@@ -46,14 +46,14 @@ TEACHING_SOURCES = {
         "pmid": "22431005",
         "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/22431005/",
         "supports": "G6PD / PPP as a source of NADPH",
-        "does_not_support": "hexose-pool mmol or RER from a meal fiber field",
+        "does_not_support": "a hexose-pool ledger or RER from a meal fiber field",
     },
     "deponte_2013": {
         "citation": "Deponte M. Glutathione catalysis and glutathione-dependent enzymes.",
         "pmid": "23380711",
         "pubmed_url": "https://pubmed.ncbi.nlm.nih.gov/23380711/",
         "supports": "GR reduces GSSG with NADPH; 1 GSSG → 2 GSH",
-        "does_not_support": "LAW-083 ledger math",
+        "does_not_support": "pasted ledger math",
         "note": "Pasted PMID 23380721; Deponte review is 23380711.",
     },
 }
