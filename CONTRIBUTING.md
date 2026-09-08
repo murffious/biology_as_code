@@ -3,6 +3,34 @@
 Two kinds of contribution, one constitution. A third path is **teaching pathways**
 (graphs + mermaid packs) with a fixed integration template.
 
+## Branches
+
+`main` is what ships. `dev` is the integration branch: open your pull request
+against `dev` unless it is a hotfix.
+
+    git switch dev && git pull
+    git switch -c feat/thing
+    ...
+    gh pr create --base dev
+
+**Both are watched by CI.** That matters more than it sounds. Ten pull requests
+once sat open here with no checks at all, because they targeted feature branches
+while `.github/workflows/ci.yml` only listened on `[main, master]`. Every one was
+red and the pull request UI showed nothing. If you ever add another branch that
+people merge into, add it to the `on:` lists in `ci.yml` and `docs.yml` in the
+same commit, or you have rebuilt that trap.
+
+Two rules that follow from the same incident:
+
+- **Do not target a feature branch.** Stack by rebasing onto `dev`, not by
+  pointing one pull request at another branch.
+- **Run the suite after any rebase.** A rebase onto a squash-merged parent
+  applies cleanly and can still break the build, because the parent's history no
+  longer matches its contents. `git rebase` succeeding is not a green check.
+
+Merged branches delete themselves. Before this was switched on they accumulated
+until nobody could tell which were live.
+
 ## Data — strengthen the register
 
 Evidence, packet fills, claims, and gate/bound rules go through a **fail-closed

@@ -12,8 +12,11 @@ name: Docs
 on:
   push:
     branches: [main]
+  # Build (not deploy) on dev pull requests too, so a broken nav entry or dead
+  # link fails in review rather than after the merge to main. Deployment stays
+  # gated on main below.
   pull_request:
-    branches: [main]
+    branches: [main, dev]
   workflow_dispatch:
 
 permissions:

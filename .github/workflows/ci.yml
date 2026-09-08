@@ -2,9 +2,15 @@ name: CI
 
 on:
   push:
-    branches: [main, master]
+    branches: [main, dev]
+  # `dev` is here for a specific reason. Ten pull requests once sat open with no
+  # checks at all because they targeted feature branches while this list said
+  # [main, master] — the failures were invisible in the UI and only turned up when
+  # the jobs were run locally against each branch. An integration branch that CI
+  # does not watch reproduces that at scale, so any branch used as a merge target
+  # must appear here.
   pull_request:
-    branches: [main, master]
+    branches: [main, dev]
 
 jobs:
   separation:
