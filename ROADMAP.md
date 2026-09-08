@@ -36,7 +36,7 @@ and the engine; we need the rest.
 - [x] **Badges** in the README: CI, docs, release, DOI, Python versions, license. Open: coverage, PyPI version.
 - [x] **Zenodo DOI.** Concept DOI 10.5281/zenodo.21536448; `publish.yml` versions it on every release
       (through the REST API, not the webhook — see the comment there for why).
-- [ ] **Community files:** `CONTRIBUTING.md`, issue and PR templates exist. Still missing: `CODE_OF_CONDUCT.md`, `SECURITY.md`.
+- [x] **Community files:** `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, issue and PR templates.
 - [ ] **conda-forge feedstock** — many scientific users install via conda, not pip.
 - [ ] **Validation invariants, expanded.** Pin more pathways to textbook stoichiometry the way glycolysis
       (+2 ATP/+2 NADH), TCA, and ETC (P/O 2.5/1.5) already are, and fail CI on drift.
