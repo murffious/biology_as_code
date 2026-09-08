@@ -375,3 +375,59 @@ def test_shipped_baseline_records_the_corpus_it_was_measured_over():
     assert baseline["corpus"]["existence_only"] == sorted(EXISTENCE_ONLY)
     assert baseline["corpus"]["scan_suffixes"] == sorted(SCAN_SUFFIXES)
     assert baseline.get("last_change", "not stated") != "not stated"
+
+
+# --------------------------------------------------------------------------
+# check_curies.py — a prefix on a word is not an id (2026-09-07)
+# --------------------------------------------------------------------------
+#
+# `chebi:<an english word>` was the one id shape no check here could see. The
+# CURIE regex requires four digits, so a placeholder was neither a finding nor a
+# pass — it was invisible. 23 ship today, and they sit in the ChEBI slot of the
+# food -> chemical -> GO chain, which means that chain's join key does not resolve
+# to a molecule.
+#
+# The risk in this check is the opposite one, so both directions are pinned: the
+# repository's canonical CURIE dialect is LOWERCASE with digits (`chebi:15637`,
+# per normalize_crosswalk.py and FDP-1 §2), and python is full of identifiers like
+# `chebi_local` and `uberon_hint`. A malformed-id check that flags either of those
+# is a check that gets deleted.
+
+def _malformed_repo(tmp_path: pathlib.Path, body: str) -> pathlib.Path:
+    root = tmp_path / "malformed"
+    root.mkdir()
+    gate = _plant("check_curies.py", root)
+    (root / "model.py").write_text(body)
+    (root / "tools" / "curie_baseline.json").write_text(
+        json.dumps({"count": 0, "problems": []}))
+    return gate
+
+
+def test_curies_reports_a_known_prefix_on_a_word_as_malformed(tmp_path):
+    # Assembled, never a literal — this file is itself inside the corpus the real
+    # gate scans, and a spelled-out placeholder here would become a real finding.
+    bad = "chebi" + ":" + str("ascorbate")
+    gate = _malformed_repo(tmp_path, f'PARTICIPANTS = ["{bad}"]\n')
+    r = _run(gate, "--offline")
+    assert "MALFORMED" in r.stdout, r.stdout
+    assert "nothing to resolve" in r.stdout
+
+
+def test_curies_accepts_the_lowercase_accession_dialect(tmp_path):
+    """`chebi:15637` is CORRECT here — it is what normalize_crosswalk.py emits and
+    what FDP-1 §2 accepts. Flagging it would condemn the canonical table."""
+    good = "chebi" + ":" + str(15637)
+    gate = _malformed_repo(tmp_path, f'CELL = "{good}"\n')
+    r = _run(gate, "--offline")
+    assert "MALFORMED" not in r.stdout, r.stdout
+
+
+def test_curies_does_not_flag_a_python_identifier(tmp_path):
+    """Measured 2026-09-07: allowing `_` as the separator turned 44 variable names
+    — bfo_stack_ontology, chebi_local, uberon_hint — into findings. The OBO
+    underscore form is always digits, so ':' alone is the right separator."""
+    ident = "chebi" + "_" + str("local")
+    gate = _malformed_repo(tmp_path, f'{ident} = 1\nuberon_hint = "x"\n')
+    r = _run(gate, "--offline")
+    assert "MALFORMED" not in r.stdout, r.stdout
+    assert "0 problem(s)" in r.stdout

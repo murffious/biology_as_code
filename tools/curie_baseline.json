@@ -14,10 +14,248 @@
    "MASTER_CROSSWALK.tsv"
   ]
  },
- "last_change": "Corpus grew, not a regression. MASTER_CROSSWALK.tsv joined the scan as an EXISTENCE_ONLY source on 2026-09-07, adding 999 distinct ChEBI ids: 17 do not resolve (NOT_FOUND) and 5 are obsolete. Label diffing is deliberately NOT applied to it - measured 25.9% mismatch that is VMH naming convention vs ChEBI's (Pyruvate/pyruvic acid), which is the false-positive rate that kills a gate. Also fixed here: OLS4 answers 400, not 404, from /properties for a non-property IRI, so every genuinely nonexistent id was returning _error and counted as 'could not look it up' rather than NOT_FOUND. That gap is where the 17 dead ids were hiding. Separately, 2 of the prior 22 (FOODON:03411347, NCBITaxon:1126) no longer appear anywhere in the tree - fixed by other work since 2026-08-29 without the baseline being lowered. Prior WRONG_CONCEPT debt is therefore 20, not 22.",
+ "last_change": "Corpus grew, not a regression. A new problem kind, MALFORMED, was added 2026-09-07: a known prefix followed by something that is not an accession. 23 of them ship - 20 'chebi:<word>' placeholders in the participants lists of biochemical_mechanisms.py, nutrient_compound.py, do_calculus.py, causal_inference.py and causal_join_graph.py, plus 3 '<PREFIX>:illustrative' in agents/assay/ontology_stub.py. These were invisible, not passing: the CURIE regex requires four digits, so a placeholder was never resolved and never counted as unchecked. They matter because they occupy the ChEBI slot of the food -> chemical -> GO chain, so the join key that chain declares does not resolve to a molecule. Pattern is ':' only: allowing the OBO '_' form harvested 44 python identifiers (bfo_stack_ontology, chebi_local, uberon_hint) as false positives. Lowercase-with-digits stays valid - chebi:15637 is what normalize_crosswalk.py emits and what FDP-1 section 2 accepts.",
  "as_of": "2026-09-07",
- "count": 42,
+ "count": 65,
  "problems": [
+  {
+   "curie": "CHEBI:illustrative",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/agents/assay/ontology_stub.py"
+   ]
+  },
+  {
+   "curie": "FOODON:illustrative",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/agents/assay/ontology_stub.py"
+   ]
+  },
+  {
+   "curie": "NCBITaxon:illustrative",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/agents/assay/ontology_stub.py"
+   ]
+  },
+  {
+   "curie": "chebi:ascorbate",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py",
+    "src/biology_as_code/models/causal_inference.py",
+    "src/biology_as_code/models/causal_join_graph.py",
+    "src/biology_as_code/models/do_calculus.py",
+    "src/biology_as_code/models/nutrient_compound.py"
+   ]
+  },
+  {
+   "curie": "chebi:bile_acids",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py",
+    "src/biology_as_code/models/nutrient_compound.py"
+   ]
+  },
+  {
+   "curie": "chebi:calcitriol",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py",
+    "src/biology_as_code/models/do_calculus.py",
+    "src/biology_as_code/models/nutrient_compound.py"
+   ]
+  },
+  {
+   "curie": "chebi:calcium",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py",
+    "src/biology_as_code/models/do_calculus.py",
+    "src/biology_as_code/models/nutrient_compound.py"
+   ]
+  },
+  {
+   "curie": "chebi:cobalamin",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py",
+    "src/biology_as_code/models/do_calculus.py",
+    "src/biology_as_code/models/nutrient_compound.py"
+   ]
+  },
+  {
+   "curie": "chebi:fe2",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py",
+    "src/biology_as_code/models/nutrient_compound.py"
+   ]
+  },
+  {
+   "curie": "chebi:folate",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py",
+    "src/biology_as_code/models/do_calculus.py",
+    "src/biology_as_code/models/nutrient_compound.py"
+   ]
+  },
+  {
+   "curie": "chebi:folic_acid",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py",
+    "src/biology_as_code/models/nutrient_compound.py"
+   ]
+  },
+  {
+   "curie": "chebi:fructose",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py",
+    "src/biology_as_code/models/nutrient_compound.py"
+   ]
+  },
+  {
+   "curie": "chebi:galactose",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py",
+    "src/biology_as_code/models/nutrient_compound.py"
+   ]
+  },
+  {
+   "curie": "chebi:glucose",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py",
+    "src/biology_as_code/models/do_calculus.py",
+    "src/biology_as_code/models/nutrient_compound.py"
+   ]
+  },
+  {
+   "curie": "chebi:iron",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py",
+    "src/biology_as_code/models/do_calculus.py",
+    "src/biology_as_code/models/nutrient_compound.py"
+   ]
+  },
+  {
+   "curie": "chebi:leucine",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py",
+    "src/biology_as_code/models/do_calculus.py",
+    "src/biology_as_code/models/nutrient_compound.py"
+   ]
+  },
+  {
+   "curie": "chebi:phylloquinone",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py",
+    "src/biology_as_code/models/nutrient_compound.py"
+   ]
+  },
+  {
+   "curie": "chebi:thiamine",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py",
+    "src/biology_as_code/models/nutrient_compound.py"
+   ]
+  },
+  {
+   "curie": "chebi:vitamin_b1",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py",
+    "src/biology_as_code/models/nutrient_compound.py"
+   ]
+  },
+  {
+   "curie": "chebi:vitamin_b12",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py",
+    "src/biology_as_code/models/nutrient_compound.py"
+   ]
+  },
+  {
+   "curie": "chebi:vitamin_c",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py",
+    "src/biology_as_code/models/nutrient_compound.py"
+   ]
+  },
+  {
+   "curie": "chebi:vitamin_d",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py",
+    "src/biology_as_code/models/do_calculus.py",
+    "src/biology_as_code/models/nutrient_compound.py"
+   ]
+  },
+  {
+   "curie": "chebi:vitamin_k",
+   "declared": null,
+   "kind": "MALFORMED",
+   "actual": null,
+   "files": [
+    "src/biology_as_code/models/biochemical_mechanisms.py",
+    "src/biology_as_code/models/nutrient_compound.py"
+   ]
+  },
   {
    "curie": "CHEBI:1038735",
    "declared": null,

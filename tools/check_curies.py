@@ -392,8 +392,12 @@ def main() -> int:
             else:
                 actual = (f" -> actually {p['actual']!r}" if p["actual"]
                           else " -> does not exist")
-            declared = ("no declared label (existence-only)" if p["declared"] is None
-                        else f"declared {p['declared']!r}")
+            if p["kind"] == "MALFORMED":
+                declared = "in an id field"
+            elif p["declared"] is None:
+                declared = "no declared label (existence-only)"
+            else:
+                declared = f"declared {p['declared']!r}"
             print(f"  {p['curie']:<18} {declared}{actual}")
             for f in p["files"][:3]:
                 print(f"        {f}")
@@ -418,6 +422,12 @@ def main() -> int:
     # An id that resolved to nothing was NOT checked, and a comparison against the
     # baseline that includes it is a comparison against a smaller corpus. Report it
     # before the count, so the count is never read on its own.
+    malformed = [p for p in problems if p["kind"] == "MALFORMED"]
+    if malformed:
+        print(f"          {len(malformed)} more are MALFORMED — a known prefix on "
+              f"something that is not an accession. They are outside the counts "
+              f"above because there is no id to resolve.")
+
     if unresolved:
         u = sorted(set(unresolved))
         print(f"\nUNRESOLVED  {len(u)} id(s) could not be looked up"
