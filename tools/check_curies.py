@@ -51,6 +51,7 @@ baseline, and let CI compare against the cache.
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import pathlib
 import re
@@ -106,6 +107,47 @@ PAIR_PATTERNS = [
 ]
 
 
+# EXISTENCE-ONLY SOURCES
+# ----------------------
+# Some files carry ids next to a label that is not trying to be the ontology's
+# label. MASTER_CROSSWALK.tsv is VMH's export: its `name` column is VMH's naming
+# convention, and ChEBI's is IUPAC. Diffing them measures convention drift, not
+# error. Measured 2026-09-07 over all 1,019 populated chebi cells:
+#
+#     738 match (72.4%)   264 "mismatch" (25.9%)   17 unresolvable
+#
+# and the mismatches are Pyruvate/pyruvic acid, ADP/Adenosine Diphosphate,
+# L-2-Aminoadipate/2-aminoadipic acid — anion vs acid, abbreviation vs expansion.
+# A 25.9% false-positive rate is the rate this file's own docstring says kills the
+# gate. So these ids are checked for EXISTENCE and OBSOLESCENCE, which no naming
+# convention can excuse, and never label-diffed. Whether VMH's names should align
+# with ChEBI's is a real question; it is not this gate's question.
+EXISTENCE_ONLY: dict[str, dict[str, str]] = {
+    # file (relative to root) -> {column holding the id: prefix to read it as}
+    "MASTER_CROSSWALK.tsv": {"chebi": "CHEBI"},
+}
+
+
+def harvest_existence_only(root: pathlib.Path) -> dict[tuple[str, None], set[str]]:
+    """(curie, None) -> files. A None label means: resolve it, do not diff it."""
+    found: dict[tuple[str, None], set[str]] = {}
+    for rel, columns in EXISTENCE_ONLY.items():
+        path = root / rel
+        if not path.is_file():
+            continue
+        with path.open(encoding="utf-8", newline="") as fh:
+            for row in csv.DictReader(fh, delimiter="\t"):
+                for column, prefix in columns.items():
+                    cell = (row.get(column) or "").strip()
+                    if not cell or cell == "OPEN":
+                        continue
+                    local = cell.split(":")[-1]
+                    if not local.isdigit():
+                        continue
+                    found.setdefault((f"{prefix}:{local}", None), set()).add(rel)
+    return found
+
+
 def _norm(s: str) -> str:
     """Compare on meaning, not decoration. 'Lymphatic / immune' -> 'lymphatic immune'."""
     s = s.lower().strip()
@@ -154,7 +196,16 @@ def resolve(curie: str, offline: bool = False) -> dict | None:
                     with urllib.request.urlopen(url, timeout=30) as r:
                         d = json.load(r)
                 except urllib.error.HTTPError as e:
-                    if e.code == 404:
+                    # 404 from /terms means "not a class here"; /properties answers
+                    # 400 for the same condition, because an IRI that is not a
+                    # property is a bad request to it rather than a missing one.
+                    # Both mean "not here", and treating only 404 that way turned
+                    # every genuinely NONEXISTENT id into {"_error": True} — an
+                    # UNRESOLVED, i.e. "we could not look it up", when in fact we
+                    # had looked and it was not there. 16 dead CHEBI ids in
+                    # MASTER_CROSSWALK.tsv (Coenzyme A, Cholesterol, Phylloquinone)
+                    # hid in that gap, uncounted and uncacheable. Found 2026-09-07.
+                    if e.code in (400, 404):
                         continue
                     raise
                 items = (d.get("_embedded") or {}).get(kind) or []
@@ -224,7 +275,8 @@ def audit(root: pathlib.Path, offline: bool = False) -> tuple[list[dict], list[s
     """
     problems, unresolved = [], []
     pairs = harvest(root)
-    for (curie, label), files in sorted(pairs.items()):
+    pairs.update(harvest_existence_only(root))
+    for (curie, label), files in sorted(pairs.items(), key=lambda kv: (kv[0][0], kv[0][1] or "")):
         r = resolve(curie, offline=offline)
         if r is None:
             problems.append({"curie": curie, "declared": label, "kind": "NOT_FOUND",
@@ -232,6 +284,13 @@ def audit(root: pathlib.Path, offline: bool = False) -> tuple[list[dict], list[s
             continue
         if not r or r.get("_error") or r.get("_uncached"):
             unresolved.append(curie)                  # unknown, not a finding
+            continue
+        if label is None:
+            # Existence-only. It resolved, so it exists; obsolescence is still a
+            # finding because a withdrawn id is wrong in any naming convention.
+            if r.get("obsolete"):
+                problems.append({"curie": curie, "declared": None, "kind": "OBSOLETE",
+                                 "actual": r["label"], "files": sorted(files)})
             continue
         names = [r["label"]] + list(r.get("synonyms") or [])
         want = _norm(label)
@@ -253,12 +312,19 @@ def main() -> int:
     ap.add_argument("--strict", action="store_true",
                     help="exit 1 if debt exceeds the baseline")
     ap.add_argument("--update-baseline", action="store_true")
+    ap.add_argument("--reason", default="",
+                    help="why the baseline is being rewritten. REQUIRED when the "
+                         "count goes UP: the ratchet only permits that when the "
+                         "corpus grew, and an unexplained rise is the regression "
+                         "the ratchet exists to catch.")
     ap.add_argument("--offline", action="store_true", help="cache only, no network")
     ap.add_argument("--root", default=str(ROOT))
     a = ap.parse_args()
 
     root = pathlib.Path(a.root)
     pairs = harvest(root)
+    existence_only = harvest_existence_only(root)
+    pairs.update(existence_only)
     all_curies = set()
     for p in root.rglob("*"):
         if (p.is_file() and p.suffix in SCAN_SUFFIXES
@@ -269,6 +335,7 @@ def main() -> int:
                     all_curies.add(m.group(0).replace("_", ":", 1))
             except OSError:
                 pass
+    all_curies |= {k[0] for k in existence_only}
     checked = {k[0] for k in pairs}
     problems, unresolved = audit(root, offline=a.offline)
     by_kind: dict[str, list[dict]] = {}
@@ -282,7 +349,9 @@ def main() -> int:
         print(f"\n{kind}  ({len(rows)})")
         for p in rows:
             actual = f" -> actually {p['actual']!r}" if p["actual"] else " -> does not exist"
-            print(f"  {p['curie']:<18} declared {p['declared']!r}{actual}")
+            declared = ("no declared label (existence-only)" if p["declared"] is None
+                        else f"declared {p['declared']!r}")
+            print(f"  {p['curie']:<18} {declared}{actual}")
             for f in p["files"][:3]:
                 print(f"        {f}")
 
@@ -290,8 +359,14 @@ def main() -> int:
     # anything, so it is NOT checked. Saying "0 problems" while skipping most of
     # the tree is the failure this whole script exists to prevent.
     unpaired = sorted(all_curies - checked)
-    print(f"\nCOVERAGE  {len(checked)}/{len(all_curies)} distinct ids carry a "
-          f"declared label and were resolved and diffed.")
+    eo = {k[0] for k in existence_only}
+    print(f"\nCOVERAGE  {len(checked)}/{len(all_curies)} distinct ids were resolved; "
+          f"{len(checked) - len(eo - {k[0] for k in pairs if k[1] is not None})} "
+          f"of those were also label-diffed.")
+    if eo:
+        print(f"          {len(eo)} come from existence-only sources "
+              f"({', '.join(EXISTENCE_ONLY)}) and are checked for existence and "
+              f"obsolescence but NOT label-diffed — see EXISTENCE_ONLY for why.")
     if unpaired:
         print(f"          {len(unpaired)} have NO adjacent label, so nothing was "
               f"checked for them — not a pass, an unknown.")
@@ -310,19 +385,31 @@ def main() -> int:
               "a smaller corpus than the baseline.")
 
     total = len(problems)
+    prior = json.loads(BASELINE.read_text())["count"] if BASELINE.exists() else None
     if a.update_baseline:
+        if prior is not None and total > prior and not a.reason:
+            print(f"REFUSING  count would rise {prior} -> {total} with no --reason. "
+                  f"The ratchet permits a rise only when the corpus grew; say so.")
+            return 1
         BASELINE.write_text(json.dumps({
             "what_this_is": ("Ontology ids whose declared label does not match the "
-                             "term they resolve to. RATCHET: `count` may only go "
-                             "DOWN. Fixing one means lowering it in the same commit."),
-            "as_of": "2026-08-29",
+                             "term they resolve to, plus ids that do not resolve at "
+                             "all. RATCHET: `count` may only go DOWN. Fixing one "
+                             "means lowering it in the same commit."),
+            "corpus_note": ("`count` is only comparable against a run over the SAME "
+                            "corpus. If a source is added to EXISTENCE_ONLY or "
+                            "SCAN_SUFFIXES the count moves for a reason that is not "
+                            "a regression; record it here when it does."),
+            "corpus": {"scan_suffixes": sorted(SCAN_SUFFIXES),
+                       "existence_only": sorted(EXISTENCE_ONLY)},
+            "last_change": a.reason or "not stated",
+            "as_of": "2026-09-07",
             "count": total,
             "problems": problems,
         }, indent=1) + "\n")
         print(f"\nbaseline written: {total} problem(s)")
         return 0
 
-    prior = json.loads(BASELINE.read_text())["count"] if BASELINE.exists() else None
     print(f"\n{total} problem(s)" + (f"; baseline {prior}" if prior is not None else ""))
     if prior is not None and total < prior and not unresolved:
         print(f"IMPROVED by {prior - total} — lower 'count' in {BASELINE.name} to {total}.")

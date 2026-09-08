@@ -288,3 +288,90 @@ def test_third_party_refuses_an_undeclared_data_file(tmp_path):
     _git_repo(gate.parent)
     r = _run(gate)
     assert r.returncode == 1, r.stdout
+
+
+# --------------------------------------------------------------------------
+# check_curies.py — the crosswalk joined the corpus (2026-09-07)
+# --------------------------------------------------------------------------
+#
+# MASTER_CROSSWALK.tsv carries 1,019 populated ChEBI ids and the gate could not
+# see one of them: `.tsv` is not in SCAN_SUFFIXES, and the column holds an id whose
+# neighbouring `name` is VMH's label, not ChEBI's. It now joins as an
+# EXISTENCE_ONLY source — resolved, never label-diffed, because the diff measures
+# 25.9% "mismatch" that is Pyruvate/pyruvic acid.
+#
+# Wiring a new source into a gate has exactly two failure modes, and both are the
+# house failure: the source is silently NOT scanned (a pass over nothing), or it is
+# scanned the wrong way and floods the baseline with noise until someone switches
+# the gate off. One test each.
+
+def _crosswalk_repo(tmp_path: pathlib.Path, *, chebi_local: int, cached: object,
+                    name: str = "Water", baseline: int = 0) -> pathlib.Path:
+    """A repo whose only corpus is a crosswalk with one ChEBI cell, pre-cached."""
+    root = tmp_path / "xw"
+    root.mkdir()
+    gate = _plant("check_curies.py", root)
+    (root / "MASTER_CROSSWALK.tsv").write_text(
+        "vmh\tname\tchebi\n" + f"h2o\t{name}\t" + "chebi:" + str(chebi_local) + "\n")
+    cache = root / "tools" / ".curie_cache"
+    cache.mkdir(parents=True, exist_ok=True)
+    (cache / ("CHEBI_" + str(chebi_local) + ".json")).write_text(json.dumps(cached))
+    (root / "tools" / "curie_baseline.json").write_text(
+        json.dumps({"count": baseline, "problems": []}))
+    return gate
+
+
+def test_curies_reports_a_crosswalk_id_that_does_not_exist(tmp_path):
+    """The finding this wiring exists for. 17 ids in the real table resolve to
+    nothing — Coenzyme A, Cholesterol, Phylloquinone — and until the crosswalk
+    entered the corpus the gate had never looked at any of them."""
+    gate = _crosswalk_repo(tmp_path, chebi_local=9999999, cached=None)
+    r = _run(gate, "--offline")
+    assert "NOT_FOUND" in r.stdout, r.stdout
+    assert "MASTER_CROSSWALK.tsv" in r.stdout
+
+
+def test_curies_does_not_label_diff_an_existence_only_source(tmp_path):
+    """The other half. VMH calls it 'Pyruvate' and ChEBI calls it 'pyruvic acid';
+    both are right. If this ever starts firing, the gate is about to be drowned in
+    naming-convention noise and switched off — which is how gates die."""
+    gate = _crosswalk_repo(tmp_path, chebi_local=9999998, name="Pyruvate",
+                           cached={"label": "pyruvic acid", "synonyms": [],
+                                   "obsolete": False})
+    r = _run(gate, "--offline")
+    assert "WRONG_CONCEPT" not in r.stdout, r.stdout
+    assert "0 problem(s)" in r.stdout
+
+
+def test_curies_still_reports_an_obsolete_crosswalk_id(tmp_path):
+    """Existence-only is not check-nothing. A withdrawn id is wrong under every
+    naming convention, so obsolescence survives the exemption."""
+    gate = _crosswalk_repo(tmp_path, chebi_local=9999997,
+                           cached={"label": "something withdrawn", "synonyms": [],
+                                   "obsolete": True})
+    r = _run(gate, "--offline")
+    assert "OBSOLETE" in r.stdout, r.stdout
+
+
+def test_curies_refuses_to_ratchet_the_baseline_upward_without_a_reason(tmp_path):
+    """A ratchet whose corpus can grow needs to tell a rise apart from a
+    regression. The only thing that distinguishes them is a human saying which."""
+    gate = _crosswalk_repo(tmp_path, chebi_local=9999996, cached=None, baseline=0)
+    r = _run(gate, "--offline", "--update-baseline")
+    assert r.returncode == 1, r.stdout
+    assert "REFUSING" in r.stdout
+    ok = _run(gate, "--offline", "--update-baseline", "--reason", "corpus grew")
+    assert ok.returncode == 0, ok.stdout
+
+
+def test_shipped_baseline_records_the_corpus_it_was_measured_over():
+    """A count is only comparable against the same corpus. If a source is added to
+    the gate and the baseline is not rewritten, the number silently starts meaning
+    something else."""
+    sys.path.insert(0, str(REPO))
+    from tools.check_curies import EXISTENCE_ONLY, SCAN_SUFFIXES
+
+    baseline = json.loads((REPO / "tools" / "curie_baseline.json").read_text())
+    assert baseline["corpus"]["existence_only"] == sorted(EXISTENCE_ONLY)
+    assert baseline["corpus"]["scan_suffixes"] == sorted(SCAN_SUFFIXES)
+    assert baseline.get("last_change", "not stated") != "not stated"

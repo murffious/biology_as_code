@@ -1,8 +1,131 @@
 {
- "what_this_is": "Ontology ids whose declared label does not match the term they resolve to. RATCHET: `count` may only go DOWN. Fixing one means lowering it in the same commit.",
- "as_of": "2026-08-29",
- "count": 22,
+ "what_this_is": "Ontology ids whose declared label does not match the term they resolve to, plus ids that do not resolve at all. RATCHET: `count` may only go DOWN. Fixing one means lowering it in the same commit.",
+ "corpus_note": "`count` is only comparable against a run over the SAME corpus. If a source is added to EXISTENCE_ONLY or SCAN_SUFFIXES the count moves for a reason that is not a regression; record it here when it does.",
+ "corpus": {
+  "scan_suffixes": [
+   ".json",
+   ".jsonl",
+   ".md",
+   ".py",
+   ".ts",
+   ".tsx"
+  ],
+  "existence_only": [
+   "MASTER_CROSSWALK.tsv"
+  ]
+ },
+ "last_change": "Corpus grew, not a regression. MASTER_CROSSWALK.tsv joined the scan as an EXISTENCE_ONLY source on 2026-09-07, adding 999 distinct ChEBI ids: 17 do not resolve (NOT_FOUND) and 5 are obsolete. Label diffing is deliberately NOT applied to it - measured 25.9% mismatch that is VMH naming convention vs ChEBI's (Pyruvate/pyruvic acid), which is the false-positive rate that kills a gate. Also fixed here: OLS4 answers 400, not 404, from /properties for a non-property IRI, so every genuinely nonexistent id was returning _error and counted as 'could not look it up' rather than NOT_FOUND. That gap is where the 17 dead ids were hiding. Separately, 2 of the prior 22 (FOODON:03411347, NCBITaxon:1126) no longer appear anywhere in the tree - fixed by other work since 2026-08-29 without the baseline being lowered. Prior WRONG_CONCEPT debt is therefore 20, not 22.",
+ "as_of": "2026-09-07",
+ "count": 42,
  "problems": [
+  {
+   "curie": "CHEBI:1038735",
+   "declared": null,
+   "kind": "NOT_FOUND",
+   "actual": null,
+   "files": [
+    "MASTER_CROSSWALK.tsv"
+   ]
+  },
+  {
+   "curie": "CHEBI:1127735",
+   "declared": null,
+   "kind": "NOT_FOUND",
+   "actual": null,
+   "files": [
+    "MASTER_CROSSWALK.tsv"
+   ]
+  },
+  {
+   "curie": "CHEBI:1146900",
+   "declared": null,
+   "kind": "NOT_FOUND",
+   "actual": null,
+   "files": [
+    "MASTER_CROSSWALK.tsv"
+   ]
+  },
+  {
+   "curie": "CHEBI:12575",
+   "declared": null,
+   "kind": "OBSOLETE",
+   "actual": "CHEBI_12575",
+   "files": [
+    "MASTER_CROSSWALK.tsv"
+   ]
+  },
+  {
+   "curie": "CHEBI:12947",
+   "declared": null,
+   "kind": "OBSOLETE",
+   "actual": "CHEBI_12947",
+   "files": [
+    "MASTER_CROSSWALK.tsv"
+   ]
+  },
+  {
+   "curie": "CHEBI:1305691",
+   "declared": null,
+   "kind": "NOT_FOUND",
+   "actual": null,
+   "files": [
+    "MASTER_CROSSWALK.tsv"
+   ]
+  },
+  {
+   "curie": "CHEBI:1306412",
+   "declared": null,
+   "kind": "NOT_FOUND",
+   "actual": null,
+   "files": [
+    "MASTER_CROSSWALK.tsv"
+   ]
+  },
+  {
+   "curie": "CHEBI:1307929",
+   "declared": null,
+   "kind": "NOT_FOUND",
+   "actual": null,
+   "files": [
+    "MASTER_CROSSWALK.tsv"
+   ]
+  },
+  {
+   "curie": "CHEBI:17208",
+   "declared": null,
+   "kind": "OBSOLETE",
+   "actual": "CHEBI_17208",
+   "files": [
+    "MASTER_CROSSWALK.tsv"
+   ]
+  },
+  {
+   "curie": "CHEBI:240943",
+   "declared": null,
+   "kind": "NOT_FOUND",
+   "actual": null,
+   "files": [
+    "MASTER_CROSSWALK.tsv"
+   ]
+  },
+  {
+   "curie": "CHEBI:283119",
+   "declared": null,
+   "kind": "NOT_FOUND",
+   "actual": null,
+   "files": [
+    "MASTER_CROSSWALK.tsv"
+   ]
+  },
+  {
+   "curie": "CHEBI:28910",
+   "declared": null,
+   "kind": "OBSOLETE",
+   "actual": "CHEBI_28910",
+   "files": [
+    "MASTER_CROSSWALK.tsv"
+   ]
+  },
   {
    "curie": "CHEBI:30411",
    "declared": "Vitamin B12",
@@ -13,12 +136,93 @@
    ]
   },
   {
-   "curie": "FOODON:03411347",
-   "declared": "illustrative \u2014 resolve via OLS",
-   "kind": "WRONG_CONCEPT",
-   "actual": "obsolete: plant",
+   "curie": "CHEBI:308079",
+   "declared": null,
+   "kind": "NOT_FOUND",
+   "actual": null,
    "files": [
-    "docs/claim-schema.md"
+    "MASTER_CROSSWALK.tsv"
+   ]
+  },
+  {
+   "curie": "CHEBI:356660",
+   "declared": null,
+   "kind": "NOT_FOUND",
+   "actual": null,
+   "files": [
+    "MASTER_CROSSWALK.tsv"
+   ]
+  },
+  {
+   "curie": "CHEBI:387060",
+   "declared": null,
+   "kind": "NOT_FOUND",
+   "actual": null,
+   "files": [
+    "MASTER_CROSSWALK.tsv"
+   ]
+  },
+  {
+   "curie": "CHEBI:580913",
+   "declared": null,
+   "kind": "NOT_FOUND",
+   "actual": null,
+   "files": [
+    "MASTER_CROSSWALK.tsv"
+   ]
+  },
+  {
+   "curie": "CHEBI:583972",
+   "declared": null,
+   "kind": "NOT_FOUND",
+   "actual": null,
+   "files": [
+    "MASTER_CROSSWALK.tsv"
+   ]
+  },
+  {
+   "curie": "CHEBI:603631",
+   "declared": null,
+   "kind": "NOT_FOUND",
+   "actual": null,
+   "files": [
+    "MASTER_CROSSWALK.tsv"
+   ]
+  },
+  {
+   "curie": "CHEBI:730073",
+   "declared": null,
+   "kind": "NOT_FOUND",
+   "actual": null,
+   "files": [
+    "MASTER_CROSSWALK.tsv"
+   ]
+  },
+  {
+   "curie": "CHEBI:742324",
+   "declared": null,
+   "kind": "NOT_FOUND",
+   "actual": null,
+   "files": [
+    "MASTER_CROSSWALK.tsv"
+   ]
+  },
+  {
+   "curie": "CHEBI:805752",
+   "declared": null,
+   "kind": "NOT_FOUND",
+   "actual": null,
+   "files": [
+    "MASTER_CROSSWALK.tsv"
+   ]
+  },
+  {
+   "curie": "CHEBI:8122",
+   "declared": null,
+   "kind": "OBSOLETE",
+   "actual": "CHEBI_8122",
+   "files": [
+    "MASTER_CROSSWALK.tsv"
    ]
   },
   {
@@ -172,15 +376,6 @@
    "actual": "endemic goiter",
    "files": [
     "src/biology_as_code/simulation/health_outcomes.py"
-   ]
-  },
-  {
-   "curie": "NCBITaxon:1126",
-   "declared": "Arthrospira platensis",
-   "kind": "WRONG_CONCEPT",
-   "actual": "Microcystis aeruginosa",
-   "files": [
-    "docs/claim-schema.md"
    ]
   },
   {
