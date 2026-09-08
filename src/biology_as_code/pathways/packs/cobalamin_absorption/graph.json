@@ -18,15 +18,15 @@
     {
       "id": "dietary_b12",
       "label": "Dietary cobalamin (B12)",
-      "kind": "lumen",
-      "compartment": "",
+      "kind": "substrate",
+      "compartment": "lumen",
       "notes": "Protein-bound in food; acid/pepsin help release."
     },
     {
       "id": "free_b12",
       "label": "Free B12 (gastric/duodenal)",
-      "kind": "lumen",
-      "compartment": "",
+      "kind": "intermediate",
+      "compartment": "lumen",
       "notes": "Transient; binds haptocorrin then IF."
     },
     {
@@ -46,15 +46,15 @@
     {
       "id": "ileal_uptake",
       "label": "Ileal enterocyte uptake",
-      "kind": "enterocyte",
-      "compartment": "",
+      "kind": "intermediate",
+      "compartment": "enterocyte",
       "notes": "Cubam (cubilin/amnionless) teaching receptor."
     },
     {
       "id": "plasma_b12",
       "label": "Transcobalamin-bound B12 (plasma)",
-      "kind": "circulation",
-      "compartment": "",
+      "kind": "product",
+      "compartment": "circulation",
       "notes": "Delivery to tissues; methyl-B12 / Ado-B12 cofactor forms."
     }
   ],

@@ -13,43 +13,43 @@
     {
       "id": "dietary_tg",
       "label": "Dietary Triglycerides",
-      "kind": "lumen",
-      "compartment": "",
+      "kind": "substrate",
+      "compartment": "lumen",
       "notes": ""
     },
     {
       "id": "emulsion",
       "label": "Emulsified Fat Droplets",
-      "kind": "lumen",
-      "compartment": "",
+      "kind": "intermediate",
+      "compartment": "lumen",
       "notes": ""
     },
     {
       "id": "micelles",
       "label": "Mixed Micelles",
-      "kind": "lumen",
-      "compartment": "",
+      "kind": "intermediate",
+      "compartment": "lumen",
       "notes": ""
     },
     {
       "id": "ffas_mg",
       "label": "FFAs + 2-Monoacylglycerol",
-      "kind": "lumen",
-      "compartment": "",
+      "kind": "intermediate",
+      "compartment": "lumen",
       "notes": ""
     },
     {
       "id": "tg_enterocyte",
       "label": "Re-esterified TG (enterocyte)",
-      "kind": "enterocyte",
-      "compartment": "",
+      "kind": "intermediate",
+      "compartment": "enterocyte",
       "notes": ""
     },
     {
       "id": "chylomicron",
       "label": "Chylomicron",
-      "kind": "circulation",
-      "compartment": "",
+      "kind": "product",
+      "compartment": "circulation",
       "notes": "Exported into lacteals → lymph → thoracic duct → blood."
     }
   ],

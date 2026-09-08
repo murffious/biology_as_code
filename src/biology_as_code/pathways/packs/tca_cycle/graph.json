@@ -182,5 +182,10 @@
     }
   ],
   "nutrient_dependencies": {},
-  "net_yields": {}
+  "net_yields": {
+    "CO2": 2,
+    "FADH2": 1,
+    "GTP": 1,
+    "NADH": 3
+  }
 }

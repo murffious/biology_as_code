@@ -13,36 +13,36 @@
     {
       "id": "dietary_protein",
       "label": "Dietary Protein",
-      "kind": "lumen",
-      "compartment": "",
+      "kind": "substrate",
+      "compartment": "lumen",
       "notes": ""
     },
     {
       "id": "peptides_stomach",
       "label": "Large Peptides (stomach)",
-      "kind": "lumen",
-      "compartment": "",
+      "kind": "intermediate",
+      "compartment": "lumen",
       "notes": ""
     },
     {
       "id": "oligopeptides",
       "label": "Oligopeptides + Amino Acids",
-      "kind": "lumen",
-      "compartment": "",
+      "kind": "intermediate",
+      "compartment": "lumen",
       "notes": ""
     },
     {
       "id": "amino_acids_enterocyte",
       "label": "Amino Acids / Di-Tri Peptides (enterocyte)",
-      "kind": "enterocyte",
-      "compartment": "",
+      "kind": "intermediate",
+      "compartment": "enterocyte",
       "notes": ""
     },
     {
       "id": "amino_acids_blood",
       "label": "Amino Acids (portal blood)",
-      "kind": "circulation",
-      "compartment": "",
+      "kind": "product",
+      "compartment": "circulation",
       "notes": ""
     }
   ],

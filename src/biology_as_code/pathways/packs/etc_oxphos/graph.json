@@ -210,5 +210,7 @@
     }
   ],
   "nutrient_dependencies": {},
-  "net_yields": {}
+  "net_yields": {
+    "H+": 10
+  }
 }

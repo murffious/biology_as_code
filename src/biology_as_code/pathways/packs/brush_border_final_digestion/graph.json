@@ -13,29 +13,29 @@
     {
       "id": "disaccharides",
       "label": "Disaccharides (maltose, sucrose, lactose)",
-      "kind": "lumen",
-      "compartment": "",
+      "kind": "substrate",
+      "compartment": "lumen",
       "notes": ""
     },
     {
       "id": "monosaccharides",
       "label": "Monosaccharides",
-      "kind": "lumen",
-      "compartment": "",
+      "kind": "product",
+      "compartment": "lumen",
       "notes": ""
     },
     {
       "id": "oligopeptides",
       "label": "Oligopeptides",
-      "kind": "lumen",
-      "compartment": "",
+      "kind": "substrate",
+      "compartment": "lumen",
       "notes": ""
     },
     {
       "id": "aa_di_tri",
       "label": "AA + di/tripeptides",
-      "kind": "lumen",
-      "compartment": "",
+      "kind": "product",
+      "compartment": "lumen",
       "notes": ""
     }
   ],

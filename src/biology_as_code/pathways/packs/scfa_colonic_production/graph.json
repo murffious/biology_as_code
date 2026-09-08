@@ -59,8 +59,8 @@
     {
       "id": "portal_scfa",
       "label": "Portal SCFA delivery",
-      "kind": "circulation",
-      "compartment": "",
+      "kind": "product",
+      "compartment": "circulation",
       "notes": "Acetate/propionate systemic exposure."
     }
   ],
