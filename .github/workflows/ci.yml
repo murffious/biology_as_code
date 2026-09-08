@@ -31,11 +31,16 @@ jobs:
         # exception in tools/separation.allow.
         run: python tools/check_separation.py
       - name: PMIDs resolve to the paper we cited
+        # Covers code, JSON registers and prose in docs/. Docs were the blind
+        # spot that mattered: four of the twelve wrong ids found on 2026-09-07
+        # were on docs/metabolic-constants.md, where nothing read them.
+        #
         # Offline against the committed cache, so this is deterministic and needs
         # no egress. It fails on a cache miss: a citation added without being
         # resolved is exactly the defect the gate exists to catch, and an unrun
         # check is not a pass. Add one with `python3 tools/check_pmids.py --strict`
         # and commit the refreshed tools/pmid_cache.json.
+        # Exceptions live in tools/pmid_docs.allow, one written reason each.
         run: python tools/check_pmids.py --offline --strict
       - name: Every shipped number names its source
         # check_pmids proves a citation resolves; this proves the *numbers* have
