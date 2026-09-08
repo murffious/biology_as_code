@@ -210,6 +210,8 @@ computation.
 
 ## See also
 
+- [Non-laws](non-laws.md) — three statements that look like laws and are not:
+  the rate-limiting step, the sign-stability shortcut, and MCA/BST "equivalence"
 - [Constitution](constitution.md) — `gate ≠ bound`, the four seats, L1→L5
 - [VALUE.md](https://github.com/murffious/biology_as_code/blob/main/VALUE.md) —
   what the repository is and is not worth
