@@ -23,6 +23,7 @@ shares its `collect_pathways()` registry walk, so a pathway wired into
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from pathlib import Path
@@ -202,17 +203,35 @@ def build_all() -> List[Dict[str, Any]]:
     ]
 
 
-def main() -> None:
-    OUT.mkdir(parents=True, exist_ok=True)
+def main(argv: list[str] | None = None) -> None:
+    """Write every graph and the index.
+
+    ``--out`` exists so a test can exercise the real writer without writing into
+    the checkout. Before it, `tests/test_graph_json_export.py` shelled out to this
+    script with no override, so *running the test suite mutated tracked files*
+    under `src/`. That stayed invisible for as long as the export was
+    byte-identical to what was committed, and surfaced the moment it legitimately
+    changed. A test must not be a writer.
+    """
+    parser = argparse.ArgumentParser(description="Export pathway graph JSON.")
+    parser.add_argument(
+        "--out",
+        type=Path,
+        default=OUT,
+        help="directory to write into (default: the tracked packs directory)",
+    )
+    out = parser.parse_args(argv).out
+
+    out.mkdir(parents=True, exist_ok=True)
     documents = build_all()
     for doc in documents:
-        pack = OUT / doc["id"]
+        pack = out / doc["id"]
         pack.mkdir(parents=True, exist_ok=True)
         (pack / "graph.json").write_text(dumps(doc), encoding="utf-8")
         print(f"  wrote packs/{doc['id']}/graph.json  (n={len(doc['nodes'])} e={len(doc['edges'])})")
 
     index = index_to_json(documents)
-    (OUT / "graph-index.json").write_text(dumps(index), encoding="utf-8")
+    (out / "graph-index.json").write_text(dumps(index), encoding="utf-8")
     print(
         f"graph-index.json — {index['count']} graphs, "
         f"{len(index['nutrient_index'])} cofactor nutrients"

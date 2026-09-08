@@ -81,10 +81,23 @@ def _walk(value: Any, path: str = "$") -> Iterator[tuple[str, str]]:
             yield from _walk(sub, f"{path}[{i}]")
 
 
-def test_exporter_runs_and_writes_every_pack():
-    """The script itself must run green, not just its importable pieces."""
+def test_exporter_runs_and_writes_every_pack(tmp_path):
+    """The script itself must run green, not just its importable pieces.
+
+    Writes into `tmp_path`, never into the checkout. This test used to invoke the
+    exporter with no output override, so *running the suite mutated tracked files*
+    under `src/biology_as_code/pathways/packs/`. It went unnoticed for as long as
+    the export was byte-identical to what was committed; the moment the export
+    legitimately changed, the suite started rewriting the tree and
+    `test_pathway_packs_golden.py` failed on files no commit had touched.
+
+    Nothing is lost by moving off the real directory. That the committed packs
+    match a fresh export is `test_graph_json_not_stale`, which compares bytes
+    in memory and needs no writer to have run.
+    """
+    out = tmp_path / "packs"
     proc = subprocess.run(
-        [sys.executable, str(ROOT / "scripts" / "export_graph_json.py")],
+        [sys.executable, str(ROOT / "scripts" / "export_graph_json.py"), "--out", str(out)],
         capture_output=True,
         text=True,
     )
@@ -92,9 +105,21 @@ def test_exporter_runs_and_writes_every_pack():
     ids = sorted(_documents())
     assert ids, "no pathways collected"
     for pack_id in ids:
-        assert (PACKS / pack_id / "graph.json").is_file(), f"{pack_id}: no graph.json"
-    assert INDEX_FILE.is_file(), "no graph-index.json"
+        assert (out / pack_id / "graph.json").is_file(), f"{pack_id}: no graph.json"
+    assert (out / "graph-index.json").is_file(), "no graph-index.json"
     print(f"✓ Exporter wrote graph.json for {len(ids)} packs + index")
+
+
+def test_the_suite_does_not_write_into_the_tree():
+    """The tracked packs must be present already, not a by-product of a test run.
+
+    A regression guard for the bug above: if some test starts writing the real
+    directory again, the committed files are still what the other tests read, and
+    `test_graph_json_not_stale` is what proves them fresh.
+    """
+    assert INDEX_FILE.is_file(), "graph-index.json is not committed"
+    for pack_id in _documents():
+        assert (PACKS / pack_id / "graph.json").is_file(), f"{pack_id}: pack not committed"
 
 
 def test_written_json_parses_and_declares_its_schema():
