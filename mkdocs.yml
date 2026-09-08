@@ -68,6 +68,7 @@ nav:
   - Events & feedback: events.md
   - Notational conventions: notational-conventions.md
   - Metabolic constants (what may be encoded): metabolic-constants.md
+  - Non-laws (looks like a law, is not): non-laws.md
   - Validation report: VALIDATION.md
   - Validation ledger: VALIDATION_LEDGER.md
   - Contributing data: contributing-data.md
