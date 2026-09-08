@@ -62,6 +62,25 @@ the manifest, not from package metadata; the CI wheel smoke fails if the two dis
 publish a GitHub Release from the tag. The release event is what runs
 `publish.yml` (PyPI + a new Zenodo version); a push never does.
 
+### When to cut a release branch (and why there is none)
+
+There is no standing `release/*` branch, on purpose. Every commit on `main` is
+shippable and the tag *is* the release, so a third branch would only add a
+third place for the sync-back problem above to live. Cut one, from the tag and
+at that moment, in exactly two cases:
+
+- **An old line needs a patch while `main` has moved on.** A paper cites
+  `0.2.x`, `main` is already `0.3` with a breaking change, and a citation on the
+  `0.2` line is wrong. `git switch -c release/0.2.x v0.2.1`, fix there, tag
+  `v0.2.2` from it, then merge the fix forward into `dev`.
+- **A release needs a freeze while `dev` keeps taking features.** That takes
+  several people merging daily and a QA window measured in days; the suite runs
+  in about ninety seconds, so for now the freeze is the `dev` → `main` PR.
+
+If you do cut one, add it to the `on:` lists in `ci.yml` and `docs.yml` and to
+the `ci-required` ruleset in the same commit, or it is an unwatched merge
+target, and delete it once the line is no longer supported.
+
 ## Data — strengthen the register
 
 Evidence, packet fills, claims, and gate/bound rules go through a **fail-closed
