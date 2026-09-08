@@ -55,8 +55,9 @@ commits; merge it as soon as they re-report. This happened once already
 
 `dev` → `main` is a pull request like any other (`gh pr create --base main
 --head dev`). After it merges, run `scripts/release_check.sh` on `main`, bump
-`version` in `pyproject.toml` and `CITATION.cff` together (`__version__` reads package
-metadata, so it follows), move the
+`version` in `pyproject.toml`, `CITATION.cff` and
+`src/biology_as_code/data/VERSION_MANIFEST.json` together (`__version__` is read from
+the manifest, not from package metadata; the CI wheel smoke fails if the two disagree), move the
 `[Unreleased]` section of `CHANGELOG.md` under the new version, tag `vX.Y.Z`, and
 publish a GitHub Release from the tag. The release event is what runs
 `publish.yml` (PyPI + a new Zenodo version); a push never does.
