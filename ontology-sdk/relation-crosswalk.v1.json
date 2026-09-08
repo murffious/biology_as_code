@@ -1,699 +1,879 @@
 {
-  "licence": {
-    "spdx": "LicenseRef-BAC-Samples-Attribution",
-    "copyright": "Copyright 2026 Paul Murff (Morf Engineering Inc.)",
-    "terms": "LICENSE-SAMPLES.md — free reuse with attribution to the repository and the book",
-    "scope": "Original authored schema of the biology_as_code project. Underlying scientific facts are not claimed."
-  },
-  "schema_version": "1.0.0",
-  "register": "relation-crosswalk",
-  "as_of": "2026-09-03",
-  "what_this_is": "The mapping pass blocker 4 of GROUNDED-OBJECT-MODEL.md asked for. One row per verb in every relation vocabulary this project carries, saying how that verb relates to the eleven-relation base declared in ontology.json (mechanism_schema.py's Relation, the one candidate with an executed domain/range matrix). It is authored, not computed: a verb with no row is unmapped, never silently equivalent. What it is NOT: it does not retire any vocabulary — the claim-language lexicon still parses surface verbs, the graph still stores its ten, nutrient-edge still carries its payloads. It says what each verb becomes on the base and what is lost on the way.",
-  "base": {
-    "vocabulary": "mechanism_schema",
-    "source": "nutri-collective/evidence-platform/src/mechanism_schema.py (Relation, COMPAT)",
-    "declared_in": "ontology-sdk/ontology.json predicates",
-    "relations": [
-      "CONTAINS",
-      "CONVERTS_TO",
-      "INCREASES",
-      "DECREASES",
-      "NO_CHANGE",
-      "MEDIATES",
-      "ACTIVATES",
-      "INHIBITS",
-      "ASSOCIATED_WITH",
-      "CONSERVES",
-      "IDENTITY"
-    ]
-  },
-  "fields": {
-    "relation": "exact — the same relation over the same subject and object. narrower — the source verb is a special case of the base verb (every OPENS_GATE is an ACTIVATES; not every ACTIVATES is a gate). broader — the source verb covers more than the base verb (PRECURSOR_OF covers multi-step CONVERTS_TO chains). related — overlapping constructs where neither contains the other. none — no single base edge over the same endpoints exists; see expansion or reason.",
-    "rule": "A row is exact / narrower / broader / related ONLY when the source edge (S, verb, O) becomes one base edge over the same S and O; an inverse row swaps them. Anything that needs a reified node or more than one edge is none with an expansion. none with a reason and no expansion is not expressible on the base at all.",
-    "base": "the base relation, null when relation is none",
-    "inverse": "true when the base edge runs O → S (FOUND_IN is CONTAINS read backwards)",
-    "expansion": "for none rows: the multi-edge or reified rewrite that carries the meaning, in base verbs",
-    "reason": "for none rows with no expansion: why the base cannot carry it",
-    "loses": "what the base edge does not carry even when the mapping holds — payloads, modality, magnitude",
-    "ro": "an OBO Relation Ontology id, only where the source vocabulary declares one; never inferred here"
-  },
-  "vocabularies": {
-    "law-model": {
-      "source": "src/biology_as_code/engine/laws/models.py RelationType",
-      "role": "what a law may assert",
-      "members": [
-        "OPENS_GATE",
-        "CLOSES_GATE",
-        "EXPANDS_BOUND",
-        "NARROWS_BOUND",
-        "STATE_FUNCTION",
-        "FRAMEWORK",
-        "MIXED",
-        "CONSERVES",
-        "IDENTITY"
-      ],
-      "note": "STATE_FUNCTION, FRAMEWORK and MIXED assert nothing an edge could carry (NON_STRUCTURAL in tests/test_graph_relation_vocabulary.py)."
-    },
-    "graph": {
-      "source": "src/biology_as_code/graph/build.py _REL_ALIASES, published as schemas/relation_enums.subset.json, enforced by graph/schema.sql",
-      "role": "what the graph can store as an edge: the six structural law relations plus four edge kinds the law model has no use for",
-      "members": [
-        "OPENS_GATE",
-        "CLOSES_GATE",
-        "EXPANDS_BOUND",
-        "NARROWS_BOUND",
-        "CONSERVES",
-        "IDENTITY",
-        "COMPETES_WITH",
-        "PART_OF",
-        "NEEDS_RESOLUTION",
-        "MALFORMED_MECHANISM"
-      ],
-      "note": "Until 2026-09-03 the published subset's header said 'full list in book/claim-language'. That list lacks CONSERVES and IDENTITY, two of the subset's own members; the header now points at the law model and at this file."
-    },
-    "claim-language": {
-      "source": "book/claim-language/claim_verbs.json relation_enums",
-      "role": "the target enum of the surface-verb translator (88 verbs in 9 classes)",
-      "members": [
-        "OPENS_GATE",
-        "CLOSES_GATE",
-        "EXPANDS_BOUND",
-        "NARROWS_BOUND",
-        "UPREGULATES",
-        "INHIBITS",
-        "CATALYZES",
-        "CLEAVES",
-        "ACTIVATES",
-        "SATURATES",
-        "COMPETES_WITH",
-        "BOUND_BY",
-        "PART_OF",
-        "NEEDS_RESOLUTION",
-        "MALFORMED_MECHANISM"
-      ],
-      "note": "CLOSES_GATE, CLEAVES, SATURATES, BOUND_BY and PART_OF are declared but no verb defaults to them. The RO ids on rows come from this file's class table."
-    },
-    "nutrient-edge": {
-      "source": "book/nutrient-taxonomy/v2/nutrient-edge.v2.json properties.predicate.enum",
-      "role": "typed nutrient ↔ nutrient / food / disease edges, each predicate with its own payload (conversion, interaction, occurrence, clinical)",
-      "members": [
-        "VITAMER_OF",
-        "CONVERTS_TO",
-        "PRECURSOR_OF",
-        "INHIBITS_ABSORPTION_OF",
-        "ENHANCES_ABSORPTION_OF",
-        "COMPETES_WITH",
-        "REQUIRES_FOR_ABSORPTION",
-        "COFACTOR_FOR",
-        "SUBSTRATE_OF",
-        "PARTICIPATES_IN",
-        "FOUND_IN",
-        "DEFICIENCY_CAUSES",
-        "DEFICIENCY_CONTRIBUTES_TO",
-        "EXCESS_CAUSES",
-        "MARKER_OF",
-        "THERAPEUTIC_FOR"
-      ]
-    },
-    "id-crosswalk": {
-      "source": "nutri-collective/evidence-platform/site/id-crosswalk.v1.json edges[].kind",
-      "role": "identifier-mapping edges; the register derives a SKOS predicate from strength",
-      "members": [
-        "same_nutrient",
-        "same_substance",
-        "same_disease",
-        "aligns_with",
-        "at_layer"
-      ]
-    },
-    "taxonomy-joins": {
-      "source": "book/taxonomies/joins/nutrition-vocabulary-law-mapping.json and nutrition-index-video-sweep-map.json, field relation",
-      "role": "term → law joins; neither file declares its set, so the union is mapped and the drift recorded",
-      "members": [
-        "instantiates",
-        "documents",
-        "grounds",
-        "mechanism_of",
-        "upstream_mechanism_of",
-        "measures",
-        "modulates",
-        "clinical_sign_of"
-      ],
-      "drift": {
-        "only_in_nutrition-vocabulary-law-mapping": [
-          "clinical_sign_of",
-          "measures",
-          "modulates"
-        ],
-        "only_in_nutrition-index-video-sweep-map": [
-          "grounds",
-          "upstream_mechanism_of"
-        ]
-      }
-    }
-  },
-  "counts": {
-    "total": {
-      "broader": 3,
-      "exact": 11,
-      "narrower": 17,
-      "none": 15,
-      "none_with_expansion": 16,
-      "related": 1,
-      "rows": 63
-    },
-    "by_vocabulary": {
-      "law-model": {
-        "exact": 2,
-        "narrower": 4,
-        "none": 3,
-        "rows": 9
-      },
-      "graph": {
-        "broader": 1,
-        "exact": 2,
-        "narrower": 4,
-        "none": 2,
-        "none_with_expansion": 1,
-        "rows": 10
-      },
-      "claim-language": {
-        "broader": 1,
-        "exact": 2,
-        "narrower": 6,
-        "none": 3,
-        "none_with_expansion": 3,
-        "rows": 15
-      },
-      "nutrient-edge": {
-        "broader": 1,
-        "exact": 2,
-        "narrower": 3,
-        "none": 2,
-        "none_with_expansion": 8,
-        "rows": 16
-      },
-      "id-crosswalk": {
-        "exact": 3,
-        "none": 1,
-        "related": 1,
-        "rows": 5
-      },
-      "taxonomy-joins": {
-        "none": 4,
-        "none_with_expansion": 4,
-        "rows": 8
-      }
-    }
-  },
-  "verdict": {
-    "question": "GROUNDED-OBJECT-MODEL.md §8 blocker 4: can nutrient-edge.v2's 16 be expressed in the 11?",
-    "answer": "6 directly (exact / narrower / broader), 8 by expansion over a reified node, 2 not at all (VITAMER_OF, PARTICIPATES_IN). Every expansion drops the predicate's payload.",
-    "base_is_settled": "mechanism_schema's 11 are the base. Nothing else is retired: each vocabulary keeps its job and its rows here say what it becomes on the base."
-  },
-  "gaps": {
-    "what_the_base_cannot_carry": {
-      "modality": "necessity and categorical gates (OPENS_GATE, CLOSES_GATE, REQUIRES_FOR_ABSORPTION, the necessity in COFACTOR_FOR)",
-      "bounds_and_magnitudes": "bound-vs-level, fold-change, conversion factors, occurrence amounts, interaction parameters",
-      "symmetric_interaction": "COMPETES_WITH",
-      "binding": "BOUND_BY, the enzyme–substrate bond in SUBSTRATE_OF",
-      "saturation": "SATURATES — a threshold on a bound",
-      "taxonomic_membership": "VITAMER_OF — lives in Nutrient.node_kind, not on an edge",
-      "undirected_participation": "PARTICIPATES_IN — ASSOCIATED_WITH would demote it",
-      "compound_as_object_of_regulation": "CLEAVES, SUBSTRATE_OF — only CONTAINS and CONVERTS_TO have a compound in range",
-      "deficiency_and_excess_states": "DEFICIENCY_CAUSES, DEFICIENCY_CONTRIBUTES_TO, EXCESS_CAUSES — need a reified state node as subject",
-      "measurement": "measures",
-      "law_as_object": "every taxonomy-join verb — the object is a law, not an entity kind"
-    },
-    "next": "Any of these becomes a manifest change (a new predicate or object type) only through a decision-ledger row, never by extending the base in place."
-  },
-  "rows": [
-    {
-      "vocabulary": "law-model",
-      "verb": "OPENS_GATE",
-      "relation": "narrower",
-      "base": "ACTIVATES",
-      "ro": "RO:0002333",
-      "loses": "necessity: the base has no modality, so 'without X the process does not occur' becomes 'X activates the process'",
-      "note": "when the subject is itself a process (chylomicron_assembly OPENS_GATE lymph_export) ACTIVATES' domain excludes it and the base types the edge only as INCREASES"
-    },
-    {
-      "vocabulary": "law-model",
-      "verb": "CLOSES_GATE",
-      "relation": "narrower",
-      "base": "INHIBITS",
-      "loses": "necessity (a categorical block); a process subject types only as DECREASES"
-    },
-    {
-      "vocabulary": "law-model",
-      "verb": "EXPANDS_BOUND",
-      "relation": "narrower",
-      "base": "INCREASES",
-      "ro": "RO:0002213",
-      "loses": "that the object is a bound rather than a level, and the fold-change magnitude the law model carries"
-    },
-    {
-      "vocabulary": "law-model",
-      "verb": "NARROWS_BOUND",
-      "relation": "narrower",
-      "base": "DECREASES",
-      "ro": "RO:0002212",
-      "loses": "that the object is a bound rather than a level, and the fold-change magnitude"
-    },
-    {
-      "vocabulary": "law-model",
-      "verb": "CONSERVES",
-      "relation": "exact",
-      "base": "CONSERVES",
-      "note": "mechanism_schema added CONSERVES for this vocabulary; same meaning on both sides"
-    },
-    {
-      "vocabulary": "law-model",
-      "verb": "IDENTITY",
-      "relation": "exact",
-      "base": "IDENTITY"
-    },
-    {
-      "vocabulary": "law-model",
-      "verb": "STATE_FUNCTION",
-      "relation": "none",
-      "base": null,
-      "reason": "describes a property of a state, not a directed relation (NON_STRUCTURAL in tests/test_graph_relation_vocabulary.py)"
-    },
-    {
-      "vocabulary": "law-model",
-      "verb": "FRAMEWORK",
-      "relation": "none",
-      "base": null,
-      "reason": "says the law is not executable; it asserts no edge"
-    },
-    {
-      "vocabulary": "law-model",
-      "verb": "MIXED",
-      "relation": "none",
-      "base": null,
-      "reason": "the registry's could-not-determine fallback"
-    },
-    {
-      "vocabulary": "graph",
-      "verb": "OPENS_GATE",
-      "relation": "narrower",
-      "base": "ACTIVATES",
-      "ro": "RO:0002333",
-      "loses": "necessity: the base has no modality, so 'without X the process does not occur' becomes 'X activates the process'",
-      "note": "when the subject is itself a process (chylomicron_assembly OPENS_GATE lymph_export) ACTIVATES' domain excludes it and the base types the edge only as INCREASES"
-    },
-    {
-      "vocabulary": "graph",
-      "verb": "CLOSES_GATE",
-      "relation": "narrower",
-      "base": "INHIBITS",
-      "loses": "necessity (a categorical block); a process subject types only as DECREASES"
-    },
-    {
-      "vocabulary": "graph",
-      "verb": "EXPANDS_BOUND",
-      "relation": "narrower",
-      "base": "INCREASES",
-      "ro": "RO:0002213",
-      "loses": "that the object is a bound rather than a level, and the fold-change magnitude the law model carries"
-    },
-    {
-      "vocabulary": "graph",
-      "verb": "NARROWS_BOUND",
-      "relation": "narrower",
-      "base": "DECREASES",
-      "ro": "RO:0002212",
-      "loses": "that the object is a bound rather than a level, and the fold-change magnitude"
-    },
-    {
-      "vocabulary": "graph",
-      "verb": "CONSERVES",
-      "relation": "exact",
-      "base": "CONSERVES",
-      "note": "mechanism_schema added CONSERVES for this vocabulary; same meaning on both sides"
-    },
-    {
-      "vocabulary": "graph",
-      "verb": "IDENTITY",
-      "relation": "exact",
-      "base": "IDENTITY"
-    },
-    {
-      "vocabulary": "graph",
-      "verb": "COMPETES_WITH",
-      "relation": "none",
-      "base": null,
-      "expansion": "A INHIBITS absorption-of-B and B INHIBITS absorption-of-A: two edges, each over a reified absorption process",
-      "loses": "symmetry — the base has no undirected interaction verb"
-    },
-    {
-      "vocabulary": "graph",
-      "verb": "PART_OF",
-      "relation": "broader",
-      "base": "CONTAINS",
-      "inverse": true,
-      "loses": "everything but the food case: a compound part_of a food is CONTAINS read backwards; a process or organ part_of has no base verb"
-    },
-    {
-      "vocabulary": "graph",
-      "verb": "NEEDS_RESOLUTION",
-      "relation": "none",
-      "base": null,
-      "reason": "an epistemic state of the claim (soft, marketing, hedge), not a relation between two things"
-    },
-    {
-      "vocabulary": "graph",
-      "verb": "MALFORMED_MECHANISM",
-      "relation": "none",
-      "base": null,
-      "reason": "a parse failure: the surface verb named no hardware operation"
-    },
-    {
-      "vocabulary": "claim-language",
-      "verb": "OPENS_GATE",
-      "relation": "narrower",
-      "base": "ACTIVATES",
-      "ro": "RO:0002333",
-      "loses": "necessity: the base has no modality, so 'without X the process does not occur' becomes 'X activates the process'",
-      "note": "when the subject is itself a process (chylomicron_assembly OPENS_GATE lymph_export) ACTIVATES' domain excludes it and the base types the edge only as INCREASES"
-    },
-    {
-      "vocabulary": "claim-language",
-      "verb": "CLOSES_GATE",
-      "relation": "narrower",
-      "base": "INHIBITS",
-      "loses": "necessity (a categorical block); a process subject types only as DECREASES"
-    },
-    {
-      "vocabulary": "claim-language",
-      "verb": "EXPANDS_BOUND",
-      "relation": "narrower",
-      "base": "INCREASES",
-      "ro": "RO:0002213",
-      "loses": "that the object is a bound rather than a level, and the fold-change magnitude the law model carries"
-    },
-    {
-      "vocabulary": "claim-language",
-      "verb": "NARROWS_BOUND",
-      "relation": "narrower",
-      "base": "DECREASES",
-      "ro": "RO:0002212",
-      "loses": "that the object is a bound rather than a level, and the fold-change magnitude"
-    },
-    {
-      "vocabulary": "claim-language",
-      "verb": "COMPETES_WITH",
-      "relation": "none",
-      "base": null,
-      "expansion": "A INHIBITS absorption-of-B and B INHIBITS absorption-of-A: two edges, each over a reified absorption process",
-      "loses": "symmetry — the base has no undirected interaction verb"
-    },
-    {
-      "vocabulary": "claim-language",
-      "verb": "PART_OF",
-      "relation": "broader",
-      "base": "CONTAINS",
-      "inverse": true,
-      "loses": "everything but the food case: a compound part_of a food is CONTAINS read backwards; a process or organ part_of has no base verb"
-    },
-    {
-      "vocabulary": "claim-language",
-      "verb": "NEEDS_RESOLUTION",
-      "relation": "none",
-      "base": null,
-      "reason": "an epistemic state of the claim (soft, marketing, hedge), not a relation between two things"
-    },
-    {
-      "vocabulary": "claim-language",
-      "verb": "MALFORMED_MECHANISM",
-      "relation": "none",
-      "base": null,
-      "reason": "a parse failure: the surface verb named no hardware operation"
-    },
-    {
-      "vocabulary": "claim-language",
-      "verb": "UPREGULATES",
-      "relation": "narrower",
-      "base": "ACTIVATES",
-      "loses": "that the mechanism is expression; INCREASES is the base's alternative when the object is a measured level rather than a gene"
-    },
-    {
-      "vocabulary": "claim-language",
-      "verb": "INHIBITS",
-      "relation": "exact",
-      "base": "INHIBITS",
-      "note": "the base types the object as a gene/enzyme or a process only; 'inhibits absorption of Y' is the nutrient-edge row, not this one"
-    },
-    {
-      "vocabulary": "claim-language",
-      "verb": "CATALYZES",
-      "relation": "narrower",
-      "base": "INCREASES",
-      "loses": "catalysis itself: the enzyme is not consumed and sets no direction of its own; the base can only say the reaction's rate goes up (gene_enzyme → process)"
-    },
-    {
-      "vocabulary": "claim-language",
-      "verb": "CLEAVES",
-      "relation": "none",
-      "base": null,
-      "expansion": "substrate CONVERTS_TO products; the enzyme INCREASES that conversion once it is a process node",
-      "loses": "a compound as the object of an enzyme's action — nothing in the base has a compound in range except CONTAINS and CONVERTS_TO"
-    },
-    {
-      "vocabulary": "claim-language",
-      "verb": "ACTIVATES",
-      "relation": "exact",
-      "base": "ACTIVATES"
-    },
-    {
-      "vocabulary": "claim-language",
-      "verb": "SATURATES",
-      "relation": "none",
-      "base": null,
-      "reason": "kinetic saturation is a bound being reached; the base has no bound object and no threshold"
-    },
-    {
-      "vocabulary": "claim-language",
-      "verb": "BOUND_BY",
-      "relation": "none",
-      "base": null,
-      "expansion": "the binder DECREASES free-X, with the free pool as a reified biomarker node",
-      "loses": "binding as such"
-    },
-    {
-      "vocabulary": "nutrient-edge",
-      "verb": "VITAMER_OF",
-      "relation": "none",
-      "base": null,
-      "reason": "taxonomic membership (species → group): read Nutrient.node_kind off the taxonomy. IDENTITY would over-claim equivalence — vitamers differ in bioavailability, which is what the conversion payload is for"
-    },
-    {
-      "vocabulary": "nutrient-edge",
-      "verb": "CONVERTS_TO",
-      "relation": "exact",
-      "base": "CONVERTS_TO",
-      "loses": "the conversion payload (factor, basis, citation) — the base edge carries no quantity"
-    },
-    {
-      "vocabulary": "nutrient-edge",
-      "verb": "PRECURSOR_OF",
-      "relation": "broader",
-      "base": "CONVERTS_TO",
-      "loses": "the step count; a chain of CONVERTS_TO edges expresses it exactly"
-    },
-    {
-      "vocabulary": "nutrient-edge",
-      "verb": "INHIBITS_ABSORPTION_OF",
-      "relation": "none",
-      "base": null,
-      "expansion": "X INHIBITS absorption-of-Y, with the absorption as a reified process node",
-      "loses": "the interaction payload (named mechanism, computable parameters)"
-    },
-    {
-      "vocabulary": "nutrient-edge",
-      "verb": "ENHANCES_ABSORPTION_OF",
-      "relation": "none",
-      "base": null,
-      "expansion": "X INCREASES absorption-of-Y, with the absorption as a reified process node",
-      "loses": "the interaction payload (named mechanism, computable parameters)"
-    },
-    {
-      "vocabulary": "nutrient-edge",
-      "verb": "COMPETES_WITH",
-      "relation": "none",
-      "base": null,
-      "expansion": "A INHIBITS absorption-of-B and B INHIBITS absorption-of-A: two edges, each over a reified absorption process",
-      "loses": "symmetry — the base has no undirected interaction verb"
-    },
-    {
-      "vocabulary": "nutrient-edge",
-      "verb": "REQUIRES_FOR_ABSORPTION",
-      "relation": "none",
-      "base": null,
-      "expansion": "X ACTIVATES absorption-of-Y, with the absorption as a reified process node",
-      "loses": "necessity"
-    },
-    {
-      "vocabulary": "nutrient-edge",
-      "verb": "COFACTOR_FOR",
-      "relation": "narrower",
-      "base": "ACTIVATES",
-      "loses": "necessity: a cofactor is required, ACTIVATES only says it enables"
-    },
-    {
-      "vocabulary": "nutrient-edge",
-      "verb": "SUBSTRATE_OF",
-      "relation": "none",
-      "base": null,
-      "expansion": "X CONVERTS_TO product; the enzyme INCREASES that conversion once it is a process node",
-      "loses": "the enzyme–substrate binding; a compound cannot be the object of an enzyme's action in the base"
-    },
-    {
-      "vocabulary": "nutrient-edge",
-      "verb": "PARTICIPATES_IN",
-      "relation": "none",
-      "base": null,
-      "reason": "undirected participation; the base's only undirected verb is ASSOCIATED_WITH, which is excluded from causal paths and would demote a mechanistic fact to a statistical one"
-    },
-    {
-      "vocabulary": "nutrient-edge",
-      "verb": "FOUND_IN",
-      "relation": "exact",
-      "base": "CONTAINS",
-      "inverse": true,
-      "loses": "the occurrence payload (amount per food, the FDC join)"
-    },
-    {
-      "vocabulary": "nutrient-edge",
-      "verb": "DEFICIENCY_CAUSES",
-      "relation": "none",
-      "base": null,
-      "expansion": "deficiency-of-X INCREASES D, with the deficiency state as a reified biomarker node. 'X DECREASES D' over the same endpoints is the lossy form: it turns a threshold claim into a dose-response one",
-      "loses": "the threshold, and the clinical payload"
-    },
-    {
-      "vocabulary": "nutrient-edge",
-      "verb": "DEFICIENCY_CONTRIBUTES_TO",
-      "relation": "none",
-      "base": null,
-      "expansion": "deficiency-of-X INCREASES D, with the deficiency state as a reified biomarker node",
-      "loses": "partial causation: the base has no 'contributes'; its evidence class (measured / inferred / cited) is a different axis"
-    },
-    {
-      "vocabulary": "nutrient-edge",
-      "verb": "EXCESS_CAUSES",
-      "relation": "none",
-      "base": null,
-      "expansion": "excess-of-X INCREASES D, with the excess state as a reified biomarker node; 'X INCREASES D' is the lossy same-endpoint form",
-      "loses": "the threshold, and the clinical payload"
-    },
-    {
-      "vocabulary": "nutrient-edge",
-      "verb": "MARKER_OF",
-      "relation": "narrower",
-      "base": "ASSOCIATED_WITH",
-      "loses": "the diagnostic role; ASSOCIATED_WITH is excluded from causal paths, which is the right reading of a marker"
-    },
-    {
-      "vocabulary": "nutrient-edge",
-      "verb": "THERAPEUTIC_FOR",
-      "relation": "narrower",
-      "base": "DECREASES",
-      "loses": "clinical intent and dose; the base has no treatment verb"
-    },
-    {
-      "vocabulary": "id-crosswalk",
-      "verb": "same_nutrient",
-      "relation": "exact",
-      "base": "IDENTITY",
-      "note": "confidence rides on strength / review_tier, which the register turns into skos:exactMatch or closeMatch; the base verb does not carry it"
-    },
-    {
-      "vocabulary": "id-crosswalk",
-      "verb": "same_substance",
-      "relation": "exact",
-      "base": "IDENTITY"
-    },
-    {
-      "vocabulary": "id-crosswalk",
-      "verb": "same_disease",
-      "relation": "exact",
-      "base": "IDENTITY"
-    },
-    {
-      "vocabulary": "id-crosswalk",
-      "verb": "aligns_with",
-      "relation": "related",
-      "base": "IDENTITY",
-      "note": "skos:relatedMatch by the register's own rule; two things that align are not the same thing"
-    },
-    {
-      "vocabulary": "id-crosswalk",
-      "verb": "at_layer",
-      "relation": "none",
-      "base": null,
-      "reason": "a classification edge, not a mapping — the register says so itself"
-    },
-    {
-      "vocabulary": "taxonomy-joins",
-      "verb": "instantiates",
-      "relation": "none",
-      "base": null,
-      "reason": "a documentation join: a vocabulary term instantiates a law's subject; the object is a law, not an entity"
-    },
-    {
-      "vocabulary": "taxonomy-joins",
-      "verb": "documents",
-      "relation": "none",
-      "base": null,
-      "reason": "a documentation join: a term is documented by a law"
-    },
-    {
-      "vocabulary": "taxonomy-joins",
-      "verb": "grounds",
-      "relation": "none",
-      "base": null,
-      "reason": "a documentation join: a law grounded in a principle"
-    },
-    {
-      "vocabulary": "taxonomy-joins",
-      "verb": "mechanism_of",
-      "relation": "none",
-      "base": null,
-      "expansion": "process MEDIATES disease, once the law's outcome is named as a disease node",
-      "loses": "the law as object"
-    },
-    {
-      "vocabulary": "taxonomy-joins",
-      "verb": "upstream_mechanism_of",
-      "relation": "none",
-      "base": null,
-      "expansion": "a chain: process INCREASES or DECREASES an intermediate, which MEDIATES the disease",
-      "loses": "the law as object"
-    },
-    {
-      "vocabulary": "taxonomy-joins",
-      "verb": "measures",
-      "relation": "none",
-      "base": null,
-      "reason": "an instrument relation (waist circumference measures adiposity); the base has no measurement verb"
-    },
-    {
-      "vocabulary": "taxonomy-joins",
-      "verb": "modulates",
-      "relation": "none",
-      "base": null,
-      "expansion": "INCREASES or DECREASES once a sign is given; the base has no unsigned directional verb",
-      "loses": "the withheld sign"
-    },
-    {
-      "vocabulary": "taxonomy-joins",
-      "verb": "clinical_sign_of",
-      "relation": "none",
-      "base": null,
-      "expansion": "sign ASSOCIATED_WITH disease — the MARKER_OF row — once the law's disease is a node",
-      "loses": "the law as object"
-    }
+ "licence": {
+  "spdx": "LicenseRef-BAC-Samples-Attribution",
+  "copyright": "Copyright 2026 Paul Murff (Morf Engineering Inc.)",
+  "terms": "LICENSE-SAMPLES.md — free reuse with attribution to the repository and the book",
+  "scope": "Original authored schema of the biology_as_code project. Underlying scientific facts are not claimed."
+ },
+ "schema_version": "1.0.0",
+ "register": "relation-crosswalk",
+ "as_of": "2026-09-07",
+ "what_this_is": "The mapping pass blocker 4 of GROUNDED-OBJECT-MODEL.md asked for. One row per verb in every relation vocabulary this project carries, saying how that verb relates to the eleven-relation base declared in ontology.json (mechanism_schema.py's Relation, the one candidate with an executed domain/range matrix). It is authored, not computed: a verb with no row is unmapped, never silently equivalent. What it is NOT: it does not retire any vocabulary — the claim-language lexicon still parses surface verbs, the graph still stores its ten, nutrient-edge still carries its payloads. It says what each verb becomes on the base and what is lost on the way.",
+ "base": {
+  "vocabulary": "mechanism_schema",
+  "source": "nutri-collective/evidence-platform/src/mechanism_schema.py (Relation, COMPAT)",
+  "declared_in": "ontology-sdk/ontology.json predicates",
+  "relations": [
+   "CONTAINS",
+   "CONVERTS_TO",
+   "INCREASES",
+   "DECREASES",
+   "NO_CHANGE",
+   "MEDIATES",
+   "ACTIVATES",
+   "INHIBITS",
+   "ASSOCIATED_WITH",
+   "CONSERVES",
+   "IDENTITY"
   ]
+ },
+ "fields": {
+  "relation": "exact — the same relation over the same subject and object. narrower — the source verb is a special case of the base verb (every OPENS_GATE is an ACTIVATES; not every ACTIVATES is a gate). broader — the source verb covers more than the base verb (PRECURSOR_OF covers multi-step CONVERTS_TO chains). related — overlapping constructs where neither contains the other. none — no single base edge over the same endpoints exists; see expansion or reason.",
+  "rule": "A row is exact / narrower / broader / related ONLY when the source edge (S, verb, O) becomes one base edge over the same S and O; an inverse row swaps them. Anything that needs a reified node or more than one edge is none with an expansion. none with a reason and no expansion is not expressible on the base at all.",
+  "base": "the base relation, null when relation is none",
+  "inverse": "true when the base edge runs O → S (FOUND_IN is CONTAINS read backwards)",
+  "expansion": "for none rows: the multi-edge or reified rewrite that carries the meaning, in base verbs",
+  "reason": "for none rows with no expansion: why the base cannot carry it",
+  "loses": "what the base edge does not carry even when the mapping holds — payloads, modality, magnitude",
+  "ro": "an OBO Relation Ontology id, only where the source vocabulary declares one; never inferred here",
+  "domain": "ontology-join rows only: the namespace the subject comes from. The base's own typing lives in ontology.json predicates; this records what the OBO relation is typed over where this project uses it.",
+  "range": "ontology-join rows only: the namespace the object comes from.",
+  "label": "the label the `ro` id resolved to. Written so tools/check_curies.py can diff it against OLS4 on every run -- a declared id nobody resolves is the failure this project is built against."
+ },
+ "vocabularies": {
+  "law-model": {
+   "source": "src/biology_as_code/engine/laws/models.py RelationType",
+   "role": "what a law may assert",
+   "members": [
+    "OPENS_GATE",
+    "CLOSES_GATE",
+    "EXPANDS_BOUND",
+    "NARROWS_BOUND",
+    "STATE_FUNCTION",
+    "FRAMEWORK",
+    "MIXED",
+    "CONSERVES",
+    "IDENTITY"
+   ],
+   "note": "STATE_FUNCTION, FRAMEWORK and MIXED assert nothing an edge could carry (NON_STRUCTURAL in tests/test_graph_relation_vocabulary.py)."
+  },
+  "graph": {
+   "source": "src/biology_as_code/graph/build.py _REL_ALIASES, published as schemas/relation_enums.subset.json, enforced by graph/schema.sql",
+   "role": "what the graph can store as an edge: the six structural law relations plus four edge kinds the law model has no use for",
+   "members": [
+    "OPENS_GATE",
+    "CLOSES_GATE",
+    "EXPANDS_BOUND",
+    "NARROWS_BOUND",
+    "CONSERVES",
+    "IDENTITY",
+    "COMPETES_WITH",
+    "PART_OF",
+    "NEEDS_RESOLUTION",
+    "MALFORMED_MECHANISM"
+   ],
+   "note": "Until 2026-09-03 the published subset's header said 'full list in book/claim-language'. That list lacks CONSERVES and IDENTITY, two of the subset's own members; the header now points at the law model and at this file."
+  },
+  "claim-language": {
+   "source": "book/claim-language/claim_verbs.json relation_enums",
+   "role": "the target enum of the surface-verb translator (88 verbs in 9 classes)",
+   "members": [
+    "OPENS_GATE",
+    "CLOSES_GATE",
+    "EXPANDS_BOUND",
+    "NARROWS_BOUND",
+    "UPREGULATES",
+    "INHIBITS",
+    "CATALYZES",
+    "CLEAVES",
+    "ACTIVATES",
+    "SATURATES",
+    "COMPETES_WITH",
+    "BOUND_BY",
+    "PART_OF",
+    "NEEDS_RESOLUTION",
+    "MALFORMED_MECHANISM"
+   ],
+   "note": "CLOSES_GATE, CLEAVES, SATURATES, BOUND_BY and PART_OF are declared but no verb defaults to them. The RO ids on rows come from this file's class table."
+  },
+  "nutrient-edge": {
+   "source": "book/nutrient-taxonomy/v2/nutrient-edge.v2.json properties.predicate.enum",
+   "role": "typed nutrient ↔ nutrient / food / disease edges, each predicate with its own payload (conversion, interaction, occurrence, clinical)",
+   "members": [
+    "VITAMER_OF",
+    "CONVERTS_TO",
+    "PRECURSOR_OF",
+    "INHIBITS_ABSORPTION_OF",
+    "ENHANCES_ABSORPTION_OF",
+    "COMPETES_WITH",
+    "REQUIRES_FOR_ABSORPTION",
+    "COFACTOR_FOR",
+    "SUBSTRATE_OF",
+    "PARTICIPATES_IN",
+    "FOUND_IN",
+    "DEFICIENCY_CAUSES",
+    "DEFICIENCY_CONTRIBUTES_TO",
+    "EXCESS_CAUSES",
+    "MARKER_OF",
+    "THERAPEUTIC_FOR"
+   ]
+  },
+  "id-crosswalk": {
+   "source": "nutri-collective/evidence-platform/site/id-crosswalk.v1.json edges[].kind",
+   "role": "identifier-mapping edges; the register derives a SKOS predicate from strength",
+   "members": [
+    "same_nutrient",
+    "same_substance",
+    "same_disease",
+    "aligns_with",
+    "at_layer"
+   ]
+  },
+  "taxonomy-joins": {
+   "source": "book/taxonomies/joins/nutrition-vocabulary-law-mapping.json and nutrition-index-video-sweep-map.json, field relation",
+   "role": "term → law joins; neither file declares its set, so the union is mapped and the drift recorded",
+   "members": [
+    "instantiates",
+    "documents",
+    "grounds",
+    "mechanism_of",
+    "upstream_mechanism_of",
+    "measures",
+    "modulates",
+    "clinical_sign_of"
+   ],
+   "drift": {
+    "only_in_nutrition-vocabulary-law-mapping": [
+     "clinical_sign_of",
+     "measures",
+     "modulates"
+    ],
+    "only_in_nutrition-index-video-sweep-map": [
+     "grounds",
+     "upstream_mechanism_of"
+    ]
+   }
+  },
+  "ontology-join": {
+   "source": "OBO Relation Ontology (RO) and BFO, as used by GO, FoodOn, ChEBI and CDNO. Not a file in this project.",
+   "role": "how this project's namespaces join to each other. Every other vocabulary here is a CLAIM vocabulary — what a law may assert, what an edge may carry. This one is the JOIN GRAMMAR: which predicate may run between which two namespaces. That is why almost every row is `none` on the base, and the `none` is the finding rather than a shortfall — the base is eleven ways to make a claim about biology, and a join is not a claim.",
+   "why_it_exists": "There is no FoodOn-to-GO map and there is not going to be one. A food reaches a gene function through a molecule or a gene product or it does not reach it at all. Without this list the shortcut is available and undocumented: assert that a food IS a process because a review said it was anti-inflammatory. See `forbidden` below.",
+   "members": [
+    "derives_from",
+    "enables",
+    "has_component",
+    "has_input",
+    "has_output",
+    "has_participant",
+    "has_role",
+    "in_taxon",
+    "involved_in",
+    "occurs_in",
+    "participates_in"
+   ],
+   "note": "Every `ro` id below was resolved against OLS4 on 2026-09-07 and carries the label that resolution returned, so tools/check_curies.py re-checks this list on every run. BFO:0000066 is the reason that gate now tries more than one ontology per prefix: OLS4's `bfo` namespace serves neither `occurs in` nor `part of`, and the gate would have called a correct relation nonexistent."
+  }
+ },
+ "counts": {
+  "total": {
+   "broader": 3,
+   "exact": 12,
+   "narrower": 17,
+   "none": 25,
+   "none_with_expansion": 16,
+   "related": 1,
+   "rows": 74
+  },
+  "by_vocabulary": {
+   "law-model": {
+    "exact": 2,
+    "narrower": 4,
+    "none": 3,
+    "rows": 9
+   },
+   "graph": {
+    "broader": 1,
+    "exact": 2,
+    "narrower": 4,
+    "none": 2,
+    "none_with_expansion": 1,
+    "rows": 10
+   },
+   "claim-language": {
+    "broader": 1,
+    "exact": 2,
+    "narrower": 6,
+    "none": 3,
+    "none_with_expansion": 3,
+    "rows": 15
+   },
+   "nutrient-edge": {
+    "broader": 1,
+    "exact": 2,
+    "narrower": 3,
+    "none": 2,
+    "none_with_expansion": 8,
+    "rows": 16
+   },
+   "id-crosswalk": {
+    "exact": 3,
+    "none": 1,
+    "related": 1,
+    "rows": 5
+   },
+   "taxonomy-joins": {
+    "none": 4,
+    "none_with_expansion": 4,
+    "rows": 8
+   },
+   "ontology-join": {
+    "exact": 1,
+    "none": 10,
+    "rows": 11
+   }
+  }
+ },
+ "verdict": {
+  "question": "GROUNDED-OBJECT-MODEL.md §8 blocker 4: can nutrient-edge.v2's 16 be expressed in the 11?",
+  "answer": "6 directly (exact / narrower / broader), 8 by expansion over a reified node, 2 not at all (VITAMER_OF, PARTICIPATES_IN). Every expansion drops the predicate's payload.",
+  "base_is_settled": "mechanism_schema's 11 are the base. Nothing else is retired: each vocabulary keeps its job and its rows here say what it becomes on the base."
+ },
+ "gaps": {
+  "what_the_base_cannot_carry": {
+   "modality": "necessity and categorical gates (OPENS_GATE, CLOSES_GATE, REQUIRES_FOR_ABSORPTION, the necessity in COFACTOR_FOR)",
+   "bounds_and_magnitudes": "bound-vs-level, fold-change, conversion factors, occurrence amounts, interaction parameters",
+   "symmetric_interaction": "COMPETES_WITH",
+   "binding": "BOUND_BY, the enzyme–substrate bond in SUBSTRATE_OF",
+   "saturation": "SATURATES — a threshold on a bound",
+   "taxonomic_membership": "VITAMER_OF — lives in Nutrient.node_kind, not on an edge",
+   "undirected_participation": "PARTICIPATES_IN — ASSOCIATED_WITH would demote it",
+   "compound_as_object_of_regulation": "CLEAVES, SUBSTRATE_OF — only CONTAINS and CONVERTS_TO have a compound in range",
+   "deficiency_and_excess_states": "DEFICIENCY_CAUSES, DEFICIENCY_CONTRIBUTES_TO, EXCESS_CAUSES — need a reified state node as subject",
+   "measurement": "measures",
+   "law_as_object": "every taxonomy-join verb — the object is a law, not an entity kind"
+  },
+  "next": "Any of these becomes a manifest change (a new predicate or object type) only through a decision-ledger row, never by extending the base in place."
+ },
+ "rows": [
+  {
+   "vocabulary": "law-model",
+   "verb": "OPENS_GATE",
+   "relation": "narrower",
+   "base": "ACTIVATES",
+   "ro": "RO:0002333",
+   "loses": "necessity: the base has no modality, so 'without X the process does not occur' becomes 'X activates the process'",
+   "note": "when the subject is itself a process (chylomicron_assembly OPENS_GATE lymph_export) ACTIVATES' domain excludes it and the base types the edge only as INCREASES"
+  },
+  {
+   "vocabulary": "law-model",
+   "verb": "CLOSES_GATE",
+   "relation": "narrower",
+   "base": "INHIBITS",
+   "loses": "necessity (a categorical block); a process subject types only as DECREASES"
+  },
+  {
+   "vocabulary": "law-model",
+   "verb": "EXPANDS_BOUND",
+   "relation": "narrower",
+   "base": "INCREASES",
+   "ro": "RO:0002213",
+   "loses": "that the object is a bound rather than a level, and the fold-change magnitude the law model carries"
+  },
+  {
+   "vocabulary": "law-model",
+   "verb": "NARROWS_BOUND",
+   "relation": "narrower",
+   "base": "DECREASES",
+   "ro": "RO:0002212",
+   "loses": "that the object is a bound rather than a level, and the fold-change magnitude"
+  },
+  {
+   "vocabulary": "law-model",
+   "verb": "CONSERVES",
+   "relation": "exact",
+   "base": "CONSERVES",
+   "note": "mechanism_schema added CONSERVES for this vocabulary; same meaning on both sides"
+  },
+  {
+   "vocabulary": "law-model",
+   "verb": "IDENTITY",
+   "relation": "exact",
+   "base": "IDENTITY"
+  },
+  {
+   "vocabulary": "law-model",
+   "verb": "STATE_FUNCTION",
+   "relation": "none",
+   "base": null,
+   "reason": "describes a property of a state, not a directed relation (NON_STRUCTURAL in tests/test_graph_relation_vocabulary.py)"
+  },
+  {
+   "vocabulary": "law-model",
+   "verb": "FRAMEWORK",
+   "relation": "none",
+   "base": null,
+   "reason": "says the law is not executable; it asserts no edge"
+  },
+  {
+   "vocabulary": "law-model",
+   "verb": "MIXED",
+   "relation": "none",
+   "base": null,
+   "reason": "the registry's could-not-determine fallback"
+  },
+  {
+   "vocabulary": "graph",
+   "verb": "OPENS_GATE",
+   "relation": "narrower",
+   "base": "ACTIVATES",
+   "ro": "RO:0002333",
+   "loses": "necessity: the base has no modality, so 'without X the process does not occur' becomes 'X activates the process'",
+   "note": "when the subject is itself a process (chylomicron_assembly OPENS_GATE lymph_export) ACTIVATES' domain excludes it and the base types the edge only as INCREASES"
+  },
+  {
+   "vocabulary": "graph",
+   "verb": "CLOSES_GATE",
+   "relation": "narrower",
+   "base": "INHIBITS",
+   "loses": "necessity (a categorical block); a process subject types only as DECREASES"
+  },
+  {
+   "vocabulary": "graph",
+   "verb": "EXPANDS_BOUND",
+   "relation": "narrower",
+   "base": "INCREASES",
+   "ro": "RO:0002213",
+   "loses": "that the object is a bound rather than a level, and the fold-change magnitude the law model carries"
+  },
+  {
+   "vocabulary": "graph",
+   "verb": "NARROWS_BOUND",
+   "relation": "narrower",
+   "base": "DECREASES",
+   "ro": "RO:0002212",
+   "loses": "that the object is a bound rather than a level, and the fold-change magnitude"
+  },
+  {
+   "vocabulary": "graph",
+   "verb": "CONSERVES",
+   "relation": "exact",
+   "base": "CONSERVES",
+   "note": "mechanism_schema added CONSERVES for this vocabulary; same meaning on both sides"
+  },
+  {
+   "vocabulary": "graph",
+   "verb": "IDENTITY",
+   "relation": "exact",
+   "base": "IDENTITY"
+  },
+  {
+   "vocabulary": "graph",
+   "verb": "COMPETES_WITH",
+   "relation": "none",
+   "base": null,
+   "expansion": "A INHIBITS absorption-of-B and B INHIBITS absorption-of-A: two edges, each over a reified absorption process",
+   "loses": "symmetry — the base has no undirected interaction verb"
+  },
+  {
+   "vocabulary": "graph",
+   "verb": "PART_OF",
+   "relation": "broader",
+   "base": "CONTAINS",
+   "inverse": true,
+   "loses": "everything but the food case: a compound part_of a food is CONTAINS read backwards; a process or organ part_of has no base verb"
+  },
+  {
+   "vocabulary": "graph",
+   "verb": "NEEDS_RESOLUTION",
+   "relation": "none",
+   "base": null,
+   "reason": "an epistemic state of the claim (soft, marketing, hedge), not a relation between two things"
+  },
+  {
+   "vocabulary": "graph",
+   "verb": "MALFORMED_MECHANISM",
+   "relation": "none",
+   "base": null,
+   "reason": "a parse failure: the surface verb named no hardware operation"
+  },
+  {
+   "vocabulary": "claim-language",
+   "verb": "OPENS_GATE",
+   "relation": "narrower",
+   "base": "ACTIVATES",
+   "ro": "RO:0002333",
+   "loses": "necessity: the base has no modality, so 'without X the process does not occur' becomes 'X activates the process'",
+   "note": "when the subject is itself a process (chylomicron_assembly OPENS_GATE lymph_export) ACTIVATES' domain excludes it and the base types the edge only as INCREASES"
+  },
+  {
+   "vocabulary": "claim-language",
+   "verb": "CLOSES_GATE",
+   "relation": "narrower",
+   "base": "INHIBITS",
+   "loses": "necessity (a categorical block); a process subject types only as DECREASES"
+  },
+  {
+   "vocabulary": "claim-language",
+   "verb": "EXPANDS_BOUND",
+   "relation": "narrower",
+   "base": "INCREASES",
+   "ro": "RO:0002213",
+   "loses": "that the object is a bound rather than a level, and the fold-change magnitude the law model carries"
+  },
+  {
+   "vocabulary": "claim-language",
+   "verb": "NARROWS_BOUND",
+   "relation": "narrower",
+   "base": "DECREASES",
+   "ro": "RO:0002212",
+   "loses": "that the object is a bound rather than a level, and the fold-change magnitude"
+  },
+  {
+   "vocabulary": "claim-language",
+   "verb": "COMPETES_WITH",
+   "relation": "none",
+   "base": null,
+   "expansion": "A INHIBITS absorption-of-B and B INHIBITS absorption-of-A: two edges, each over a reified absorption process",
+   "loses": "symmetry — the base has no undirected interaction verb"
+  },
+  {
+   "vocabulary": "claim-language",
+   "verb": "PART_OF",
+   "relation": "broader",
+   "base": "CONTAINS",
+   "inverse": true,
+   "loses": "everything but the food case: a compound part_of a food is CONTAINS read backwards; a process or organ part_of has no base verb"
+  },
+  {
+   "vocabulary": "claim-language",
+   "verb": "NEEDS_RESOLUTION",
+   "relation": "none",
+   "base": null,
+   "reason": "an epistemic state of the claim (soft, marketing, hedge), not a relation between two things"
+  },
+  {
+   "vocabulary": "claim-language",
+   "verb": "MALFORMED_MECHANISM",
+   "relation": "none",
+   "base": null,
+   "reason": "a parse failure: the surface verb named no hardware operation"
+  },
+  {
+   "vocabulary": "claim-language",
+   "verb": "UPREGULATES",
+   "relation": "narrower",
+   "base": "ACTIVATES",
+   "loses": "that the mechanism is expression; INCREASES is the base's alternative when the object is a measured level rather than a gene"
+  },
+  {
+   "vocabulary": "claim-language",
+   "verb": "INHIBITS",
+   "relation": "exact",
+   "base": "INHIBITS",
+   "note": "the base types the object as a gene/enzyme or a process only; 'inhibits absorption of Y' is the nutrient-edge row, not this one"
+  },
+  {
+   "vocabulary": "claim-language",
+   "verb": "CATALYZES",
+   "relation": "narrower",
+   "base": "INCREASES",
+   "loses": "catalysis itself: the enzyme is not consumed and sets no direction of its own; the base can only say the reaction's rate goes up (gene_enzyme → process)"
+  },
+  {
+   "vocabulary": "claim-language",
+   "verb": "CLEAVES",
+   "relation": "none",
+   "base": null,
+   "expansion": "substrate CONVERTS_TO products; the enzyme INCREASES that conversion once it is a process node",
+   "loses": "a compound as the object of an enzyme's action — nothing in the base has a compound in range except CONTAINS and CONVERTS_TO"
+  },
+  {
+   "vocabulary": "claim-language",
+   "verb": "ACTIVATES",
+   "relation": "exact",
+   "base": "ACTIVATES"
+  },
+  {
+   "vocabulary": "claim-language",
+   "verb": "SATURATES",
+   "relation": "none",
+   "base": null,
+   "reason": "kinetic saturation is a bound being reached; the base has no bound object and no threshold"
+  },
+  {
+   "vocabulary": "claim-language",
+   "verb": "BOUND_BY",
+   "relation": "none",
+   "base": null,
+   "expansion": "the binder DECREASES free-X, with the free pool as a reified biomarker node",
+   "loses": "binding as such"
+  },
+  {
+   "vocabulary": "nutrient-edge",
+   "verb": "VITAMER_OF",
+   "relation": "none",
+   "base": null,
+   "reason": "taxonomic membership (species → group): read Nutrient.node_kind off the taxonomy. IDENTITY would over-claim equivalence — vitamers differ in bioavailability, which is what the conversion payload is for"
+  },
+  {
+   "vocabulary": "nutrient-edge",
+   "verb": "CONVERTS_TO",
+   "relation": "exact",
+   "base": "CONVERTS_TO",
+   "loses": "the conversion payload (factor, basis, citation) — the base edge carries no quantity"
+  },
+  {
+   "vocabulary": "nutrient-edge",
+   "verb": "PRECURSOR_OF",
+   "relation": "broader",
+   "base": "CONVERTS_TO",
+   "loses": "the step count; a chain of CONVERTS_TO edges expresses it exactly"
+  },
+  {
+   "vocabulary": "nutrient-edge",
+   "verb": "INHIBITS_ABSORPTION_OF",
+   "relation": "none",
+   "base": null,
+   "expansion": "X INHIBITS absorption-of-Y, with the absorption as a reified process node",
+   "loses": "the interaction payload (named mechanism, computable parameters)"
+  },
+  {
+   "vocabulary": "nutrient-edge",
+   "verb": "ENHANCES_ABSORPTION_OF",
+   "relation": "none",
+   "base": null,
+   "expansion": "X INCREASES absorption-of-Y, with the absorption as a reified process node",
+   "loses": "the interaction payload (named mechanism, computable parameters)"
+  },
+  {
+   "vocabulary": "nutrient-edge",
+   "verb": "COMPETES_WITH",
+   "relation": "none",
+   "base": null,
+   "expansion": "A INHIBITS absorption-of-B and B INHIBITS absorption-of-A: two edges, each over a reified absorption process",
+   "loses": "symmetry — the base has no undirected interaction verb"
+  },
+  {
+   "vocabulary": "nutrient-edge",
+   "verb": "REQUIRES_FOR_ABSORPTION",
+   "relation": "none",
+   "base": null,
+   "expansion": "X ACTIVATES absorption-of-Y, with the absorption as a reified process node",
+   "loses": "necessity"
+  },
+  {
+   "vocabulary": "nutrient-edge",
+   "verb": "COFACTOR_FOR",
+   "relation": "narrower",
+   "base": "ACTIVATES",
+   "loses": "necessity: a cofactor is required, ACTIVATES only says it enables"
+  },
+  {
+   "vocabulary": "nutrient-edge",
+   "verb": "SUBSTRATE_OF",
+   "relation": "none",
+   "base": null,
+   "expansion": "X CONVERTS_TO product; the enzyme INCREASES that conversion once it is a process node",
+   "loses": "the enzyme–substrate binding; a compound cannot be the object of an enzyme's action in the base"
+  },
+  {
+   "vocabulary": "nutrient-edge",
+   "verb": "PARTICIPATES_IN",
+   "relation": "none",
+   "base": null,
+   "reason": "undirected participation; the base's only undirected verb is ASSOCIATED_WITH, which is excluded from causal paths and would demote a mechanistic fact to a statistical one"
+  },
+  {
+   "vocabulary": "nutrient-edge",
+   "verb": "FOUND_IN",
+   "relation": "exact",
+   "base": "CONTAINS",
+   "inverse": true,
+   "loses": "the occurrence payload (amount per food, the FDC join)"
+  },
+  {
+   "vocabulary": "nutrient-edge",
+   "verb": "DEFICIENCY_CAUSES",
+   "relation": "none",
+   "base": null,
+   "expansion": "deficiency-of-X INCREASES D, with the deficiency state as a reified biomarker node. 'X DECREASES D' over the same endpoints is the lossy form: it turns a threshold claim into a dose-response one",
+   "loses": "the threshold, and the clinical payload"
+  },
+  {
+   "vocabulary": "nutrient-edge",
+   "verb": "DEFICIENCY_CONTRIBUTES_TO",
+   "relation": "none",
+   "base": null,
+   "expansion": "deficiency-of-X INCREASES D, with the deficiency state as a reified biomarker node",
+   "loses": "partial causation: the base has no 'contributes'; its evidence class (measured / inferred / cited) is a different axis"
+  },
+  {
+   "vocabulary": "nutrient-edge",
+   "verb": "EXCESS_CAUSES",
+   "relation": "none",
+   "base": null,
+   "expansion": "excess-of-X INCREASES D, with the excess state as a reified biomarker node; 'X INCREASES D' is the lossy same-endpoint form",
+   "loses": "the threshold, and the clinical payload"
+  },
+  {
+   "vocabulary": "nutrient-edge",
+   "verb": "MARKER_OF",
+   "relation": "narrower",
+   "base": "ASSOCIATED_WITH",
+   "loses": "the diagnostic role; ASSOCIATED_WITH is excluded from causal paths, which is the right reading of a marker"
+  },
+  {
+   "vocabulary": "nutrient-edge",
+   "verb": "THERAPEUTIC_FOR",
+   "relation": "narrower",
+   "base": "DECREASES",
+   "loses": "clinical intent and dose; the base has no treatment verb"
+  },
+  {
+   "vocabulary": "id-crosswalk",
+   "verb": "same_nutrient",
+   "relation": "exact",
+   "base": "IDENTITY",
+   "note": "confidence rides on strength / review_tier, which the register turns into skos:exactMatch or closeMatch; the base verb does not carry it"
+  },
+  {
+   "vocabulary": "id-crosswalk",
+   "verb": "same_substance",
+   "relation": "exact",
+   "base": "IDENTITY"
+  },
+  {
+   "vocabulary": "id-crosswalk",
+   "verb": "same_disease",
+   "relation": "exact",
+   "base": "IDENTITY"
+  },
+  {
+   "vocabulary": "id-crosswalk",
+   "verb": "aligns_with",
+   "relation": "related",
+   "base": "IDENTITY",
+   "note": "skos:relatedMatch by the register's own rule; two things that align are not the same thing"
+  },
+  {
+   "vocabulary": "id-crosswalk",
+   "verb": "at_layer",
+   "relation": "none",
+   "base": null,
+   "reason": "a classification edge, not a mapping — the register says so itself"
+  },
+  {
+   "vocabulary": "taxonomy-joins",
+   "verb": "instantiates",
+   "relation": "none",
+   "base": null,
+   "reason": "a documentation join: a vocabulary term instantiates a law's subject; the object is a law, not an entity"
+  },
+  {
+   "vocabulary": "taxonomy-joins",
+   "verb": "documents",
+   "relation": "none",
+   "base": null,
+   "reason": "a documentation join: a term is documented by a law"
+  },
+  {
+   "vocabulary": "taxonomy-joins",
+   "verb": "grounds",
+   "relation": "none",
+   "base": null,
+   "reason": "a documentation join: a law grounded in a principle"
+  },
+  {
+   "vocabulary": "taxonomy-joins",
+   "verb": "mechanism_of",
+   "relation": "none",
+   "base": null,
+   "expansion": "process MEDIATES disease, once the law's outcome is named as a disease node",
+   "loses": "the law as object"
+  },
+  {
+   "vocabulary": "taxonomy-joins",
+   "verb": "upstream_mechanism_of",
+   "relation": "none",
+   "base": null,
+   "expansion": "a chain: process INCREASES or DECREASES an intermediate, which MEDIATES the disease",
+   "loses": "the law as object"
+  },
+  {
+   "vocabulary": "taxonomy-joins",
+   "verb": "measures",
+   "relation": "none",
+   "base": null,
+   "reason": "an instrument relation (waist circumference measures adiposity); the base has no measurement verb"
+  },
+  {
+   "vocabulary": "taxonomy-joins",
+   "verb": "modulates",
+   "relation": "none",
+   "base": null,
+   "expansion": "INCREASES or DECREASES once a sign is given; the base has no unsigned directional verb",
+   "loses": "the withheld sign"
+  },
+  {
+   "vocabulary": "taxonomy-joins",
+   "verb": "clinical_sign_of",
+   "relation": "none",
+   "base": null,
+   "expansion": "sign ASSOCIATED_WITH disease — the MARKER_OF row — once the law's disease is a node",
+   "loses": "the law as object"
+  },
+  {
+   "vocabulary": "ontology-join",
+   "verb": "has_component",
+   "relation": "exact",
+   "base": "CONTAINS",
+   "ro": "RO:0002180",
+   "label": "has component",
+   "domain": "food (FOODON)",
+   "range": "compound / nutrient (CHEBI, CDNO)",
+   "loses": "the amount. CONTAINS asserts presence; CDNO's concentration reading and RO's parthood cardinality both need a reified Value, which the base edge has nowhere to put.",
+   "note": "The only hop in this vocabulary that is a base edge. It is also the first rung of the food -> chemical -> function chain, and the rung that must be named before any of the rest are legal."
+  },
+  {
+   "vocabulary": "ontology-join",
+   "verb": "has_role",
+   "relation": "none",
+   "ro": "RO:0000087",
+   "label": "has role",
+   "domain": "compound (CHEBI)",
+   "range": "chemical role (CHEBI role branch)",
+   "reason": "The object is a ChEBI role, which is not an entity kind the base ranges over. This is also the predicate most likely to be abused, so the row exists to say where it stops: acetylcholine has_role neurotransmitter AND hormone, so propagating a role into GO subclassing asserts something false wherever the other role holds (Hill DP et al., BMC Genomics 2013, PMID 23895341). Structure crosses into GO; role does not.",
+   "note": "has_role stays inside ChEBI. Crossing into GO requires a gene product or a reaction."
+  },
+  {
+   "vocabulary": "ontology-join",
+   "verb": "participates_in",
+   "relation": "none",
+   "ro": "RO:0000056",
+   "label": "participates in",
+   "domain": "compound (CHEBI)",
+   "range": "process (GO BP) or reaction (RHEA)",
+   "reason": "Undirected participation. ASSOCIATED_WITH is the only base edge over these endpoints and the manifest calls it 'weak; excluded from causal paths', so the mapping would demote a typed participation to a statistical association. This register already records the same verdict for nutrient-edge's PARTICIPATES_IN; the two agree.",
+   "note": "biochemical_mechanisms.py declares this as its join key — nutrient.chebi -> participates_in -> mechanism. The declaration is right and the ChEBI side is not yet grounded: 20 of those participants are `chebi:<word>` placeholders, which tools/check_curies.py now reports as MALFORMED."
+  },
+  {
+   "vocabulary": "ontology-join",
+   "verb": "has_participant",
+   "relation": "none",
+   "ro": "RO:0000057",
+   "label": "has participant",
+   "domain": "process (GO BP)",
+   "range": "compound (CHEBI)",
+   "reason": "participates_in read backwards, and `none` for the same reason. An inverse of an edge the base cannot type is still an edge the base cannot type.",
+   "note": "The weaker of the pair; it surfaces mainly in GO annotation extensions."
+  },
+  {
+   "vocabulary": "ontology-join",
+   "verb": "has_input",
+   "relation": "none",
+   "ro": "RO:0002233",
+   "label": "has input",
+   "domain": "molecular function or process (GO)",
+   "range": "compound (CHEBI)",
+   "reason": "The subject is a GO term and the object a chemical. Only CONTAINS (food subject) and CONVERTS_TO (compound subject) put a compound in range, and neither types a process subject, so there is no base edge over these endpoints.",
+   "note": "DIRECTION IS THE COMMON ERROR: has_input runs GO -> ChEBI, the opposite of the way a nutrition row is read aloud. This is the relation go-plus uses for its logical definitions -- carbohydrate metabolic process EQUIVALENTTO metabolic process AND has_input SOME carbohydrate -- which is an intersection, not an equivalence between a chemical and a process."
+  },
+  {
+   "vocabulary": "ontology-join",
+   "verb": "has_output",
+   "relation": "none",
+   "ro": "RO:0002234",
+   "label": "has output",
+   "domain": "molecular function or process (GO)",
+   "range": "compound (CHEBI)",
+   "reason": "Same endpoints and same absence as has_input; the base has no process-subject-to-compound edge.",
+   "note": "The biosynthetic half of the go-plus pattern."
+  },
+  {
+   "vocabulary": "ontology-join",
+   "verb": "enables",
+   "relation": "none",
+   "ro": "RO:0002327",
+   "label": "enables",
+   "domain": "gene product (PR, UniProt)",
+   "range": "molecular function (GO MF)",
+   "reason": "Capability, not effect. The base's only gene_enzyme edges are INCREASES, DECREASES and NO_CHANGE, each of which asserts a direction of change; 'this protein realises this function' asserts none. MEDIATES is about sitting on a causal path to a disease, which is a different claim again.",
+   "note": "This is the rung that makes a process claim legal at all. No gene product, no process claim."
+  },
+  {
+   "vocabulary": "ontology-join",
+   "verb": "involved_in",
+   "relation": "none",
+   "ro": "RO:0002331",
+   "label": "involved in",
+   "domain": "gene product (PR, UniProt)",
+   "range": "biological process (GO BP)",
+   "reason": "Same family as enables: a realisation relation, and the base has no realisation predicate.",
+   "note": "Reached through the molecular function, scoped by it -- not asserted directly from a food."
+  },
+  {
+   "vocabulary": "ontology-join",
+   "verb": "occurs_in",
+   "relation": "none",
+   "ro": "BFO:0000066",
+   "label": "occurs in",
+   "domain": "biological process (GO BP)",
+   "range": "anatomy or cell type (UBERON, CL)",
+   "reason": "A scoping relation, and the base has no site predicate: no manifest predicate ranges over organ_system at all (checked 2026-09-07). CONSERVES carries organ_system in its DOMAIN, which is the opposite end of the edge.",
+   "note": "The last rung. A process claim with no tissue is not wrong so much as unscoped, which is how 'broccoli is anti-inflammatory' survives review."
+  },
+  {
+   "vocabulary": "ontology-join",
+   "verb": "in_taxon",
+   "relation": "none",
+   "ro": "RO:0002162",
+   "label": "in taxon",
+   "domain": "food (FOODON)",
+   "range": "organism (NCBITaxon)",
+   "reason": "Provenance about the source organism rather than a claim about a meal. The base has no taxon entity kind to range over.",
+   "note": "FoodOn's own spoke. It is why spirulina carries NCBITaxon:1156 next to its food term."
+  },
+  {
+   "vocabulary": "ontology-join",
+   "verb": "derives_from",
+   "relation": "none",
+   "ro": "RO:0001000",
+   "label": "derives from",
+   "domain": "food (FOODON)",
+   "range": "food or organism (FOODON, NCBITaxon)",
+   "reason": "Material origin -- apple juice derives from apple. The base has no food-to-food edge: CONTAINS ranges over compound and nutrient only.",
+   "note": "Processing provenance lives here, not in CONTAINS."
+  }
+ ],
+ "forbidden": {
+  "what_this_is": "Axioms this project must never assert. An allow-list implies them, but each of these has been asserted by somebody often enough to be worth naming, and two of them are one careless line of code away.",
+  "rule": "If a paper says a food is anti-inflammatory, the loader must fail until it names the component, the gene product or reaction, the GO term and the tissue. That chain IS the mapping. Anything shorter is a slogan with an id attached.",
+  "axioms": [
+   {
+    "axiom": "FOODON:* owl:equivalentClass GO:*",
+    "on_the_base": "IDENTITY",
+    "why": "A grocery item is not a cellular process. On the base this would be an IDENTITY edge, which the manifest defines as alias/equivalence -- so the assertion is not merely imprecise, it licenses substitution of one for the other everywhere."
+   },
+   {
+    "axiom": "CHEBI:* owl:equivalentClass GO:*",
+    "on_the_base": "IDENTITY",
+    "why": "A molecule is not a process either. Use has_input, or a Rhea reaction, or neither."
+   },
+   {
+    "axiom": "CHEBI:* has_role GO:*",
+    "on_the_base": null,
+    "why": "The role smash. has_role's range is the ChEBI role branch; pointing it at a GO term crosses an ontology boundary the relation was never typed for, and imports the multiple-role problem (PMID 23895341) into gene function."
+   },
+   {
+    "axiom": "any FoodOn-to-GO edge with no molecule or gene product in between",
+    "on_the_base": null,
+    "why": "The middle object is a molecule (ChEBI) or a gene product (PR / UniProt), never the grocery item. Lexical agreement is not a relation: 'apple' in FoodOn and 'apple' in a plant gene annotation are the same English word and different types."
+   }
+  ],
+  "not_forbidden_but_not_a_mapping": [
+   "FoodOntoMap, which maps FoodOn to Hansard, SNOMED CT and OntoFood -- other food lists, not GO.",
+   "Shared strings between ChEBI and GO labels. A hint for a curator, never an axiom."
+  ],
+  "enforced_by": "tests/test_ontology_join_contract.py"
+ }
 }

@@ -74,12 +74,29 @@ SCAN_SUFFIXES = {".json", ".jsonl", ".py", ".md", ".ts", ".tsx"}
 OLS_ONTOLOGIES = {
     "UBERON": "uberon", "CL": "cl", "GO": "go", "CHEBI": "chebi",
     "MONDO": "mondo", "HP": "hp", "PATO": "pato", "OBI": "obi",
-    "ECO": "eco", "RO": "ro", "BFO": "bfo", "FOODON": "foodon",
+    "ECO": "eco", "RO": "ro", "FOODON": "foodon",
     "NCBITaxon": "ncbitaxon", "CDNO": "cdno", "NCIT": "ncit",
+    # A prefix may name SEVERAL ontologies to try, in order. BFO needs it: OLS4's
+    # `bfo` namespace serves nothing — not `occurs in` (BFO:0000066), not even
+    # `part of` (BFO:0000050) — while `go`, which imports BFO, serves both. With
+    # "bfo" alone every BFO id resolved to NOT_FOUND, i.e. the gate would have
+    # called a correct upper-ontology relation nonexistent. Same shape as the
+    # 400-vs-404 bug: not a lookup that failed, a lookup pointed somewhere the
+    # term was never going to be. Checked 2026-09-07.
+    "BFO": ("bfo", "go"),
 }
 # Reactome is NOT in OLS4. Three of four Reactome ids in the spine were wrong
 # precisely because whatever checked them could only see OLS4 and skipped them.
 REACTOME = re.compile(r"^R-[A-Z]{3}-\d+$")
+
+# Rhea is not in OLS4 and its ids are not OBO-shaped, so nothing here could see
+# them. That mattered: the repository shipped exactly one, RHEA:16501, on the
+# ascorbate/dioxygenase mechanism — and it is glycerophosphoinositol hydrolysis
+# (EC 3.1.4.44), a different reaction entirely. One id, never checked, wrong.
+# Rhea is the only place a chemical is allowed to become a gene function, which
+# makes an unchecked Rhea id the most load-bearing unchecked id in the tree.
+RHEA = re.compile(r"^RHEA:\d+$")
+RESOLVABLE = set(OLS_ONTOLOGIES) | {"RHEA"}
 
 # MALFORMED: a prefix we know, followed by a local part that is not an accession.
 # `chebi:<an english word>` is the one id shape that escaped every check here: the
@@ -96,15 +113,15 @@ REACTOME = re.compile(r"^R-[A-Z]{3}-\d+$")
 MALFORMED_CURIE = re.compile(
     r"\b(" + "|".join(OLS_ONTOLOGIES) + r"):([A-Za-z_][A-Za-z0-9_]{2,})\b", re.I)
 
-CURIE = re.compile(r"\b(" + "|".join(OLS_ONTOLOGIES) + r")[:_](\d{4,})\b")
+CURIE = re.compile(r"\b(" + "|".join(RESOLVABLE) + r")[:_](\d{4,})\b")
 
 # How a declared label sits next to its id, across the shapes actually in the tree.
 PAIR_PATTERNS = [
     # {"id": "UBERON:0001007", "label": "digestive system"}  (either order)
-    re.compile(r'"(?:id|curie|term|ref|iri)"\s*:\s*"([A-Za-z]+[:_]\d{4,})"\s*,\s*'
+    re.compile(r'"(?:id|curie|term|ref|iri|ro)"\s*:\s*"([A-Za-z]+[:_]\d{4,})"\s*,\s*'
                r'"(?:label|name|term|title|text)"\s*:\s*"([^"]{2,80})"'),
     re.compile(r'"(?:label|name|term|title|text)"\s*:\s*"([^"]{2,80})"\s*,\s*'
-               r'"(?:id|curie|term|ref|iri)"\s*:\s*"([A-Za-z]+[:_]\d{4,})"'),
+               r'"(?:id|curie|term|ref|iri|ro)"\s*:\s*"([A-Za-z]+[:_]\d{4,})"'),
     # "UBERON:0001007": "digestive system"
     re.compile(r'"([A-Za-z]+[:_]\d{4,})"\s*:\s*"([^"]{2,80})"'),
     # uberion_hint="UBERON:0000383",  ... name="Muscular"   (python, either order)
@@ -186,14 +203,29 @@ def resolve(curie: str, offline: bool = False) -> dict | None:
 
     prefix, local = re.split(r"[:_]", curie, maxsplit=1)
     try:
-        if REACTOME.match(curie) or prefix == "R":
+        if RHEA.match(curie):
+            # TSV, not JSON: the equation is the only label Rhea has, and the
+            # tsv endpoint is the one that answers without a session.
+            url = (f"https://www.rhea-db.org/rhea?query={curie}"
+                   f"&columns=rhea-id,equation&format=tsv&limit=1")
+            req = urllib.request.Request(url, headers={"User-Agent": "biology-as-code"})
+            with urllib.request.urlopen(req, timeout=30) as r:
+                lines = r.read().decode("utf-8", errors="replace").splitlines()
+            body = [ln for ln in lines[1:] if ln.strip()]
+            if not body:
+                out = None
+            else:
+                out = {"label": body[0].split("\t")[-1].strip(), "synonyms": [],
+                       "obsolete": False}
+        elif REACTOME.match(curie) or prefix == "R":
             url = f"https://reactome.org/ContentService/data/query/{curie}"
             with urllib.request.urlopen(url, timeout=30) as r:
                 d = json.load(r)
             out = {"label": d.get("displayName") or "", "synonyms": d.get("name") or [],
                    "obsolete": False}
         else:
-            ont = OLS_ONTOLOGIES[prefix]
+            onts = OLS_ONTOLOGIES[prefix]
+            onts = (onts,) if isinstance(onts, str) else tuple(onts)
             iri = urllib.parse.quote(f"http://purl.obolibrary.org/obo/{prefix}_{local}",
                                      safe="")
             # Classes live at /terms; OBJECT PROPERTIES live at /properties, and
@@ -205,7 +237,7 @@ def resolve(curie: str, offline: bool = False) -> dict | None:
             # identifiers a graph asserts most and the ones a label diff most needs
             # to see. Try both, in the order that costs one request for the common case.
             t = None
-            for kind in ("terms", "properties"):
+            for ont, kind in ((o, k) for o in onts for k in ("terms", "properties")):
                 url = (f"https://www.ebi.ac.uk/ols4/api/ontologies/{ont}/{kind}?iri={iri}")
                 try:
                     with urllib.request.urlopen(url, timeout=30) as r:
@@ -283,7 +315,7 @@ def harvest(root: pathlib.Path) -> dict[tuple[str, str], set[str]]:
                 if not re.match(r"^[A-Za-z]+[:_]\d{4,}$", curie):
                     continue
                 curie = curie.replace("_", ":", 1)
-                if curie.split(":")[0] not in OLS_ONTOLOGIES:
+                if curie.split(":")[0] not in RESOLVABLE:
                     continue
                 label = label.strip().strip(",;.")
                 if not label or label.startswith(("http", "{")):
