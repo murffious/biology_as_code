@@ -16,9 +16,6 @@ FLOW teaching. Gate/bound magnitudes stay in law/unit paths (e.g. iron UNIT).
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from enum import Enum
-
 try:
     from biology_as_code.pathways.metabolic_mechanisms import (
         get_metabolic_mechanism_registry,
@@ -27,56 +24,18 @@ except ImportError:
     get_metabolic_mechanism_registry = None
 
 
-class PathwayNodeType(Enum):
-    SUBSTRATE = "substrate"
-    INTERMEDIATE = "intermediate"
-    PRODUCT = "product"
-    SIGNAL = "signal"
-    LUMEN = "lumen"
-    ENTEROCYTE = "enterocyte"
-    CIRCULATION = "circulation"
+from biology_as_code.pathways._types import (
+    MetabolicPathway as _BasePathway,
+)
+from biology_as_code.pathways._types import (
+    MetaboliteNode,
+    PathwayNodeType,
+    ReactionEdge,
+)
 
 
-@dataclass
-class MetaboliteNode:
-    id: str
-    name: str
-    node_type: PathwayNodeType
-    notes: str = ""
-
-
-@dataclass
-class ReactionEdge:
-    from_node: str
-    to_node: str
-    mechanism_id: str = ""
-    enzyme: str = ""
-    process: str = ""
-    location: str = ""
-    regulation: str = ""
-    notes: str = ""
-    effect: str = ""  # signed edge marker, e.g. "⊣" (inhibition) — rendered in the label
-
-
-class MetabolicPathway:
-    def __init__(self, name: str, description: str = ""):
-        self.name = name
-        self.description = description
-        self.nodes: dict[str, MetaboliteNode] = {}
-        self.edges: list[ReactionEdge] = []
-        self.references: list[str] = []
-        self.extra_summary: dict = {}
-
-    def add_node(self, node: MetaboliteNode) -> None:
-        self.nodes[node.id] = node
-
-    def add_edge(self, edge: ReactionEdge) -> None:
-        self.edges.append(edge)
-
-    def get_mechanism(self, edge: ReactionEdge):
-        if get_metabolic_mechanism_registry is None or not edge.mechanism_id:
-            return None
-        return get_metabolic_mechanism_registry().get(edge.mechanism_id)
+class MetabolicPathway(_BasePathway):
+    """Shared graph type; only this module's own summary differs."""
 
     def summary(self) -> dict:
         out = {
@@ -122,25 +81,25 @@ class MealCriticalPathwaysRegistry:
                 "the ferrous lumen pool. FLOW topology — magnitude bounds live in iron UNIT / laws."
             ),
         )
-        for nid, name, nt, notes in [
-            ("dietary_nonheme_fe3", "Dietary non-haem Fe³⁺", PathwayNodeType.LUMEN,
+        for nid, name, nt, comp, notes in [
+            ("dietary_nonheme_fe3", "Dietary non-haem Fe³⁺", PathwayNodeType.SUBSTRATE, "lumen",
              "Label iron is not absorbed iron. Form + co-occupants matter."),
-            ("dietary_heme", "Dietary haem iron", PathwayNodeType.LUMEN,
+            ("dietary_heme", "Dietary haem iron", PathwayNodeType.SUBSTRATE, "lumen",
              "Higher fractional absorption than non-haem; separate apical path."),
-            ("heme_enterocyte", "Haem (enterocyte)", PathwayNodeType.ENTEROCYTE,
+            ("heme_enterocyte", "Haem (enterocyte)", PathwayNodeType.INTERMEDIATE, "enterocyte",
              "Intact haem after apical uptake; cleaved by HO-1."),
-            ("fe2_lumen", "Fe²⁺ (lumen pool)", PathwayNodeType.LUMEN,
+            ("fe2_lumen", "Fe²⁺ (lumen pool)", PathwayNodeType.INTERMEDIATE, "lumen",
              "Ascorbate / reducing surface expands usable ferrous pool."),
-            ("fe2_enterocyte", "Fe²⁺ (enterocyte)", PathwayNodeType.ENTEROCYTE,
+            ("fe2_enterocyte", "Fe²⁺ (enterocyte)", PathwayNodeType.INTERMEDIATE, "enterocyte",
              "Cytosolic labile iron; shared by non-haem and haem branches."),
-            ("plasma_transferrin_fe", "Transferrin-bound Fe (plasma)", PathwayNodeType.CIRCULATION,
+            ("plasma_transferrin_fe", "Transferrin-bound Fe (plasma)", PathwayNodeType.PRODUCT, "circulation",
              "Systemic transport form after basolateral export + oxidation."),
-            ("hepcidin", "Hepcidin", PathwayNodeType.SIGNAL,
+            ("hepcidin", "Hepcidin", PathwayNodeType.SIGNAL, "",
              "Liver peptide; internalizes/blocks ferroportin."),
-            ("ascorbate_meal", "Meal ascorbate (enhancer)", PathwayNodeType.SIGNAL,
+            ("ascorbate_meal", "Meal ascorbate (enhancer)", PathwayNodeType.SIGNAL, "",
              "Same-meal co-occupation gate — not daily average."),
         ]:
-            p.add_node(MetaboliteNode(nid, name, nt, notes))
+            p.add_node(MetaboliteNode(id=nid, name=name, node_type=nt, notes=notes, compartment=comp))
 
         p.add_edge(ReactionEdge(
             from_node="dietary_nonheme_fe3", to_node="fe2_lumen",
@@ -230,15 +189,15 @@ class MealCriticalPathwaysRegistry:
                 "Failure poles: IF deficiency (pernicious anemia), ileal disease."
             ),
         )
-        for nid, name, nt, notes in [
-            ("dietary_b12", "Dietary cobalamin (B12)", PathwayNodeType.LUMEN, "Protein-bound in food; acid/pepsin help release."),
-            ("free_b12", "Free B12 (gastric/duodenal)", PathwayNodeType.LUMEN, "Transient; binds haptocorrin then IF."),
-            ("intrinsic_factor", "Intrinsic factor (IF)", PathwayNodeType.SIGNAL, "Parietal-cell glycoprotein; acid-dependent production context."),
-            ("if_b12_complex", "IF–B12 complex", PathwayNodeType.INTERMEDIATE, "Resistant complex for ileal uptake."),
-            ("ileal_uptake", "Ileal enterocyte uptake", PathwayNodeType.ENTEROCYTE, "Cubam (cubilin/amnionless) teaching receptor."),
-            ("plasma_b12", "Transcobalamin-bound B12 (plasma)", PathwayNodeType.CIRCULATION, "Delivery to tissues; methyl-B12 / Ado-B12 cofactor forms."),
+        for nid, name, nt, comp, notes in [
+            ("dietary_b12", "Dietary cobalamin (B12)", PathwayNodeType.SUBSTRATE, "lumen", "Protein-bound in food; acid/pepsin help release."),
+            ("free_b12", "Free B12 (gastric/duodenal)", PathwayNodeType.INTERMEDIATE, "lumen", "Transient; binds haptocorrin then IF."),
+            ("intrinsic_factor", "Intrinsic factor (IF)", PathwayNodeType.SIGNAL, "", "Parietal-cell glycoprotein; acid-dependent production context."),
+            ("if_b12_complex", "IF–B12 complex", PathwayNodeType.INTERMEDIATE, "", "Resistant complex for ileal uptake."),
+            ("ileal_uptake", "Ileal enterocyte uptake", PathwayNodeType.INTERMEDIATE, "enterocyte", "Cubam (cubilin/amnionless) teaching receptor."),
+            ("plasma_b12", "Transcobalamin-bound B12 (plasma)", PathwayNodeType.PRODUCT, "circulation", "Delivery to tissues; methyl-B12 / Ado-B12 cofactor forms."),
         ]:
-            p.add_node(MetaboliteNode(nid, name, nt, notes))
+            p.add_node(MetaboliteNode(id=nid, name=name, node_type=nt, notes=notes, compartment=comp))
 
         p.add_edge(ReactionEdge(
             from_node="dietary_b12", to_node="free_b12",
@@ -305,15 +264,15 @@ class MealCriticalPathwaysRegistry:
                 "carb_digestion_absorption pack without duplicating amylase steps."
             ),
         )
-        for nid, name, nt, notes in [
-            ("glucose_lumen", "Glucose (lumen)", PathwayNodeType.LUMEN, "From starch/disaccharide digestion."),
-            ("galactose_lumen", "Galactose (lumen)", PathwayNodeType.LUMEN, "Also SGLT1 cargo."),
-            ("glucose_enterocyte", "Glucose (enterocyte)", PathwayNodeType.ENTEROCYTE, "Apical uptake product."),
-            ("glucose_portal", "Glucose (portal blood)", PathwayNodeType.CIRCULATION, "To liver / systemic."),
-            ("fructose_lumen", "Fructose (lumen)", PathwayNodeType.LUMEN, "GLUT5 path; not SGLT1."),
-            ("fructose_enterocyte", "Fructose (enterocyte)", PathwayNodeType.ENTEROCYTE, "GLUT5 apical."),
+        for nid, name, nt, comp, notes in [
+            ("glucose_lumen", "Glucose (lumen)", PathwayNodeType.SUBSTRATE, "lumen", "From starch/disaccharide digestion."),
+            ("galactose_lumen", "Galactose (lumen)", PathwayNodeType.SUBSTRATE, "lumen", "Also SGLT1 cargo."),
+            ("glucose_enterocyte", "Glucose (enterocyte)", PathwayNodeType.INTERMEDIATE, "enterocyte", "Apical uptake product."),
+            ("glucose_portal", "Glucose (portal blood)", PathwayNodeType.PRODUCT, "circulation", "To liver / systemic."),
+            ("fructose_lumen", "Fructose (lumen)", PathwayNodeType.SUBSTRATE, "lumen", "GLUT5 path; not SGLT1."),
+            ("fructose_enterocyte", "Fructose (enterocyte)", PathwayNodeType.INTERMEDIATE, "enterocyte", "GLUT5 apical."),
         ]:
-            p.add_node(MetaboliteNode(nid, name, nt, notes))
+            p.add_node(MetaboliteNode(id=nid, name=name, node_type=nt, notes=notes, compartment=comp))
 
         p.add_edge(ReactionEdge(
             from_node="glucose_lumen", to_node="glucose_enterocyte",
@@ -381,18 +340,18 @@ class MealCriticalPathwaysRegistry:
                 "Extends prebiotic_probiotic sketch with explicit SCFA products (FLOW)."
             ),
         )
-        for nid, name, nt, notes in [
-            ("fermentable_fiber", "Fermentable fiber / RS", PathwayNodeType.SUBSTRATE,
+        for nid, name, nt, comp, notes in [
+            ("fermentable_fiber", "Fermentable fiber / RS", PathwayNodeType.SUBSTRATE, "",
              "Escapes small-bowel absorption; substrate for microbiota."),
-            ("microbiota", "Colonic microbiota", PathwayNodeType.INTERMEDIATE,
+            ("microbiota", "Colonic microbiota", PathwayNodeType.INTERMEDIATE, "",
              "Taxa-dependent fermentation capacity."),
-            ("acetate", "Acetate (C2)", PathwayNodeType.PRODUCT, "Often most abundant SCFA; portal delivery."),
-            ("propionate", "Propionate (C3)", PathwayNodeType.PRODUCT, "Portal → liver gluconeogenesis teaching link."),
-            ("butyrate", "Butyrate (C4)", PathwayNodeType.PRODUCT, "Preferred colonocyte fuel; barrier support teaching."),
-            ("colonocyte_use", "Colonocyte oxidation", PathwayNodeType.PRODUCT, "Local host use of butyrate."),
-            ("portal_scfa", "Portal SCFA delivery", PathwayNodeType.CIRCULATION, "Acetate/propionate systemic exposure."),
+            ("acetate", "Acetate (C2)", PathwayNodeType.PRODUCT, "", "Often most abundant SCFA; portal delivery."),
+            ("propionate", "Propionate (C3)", PathwayNodeType.PRODUCT, "", "Portal → liver gluconeogenesis teaching link."),
+            ("butyrate", "Butyrate (C4)", PathwayNodeType.PRODUCT, "", "Preferred colonocyte fuel; barrier support teaching."),
+            ("colonocyte_use", "Colonocyte oxidation", PathwayNodeType.PRODUCT, "", "Local host use of butyrate."),
+            ("portal_scfa", "Portal SCFA delivery", PathwayNodeType.PRODUCT, "circulation", "Acetate/propionate systemic exposure."),
         ]:
-            p.add_node(MetaboliteNode(nid, name, nt, notes))
+            p.add_node(MetaboliteNode(id=nid, name=name, node_type=nt, notes=notes, compartment=comp))
 
         p.add_edge(ReactionEdge(
             from_node="fermentable_fiber", to_node="microbiota",

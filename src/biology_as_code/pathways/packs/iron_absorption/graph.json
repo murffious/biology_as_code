@@ -19,43 +19,43 @@
     {
       "id": "dietary_nonheme_fe3",
       "label": "Dietary non-haem Fe³⁺",
-      "kind": "lumen",
-      "compartment": "",
+      "kind": "substrate",
+      "compartment": "lumen",
       "notes": "Label iron is not absorbed iron. Form + co-occupants matter."
     },
     {
       "id": "dietary_heme",
       "label": "Dietary haem iron",
-      "kind": "lumen",
-      "compartment": "",
+      "kind": "substrate",
+      "compartment": "lumen",
       "notes": "Higher fractional absorption than non-haem; separate apical path."
     },
     {
       "id": "heme_enterocyte",
       "label": "Haem (enterocyte)",
-      "kind": "enterocyte",
-      "compartment": "",
+      "kind": "intermediate",
+      "compartment": "enterocyte",
       "notes": "Intact haem after apical uptake; cleaved by HO-1."
     },
     {
       "id": "fe2_lumen",
       "label": "Fe²⁺ (lumen pool)",
-      "kind": "lumen",
-      "compartment": "",
+      "kind": "intermediate",
+      "compartment": "lumen",
       "notes": "Ascorbate / reducing surface expands usable ferrous pool."
     },
     {
       "id": "fe2_enterocyte",
       "label": "Fe²⁺ (enterocyte)",
-      "kind": "enterocyte",
-      "compartment": "",
+      "kind": "intermediate",
+      "compartment": "enterocyte",
       "notes": "Cytosolic labile iron; shared by non-haem and haem branches."
     },
     {
       "id": "plasma_transferrin_fe",
       "label": "Transferrin-bound Fe (plasma)",
-      "kind": "circulation",
-      "compartment": "",
+      "kind": "product",
+      "compartment": "circulation",
       "notes": "Systemic transport form after basolateral export + oxidation."
     },
     {

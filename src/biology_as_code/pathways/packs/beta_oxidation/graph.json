@@ -159,5 +159,8 @@
     }
   ],
   "nutrient_dependencies": {},
-  "net_yields": {}
+  "net_yields": {
+    "FADH2": 1,
+    "NADH": 1
+  }
 }

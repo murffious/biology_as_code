@@ -13,36 +13,36 @@
     {
       "id": "starch",
       "label": "Starch / Glycogen",
-      "kind": "lumen",
-      "compartment": "",
+      "kind": "substrate",
+      "compartment": "lumen",
       "notes": ""
     },
     {
       "id": "maltose_limit",
       "label": "Maltose + Limit Dextrins",
-      "kind": "lumen",
-      "compartment": "",
+      "kind": "intermediate",
+      "compartment": "lumen",
       "notes": ""
     },
     {
       "id": "glucose_lumen",
       "label": "Glucose (lumen)",
-      "kind": "lumen",
-      "compartment": "",
+      "kind": "intermediate",
+      "compartment": "lumen",
       "notes": ""
     },
     {
       "id": "glucose_enterocyte",
       "label": "Glucose (enterocyte)",
-      "kind": "enterocyte",
-      "compartment": "",
+      "kind": "intermediate",
+      "compartment": "enterocyte",
       "notes": ""
     },
     {
       "id": "glucose_blood",
       "label": "Glucose (portal blood)",
-      "kind": "circulation",
-      "compartment": "",
+      "kind": "product",
+      "compartment": "circulation",
       "notes": ""
     }
   ],

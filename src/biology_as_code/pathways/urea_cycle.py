@@ -9,9 +9,6 @@ Costs 4 ATP equivalents per urea molecule formed.
 =================================================================
 """
 
-from dataclasses import dataclass
-from enum import Enum
-from typing import Optional
 
 try:
     from biology_as_code.pathways.metabolic_mechanisms import (
@@ -23,49 +20,18 @@ except ImportError:
     MetabolicMechanism = None
 
 
-class PathwayNodeType(Enum):
-    SUBSTRATE = "substrate"
-    INTERMEDIATE = "intermediate"
-    PRODUCT = "product"
+from biology_as_code.pathways._types import (
+    MetabolicPathway as _BasePathway,
+)
+from biology_as_code.pathways._types import (
+    MetaboliteNode,
+    PathwayNodeType,
+    ReactionEdge,
+)
 
 
-@dataclass
-class MetaboliteNode:
-    id: str
-    name: str
-    node_type: PathwayNodeType
-    notes: str = ""
-
-
-@dataclass
-class ReactionEdge:
-    from_node: str
-    to_node: str
-    mechanism_id: str = ""
-    enzyme: str = ""
-    atp_cost: int = 0
-    location: str = ""          # mitochondrial or cytosolic
-    regulation: str = ""
-    notes: str = ""
-
-
-class MetabolicPathway:
-    def __init__(self, name: str, description: str = ""):
-        self.name = name
-        self.description = description
-        self.nodes: dict[str, MetaboliteNode] = {}
-        self.edges: list[ReactionEdge] = []
-
-    def add_node(self, node: MetaboliteNode) -> None:
-        self.nodes[node.id] = node
-
-    def add_edge(self, edge: ReactionEdge) -> None:
-        self.edges.append(edge)
-
-    def get_mechanism(self, edge: ReactionEdge) -> Optional["MetabolicMechanism"]:
-        if get_metabolic_mechanism_registry is None or not edge.mechanism_id:
-            return None
-        return get_metabolic_mechanism_registry().get(edge.mechanism_id)
+class MetabolicPathway(_BasePathway):
+    """Shared graph type; only this module's own summary differs."""
 
     def atp_cost_total(self) -> int:
         """ATP equivalents spent per turn, summed from the edges.
@@ -74,12 +40,6 @@ class MetabolicPathway:
         atp_cost=0 so the cost is counted once per reaction, not once per edge.
         """
         return abs(sum(e.atp_cost for e in self.edges))
-
-    def orphan_nodes(self) -> list[str]:
-        """Declared nodes that no edge touches — a node here means the prose
-        describes biology the graph does not contain."""
-        touched = {n for e in self.edges for n in (e.from_node, e.to_node)}
-        return sorted(set(self.nodes) - touched)
 
     def summary(self) -> dict:
         return {

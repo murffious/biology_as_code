@@ -20,22 +20,22 @@
     {
       "id": "gallbladder_bile",
       "label": "Stored / secreted bile",
-      "kind": "lumen",
-      "compartment": "",
+      "kind": "intermediate",
+      "compartment": "lumen",
       "notes": ""
     },
     {
       "id": "ileal_lumen",
       "label": "Bile acids in ileal lumen",
-      "kind": "lumen",
-      "compartment": "",
+      "kind": "intermediate",
+      "compartment": "lumen",
       "notes": ""
     },
     {
       "id": "portal_bile_acids",
       "label": "Portal bile acids",
-      "kind": "circulation",
-      "compartment": "",
+      "kind": "intermediate",
+      "compartment": "circulation",
       "notes": ""
     },
     {

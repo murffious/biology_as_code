@@ -14,64 +14,25 @@ This turns the static textbook diagram into a queryable graph:
 =================================================================
 """
 
-from dataclasses import dataclass
-from enum import Enum
 
 
-class PathwayNodeType(Enum):
-    SUBSTRATE = "substrate"       # Starting molecule of the pathway
-    INTERMEDIATE = "intermediate" # Transient molecule inside the pathway
-    PRODUCT = "product"           # End product of the pathway
-    REGULATORY = "regulatory"     # Molecule that primarily acts as a signal
+from biology_as_code.pathways._types import (
+    MetabolicPathway as _BasePathway,
+)
+from biology_as_code.pathways._types import (
+    MetaboliteNode,
+    PathwayNodeType,
+    ReactionEdge,
+)
 
 
-@dataclass
-class MetaboliteNode:
-    """A single metabolite (node) in a metabolic pathway graph."""
-    id: str
-    name: str
-    node_type: PathwayNodeType
-    notes: str = ""
-
-
-@dataclass
-class ReactionEdge:
-    """
-    A directed enzymatic reaction (edge) connecting two metabolites.
-    
-    atp_cost / nadh_cost convention:
-      - Negative number = the reaction CONSUMES that molecule
-      - Positive number = the reaction PRODUCES that molecule
-    """
-    from_node: str
-    to_node: str
-    enzyme: str
-    atp_cost: int = 0          # e.g. -1 means consumes 1 ATP
-    nadh_cost: int = 0         # e.g. -1 means produces 1 NADH (by convention here)
-    regulation: str = ""       # Known regulatory inputs (insulin, allosteric, etc.)
-    notes: str = ""            # Free-text biochemical notes
-    mechanism_id: str = ""     # optional link into metabolic_mechanisms registry
-
-
-class MetabolicPathway:
-    """A complete metabolic pathway represented as a directed graph."""
-
-    def __init__(self, name: str, description: str = ""):
-        self.name = name
-        self.description = description
-        self.nodes: dict[str, MetaboliteNode] = {}
-        self.edges: list[ReactionEdge] = []
-
-    def add_node(self, node: MetaboliteNode) -> None:
-        self.nodes[node.id] = node
-
-    def add_edge(self, edge: ReactionEdge) -> None:
-        self.edges.append(edge)
+class MetabolicPathway(_BasePathway):
+    """Shared graph type; only this module's own summary differs."""
 
     def summary(self) -> dict:
         """
         Return high-level statistics including net energy balance.
-        
+
         Note on stoichiometry:
         The graph stores each unique reaction once. Because aldolase splits
         one hexose into two trioses, the payoff-phase reactions actually

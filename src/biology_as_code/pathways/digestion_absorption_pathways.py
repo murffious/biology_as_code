@@ -9,9 +9,6 @@ to enterocyte / circulation.
 =================================================================
 """
 
-from dataclasses import dataclass
-from enum import Enum
-from typing import Optional
 
 try:
     from biology_as_code.pathways.metabolic_mechanisms import (
@@ -23,48 +20,18 @@ except ImportError:
     MetabolicMechanism = None
 
 
-class PathwayNodeType(Enum):
-    LUMEN = "lumen"
-    ENTEROCYTE = "enterocyte"
-    CIRCULATION = "circulation"
-    INTERMEDIATE = "intermediate"
+from biology_as_code.pathways._types import (
+    MetabolicPathway as _BasePathway,
+)
+from biology_as_code.pathways._types import (
+    MetaboliteNode,
+    PathwayNodeType,
+    ReactionEdge,
+)
 
 
-@dataclass
-class MetaboliteNode:
-    id: str
-    name: str
-    node_type: PathwayNodeType
-    notes: str = ""
-
-
-@dataclass
-class ReactionEdge:
-    from_node: str
-    to_node: str
-    mechanism_id: str = ""          # links to formal MetabolicMechanism when available
-    process: str = ""
-    location: str = ""
-    notes: str = ""
-
-
-class MetabolicPathway:
-    def __init__(self, name: str, description: str = ""):
-        self.name = name
-        self.description = description
-        self.nodes: dict[str, MetaboliteNode] = {}
-        self.edges: list[ReactionEdge] = []
-
-    def add_node(self, node: MetaboliteNode) -> None:
-        self.nodes[node.id] = node
-
-    def add_edge(self, edge: ReactionEdge) -> None:
-        self.edges.append(edge)
-
-    def get_mechanism(self, edge: ReactionEdge) -> Optional["MetabolicMechanism"]:
-        if get_metabolic_mechanism_registry is None or not edge.mechanism_id:
-            return None
-        return get_metabolic_mechanism_registry().get(edge.mechanism_id)
+class MetabolicPathway(_BasePathway):
+    """Shared graph type; only this module's own summary differs."""
 
     def summary(self) -> dict:
         return {
@@ -98,23 +65,23 @@ class DigestionAbsorptionRegistry:
             name="carb_digestion_absorption",
             description="Carbohydrate digestion and absorption from starch/sugars to portal blood glucose."
         )
-        p.add_node(MetaboliteNode("starch", "Starch / Glycogen", PathwayNodeType.LUMEN))
-        p.add_node(MetaboliteNode("maltose_limit", "Maltose + Limit Dextrins", PathwayNodeType.LUMEN))
-        p.add_node(MetaboliteNode("glucose_lumen", "Glucose (lumen)", PathwayNodeType.LUMEN))
-        p.add_node(MetaboliteNode("glucose_enterocyte", "Glucose (enterocyte)", PathwayNodeType.ENTEROCYTE))
-        p.add_node(MetaboliteNode("glucose_blood", "Glucose (portal blood)", PathwayNodeType.CIRCULATION))
+        p.add_node(MetaboliteNode(id="starch", name="Starch / Glycogen", node_type=PathwayNodeType.SUBSTRATE, compartment="lumen"))
+        p.add_node(MetaboliteNode(id="maltose_limit", name="Maltose + Limit Dextrins", node_type=PathwayNodeType.INTERMEDIATE, compartment="lumen"))
+        p.add_node(MetaboliteNode(id="glucose_lumen", name="Glucose (lumen)", node_type=PathwayNodeType.INTERMEDIATE, compartment="lumen"))
+        p.add_node(MetaboliteNode(id="glucose_enterocyte", name="Glucose (enterocyte)", node_type=PathwayNodeType.INTERMEDIATE, compartment="enterocyte"))
+        p.add_node(MetaboliteNode(id="glucose_blood", name="Glucose (portal blood)", node_type=PathwayNodeType.PRODUCT, compartment="circulation"))
 
-        p.add_edge(ReactionEdge("starch", "maltose_limit", mechanism_id="salivary_amylase",
+        p.add_edge(ReactionEdge(from_node="starch", to_node="maltose_limit", mechanism_id="salivary_amylase",
                                 process="Salivary + Pancreatic Amylase", location="Mouth → Duodenum",
                                 notes="α-1,4 cleavage. Pancreatic amylase continues in small intestine."))
-        p.add_edge(ReactionEdge("maltose_limit", "glucose_lumen",
+        p.add_edge(ReactionEdge(from_node="maltose_limit", to_node="glucose_lumen",
                                 process="Brush-border disaccharidases (maltase, isomaltase, sucrase, lactase)",
                                 location="Brush border",
                                 notes="Final hydrolysis to monosaccharides."))
-        p.add_edge(ReactionEdge("glucose_lumen", "glucose_enterocyte", mechanism_id="sglt1",
+        p.add_edge(ReactionEdge(from_node="glucose_lumen", to_node="glucose_enterocyte", mechanism_id="sglt1",
                                 process="SGLT1", location="Apical membrane",
                                 notes="Sodium-glucose cotransport. Primary route for glucose & galactose."))
-        p.add_edge(ReactionEdge("glucose_enterocyte", "glucose_blood",
+        p.add_edge(ReactionEdge(from_node="glucose_enterocyte", to_node="glucose_blood",
                                 process="GLUT2", location="Basolateral membrane",
                                 notes="Facilitated exit into portal blood."))
 
@@ -125,28 +92,28 @@ class DigestionAbsorptionRegistry:
             name="protein_digestion_absorption",
             description="Protein digestion cascade from stomach to amino acid/peptide absorption."
         )
-        p.add_node(MetaboliteNode("dietary_protein", "Dietary Protein", PathwayNodeType.LUMEN))
-        p.add_node(MetaboliteNode("peptides_stomach", "Large Peptides (stomach)", PathwayNodeType.LUMEN))
-        p.add_node(MetaboliteNode("oligopeptides", "Oligopeptides + Amino Acids", PathwayNodeType.LUMEN))
-        p.add_node(MetaboliteNode("amino_acids_enterocyte", "Amino Acids / Di-Tri Peptides (enterocyte)", PathwayNodeType.ENTEROCYTE))
-        p.add_node(MetaboliteNode("amino_acids_blood", "Amino Acids (portal blood)", PathwayNodeType.CIRCULATION))
+        p.add_node(MetaboliteNode(id="dietary_protein", name="Dietary Protein", node_type=PathwayNodeType.SUBSTRATE, compartment="lumen"))
+        p.add_node(MetaboliteNode(id="peptides_stomach", name="Large Peptides (stomach)", node_type=PathwayNodeType.INTERMEDIATE, compartment="lumen"))
+        p.add_node(MetaboliteNode(id="oligopeptides", name="Oligopeptides + Amino Acids", node_type=PathwayNodeType.INTERMEDIATE, compartment="lumen"))
+        p.add_node(MetaboliteNode(id="amino_acids_enterocyte", name="Amino Acids / Di-Tri Peptides (enterocyte)", node_type=PathwayNodeType.INTERMEDIATE, compartment="enterocyte"))
+        p.add_node(MetaboliteNode(id="amino_acids_blood", name="Amino Acids (portal blood)", node_type=PathwayNodeType.PRODUCT, compartment="circulation"))
 
-        p.add_edge(ReactionEdge("dietary_protein", "peptides_stomach", mechanism_id="pepsin",
+        p.add_edge(ReactionEdge(from_node="dietary_protein", to_node="peptides_stomach", mechanism_id="pepsin",
                                 process="Pepsin", location="Stomach",
                                 notes="Acid-stable endopeptidase. Initiates protein digestion."))
-        p.add_edge(ReactionEdge("peptides_stomach", "oligopeptides",
+        p.add_edge(ReactionEdge(from_node="peptides_stomach", to_node="oligopeptides",
                                 process="Pancreatic proteases (trypsin, chymotrypsin, elastase, carboxypeptidases)",
                                 location="Duodenum / Jejunum",
                                 notes="Zymogens activated by enteropeptidase → trypsin cascade."))
         # Wave B2: explicit PepT1 apical peptide uptake (di/tripeptides)
         p.add_edge(ReactionEdge(
-            "oligopeptides", "amino_acids_enterocyte",
+            from_node="oligopeptides", to_node="amino_acids_enterocyte",
             mechanism_id="pept1",
             process="PepT1 (SLC15A1) proton-coupled di/tripeptide uptake",
             location="Apical membrane",
             notes="Major nitrogen absorption route for di/tripeptides; free AA transporters run in parallel.",
         ))
-        p.add_edge(ReactionEdge("amino_acids_enterocyte", "amino_acids_blood",
+        p.add_edge(ReactionEdge(from_node="amino_acids_enterocyte", to_node="amino_acids_blood",
                                 process="Basolateral amino acid transporters",
                                 location="Basolateral membrane",
                                 notes="Exit into portal circulation."))
@@ -158,33 +125,33 @@ class DigestionAbsorptionRegistry:
             name="lipid_digestion_absorption",
             description="Lipid digestion from emulsion to chylomicron export into lymph."
         )
-        p.add_node(MetaboliteNode("dietary_tg", "Dietary Triglycerides", PathwayNodeType.LUMEN))
-        p.add_node(MetaboliteNode("emulsion", "Emulsified Fat Droplets", PathwayNodeType.LUMEN))
-        p.add_node(MetaboliteNode("micelles", "Mixed Micelles", PathwayNodeType.LUMEN))
-        p.add_node(MetaboliteNode("ffas_mg", "FFAs + 2-Monoacylglycerol", PathwayNodeType.LUMEN))
-        p.add_node(MetaboliteNode("tg_enterocyte", "Re-esterified TG (enterocyte)", PathwayNodeType.ENTEROCYTE))
-        p.add_node(MetaboliteNode("chylomicron", "Chylomicron", PathwayNodeType.CIRCULATION,
-            "Exported into lacteals → lymph → thoracic duct → blood."))
+        p.add_node(MetaboliteNode(id="dietary_tg", name="Dietary Triglycerides", node_type=PathwayNodeType.SUBSTRATE, compartment="lumen"))
+        p.add_node(MetaboliteNode(id="emulsion", name="Emulsified Fat Droplets", node_type=PathwayNodeType.INTERMEDIATE, compartment="lumen"))
+        p.add_node(MetaboliteNode(id="micelles", name="Mixed Micelles", node_type=PathwayNodeType.INTERMEDIATE, compartment="lumen"))
+        p.add_node(MetaboliteNode(id="ffas_mg", name="FFAs + 2-Monoacylglycerol", node_type=PathwayNodeType.INTERMEDIATE, compartment="lumen"))
+        p.add_node(MetaboliteNode(id="tg_enterocyte", name="Re-esterified TG (enterocyte)", node_type=PathwayNodeType.INTERMEDIATE, compartment="enterocyte"))
+        p.add_node(MetaboliteNode(id="chylomicron", name="Chylomicron", node_type=PathwayNodeType.PRODUCT, compartment="circulation",
+            notes="Exported into lacteals → lymph → thoracic duct → blood."))
 
-        p.add_edge(ReactionEdge("dietary_tg", "emulsion",
+        p.add_edge(ReactionEdge(from_node="dietary_tg", to_node="emulsion",
                                 mechanism_id="bile_salt_emulsification",
                                 process="Mechanical emulsification + Bile salts",
                                 location="Stomach → Duodenum",
                                 notes="Bile salts stabilize small emulsion droplets."))
-        p.add_edge(ReactionEdge("emulsion", "micelles",
+        p.add_edge(ReactionEdge(from_node="emulsion", to_node="micelles",
                                 mechanism_id="bile_salt_micelle",
                                 process="Bile salt mixed-micelle formation",
                                 location="Duodenal lumen",
                                 notes="Mixed micelles solubilize the products of lipolysis."))
-        p.add_edge(ReactionEdge("micelles", "ffas_mg", mechanism_id="pancreatic_lipase",
+        p.add_edge(ReactionEdge(from_node="micelles", to_node="ffas_mg", mechanism_id="pancreatic_lipase",
                                 process="Pancreatic lipase + Colipase",
                                 location="Oil-water interface of micelles",
                                 notes="Requires colipase. Cleaves sn-1 and sn-3 positions."))
-        p.add_edge(ReactionEdge("ffas_mg", "tg_enterocyte",
+        p.add_edge(ReactionEdge(from_node="ffas_mg", to_node="tg_enterocyte",
                                 process="Passive diffusion + re-esterification (MGAT, DGAT)",
                                 location="Enterocyte",
                                 notes="FFAs and 2-MG enter by diffusion; re-esterified in smooth ER."))
-        p.add_edge(ReactionEdge("tg_enterocyte", "chylomicron",
+        p.add_edge(ReactionEdge(from_node="tg_enterocyte", to_node="chylomicron",
                                 process="Chylomicron assembly (ApoB-48, MTP)",
                                 location="Enterocyte → Lacteal",
                                 notes="Packaged with ApoB-48 and exported into lymph."))
@@ -196,18 +163,18 @@ class DigestionAbsorptionRegistry:
             name="brush_border_final_digestion",
             description="Brush-border disaccharidases and peptidases completing lumen → absorbable monomers.",
         )
-        p.add_node(MetaboliteNode("disaccharides", "Disaccharides (maltose, sucrose, lactose)", PathwayNodeType.LUMEN))
-        p.add_node(MetaboliteNode("monosaccharides", "Monosaccharides", PathwayNodeType.LUMEN))
-        p.add_node(MetaboliteNode("oligopeptides", "Oligopeptides", PathwayNodeType.LUMEN))
-        p.add_node(MetaboliteNode("aa_di_tri", "AA + di/tripeptides", PathwayNodeType.LUMEN))
+        p.add_node(MetaboliteNode(id="disaccharides", name="Disaccharides (maltose, sucrose, lactose)", node_type=PathwayNodeType.SUBSTRATE, compartment="lumen"))
+        p.add_node(MetaboliteNode(id="monosaccharides", name="Monosaccharides", node_type=PathwayNodeType.PRODUCT, compartment="lumen"))
+        p.add_node(MetaboliteNode(id="oligopeptides", name="Oligopeptides", node_type=PathwayNodeType.SUBSTRATE, compartment="lumen"))
+        p.add_node(MetaboliteNode(id="aa_di_tri", name="AA + di/tripeptides", node_type=PathwayNodeType.PRODUCT, compartment="lumen"))
         p.add_edge(ReactionEdge(
-            "disaccharides", "monosaccharides",
+            from_node="disaccharides", to_node="monosaccharides",
             process="Maltase, sucrase-isomaltase, lactase",
             location="Brush border",
             notes="Final carb hydrolysis before SGLT1/GLUT5/GLUT2.",
         ))
         p.add_edge(ReactionEdge(
-            "oligopeptides", "aa_di_tri",
+            from_node="oligopeptides", to_node="aa_di_tri",
             process="Brush-border peptidases",
             location="Brush border",
             notes="Exopeptidases finish protein digestion for PepT1 / AA transporters "
@@ -220,37 +187,37 @@ class DigestionAbsorptionRegistry:
             name="enterohepatic_bile",
             description="Enterohepatic circulation of bile acids: liver → bile → ileum reuptake → portal return.",
         )
-        p.add_node(MetaboliteNode("hepatic_bile_acids", "Hepatic bile acids", PathwayNodeType.INTERMEDIATE))
-        p.add_node(MetaboliteNode("gallbladder_bile", "Stored / secreted bile", PathwayNodeType.LUMEN))
-        p.add_node(MetaboliteNode("ileal_lumen", "Bile acids in ileal lumen", PathwayNodeType.LUMEN))
-        p.add_node(MetaboliteNode("portal_bile_acids", "Portal bile acids", PathwayNodeType.CIRCULATION))
-        p.add_node(MetaboliteNode("fecal_loss", "Fecal bile acid loss (~5%)", PathwayNodeType.INTERMEDIATE))
+        p.add_node(MetaboliteNode(id="hepatic_bile_acids", name="Hepatic bile acids", node_type=PathwayNodeType.INTERMEDIATE))
+        p.add_node(MetaboliteNode(id="gallbladder_bile", name="Stored / secreted bile", node_type=PathwayNodeType.INTERMEDIATE, compartment="lumen"))
+        p.add_node(MetaboliteNode(id="ileal_lumen", name="Bile acids in ileal lumen", node_type=PathwayNodeType.INTERMEDIATE, compartment="lumen"))
+        p.add_node(MetaboliteNode(id="portal_bile_acids", name="Portal bile acids", node_type=PathwayNodeType.INTERMEDIATE, compartment="circulation"))
+        p.add_node(MetaboliteNode(id="fecal_loss", name="Fecal bile acid loss (~5%)", node_type=PathwayNodeType.INTERMEDIATE))
         p.add_edge(ReactionEdge(
-            "hepatic_bile_acids", "gallbladder_bile",
+            from_node="hepatic_bile_acids", to_node="gallbladder_bile",
             process="Biliary secretion + gallbladder storage",
             location="Liver → GB → duodenum",
             notes="CCK drives gallbladder contraction on a fatty meal.",
         ))
         p.add_edge(ReactionEdge(
-            "gallbladder_bile", "ileal_lumen",
+            from_node="gallbladder_bile", to_node="ileal_lumen",
             process="Micelle transit through SI",
             location="SI lumen",
             notes="Bile acids enable fat micelles then reach terminal ileum.",
         ))
         p.add_edge(ReactionEdge(
-            "ileal_lumen", "portal_bile_acids",
+            from_node="ileal_lumen", to_node="portal_bile_acids",
             process="ASBT / IBAT reuptake",
             location="Terminal ileum",
             notes="~95% recovery; active transport of conjugated bile acids.",
         ))
         p.add_edge(ReactionEdge(
-            "portal_bile_acids", "hepatic_bile_acids",
+            from_node="portal_bile_acids", to_node="hepatic_bile_acids",
             process="Hepatic extraction",
             location="Portal → hepatocyte",
             notes="Closes enterohepatic loop.",
         ))
         p.add_edge(ReactionEdge(
-            "ileal_lumen", "fecal_loss",
+            from_node="ileal_lumen", to_node="fecal_loss",
             process="Incomplete reabsorption",
             location="Colon / feces",
             notes="Daily fecal loss replaced by de novo bile acid synthesis.",
@@ -262,24 +229,24 @@ class DigestionAbsorptionRegistry:
             name="bile_acid_synthesis",
             description="Classic pathway: cholesterol → primary bile acids (cholic / chenodeoxycholic) in hepatocytes.",
         )
-        p.add_node(MetaboliteNode("cholesterol", "Cholesterol", PathwayNodeType.INTERMEDIATE))
-        p.add_node(MetaboliteNode("7a_hydroxycholesterol", "7α-Hydroxycholesterol", PathwayNodeType.INTERMEDIATE))
-        p.add_node(MetaboliteNode("primary_bile_acids", "Primary bile acids (CA, CDCA)", PathwayNodeType.INTERMEDIATE))
-        p.add_node(MetaboliteNode("conjugated_bile_acids", "Glycine/taurine conjugates", PathwayNodeType.INTERMEDIATE))
+        p.add_node(MetaboliteNode(id="cholesterol", name="Cholesterol", node_type=PathwayNodeType.INTERMEDIATE))
+        p.add_node(MetaboliteNode(id="7a_hydroxycholesterol", name="7α-Hydroxycholesterol", node_type=PathwayNodeType.INTERMEDIATE))
+        p.add_node(MetaboliteNode(id="primary_bile_acids", name="Primary bile acids (CA, CDCA)", node_type=PathwayNodeType.INTERMEDIATE))
+        p.add_node(MetaboliteNode(id="conjugated_bile_acids", name="Glycine/taurine conjugates", node_type=PathwayNodeType.INTERMEDIATE))
         p.add_edge(ReactionEdge(
-            "cholesterol", "7a_hydroxycholesterol",
+            from_node="cholesterol", to_node="7a_hydroxycholesterol",
             process="CYP7A1 (cholesterol 7α-hydroxylase)",
             location="Hepatocyte",
             notes="Rate-limiting step of classic bile acid synthesis; feedback via FXR/SHP.",
         ))
         p.add_edge(ReactionEdge(
-            "7a_hydroxycholesterol", "primary_bile_acids",
+            from_node="7a_hydroxycholesterol", to_node="primary_bile_acids",
             process="Multiple sterol modifications",
             location="Hepatocyte",
             notes="Produces cholic and chenodeoxycholic acids.",
         ))
         p.add_edge(ReactionEdge(
-            "primary_bile_acids", "conjugated_bile_acids",
+            from_node="primary_bile_acids", to_node="conjugated_bile_acids",
             process="BAAT conjugation",
             location="Hepatocyte",
             notes="Conjugation improves solubility for micelles.",

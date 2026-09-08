@@ -20,10 +20,6 @@ FLOW teaching graphs — not LAW-SPEC magnitudes. Connects to existing
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from enum import Enum
-from typing import Optional
-
 try:
     from biology_as_code.pathways.metabolic_mechanisms import (
         MetabolicMechanism,
@@ -34,52 +30,18 @@ except ImportError:
     MetabolicMechanism = None
 
 
-class PathwayNodeType(Enum):
-    SUBSTRATE = "substrate"
-    INTERMEDIATE = "intermediate"
-    PRODUCT = "product"
-    SIGNAL = "signal"
+from biology_as_code.pathways._types import (
+    MetabolicPathway as _BasePathway,
+)
+from biology_as_code.pathways._types import (
+    MetaboliteNode,
+    PathwayNodeType,
+    ReactionEdge,
+)
 
 
-@dataclass
-class MetaboliteNode:
-    id: str
-    name: str
-    node_type: PathwayNodeType
-    notes: str = ""
-
-
-@dataclass
-class ReactionEdge:
-    from_node: str
-    to_node: str
-    mechanism_id: str = ""
-    enzyme: str = ""
-    process: str = ""
-    location: str = ""
-    regulation: str = ""
-    notes: str = ""
-
-
-class MetabolicPathway:
-    def __init__(self, name: str, description: str = ""):
-        self.name = name
-        self.description = description
-        self.nodes: dict[str, MetaboliteNode] = {}
-        self.edges: list[ReactionEdge] = []
-        self.references: list[str] = []
-        self.extra_summary: dict = {}
-
-    def add_node(self, node: MetaboliteNode) -> None:
-        self.nodes[node.id] = node
-
-    def add_edge(self, edge: ReactionEdge) -> None:
-        self.edges.append(edge)
-
-    def get_mechanism(self, edge: ReactionEdge) -> Optional["MetabolicMechanism"]:
-        if get_metabolic_mechanism_registry is None or not edge.mechanism_id:
-            return None
-        return get_metabolic_mechanism_registry().get(edge.mechanism_id)
+class MetabolicPathway(_BasePathway):
+    """Shared graph type; only this module's own summary differs."""
 
     def summary(self) -> dict:
         out = {
@@ -144,7 +106,7 @@ class AminoAcidCatabolismRegistry:
             ("glutamine", "Glutamine", PathwayNodeType.INTERMEDIATE,
              "Safe N transport form (muscle → gut/kidney/liver); GLS releases NH₄⁺."),
         ]:
-            p.add_node(MetaboliteNode(nid, name, nt, notes))
+            p.add_node(MetaboliteNode(id=nid, name=name, node_type=nt, notes=notes))
 
         p.add_edge(ReactionEdge(
             from_node="amino_acid", to_node="alpha_keto_acid",
@@ -241,7 +203,7 @@ class AminoAcidCatabolismRegistry:
             ("propionyl_coa", "Propionyl-CoA", PathwayNodeType.INTERMEDIATE,
              "3-carbon intermediate toward succinyl-CoA (B12-dependent mutase)."),
         ]:
-            p.add_node(MetaboliteNode(nid, name, nt, notes))
+            p.add_node(MetaboliteNode(id=nid, name=name, node_type=nt, notes=notes))
 
         # Shared trunk
         for aa in ("leucine", "isoleucine", "valine"):
@@ -325,7 +287,7 @@ class AminoAcidCatabolismRegistry:
             ("fumarate", "Fumarate", PathwayNodeType.PRODUCT, "Glucogenic — enters TCA."),
             ("acetoacetate", "Acetoacetate", PathwayNodeType.PRODUCT, "Ketogenic product."),
         ]:
-            p.add_node(MetaboliteNode(nid, name, nt, notes))
+            p.add_node(MetaboliteNode(id=nid, name=name, node_type=nt, notes=notes))
 
         p.add_edge(ReactionEdge(
             from_node="phenylalanine", to_node="tyrosine",
@@ -405,7 +367,7 @@ class AminoAcidCatabolismRegistry:
             ("serine", "Serine", PathwayNodeType.SUBSTRATE,
              "Carbon/N donor into transsulfuration (with Hcy → cystathionine)."),
         ]:
-            p.add_node(MetaboliteNode(nid, name, nt, notes))
+            p.add_node(MetaboliteNode(id=nid, name=name, node_type=nt, notes=notes))
 
         p.add_edge(ReactionEdge(
             from_node="methionine", to_node="sam",
@@ -497,18 +459,18 @@ class AminoAcidCatabolismRegistry:
             ("leu_lys", "Leu / Lys", PathwayNodeType.SUBSTRATE, "Purely ketogenic essentials."),
             ("trp", "Tryptophan", PathwayNodeType.SUBSTRATE, "Mixed; also NAD⁺ precursor (kynurenine path)."),
         ]:
-            p.add_node(MetaboliteNode(nid, name, nt, notes))
+            p.add_node(MetaboliteNode(id=nid, name=name, node_type=nt, notes=notes))
 
-        p.add_edge(ReactionEdge("ala_ser", "pyruvate", process="Glucogenic", notes="ALT / serine dehydratase family routes."))
-        p.add_edge(ReactionEdge("asp_asn", "oaa", process="Glucogenic", notes="AST / asparaginase."))
-        p.add_edge(ReactionEdge("glu_family", "alpha_kg_fate", process="Glucogenic", notes="Transamination / deamination / Pro/Arg rings open to Glu."))
-        p.add_edge(ReactionEdge("met_val_ile", "succinyl_coa_fate", process="Glucogenic (Ile mixed)", notes="Propionyl-CoA route; see also bcaa + met packs."))
-        p.add_edge(ReactionEdge("met_val_ile", "acetyl_coa_fate", process="Ile ketogenic half", notes="Isoleucine is mixed."))
-        p.add_edge(ReactionEdge("phe_tyr", "fumarate_fate", process="Glucogenic half", notes="See phenylalanine_tyrosine_catabolism."))
-        p.add_edge(ReactionEdge("phe_tyr", "acetyl_coa_fate", process="Ketogenic half", notes="Acetoacetate / acetyl-CoA."))
-        p.add_edge(ReactionEdge("leu_lys", "acetyl_coa_fate", process="Purely ketogenic", notes="No net glucose in humans."))
-        p.add_edge(ReactionEdge("trp", "pyruvate", process="Glucogenic partial", notes="Alanine-like fragment in teaching maps."))
-        p.add_edge(ReactionEdge("trp", "acetyl_coa_fate", process="Ketogenic partial", notes="Via kynurenine → acetyl-CoA branch."))
+        p.add_edge(ReactionEdge(from_node="ala_ser", to_node="pyruvate", process="Glucogenic", notes="ALT / serine dehydratase family routes."))
+        p.add_edge(ReactionEdge(from_node="asp_asn", to_node="oaa", process="Glucogenic", notes="AST / asparaginase."))
+        p.add_edge(ReactionEdge(from_node="glu_family", to_node="alpha_kg_fate", process="Glucogenic", notes="Transamination / deamination / Pro/Arg rings open to Glu."))
+        p.add_edge(ReactionEdge(from_node="met_val_ile", to_node="succinyl_coa_fate", process="Glucogenic (Ile mixed)", notes="Propionyl-CoA route; see also bcaa + met packs."))
+        p.add_edge(ReactionEdge(from_node="met_val_ile", to_node="acetyl_coa_fate", process="Ile ketogenic half", notes="Isoleucine is mixed."))
+        p.add_edge(ReactionEdge(from_node="phe_tyr", to_node="fumarate_fate", process="Glucogenic half", notes="See phenylalanine_tyrosine_catabolism."))
+        p.add_edge(ReactionEdge(from_node="phe_tyr", to_node="acetyl_coa_fate", process="Ketogenic half", notes="Acetoacetate / acetyl-CoA."))
+        p.add_edge(ReactionEdge(from_node="leu_lys", to_node="acetyl_coa_fate", process="Purely ketogenic", notes="No net glucose in humans."))
+        p.add_edge(ReactionEdge(from_node="trp", to_node="pyruvate", process="Glucogenic partial", notes="Alanine-like fragment in teaching maps."))
+        p.add_edge(ReactionEdge(from_node="trp", to_node="acetyl_coa_fate", process="Ketogenic partial", notes="Via kynurenine → acetyl-CoA branch."))
 
         p.references = [
             "Glucogenic vs ketogenic amino acids — standard medical biochemistry tables.",

@@ -196,5 +196,8 @@
     }
   ],
   "nutrient_dependencies": {},
-  "net_yields": {}
+  "net_yields": {
+    "ATP": -3,
+    "NADPH": -3
+  }
 }

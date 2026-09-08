@@ -12,9 +12,6 @@ Energy yield (classic textbook approximation):
 =================================================================
 """
 
-from dataclasses import dataclass
-from enum import Enum
-from typing import Optional
 
 try:
     from biology_as_code.pathways.metabolic_mechanisms import (
@@ -26,50 +23,18 @@ except ImportError:
     MetabolicMechanism = None
 
 
-class PathwayNodeType(Enum):
-    SUBSTRATE = "substrate"
-    INTERMEDIATE = "intermediate"
-    COMPLEX = "complex"
-    PRODUCT = "product"
-    CARRIER = "carrier"
+from biology_as_code.pathways._types import (
+    MetabolicPathway as _BasePathway,
+)
+from biology_as_code.pathways._types import (
+    MetaboliteNode,
+    PathwayNodeType,
+    ReactionEdge,
+)
 
 
-@dataclass
-class MetaboliteNode:
-    id: str
-    name: str
-    node_type: PathwayNodeType
-    notes: str = ""
-
-
-@dataclass
-class ReactionEdge:
-    from_node: str
-    to_node: str
-    mechanism_id: str = ""
-    enzyme_or_complex: str = ""
-    protons_pumped: int = 0
-    regulation: str = ""
-    notes: str = ""
-
-
-class MetabolicPathway:
-    def __init__(self, name: str, description: str = ""):
-        self.name = name
-        self.description = description
-        self.nodes: dict[str, MetaboliteNode] = {}
-        self.edges: list[ReactionEdge] = []
-
-    def add_node(self, node: MetaboliteNode) -> None:
-        self.nodes[node.id] = node
-
-    def add_edge(self, edge: ReactionEdge) -> None:
-        self.edges.append(edge)
-
-    def get_mechanism(self, edge: ReactionEdge) -> Optional["MetabolicMechanism"]:
-        if get_metabolic_mechanism_registry is None or not edge.mechanism_id:
-            return None
-        return get_metabolic_mechanism_registry().get(edge.mechanism_id)
+class MetabolicPathway(_BasePathway):
+    """Shared graph type; only this module's own summary differs."""
 
     def summary(self) -> dict:
         return {
@@ -131,56 +96,56 @@ class ETCOXPHOSRegistry:
         # Electron flow edges
         p.add_edge(ReactionEdge(
             from_node="nadh", to_node="complex_i",
-            enzyme_or_complex="Complex I",
+            enzyme="Complex I",
             protons_pumped=4,
             notes="NADH donates 2 electrons. 4 protons pumped to intermembrane space."
         ))
         p.add_edge(ReactionEdge(
             from_node="complex_i", to_node="coq",
-            enzyme_or_complex="Complex I → CoQ",
+            enzyme="Complex I → CoQ",
             notes="Electrons transferred to ubiquinone, forming ubiquinol (QH₂)."
         ))
         p.add_edge(ReactionEdge(
             from_node="fadh2", to_node="complex_ii",
-            enzyme_or_complex="Complex II",
+            enzyme="Complex II",
             protons_pumped=0,
             notes="FADH₂ / succinate electrons enter here. No protons pumped at Complex II."
         ))
         p.add_edge(ReactionEdge(
             from_node="complex_ii", to_node="coq",
-            enzyme_or_complex="Complex II → CoQ",
+            enzyme="Complex II → CoQ",
             notes="Electrons from FADH₂ also reduce CoQ."
         ))
         p.add_edge(ReactionEdge(
             from_node="coq", to_node="complex_iii",
-            enzyme_or_complex="Complex III (Q-cycle)",
+            enzyme="Complex III (Q-cycle)",
             protons_pumped=4,
             notes="Q-cycle results in 4 protons translocated per 2 electrons."
         ))
         p.add_edge(ReactionEdge(
             from_node="complex_iii", to_node="cyt_c",
-            enzyme_or_complex="Complex III → Cyt c",
+            enzyme="Complex III → Cyt c",
             notes="One electron at a time is passed to cytochrome c."
         ))
         p.add_edge(ReactionEdge(
             from_node="cyt_c", to_node="complex_iv",
-            enzyme_or_complex="Cytochrome c → Complex IV",
+            enzyme="Cytochrome c → Complex IV",
             notes="Cyt c delivers electrons to Complex IV."
         ))
         p.add_edge(ReactionEdge(
             from_node="complex_iv", to_node="h2o",
-            enzyme_or_complex="Complex IV",
+            enzyme="Complex IV",
             protons_pumped=2,
             notes="4 electrons + 4 H⁺ + O₂ → 2 H₂O. 2 protons pumped."
         ))
         p.add_edge(ReactionEdge(
             from_node="proton_gradient", to_node="atp_synthase",
-            enzyme_or_complex="ATP Synthase (Complex V)",
+            enzyme="ATP Synthase (Complex V)",
             notes="Protons flow back into the matrix through ATP synthase, driving ATP synthesis (chemiosmosis)."
         ))
         p.add_edge(ReactionEdge(
             from_node="atp_synthase", to_node="atp",
-            enzyme_or_complex="ATP Synthase",
+            enzyme="ATP Synthase",
             notes="ADP + Pi → ATP. Approximate yield: 2.5 ATP per NADH, 1.5 ATP per FADH₂."
         ))
 

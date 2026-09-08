@@ -14,9 +14,6 @@ Key educational points:
 =================================================================
 """
 
-from dataclasses import dataclass
-from enum import Enum
-from typing import Optional
 
 try:
     from biology_as_code.pathways.metabolic_mechanisms import (
@@ -28,54 +25,18 @@ except ImportError:
     MetabolicMechanism = None
 
 
-class PathwayNodeType(Enum):
-    SUBSTRATE = "substrate"
-    INTERMEDIATE = "intermediate"
-    PRODUCT = "product"
-    REGULATORY = "regulatory"
+from biology_as_code.pathways._types import (
+    MetabolicPathway as _BasePathway,
+)
+from biology_as_code.pathways._types import (
+    MetaboliteNode,
+    PathwayNodeType,
+    ReactionEdge,
+)
 
 
-@dataclass
-class MetaboliteNode:
-    id: str
-    name: str
-    node_type: PathwayNodeType
-    notes: str = ""
-
-
-@dataclass
-class ReactionEdge:
-    """Directed reaction with formal link to a MetabolicMechanism."""
-    from_node: str
-    to_node: str
-    mechanism_id: str = ""
-    enzyme: str = ""
-    nadh_cost: int = 0          # negative = produced
-    fadh2_cost: int = 0         # negative = produced
-    gtp_cost: int = 0           # positive = produced (substrate-level)
-    co2_produced: int = 0
-    regulation: str = ""
-    notes: str = ""
-
-
-class MetabolicPathway:
-    def __init__(self, name: str, description: str = ""):
-        self.name = name
-        self.description = description
-        self.nodes: dict[str, MetaboliteNode] = {}
-        self.edges: list[ReactionEdge] = []
-
-    def add_node(self, node: MetaboliteNode) -> None:
-        self.nodes[node.id] = node
-
-    def add_edge(self, edge: ReactionEdge) -> None:
-        self.edges.append(edge)
-
-    def get_mechanism(self, edge: ReactionEdge) -> Optional["MetabolicMechanism"]:
-        if get_metabolic_mechanism_registry is None or not edge.mechanism_id:
-            return None
-        reg = get_metabolic_mechanism_registry()
-        return reg.get(edge.mechanism_id)
+class MetabolicPathway(_BasePathway):
+    """Shared graph type; only this module's own summary differs."""
 
     def summary(self) -> dict:
         # Per acetyl-CoA (one turn of the cycle)
