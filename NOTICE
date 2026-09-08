@@ -68,6 +68,24 @@ readable register is THIRD-PARTY-DATA.json.
    Work of the US federal government (17 U.S.C. 105); public domain. Attribution
    is courtesy. Not to be used to imply USDA endorsement.
 
+5. MetaNetX/MNXref and ModelSEED  --  MASTER_CROSSWALK.xrefs.tsv
+
+   Moretti S, et al. MetaNetX/MNXref: unified namespace for metabolites and
+   biochemical reactions in the context of metabolic models. Nucleic Acids
+   Research 49(D1):D570-D574, 2021. doi:10.1093/nar/gkaa992
+   Seaver SMD, et al. The ModelSEED Biochemistry Database. Nucleic Acids Research
+   49(D1):D575-D588, 2021. doi:10.1093/nar/gkaa746
+   https://www.metanetx.org  ·  https://modelseed.org
+
+   A sidecar to MASTER_CROSSWALK.tsv: one row per cell that VMH left OPEN and an
+   independent source can fill. inchiKey and seed come from ModelSEED, chebi from
+   ChEBI via MNXref, and the reconciliation between namespaces from MNXref itself.
+
+   Both MNXref and ModelSEED are CC BY 4.0: commercial use is permitted and
+   ATTRIBUTION IS REQUIRED. KEGG- and HMDB-derived cells are deliberately excluded
+   because their terms do not permit what Apache-2.0 grants. See
+   MASTER_CROSSWALK.xrefs.NOTICE.md.
+
 Nothing else in this repository is third-party. See THIRD-PARTY-DATA.json for the
 first-party list and the remedies available for item 1.
 

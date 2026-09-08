@@ -88,3 +88,8 @@ biology_as_code-v*.tar.gz
 ontology-sdk/learning-ont/*.pdf
 ontology-sdk/learning-ont/*.png
 ontology-sdk/learning-ont/*.jpg
+
+# Reduced upstream tables for tools/enrich_crosswalk_xrefs.py. Machine-local: the
+# upstream MNXref chem_xref.tsv is ~680 MB and is never vendored. Regenerate with
+# `python3 tools/enrich_crosswalk_xrefs.py --fetch`.
+.xref_cache/
