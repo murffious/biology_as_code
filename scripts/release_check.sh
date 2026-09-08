@@ -7,7 +7,9 @@ echo "== install dev tools =="
 python3 -m pip install -q -e ".[dev]" build twine
 
 echo "== tests =="
-python3 -m pytest tests/test_public_api.py tests/test_quiet.py tests/test_fixtures_packaged.py -q
+# Full suite, same as CI. This once ran three files, which is how a green
+# release check and a red CI run could describe the same tree.
+python3 -m pytest tests/ -q
 PYTHONPATH=src python3 tests/test_pathway_packs.py
 PYTHONPATH=src python3 scripts/check_pathway_integration.py
 
@@ -29,9 +31,15 @@ python3 -m venv .venv-release-check
 source .venv-release-check/bin/activate
 pip install -q dist/*.whl
 python - <<'PY'
+import tomllib
 from biology_as_code import simulate_meal, __version__, list_pathways
 from biology_as_code.data.fixtures import list_meal_ids, load_meal
-assert __version__ == "0.1.0"
+# Agreement with pyproject, not a pinned string: the pin ("0.1.0") stayed
+# behind when 0.2.0 and 0.2.1 shipped, so this script has failed on every
+# release since without anyone noticing, because CI has its own smoke test.
+with open("pyproject.toml", "rb") as f:
+    declared = tomllib.load(f)["project"]["version"]
+assert __version__ == declared, (__version__, declared)
 assert len(list_pathways()) >= 10
 assert list_meal_ids()
 m = load_meal(list_meal_ids()[0])
@@ -44,6 +52,6 @@ deactivate
 rm -rf .venv-release-check
 
 echo ""
-echo "Release check passed. Next:"
-echo "  twine upload --repository testpypi dist/*"
-echo "  twine upload dist/*"
+echo "Release check passed. Next: tag and publish a GitHub Release from main;"
+echo "publish.yml uploads to PyPI and versions the Zenodo record on the release event."
+echo "Manual uploads bypass the separation gate — see docs/python/PUBLISHING.md."

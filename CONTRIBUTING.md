@@ -31,6 +31,56 @@ Two rules that follow from the same incident:
 Merged branches delete themselves. Before this was switched on they accumulated
 until nobody could tell which were live.
 
+**Both branches take changes only through a pull request with green checks.** A
+repository ruleset (`ci-required`) enforces it: a direct push to `main` or `dev`
+is refused, and a pull request cannot merge until the separation gate, the three
+Python test jobs, coverage, and the docs build all report. Repository admins can
+bypass on a pull request for a genuine emergency; the bypass is recorded on the
+PR, so use it as the audit trail it is. No approving review is required — a
+solo maintainer cannot approve their own PR — so the checks *are* the review.
+
+### Hotfixes and the sync back
+
+A hotfix goes to `main` on its own branch (`fix/...`, `gh pr create --base main`).
+The moment it merges, `dev` is behind, and the next feature PR will carry a
+conflict nobody authored. Sync immediately:
+
+    gh pr create --base dev --head main --title "sync: main → dev"
+
+The sync PR is a fast-forward and its checks are already green on the same
+commits; merge it as soon as they re-report. This happened once already
+(`f0199c8` sat on `main` alone) and was caught by hand.
+
+### Releasing
+
+`dev` → `main` is a pull request like any other (`gh pr create --base main
+--head dev`). After it merges, run `scripts/release_check.sh` on `main`, bump
+`version` in `pyproject.toml`, `CITATION.cff` and
+`src/biology_as_code/data/VERSION_MANIFEST.json` together (`__version__` is read from
+the manifest, not from package metadata; the CI wheel smoke fails if the two disagree), move the
+`[Unreleased]` section of `CHANGELOG.md` under the new version, tag `vX.Y.Z`, and
+publish a GitHub Release from the tag. The release event is what runs
+`publish.yml` (PyPI + a new Zenodo version); a push never does.
+
+### When to cut a release branch (and why there is none)
+
+There is no standing `release/*` branch, on purpose. Every commit on `main` is
+shippable and the tag *is* the release, so a third branch would only add a
+third place for the sync-back problem above to live. Cut one, from the tag and
+at that moment, in exactly two cases:
+
+- **An old line needs a patch while `main` has moved on.** A paper cites
+  `0.2.x`, `main` is already `0.3` with a breaking change, and a citation on the
+  `0.2` line is wrong. `git switch -c release/0.2.x v0.2.1`, fix there, tag
+  `v0.2.2` from it, then merge the fix forward into `dev`.
+- **A release needs a freeze while `dev` keeps taking features.** That takes
+  several people merging daily and a QA window measured in days; the suite runs
+  in about ninety seconds, so for now the freeze is the `dev` → `main` PR.
+
+If you do cut one, add it to the `on:` lists in `ci.yml` and `docs.yml` and to
+the `ci-required` ruleset in the same commit, or it is an unwatched merge
+target, and delete it once the line is no longer supported.
+
 ## Data — strengthen the register
 
 Evidence, packet fills, claims, and gate/bound rules go through a **fail-closed
@@ -53,7 +103,7 @@ structured workflow: code first, export mermaid, tests, coverage, integration ga
 | [**docs/python/templates/pathway_module_stub.py**](docs/python/templates/pathway_module_stub.py) | Copy to `src/.../pathways/` |
 | `scripts/export_pathway_packs.py` | Regenerate `packs/<id>/pathway.mermaid` |
 | `scripts/check_pathway_integration.py` | **Must exit 0** before merge |
-| `packs/COVERAGE.md` | Graphs ↔ modules honesty map |
+| `src/biology_as_code/pathways/packs/COVERAGE.md` | Graphs ↔ modules honesty map |
 
 ```bash
 pip install -e ".[dev]"
@@ -62,6 +112,9 @@ PYTHONPATH=src python3 scripts/export_pathway_packs.py
 PYTHONPATH=src python3 scripts/check_pathway_integration.py
 PYTHONPATH=src python3 tests/test_pathway_packs.py
 ```
+
+CI runs the same integration check, so a skipped step turns the PR red rather
+than slipping through.
 
 **Single wire point:** register loaders only in
 `src/biology_as_code/pathways/registry.py` (`pathway_loaders`). Export uses that

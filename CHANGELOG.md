@@ -6,6 +6,15 @@ All notable changes to the **biology-as-code** Python package are documented her
 
 ### Changed
 
+- **CI practice flow** (QA pass, 2026-09-07). Every action pin was two majors
+  behind and emitting Node 20 deprecation notices on green runs; bumped, and a
+  Dependabot config now keeps them current with PRs against `dev`. CI runs
+  `scripts/check_pathway_integration.py`, which CONTRIBUTING had required
+  without enforcing. Docs build on pushes to `dev`, not only on PRs. A default
+  pull-request template, a `ci-required` ruleset on `main` and `dev`, and a
+  CONTRIBUTING section on hotfix sync-back and releasing. `release_check.sh`
+  was pinned to `0.1.0` and ran three test files; it now reads the version from
+  `pyproject.toml` and runs the suite.
 - **Zenodo job refuses to publish outside our concept chain** (`publish.yml`): the
   release deposit now checks that the target record belongs to concept
   `10.5281/zenodo.21536448` before it uploads, so a mis-set token or a fresh deposit
