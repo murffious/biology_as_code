@@ -58,15 +58,20 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - Intro video: intro-video.md
   - Constitution: constitution.md
   - Note on the title: naming.md
   - "The book (coming soon)": book.md
   - "Nutrition map (interactive)": https://murffious.github.io/biology_as_code/nutrition-map/
   - "Primer: genome-scale metabolic models": gem-primer.md
+  - "David & Nielsen 2005 (source map)": david-nielsen-2005.md
+  - "Urea cycle (Recon3D reaction map)": figures/urea-cycle.md
   - Digestion engine: digestion.md
   - Digestion process (A-Z stages): digestion-process.md
   - Events & feedback: events.md
+  - System coverage layer: systems-coverage.md
   - Notational conventions: notational-conventions.md
+  - "The seven systems: vocabulary provenance": SYSTEMS-VOCABULARY-PROVENANCE.md
   - Metabolic constants (what may be encoded): metabolic-constants.md
   - Non-laws (looks like a law, is not): non-laws.md
   - Validation report: VALIDATION.md
@@ -81,11 +86,20 @@ nav:
       - 2. The fat-vehicle gate: cookbook/02-fat-vehicle-gate.md
       - 3. Matrix effect (almond): cookbook/03-matrix-effect.md
       - 4. Auditing a real claim: cookbook/04-claim-audit.md
+      - 5. Vitamin D vehicle: cookbook/05-vitamin-d-vehicle.md
   - Architecture:
       - Package: python/PACKAGE_ARCHITECTURE.md
       - Publishing: python/PUBLISHING.md
       - Add a pathway (template): python/ADD_PATHWAY.md
       - Pathway PR checklist: python/templates/NEW_PATHWAY_CHECKLIST.md
+      - Pathway types refactor (done): python/PATHWAY_TYPES_REFACTOR.md
+      - Nutrition ontology spec (v0.1): nutrition_ontology_spec.md
+
+# Built and reachable by URL and search, but deliberately not in the nav: a
+# working draft of a licence enquiry, with correspondence details, not a page
+# for readers of the docs.
+not_in_nav: |
+  VMH-LICENCE-ENQUIRY.md
 
 extra:
   social:
