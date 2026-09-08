@@ -1,0 +1,48 @@
+# Exceptions for the prose half of tools/check_pmids.py.
+# Format: <pmid or path>  <written reason>.  A reason is mandatory.
+#
+# Two kinds, and they are not equivalent:
+#
+#   <pmid>  skipped entirely. For an identifier the prose quotes ON PURPOSE as
+#           being wrong — the correction tables that record what an id used to
+#           be. Checking those would flag the documentation of a fix as a bug.
+#
+#   <path>  existence-only. For a file of bare reference lists: ids with no
+#           author or title beside them to diff against. Every id in it is still
+#           resolved, so a dead identifier is still caught; only the "does it
+#           name this paper" half is dropped, because there is no name.
+#
+# Adding a line here is a claim that the id cannot be checked, not that it is
+# fine. Prefer writing the author's surname next to the id instead.
+
+# --- Files of bare reaction-reference lists (existence-only) ---
+docs/figures/urea-cycle.md  VMH reaction provenance: ids listed per reaction id (ARGSL, UREAt, ...) with no author or title anywhere on the line.
+
+# --- Identifiers quoted deliberately as wrong ---
+8962261@docs/metabolic-constants.md   metabolic-constants.md correction table: recorded as the WRONG id previously shipped for Miller & Wolin 1996.
+23985657@docs/metabolic-constants.md  metabolic-constants.md correction table: one of three wrong ids previously offered for den Besten 2013.
+24023713@docs/metabolic-constants.md  metabolic-constants.md correction table: ditto, an earlier rejected den Besten id.
+24347302@docs/metabolic-constants.md  metabolic-constants.md correction table: ditto, the one that had been shipped in dig/hepatic_routes.py.
+1939103@docs/metabolic-constants.md   metabolic-constants.md correction table: recorded as the WRONG id previously shipped for Hinkle 1991.
+15639704@docs/metabolic-constants.md  metabolic-constants.md correction table: recorded as the WRONG id previously shipped for Hinkle 2005.
+12417066@docs/metabolic-constants.md  metabolic-constants.md correction table: recorded as the WRONG id previously shipped for St-Pierre 2002.
+20463404@docs/metabolic-constants.md  metabolic-constants.md correction table: recorded as the WRONG id previously shipped for Brand 2010.
+12740047@docs/metabolic-constants.md  metabolic-constants.md correction table: recorded as the WRONG id previously shipped for Macfarlane 2003.
+26859755@docs/metabolic-constants.md  metabolic-constants.md correction table: recorded as the WRONG id previously shipped for Stilling 2016.
+21924744@docs/metabolic-constants.md  metabolic-constants.md correction table: recorded as the WRONG id previously shipped for Lubos 2011.
+14668792@docs/metabolic-constants.md  metabolic-constants.md correction table: recorded as the WRONG id previously shipped for Rich 2003; resolves to no PubMed record at all.
+23380711@docs/metabolic-constants.md  metabolic-constants.md correction table: recorded as the WRONG id previously shipped for Deponte 2013.
+19052988@docs/metabolic-constants.md  metabolic-constants.md correction table: recorded as the WRONG id previously shipped for Murphy 2009.
+26859528@docs/non-laws.md  non-laws.md and dig/ notes: the id the pasted card used for Stilling; quoted to say it is wrong.
+23380721  redox_routes.py note: the id the pasted card used for Deponte; quoted to say it is wrong.
+19028888  respiratory_control.py note: the id the pasted card used for Murphy; quoted to say it is wrong.
+
+# --- Files that cite by internal evidence-record id (existence-only) ---
+# In these, a study is named by its register id (EV-041) and the author/title
+# live in src/biology_as_code/engine/data/evidence_candidates_LAW026.json, which
+# check_pmids now reads directly and checks STRICTLY. Duplicating the title into
+# the prose to satisfy a gate would be writing for the gate, not the reader.
+docs/VALIDATION.md  cites studies by evidence-record id; the authoritative pmid+title pair is in the LAW026 evidence register, checked strictly there.
+docs/VALIDATION_LEDGER.md  same: cites by evidence-record id, register carries the checked pair.
+CHANGELOG.md  release notes referring to studies by evidence-record id; register carries the checked pair.
+docs/related-projects.md  cites a paper's id to say it is NOT in PMC and could not be read; the point is the access barrier, not the content.

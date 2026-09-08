@@ -84,7 +84,7 @@ PMID_IN_PROSE = re.compile(
 
 #: How far around the id to look for the title. Markdown wraps citations across
 #: lines, and a title can sit either side of the identifier.
-CONTEXT_LINES = 3
+CONTEXT_LINES = 6
 
 _PUNCT = re.compile(r"[^a-z0-9 ]+")
 _SPACE = re.compile(r"\s+")
@@ -132,27 +132,121 @@ def _fold(node: ast.AST) -> str | None:
     return None
 
 
-def collect() -> list[dict]:
-    rows: list[dict] = []
-    for path in sorted(SRC.rglob("*.py")):
-        rows.extend(harvest(ast.parse(path.read_text()), path))
+def harvest_grounded(tree: ast.AST, path: pathlib.Path) -> list[dict]:
+    """PubMed ids attached to a constant by `grounded(...)`.
+
+    These carry no title to diff against — the `supports` field says what the
+    paper backs, not what it is called — so they are existence-checked only.
+    They are harvested here anyway, and this is the point: `check_constants.py`
+    requires every grounded constant's id to be present in `pmid_cache.json`, so
+    if this harvester did not see them, `--update-cache` would drop them and the
+    constants gate would start failing on ids it could no longer resolve. One
+    harvester, one cache, no drift between the two gates.
+    """
+    rows = []
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Call):
+            continue
+        if not (isinstance(node.func, ast.Name) and node.func.id == "grounded"):
+            continue
+        for kw in node.keywords:
+            if kw.arg == "pmid" and isinstance(kw.value, ast.Constant):
+                rows.append(
+                    {
+                        "pmid": str(kw.value.value),
+                        "citation": "",
+                        "existence_only": True,
+                        "where": f"{path.relative_to(ROOT)}:{node.lineno}",
+                    }
+                )
     return rows
 
 
-def load_allow() -> dict[str, str]:
-    """`<pmid>  <reason>` per line; `#` comments. A reason is mandatory."""
-    allowed: dict[str, str] = {}
+def collect() -> list[dict]:
+    rows: list[dict] = []
+    for path in sorted(SRC.rglob("*.py")):
+        tree = ast.parse(path.read_text())
+        rows.extend(harvest(tree, path))
+        rows.extend(harvest_grounded(tree, path))
+    return rows
+
+
+def harvest_json(path: pathlib.Path) -> list[dict]:
+    """Every object in a JSON register carrying both a `pmid` and a `title`.
+
+    Checked as strictly as code: the title is right there, so there is no excuse
+    for it not matching. This is where an evidence register keeps its citations,
+    and it is the *authoritative* copy — prose that refers to a study by its
+    internal record id (EV-041) is pointing here.
+    """
+    rows: list[dict] = []
+
+    def walk(node: object) -> None:
+        if isinstance(node, dict):
+            pmid, title = node.get("pmid"), node.get("title")
+            if isinstance(pmid, str) and isinstance(title, str) and pmid.isdigit():
+                rows.append(
+                    {
+                        "pmid": pmid,
+                        "citation": title,
+                        "stored_title": True,
+                        "where": str(path.relative_to(ROOT)),
+                    }
+                )
+                return
+            for value in node.values():
+                walk(value)
+        elif isinstance(node, list):
+            for value in node:
+                walk(value)
+
+    try:
+        walk(json.loads(path.read_text()))
+    except json.JSONDecodeError:
+        pass
+    return rows
+
+
+def collect_json() -> list[dict]:
+    rows: list[dict] = []
+    for path in sorted(SRC.rglob("*.json")):
+        rows.extend(harvest_json(path))
+    return rows
+
+
+def load_allow() -> tuple[dict[str, str], dict[str, str]]:
+    """`<pmid or path>  <reason>` per line; `#` comments. A reason is mandatory.
+
+    Two kinds of entry, because prose has two kinds of exception:
+
+    * a **pmid@path** — an id quoted deliberately *in one named file*, such as
+      the correction tables that record what an identifier used to be. Skipped
+      there and nowhere else, so the same wrong id used as a real citation on
+      another page is still caught. A bare pmid is accepted and skips everywhere,
+      but prefer the scoped form.
+    * a **path** — a file of bare reference lists, ids with no author or title
+      beside them to diff against. Not skipped: every id in it is still checked
+      for *existence*, which is what catches a dead identifier like the one that
+      resolved to no PubMed record at all. Only the "does it name this paper"
+      half is dropped, because there is no name to compare.
+    """
+    ids: dict[str, str] = {}
+    paths: dict[str, str] = {}
     if not ALLOW.exists():
-        return allowed
+        return ids, paths
     for raw in ALLOW.read_text().splitlines():
         line = raw.split("#", 1)[0].strip()
         if not line:
             continue
-        pmid, _, reason = line.partition(" ")
+        key, _, reason = line.partition(" ")
+        key = key.strip()
         if not reason.strip():
-            raise SystemExit(f"{ALLOW.name}: {pmid} has no written reason")
-        allowed[pmid.strip()] = reason.strip()
-    return allowed
+            raise SystemExit(f"{ALLOW.name}: {key} has no written reason")
+        if key.split("@", 1)[0].isdigit():
+            ids[key] = reason.strip()
+        else:
+            paths[key] = reason.strip()
+    return ids, paths
 
 
 def harvest_prose(path: pathlib.Path) -> list[dict]:
@@ -221,6 +315,15 @@ def fetch(pmids: list[str]) -> dict:
     return out
 
 
+#: Below this many characters a "prefix" is not evidence of anything.
+MIN_PREFIX = 40
+
+
+def _prefix_match(stored: str, resolved: str) -> bool:
+    """Is the stored title the opening of the resolved one?"""
+    return len(stored) >= MIN_PREFIX and resolved.startswith(stored)
+
+
 def _author_present(record: dict, context: str) -> bool:
     """Is the first author's surname in the text around the id?"""
     surname = normalise(record.get("author", ""))
@@ -235,11 +338,17 @@ def main() -> int:
     parser.add_argument("--code-only", action="store_true", help="skip prose in docs/")
     args = parser.parse_args()
 
-    rows = collect()
+    rows = collect() + collect_json()
     allowed: dict[str, str] = {}
+    unnamed_files: dict[str, str] = {}
     if not args.code_only:
-        allowed = load_allow()
-        rows += [r for r in collect_prose() if r["pmid"] not in allowed]
+        allowed, unnamed_files = load_allow()
+        for row in collect_prose():
+            path = row["where"].rsplit(":", 1)[0]
+            if row["pmid"] in allowed or f"{row['pmid']}@{path}" in allowed:
+                continue
+            row["existence_only"] = path in unnamed_files
+            rows.append(row)
     cache = {} if args.update_cache else load_cache()
     wanted = sorted({row["pmid"] for row in rows})
     missing = [pmid for pmid in wanted if pmid not in cache]
@@ -252,15 +361,26 @@ def main() -> int:
         cache.update(fetch(missing))
         CACHE.write_text(json.dumps(cache, indent=2, sort_keys=True) + "\n")
 
-    bad, ok = [], 0
+    bad, ok, existence = [], 0, 0
     for row in rows:
         record = cache.get(row["pmid"], {})
         title = record.get("title")
         if title is None:
             bad.append((row, "no PubMed record"))
             continue
+        if row.get("existence_only"):
+            # A bare reference list. The id resolves, which is all this file can
+            # assert; there is no author or title beside it to diff against.
+            existence += 1
+            continue
         context = normalise(row["citation"])
         if normalise(title) in context:
+            ok += 1
+        elif row.get("stored_title") and _prefix_match(context, normalise(title)):
+            # A register stores the title as its own field, and several are
+            # truncated mid-word by whatever wrote them. Containment therefore
+            # runs the other way here: the stored string must be the opening of
+            # the real one. Length-guarded so a stub cannot match by accident.
             ok += 1
         elif row.get("prose") and _author_present(record, context):
             # Prose abbreviates titles ("A linear steady-state treatment of
@@ -275,10 +395,11 @@ def main() -> int:
             bad.append((row, f'resolves to "{title}" ({record.get("source", "?")})'))
 
     scope = "code" if args.code_only else "code + prose"
-    skipped = f", {len(allowed)} allowed" if allowed else ""
+    extra = f", {existence} existence-only" if existence else ""
+    skipped = f", {len(allowed)} quoted-deliberately" if allowed else ""
     print(
         f"{len(rows)} shipped citation(s) [{scope}]; "
-        f"{ok} confirmed, {len(bad)} mismatched{skipped}"
+        f"{ok} confirmed, {len(bad)} mismatched{extra}{skipped}"
     )
     for row, why in bad:
         print(f"  MISMATCH {row['pmid']}  {row['where']}\n    {why}")
