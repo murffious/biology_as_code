@@ -81,6 +81,21 @@ OLS_ONTOLOGIES = {
 # precisely because whatever checked them could only see OLS4 and skipped them.
 REACTOME = re.compile(r"^R-[A-Z]{3}-\d+$")
 
+# MALFORMED: a prefix we know, followed by a local part that is not an accession.
+# `chebi:<an english word>` is the one id shape that escaped every check here: the
+# CURIE regex above requires \d{4,}, so a placeholder was not a finding and not a
+# pass — it was invisible, which is the state this file exists to abolish. 23 of
+# them ship today, and they sit in the ChEBI slot of the food -> chemical -> GO
+# chain, so the join key that chain is built on does not resolve to a molecule.
+#
+# ':' only, never '_'. The underscore form is the OBO IRI shape (CHEBI_15377,
+# always digits); allowing it here harvested python identifiers instead —
+# bfo_stack_ontology, chebi_local, uberon_hint. Measured 2026-09-07: with '_' the
+# pattern found 117 hits of which 44 were variable names; with ':' it finds 73,
+# all real, in 6 files.
+MALFORMED_CURIE = re.compile(
+    r"\b(" + "|".join(OLS_ONTOLOGIES) + r"):([A-Za-z_][A-Za-z0-9_]{2,})\b", re.I)
+
 CURIE = re.compile(r"\b(" + "|".join(OLS_ONTOLOGIES) + r")[:_](\d{4,})\b")
 
 # How a declared label sits next to its id, across the shapes actually in the tree.
@@ -226,6 +241,29 @@ def resolve(curie: str, offline: bool = False) -> dict | None:
     return out
 
 
+def harvest_malformed(root: pathlib.Path) -> list[dict]:
+    """Ids that cannot be resolved because they are not identifiers.
+
+    These never reach resolve(): there is nothing to look up. They are reported on
+    shape alone, which is the only check that can see them.
+    """
+    found: dict[str, set[str]] = {}
+    for p in root.rglob("*"):
+        if not p.is_file() or p.suffix not in SCAN_SUFFIXES:
+            continue
+        if SKIP_DIRS & set(p.parts) or p.name == pathlib.Path(__file__).name:
+            continue
+        try:
+            text = p.read_text(errors="ignore")
+        except OSError:
+            continue
+        for m in MALFORMED_CURIE.finditer(text):
+            found.setdefault(m.group(0), set()).add(str(p.relative_to(root)))
+    return [{"curie": c, "declared": None, "kind": "MALFORMED",
+             "actual": None, "files": sorted(f)}
+            for c, f in sorted(found.items())]
+
+
 def harvest(root: pathlib.Path) -> dict[tuple[str, str], set[str]]:
     """(curie, declared_label) -> the files that assert it."""
     found: dict[tuple[str, str], set[str]] = {}
@@ -274,6 +312,7 @@ def audit(root: pathlib.Path, offline: bool = False) -> tuple[list[dict], list[s
     as the COVERAGE note below, one layer down: an unrun check is not a pass.
     """
     problems, unresolved = [], []
+    problems.extend(harvest_malformed(root))
     pairs = harvest(root)
     pairs.update(harvest_existence_only(root))
     for (curie, label), files in sorted(pairs.items(), key=lambda kv: (kv[0][0], kv[0][1] or "")):
@@ -342,13 +381,17 @@ def main() -> int:
     for p in problems:
         by_kind.setdefault(p["kind"], []).append(p)
 
-    for kind in ("NOT_FOUND", "WRONG_CONCEPT", "OBSOLETE"):
+    for kind in ("MALFORMED", "NOT_FOUND", "WRONG_CONCEPT", "OBSOLETE"):
         rows = by_kind.get(kind) or []
         if not rows:
             continue
         print(f"\n{kind}  ({len(rows)})")
         for p in rows:
-            actual = f" -> actually {p['actual']!r}" if p["actual"] else " -> does not exist"
+            if p["kind"] == "MALFORMED":
+                actual = " -> not an accession; there is nothing to resolve"
+            else:
+                actual = (f" -> actually {p['actual']!r}" if p["actual"]
+                          else " -> does not exist")
             declared = ("no declared label (existence-only)" if p["declared"] is None
                         else f"declared {p['declared']!r}")
             print(f"  {p['curie']:<18} {declared}{actual}")
