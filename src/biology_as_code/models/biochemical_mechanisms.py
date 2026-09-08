@@ -47,9 +47,15 @@ class BiochemicalMechanismRegistry:
 
     def _build(self):
         data = [
+            # RHEA 16501 was on this row and was wrong (written without the colon
+            # on purpose: it is not an id this file asserts). It is
+            # glycerophosphoinositol glycerophosphodiesterase, unrelated to
+            # ascorbate or to 2-oxoglutarate-dependent dioxygenases. Removed
+            # 2026-09-07 rather than replaced: this row's GO term has no entry in
+            # rhea2go, so there is no correct Rhea id to put here.
             ("mech.ascorbate_cofactor_hydroxylase",
              "Ascorbate as cofactor for 2-oxoglutarate-dependent dioxygenases",
-             "GO:0016706", "GO:0016706", ["GO:0005506", "RHEA:16501"],
+             "GO:0016706", "GO:0016706", ["GO:0005506"],
              ["R-HSA-1474244"],
              "Collagen prolyl/lysyl hydroxylases; zero ascorbate → enzyme lockout",
              "scurvy / P4H chemistry",
