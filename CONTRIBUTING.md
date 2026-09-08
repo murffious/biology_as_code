@@ -31,6 +31,36 @@ Two rules that follow from the same incident:
 Merged branches delete themselves. Before this was switched on they accumulated
 until nobody could tell which were live.
 
+**Both branches take changes only through a pull request with green checks.** A
+repository ruleset (`ci-required`) enforces it: a direct push to `main` or `dev`
+is refused, and a pull request cannot merge until the separation gate, the three
+Python test jobs, coverage, and the docs build all report. Repository admins can
+bypass on a pull request for a genuine emergency; the bypass is recorded on the
+PR, so use it as the audit trail it is. No approving review is required — a
+solo maintainer cannot approve their own PR — so the checks *are* the review.
+
+### Hotfixes and the sync back
+
+A hotfix goes to `main` on its own branch (`fix/...`, `gh pr create --base main`).
+The moment it merges, `dev` is behind, and the next feature PR will carry a
+conflict nobody authored. Sync immediately:
+
+    gh pr create --base dev --head main --title "sync: main → dev"
+
+The sync PR is a fast-forward and its checks are already green on the same
+commits; merge it as soon as they re-report. This happened once already
+(`f0199c8` sat on `main` alone) and was caught by hand.
+
+### Releasing
+
+`dev` → `main` is a pull request like any other (`gh pr create --base main
+--head dev`). After it merges, run `scripts/release_check.sh` on `main`, bump
+`version` in `pyproject.toml` and `CITATION.cff` together (`__version__` reads package
+metadata, so it follows), move the
+`[Unreleased]` section of `CHANGELOG.md` under the new version, tag `vX.Y.Z`, and
+publish a GitHub Release from the tag. The release event is what runs
+`publish.yml` (PyPI + a new Zenodo version); a push never does.
+
 ## Data — strengthen the register
 
 Evidence, packet fills, claims, and gate/bound rules go through a **fail-closed
@@ -53,7 +83,7 @@ structured workflow: code first, export mermaid, tests, coverage, integration ga
 | [**docs/python/templates/pathway_module_stub.py**](docs/python/templates/pathway_module_stub.py) | Copy to `src/.../pathways/` |
 | `scripts/export_pathway_packs.py` | Regenerate `packs/<id>/pathway.mermaid` |
 | `scripts/check_pathway_integration.py` | **Must exit 0** before merge |
-| `packs/COVERAGE.md` | Graphs ↔ modules honesty map |
+| `src/biology_as_code/pathways/packs/COVERAGE.md` | Graphs ↔ modules honesty map |
 
 ```bash
 pip install -e ".[dev]"
@@ -62,6 +92,9 @@ PYTHONPATH=src python3 scripts/export_pathway_packs.py
 PYTHONPATH=src python3 scripts/check_pathway_integration.py
 PYTHONPATH=src python3 tests/test_pathway_packs.py
 ```
+
+CI runs the same integration check, so a skipped step turns the PR red rather
+than slipping through.
 
 **Single wire point:** register loaders only in
 `src/biology_as_code/pathways/registry.py` (`pathway_loaders`). Export uses that

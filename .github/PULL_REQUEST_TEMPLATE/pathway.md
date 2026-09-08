@@ -19,7 +19,7 @@ Fill: docs/python/templates/NEW_PATHWAY_CHECKLIST.md (paste below or attach).
 - [ ] Wired in `pathways/registry.py` → `pathway_loaders()` only
 - [ ] `PYTHONPATH=src python3 scripts/export_pathway_packs.py`
 - [ ] Pack present: `pathways/packs/<name>/{pathway.mermaid,tests.md,README.md}`
-- [ ] `packs/COVERAGE.md` updated
+- [ ] `pathways/packs/COVERAGE.md` updated
 - [ ] Tests added/updated
 - [ ] `PYTHONPATH=src python3 scripts/check_pathway_integration.py --pathway <name>` → exit 0
 - [ ] `PYTHONPATH=src python3 tests/test_pathway_packs.py` → pass

@@ -1,0 +1,15 @@
+# Keeps the workflow action pins current. Every action in ci.yml, docs.yml and
+# publish.yml was two majors behind on 2026-09-07 and GitHub was emitting a
+# Node 20 deprecation annotation on every run; nobody saw it because the runs
+# were green. Pull requests land on dev, like every other change.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    target-branch: dev
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ["*"]
+    labels: ["ci"]

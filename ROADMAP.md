@@ -28,15 +28,15 @@ and the engine; we need the rest.
 
 *Make it trustworthy and easy to adopt.*
 
-- [ ] **Full-suite CI, not a subset.** CI currently runs only 3 test files + pathway packs. Run the
-      whole suite, add a **coverage** gate + badge, and matrix over 3.11/3.12/3.13 (+ Windows/macOS/Linux).
-- [ ] **Docs site.** Turn `docs/` into a real site (MkDocs-Material or Sphinx): quickstart, the
+- [x] **Full-suite CI, not a subset.** Done: `ci.yml` runs the whole suite on 3.11/3.12/3.13 with a
+      90% coverage floor on `audit` + `packets`. Still open: a coverage badge, and Windows/macOS runners.
+- [x] **Docs site.** MkDocs-Material at murffious.github.io/biology_as_code, built strict on every PR. Open: quickstart, the
       `simulate_meal` / `run_digestion` / law-cards / provenance walkthroughs, an auto API reference
       (`py.typed` is already there), and the mermaid diagrams inline.
-- [ ] **Badges** in the README: CI, coverage, PyPI version, Python versions, license, DOI.
-- [ ] **Zenodo DOI.** Connect the GitHub repo to Zenodo so every release is archived and **citable** —
-      the single cheapest credibility win for a science package.
-- [ ] **Community files:** `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, issue/PR templates.
+- [x] **Badges** in the README: CI, docs, release, DOI, Python versions, license. Open: coverage, PyPI version.
+- [x] **Zenodo DOI.** Concept DOI 10.5281/zenodo.21536448; `publish.yml` versions it on every release
+      (through the REST API, not the webhook — see the comment there for why).
+- [ ] **Community files:** `CONTRIBUTING.md`, issue and PR templates exist. Still missing: `CODE_OF_CONDUCT.md`, `SECURITY.md`.
 - [ ] **conda-forge feedstock** — many scientific users install via conda, not pip.
 - [ ] **Validation invariants, expanded.** Pin more pathways to textbook stoichiometry the way glycolysis
       (+2 ATP/+2 NADH), TCA, and ETC (P/O 2.5/1.5) already are, and fail CI on drift.

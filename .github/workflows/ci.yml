@@ -17,7 +17,7 @@ jobs:
     name: Separation gate (no product identifiers)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       # Rule E. The separation gate keeps product IP out; this keeps PEOPLE out.
       # Both are unrecoverable once pushed, so both run before anything expensive.
       - name: No human rows in a public repository
@@ -61,9 +61,9 @@ jobs:
       matrix:
         python-version: ["3.11", "3.12", "3.13"]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install
@@ -83,6 +83,11 @@ jobs:
         run: pytest tests/ -q
       - name: Pathway packs (script form)
         run: PYTHONPATH=src python tests/test_pathway_packs.py
+      - name: Pathway integration gate
+        # CONTRIBUTING.md has said "must exit 0 before merge" since the pathway
+        # template landed, but nothing ran it here — a contributor could follow
+        # the guide, skip the step, and still see green.
+        run: PYTHONPATH=src python scripts/check_pathway_integration.py
       - name: Build wheel
         run: python -m build
       - name: Twine check
@@ -114,8 +119,8 @@ jobs:
     name: Coverage
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: "3.12"
       - name: Install
@@ -133,7 +138,7 @@ jobs:
             --cov=biology_as_code.packets \
             --cov-report=term-missing \
             --cov-fail-under=90
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v6
         with:
           name: coverage-xml
           path: coverage.xml
