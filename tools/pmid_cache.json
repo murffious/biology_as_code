@@ -1,72 +1,344 @@
 {
+  "1008818": {
+    "author": "Porta",
+    "pubdate": "1976",
+    "source": "Biochem J",
+    "title": "Arginase from human full-term placenta"
+  },
+  "10347186": {
+    "author": "Uriarte",
+    "pubdate": "1999",
+    "source": "J Biol Chem",
+    "title": "The carbamoyl-phosphate synthetase of Pyrococcus furiosus is enzymologically and structurally a carbamate kinase"
+  },
+  "10677517": {
+    "author": "Shah",
+    "pubdate": "2000",
+    "source": "Proc Natl Acad Sci U S A",
+    "title": "Mitochondrial carbonic anhydrase CA VB: differences in tissue distribution and pattern of evolution from those of CA VA suggest distinct physiological roles"
+  },
+  "10799377": {
+    "author": "Hallberg",
+    "pubdate": "2000",
+    "source": "Am J Clin Nutr",
+    "title": "Prediction of dietary iron absorption: an algorithm for calculating absorption and bioavailability of dietary iron"
+  },
+  "10893432": {
+    "author": "De",
+    "pubdate": "2000",
+    "source": "Physiol Rev",
+    "title": "Molecular analysis of the sodium/iodide symporter: impact on thyroid and extrathyroid pathophysiology"
+  },
+  "11024018": {
+    "author": "Quick",
+    "pubdate": "2001",
+    "source": "J Biol Chem",
+    "title": "Neutralization of a conserved amino acid residue in the human Na+/glucose transporter (hSGLT1) generates a glucose-gated H+ channel"
+  },
+  "11034615": {
+    "author": "Leung",
+    "pubdate": "2000",
+    "source": "J Physiol",
+    "title": "Urea transport by cotransporters"
+  },
+  "11747432": {
+    "author": "Sampaleanu",
+    "pubdate": "2001",
+    "source": "Biochemistry",
+    "title": "Three-dimensional structure of the argininosuccinate lyase frequently complementing allele Q286R"
+  },
+  "12408190": {
+    "author": "Kleijer",
+    "pubdate": "2002",
+    "source": "J Inherit Metab Dis",
+    "title": "Clinical, enzymatic, and molecular genetic characterization of a biochemical variant type of argininosuccinic aciduria: prenatal and postnatal diagnosis in five unrelated families"
+  },
+  "12538786": {
+    "author": "Dekaney",
+    "pubdate": "2003",
+    "source": "Pediatr Res",
+    "title": "Gene expression and activity of enzymes in the arginine biosynthetic pathway in porcine fetal small intestine"
+  },
+  "12679487": {
+    "author": "Wapnir",
+    "pubdate": "2003",
+    "source": "J Clin Endocrinol Metab",
+    "title": "Immunohistochemical profile of the sodium/iodide symporter in thyroid, breast, and other carcinomas using high density tissue microarrays and conventional sections"
+  },
+  "12699732": {
+    "author": "Ingalls",
+    "pubdate": "2003",
+    "source": "J Theor Biol",
+    "title": "Sensitivity analysis of stoichiometric networks: an extension of metabolic control analysis to non-steady state trajectories"
+  },
   "12740060": {
+    "author": "Macfarlane",
     "pubdate": "2003",
     "source": "Proc Nutr Soc",
     "title": "Regulation of short-chain fatty acid production"
   },
+  "12748858": {
+    "author": "Wright",
+    "pubdate": "2004",
+    "source": "Pflugers Arch",
+    "title": "The sodium/glucose cotransport family SLC5"
+  },
+  "12853138": {
+    "author": "Summar",
+    "pubdate": "2003",
+    "source": "Gene",
+    "title": "Characterization of genomic structure and polymorphisms in the human carbamyl phosphate synthetase I gene"
+  },
+  "12856182": {
+    "author": "Shayakul",
+    "pubdate": "2004",
+    "source": "Pflugers Arch",
+    "title": "The SLC14 gene family of urea transporters"
+  },
   "13771349": {
+    "author": "MITCHELL",
     "pubdate": "1961",
     "source": "Nature",
     "title": "Coupling of phosphorylation to electron and hydrogen transfer by a chemi-osmotic type of mechanism"
   },
+  "14598172": {
+    "author": "Palmieri",
+    "pubdate": "2004",
+    "source": "Pflugers Arch",
+    "title": "The mitochondrial transporter family (SLC25): physiological and pathological implications"
+  },
   "14641005": {
+    "author": "Rich",
     "pubdate": "2003",
     "source": "Biochem Soc Trans",
     "title": "The molecular machinery of Keilin's respiratory chain"
   },
-  "15620362": {
+  "15565635": {
+    "author": "Lo",
     "pubdate": "2005",
-    "source": "Biochim Biophys Acta",
-    "title": "P/O ratios of mitochondrial oxidative phosphorylation"
+    "source": "J Cell Biochem",
+    "title": "Developmental regulation and cellular distribution of human cytosolic malate dehydrogenase (MDH1)"
   },
-  "19052988": {
-    "pubdate": "2008",
-    "source": "Leuk Lymphoma",
-    "title": "Synchronous presentation of systemic and brain non-Hodgkin lymphoma"
+  "15735074": {
+    "author": "Unlu",
+    "pubdate": "2005",
+    "source": "J Nutr",
+    "title": "Carotenoid absorption from salad and salsa by humans is enhanced by the addition of avocado or avocado oil"
   },
   "19061483": {
+    "author": "Murphy",
     "pubdate": "2009",
     "source": "Biochem J",
     "title": "How mitochondria produce reactive oxygen species"
   },
   "20064600": {
+    "author": "Brand",
     "pubdate": "2010",
     "source": "Exp Gerontol",
     "title": "The sites and topology of mitochondrial superoxide production"
   },
-  "2012815": {
-    "pubdate": "1991",
-    "source": "Biochemistry",
-    "title": "Mechanistic stoichiometry of mitochondrial oxidative phosphorylation"
-  },
   "21087145": {
+    "author": "Lubos",
     "pubdate": "2011",
     "source": "Antioxid Redox Signal",
     "title": "Glutathione peroxidase-1 in health and disease: from molecular mechanisms to therapeutic opportunities"
   },
   "22431005": {
+    "author": "Stanton",
     "pubdate": "2012",
     "source": "IUBMB Life",
     "title": "Glucose-6-phosphate dehydrogenase, NADPH, and cell survival"
   },
   "23036594": {
+    "author": "Deponte",
     "pubdate": "2013",
     "source": "Biochim Biophys Acta",
     "title": "Glutathione catalysis and the reaction mechanisms of glutathione-dependent enzymes"
   },
   "23821742": {
+    "author": "den",
     "pubdate": "2013",
     "source": "J Lipid Res",
     "title": "The role of short-chain fatty acids in the interplay between diet, gut microbiota, and host energy metabolism"
   },
+  "24899156": {
+    "author": "Kopec",
+    "pubdate": "2014",
+    "source": "J Nutr",
+    "title": "Avocado consumption enhances human postprandial provitamin A absorption and conversion from a novel high-\u03b2-carotene tomato sauce and from carrots"
+  },
+  "2490366": {
+    "author": "Hediger",
+    "pubdate": "1989",
+    "source": "Proc Natl Acad Sci U S A",
+    "title": "Homology of the human intestinal Na+/glucose and Escherichia coli Na+/proline cotransporters"
+  },
+  "2520168": {
+    "author": "Sorribas",
+    "pubdate": "1989",
+    "source": "Math Biosci",
+    "title": "A comparison of variant theories of intact biochemical systems. I. Enzyme-enzyme interactions and biochemical systems theory"
+  },
+  "2520169": {
+    "author": "Sorribas",
+    "pubdate": "1989",
+    "source": "Math Biosci",
+    "title": "A comparison of variant theories of intact biochemical systems. II. Flux-oriented and metabolic control theories"
+  },
   "27346602": {
+    "author": "Stilling",
     "pubdate": "2016",
     "source": "Neurochem Int",
     "title": "The neuropharmacology of butyrate: The bread and butter of the microbiota-gut-brain axis?"
   },
+  "27893703": {
+    "author": "Magn\u00fasd\u00f3ttir",
+    "pubdate": "2017",
+    "source": "Nat Biotechnol",
+    "title": "Generation of genome-scale metabolic reconstructions for 773 members of the human gut microbiota"
+  },
+  "29457794": {
+    "author": "Brunk",
+    "pubdate": "2018",
+    "source": "Nat Biotechnol",
+    "title": "Recon3D enables a three-dimensional view of gene variation in human metabolism"
+  },
+  "30015603": {
+    "author": "Poon",
+    "pubdate": "2018",
+    "source": "Br J Nutr",
+    "title": "Comparison of nutrient profiling models for assessing the nutritional quality of foods: a validation study"
+  },
+  "30371894": {
+    "author": "Noronha",
+    "pubdate": "2019",
+    "source": "Nucleic Acids Res",
+    "title": "The Virtual Metabolic Human database: integrating human and gut microbiome metabolism with nutrition and disease"
+  },
+  "31105044": {
+    "author": "Hall",
+    "pubdate": "2019",
+    "source": "Cell Metab",
+    "title": "Ultra-Processed Diets Cause Excess Calorie Intake and Weight Gain: An Inpatient Randomized Controlled Trial of Ad Libitum Food Intake"
+  },
+  "32463598": {
+    "author": "Thiele",
+    "pubdate": "2020",
+    "source": "Mol Syst Biol",
+    "title": "Personalized whole-body models integrate metabolism, physiology, and the gut microbiome"
+  },
+  "3267767": {
+    "author": "Reder",
+    "pubdate": "1988",
+    "source": "J Theor Biol",
+    "title": "Metabolic control theory: a structural approach"
+  },
+  "33995299": {
+    "author": "Teichmann",
+    "pubdate": "2021",
+    "source": "Front Microbiol",
+    "title": "In vitro Fermentation Reveals Changes in Butyrate Production Dependent on Resistant Starch Source and Microbiome Composition"
+  },
+  "3463959": {
+    "author": "O'Brien",
+    "pubdate": "1986",
+    "source": "Proc Natl Acad Sci U S A",
+    "title": "Cloning and sequence analysis of cDNA for human argininosuccinate lyase"
+  },
+  "36658342": {
+    "author": "Heinken",
+    "pubdate": "2023",
+    "source": "Nat Biotechnol",
+    "title": "Genome-scale metabolic reconstruction of 7,302 human microorganisms for personalized medicine"
+  },
+  "38459394": {
+    "author": "Jarvis",
+    "pubdate": "2024",
+    "source": "Nat Food",
+    "title": "Periodic Table of Food Initiative for generating biomolecular knowledge of edible biodiversity"
+  },
+  "38499749": {
+    "author": "Jarvis",
+    "pubdate": "2024",
+    "source": "Nat Food",
+    "title": "Author Correction: Periodic Table of Food Initiative for generating biomolecular knowledge of edible biodiversity"
+  },
+  "40403748": {
+    "author": "Dirks",
+    "pubdate": "2025",
+    "source": "ISME J",
+    "title": "Methanogenesis associated with altered microbial production of short-chain fatty acids and human-host metabolizable energy"
+  },
+  "4148886": {
+    "author": "Kacser",
+    "pubdate": "1973",
+    "source": "Symp Soc Exp Biol",
+    "title": "The control of flux"
+  },
+  "4830198": {
+    "author": "Heinrich",
+    "pubdate": "1974",
+    "source": "Eur J Biochem",
+    "title": "A linear steady-state treatment of enzymatic chains. General properties, control and effector strength"
+  },
+  "5387047": {
+    "author": "Savageau",
+    "pubdate": "1969",
+    "source": "J Theor Biol",
+    "title": "Biochemical systems analysis. II. The steady-state solutions for an n-pool system using a power-law approximation"
+  },
   "5389100": {
+    "author": "McCord",
     "pubdate": "1969",
     "source": "J Biol Chem",
     "title": "Superoxide dismutase. An enzymic function for erythrocuprein (hemocuprein)"
+  },
+  "5434343": {
+    "author": "Savageau",
+    "pubdate": "1970",
+    "source": "J Theor Biol",
+    "title": "Biochemical systems analysis. 3. Dynamic solutions using a power-law approximation"
+  },
+  "6372096": {
+    "author": "Horwich",
+    "pubdate": "1984",
+    "source": "Science",
+    "title": "Structure and expression of a complementary DNA for the nuclear coded precursor of human mitochondrial ornithine transcarbamylase"
+  },
+  "6930651": {
+    "author": "Ford",
+    "pubdate": "1980",
+    "source": "Proc Natl Acad Sci U S A",
+    "title": "Three-dimensional structure of a pyridoxal-phosphate-dependent enzyme, mitochondrial aspartate aminotransferase"
+  },
+  "8063771": {
+    "author": "Hirayama",
+    "pubdate": "1994",
+    "source": "J Biol Chem",
+    "title": "Protons drive sugar transport through the Na+/glucose cotransporter (SGLT1)"
+  },
+  "8559252": {
+    "author": "Dai",
+    "pubdate": "1996",
+    "source": "Nature",
+    "title": "Cloning and characterization of the thyroid iodide transporter"
+  },
+  "8806637": {
+    "author": "Smanik",
+    "pubdate": "1996",
+    "source": "Biochem Biophys Res Commun",
+    "title": "Cloning of the human sodium lodide symporter"
+  },
+  "9341168": {
+    "author": "Eskandari",
+    "pubdate": "1997",
+    "source": "J Biol Chem",
+    "title": "Thyroid Na+/I- symporter. Mechanism, stoichiometry, and specificity"
+  },
+  "9933076": {
+    "author": "Levin",
+    "pubdate": "1999",
+    "source": "Urology",
+    "title": "Biochemical evaluation of obstructive bladder dysfunction in men secondary to BPH: a preliminary report"
   }
 }
